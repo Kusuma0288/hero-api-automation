@@ -1,0 +1,54 @@
+{
+  "addresses": [
+    {
+      "amasid": "AUE|6c9b89d3-9d0d-4fa1-875a-e4d40f5fab87|7.730POAUEGgLkBwAAAAAIAgEAAAAApqWSEAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10",
+      "text": "1 Darcy Road, PORT KEMBLA  NSW  2505",
+      "postcode": "2505"
+    },
+    {
+      "amasid": "AUE|6c9b89d3-9d0d-4fa1-875a-e4d40f5fab87|7.730UOAUEGgLkBwAAAAAIAgEAAAAApqWU0AAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10",
+      "text": "6 Darcy Road, PORT KEMBLA  NSW  2505",
+      "postcode": "2505"
+    },
+    {
+      "amasid": "AUE|6c9b89d3-9d0d-4fa1-875a-e4d40f5fab87|7.730wOAUEGgLkBwAAAAAIAgEAAAAAyQp6UAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10",
+      "text": "8 Darcy Road, TINONEE  NSW  2430",
+      "postcode": "2430"
+    },
+    {
+      "amasid": "AUE|6c9b89d3-9d0d-4fa1-875a-e4d40f5fab87|7.730eOAUEGgLkBwAAAAAIAgEAAAAApqWXkAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10",
+      "text": "10 Darcy Road, PORT KEMBLA  NSW  2505",
+      "postcode": "2505"
+    },
+    {
+      "amasid": "AUE|6c9b89d3-9d0d-4fa1-875a-e4d40f5fab87|7.730mOAUEGgLkBwAAAAAIAgEAAAAA1xnT0AAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10",
+      "text": "16 Darcy Road, WENTWORTHVILLE  NSW  2145",
+      "postcode": "2145"
+    },
+    {
+      "amasid": "AUE|6c9b89d3-9d0d-4fa1-875a-e4d40f5fab87|7.730mOAUEGgLkBwAAAAAIAgEAAAAA1xnWkAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10",
+      "text": "16a Darcy Road, WENTWORTHVILLE  NSW  2145",
+      "postcode": "2145"
+    },
+    {
+      "amasid": "AUE|6c9b89d3-9d0d-4fa1-875a-e4d40f5fab87|7.730FOAUEGgLkBwAAAAAIAgEAAAAA1xnZUAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10",
+      "text": "16b Darcy Road, WENTWORTHVILLE  NSW  2145",
+      "postcode": "2145"
+    },
+    {
+      "amasid": "AUE|6c9b89d3-9d0d-4fa1-875a-e4d40f5fab87|7.730wOAUEGgLkBwAAAAAIAgEAAAAA1xnckAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10",
+      "text": "18 Darcy Road, WENTWORTHVILLE  NSW  2145",
+      "postcode": "2145"
+    },
+    {
+      "amasid": "AUE|6c9b89d3-9d0d-4fa1-875a-e4d40f5fab87|7.730GOAUEGgLkBwAAAAAIAgEAAAAA1xnfUAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10",
+      "text": "18a Darcy Road, WENTWORTHVILLE  NSW  2145",
+      "postcode": "2145"
+    },
+    {
+      "amasid": "AUE|6c9b89d3-9d0d-4fa1-875a-e4d40f5fab87|7.7307OAUEGgLkBwAAAAAIAgEAAAAA1xniEAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10",
+      "text": "20 Darcy Road, WENTWORTHVILLE  NSW  2145",
+      "postcode": "2145"
+    }
+  ]
+}

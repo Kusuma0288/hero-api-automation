@@ -1,0 +1,374 @@
+{
+  "stores": [
+    {
+      "name": "Sydney Metcentre",
+      "addressLine1": "60 Margaret Street",
+      "country": "Australia",
+      "division": "SUPERMARKETS",
+      "email": "1550SydneyCBD@woolworths.com.au",
+      "extra1": "NSW / ACT",
+      "extra2": "407",
+      "facilities": [
+        "eBay Online Order Collection",
+        "WiFi",
+        "seafood"
+      ],
+      "geoLevel": "0",
+      "GMTZone": "10:0",
+      "images": {
+        "small": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSsml.png",
+        "large": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSlge.png"
+      },
+      "manager": "Adam Cameron",
+      "no": "1550",
+      "phone": "(02) 8565 9236",
+      "postcode": "2000",
+      "state": "NSW",
+      "suburb": "Sydney",
+      "trading_hours": {
+        "2020-04-14T00:00:00.000Z": "6:00 AM - 8:00 PM",
+        "2020-04-15T00:00:00.000Z": "6:00 AM - 8:00 PM",
+        "2020-04-16T00:00:00.000Z": "6:00 AM - 8:00 PM",
+        "2020-04-17T00:00:00.000Z": "6:00 AM - 8:00 PM",
+        "2020-04-18T00:00:00.000Z": "Closed",
+        "2020-04-19T00:00:00.000Z": "Closed",
+        "2020-04-20T00:00:00.000Z": "6:00 AM - 8:00 PM",
+        "2020-04-21T00:00:00.000Z": "6:00 AM - 8:00 PM"
+      },
+      "distance": 0.61,
+      "latitude": "-33.864935",
+      "longtitude": "151.206521"
+    },
+    {
+      "name": "333 George Street (Metro)",
+      "addressLine1": "333 George Street",
+      "country": "Australia",
+      "division": "SUPERMARKETS",
+      "email": "1620georgest@woolworths.com.au",
+      "facilities": [
+        "eBay Online Order Collection",
+        "seafood",
+        "WiFi"
+      ],
+      "geoLevel": "0",
+      "GMTZone": "10:0",
+      "images": {
+        "small": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSsml.png",
+        "large": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSlge.png"
+      },
+      "manager": "Nick Wood",
+      "no": "1620",
+      "phone": "(02) 8565 9356",
+      "postcode": "2000",
+      "state": "NSW",
+      "suburb": "Sydney",
+      "trading_hours": {
+        "2020-04-14T00:00:00.000Z": "CLOSED",
+        "2020-04-15T00:00:00.000Z": "CLOSED",
+        "2020-04-16T00:00:00.000Z": "CLOSED",
+        "2020-04-17T00:00:00.000Z": "CLOSED",
+        "2020-04-18T00:00:00.000Z": "CLOSED",
+        "2020-04-19T00:00:00.000Z": "CLOSED",
+        "2020-04-20T00:00:00.000Z": "CLOSED",
+        "2020-04-21T00:00:00.000Z": "CLOSED"
+      },
+      "distance": 0.79,
+      "latitude": "-33.866809",
+      "longtitude": "151.20703"
+    },
+    {
+      "name": "York (Metro)",
+      "addressLine1": "65 York Street",
+      "country": "Australia",
+      "division": "SUPERMARKETS",
+      "email": "1265yorkstcnv@woolworths.com.au",
+      "facilities": [
+        "eBay Online Order Collection",
+        "WiFi",
+        "seafood"
+      ],
+      "geoLevel": "0",
+      "GMTZone": "10:0",
+      "images": {
+        "small": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSsml.png",
+        "large": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSlge.png"
+      },
+      "manager": "Mark Sawyer",
+      "no": "1265",
+      "phone": "(02) 8565 9327",
+      "postcode": "2000",
+      "state": "NSW",
+      "suburb": "Sydney",
+      "trading_hours": {
+        "2020-04-14T00:00:00.000Z": "CLOSED",
+        "2020-04-15T00:00:00.000Z": "CLOSED",
+        "2020-04-16T00:00:00.000Z": "CLOSED",
+        "2020-04-17T00:00:00.000Z": "CLOSED",
+        "2020-04-18T00:00:00.000Z": "CLOSED",
+        "2020-04-19T00:00:00.000Z": "CLOSED",
+        "2020-04-20T00:00:00.000Z": "CLOSED",
+        "2020-04-21T00:00:00.000Z": "CLOSED"
+      },
+      "distance": 0.82,
+      "latitude": "-33.867867",
+      "longtitude": "151.205784"
+    },
+    {
+      "name": "Pitt St Mall (Metro)",
+      "addressLine1": "400 George St",
+      "country": "Australia",
+      "division": "SUPERMARKETS",
+      "facilities": [
+        "seafood",
+        "eBay Online Order Collection",
+        "WiFi"
+      ],
+      "geoLevel": "0",
+      "GMTZone": "10:0",
+      "images": {
+        "small": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSsml.png",
+        "large": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSlge.png"
+      },
+      "manager": "Amy Nicolls",
+      "no": "1211",
+      "phone": "(02) 9308 7388",
+      "postcode": "2000",
+      "state": "NSW",
+      "suburb": "Sydney",
+      "trading_hours": {
+        "2020-04-14T00:00:00.000Z": "CLOSED",
+        "2020-04-15T00:00:00.000Z": "CLOSED",
+        "2020-04-16T00:00:00.000Z": "CLOSED",
+        "2020-04-17T00:00:00.000Z": "CLOSED",
+        "2020-04-18T00:00:00.000Z": "CLOSED",
+        "2020-04-19T00:00:00.000Z": "CLOSED",
+        "2020-04-20T00:00:00.000Z": "CLOSED",
+        "2020-04-21T00:00:00.000Z": "CLOSED"
+      },
+      "distance": 1,
+      "latitude": "-33.86899538",
+      "longtitude": "151.2072692"
+    },
+    {
+      "name": "Pyrmont (Metro)",
+      "addressLine1": "63 Miller Street",
+      "country": "Australia",
+      "division": "SUPERMARKETS",
+      "email": "1449pyrmontmetro@woolworths.com.au",
+      "facilities": [
+        "seafood",
+        "eBay Online Order Collection",
+        "WiFi"
+      ],
+      "geoLevel": "0",
+      "GMTZone": "10:0",
+      "images": {
+        "small": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSsml.png",
+        "large": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSlge.png"
+      },
+      "no": "1449",
+      "phone": "(02) 8736 7447",
+      "postcode": "2009",
+      "state": "NSW",
+      "suburb": "Pyrmont",
+      "trading_hours": {
+        "2020-04-14T00:00:00.000Z": "CLOSED",
+        "2020-04-15T00:00:00.000Z": "CLOSED",
+        "2020-04-16T00:00:00.000Z": "CLOSED",
+        "2020-04-17T00:00:00.000Z": "CLOSED",
+        "2020-04-18T00:00:00.000Z": "CLOSED",
+        "2020-04-19T00:00:00.000Z": "CLOSED",
+        "2020-04-20T00:00:00.000Z": "CLOSED",
+        "2020-04-21T00:00:00.000Z": "CLOSED"
+      },
+      "distance": 1.41,
+      "latitude": "-33.870526",
+      "longtitude": "151.1908255"
+    },
+    {
+      "name": "Town Hall",
+      "addressLine1": "Cnr Park \u0026 George Street",
+      "country": "Australia",
+      "division": "SUPERMARKETS",
+      "email": "1248TownHall@woolworths.com.au",
+      "extra1": "NSW / ACT",
+      "extra2": "407",
+      "facilities": [
+        "WiFi",
+        "seafood",
+        "eBay Online Order Collection"
+      ],
+      "geoLevel": "0",
+      "GMTZone": "10:0",
+      "images": {
+        "small": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSsml.png",
+        "large": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSlge.png"
+      },
+      "manager": "Jason Yau",
+      "no": "1248",
+      "phone": "(02) 8565 9275",
+      "postcode": "2000",
+      "state": "NSW",
+      "suburb": "Sydney",
+      "trading_hours": {
+        "2020-04-14T00:00:00.000Z": "6:00 AM - 12:00 AM",
+        "2020-04-15T00:00:00.000Z": "6:00 AM - 12:00 AM",
+        "2020-04-16T00:00:00.000Z": "6:00 AM - 12:00 AM",
+        "2020-04-17T00:00:00.000Z": "6:00 AM - 12:00 AM",
+        "2020-04-18T00:00:00.000Z": "7:00 AM - 12:00 AM",
+        "2020-04-19T00:00:00.000Z": "7:00 AM - 12:00 AM",
+        "2020-04-20T00:00:00.000Z": "6:00 AM - 12:00 AM",
+        "2020-04-21T00:00:00.000Z": "6:00 AM - 12:00 AM"
+      },
+      "distance": 1.42,
+      "latitude": "-33.87324095",
+      "longtitude": "151.2071346"
+    },
+    {
+      "name": "Balmain",
+      "addressLine1": "276 Darling Street",
+      "country": "Australia",
+      "division": "SUPERMARKETS",
+      "email": "1188Balmain@woolworths.com.au",
+      "extra1": "NSW / ACT",
+      "extra2": "408",
+      "facilities": [
+        "WiFi",
+        "seafood",
+        "eBay Online Order Collection"
+      ],
+      "geoLevel": "0",
+      "GMTZone": "10:0",
+      "images": {
+        "small": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSsml.png",
+        "large": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSlge.png"
+      },
+      "manager": "Trevor Copson",
+      "no": "1188",
+      "phone": "(02) 8565 9203",
+      "postcode": "2041",
+      "state": "NSW",
+      "suburb": "Balmain",
+      "trading_hours": {
+        "2020-04-14T00:00:00.000Z": "7:00 AM - 12:00 AM",
+        "2020-04-15T00:00:00.000Z": "7:00 AM - 12:00 AM",
+        "2020-04-16T00:00:00.000Z": "7:00 AM - 12:00 AM",
+        "2020-04-17T00:00:00.000Z": "7:00 AM - 12:00 AM",
+        "2020-04-18T00:00:00.000Z": "7:00 AM - 9:00 PM",
+        "2020-04-19T00:00:00.000Z": "7:00 AM - 9:00 PM",
+        "2020-04-20T00:00:00.000Z": "7:00 AM - 12:00 AM",
+        "2020-04-21T00:00:00.000Z": "7:00 AM - 12:00 AM"
+      },
+      "distance": 1.92,
+      "latitude": "-33.8578591",
+      "longtitude": "151.1811585"
+    },
+    {
+      "name": "Woolloomooloo (Metro)",
+      "addressLine1": "75 Crown Street",
+      "country": "Australia",
+      "division": "SUPERMARKETS",
+      "email": "1486woolloomooloo@woolworths.com.au",
+      "extra2": "407",
+      "facilities": [
+        "seafood",
+        "WiFi",
+        "eBay Online Order Collection"
+      ],
+      "geoLevel": "7",
+      "GMTZone": "10:0",
+      "images": {
+        "small": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSsml.png",
+        "large": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSlge.png"
+      },
+      "manager": "Anthony Hoyle",
+      "no": "1486",
+      "phone": "(02) 8565 9321",
+      "postcode": "2011",
+      "state": "NSW",
+      "suburb": "East Sydney",
+      "trading_hours": {
+        "2020-04-14T00:00:00.000Z": "6:00 AM - 10:00 PM",
+        "2020-04-15T00:00:00.000Z": "6:00 AM - 10:00 PM",
+        "2020-04-16T00:00:00.000Z": "6:00 AM - 10:00 PM",
+        "2020-04-17T00:00:00.000Z": "6:00 AM - 10:00 PM",
+        "2020-04-18T00:00:00.000Z": "7:00 AM - 10:00 PM",
+        "2020-04-19T00:00:00.000Z": "7:00 AM - 10:00 PM",
+        "2020-04-20T00:00:00.000Z": "6:00 AM - 10:00 PM",
+        "2020-04-21T00:00:00.000Z": "6:00 AM - 10:00 PM"
+      },
+      "distance": 1.94,
+      "latitude": "-33.87380284",
+      "longtitude": "151.2162524"
+    },
+    {
+      "name": "Haymarket (Metro)",
+      "addressLine1": "61-79 Quay Street",
+      "country": "Australia",
+      "division": "SUPERMARKETS",
+      "email": "1716haymarket@woolworths.com.au",
+      "facilities": [
+        "Coffee Shop"
+      ],
+      "geoLevel": "0",
+      "GMTZone": "10:0",
+      "images": {
+        "small": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSsml.png",
+        "large": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSlge.png"
+      },
+      "manager": "Patrick Woo",
+      "no": "1716",
+      "phone": "(02) 8736 7467",
+      "postcode": "2000",
+      "state": "NSW",
+      "suburb": "Haymarket",
+      "trading_hours": {
+        "2020-04-14T00:00:00.000Z": "7:00 AM - 12:00 AM",
+        "2020-04-15T00:00:00.000Z": "7:00 AM - 12:00 AM",
+        "2020-04-16T00:00:00.000Z": "7:00 AM - 12:00 AM",
+        "2020-04-17T00:00:00.000Z": "7:00 AM - 12:00 AM",
+        "2020-04-18T00:00:00.000Z": "7:00 AM - 12:00 AM",
+        "2020-04-19T00:00:00.000Z": "7:00 AM - 12:00 AM",
+        "2020-04-20T00:00:00.000Z": "7:00 AM - 12:00 AM",
+        "2020-04-21T00:00:00.000Z": "7:00 AM - 12:00 AM"
+      },
+      "distance": 2.19,
+      "latitude": "-33.88108691",
+      "longtitude": "151.2026296"
+    },
+    {
+      "name": "Supermarket test store",
+      "addressLine1": "Supermarket test store",
+      "country": "Australia",
+      "division": "SUPERMARKETS",
+      "facilities": [
+        "Big W Ezibuy Collection Point",
+        "Convenience Store",
+        "Scan-N-Go"
+      ],
+      "geoLevel": "0",
+      "GMTZone": "10:0",
+      "images": {
+        "small": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSsml.png",
+        "large": "http://static.mobile-api.woolworths.com.au/badges/mapiconSUPERMARKETSlge.png"
+      },
+      "no": "1478",
+      "postcode": "7456",
+      "state": "NSW",
+      "suburb": "new south wales",
+      "trading_hours": {
+        "2020-04-14T00:00:00.000Z": "8:30 am - Midnight",
+        "2020-04-15T00:00:00.000Z": "8:30 am - 6:42 pm",
+        "2020-04-16T00:00:00.000Z": "24 Hours",
+        "2020-04-17T00:00:00.000Z": "8:30 am - 6:00 pm",
+        "2020-04-18T00:00:00.000Z": "8:30 am - 6:00 pm",
+        "2020-04-19T00:00:00.000Z": "8:30 am - 6:00 pm",
+        "2020-04-20T00:00:00.000Z": "Closed",
+        "2020-04-21T00:00:00.000Z": "8:30 am - Midnight"
+      },
+      "distance": 2.38,
+      "latitude": "-33.870603",
+      "longtitude": "151.2248"
+    }
+  ]
+}

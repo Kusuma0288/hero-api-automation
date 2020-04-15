@@ -1,0 +1,17 @@
+{
+  "id": 18289868,
+  "title": "AutoList Exact",
+  "timestamp": 1586848699649,
+  "lastUpdated": 0,
+  "count": 1,
+  "page": 0,
+  "freeTextItems": [
+    {
+      "id": 269238919,
+      "text": "Coke",
+      "timestamp": 1586848699649,
+      "checked": true
+    }
+  ],
+  "products": []
+}

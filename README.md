@@ -1,20 +1,36 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# woolworths-app-apigee
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+The Project is for APIGEE automation 
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+# Installation
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+Use the maven commands to install the dependencies and
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+```sh 
+mvn clean install
+```
+
+To execute the project need to pass the parameters -Denv=<test or uat> -P<profilename>
+For ex:
+test = It will run in the test environment (Check the URL under resources/config/test.properties)
+
+```sh
+mvn clean test -Denv=test -Psmoke
+```
+
+To check the test reports
+
+```sh
+mvn clean test verify -Denv=test -Psmoke
+```
+
+To check the Request and Response Structure
+
+```sh
+mvn clean test verify -Denv=test -Psmoke -DsaveRequestResponse=yes
+```
+
+For Regression
+```sh
+mvn clean test verify -Denv=test -Pregression -DsaveRequestResponse=yes
+```

@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" src="js/Chart.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="css/cucumber.css" type="text/css"/>
+<link rel="stylesheet" href="css/font-awesome.min.css"/>
+<link rel="shortcut icon" href="images/favicon.png"/>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // this will tell tablesorter to try looking for the data-value attribute
+    // if present, it'll sort by that instead
+    // otherwise, it'll sort by the text content of the table cell
+    $("#tablesorter").tablesorter({
+        textAttribute: 'data-value',
+        // ignores the first row of the header, the 'scenario', 'steps', since
+        // sorting those doesn't make sense
+        selectorHeaders: '> thead tr:not(.dont-sort) th',
+        // use a stable sort
+        sortStable: true
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+<title>Cucumber Reports (no 1) - Feature: Verify Apigee Delivery scenarios</title>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navigation">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <p class="navbar-text navbar-left">Cucumber Report</p>
+      <ul class="nav navbar-nav navbar-right">
+                <li role="presentation" ><a href="overview-features.html">Features</a></li>
+        <li role="presentation" ><a href="overview-tags.html">Tags</a></li>
+        <li role="presentation" ><a href="overview-steps.html">Steps</a></li>
+                <li role="presentation" ><a href="overview-failures.html">Failures</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+  <div class="col-md-5 col-md-offset-1">
+    
+<table class="table table-bordered" id="build-info">
+  <thead>
+    <tr>
+      <th>Project</th>
+              <th>Number</th>
+            <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>APIGEE API Testing</td>
+              <td>1</td>
+            <td>14 Apr 2020, 17:18</td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+  <div class="col-md-3 col-md-offset-2">
+      </div>
+</div>
+
+
+<div id="report-lead" class="container-fluid">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>Feature Report</h2>
+      </div>
+</div>
+
+
+<div class="container-fluid" id="report">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <table class="stats-table">
+
+        
+<thead>
+  <tr class="header dont-sort">
+        <th></th>
+    <th colspan="6">Steps</th>
+    <th colspan="3">Scenarios</th>
+    <th colspan="2">Features</th>
+  </tr>
+  <tr>
+    <th>Feature</th>
+        <th class="passed">Passed</th>
+    <th class="failed">Failed</th>
+    <th class="skipped">Skipped</th>
+    <th class="pending">Pending</th>
+    <th class="undefined">Undefined</th>
+    <th class="total">Total</th>
+
+    <th class="passed">Passed</th>
+    <th class="failed">Failed</th>
+    <th class="total">Total</th>
+
+    <th>Duration</th>
+    <th>Status</th>
+  </tr>
+</thead>
+
+
+        <tbody>
+        <tr>
+          <td class="tagname">Verify Apigee Delivery scenarios</td>
+          <td      class="passed"    >5</td>
+          <td >0</td>
+          <td >0</td>
+          <td >0</td>
+          <td >0</td>
+          <td class="total">5</td>
+
+          <td  class="passed"    >1</td>
+          <td >0</td>
+          <td class="total">1</td>
+
+          <td class="duration" data-value="4594074327">4.594</td>
+          <td class="passed">Passed</td>
+        </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1 col-md-offset-10">
+      <i class="fa fa-chevron-circle-down fa-2x collapsable-control"
+        onClick="javascript:$('#report .collapsable-details').collapse('show')"></i>
+      <i class="fa fa-chevron-circle-up fa-2x collapsable-control"
+        onClick="javascript:$('#report .collapsable-details').collapse('hide')"></i>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid" id="report">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="feature">
+        
+<div class="tags indention">
+      <b>Tags:</b>
+           <a href="report-tag_718150784.html">@REGRESSION</a>
+           <a href="report-tag_4040608819.html">@DELIVERY</a>
+           <a href="report-tag_2209053590.html">@PROD</a>
+      </div>
+
+        
+<div class="brief passed">
+  <span class="keyword indention">Feature</span>
+  <span class="name">Verify Apigee Delivery scenarios</span>
+  
+
+  </div>
+
+        <div class="description indention"></div>
+
+        <div class="elements inner-level">
+                      
+<div class="element">
+  
+  
+<div class="tags indention">
+      <b>Tags:</b>
+           <a href="report-tag_4040608819.html">@DELIVERY</a>
+           <a href="report-tag_2209053590.html">@PROD</a>
+           <a href="report-tag_718150784.html">@REGRESSION</a>
+      </div>
+
+  
+  <span class="lead-duration duration">4.594</span>
+
+
+    <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-1">
+    
+<div class="brief passed">
+  <span class="keyword indention">Scenario Outline</span>
+  <span class="name">Verify whether user is able to add a delivery address and the recently added address is set as primary</span>
+  
+
+       <i class="chevron fa fa-fw"></i>
+  </div>
+
+  </span>
+  <div class="description indention"></div>
+
+  <div id="element-1" class="collapse collapsable-details ">
+    
+  <div class="inner-level hooks-element-before">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-2">
+      
+<div class="brief passed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+  
+
+       <i class="chevron fa fa-fw"></i>
+  </div>
+
+    </div>
+
+    <div id="before-2" class="inner-level collapse collapsable-details ">
+              <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+                          <span class="location name">ServiceHooks.initializeTest()</span>
+                        
+  <span class="lead-duration duration">0.000</span>
+
+          </div>
+
+                      
+
+          
+                    
+
+          
+  
+        </div>
+          </div>
+  </div>
+
+
+    
+<div class="steps inner-level">
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-3">
+    
+<div class="brief passed">
+  <span class="keyword indention">Steps</span>
+  <span class="name"></span>
+  
+
+       <i class="chevron fa fa-fw"></i>
+  </div>
+
+  </div>
+
+  <div id="steps-3" class="inner-level collapse collapsable-details ">
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">Given</span>
+  <span class="name">user continue to connect to apigee with login username as &quot;<span class="argument">SHOPPER_USERNAME1</span>&quot;</span>
+  
+  <span class="lead-duration duration">3.205</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">When</span>
+  <span class="name">connection from user to apigee endpoint happens</span>
+  
+  <span class="lead-duration duration">0.002</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I search for the address &quot;<span class="argument">Darcy Road</span>&quot;</span>
+  
+  <span class="lead-duration duration">0.638</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I select the &quot;<span class="argument">1</span>&quot; address as fulfilment address from matching addresses</span>
+  
+  <span class="lead-duration duration">0.532</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">Then</span>
+  <span class="name">verify the address saved is set as primary address in MyAccount</span>
+  
+  <span class="lead-duration duration">0.215</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+    <div class="embeddings inner-level">
+                  <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-4" class="collapsable-control">
+    <a>Attachment 1 (HTML)</a>
+    <a href="embeddings/embedding_48702594.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-4" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_48702594.html" srcdoc="/wow/v2/commerce/token"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-5" class="collapsable-control">
+      <a>Attachment 2 (JSON)</a>
+      <a href="embeddings/embedding_-2004879599.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-5" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;user_name&quot;: &quot;shopapp+32@woolworths.com.au&quot;,
+  &quot;password&quot;: &quot;123456&quot;
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-6" class="collapsable-control">
+      <a>Attachment 3 (JSON)</a>
+      <a href="embeddings/embedding_-995834737.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-6" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;access_token&quot;: &quot;3tAMOeBcCKGf05t785eoPZO9bNyj&quot;,
+  &quot;refresh_token&quot;: &quot;WFqQxz3OTgsIlpcEFwEPdNBWqcpowuWo&quot;,
+  &quot;expires_in&quot;: &quot;119&quot;,
+  &quot;trolleyhref&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/trolley&quot;,
+  &quot;fulfilmenthref&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/fulfilment&quot;,
+  &quot;paymenthref&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/commerce/checkout/payment&quot;,
+  &quot;shopperid&quot;: &quot;5278577&quot;,
+  &quot;title&quot;: &quot; &quot;,
+  &quot;firstname&quot;: &quot;KNHCQDPC&quot;,
+  &quot;lastname&quot;: &quot;LHCWGMZI&quot;,
+  &quot;email&quot;: &quot;5278577@5278577.com&quot;,
+  &quot;dateofbirth&quot;: &quot;1901-01-01T00:00:00.0000000&quot;,
+  &quot;primaryphone&quot;: &quot;0200000000&quot;,
+  &quot;secondaryphone&quot;: &quot;0400000000&quot;,
+  &quot;otherphone&quot;: &quot;0200000000&quot;,
+  &quot;fulfilmentstoreid&quot;: &quot;1387&quot;,
+  &quot;fulfilmentmethod&quot;: &quot;&quot;,
+  &quot;fulfilmentstorename&quot;: &quot;&quot;,
+  &quot;deliverymethod&quot;: &quot;Courier&quot;,
+  &quot;deliverystoreaddressid&quot;: &quot;506481094&quot;,
+  &quot;deliverystoreaddresscity&quot;: &quot;1387 Unanderra LOCAL&quot;,
+  &quot;deliverystoreaddresscountry&quot;: &quot;Australia&quot;,
+  &quot;deliveryaddressstreet1&quot;: &quot;1 Darcy Rd&quot;,
+  &quot;deliveryaddressstreet2&quot;: &quot;PORT KEMBLA NSW&quot;,
+  &quot;deliveryaddresssuburb&quot;: &quot;PORT KEMBLA&quot;,
+  &quot;deliveryinstructions&quot;: &quot;&quot;,
+  &quot;isservicable&quot;: &quot;true&quot;,
+  &quot;rewardscardNumber&quot;: &quot;&quot;,
+  &quot;teammember&quot;: &quot;false&quot;,
+  &quot;trolleymergestatus&quot;: &quot;&quot;
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-7" class="collapsable-control">
+    <a>Attachment 4 (HTML)</a>
+    <a href="embeddings/embedding_-1593605634.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-7" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1593605634.html" srcdoc="/wow/v2/addresses"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-8" class="collapsable-control">
+      <a>Attachment 5 (JSON)</a>
+      <a href="embeddings/embedding_2073435522.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-8" class="collapse collapsable-details">
+      <pre class="embedding-content">{q=Darcy Road}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-9" class="collapsable-control">
+      <a>Attachment 6 (JSON)</a>
+      <a href="embeddings/embedding_-1084697812.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-9" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;addresses&quot;: [
+    {
+      &quot;amasid&quot;: &quot;AUE|2c88626d-3009-4cd5-8bb3-d7b12d794192|7.730POAUEGgLkBwAAAAAIAgEAAAAApqWSEAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;1 Darcy Road, PORT KEMBLA  NSW  2505&quot;,
+      &quot;postcode&quot;: &quot;2505&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|2c88626d-3009-4cd5-8bb3-d7b12d794192|7.730UOAUEGgLkBwAAAAAIAgEAAAAApqWU0AAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;6 Darcy Road, PORT KEMBLA  NSW  2505&quot;,
+      &quot;postcode&quot;: &quot;2505&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|2c88626d-3009-4cd5-8bb3-d7b12d794192|7.730wOAUEGgLkBwAAAAAIAgEAAAAAyQp6UAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;8 Darcy Road, TINONEE  NSW  2430&quot;,
+      &quot;postcode&quot;: &quot;2430&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|2c88626d-3009-4cd5-8bb3-d7b12d794192|7.730eOAUEGgLkBwAAAAAIAgEAAAAApqWXkAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;10 Darcy Road, PORT KEMBLA  NSW  2505&quot;,
+      &quot;postcode&quot;: &quot;2505&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|2c88626d-3009-4cd5-8bb3-d7b12d794192|7.730mOAUEGgLkBwAAAAAIAgEAAAAA1xnT0AAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;16 Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|2c88626d-3009-4cd5-8bb3-d7b12d794192|7.730mOAUEGgLkBwAAAAAIAgEAAAAA1xnWkAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;16a Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|2c88626d-3009-4cd5-8bb3-d7b12d794192|7.730FOAUEGgLkBwAAAAAIAgEAAAAA1xnZUAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;16b Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|2c88626d-3009-4cd5-8bb3-d7b12d794192|7.730wOAUEGgLkBwAAAAAIAgEAAAAA1xnckAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;18 Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|2c88626d-3009-4cd5-8bb3-d7b12d794192|7.730GOAUEGgLkBwAAAAAIAgEAAAAA1xnfUAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;18a Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|2c88626d-3009-4cd5-8bb3-d7b12d794192|7.7307OAUEGgLkBwAAAAAIAgEAAAAA1xniEAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;20 Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    }
+  ]
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-10" class="collapsable-control">
+    <a>Attachment 7 (HTML)</a>
+    <a href="embeddings/embedding_-1593605634.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-10" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1593605634.html" srcdoc="/wow/v2/addresses"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-11" class="collapsable-control">
+      <a>Attachment 8 (JSON)</a>
+      <a href="embeddings/embedding_749221064.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-11" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;amasId&quot;: &quot;AUE|2c88626d-3009-4cd5-8bb3-d7b12d794192|7.730POAUEGgLkBwAAAAAIAgEAAAAApqWSEAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-12" class="collapsable-control">
+      <a>Attachment 9 (JSON)</a>
+      <a href="embeddings/embedding_1776342201.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-12" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 506481094,
+  &quot;text&quot;: &quot;1 Darcy Rd, PORT KEMBLA NSW 2505&quot;,
+  &quot;isprimary&quot;: true,
+  &quot;postalcode&quot;: &quot;2505&quot;,
+  &quot;street1&quot;: &quot;1 Darcy Rd&quot;,
+  &quot;street2&quot;: &quot;PORT KEMBLA NSW&quot;,
+  &quot;suburbid&quot;: 1178,
+  &quot;suburbname&quot;: &quot;PORT KEMBLA&quot;,
+  &quot;ispartner&quot;: false
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-13" class="collapsable-control">
+    <a>Attachment 10 (HTML)</a>
+    <a href="embeddings/embedding_-1593605634.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-13" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1593605634.html" srcdoc="/wow/v2/addresses"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-14" class="collapsable-control">
+      <a>Attachment 11 (JSON)</a>
+      <a href="embeddings/embedding_3059451.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-14" class="collapse collapsable-details">
+      <pre class="embedding-content">{}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-15" class="collapsable-control">
+      <a>Attachment 12 (JSON)</a>
+      <a href="embeddings/embedding_-1103989883.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-15" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;addresses&quot;: [
+    {
+      &quot;id&quot;: 506481094,
+      &quot;text&quot;: &quot;1 Darcy Rd, PORT KEMBLA NSW 2505&quot;,
+      &quot;isprimary&quot;: true,
+      &quot;postalcode&quot;: &quot;2505&quot;,
+      &quot;street1&quot;: &quot;1 Darcy Rd&quot;,
+      &quot;street2&quot;: &quot;PORT KEMBLA NSW&quot;,
+      &quot;suburbid&quot;: 1178,
+      &quot;suburbname&quot;: &quot;PORT KEMBLA&quot;,
+      &quot;ispartner&quot;: false
+    },
+    {
+      &quot;id&quot;: 6021097,
+      &quot;text&quot;: &quot;12-14 Silvereye Cr, GREENBANK QLD 4124&quot;,
+      &quot;isprimary&quot;: false,
+      &quot;postalcode&quot;: &quot;4124&quot;,
+      &quot;street1&quot;: &quot;12-14 Silvereye Cr&quot;,
+      &quot;street2&quot;: &quot;GREENBANK QLD&quot;,
+      &quot;suburbid&quot;: 3387,
+      &quot;suburbname&quot;: &quot;GREENBANK&quot;,
+      &quot;ispartner&quot;: false
+    }
+  ]
+}</pre>
+    </div>
+  </div>
+            </div>
+  
+        
+
+      </div>
+      </div>
+</div>
+
+
+    
+  <div class="inner-level hooks-element-after">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-16">
+      
+<div class="brief passed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+  
+
+       <i class="chevron fa fa-fw"></i>
+  </div>
+
+    </div>
+
+    <div id="after-16" class="inner-level collapse collapsable-details ">
+              <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">After</span>
+                          <span class="location name">ServiceHooks.finaliseTest(Scenario)</span>
+                        
+  <span class="lead-duration duration">0.040</span>
+
+          </div>
+
+                      
+
+          
+                    
+
+          
+  
+        </div>
+          </div>
+  </div>
+
+  </div>
+</div>
+
+                  </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1 col-md-offset-10">
+      <i class="fa fa-chevron-circle-down fa-2x collapsable-control"
+        onClick="javascript:$('#report .collapsable-details').collapse('show')"></i>
+      <i class="fa fa-chevron-circle-up fa-2x collapsable-control"
+        onClick="javascript:$('#report .collapsable-details').collapse('hide')"></i>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<nav class="navbar navbar-default" id="footer">
+  <div class="container-fluid">
+    <p class="navbar-text navbar-right">
+        <small>generate Cucumber HTML reports via:&nbsp;</small>
+        <a class="navbar-link" href="https://github.com/jenkinsci/cucumber-reports-plugin">Jenkins Plugin</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-reporting">Standalone</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-sandwich">Sandwich</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/maven-cucumber-reporting">Maven</a>
+        &nbsp;&nbsp;
+    </p>
+  </div>
+</nav>
+
+</body>
+</html>

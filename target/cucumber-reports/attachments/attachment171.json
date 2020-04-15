@@ -1,0 +1,18 @@
+{
+  "update": {
+    "id": 269238918,
+    "text": "Coke",
+    "checked": false,
+    "timestamp": 1586848695337
+  },
+  "changes": {
+    "freeTextItems": {
+      "updates": [],
+      "deletes": []
+    },
+    "products": {
+      "updates": [],
+      "deletes": []
+    }
+  }
+}

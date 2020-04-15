@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" src="js/Chart.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="css/cucumber.css" type="text/css"/>
+<link rel="stylesheet" href="css/font-awesome.min.css"/>
+<link rel="shortcut icon" href="images/favicon.png"/>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // this will tell tablesorter to try looking for the data-value attribute
+    // if present, it'll sort by that instead
+    // otherwise, it'll sort by the text content of the table cell
+    $("#tablesorter").tablesorter({
+        textAttribute: 'data-value',
+        // ignores the first row of the header, the 'scenario', 'steps', since
+        // sorting those doesn't make sense
+        selectorHeaders: '> thead tr:not(.dont-sort) th',
+        // use a stable sort
+        sortStable: true
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+<title>Cucumber Reports (no 1) - Steps Overview</title>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navigation">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <p class="navbar-text navbar-left">Cucumber Report</p>
+      <ul class="nav navbar-nav navbar-right">
+                <li role="presentation" ><a href="overview-features.html">Features</a></li>
+        <li role="presentation" ><a href="overview-tags.html">Tags</a></li>
+        <li role="presentation"     class="active" ><a href="overview-steps.html">Steps</a></li>
+                <li role="presentation" ><a href="overview-failures.html">Failures</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+  <div class="col-md-5 col-md-offset-1">
+    
+<table class="table table-bordered" id="build-info">
+  <thead>
+    <tr>
+      <th>Project</th>
+              <th>Number</th>
+            <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>APIGEE API Testing</td>
+              <td>1</td>
+            <td>14 Apr 2020, 17:18</td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+  <div class="col-md-3 col-md-offset-2">
+      </div>
+</div>
+
+
+<div id="report-lead" class="container-fluid">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>Steps Statistics</h2>
+          <p>The following graph shows step statistics for this build. Below list is based on results.
+ step does not provide information about result then is not listed below.
+ Additionally @Before and @After are not counted because they are part of the scenarios, not steps.</p>
+      </div>
+</div>
+
+<div class="container-fluid" id="report">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <table id="tablesorter" class="stats-table table-hover">
+
+        <thead>
+          <tr class="header">
+            <th>Implementation</th>
+            <th>Occurrences</th>
+            <th>Average duration</th>
+            <th>Max duration</th>
+            <th>Total durations</th>
+            <th>Ratio</th>
+          </tr>
+        </thead>
+
+        <tbody>
+                      <tr>
+              <td class="location">ApigeeGuestDefinition.connectionFromUserToApigeeAPIEndpointFails()</td>
+              <td>1</td>
+              <td class="duration" data-value="125203">0.000</td>
+              <td class="duration" data-value="125203">0.000</td>
+              <td class="duration" data-value="125203">0.000</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeGuestDefinition.connectionFromUserToApigeeAPIEndpointHappens()</td>
+              <td>18</td>
+              <td class="duration" data-value="782634">0.000</td>
+              <td class="duration" data-value="782634">0.002</td>
+              <td class="duration" data-value="14087413">0.014</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeGuestDefinition.mobileUserConnectToApigeeAPIEndpointAsGuest()</td>
+              <td>7</td>
+              <td class="duration" data-value="732127174">0.732</td>
+              <td class="duration" data-value="732127174">1.670</td>
+              <td class="duration" data-value="5124890220">5.124</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeGuestDefinition.userSuccessfullyAuthenticateToApigeePublicAPIEndpointAsGuest()</td>
+              <td>6</td>
+              <td class="duration" data-value="163227">0.000</td>
+              <td class="duration" data-value="163227">0.000</td>
+              <td class="duration" data-value="979366">0.000</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeListsDefinition.checks_free_text_item_from_the_list(String,String)</td>
+              <td>1</td>
+              <td class="duration" data-value="433254365">0.433</td>
+              <td class="duration" data-value="433254365">0.433</td>
+              <td class="duration" data-value="433254365">0.433</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeListsDefinition.createExactList(String)</td>
+              <td>2</td>
+              <td class="duration" data-value="204531411">0.204</td>
+              <td class="duration" data-value="204531411">0.300</td>
+              <td class="duration" data-value="409062822">0.409</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeListsDefinition.createListAs(String)</td>
+              <td>2</td>
+              <td class="duration" data-value="777959613">0.777</td>
+              <td class="duration" data-value="777959613">1.402</td>
+              <td class="duration" data-value="1555919227">1.555</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeListsDefinition.i_add_free_text_item_to_list(String)</td>
+              <td>1</td>
+              <td class="duration" data-value="177271682">0.177</td>
+              <td class="duration" data-value="177271682">0.177</td>
+              <td class="duration" data-value="177271682">0.177</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeListsDefinition.i_add_free_text_item_to_list_and_check_the_item(String)</td>
+              <td>1</td>
+              <td class="duration" data-value="138844294">0.138</td>
+              <td class="duration" data-value="138844294">0.138</td>
+              <td class="duration" data-value="138844294">0.138</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeListsDefinition.i_clear_all_the_list_for_the_user()</td>
+              <td>3</td>
+              <td class="duration" data-value="931334903">0.931</td>
+              <td class="duration" data-value="931334903">2.285</td>
+              <td class="duration" data-value="2794004710">2.794</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeListsDefinition.i_delete_the_newly_created_list()</td>
+              <td>1</td>
+              <td class="duration" data-value="690680133">0.690</td>
+              <td class="duration" data-value="690680133">0.690</td>
+              <td class="duration" data-value="690680133">0.690</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeListsDefinition.switchDefaultList(String)</td>
+              <td>1</td>
+              <td class="duration" data-value="318336510">0.318</td>
+              <td class="duration" data-value="318336510">0.318</td>
+              <td class="duration" data-value="318336510">0.318</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeListsDefinition.user_deletes_free_text_item_from_the_new_list(String)</td>
+              <td>1</td>
+              <td class="duration" data-value="1157925107">1.157</td>
+              <td class="duration" data-value="1157925107">1.157</td>
+              <td class="duration" data-value="1157925107">1.157</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeListsDefinition.user_un_checks_the_free_text_item_from_the_newly_created_list(String)</td>
+              <td>1</td>
+              <td class="duration" data-value="360813382">0.360</td>
+              <td class="duration" data-value="360813382">0.360</td>
+              <td class="duration" data-value="360813382">0.360</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeListsDefinition.user_verifies_the_free_text_item_is_added_to_is_checked(String,String)</td>
+              <td>1</td>
+              <td class="duration" data-value="319683683">0.319</td>
+              <td class="duration" data-value="319683683">0.319</td>
+              <td class="duration" data-value="319683683">0.319</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeListsDefinition.user_verifies_the_free_text_item_is_added_to_is_unchecked(String,String)</td>
+              <td>1</td>
+              <td class="duration" data-value="317251553">0.317</td>
+              <td class="duration" data-value="317251553">0.317</td>
+              <td class="duration" data-value="317251553">0.317</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeListsDefinition.user_verifies_the_free_text_item_is_added_to_list(String)</td>
+              <td>1</td>
+              <td class="duration" data-value="255176603">0.255</td>
+              <td class="duration" data-value="255176603">0.255</td>
+              <td class="duration" data-value="255176603">0.255</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeListsDefinition.user_verifies_the_free_text_item_is_added_to_list_and_is_checked(String)</td>
+              <td>1</td>
+              <td class="duration" data-value="132093971">0.132</td>
+              <td class="duration" data-value="132093971">0.132</td>
+              <td class="duration" data-value="132093971">0.132</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeListsDefinition.verifyDefaultList(String)</td>
+              <td>1</td>
+              <td class="duration" data-value="118492695">0.118</td>
+              <td class="duration" data-value="118492695">0.118</td>
+              <td class="duration" data-value="118492695">0.118</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeePickupDefinition.i_set_the_fulfilmentMethod_to_for_the_store(String,int)</td>
+              <td>2</td>
+              <td class="duration" data-value="203783874">0.203</td>
+              <td class="duration" data-value="203783874">0.212</td>
+              <td class="duration" data-value="407567749">0.407</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeePickupDefinition.searchForTheInvalidPostCode(String)</td>
+              <td>1</td>
+              <td class="duration" data-value="1175144628">1.175</td>
+              <td class="duration" data-value="1175144628">1.175</td>
+              <td class="duration" data-value="1175144628">1.175</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeePickupDefinition.searchForThePostCode(String)</td>
+              <td>3</td>
+              <td class="duration" data-value="316101412">0.316</td>
+              <td class="duration" data-value="316101412">0.362</td>
+              <td class="duration" data-value="948304236">0.948</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeePickupDefinition.storesForLatLong(String,String)</td>
+              <td>1</td>
+              <td class="duration" data-value="294585183">0.294</td>
+              <td class="duration" data-value="294585183">0.294</td>
+              <td class="duration" data-value="294585183">0.294</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeePickupDefinition.validateFulfilmentMethod(String)</td>
+              <td>1</td>
+              <td class="duration" data-value="57301">0.000</td>
+              <td class="duration" data-value="57301">0.000</td>
+              <td class="duration" data-value="57301">0.000</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeePickupDefinition.validateInvalidPostCodeSearch()</td>
+              <td>1</td>
+              <td class="duration" data-value="30864">0.000</td>
+              <td class="duration" data-value="30864">0.000</td>
+              <td class="duration" data-value="30864">0.000</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeProductsDefinition.retrieveProductCategories()</td>
+              <td>1</td>
+              <td class="duration" data-value="840401898">0.840</td>
+              <td class="duration" data-value="840401898">0.840</td>
+              <td class="duration" data-value="840401898">0.840</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeProductsDefinition.retrieveProductCategoriesWithSpecial()</td>
+              <td>1</td>
+              <td class="duration" data-value="1057914343">1.057</td>
+              <td class="duration" data-value="1057914343">1.057</td>
+              <td class="duration" data-value="1057914343">1.057</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeProductsDefinition.retrieveProducts()</td>
+              <td>1</td>
+              <td class="duration" data-value="2197131825">2.197</td>
+              <td class="duration" data-value="2197131825">2.197</td>
+              <td class="duration" data-value="2197131825">2.197</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeProductsDefinition.retrieveProductsWithSpecial()</td>
+              <td>1</td>
+              <td class="duration" data-value="175088421">0.175</td>
+              <td class="duration" data-value="175088421">0.175</td>
+              <td class="duration" data-value="175088421">0.175</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeSearchDefinition.userSearchInvalidProduct(String,String)</td>
+              <td>2</td>
+              <td class="duration" data-value="657970124">0.657</td>
+              <td class="duration" data-value="657970124">0.801</td>
+              <td class="duration" data-value="1315940248">1.315</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeSearchDefinition.userSearchProduct(String,String)</td>
+              <td>2</td>
+              <td class="duration" data-value="714215683">0.714</td>
+              <td class="duration" data-value="714215683">0.893</td>
+              <td class="duration" data-value="1428431366">1.428</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeSearchDefinition.userSearchProductAndStore(String,String)</td>
+              <td>2</td>
+              <td class="duration" data-value="467972412">0.467</td>
+              <td class="duration" data-value="467972412">0.573</td>
+              <td class="duration" data-value="935944824">0.935</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeShopperDefinition.userContinueToConnectToApigeeWithDefaultLoginAndPassword()</td>
+              <td>3</td>
+              <td class="duration" data-value="940629480">0.940</td>
+              <td class="duration" data-value="940629480">1.609</td>
+              <td class="duration" data-value="2821888441">2.821</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeShopperDefinition.userContinueToConnectToApigeeWithDefaultLoginAndPasswordUsingAPIKey(String)</td>
+              <td>1</td>
+              <td class="duration" data-value="223438543">0.223</td>
+              <td class="duration" data-value="223438543">0.223</td>
+              <td class="duration" data-value="223438543">0.223</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeShopperDefinition.userContinueToConnectToApigeeWithSpecifiedUsername(String)</td>
+              <td>13</td>
+              <td class="duration" data-value="1691662199">1.691</td>
+              <td class="duration" data-value="1691662199">4.021</td>
+              <td class="duration" data-value="21991608593">21.991</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeShopperDefinition.userFailsToAuthenticateAsAPIKeyIsInvalid()</td>
+              <td>1</td>
+              <td class="duration" data-value="33206">0.000</td>
+              <td class="duration" data-value="33206">0.000</td>
+              <td class="duration" data-value="33206">0.000</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeShopperDefinition.userIsSuccessfullyAuthenticatedWithAllSessionDetails()</td>
+              <td>1</td>
+              <td class="duration" data-value="50358">0.000</td>
+              <td class="duration" data-value="50358">0.000</td>
+              <td class="duration" data-value="50358">0.000</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeShopperDefinition.user_continue_to_connect_to_apigee_with_login_containing_username(String)</td>
+              <td>1</td>
+              <td class="duration" data-value="967329585">0.967</td>
+              <td class="duration" data-value="967329585">0.967</td>
+              <td class="duration" data-value="967329585">0.967</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeShopperDefinition.user_continue_to_connect_to_apigee_with_login_nouser_automation_com_and_password(String,String)</td>
+              <td>2</td>
+              <td class="duration" data-value="503718732">0.503</td>
+              <td class="duration" data-value="503718732">0.628</td>
+              <td class="duration" data-value="1007437465">1.007</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ApigeeShopperDefinition.user_fails_to_authenticate_as_shopper()</td>
+              <td>2</td>
+              <td class="duration" data-value="46885">0.000</td>
+              <td class="duration" data-value="46885">0.000</td>
+              <td class="duration" data-value="93771">0.000</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">DeliveryAddressDefinition.iSelectTheAddressAsFulfilmentAddressFromMatchingAddresses(int)</td>
+              <td>6</td>
+              <td class="duration" data-value="317139823">0.317</td>
+              <td class="duration" data-value="317139823">0.532</td>
+              <td class="duration" data-value="1902838938">1.902</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">DeliveryAddressDefinition.searchForTheAddresses(String)</td>
+              <td>6</td>
+              <td class="duration" data-value="811408953">0.811</td>
+              <td class="duration" data-value="811408953">1.490</td>
+              <td class="duration" data-value="4868453723">4.868</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">DeliveryAddressDefinition.verifyPrimaryAddressInMyAccount()</td>
+              <td>1</td>
+              <td class="duration" data-value="215273365">0.215</td>
+              <td class="duration" data-value="215273365">0.215</td>
+              <td class="duration" data-value="215273365">0.215</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">Homepage.navigateToPromoTile()</td>
+              <td>2</td>
+              <td class="duration" data-value="361929398">0.361</td>
+              <td class="duration" data-value="361929398">0.429</td>
+              <td class="duration" data-value="723858796">0.723</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">Homepage.navigateToPromoTile(String)</td>
+              <td>2</td>
+              <td class="duration" data-value="888905827">0.888</td>
+              <td class="duration" data-value="888905827">1.221</td>
+              <td class="duration" data-value="1777811655">1.777</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">Homepage.verifyHomepageOnlinePickupResponseWithPromoCard(String,String)</td>
+              <td>2</td>
+              <td class="duration" data-value="830742423">0.830</td>
+              <td class="duration" data-value="830742423">1.433</td>
+              <td class="duration" data-value="1661484846">1.661</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">Homepage.verifyProductQuantityOfPromoTile(String)</td>
+              <td>2</td>
+              <td class="duration" data-value="602883780">0.602</td>
+              <td class="duration" data-value="602883780">0.650</td>
+              <td class="duration" data-value="1205767560">1.205</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">InStoreDefinition.searchForInStore(String,int)</td>
+              <td>2</td>
+              <td class="duration" data-value="454622427">0.454</td>
+              <td class="duration" data-value="454622427">0.666</td>
+              <td class="duration" data-value="909244854">0.909</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ServiceHooks.finaliseTest(Scenario)</td>
+              <td>21</td>
+              <td class="duration" data-value="26504659">0.026</td>
+              <td class="duration" data-value="26504659">0.089</td>
+              <td class="duration" data-value="556597841">0.556</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">ServiceHooks.initializeTest()</td>
+              <td>21</td>
+              <td class="duration" data-value="382952">0.000</td>
+              <td class="duration" data-value="382952">0.000</td>
+              <td class="duration" data-value="8042002">0.008</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">TrolleyDefinition.iAddStockcodeWithSpecifiedQuantity(int)</td>
+              <td>2</td>
+              <td class="duration" data-value="344061083">0.344</td>
+              <td class="duration" data-value="344061083">0.423</td>
+              <td class="duration" data-value="688122166">0.688</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">TrolleyDefinition.i_add_the_available_products_from_the_store_to_the_V2_trolley(int,int)</td>
+              <td>1</td>
+              <td class="duration" data-value="245835926">0.245</td>
+              <td class="duration" data-value="245835926">0.245</td>
+              <td class="duration" data-value="245835926">0.245</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">TrolleyDefinition.i_add_the_available_products_from_the_store_to_the_V3_trolley(int,int)</td>
+              <td>1</td>
+              <td class="duration" data-value="544330067">0.544</td>
+              <td class="duration" data-value="544330067">0.544</td>
+              <td class="duration" data-value="544330067">0.544</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">TrolleyDefinition.i_clear_the_trolley()</td>
+              <td>4</td>
+              <td class="duration" data-value="520186273">0.520</td>
+              <td class="duration" data-value="520186273">1.196</td>
+              <td class="duration" data-value="2080745095">2.080</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                  </tbody>
+
+        <tfoot class="total">
+          <tr>
+            <td>54</td>
+            <td>167</td>
+            <td class="duration">0.416</td>
+            <td class="duration">21.991</td>
+            <td class="duration">1:9.495</td>
+            <td>Totals</td>
+          </tr>
+        </tfoot>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-default" id="footer">
+  <div class="container-fluid">
+    <p class="navbar-text navbar-right">
+        <small>generate Cucumber HTML reports via:&nbsp;</small>
+        <a class="navbar-link" href="https://github.com/jenkinsci/cucumber-reports-plugin">Jenkins Plugin</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-reporting">Standalone</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-sandwich">Sandwich</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/maven-cucumber-reporting">Maven</a>
+        &nbsp;&nbsp;
+    </p>
+  </div>
+</nav>
+
+</body>
+</html>

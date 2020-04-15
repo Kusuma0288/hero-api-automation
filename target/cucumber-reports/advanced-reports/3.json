@@ -1,0 +1,1215 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 952463,
+              "status": "passed"
+            },
+            "match": {
+              "location": "ServiceHooks.initializeTest()"
+            }
+          }
+        ],
+        "line": 16,
+        "name": "Verify whether user is able to create List and switch the created List to default List",
+        "description": "",
+        "id": "verify-apigee-list-scenarios;verify-whether-user-is-able-to-create-list-and-switch-the-created-list-to-default-list;;2",
+        "after": [
+          {
+            "result": {
+              "duration": 46295348,
+              "status": "passed"
+            },
+            "match": {
+              "location": "ServiceHooks.finaliseTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 4021780117,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "user continue to connect to apigee with login username as \"SHOPPER_USERNAME8\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "SHOPPER_USERNAME8",
+                  "offset": 59
+                }
+              ],
+              "location": "ApigeeShopperDefinition.userContinueToConnectToApigeeWithSpecifiedUsername(String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1884045,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "connection from user to apigee endpoint happens",
+            "match": {
+              "location": "ApigeeGuestDefinition.connectionFromUserToApigeeAPIEndpointHappens()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 439798817,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "I search for the address \"Darcy Road\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Darcy Road",
+                  "offset": 26
+                }
+              ],
+              "location": "DeliveryAddressDefinition.searchForTheAddresses(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 273146819,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "I select the \"1\" address as fulfilment address from matching addresses",
+            "match": {
+              "arguments": [
+                {
+                  "val": "1",
+                  "offset": 14
+                }
+              ],
+              "location": "DeliveryAddressDefinition.iSelectTheAddressAsFulfilmentAddressFromMatchingAddresses(int)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2285407791,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "I clear ALL the list for the user",
+            "match": {
+              "location": "ApigeeListsDefinition.i_clear_all_the_list_for_the_user()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 1402028052,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "I create a list with list name as \"AutoList12\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "AutoList12",
+                  "offset": 35
+                }
+              ],
+              "location": "ApigeeListsDefinition.createListAs(String)"
+            },
+            "matchedColumns": [
+              1
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 153891175,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "I create a list with list name as \"AutoList23\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "AutoList23",
+                  "offset": 35
+                }
+              ],
+              "location": "ApigeeListsDefinition.createListAs(String)"
+            },
+            "matchedColumns": [
+              2
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 318336510,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "I switch the default list to \"AutoList12\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "AutoList12",
+                  "offset": 30
+                }
+              ],
+              "location": "ApigeeListsDefinition.switchDefaultList(String)"
+            },
+            "matchedColumns": [
+              1
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 118492695,
+              "status": "passed"
+            },
+            "embeddings": [
+              {
+                "data": "L3dvdy92Mi9jb21tZXJjZS90b2tlbg\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJ1c2VyX25hbWUiOiAic2hvcGFwcCszOUB3b29sd29ydGhzLmNvbS5hdSIsCiAgInBhc3N3b3JkIjogIjEyMzQ1NiIKfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJhY2Nlc3NfdG9rZW4iOiAiUjRJM3RxVGlCM3ZUQTQyMjRjUXBiTDJLWHRDUiIsCiAgInJlZnJlc2hfdG9rZW4iOiAiM1k5ZkVMTkhhSXhsYkNBdGI1YnZpVExjeUJudXFHR1giLAogICJleHBpcmVzX2luIjogIjExOSIsCiAgInRyb2xsZXlocmVmIjogImh0dHBzOi8vdGVzdC5tb2JpbGUtYXBpLndvb2x3b3J0aHMuY29tLmF1L3dvdy92Mi90cm9sbGV5IiwKICAiZnVsZmlsbWVudGhyZWYiOiAiaHR0cHM6Ly90ZXN0Lm1vYmlsZS1hcGkud29vbHdvcnRocy5jb20uYXUvd293L3YyL2Z1bGZpbG1lbnQiLAogICJwYXltZW50aHJlZiI6ICJodHRwczovL3Rlc3QubW9iaWxlLWFwaS53b29sd29ydGhzLmNvbS5hdS93b3cvdjIvY29tbWVyY2UvY2hlY2tvdXQvcGF5bWVudCIsCiAgInNob3BwZXJpZCI6ICI1NTAwNzA5IiwKICAidGl0bGUiOiAiICIsCiAgImZpcnN0bmFtZSI6ICJzaG9wYXBwMzkiLAogICJsYXN0bmFtZSI6ICJhcHB0ZXN0MzkiLAogICJlbWFpbCI6ICJzaG9wYXBwKzM5QHdvb2x3b3J0aHMuY29tLmF1IiwKICAiZGF0ZW9mYmlydGgiOiAiMTk4NS0xMC0xMFQwMDowMDowMC4wMDAwMDAwIiwKICAicHJpbWFyeXBob25lIjogIjA0ODMzMjY2NTgiLAogICJzZWNvbmRhcnlwaG9uZSI6ICIwNDM2NjU2NTc2IiwKICAib3RoZXJwaG9uZSI6ICIiLAogICJmdWxmaWxtZW50c3RvcmVpZCI6ICIxMTEyIiwKICAiZnVsZmlsbWVudG1ldGhvZCI6ICIiLAogICJmdWxmaWxtZW50c3RvcmVuYW1lIjogIiIsCiAgImRlbGl2ZXJ5bWV0aG9kIjogIkNvdXJpZXIiLAogICJkZWxpdmVyeXN0b3JlYWRkcmVzc2lkIjogIjUwNjQ4MzY0NSIsCiAgImRlbGl2ZXJ5c3RvcmVhZGRyZXNzY2l0eSI6ICIxMTEyIENlc3Nub2NrIExPQ0FMIiwKICAiZGVsaXZlcnlzdG9yZWFkZHJlc3Njb3VudHJ5IjogIkF1c3RyYWxpYSIsCiAgImRlbGl2ZXJ5YWRkcmVzc3N0cmVldDEiOiAiMSBDaGFybGVzIFN0IiwKICAiZGVsaXZlcnlhZGRyZXNzc3RyZWV0MiI6ICJBQkVSTUFJTiBOU1ciLAogICJkZWxpdmVyeWFkZHJlc3NzdWJ1cmIiOiAiQUJFUk1BSU4iLAogICJkZWxpdmVyeWluc3RydWN0aW9ucyI6ICIiLAogICJpc3NlcnZpY2FibGUiOiAidHJ1ZSIsCiAgInJld2FyZHNjYXJkTnVtYmVyIjogIiIsCiAgInRlYW1tZW1iZXIiOiAiZmFsc2UiLAogICJ0cm9sbGV5bWVyZ2VzdGF0dXMiOiAiIgp9",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9hZGRyZXNzZXM\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "e3E9RGFyY3kgUm9hZH0\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJhZGRyZXNzZXMiOiBbCiAgICB7CiAgICAgICJhbWFzaWQiOiAiQVVFfDcyOTFkYTFlLTE5MjItNDcxNi05YjdmLWI3MzkwMzdiMjhjOHw3LjczMFBPQVVFR2dMa0J3QUFBQUFJQWdFQUFBQUFwcVdTRUFBaEFBNEFBQUFBQUFBQUFBRC4uMlFBQUFBQS4uLi4ud0FBQUFBQUFBQUFBQUFBQUFBQUFFUmhjbU41SUZKdllXUUFBQUFBQUEtLSQxMCIsCiAgICAgICJ0ZXh0IjogIjEgRGFyY3kgUm9hZCwgUE9SVCBLRU1CTEEgIE5TVyAgMjUwNSIsCiAgICAgICJwb3N0Y29kZSI6ICIyNTA1IgogICAgfSwKICAgIHsKICAgICAgImFtYXNpZCI6ICJBVUV8NzI5MWRhMWUtMTkyMi00NzE2LTliN2YtYjczOTAzN2IyOGM4fDcuNzMwVU9BVUVHZ0xrQndBQUFBQUlBZ0VBQUFBQXBxV1UwQUFoQUE0QUFBQUFBQUFBQUFELi4yUUFBQUFBLi4uLi53QUFBQUFBQUFBQUFBQUFBQUFBQUVSaGNtTjVJRkp2WVdRQUFBQUFBQS0tJDEwIiwKICAgICAgInRleHQiOiAiNiBEYXJjeSBSb2FkLCBQT1JUIEtFTUJMQSAgTlNXICAyNTA1IiwKICAgICAgInBvc3Rjb2RlIjogIjI1MDUiCiAgICB9LAogICAgewogICAgICAiYW1hc2lkIjogIkFVRXw3MjkxZGExZS0xOTIyLTQ3MTYtOWI3Zi1iNzM5MDM3YjI4Yzh8Ny43MzB3T0FVRUdnTGtCd0FBQUFBSUFnRUFBQUFBeVFwNlVBQWhBQTRBQUFBQUFBQUFBQUQuLjJRQUFBQUEuLi4uLndBQUFBQUFBQUFBQUFBQUFBQUFBRVJoY21ONUlGSnZZV1FBQUFBQUFBLS0kMTAiLAogICAgICAidGV4dCI6ICI4IERhcmN5IFJvYWQsIFRJTk9ORUUgIE5TVyAgMjQzMCIsCiAgICAgICJwb3N0Y29kZSI6ICIyNDMwIgogICAgfSwKICAgIHsKICAgICAgImFtYXNpZCI6ICJBVUV8NzI5MWRhMWUtMTkyMi00NzE2LTliN2YtYjczOTAzN2IyOGM4fDcuNzMwZU9BVUVHZ0xrQndBQUFBQUlBZ0VBQUFBQXBxV1hrQUFoQUE0QUFBQUFBQUFBQUFELi4yUUFBQUFBLi4uLi53QUFBQUFBQUFBQUFBQUFBQUFBQUVSaGNtTjVJRkp2WVdRQUFBQUFBQS0tJDEwIiwKICAgICAgInRleHQiOiAiMTAgRGFyY3kgUm9hZCwgUE9SVCBLRU1CTEEgIE5TVyAgMjUwNSIsCiAgICAgICJwb3N0Y29kZSI6ICIyNTA1IgogICAgfSwKICAgIHsKICAgICAgImFtYXNpZCI6ICJBVUV8NzI5MWRhMWUtMTkyMi00NzE2LTliN2YtYjczOTAzN2IyOGM4fDcuNzMwbU9BVUVHZ0xrQndBQUFBQUlBZ0VBQUFBQTF4blQwQUFoQUE0QUFBQUFBQUFBQUFELi4yUUFBQUFBLi4uLi53QUFBQUFBQUFBQUFBQUFBQUFBQUVSaGNtTjVJRkp2WVdRQUFBQUFBQS0tJDEwIiwKICAgICAgInRleHQiOiAiMTYgRGFyY3kgUm9hZCwgV0VOVFdPUlRIVklMTEUgIE5TVyAgMjE0NSIsCiAgICAgICJwb3N0Y29kZSI6ICIyMTQ1IgogICAgfSwKICAgIHsKICAgICAgImFtYXNpZCI6ICJBVUV8NzI5MWRhMWUtMTkyMi00NzE2LTliN2YtYjczOTAzN2IyOGM4fDcuNzMwbU9BVUVHZ0xrQndBQUFBQUlBZ0VBQUFBQTF4bldrQUFoQUE0QUFBQUFBQUFBQUFELi4yUUFBQUFBLi4uLi53QUFBQUFBQUFBQUFBQUFBQUFBQUVSaGNtTjVJRkp2WVdRQUFBQUFBQS0tJDEwIiwKICAgICAgInRleHQiOiAiMTZhIERhcmN5IFJvYWQsIFdFTlRXT1JUSFZJTExFICBOU1cgIDIxNDUiLAogICAgICAicG9zdGNvZGUiOiAiMjE0NSIKICAgIH0sCiAgICB7CiAgICAgICJhbWFzaWQiOiAiQVVFfDcyOTFkYTFlLTE5MjItNDcxNi05YjdmLWI3MzkwMzdiMjhjOHw3LjczMEZPQVVFR2dMa0J3QUFBQUFJQWdFQUFBQUExeG5aVUFBaEFBNEFBQUFBQUFBQUFBRC4uMlFBQUFBQS4uLi4ud0FBQUFBQUFBQUFBQUFBQUFBQUFFUmhjbU41SUZKdllXUUFBQUFBQUEtLSQxMCIsCiAgICAgICJ0ZXh0IjogIjE2YiBEYXJjeSBSb2FkLCBXRU5UV09SVEhWSUxMRSAgTlNXICAyMTQ1IiwKICAgICAgInBvc3Rjb2RlIjogIjIxNDUiCiAgICB9LAogICAgewogICAgICAiYW1hc2lkIjogIkFVRXw3MjkxZGExZS0xOTIyLTQ3MTYtOWI3Zi1iNzM5MDM3YjI4Yzh8Ny43MzB3T0FVRUdnTGtCd0FBQUFBSUFnRUFBQUFBMXhuY2tBQWhBQTRBQUFBQUFBQUFBQUQuLjJRQUFBQUEuLi4uLndBQUFBQUFBQUFBQUFBQUFBQUFBRVJoY21ONUlGSnZZV1FBQUFBQUFBLS0kMTAiLAogICAgICAidGV4dCI6ICIxOCBEYXJjeSBSb2FkLCBXRU5UV09SVEhWSUxMRSAgTlNXICAyMTQ1IiwKICAgICAgInBvc3Rjb2RlIjogIjIxNDUiCiAgICB9LAogICAgewogICAgICAiYW1hc2lkIjogIkFVRXw3MjkxZGExZS0xOTIyLTQ3MTYtOWI3Zi1iNzM5MDM3YjI4Yzh8Ny43MzBHT0FVRUdnTGtCd0FBQUFBSUFnRUFBQUFBMXhuZlVBQWhBQTRBQUFBQUFBQUFBQUQuLjJRQUFBQUEuLi4uLndBQUFBQUFBQUFBQUFBQUFBQUFBRVJoY21ONUlGSnZZV1FBQUFBQUFBLS0kMTAiLAogICAgICAidGV4dCI6ICIxOGEgRGFyY3kgUm9hZCwgV0VOVFdPUlRIVklMTEUgIE5TVyAgMjE0NSIsCiAgICAgICJwb3N0Y29kZSI6ICIyMTQ1IgogICAgfSwKICAgIHsKICAgICAgImFtYXNpZCI6ICJBVUV8NzI5MWRhMWUtMTkyMi00NzE2LTliN2YtYjczOTAzN2IyOGM4fDcuNzMwN09BVUVHZ0xrQndBQUFBQUlBZ0VBQUFBQTF4bmlFQUFoQUE0QUFBQUFBQUFBQUFELi4yUUFBQUFBLi4uLi53QUFBQUFBQUFBQUFBQUFBQUFBQUVSaGNtTjVJRkp2WVdRQUFBQUFBQS0tJDEwIiwKICAgICAgInRleHQiOiAiMjAgRGFyY3kgUm9hZCwgV0VOVFdPUlRIVklMTEUgIE5TVyAgMjE0NSIsCiAgICAgICJwb3N0Y29kZSI6ICIyMTQ1IgogICAgfQogIF0KfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9hZGRyZXNzZXM\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJhbWFzSWQiOiAiQVVFfDcyOTFkYTFlLTE5MjItNDcxNi05YjdmLWI3MzkwMzdiMjhjOHw3LjczMFBPQVVFR2dMa0J3QUFBQUFJQWdFQUFBQUFwcVdTRUFBaEFBNEFBQUFBQUFBQUFBRC4uMlFBQUFBQS4uLi4ud0FBQUFBQUFBQUFBQUFBQUFBQUFFUmhjbU41SUZKdllXUUFBQUFBQUEtLSQxMCIKfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJpZCI6IDUwNjQ4MjI5NywKICAidGV4dCI6ICIxIERhcmN5IFJkLCBQT1JUIEtFTUJMQSBOU1cgMjUwNSIsCiAgImlzcHJpbWFyeSI6IGZhbHNlLAogICJwb3N0YWxjb2RlIjogIjI1MDUiLAogICJzdHJlZXQxIjogIjEgRGFyY3kgUmQiLAogICJzdHJlZXQyIjogIlBPUlQgS0VNQkxBIE5TVyIsCiAgInN1YnVyYmlkIjogMTE3OCwKICAic3VidXJibmFtZSI6ICJQT1JUIEtFTUJMQSIsCiAgImlzcGFydG5lciI6IGZhbHNlCn0\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9saXN0cw\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "e30\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJsaXN0cyI6IFsKICAgIHsKICAgICAgImlkIjogMTgyODk4NjEsCiAgICAgICJ0aXRsZSI6ICJBdXRvTGlzdDEyTzMxVzkiLAogICAgICAidGltZXN0YW1wIjogMTU4Njg0ODQ3OTgzNSwKICAgICAgInVybCI6ICJodHRwczovL3Rlc3QubW9iaWxlLWFwaS53b29sd29ydGhzLmNvbS5hdS93b3cvdjIvbGlzdHMvMTgyODk4NjEiLAogICAgICAicHJvZHVjdENvdW50IjogMAogICAgfSwKICAgIHsKICAgICAgImlkIjogMTgyODk4NjIsCiAgICAgICJ0aXRsZSI6ICJBdXRvTGlzdDIzODU3QUQiLAogICAgICAidGltZXN0YW1wIjogMTU4Njg0ODQ4MDAxOSwKICAgICAgInVybCI6ICJodHRwczovL3Rlc3QubW9iaWxlLWFwaS53b29sd29ydGhzLmNvbS5hdS93b3cvdjIvbGlzdHMvMTgyODk4NjIiLAogICAgICAicHJvZHVjdENvdW50IjogMAogICAgfQogIF0KfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "d293L3YyL2xpc3RzLzE4Mjg5ODYx",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJsYXN0c3luY2VkIjogMTU4Njg0ODY4OTIzOCwKICAidGltZXN0YW1wIjogMTU4Njg0ODY4OTIzNgp9",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJ1cGRhdGUiOiB7CiAgICAiaWQiOiAxODI4OTg2MSwKICAgICJ0aXRsZSI6ICJBdXRvTGlzdDEyTzMxVzkiLAogICAgInRpbWVzdGFtcCI6IDE1ODY4NDg2ODkyMzYsCiAgICAiZnJlZVRleHRJdGVtcyI6IFtdLAogICAgInByb2R1Y3RzIjogW10KICB9LAogICJjaGFuZ2VzIjogewogICAgInVwZGF0ZXMiOiBbXSwKICAgICJkZWxldGVzIjogW10KICB9Cn0\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "d293L3YyL2xpc3RzLzE4Mjg5ODYy",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJsYXN0c3luY2VkIjogMTU4Njg0ODY4OTYxOSwKICAidGltZXN0YW1wIjogMTU4Njg0ODY4OTYxOQp9",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJ1cGRhdGUiOiB7CiAgICAiaWQiOiAxODI4OTg2MiwKICAgICJ0aXRsZSI6ICJBdXRvTGlzdDIzODU3QUQiLAogICAgInRpbWVzdGFtcCI6IDE1ODY4NDg2ODk2MTksCiAgICAiZnJlZVRleHRJdGVtcyI6IFtdLAogICAgInByb2R1Y3RzIjogW10KICB9LAogICJjaGFuZ2VzIjogewogICAgInVwZGF0ZXMiOiBbXSwKICAgICJkZWxldGVzIjogW10KICB9Cn0\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9saXN0cw\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJpZCI6IDAsCiAgInRpdGxlIjogIkF1dG9MaXN0MTJZQUtRRiIsCiAgImxhc3RzeW5jZWQiOiAwLAogICJ0aW1lc3RhbXAiOiAxNTg2ODQ4NjkxMzQxLAogICJjaGVja2VkIjogZmFsc2UKfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJ1cGRhdGUiOiB7CiAgICAiaWQiOiAxODI4OTg2NSwKICAgICJ0aXRsZSI6ICJBdXRvTGlzdDEyWUFLUUYiLAogICAgInRpbWVzdGFtcCI6IDE1ODY4NDg2OTEzNDEsCiAgICAiZnJlZVRleHRJdGVtcyI6IFtdLAogICAgInByb2R1Y3RzIjogW10KICB9LAogICJjaGFuZ2VzIjogewogICAgInVwZGF0ZXMiOiBbXSwKICAgICJkZWxldGVzIjogW10KICB9Cn0\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9saXN0cw\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJpZCI6IDAsCiAgInRpdGxlIjogIkF1dG9MaXN0MjMwS1VLUSIsCiAgImxhc3RzeW5jZWQiOiAwLAogICJ0aW1lc3RhbXAiOiAxNTg2ODQ4NjkyNzQyLAogICJjaGVja2VkIjogZmFsc2UKfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJ1cGRhdGUiOiB7CiAgICAiaWQiOiAxODI4OTg2NiwKICAgICJ0aXRsZSI6ICJBdXRvTGlzdDIzMEtVS1EiLAogICAgInRpbWVzdGFtcCI6IDE1ODY4NDg2OTI3NDIsCiAgICAiZnJlZVRleHRJdGVtcyI6IFtdLAogICAgInByb2R1Y3RzIjogW10KICB9LAogICJjaGFuZ2VzIjogewogICAgInVwZGF0ZXMiOiBbCiAgICAgIHsKICAgICAgICAiaWQiOiAxODI4OTg2NiwKICAgICAgICAidGl0bGUiOiAiQXV0b0xpc3QyMzBLVUtRIiwKICAgICAgICAidGltZXN0YW1wIjogMTU4Njg0ODY5Mjc0MiwKICAgICAgICAidXJsIjogImh0dHBzOi8vdGVzdC5tb2JpbGUtYXBpLndvb2x3b3J0aHMuY29tLmF1L3dvdy92Mi9saXN0cy8xODI4OTg2NiIsCiAgICAgICAgInByb2R1Y3RDb3VudCI6IDAKICAgICAgfQogICAgXSwKICAgICJkZWxldGVzIjogW10KICB9Cn0\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9saXN0cw\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "e30\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJsaXN0cyI6IFsKICAgIHsKICAgICAgImlkIjogMTgyODk4NjUsCiAgICAgICJ0aXRsZSI6ICJBdXRvTGlzdDEyWUFLUUYiLAogICAgICAidGltZXN0YW1wIjogMTU4Njg0ODY5MTM0MSwKICAgICAgInVybCI6ICJodHRwczovL3Rlc3QubW9iaWxlLWFwaS53b29sd29ydGhzLmNvbS5hdS93b3cvdjIvbGlzdHMvMTgyODk4NjUiLAogICAgICAicHJvZHVjdENvdW50IjogMAogICAgfSwKICAgIHsKICAgICAgImlkIjogMTgyODk4NjYsCiAgICAgICJ0aXRsZSI6ICJBdXRvTGlzdDIzMEtVS1EiLAogICAgICAidGltZXN0YW1wIjogMTU4Njg0ODY5Mjc0MiwKICAgICAgInVybCI6ICJodHRwczovL3Rlc3QubW9iaWxlLWFwaS53b29sd29ydGhzLmNvbS5hdS93b3cvdjIvbGlzdHMvMTgyODk4NjYiLAogICAgICAicHJvZHVjdENvdW50IjogMAogICAgfQogIF0KfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9saXN0cy8xODI4OTg2NS9kZWZhdWx0",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "Ik9OTFlfUE9TVF9OT19CT0RZIg\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJzdGF0dXMiOiAiT0siCn0\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9saXN0cw\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "e30\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJsaXN0cyI6IFsKICAgIHsKICAgICAgImlkIjogMTgyODk4NjUsCiAgICAgICJ0aXRsZSI6ICJBdXRvTGlzdDEyWUFLUUYiLAogICAgICAidGltZXN0YW1wIjogMTU4Njg0ODY5MTM0MSwKICAgICAgInVybCI6ICJodHRwczovL3Rlc3QubW9iaWxlLWFwaS53b29sd29ydGhzLmNvbS5hdS93b3cvdjIvbGlzdHMvMTgyODk4NjUiLAogICAgICAicHJvZHVjdENvdW50IjogMAogICAgfSwKICAgIHsKICAgICAgImlkIjogMTgyODk4NjYsCiAgICAgICJ0aXRsZSI6ICJBdXRvTGlzdDIzMEtVS1EiLAogICAgICAidGltZXN0YW1wIjogMTU4Njg0ODY5Mjc0MiwKICAgICAgInVybCI6ICJodHRwczovL3Rlc3QubW9iaWxlLWFwaS53b29sd29ydGhzLmNvbS5hdS93b3cvdjIvbGlzdHMvMTgyODk4NjYiLAogICAgICAicHJvZHVjdENvdW50IjogMAogICAgfQogIF0KfQ\u003d\u003d",
+                "mime_type": "application/json"
+              }
+            ],
+            "line": 13,
+            "name": "I verify list \"AutoList12\" is set as default list",
+            "match": {
+              "arguments": [
+                {
+                  "val": "AutoList12",
+                  "offset": 15
+                }
+              ],
+              "location": "ApigeeListsDefinition.verifyDefaultList(String)"
+            },
+            "matchedColumns": [
+              1
+            ],
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@SMOKE"
+          },
+          {
+            "line": 1,
+            "name": "@LION"
+          },
+          {
+            "line": 1,
+            "name": "@LIST"
+          },
+          {
+            "line": 1,
+            "name": "@REGRESSION"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 91596,
+              "status": "passed"
+            },
+            "match": {
+              "location": "ServiceHooks.initializeTest()"
+            }
+          }
+        ],
+        "line": 31,
+        "name": "Create List and add free text item and Verify whether user is able to delete the item and list",
+        "description": "",
+        "id": "verify-apigee-list-scenarios;create-list-and-add-free-text-item-and-verify-whether-user-is-able-to-delete-the-item-and-list;;2",
+        "after": [
+          {
+            "result": {
+              "duration": 3319596,
+              "status": "passed"
+            },
+            "match": {
+              "location": "ServiceHooks.finaliseTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 718007940,
+              "status": "passed"
+            },
+            "line": 19,
+            "name": "user continue to connect to apigee with login username as \"SHOPPER_USERNAME7\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "SHOPPER_USERNAME7",
+                  "offset": 59
+                }
+              ],
+              "location": "ApigeeShopperDefinition.userContinueToConnectToApigeeWithSpecifiedUsername(String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 110160,
+              "status": "passed"
+            },
+            "line": 20,
+            "name": "connection from user to apigee endpoint happens",
+            "match": {
+              "location": "ApigeeGuestDefinition.connectionFromUserToApigeeAPIEndpointHappens()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 422105699,
+              "status": "passed"
+            },
+            "line": 21,
+            "name": "I search for the address \"Darcy Road\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Darcy Road",
+                  "offset": 26
+                }
+              ],
+              "location": "DeliveryAddressDefinition.searchForTheAddresses(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 260895921,
+              "status": "passed"
+            },
+            "line": 22,
+            "name": "I select the \"1\" address as fulfilment address from matching addresses",
+            "match": {
+              "arguments": [
+                {
+                  "val": "1",
+                  "offset": 14
+                }
+              ],
+              "location": "DeliveryAddressDefinition.iSelectTheAddressAsFulfilmentAddressFromMatchingAddresses(int)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 249615908,
+              "status": "passed"
+            },
+            "line": 23,
+            "name": "I clear ALL the list for the user",
+            "match": {
+              "location": "ApigeeListsDefinition.i_clear_all_the_list_for_the_user()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 300308758,
+              "status": "passed"
+            },
+            "line": 24,
+            "name": "I create a list with exact list name as \"AutoList Exact\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "AutoList Exact",
+                  "offset": 41
+                }
+              ],
+              "location": "ApigeeListsDefinition.createExactList(String)"
+            },
+            "matchedColumns": [
+              1
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 177271682,
+              "status": "passed"
+            },
+            "line": 25,
+            "name": "I add free text item \"Coke\" to list",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Coke",
+                  "offset": 22
+                }
+              ],
+              "location": "ApigeeListsDefinition.i_add_free_text_item_to_list(String)"
+            },
+            "matchedColumns": [
+              2
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 255176603,
+              "status": "passed"
+            },
+            "line": 26,
+            "name": "user verifies the free text item \"Coke\" is added to list",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Coke",
+                  "offset": 34
+                }
+              ],
+              "location": "ApigeeListsDefinition.user_verifies_the_free_text_item_is_added_to_list(String)"
+            },
+            "matchedColumns": [
+              2
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 1157925107,
+              "status": "passed"
+            },
+            "line": 27,
+            "name": "user deletes free text item \"Coke\" from the new list",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Coke",
+                  "offset": 29
+                }
+              ],
+              "location": "ApigeeListsDefinition.user_deletes_free_text_item_from_the_new_list(String)"
+            },
+            "matchedColumns": [
+              2
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 690680133,
+              "status": "passed"
+            },
+            "embeddings": [
+              {
+                "data": "L3dvdy92Mi9jb21tZXJjZS90b2tlbg\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJ1c2VyX25hbWUiOiAic2hvcGFwcCszOEB3b29sd29ydGhzLmNvbS5hdSIsCiAgInBhc3N3b3JkIjogIjEyMzQ1NiIKfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJhY2Nlc3NfdG9rZW4iOiAiczJtSnFRT1JFVXcyYVN4dHVCZm1xQnZoZWp0NSIsCiAgInJlZnJlc2hfdG9rZW4iOiAieUwxVENBaXhPb01CRjNxVTZQem9HWDhjV0RZN1NJaUciLAogICJleHBpcmVzX2luIjogIjExOSIsCiAgInRyb2xsZXlocmVmIjogImh0dHBzOi8vdGVzdC5tb2JpbGUtYXBpLndvb2x3b3J0aHMuY29tLmF1L3dvdy92Mi90cm9sbGV5IiwKICAiZnVsZmlsbWVudGhyZWYiOiAiaHR0cHM6Ly90ZXN0Lm1vYmlsZS1hcGkud29vbHdvcnRocy5jb20uYXUvd293L3YyL2Z1bGZpbG1lbnQiLAogICJwYXltZW50aHJlZiI6ICJodHRwczovL3Rlc3QubW9iaWxlLWFwaS53b29sd29ydGhzLmNvbS5hdS93b3cvdjIvY29tbWVyY2UvY2hlY2tvdXQvcGF5bWVudCIsCiAgInNob3BwZXJpZCI6ICI1NTAwNzA4IiwKICAidGl0bGUiOiAiICIsCiAgImZpcnN0bmFtZSI6ICJzaG9wYXBwMzgiLAogICJsYXN0bmFtZSI6ICJhcHB0ZXN0MzgiLAogICJlbWFpbCI6ICJzaG9wYXBwKzM4QHdvb2x3b3J0aHMuY29tLmF1IiwKICAiZGF0ZW9mYmlydGgiOiAiMTk4NS0xMC0xMFQwMDowMDowMC4wMDAwMDAwIiwKICAicHJpbWFyeXBob25lIjogIjA0ODMzMjY2NTgiLAogICJzZWNvbmRhcnlwaG9uZSI6ICIwNDM2NjU2NTc2IiwKICAib3RoZXJwaG9uZSI6ICIiLAogICJmdWxmaWxtZW50c3RvcmVpZCI6ICIxNjQ5IiwKICAiZnVsZmlsbWVudG1ldGhvZCI6ICIiLAogICJmdWxmaWxtZW50c3RvcmVuYW1lIjogIiIsCiAgImRlbGl2ZXJ5bWV0aG9kIjogIlBpY2t1cCIsCiAgImRlbGl2ZXJ5c3RvcmVhZGRyZXNzaWQiOiAiOTMyNjI3IiwKICAiZGVsaXZlcnlzdG9yZWFkZHJlc3NjaXR5IjogIjE2NDkgTWFycmlja3ZpbGxlIE1ldHJvIExPQ0FMIiwKICAiZGVsaXZlcnlzdG9yZWFkZHJlc3Njb3VudHJ5IjogIkF1c3RyYWxpYSIsCiAgImRlbGl2ZXJ5YWRkcmVzc3N0cmVldDEiOiAiTUFSUklDS1ZJTExFIE1FVFJPIFNIT1BQSU5HIENFTlRSRSIsCiAgImRlbGl2ZXJ5YWRkcmVzc3N0cmVldDIiOiAiMzQgVklDVE9SSUEgUk9BRCIsCiAgImRlbGl2ZXJ5YWRkcmVzc3N1YnVyYiI6ICIgIE1BUlJJQ0tWSUxMRSIsCiAgImRlbGl2ZXJ5aW5zdHJ1Y3Rpb25zIjogIiIsCiAgImlzc2VydmljYWJsZSI6ICJ0cnVlIiwKICAicmV3YXJkc2NhcmROdW1iZXIiOiAiIiwKICAidGVhbW1lbWJlciI6ICJmYWxzZSIsCiAgInRyb2xsZXltZXJnZXN0YXR1cyI6ICIiCn0\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9hZGRyZXNzZXM\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "e3E9RGFyY3kgUm9hZH0\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJhZGRyZXNzZXMiOiBbCiAgICB7CiAgICAgICJhbWFzaWQiOiAiQVVFfGE0NzM3NGJlLTlhOWEtNDlmNy04NzQ5LWE5ZGQ4NGEzMGJhOXw3LjczMFBPQVVFR2dMa0J3QUFBQUFJQWdFQUFBQUFwcVdTRUFBaEFBNEFBQUFBQUFBQUFBRC4uMlFBQUFBQS4uLi4ud0FBQUFBQUFBQUFBQUFBQUFBQUFFUmhjbU41SUZKdllXUUFBQUFBQUEtLSQxMCIsCiAgICAgICJ0ZXh0IjogIjEgRGFyY3kgUm9hZCwgUE9SVCBLRU1CTEEgIE5TVyAgMjUwNSIsCiAgICAgICJwb3N0Y29kZSI6ICIyNTA1IgogICAgfSwKICAgIHsKICAgICAgImFtYXNpZCI6ICJBVUV8YTQ3Mzc0YmUtOWE5YS00OWY3LTg3NDktYTlkZDg0YTMwYmE5fDcuNzMwVU9BVUVHZ0xrQndBQUFBQUlBZ0VBQUFBQXBxV1UwQUFoQUE0QUFBQUFBQUFBQUFELi4yUUFBQUFBLi4uLi53QUFBQUFBQUFBQUFBQUFBQUFBQUVSaGNtTjVJRkp2WVdRQUFBQUFBQS0tJDEwIiwKICAgICAgInRleHQiOiAiNiBEYXJjeSBSb2FkLCBQT1JUIEtFTUJMQSAgTlNXICAyNTA1IiwKICAgICAgInBvc3Rjb2RlIjogIjI1MDUiCiAgICB9LAogICAgewogICAgICAiYW1hc2lkIjogIkFVRXxhNDczNzRiZS05YTlhLTQ5ZjctODc0OS1hOWRkODRhMzBiYTl8Ny43MzB3T0FVRUdnTGtCd0FBQUFBSUFnRUFBQUFBeVFwNlVBQWhBQTRBQUFBQUFBQUFBQUQuLjJRQUFBQUEuLi4uLndBQUFBQUFBQUFBQUFBQUFBQUFBRVJoY21ONUlGSnZZV1FBQUFBQUFBLS0kMTAiLAogICAgICAidGV4dCI6ICI4IERhcmN5IFJvYWQsIFRJTk9ORUUgIE5TVyAgMjQzMCIsCiAgICAgICJwb3N0Y29kZSI6ICIyNDMwIgogICAgfSwKICAgIHsKICAgICAgImFtYXNpZCI6ICJBVUV8YTQ3Mzc0YmUtOWE5YS00OWY3LTg3NDktYTlkZDg0YTMwYmE5fDcuNzMwZU9BVUVHZ0xrQndBQUFBQUlBZ0VBQUFBQXBxV1hrQUFoQUE0QUFBQUFBQUFBQUFELi4yUUFBQUFBLi4uLi53QUFBQUFBQUFBQUFBQUFBQUFBQUVSaGNtTjVJRkp2WVdRQUFBQUFBQS0tJDEwIiwKICAgICAgInRleHQiOiAiMTAgRGFyY3kgUm9hZCwgUE9SVCBLRU1CTEEgIE5TVyAgMjUwNSIsCiAgICAgICJwb3N0Y29kZSI6ICIyNTA1IgogICAgfSwKICAgIHsKICAgICAgImFtYXNpZCI6ICJBVUV8YTQ3Mzc0YmUtOWE5YS00OWY3LTg3NDktYTlkZDg0YTMwYmE5fDcuNzMwbU9BVUVHZ0xrQndBQUFBQUlBZ0VBQUFBQTF4blQwQUFoQUE0QUFBQUFBQUFBQUFELi4yUUFBQUFBLi4uLi53QUFBQUFBQUFBQUFBQUFBQUFBQUVSaGNtTjVJRkp2WVdRQUFBQUFBQS0tJDEwIiwKICAgICAgInRleHQiOiAiMTYgRGFyY3kgUm9hZCwgV0VOVFdPUlRIVklMTEUgIE5TVyAgMjE0NSIsCiAgICAgICJwb3N0Y29kZSI6ICIyMTQ1IgogICAgfSwKICAgIHsKICAgICAgImFtYXNpZCI6ICJBVUV8YTQ3Mzc0YmUtOWE5YS00OWY3LTg3NDktYTlkZDg0YTMwYmE5fDcuNzMwbU9BVUVHZ0xrQndBQUFBQUlBZ0VBQUFBQTF4bldrQUFoQUE0QUFBQUFBQUFBQUFELi4yUUFBQUFBLi4uLi53QUFBQUFBQUFBQUFBQUFBQUFBQUVSaGNtTjVJRkp2WVdRQUFBQUFBQS0tJDEwIiwKICAgICAgInRleHQiOiAiMTZhIERhcmN5IFJvYWQsIFdFTlRXT1JUSFZJTExFICBOU1cgIDIxNDUiLAogICAgICAicG9zdGNvZGUiOiAiMjE0NSIKICAgIH0sCiAgICB7CiAgICAgICJhbWFzaWQiOiAiQVVFfGE0NzM3NGJlLTlhOWEtNDlmNy04NzQ5LWE5ZGQ4NGEzMGJhOXw3LjczMEZPQVVFR2dMa0J3QUFBQUFJQWdFQUFBQUExeG5aVUFBaEFBNEFBQUFBQUFBQUFBRC4uMlFBQUFBQS4uLi4ud0FBQUFBQUFBQUFBQUFBQUFBQUFFUmhjbU41SUZKdllXUUFBQUFBQUEtLSQxMCIsCiAgICAgICJ0ZXh0IjogIjE2YiBEYXJjeSBSb2FkLCBXRU5UV09SVEhWSUxMRSAgTlNXICAyMTQ1IiwKICAgICAgInBvc3Rjb2RlIjogIjIxNDUiCiAgICB9LAogICAgewogICAgICAiYW1hc2lkIjogIkFVRXxhNDczNzRiZS05YTlhLTQ5ZjctODc0OS1hOWRkODRhMzBiYTl8Ny43MzB3T0FVRUdnTGtCd0FBQUFBSUFnRUFBQUFBMXhuY2tBQWhBQTRBQUFBQUFBQUFBQUQuLjJRQUFBQUEuLi4uLndBQUFBQUFBQUFBQUFBQUFBQUFBRVJoY21ONUlGSnZZV1FBQUFBQUFBLS0kMTAiLAogICAgICAidGV4dCI6ICIxOCBEYXJjeSBSb2FkLCBXRU5UV09SVEhWSUxMRSAgTlNXICAyMTQ1IiwKICAgICAgInBvc3Rjb2RlIjogIjIxNDUiCiAgICB9LAogICAgewogICAgICAiYW1hc2lkIjogIkFVRXxhNDczNzRiZS05YTlhLTQ5ZjctODc0OS1hOWRkODRhMzBiYTl8Ny43MzBHT0FVRUdnTGtCd0FBQUFBSUFnRUFBQUFBMXhuZlVBQWhBQTRBQUFBQUFBQUFBQUQuLjJRQUFBQUEuLi4uLndBQUFBQUFBQUFBQUFBQUFBQUFBRVJoY21ONUlGSnZZV1FBQUFBQUFBLS0kMTAiLAogICAgICAidGV4dCI6ICIxOGEgRGFyY3kgUm9hZCwgV0VOVFdPUlRIVklMTEUgIE5TVyAgMjE0NSIsCiAgICAgICJwb3N0Y29kZSI6ICIyMTQ1IgogICAgfSwKICAgIHsKICAgICAgImFtYXNpZCI6ICJBVUV8YTQ3Mzc0YmUtOWE5YS00OWY3LTg3NDktYTlkZDg0YTMwYmE5fDcuNzMwN09BVUVHZ0xrQndBQUFBQUlBZ0VBQUFBQTF4bmlFQUFoQUE0QUFBQUFBQUFBQUFELi4yUUFBQUFBLi4uLi53QUFBQUFBQUFBQUFBQUFBQUFBQUVSaGNtTjVJRkp2WVdRQUFBQUFBQS0tJDEwIiwKICAgICAgInRleHQiOiAiMjAgRGFyY3kgUm9hZCwgV0VOVFdPUlRIVklMTEUgIE5TVyAgMjE0NSIsCiAgICAgICJwb3N0Y29kZSI6ICIyMTQ1IgogICAgfQogIF0KfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9hZGRyZXNzZXM\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJhbWFzSWQiOiAiQVVFfGE0NzM3NGJlLTlhOWEtNDlmNy04NzQ5LWE5ZGQ4NGEzMGJhOXw3LjczMFBPQVVFR2dMa0J3QUFBQUFJQWdFQUFBQUFwcVdTRUFBaEFBNEFBQUFBQUFBQUFBRC4uMlFBQUFBQS4uLi4ud0FBQUFBQUFBQUFBQUFBQUFBQUFFUmhjbU41SUZKdllXUUFBQUFBQUEtLSQxMCIKfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJpZCI6IDUwNjQ4MjY1MSwKICAidGV4dCI6ICIxIERhcmN5IFJkLCBQT1JUIEtFTUJMQSBOU1cgMjUwNSIsCiAgImlzcHJpbWFyeSI6IHRydWUsCiAgInBvc3RhbGNvZGUiOiAiMjUwNSIsCiAgInN0cmVldDEiOiAiMSBEYXJjeSBSZCIsCiAgInN0cmVldDIiOiAiUE9SVCBLRU1CTEEgTlNXIiwKICAic3VidXJiaWQiOiAxMTc4LAogICJzdWJ1cmJuYW1lIjogIlBPUlQgS0VNQkxBIiwKICAiaXNwYXJ0bmVyIjogZmFsc2UKfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9saXN0cw\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "e30\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJsaXN0cyI6IFtdCn0\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9saXN0cw\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJpZCI6IDAsCiAgInRpdGxlIjogIkF1dG9MaXN0IEV4YWN0IiwKICAibGFzdHN5bmNlZCI6IDAsCiAgInRpbWVzdGFtcCI6IDE1ODY4NDg2OTUwMzcsCiAgImNoZWNrZWQiOiBmYWxzZQp9",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJ1cGRhdGUiOiB7CiAgICAiaWQiOiAxODI4OTg2NywKICAgICJ0aXRsZSI6ICJBdXRvTGlzdCBFeGFjdCIsCiAgICAidGltZXN0YW1wIjogMTU4Njg0ODY5NTAzNywKICAgICJmcmVlVGV4dEl0ZW1zIjogW10sCiAgICAicHJvZHVjdHMiOiBbXQogIH0sCiAgImNoYW5nZXMiOiB7CiAgICAidXBkYXRlcyI6IFtdLAogICAgImRlbGV0ZXMiOiBbXQogIH0KfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9saXN0cy8xODI4OTg2Ny9pdGVtcw\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJpZCI6IDAsCiAgInRleHQiOiAiQ29rZSIsCiAgImxhc3RzeW5jZWQiOiAxNTg2ODQ4Njk1MzM4LAogICJ0aW1lc3RhbXAiOiAxNTg2ODQ4Njk1MzM3LAogICJjaGVja2VkIjogZmFsc2UKfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJ1cGRhdGUiOiB7CiAgICAiaWQiOiAyNjkyMzg5MTgsCiAgICAidGV4dCI6ICJDb2tlIiwKICAgICJjaGVja2VkIjogZmFsc2UsCiAgICAidGltZXN0YW1wIjogMTU4Njg0ODY5NTMzNwogIH0sCiAgImNoYW5nZXMiOiB7CiAgICAiZnJlZVRleHRJdGVtcyI6IHsKICAgICAgInVwZGF0ZXMiOiBbXSwKICAgICAgImRlbGV0ZXMiOiBbXQogICAgfSwKICAgICJwcm9kdWN0cyI6IHsKICAgICAgInVwZGF0ZXMiOiBbXSwKICAgICAgImRlbGV0ZXMiOiBbXQogICAgfQogIH0KfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "d293L3YyL2xpc3RzLzE4Mjg5ODY3",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "e30\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJpZCI6IDE4Mjg5ODY3LAogICJ0aXRsZSI6ICJBdXRvTGlzdCBFeGFjdCIsCiAgInRpbWVzdGFtcCI6IDE1ODY4NDg2OTUzMzcsCiAgImxhc3RVcGRhdGVkIjogMCwKICAiY291bnQiOiAxLAogICJwYWdlIjogMCwKICAiZnJlZVRleHRJdGVtcyI6IFsKICAgIHsKICAgICAgImlkIjogMjY5MjM4OTE4LAogICAgICAidGV4dCI6ICJDb2tlIiwKICAgICAgInRpbWVzdGFtcCI6IDE1ODY4NDg2OTUzMzcsCiAgICAgICJjaGVja2VkIjogZmFsc2UKICAgIH0KICBdLAogICJwcm9kdWN0cyI6IFtdCn0\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "d293L3YyL2xpc3RzLzE4Mjg5ODY3",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "e30\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJpZCI6IDE4Mjg5ODY3LAogICJ0aXRsZSI6ICJBdXRvTGlzdCBFeGFjdCIsCiAgInRpbWVzdGFtcCI6IDE1ODY4NDg2OTUzMzcsCiAgImxhc3RVcGRhdGVkIjogMCwKICAiY291bnQiOiAxLAogICJwYWdlIjogMCwKICAiZnJlZVRleHRJdGVtcyI6IFsKICAgIHsKICAgICAgImlkIjogMjY5MjM4OTE4LAogICAgICAidGV4dCI6ICJDb2tlIiwKICAgICAgInRpbWVzdGFtcCI6IDE1ODY4NDg2OTUzMzcsCiAgICAgICJjaGVja2VkIjogZmFsc2UKICAgIH0KICBdLAogICJwcm9kdWN0cyI6IFtdCn0\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "d293L3YyL2xpc3RzLzE4Mjg5ODY3L2l0ZW1z",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJpZCI6IDI2OTIzODkxOCwKICAibGFzdHN5bmNlZCI6IDE1ODY4NDg2OTU4OTMsCiAgInRpbWVzdGFtcCI6IDE1ODY4NDg2OTU4OTIKfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJ1cGRhdGUiOiB7CiAgICAiaWQiOiAyNjkyMzg5MTgsCiAgICAidGV4dCI6ICJDb2tlIiwKICAgICJxdWFudGl0eSI6IDAuMCwKICAgICJjaGVja2VkIjogZmFsc2UsCiAgICAidGltZXN0YW1wIjogMTU4Njg0ODY5NTg5MiwKICAgICJzdGF0dXMiOiAiREVMRVRFIgogIH0sCiAgImNoYW5nZXMiOiB7CiAgICAiZnJlZVRleHRJdGVtcyI6IHsKICAgICAgInVwZGF0ZXMiOiBbXSwKICAgICAgImRlbGV0ZXMiOiBbXQogICAgfSwKICAgICJwcm9kdWN0cyI6IHsKICAgICAgInVwZGF0ZXMiOiBbXSwKICAgICAgImRlbGV0ZXMiOiBbXQogICAgfQogIH0KfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "d293L3YyL2xpc3RzLzE4Mjg5ODY3",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJsYXN0c3luY2VkIjogMTU4Njg0ODY5NjkyOSwKICAidGltZXN0YW1wIjogMTU4Njg0ODY5NjkyOAp9",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJ1cGRhdGUiOiB7CiAgICAiaWQiOiAxODI4OTg2NywKICAgICJ0aXRsZSI6ICJBdXRvTGlzdCBFeGFjdCIsCiAgICAidGltZXN0YW1wIjogMTU4Njg0ODY5NjkyOCwKICAgICJmcmVlVGV4dEl0ZW1zIjogW10sCiAgICAicHJvZHVjdHMiOiBbXQogIH0sCiAgImNoYW5nZXMiOiB7CiAgICAidXBkYXRlcyI6IFtdLAogICAgImRlbGV0ZXMiOiBbXQogIH0KfQ\u003d\u003d",
+                "mime_type": "application/json"
+              }
+            ],
+            "line": 28,
+            "name": "I delete the newly created list",
+            "match": {
+              "location": "ApigeeListsDefinition.i_delete_the_newly_created_list()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@SMOKE"
+          },
+          {
+            "line": 1,
+            "name": "@LION"
+          },
+          {
+            "line": 1,
+            "name": "@LIST"
+          },
+          {
+            "line": 1,
+            "name": "@REGRESSION"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 69233,
+              "status": "passed"
+            },
+            "match": {
+              "location": "ServiceHooks.initializeTest()"
+            }
+          }
+        ],
+        "line": 49,
+        "name": "Create List and check / uncheck free text item to the list",
+        "description": "",
+        "id": "verify-apigee-list-scenarios;create-list-and-check-/-uncheck-free-text-item-to-the-list;;2",
+        "after": [
+          {
+            "result": {
+              "duration": 4888432,
+              "status": "passed"
+            },
+            "match": {
+              "location": "ServiceHooks.finaliseTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 967329585,
+              "status": "passed"
+            },
+            "line": 35,
+            "name": "user continue to connect to apigee with login containing apigee99",
+            "match": {
+              "arguments": [
+                {
+                  "val": "apigee99",
+                  "offset": 57
+                }
+              ],
+              "location": "ApigeeShopperDefinition.user_continue_to_connect_to_apigee_with_login_containing_username(String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 141725,
+              "status": "passed"
+            },
+            "line": 36,
+            "name": "connection from user to apigee endpoint happens",
+            "match": {
+              "location": "ApigeeGuestDefinition.connectionFromUserToApigeeAPIEndpointHappens()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 458044096,
+              "status": "passed"
+            },
+            "line": 37,
+            "name": "I search for the address \"Darcy Road\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Darcy Road",
+                  "offset": 26
+                }
+              ],
+              "location": "DeliveryAddressDefinition.searchForTheAddresses(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 227609528,
+              "status": "passed"
+            },
+            "line": 38,
+            "name": "I select the \"1\" address as fulfilment address from matching addresses",
+            "match": {
+              "arguments": [
+                {
+                  "val": "1",
+                  "offset": 14
+                }
+              ],
+              "location": "DeliveryAddressDefinition.iSelectTheAddressAsFulfilmentAddressFromMatchingAddresses(int)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 258981011,
+              "status": "passed"
+            },
+            "line": 39,
+            "name": "I clear ALL the list for the user",
+            "match": {
+              "location": "ApigeeListsDefinition.i_clear_all_the_list_for_the_user()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 108754064,
+              "status": "passed"
+            },
+            "line": 40,
+            "name": "I create a list with exact list name as \"AutoList Exact\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "AutoList Exact",
+                  "offset": 41
+                }
+              ],
+              "location": "ApigeeListsDefinition.createExactList(String)"
+            },
+            "matchedColumns": [
+              1
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 138844294,
+              "status": "passed"
+            },
+            "line": 41,
+            "name": "I add free text item \"Coke\" to list and check the item to list",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Coke",
+                  "offset": 22
+                }
+              ],
+              "location": "ApigeeListsDefinition.i_add_free_text_item_to_list_and_check_the_item(String)"
+            },
+            "matchedColumns": [
+              2
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 132093971,
+              "status": "passed"
+            },
+            "line": 42,
+            "name": "user verifies the free text item \"Coke\" is added to list and is checked",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Coke",
+                  "offset": 34
+                }
+              ],
+              "location": "ApigeeListsDefinition.user_verifies_the_free_text_item_is_added_to_list_and_is_checked(String)"
+            },
+            "matchedColumns": [
+              2
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 360813382,
+              "status": "passed"
+            },
+            "line": 43,
+            "name": "user un-checks the free text item \"Coke\" from the newly created list",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Coke",
+                  "offset": 35
+                }
+              ],
+              "location": "ApigeeListsDefinition.user_un_checks_the_free_text_item_from_the_newly_created_list(String)"
+            },
+            "matchedColumns": [
+              2
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 317251553,
+              "status": "passed"
+            },
+            "line": 44,
+            "name": "user verifies the free text item \"Coke\" is added to \"AutoList Exact\" is unchecked",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Coke",
+                  "offset": 34
+                },
+                {
+                  "val": "AutoList Exact",
+                  "offset": 53
+                }
+              ],
+              "location": "ApigeeListsDefinition.user_verifies_the_free_text_item_is_added_to_is_unchecked(String,String)"
+            },
+            "matchedColumns": [
+              1,
+              2
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 433254365,
+              "status": "passed"
+            },
+            "line": 45,
+            "name": "checks free text item \"Coke\" from the \"AutoList Exact\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Coke",
+                  "offset": 23
+                },
+                {
+                  "val": "AutoList Exact",
+                  "offset": 39
+                }
+              ],
+              "location": "ApigeeListsDefinition.checks_free_text_item_from_the_list(String,String)"
+            },
+            "matchedColumns": [
+              1,
+              2
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 319683683,
+              "status": "passed"
+            },
+            "embeddings": [
+              {
+                "data": "L3dvdy92Mi9jb21tZXJjZS90b2tlbg\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJ1c2VyX25hbWUiOiAiYXBpZ2VlOTlAdGVzdGF1dG9tYXRpb24uY29tIiwKICAicGFzc3dvcmQiOiAiMTIzNDU2Igp9",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJhY2Nlc3NfdG9rZW4iOiAiOUd3V09CcWRUY2pudjRIdHpWZ2JDWXJjR2prNCIsCiAgInJlZnJlc2hfdG9rZW4iOiAiamJEVE10aXU2RWljbmQ2bFNHWFVXYTBHZ29oRzNxaFciLAogICJleHBpcmVzX2luIjogIjExOSIsCiAgInRyb2xsZXlocmVmIjogImh0dHBzOi8vdGVzdC5tb2JpbGUtYXBpLndvb2x3b3J0aHMuY29tLmF1L3dvdy92Mi90cm9sbGV5IiwKICAiZnVsZmlsbWVudGhyZWYiOiAiaHR0cHM6Ly90ZXN0Lm1vYmlsZS1hcGkud29vbHdvcnRocy5jb20uYXUvd293L3YyL2Z1bGZpbG1lbnQiLAogICJwYXltZW50aHJlZiI6ICJodHRwczovL3Rlc3QubW9iaWxlLWFwaS53b29sd29ydGhzLmNvbS5hdS93b3cvdjIvY29tbWVyY2UvY2hlY2tvdXQvcGF5bWVudCIsCiAgInNob3BwZXJpZCI6ICI1MDU2MTYwMDAiLAogICJ0aXRsZSI6ICIgIiwKICAiZmlyc3RuYW1lIjogImFwaWdlZSIsCiAgImxhc3RuYW1lIjogInRlc3QiLAogICJlbWFpbCI6ICJhcGlnZWU5OUB0ZXN0YXV0b21hdGlvbi5jb20iLAogICJkYXRlb2ZiaXJ0aCI6ICIiLAogICJwcmltYXJ5cGhvbmUiOiAiMDQwMDAwMDAwMCIsCiAgInNlY29uZGFyeXBob25lIjogIjA0MDAwMDAwMDAiLAogICJvdGhlcnBob25lIjogIiIsCiAgImZ1bGZpbG1lbnRzdG9yZWlkIjogIjE2NDkiLAogICJmdWxmaWxtZW50bWV0aG9kIjogIiIsCiAgImZ1bGZpbG1lbnRzdG9yZW5hbWUiOiAiIiwKICAiZGVsaXZlcnltZXRob2QiOiAiUGlja3VwIiwKICAiZGVsaXZlcnlzdG9yZWFkZHJlc3NpZCI6ICI5MzI2MjciLAogICJkZWxpdmVyeXN0b3JlYWRkcmVzc2NpdHkiOiAiMTY0OSBNYXJyaWNrdmlsbGUgTWV0cm8gTE9DQUwiLAogICJkZWxpdmVyeXN0b3JlYWRkcmVzc2NvdW50cnkiOiAiQXVzdHJhbGlhIiwKICAiZGVsaXZlcnlhZGRyZXNzc3RyZWV0MSI6ICJNQVJSSUNLVklMTEUgTUVUUk8gU0hPUFBJTkcgQ0VOVFJFIiwKICAiZGVsaXZlcnlhZGRyZXNzc3RyZWV0MiI6ICIzNCBWSUNUT1JJQSBST0FEIiwKICAiZGVsaXZlcnlhZGRyZXNzc3VidXJiIjogIiAgTUFSUklDS1ZJTExFIiwKICAiZGVsaXZlcnlpbnN0cnVjdGlvbnMiOiAiIiwKICAiaXNzZXJ2aWNhYmxlIjogInRydWUiLAogICJyZXdhcmRzY2FyZE51bWJlciI6ICIiLAogICJ0ZWFtbWVtYmVyIjogImZhbHNlIiwKICAidHJvbGxleW1lcmdlc3RhdHVzIjogIiIKfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9hZGRyZXNzZXM\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "e3E9RGFyY3kgUm9hZH0\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJhZGRyZXNzZXMiOiBbCiAgICB7CiAgICAgICJhbWFzaWQiOiAiQVVFfDkwY2Q1ZjA2LWVkZmQtNGIzOC1iMTIzLWU0MjE3YWQxMDNjMXw3LjczMFBPQVVFR2dMa0J3QUFBQUFJQWdFQUFBQUFwcVdTRUFBaEFBNEFBQUFBQUFBQUFBRC4uMlFBQUFBQS4uLi4ud0FBQUFBQUFBQUFBQUFBQUFBQUFFUmhjbU41SUZKdllXUUFBQUFBQUEtLSQxMCIsCiAgICAgICJ0ZXh0IjogIjEgRGFyY3kgUm9hZCwgUE9SVCBLRU1CTEEgIE5TVyAgMjUwNSIsCiAgICAgICJwb3N0Y29kZSI6ICIyNTA1IgogICAgfSwKICAgIHsKICAgICAgImFtYXNpZCI6ICJBVUV8OTBjZDVmMDYtZWRmZC00YjM4LWIxMjMtZTQyMTdhZDEwM2MxfDcuNzMwVU9BVUVHZ0xrQndBQUFBQUlBZ0VBQUFBQXBxV1UwQUFoQUE0QUFBQUFBQUFBQUFELi4yUUFBQUFBLi4uLi53QUFBQUFBQUFBQUFBQUFBQUFBQUVSaGNtTjVJRkp2WVdRQUFBQUFBQS0tJDEwIiwKICAgICAgInRleHQiOiAiNiBEYXJjeSBSb2FkLCBQT1JUIEtFTUJMQSAgTlNXICAyNTA1IiwKICAgICAgInBvc3Rjb2RlIjogIjI1MDUiCiAgICB9LAogICAgewogICAgICAiYW1hc2lkIjogIkFVRXw5MGNkNWYwNi1lZGZkLTRiMzgtYjEyMy1lNDIxN2FkMTAzYzF8Ny43MzB3T0FVRUdnTGtCd0FBQUFBSUFnRUFBQUFBeVFwNlVBQWhBQTRBQUFBQUFBQUFBQUQuLjJRQUFBQUEuLi4uLndBQUFBQUFBQUFBQUFBQUFBQUFBRVJoY21ONUlGSnZZV1FBQUFBQUFBLS0kMTAiLAogICAgICAidGV4dCI6ICI4IERhcmN5IFJvYWQsIFRJTk9ORUUgIE5TVyAgMjQzMCIsCiAgICAgICJwb3N0Y29kZSI6ICIyNDMwIgogICAgfSwKICAgIHsKICAgICAgImFtYXNpZCI6ICJBVUV8OTBjZDVmMDYtZWRmZC00YjM4LWIxMjMtZTQyMTdhZDEwM2MxfDcuNzMwZU9BVUVHZ0xrQndBQUFBQUlBZ0VBQUFBQXBxV1hrQUFoQUE0QUFBQUFBQUFBQUFELi4yUUFBQUFBLi4uLi53QUFBQUFBQUFBQUFBQUFBQUFBQUVSaGNtTjVJRkp2WVdRQUFBQUFBQS0tJDEwIiwKICAgICAgInRleHQiOiAiMTAgRGFyY3kgUm9hZCwgUE9SVCBLRU1CTEEgIE5TVyAgMjUwNSIsCiAgICAgICJwb3N0Y29kZSI6ICIyNTA1IgogICAgfSwKICAgIHsKICAgICAgImFtYXNpZCI6ICJBVUV8OTBjZDVmMDYtZWRmZC00YjM4LWIxMjMtZTQyMTdhZDEwM2MxfDcuNzMwbU9BVUVHZ0xrQndBQUFBQUlBZ0VBQUFBQTF4blQwQUFoQUE0QUFBQUFBQUFBQUFELi4yUUFBQUFBLi4uLi53QUFBQUFBQUFBQUFBQUFBQUFBQUVSaGNtTjVJRkp2WVdRQUFBQUFBQS0tJDEwIiwKICAgICAgInRleHQiOiAiMTYgRGFyY3kgUm9hZCwgV0VOVFdPUlRIVklMTEUgIE5TVyAgMjE0NSIsCiAgICAgICJwb3N0Y29kZSI6ICIyMTQ1IgogICAgfSwKICAgIHsKICAgICAgImFtYXNpZCI6ICJBVUV8OTBjZDVmMDYtZWRmZC00YjM4LWIxMjMtZTQyMTdhZDEwM2MxfDcuNzMwbU9BVUVHZ0xrQndBQUFBQUlBZ0VBQUFBQTF4bldrQUFoQUE0QUFBQUFBQUFBQUFELi4yUUFBQUFBLi4uLi53QUFBQUFBQUFBQUFBQUFBQUFBQUVSaGNtTjVJRkp2WVdRQUFBQUFBQS0tJDEwIiwKICAgICAgInRleHQiOiAiMTZhIERhcmN5IFJvYWQsIFdFTlRXT1JUSFZJTExFICBOU1cgIDIxNDUiLAogICAgICAicG9zdGNvZGUiOiAiMjE0NSIKICAgIH0sCiAgICB7CiAgICAgICJhbWFzaWQiOiAiQVVFfDkwY2Q1ZjA2LWVkZmQtNGIzOC1iMTIzLWU0MjE3YWQxMDNjMXw3LjczMEZPQVVFR2dMa0J3QUFBQUFJQWdFQUFBQUExeG5aVUFBaEFBNEFBQUFBQUFBQUFBRC4uMlFBQUFBQS4uLi4ud0FBQUFBQUFBQUFBQUFBQUFBQUFFUmhjbU41SUZKdllXUUFBQUFBQUEtLSQxMCIsCiAgICAgICJ0ZXh0IjogIjE2YiBEYXJjeSBSb2FkLCBXRU5UV09SVEhWSUxMRSAgTlNXICAyMTQ1IiwKICAgICAgInBvc3Rjb2RlIjogIjIxNDUiCiAgICB9LAogICAgewogICAgICAiYW1hc2lkIjogIkFVRXw5MGNkNWYwNi1lZGZkLTRiMzgtYjEyMy1lNDIxN2FkMTAzYzF8Ny43MzB3T0FVRUdnTGtCd0FBQUFBSUFnRUFBQUFBMXhuY2tBQWhBQTRBQUFBQUFBQUFBQUQuLjJRQUFBQUEuLi4uLndBQUFBQUFBQUFBQUFBQUFBQUFBRVJoY21ONUlGSnZZV1FBQUFBQUFBLS0kMTAiLAogICAgICAidGV4dCI6ICIxOCBEYXJjeSBSb2FkLCBXRU5UV09SVEhWSUxMRSAgTlNXICAyMTQ1IiwKICAgICAgInBvc3Rjb2RlIjogIjIxNDUiCiAgICB9LAogICAgewogICAgICAiYW1hc2lkIjogIkFVRXw5MGNkNWYwNi1lZGZkLTRiMzgtYjEyMy1lNDIxN2FkMTAzYzF8Ny43MzBHT0FVRUdnTGtCd0FBQUFBSUFnRUFBQUFBMXhuZlVBQWhBQTRBQUFBQUFBQUFBQUQuLjJRQUFBQUEuLi4uLndBQUFBQUFBQUFBQUFBQUFBQUFBRVJoY21ONUlGSnZZV1FBQUFBQUFBLS0kMTAiLAogICAgICAidGV4dCI6ICIxOGEgRGFyY3kgUm9hZCwgV0VOVFdPUlRIVklMTEUgIE5TVyAgMjE0NSIsCiAgICAgICJwb3N0Y29kZSI6ICIyMTQ1IgogICAgfSwKICAgIHsKICAgICAgImFtYXNpZCI6ICJBVUV8OTBjZDVmMDYtZWRmZC00YjM4LWIxMjMtZTQyMTdhZDEwM2MxfDcuNzMwN09BVUVHZ0xrQndBQUFBQUlBZ0VBQUFBQTF4bmlFQUFoQUE0QUFBQUFBQUFBQUFELi4yUUFBQUFBLi4uLi53QUFBQUFBQUFBQUFBQUFBQUFBQUVSaGNtTjVJRkp2WVdRQUFBQUFBQS0tJDEwIiwKICAgICAgInRleHQiOiAiMjAgRGFyY3kgUm9hZCwgV0VOVFdPUlRIVklMTEUgIE5TVyAgMjE0NSIsCiAgICAgICJwb3N0Y29kZSI6ICIyMTQ1IgogICAgfQogIF0KfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9hZGRyZXNzZXM\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJhbWFzSWQiOiAiQVVFfDkwY2Q1ZjA2LWVkZmQtNGIzOC1iMTIzLWU0MjE3YWQxMDNjMXw3LjczMFBPQVVFR2dMa0J3QUFBQUFJQWdFQUFBQUFwcVdTRUFBaEFBNEFBQUFBQUFBQUFBRC4uMlFBQUFBQS4uLi4ud0FBQUFBQUFBQUFBQUFBQUFBQUFFUmhjbU41SUZKdllXUUFBQUFBQUEtLSQxMCIKfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJpZCI6IDUwNjQ2ODExOCwKICAidGV4dCI6ICIxIERhcmN5IFJkLCBQT1JUIEtFTUJMQSBOU1cgMjUwNSIsCiAgImlzcHJpbWFyeSI6IGZhbHNlLAogICJwb3N0YWxjb2RlIjogIjI1MDUiLAogICJzdHJlZXQxIjogIjEgRGFyY3kgUmQiLAogICJzdHJlZXQyIjogIlBPUlQgS0VNQkxBIE5TVyIsCiAgInN1YnVyYmlkIjogMTE3OCwKICAic3VidXJibmFtZSI6ICJQT1JUIEtFTUJMQSIsCiAgImlzcGFydG5lciI6IGZhbHNlCn0\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9saXN0cw\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "e30\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJsaXN0cyI6IFsKICAgIHsKICAgICAgImlkIjogMTgyODk4NDIsCiAgICAgICJ0aXRsZSI6ICJBdXRvTGlzdCBFeGFjdCIsCiAgICAgICJ0aW1lc3RhbXAiOiAxNTg2ODQ2MzI4ODExLAogICAgICAidXJsIjogImh0dHBzOi8vdGVzdC5tb2JpbGUtYXBpLndvb2x3b3J0aHMuY29tLmF1L3dvdy92Mi9saXN0cy8xODI4OTg0MiIsCiAgICAgICJwcm9kdWN0Q291bnQiOiAxCiAgICB9CiAgXQp9",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "d293L3YyL2xpc3RzLzE4Mjg5ODQy",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJsYXN0c3luY2VkIjogMTU4Njg0ODY5OTQwMywKICAidGltZXN0YW1wIjogMTU4Njg0ODY5OTQwMwp9",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJ1cGRhdGUiOiB7CiAgICAiaWQiOiAxODI4OTg0MiwKICAgICJ0aXRsZSI6ICJBdXRvTGlzdCBFeGFjdCIsCiAgICAidGltZXN0YW1wIjogMTU4Njg0ODY5OTQwMywKICAgICJmcmVlVGV4dEl0ZW1zIjogW10sCiAgICAicHJvZHVjdHMiOiBbXQogIH0sCiAgImNoYW5nZXMiOiB7CiAgICAidXBkYXRlcyI6IFtdLAogICAgImRlbGV0ZXMiOiBbXQogIH0KfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9saXN0cw\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJpZCI6IDAsCiAgInRpdGxlIjogIkF1dG9MaXN0IEV4YWN0IiwKICAibGFzdHN5bmNlZCI6IDAsCiAgInRpbWVzdGFtcCI6IDE1ODY4NDg2OTk1NDAsCiAgImNoZWNrZWQiOiBmYWxzZQp9",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJ1cGRhdGUiOiB7CiAgICAiaWQiOiAxODI4OTg2OCwKICAgICJ0aXRsZSI6ICJBdXRvTGlzdCBFeGFjdCIsCiAgICAidGltZXN0YW1wIjogMTU4Njg0ODY5OTU0MCwKICAgICJmcmVlVGV4dEl0ZW1zIjogW10sCiAgICAicHJvZHVjdHMiOiBbXQogIH0sCiAgImNoYW5nZXMiOiB7CiAgICAidXBkYXRlcyI6IFtdLAogICAgImRlbGV0ZXMiOiBbXQogIH0KfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9saXN0cy8xODI4OTg2OC9pdGVtcw\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJpZCI6IDAsCiAgInRleHQiOiAiQ29rZSIsCiAgImxhc3RzeW5jZWQiOiAxNTg2ODQ4Njk5NjUwLAogICJ0aW1lc3RhbXAiOiAxNTg2ODQ4Njk5NjQ5LAogICJjaGVja2VkIjogdHJ1ZQp9",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJ1cGRhdGUiOiB7CiAgICAiaWQiOiAyNjkyMzg5MTksCiAgICAidGV4dCI6ICJDb2tlIiwKICAgICJjaGVja2VkIjogdHJ1ZSwKICAgICJ0aW1lc3RhbXAiOiAxNTg2ODQ4Njk5NjQ5CiAgfSwKICAiY2hhbmdlcyI6IHsKICAgICJmcmVlVGV4dEl0ZW1zIjogewogICAgICAidXBkYXRlcyI6IFtdLAogICAgICAiZGVsZXRlcyI6IFtdCiAgICB9LAogICAgInByb2R1Y3RzIjogewogICAgICAidXBkYXRlcyI6IFtdLAogICAgICAiZGVsZXRlcyI6IFtdCiAgICB9CiAgfQp9",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "d293L3YyL2xpc3RzLzE4Mjg5ODY4",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "e30\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJpZCI6IDE4Mjg5ODY4LAogICJ0aXRsZSI6ICJBdXRvTGlzdCBFeGFjdCIsCiAgInRpbWVzdGFtcCI6IDE1ODY4NDg2OTk2NDksCiAgImxhc3RVcGRhdGVkIjogMCwKICAiY291bnQiOiAxLAogICJwYWdlIjogMCwKICAiZnJlZVRleHRJdGVtcyI6IFsKICAgIHsKICAgICAgImlkIjogMjY5MjM4OTE5LAogICAgICAidGV4dCI6ICJDb2tlIiwKICAgICAgInRpbWVzdGFtcCI6IDE1ODY4NDg2OTk2NDksCiAgICAgICJjaGVja2VkIjogdHJ1ZQogICAgfQogIF0sCiAgInByb2R1Y3RzIjogW10KfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9saXN0cy8xODI4OTg2OC9pdGVtcw\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJpZCI6IDI2OTIzODkxOSwKICAidGV4dCI6ICJDb2tlIiwKICAibGFzdHN5bmNlZCI6IDE1ODY4NDg2OTk5MjEsCiAgInRpbWVzdGFtcCI6IDE1ODY4NDg2OTk5MjEsCiAgImNoZWNrZWQiOiBmYWxzZQp9",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJ1cGRhdGUiOiB7CiAgICAiaWQiOiAyNjkyMzg5MTksCiAgICAidGV4dCI6ICJDb2tlIiwKICAgICJxdWFudGl0eSI6IDAuMCwKICAgICJjaGVja2VkIjogZmFsc2UsCiAgICAidGltZXN0YW1wIjogMTU4Njg0ODY5OTkyMSwKICAgICJzdGF0dXMiOiAiVVBEQVRFIgogIH0sCiAgImNoYW5nZXMiOiB7CiAgICAiZnJlZVRleHRJdGVtcyI6IHsKICAgICAgInVwZGF0ZXMiOiBbXSwKICAgICAgImRlbGV0ZXMiOiBbXQogICAgfSwKICAgICJwcm9kdWN0cyI6IHsKICAgICAgInVwZGF0ZXMiOiBbXSwKICAgICAgImRlbGV0ZXMiOiBbXQogICAgfQogIH0KfQ\u003d\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9saXN0cw\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "e30\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJsaXN0cyI6IFsKICAgIHsKICAgICAgImlkIjogMTgyODk4NjgsCiAgICAgICJ0aXRsZSI6ICJBdXRvTGlzdCBFeGFjdCIsCiAgICAgICJ0aW1lc3RhbXAiOiAxNTg2ODQ4Njk5OTIxLAogICAgICAidXJsIjogImh0dHBzOi8vdGVzdC5tb2JpbGUtYXBpLndvb2x3b3J0aHMuY29tLmF1L3dvdy92Mi9saXN0cy8xODI4OTg2OCIsCiAgICAgICJwcm9kdWN0Q291bnQiOiAxCiAgICB9CiAgXQp9",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "d293L3YyL2xpc3RzLzE4Mjg5ODY4",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "e30\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJpZCI6IDE4Mjg5ODY4LAogICJ0aXRsZSI6ICJBdXRvTGlzdCBFeGFjdCIsCiAgInRpbWVzdGFtcCI6IDE1ODY4NDg2OTk5MjEsCiAgImxhc3RVcGRhdGVkIjogMCwKICAiY291bnQiOiAxLAogICJwYWdlIjogMCwKICAiZnJlZVRleHRJdGVtcyI6IFsKICAgIHsKICAgICAgImlkIjogMjY5MjM4OTE5LAogICAgICAidGV4dCI6ICJDb2tlIiwKICAgICAgInRpbWVzdGFtcCI6IDE1ODY4NDg2OTk5MjEsCiAgICAgICJjaGVja2VkIjogZmFsc2UKICAgIH0KICBdLAogICJwcm9kdWN0cyI6IFtdCn0\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9saXN0cw\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "e30\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJsaXN0cyI6IFsKICAgIHsKICAgICAgImlkIjogMTgyODk4NjgsCiAgICAgICJ0aXRsZSI6ICJBdXRvTGlzdCBFeGFjdCIsCiAgICAgICJ0aW1lc3RhbXAiOiAxNTg2ODQ4Njk5OTIxLAogICAgICAidXJsIjogImh0dHBzOi8vdGVzdC5tb2JpbGUtYXBpLndvb2x3b3J0aHMuY29tLmF1L3dvdy92Mi9saXN0cy8xODI4OTg2OCIsCiAgICAgICJwcm9kdWN0Q291bnQiOiAxCiAgICB9CiAgXQp9",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "d293L3YyL2xpc3RzLzE4Mjg5ODY4",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "e30\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJpZCI6IDE4Mjg5ODY4LAogICJ0aXRsZSI6ICJBdXRvTGlzdCBFeGFjdCIsCiAgInRpbWVzdGFtcCI6IDE1ODY4NDg2OTk5MjEsCiAgImxhc3RVcGRhdGVkIjogMCwKICAiY291bnQiOiAxLAogICJwYWdlIjogMCwKICAiZnJlZVRleHRJdGVtcyI6IFsKICAgIHsKICAgICAgImlkIjogMjY5MjM4OTE5LAogICAgICAidGV4dCI6ICJDb2tlIiwKICAgICAgInRpbWVzdGFtcCI6IDE1ODY4NDg2OTk5MjEsCiAgICAgICJjaGVja2VkIjogZmFsc2UKICAgIH0KICBdLAogICJwcm9kdWN0cyI6IFtdCn0\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9saXN0cy8xODI4OTg2OC9pdGVtcw\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "ewogICJpZCI6IDI2OTIzODkxOSwKICAidGV4dCI6ICJDb2tlIiwKICAibGFzdHN5bmNlZCI6IDE1ODY4NDg3MDA4NTcsCiAgInRpbWVzdGFtcCI6IDE1ODY4NDg3MDA4NTcsCiAgImNoZWNrZWQiOiB0cnVlCn0\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJ1cGRhdGUiOiB7CiAgICAiaWQiOiAyNjkyMzg5MTksCiAgICAidGV4dCI6ICJDb2tlIiwKICAgICJxdWFudGl0eSI6IDAuMCwKICAgICJjaGVja2VkIjogdHJ1ZSwKICAgICJ0aW1lc3RhbXAiOiAxNTg2ODQ4NzAwODU3LAogICAgInN0YXR1cyI6ICJVUERBVEUiCiAgfSwKICAiY2hhbmdlcyI6IHsKICAgICJmcmVlVGV4dEl0ZW1zIjogewogICAgICAidXBkYXRlcyI6IFtdLAogICAgICAiZGVsZXRlcyI6IFtdCiAgICB9LAogICAgInByb2R1Y3RzIjogewogICAgICAidXBkYXRlcyI6IFtdLAogICAgICAiZGVsZXRlcyI6IFtdCiAgICB9CiAgfQp9",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "L3dvdy92Mi9saXN0cw\u003d\u003d",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "e30\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJsaXN0cyI6IFsKICAgIHsKICAgICAgImlkIjogMTgyODk4NjgsCiAgICAgICJ0aXRsZSI6ICJBdXRvTGlzdCBFeGFjdCIsCiAgICAgICJ0aW1lc3RhbXAiOiAxNTg2ODQ4NzAwODU3LAogICAgICAidXJsIjogImh0dHBzOi8vdGVzdC5tb2JpbGUtYXBpLndvb2x3b3J0aHMuY29tLmF1L3dvdy92Mi9saXN0cy8xODI4OTg2OCIsCiAgICAgICJwcm9kdWN0Q291bnQiOiAxCiAgICB9CiAgXQp9",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "d293L3YyL2xpc3RzLzE4Mjg5ODY4",
+                "mime_type": "text/html"
+              },
+              {
+                "data": "e30\u003d",
+                "mime_type": "application/json"
+              },
+              {
+                "data": "ewogICJpZCI6IDE4Mjg5ODY4LAogICJ0aXRsZSI6ICJBdXRvTGlzdCBFeGFjdCIsCiAgInRpbWVzdGFtcCI6IDE1ODY4NDg3MDA4NTcsCiAgImxhc3RVcGRhdGVkIjogMCwKICAiY291bnQiOiAxLAogICJwYWdlIjogMCwKICAiZnJlZVRleHRJdGVtcyI6IFsKICAgIHsKICAgICAgImlkIjogMjY5MjM4OTE5LAogICAgICAidGV4dCI6ICJDb2tlIiwKICAgICAgInRpbWVzdGFtcCI6IDE1ODY4NDg3MDA4NTcsCiAgICAgICJjaGVja2VkIjogdHJ1ZQogICAgfQogIF0sCiAgInByb2R1Y3RzIjogW10KfQ\u003d\u003d",
+                "mime_type": "application/json"
+              }
+            ],
+            "line": 46,
+            "name": "user verifies the free text item \"Coke\" is added to \"AutoList Exact\" is checked",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Coke",
+                  "offset": 34
+                },
+                {
+                  "val": "AutoList Exact",
+                  "offset": 53
+                }
+              ],
+              "location": "ApigeeListsDefinition.user_verifies_the_free_text_item_is_added_to_is_checked(String,String)"
+            },
+            "matchedColumns": [
+              1,
+              2
+            ],
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@SMOKE"
+          },
+          {
+            "line": 1,
+            "name": "@LION"
+          },
+          {
+            "line": 1,
+            "name": "@LIST"
+          },
+          {
+            "line": 1,
+            "name": "@REGRESSION"
+          }
+        ]
+      }
+    ],
+    "name": "Verify Apigee List scenarios",
+    "description": "",
+    "id": "verify-apigee-list-scenarios",
+    "keyword": "Feature",
+    "uri": "/Users/njbh1/Documents/Official/woolworths-app-apigee/src/test/resources/features/Lists.feature",
+    "tags": [
+      {
+        "line": 1,
+        "name": "@REGRESSION"
+      },
+      {
+        "line": 1,
+        "name": "@LIST"
+      },
+      {
+        "line": 1,
+        "name": "@LION"
+      },
+      {
+        "line": 1,
+        "name": "@SMOKE"
+      }
+    ]
+  }
+]

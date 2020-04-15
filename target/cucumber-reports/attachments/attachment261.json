@@ -1,0 +1,28 @@
+{
+  "Pickup": {
+    "Store": {
+      "Id": "1649",
+      "AddressId": 932627,
+      "AddressText": "MARRICKVILLE METRO SHOPPING CENTRE, 34 VICTORIA ROAD 2204",
+      "Name": "Woolworths MARRICKVILLE METRO"
+    }
+  },
+  "Fulfilment": {
+    "Method": "Pickup",
+    "Label": "In-store"
+  },
+  "Results": {
+    "SetPickupAddress": {
+      "httpStatusCode": 200,
+      "errorMessage": "OK",
+      "method": "POST",
+      "function": "address"
+    },
+    "PickupStores": {
+      "httpStatusCode": 200,
+      "errorMessage": "OK",
+      "method": "GET",
+      "function": "?storeaddressid\u003d932627"
+    }
+  }
+}

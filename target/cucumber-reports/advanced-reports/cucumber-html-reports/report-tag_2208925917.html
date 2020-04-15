@@ -1,0 +1,3485 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" src="js/Chart.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="css/cucumber.css" type="text/css"/>
+<link rel="stylesheet" href="css/font-awesome.min.css"/>
+<link rel="shortcut icon" href="images/favicon.png"/>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // this will tell tablesorter to try looking for the data-value attribute
+    // if present, it'll sort by that instead
+    // otherwise, it'll sort by the text content of the table cell
+    $("#tablesorter").tablesorter({
+        textAttribute: 'data-value',
+        // ignores the first row of the header, the 'scenario', 'steps', since
+        // sorting those doesn't make sense
+        selectorHeaders: '> thead tr:not(.dont-sort) th',
+        // use a stable sort
+        sortStable: true
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+<title>Cucumber Reports (no 1) - Tag: @LIST</title>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navigation">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <p class="navbar-text navbar-left">Cucumber Report</p>
+      <ul class="nav navbar-nav navbar-right">
+                <li role="presentation" ><a href="overview-features.html">Features</a></li>
+        <li role="presentation" ><a href="overview-tags.html">Tags</a></li>
+        <li role="presentation" ><a href="overview-steps.html">Steps</a></li>
+                <li role="presentation" ><a href="overview-failures.html">Failures</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+  <div class="col-md-5 col-md-offset-1">
+    
+<table class="table table-bordered" id="build-info">
+  <thead>
+    <tr>
+      <th>Project</th>
+              <th>Number</th>
+            <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>APIGEE API Testing</td>
+              <td>1</td>
+            <td>14 Apr 2020, 17:18</td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+  <div class="col-md-3 col-md-offset-2">
+      </div>
+</div>
+
+
+<div id="report-lead" class="container-fluid">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>Tag Report</h2>
+      </div>
+</div>
+
+
+<div class="container-fluid" id="report">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <table class="stats-table">
+
+        
+<thead>
+  <tr class="header dont-sort">
+        <th></th>
+    <th colspan="6">Steps</th>
+    <th colspan="3">Scenarios</th>
+    <th colspan="2">Features</th>
+  </tr>
+  <tr>
+    <th>Tag</th>
+        <th class="passed">Passed</th>
+    <th class="failed">Failed</th>
+    <th class="skipped">Skipped</th>
+    <th class="pending">Pending</th>
+    <th class="undefined">Undefined</th>
+    <th class="total">Total</th>
+
+    <th class="passed">Passed</th>
+    <th class="failed">Failed</th>
+    <th class="total">Total</th>
+
+    <th>Duration</th>
+    <th>Status</th>
+  </tr>
+</thead>
+
+
+        <tbody>
+        <tr>
+          <td class="tagname">@LIST</td>
+          <td      class="passed"    >31</td>
+          <td >0</td>
+          <td >0</td>
+          <td >0</td>
+          <td >0</td>
+          <td class="total">31</td>
+
+          <td  class="passed"    >3</td>
+          <td >0</td>
+          <td class="total">3</td>
+
+          <td class="duration" data-value="16969665189">16.969</td>
+          <td class="passed">Passed</td>
+        </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1 col-md-offset-10">
+      <i class="fa fa-chevron-circle-down fa-2x collapsable-control"
+        onClick="javascript:$('#report .collapsable-details').collapse('show')"></i>
+      <i class="fa fa-chevron-circle-up fa-2x collapsable-control"
+        onClick="javascript:$('#report .collapsable-details').collapse('hide')"></i>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid" id="report">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="elements">
+
+                  
+<div class="element">
+      <div class="indention">
+      <b>Feature:</b>
+      <a href="report-feature_4_3127560844.html">Verify Apigee List scenarios</a>
+    </div>
+  
+  
+<div class="tags indention">
+      <b>Tags:</b>
+           <a href="report-tag_4058773774.html">@SMOKE</a>
+           <a href="report-tag_2208925787.html">@LION</a>
+           <a href="report-tag_2208925917.html">@LIST</a>
+           <a href="report-tag_718150784.html">@REGRESSION</a>
+      </div>
+
+  
+  <span class="lead-duration duration">9.014</span>
+
+
+    <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-1">
+    
+<div class="brief passed">
+  <span class="keyword indention">Scenario Outline</span>
+  <span class="name">Verify whether user is able to create List and switch the created List to default List</span>
+  
+
+       <i class="chevron fa fa-fw"></i>
+  </div>
+
+  </span>
+  <div class="description indention"></div>
+
+  <div id="element-1" class="collapse collapsable-details ">
+    
+  <div class="inner-level hooks-element-before">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-2">
+      
+<div class="brief passed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+  
+
+       <i class="chevron fa fa-fw"></i>
+  </div>
+
+    </div>
+
+    <div id="before-2" class="inner-level collapse collapsable-details ">
+              <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+                          <span class="location name">ServiceHooks.initializeTest()</span>
+                        
+  <span class="lead-duration duration">0.000</span>
+
+          </div>
+
+                      
+
+          
+                    
+
+          
+  
+        </div>
+          </div>
+  </div>
+
+
+    
+<div class="steps inner-level">
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-3">
+    
+<div class="brief passed">
+  <span class="keyword indention">Steps</span>
+  <span class="name"></span>
+  
+
+       <i class="chevron fa fa-fw"></i>
+  </div>
+
+  </div>
+
+  <div id="steps-3" class="inner-level collapse collapsable-details ">
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">Given</span>
+  <span class="name">user continue to connect to apigee with login username as &quot;<span class="argument">SHOPPER_USERNAME8</span>&quot;</span>
+  
+  <span class="lead-duration duration">4.021</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">When</span>
+  <span class="name">connection from user to apigee endpoint happens</span>
+  
+  <span class="lead-duration duration">0.001</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I search for the address &quot;<span class="argument">Darcy Road</span>&quot;</span>
+  
+  <span class="lead-duration duration">0.439</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I select the &quot;<span class="argument">1</span>&quot; address as fulfilment address from matching addresses</span>
+  
+  <span class="lead-duration duration">0.273</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I clear ALL the list for the user</span>
+  
+  <span class="lead-duration duration">2.285</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I create a list with list name as &quot;<span class="argument">AutoList12</span>&quot;</span>
+  
+  <span class="lead-duration duration">1.402</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I create a list with list name as &quot;<span class="argument">AutoList23</span>&quot;</span>
+  
+  <span class="lead-duration duration">0.153</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I switch the default list to &quot;<span class="argument">AutoList12</span>&quot;</span>
+  
+  <span class="lead-duration duration">0.318</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">Then</span>
+  <span class="name">I verify list &quot;<span class="argument">AutoList12</span>&quot; is set as default list</span>
+  
+  <span class="lead-duration duration">0.118</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+    <div class="embeddings inner-level">
+                  <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-4" class="collapsable-control">
+    <a>Attachment 1 (HTML)</a>
+    <a href="embeddings/embedding_48702594.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-4" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_48702594.html" srcdoc="/wow/v2/commerce/token"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-5" class="collapsable-control">
+      <a>Attachment 2 (JSON)</a>
+      <a href="embeddings/embedding_-1762877127.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-5" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;user_name&quot;: &quot;shopapp+39@woolworths.com.au&quot;,
+  &quot;password&quot;: &quot;123456&quot;
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-6" class="collapsable-control">
+      <a>Attachment 3 (JSON)</a>
+      <a href="embeddings/embedding_864298532.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-6" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;access_token&quot;: &quot;R4I3tqTiB3vTA4224cQpbL2KXtCR&quot;,
+  &quot;refresh_token&quot;: &quot;3Y9fELNHaIxlbCAtb5bviTLcyBnuqGGX&quot;,
+  &quot;expires_in&quot;: &quot;119&quot;,
+  &quot;trolleyhref&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/trolley&quot;,
+  &quot;fulfilmenthref&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/fulfilment&quot;,
+  &quot;paymenthref&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/commerce/checkout/payment&quot;,
+  &quot;shopperid&quot;: &quot;5500709&quot;,
+  &quot;title&quot;: &quot; &quot;,
+  &quot;firstname&quot;: &quot;shopapp39&quot;,
+  &quot;lastname&quot;: &quot;apptest39&quot;,
+  &quot;email&quot;: &quot;shopapp+39@woolworths.com.au&quot;,
+  &quot;dateofbirth&quot;: &quot;1985-10-10T00:00:00.0000000&quot;,
+  &quot;primaryphone&quot;: &quot;0483326658&quot;,
+  &quot;secondaryphone&quot;: &quot;0436656576&quot;,
+  &quot;otherphone&quot;: &quot;&quot;,
+  &quot;fulfilmentstoreid&quot;: &quot;1112&quot;,
+  &quot;fulfilmentmethod&quot;: &quot;&quot;,
+  &quot;fulfilmentstorename&quot;: &quot;&quot;,
+  &quot;deliverymethod&quot;: &quot;Courier&quot;,
+  &quot;deliverystoreaddressid&quot;: &quot;506483645&quot;,
+  &quot;deliverystoreaddresscity&quot;: &quot;1112 Cessnock LOCAL&quot;,
+  &quot;deliverystoreaddresscountry&quot;: &quot;Australia&quot;,
+  &quot;deliveryaddressstreet1&quot;: &quot;1 Charles St&quot;,
+  &quot;deliveryaddressstreet2&quot;: &quot;ABERMAIN NSW&quot;,
+  &quot;deliveryaddresssuburb&quot;: &quot;ABERMAIN&quot;,
+  &quot;deliveryinstructions&quot;: &quot;&quot;,
+  &quot;isservicable&quot;: &quot;true&quot;,
+  &quot;rewardscardNumber&quot;: &quot;&quot;,
+  &quot;teammember&quot;: &quot;false&quot;,
+  &quot;trolleymergestatus&quot;: &quot;&quot;
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-7" class="collapsable-control">
+    <a>Attachment 4 (HTML)</a>
+    <a href="embeddings/embedding_-1593605634.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-7" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1593605634.html" srcdoc="/wow/v2/addresses"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-8" class="collapsable-control">
+      <a>Attachment 5 (JSON)</a>
+      <a href="embeddings/embedding_2073435522.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-8" class="collapse collapsable-details">
+      <pre class="embedding-content">{q=Darcy Road}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-9" class="collapsable-control">
+      <a>Attachment 6 (JSON)</a>
+      <a href="embeddings/embedding_1794894248.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-9" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;addresses&quot;: [
+    {
+      &quot;amasid&quot;: &quot;AUE|7291da1e-1922-4716-9b7f-b739037b28c8|7.730POAUEGgLkBwAAAAAIAgEAAAAApqWSEAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;1 Darcy Road, PORT KEMBLA  NSW  2505&quot;,
+      &quot;postcode&quot;: &quot;2505&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|7291da1e-1922-4716-9b7f-b739037b28c8|7.730UOAUEGgLkBwAAAAAIAgEAAAAApqWU0AAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;6 Darcy Road, PORT KEMBLA  NSW  2505&quot;,
+      &quot;postcode&quot;: &quot;2505&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|7291da1e-1922-4716-9b7f-b739037b28c8|7.730wOAUEGgLkBwAAAAAIAgEAAAAAyQp6UAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;8 Darcy Road, TINONEE  NSW  2430&quot;,
+      &quot;postcode&quot;: &quot;2430&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|7291da1e-1922-4716-9b7f-b739037b28c8|7.730eOAUEGgLkBwAAAAAIAgEAAAAApqWXkAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;10 Darcy Road, PORT KEMBLA  NSW  2505&quot;,
+      &quot;postcode&quot;: &quot;2505&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|7291da1e-1922-4716-9b7f-b739037b28c8|7.730mOAUEGgLkBwAAAAAIAgEAAAAA1xnT0AAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;16 Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|7291da1e-1922-4716-9b7f-b739037b28c8|7.730mOAUEGgLkBwAAAAAIAgEAAAAA1xnWkAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;16a Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|7291da1e-1922-4716-9b7f-b739037b28c8|7.730FOAUEGgLkBwAAAAAIAgEAAAAA1xnZUAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;16b Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|7291da1e-1922-4716-9b7f-b739037b28c8|7.730wOAUEGgLkBwAAAAAIAgEAAAAA1xnckAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;18 Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|7291da1e-1922-4716-9b7f-b739037b28c8|7.730GOAUEGgLkBwAAAAAIAgEAAAAA1xnfUAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;18a Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|7291da1e-1922-4716-9b7f-b739037b28c8|7.7307OAUEGgLkBwAAAAAIAgEAAAAA1xniEAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;20 Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    }
+  ]
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-10" class="collapsable-control">
+    <a>Attachment 7 (HTML)</a>
+    <a href="embeddings/embedding_-1593605634.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-10" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1593605634.html" srcdoc="/wow/v2/addresses"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-11" class="collapsable-control">
+      <a>Attachment 8 (JSON)</a>
+      <a href="embeddings/embedding_123774733.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-11" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;amasId&quot;: &quot;AUE|7291da1e-1922-4716-9b7f-b739037b28c8|7.730POAUEGgLkBwAAAAAIAgEAAAAApqWSEAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-12" class="collapsable-control">
+      <a>Attachment 9 (JSON)</a>
+      <a href="embeddings/embedding_-973994456.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-12" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 506482297,
+  &quot;text&quot;: &quot;1 Darcy Rd, PORT KEMBLA NSW 2505&quot;,
+  &quot;isprimary&quot;: false,
+  &quot;postalcode&quot;: &quot;2505&quot;,
+  &quot;street1&quot;: &quot;1 Darcy Rd&quot;,
+  &quot;street2&quot;: &quot;PORT KEMBLA NSW&quot;,
+  &quot;suburbid&quot;: 1178,
+  &quot;suburbname&quot;: &quot;PORT KEMBLA&quot;,
+  &quot;ispartner&quot;: false
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-13" class="collapsable-control">
+    <a>Attachment 10 (HTML)</a>
+    <a href="embeddings/embedding_-1633255862.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-13" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1633255862.html" srcdoc="/wow/v2/lists"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-14" class="collapsable-control">
+      <a>Attachment 11 (JSON)</a>
+      <a href="embeddings/embedding_3059451.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-14" class="collapse collapsable-details">
+      <pre class="embedding-content">{}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-15" class="collapsable-control">
+      <a>Attachment 12 (JSON)</a>
+      <a href="embeddings/embedding_1338329302.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-15" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;lists&quot;: [
+    {
+      &quot;id&quot;: 18289861,
+      &quot;title&quot;: &quot;AutoList12O31W9&quot;,
+      &quot;timestamp&quot;: 1586848479835,
+      &quot;url&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/lists/18289861&quot;,
+      &quot;productCount&quot;: 0
+    },
+    {
+      &quot;id&quot;: 18289862,
+      &quot;title&quot;: &quot;AutoList23857AD&quot;,
+      &quot;timestamp&quot;: 1586848480019,
+      &quot;url&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/lists/18289862&quot;,
+      &quot;productCount&quot;: 0
+    }
+  ]
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-16" class="collapsable-control">
+    <a>Attachment 13 (HTML)</a>
+    <a href="embeddings/embedding_-477122047.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-16" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-477122047.html" srcdoc="wow/v2/lists/18289861"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-17" class="collapsable-control">
+      <a>Attachment 14 (JSON)</a>
+      <a href="embeddings/embedding_1797740100.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-17" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;lastsynced&quot;: 1586848689238,
+  &quot;timestamp&quot;: 1586848689236
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-18" class="collapsable-control">
+      <a>Attachment 15 (JSON)</a>
+      <a href="embeddings/embedding_-914976065.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-18" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;update&quot;: {
+    &quot;id&quot;: 18289861,
+    &quot;title&quot;: &quot;AutoList12O31W9&quot;,
+    &quot;timestamp&quot;: 1586848689236,
+    &quot;freeTextItems&quot;: [],
+    &quot;products&quot;: []
+  },
+  &quot;changes&quot;: {
+    &quot;updates&quot;: [],
+    &quot;deletes&quot;: []
+  }
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-19" class="collapsable-control">
+    <a>Attachment 16 (HTML)</a>
+    <a href="embeddings/embedding_-477122046.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-19" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-477122046.html" srcdoc="wow/v2/lists/18289862"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-20" class="collapsable-control">
+      <a>Attachment 17 (JSON)</a>
+      <a href="embeddings/embedding_1017582585.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-20" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;lastsynced&quot;: 1586848689619,
+  &quot;timestamp&quot;: 1586848689619
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-21" class="collapsable-control">
+      <a>Attachment 18 (JSON)</a>
+      <a href="embeddings/embedding_-1081484721.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-21" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;update&quot;: {
+    &quot;id&quot;: 18289862,
+    &quot;title&quot;: &quot;AutoList23857AD&quot;,
+    &quot;timestamp&quot;: 1586848689619,
+    &quot;freeTextItems&quot;: [],
+    &quot;products&quot;: []
+  },
+  &quot;changes&quot;: {
+    &quot;updates&quot;: [],
+    &quot;deletes&quot;: []
+  }
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-22" class="collapsable-control">
+    <a>Attachment 19 (HTML)</a>
+    <a href="embeddings/embedding_-1633255862.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-22" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1633255862.html" srcdoc="/wow/v2/lists"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-23" class="collapsable-control">
+      <a>Attachment 20 (JSON)</a>
+      <a href="embeddings/embedding_1997547696.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-23" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 0,
+  &quot;title&quot;: &quot;AutoList12YAKQF&quot;,
+  &quot;lastsynced&quot;: 0,
+  &quot;timestamp&quot;: 1586848691341,
+  &quot;checked&quot;: false
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-24" class="collapsable-control">
+      <a>Attachment 21 (JSON)</a>
+      <a href="embeddings/embedding_-1692668525.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-24" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;update&quot;: {
+    &quot;id&quot;: 18289865,
+    &quot;title&quot;: &quot;AutoList12YAKQF&quot;,
+    &quot;timestamp&quot;: 1586848691341,
+    &quot;freeTextItems&quot;: [],
+    &quot;products&quot;: []
+  },
+  &quot;changes&quot;: {
+    &quot;updates&quot;: [],
+    &quot;deletes&quot;: []
+  }
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-25" class="collapsable-control">
+    <a>Attachment 22 (HTML)</a>
+    <a href="embeddings/embedding_-1633255862.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-25" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1633255862.html" srcdoc="/wow/v2/lists"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-26" class="collapsable-control">
+      <a>Attachment 23 (JSON)</a>
+      <a href="embeddings/embedding_2078484250.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-26" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 0,
+  &quot;title&quot;: &quot;AutoList230KUKQ&quot;,
+  &quot;lastsynced&quot;: 0,
+  &quot;timestamp&quot;: 1586848692742,
+  &quot;checked&quot;: false
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-27" class="collapsable-control">
+      <a>Attachment 24 (JSON)</a>
+      <a href="embeddings/embedding_-112687554.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-27" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;update&quot;: {
+    &quot;id&quot;: 18289866,
+    &quot;title&quot;: &quot;AutoList230KUKQ&quot;,
+    &quot;timestamp&quot;: 1586848692742,
+    &quot;freeTextItems&quot;: [],
+    &quot;products&quot;: []
+  },
+  &quot;changes&quot;: {
+    &quot;updates&quot;: [
+      {
+        &quot;id&quot;: 18289866,
+        &quot;title&quot;: &quot;AutoList230KUKQ&quot;,
+        &quot;timestamp&quot;: 1586848692742,
+        &quot;url&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/lists/18289866&quot;,
+        &quot;productCount&quot;: 0
+      }
+    ],
+    &quot;deletes&quot;: []
+  }
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-28" class="collapsable-control">
+    <a>Attachment 25 (HTML)</a>
+    <a href="embeddings/embedding_-1633255862.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-28" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1633255862.html" srcdoc="/wow/v2/lists"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-29" class="collapsable-control">
+      <a>Attachment 26 (JSON)</a>
+      <a href="embeddings/embedding_3059451.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-29" class="collapse collapsable-details">
+      <pre class="embedding-content">{}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-30" class="collapsable-control">
+      <a>Attachment 27 (JSON)</a>
+      <a href="embeddings/embedding_-1796762850.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-30" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;lists&quot;: [
+    {
+      &quot;id&quot;: 18289865,
+      &quot;title&quot;: &quot;AutoList12YAKQF&quot;,
+      &quot;timestamp&quot;: 1586848691341,
+      &quot;url&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/lists/18289865&quot;,
+      &quot;productCount&quot;: 0
+    },
+    {
+      &quot;id&quot;: 18289866,
+      &quot;title&quot;: &quot;AutoList230KUKQ&quot;,
+      &quot;timestamp&quot;: 1586848692742,
+      &quot;url&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/lists/18289866&quot;,
+      &quot;productCount&quot;: 0
+    }
+  ]
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-31" class="collapsable-control">
+    <a>Attachment 28 (HTML)</a>
+    <a href="embeddings/embedding_-872654999.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-31" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-872654999.html" srcdoc="/wow/v2/lists/18289865/default"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-32" class="collapsable-control">
+      <a>Attachment 29 (JSON)</a>
+      <a href="embeddings/embedding_810473054.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-32" class="collapse collapsable-details">
+      <pre class="embedding-content">&quot;ONLY_POST_NO_BODY&quot;</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-33" class="collapsable-control">
+      <a>Attachment 30 (JSON)</a>
+      <a href="embeddings/embedding_191155421.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-33" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;status&quot;: &quot;OK&quot;
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-34" class="collapsable-control">
+    <a>Attachment 31 (HTML)</a>
+    <a href="embeddings/embedding_-1633255862.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-34" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1633255862.html" srcdoc="/wow/v2/lists"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-35" class="collapsable-control">
+      <a>Attachment 32 (JSON)</a>
+      <a href="embeddings/embedding_3059451.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-35" class="collapse collapsable-details">
+      <pre class="embedding-content">{}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-36" class="collapsable-control">
+      <a>Attachment 33 (JSON)</a>
+      <a href="embeddings/embedding_-1796762850.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-36" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;lists&quot;: [
+    {
+      &quot;id&quot;: 18289865,
+      &quot;title&quot;: &quot;AutoList12YAKQF&quot;,
+      &quot;timestamp&quot;: 1586848691341,
+      &quot;url&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/lists/18289865&quot;,
+      &quot;productCount&quot;: 0
+    },
+    {
+      &quot;id&quot;: 18289866,
+      &quot;title&quot;: &quot;AutoList230KUKQ&quot;,
+      &quot;timestamp&quot;: 1586848692742,
+      &quot;url&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/lists/18289866&quot;,
+      &quot;productCount&quot;: 0
+    }
+  ]
+}</pre>
+    </div>
+  </div>
+            </div>
+  
+        
+
+      </div>
+      </div>
+</div>
+
+
+    
+  <div class="inner-level hooks-element-after">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-37">
+      
+<div class="brief passed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+  
+
+       <i class="chevron fa fa-fw"></i>
+  </div>
+
+    </div>
+
+    <div id="after-37" class="inner-level collapse collapsable-details ">
+              <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">After</span>
+                          <span class="location name">ServiceHooks.finaliseTest(Scenario)</span>
+                        
+  <span class="lead-duration duration">0.046</span>
+
+          </div>
+
+                      
+
+          
+                    
+
+          
+  
+        </div>
+          </div>
+  </div>
+
+  </div>
+</div>
+
+                  
+<div class="element">
+      <div class="indention">
+      <b>Feature:</b>
+      <a href="report-feature_4_3127560844.html">Verify Apigee List scenarios</a>
+    </div>
+  
+  
+<div class="tags indention">
+      <b>Tags:</b>
+           <a href="report-tag_4058773774.html">@SMOKE</a>
+           <a href="report-tag_2208925787.html">@LION</a>
+           <a href="report-tag_2208925917.html">@LIST</a>
+           <a href="report-tag_718150784.html">@REGRESSION</a>
+      </div>
+
+  
+  <span class="lead-duration duration">4.232</span>
+
+
+    <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-38">
+    
+<div class="brief passed">
+  <span class="keyword indention">Scenario Outline</span>
+  <span class="name">Create List and add free text item and Verify whether user is able to delete the item and list</span>
+  
+
+       <i class="chevron fa fa-fw"></i>
+  </div>
+
+  </span>
+  <div class="description indention"></div>
+
+  <div id="element-38" class="collapse collapsable-details ">
+    
+  <div class="inner-level hooks-element-before">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-39">
+      
+<div class="brief passed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+  
+
+       <i class="chevron fa fa-fw"></i>
+  </div>
+
+    </div>
+
+    <div id="before-39" class="inner-level collapse collapsable-details ">
+              <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+                          <span class="location name">ServiceHooks.initializeTest()</span>
+                        
+  <span class="lead-duration duration">0.000</span>
+
+          </div>
+
+                      
+
+          
+                    
+
+          
+  
+        </div>
+          </div>
+  </div>
+
+
+    
+<div class="steps inner-level">
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-40">
+    
+<div class="brief passed">
+  <span class="keyword indention">Steps</span>
+  <span class="name"></span>
+  
+
+       <i class="chevron fa fa-fw"></i>
+  </div>
+
+  </div>
+
+  <div id="steps-40" class="inner-level collapse collapsable-details ">
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">Given</span>
+  <span class="name">user continue to connect to apigee with login username as &quot;<span class="argument">SHOPPER_USERNAME7</span>&quot;</span>
+  
+  <span class="lead-duration duration">0.718</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">When</span>
+  <span class="name">connection from user to apigee endpoint happens</span>
+  
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I search for the address &quot;<span class="argument">Darcy Road</span>&quot;</span>
+  
+  <span class="lead-duration duration">0.422</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I select the &quot;<span class="argument">1</span>&quot; address as fulfilment address from matching addresses</span>
+  
+  <span class="lead-duration duration">0.260</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I clear ALL the list for the user</span>
+  
+  <span class="lead-duration duration">0.249</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I create a list with exact list name as &quot;<span class="argument">AutoList Exact</span>&quot;</span>
+  
+  <span class="lead-duration duration">0.300</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I add free text item &quot;<span class="argument">Coke</span>&quot; to list</span>
+  
+  <span class="lead-duration duration">0.177</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">user verifies the free text item &quot;<span class="argument">Coke</span>&quot; is added to list</span>
+  
+  <span class="lead-duration duration">0.255</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">Then</span>
+  <span class="name">user deletes free text item &quot;<span class="argument">Coke</span>&quot; from the new list</span>
+  
+  <span class="lead-duration duration">1.157</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I delete the newly created list</span>
+  
+  <span class="lead-duration duration">0.690</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+    <div class="embeddings inner-level">
+                  <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-41" class="collapsable-control">
+    <a>Attachment 1 (HTML)</a>
+    <a href="embeddings/embedding_48702594.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-41" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_48702594.html" srcdoc="/wow/v2/commerce/token"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-42" class="collapsable-control">
+      <a>Attachment 2 (JSON)</a>
+      <a href="embeddings/embedding_1576295721.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-42" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;user_name&quot;: &quot;shopapp+38@woolworths.com.au&quot;,
+  &quot;password&quot;: &quot;123456&quot;
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-43" class="collapsable-control">
+      <a>Attachment 3 (JSON)</a>
+      <a href="embeddings/embedding_-1891796530.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-43" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;access_token&quot;: &quot;s2mJqQOREUw2aSxtuBfmqBvhejt5&quot;,
+  &quot;refresh_token&quot;: &quot;yL1TCAixOoMBF3qU6PzoGX8cWDY7SIiG&quot;,
+  &quot;expires_in&quot;: &quot;119&quot;,
+  &quot;trolleyhref&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/trolley&quot;,
+  &quot;fulfilmenthref&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/fulfilment&quot;,
+  &quot;paymenthref&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/commerce/checkout/payment&quot;,
+  &quot;shopperid&quot;: &quot;5500708&quot;,
+  &quot;title&quot;: &quot; &quot;,
+  &quot;firstname&quot;: &quot;shopapp38&quot;,
+  &quot;lastname&quot;: &quot;apptest38&quot;,
+  &quot;email&quot;: &quot;shopapp+38@woolworths.com.au&quot;,
+  &quot;dateofbirth&quot;: &quot;1985-10-10T00:00:00.0000000&quot;,
+  &quot;primaryphone&quot;: &quot;0483326658&quot;,
+  &quot;secondaryphone&quot;: &quot;0436656576&quot;,
+  &quot;otherphone&quot;: &quot;&quot;,
+  &quot;fulfilmentstoreid&quot;: &quot;1649&quot;,
+  &quot;fulfilmentmethod&quot;: &quot;&quot;,
+  &quot;fulfilmentstorename&quot;: &quot;&quot;,
+  &quot;deliverymethod&quot;: &quot;Pickup&quot;,
+  &quot;deliverystoreaddressid&quot;: &quot;932627&quot;,
+  &quot;deliverystoreaddresscity&quot;: &quot;1649 Marrickville Metro LOCAL&quot;,
+  &quot;deliverystoreaddresscountry&quot;: &quot;Australia&quot;,
+  &quot;deliveryaddressstreet1&quot;: &quot;MARRICKVILLE METRO SHOPPING CENTRE&quot;,
+  &quot;deliveryaddressstreet2&quot;: &quot;34 VICTORIA ROAD&quot;,
+  &quot;deliveryaddresssuburb&quot;: &quot;  MARRICKVILLE&quot;,
+  &quot;deliveryinstructions&quot;: &quot;&quot;,
+  &quot;isservicable&quot;: &quot;true&quot;,
+  &quot;rewardscardNumber&quot;: &quot;&quot;,
+  &quot;teammember&quot;: &quot;false&quot;,
+  &quot;trolleymergestatus&quot;: &quot;&quot;
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-44" class="collapsable-control">
+    <a>Attachment 4 (HTML)</a>
+    <a href="embeddings/embedding_-1593605634.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-44" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1593605634.html" srcdoc="/wow/v2/addresses"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-45" class="collapsable-control">
+      <a>Attachment 5 (JSON)</a>
+      <a href="embeddings/embedding_2073435522.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-45" class="collapse collapsable-details">
+      <pre class="embedding-content">{q=Darcy Road}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-46" class="collapsable-control">
+      <a>Attachment 6 (JSON)</a>
+      <a href="embeddings/embedding_-466562936.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-46" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;addresses&quot;: [
+    {
+      &quot;amasid&quot;: &quot;AUE|a47374be-9a9a-49f7-8749-a9dd84a30ba9|7.730POAUEGgLkBwAAAAAIAgEAAAAApqWSEAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;1 Darcy Road, PORT KEMBLA  NSW  2505&quot;,
+      &quot;postcode&quot;: &quot;2505&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|a47374be-9a9a-49f7-8749-a9dd84a30ba9|7.730UOAUEGgLkBwAAAAAIAgEAAAAApqWU0AAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;6 Darcy Road, PORT KEMBLA  NSW  2505&quot;,
+      &quot;postcode&quot;: &quot;2505&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|a47374be-9a9a-49f7-8749-a9dd84a30ba9|7.730wOAUEGgLkBwAAAAAIAgEAAAAAyQp6UAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;8 Darcy Road, TINONEE  NSW  2430&quot;,
+      &quot;postcode&quot;: &quot;2430&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|a47374be-9a9a-49f7-8749-a9dd84a30ba9|7.730eOAUEGgLkBwAAAAAIAgEAAAAApqWXkAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;10 Darcy Road, PORT KEMBLA  NSW  2505&quot;,
+      &quot;postcode&quot;: &quot;2505&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|a47374be-9a9a-49f7-8749-a9dd84a30ba9|7.730mOAUEGgLkBwAAAAAIAgEAAAAA1xnT0AAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;16 Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|a47374be-9a9a-49f7-8749-a9dd84a30ba9|7.730mOAUEGgLkBwAAAAAIAgEAAAAA1xnWkAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;16a Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|a47374be-9a9a-49f7-8749-a9dd84a30ba9|7.730FOAUEGgLkBwAAAAAIAgEAAAAA1xnZUAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;16b Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|a47374be-9a9a-49f7-8749-a9dd84a30ba9|7.730wOAUEGgLkBwAAAAAIAgEAAAAA1xnckAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;18 Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|a47374be-9a9a-49f7-8749-a9dd84a30ba9|7.730GOAUEGgLkBwAAAAAIAgEAAAAA1xnfUAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;18a Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|a47374be-9a9a-49f7-8749-a9dd84a30ba9|7.7307OAUEGgLkBwAAAAAIAgEAAAAA1xniEAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;20 Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    }
+  ]
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-47" class="collapsable-control">
+    <a>Attachment 7 (HTML)</a>
+    <a href="embeddings/embedding_-1593605634.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-47" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1593605634.html" srcdoc="/wow/v2/addresses"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-48" class="collapsable-control">
+      <a>Attachment 8 (JSON)</a>
+      <a href="embeddings/embedding_1937911829.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-48" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;amasId&quot;: &quot;AUE|a47374be-9a9a-49f7-8749-a9dd84a30ba9|7.730POAUEGgLkBwAAAAAIAgEAAAAApqWSEAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-49" class="collapsable-control">
+      <a>Attachment 9 (JSON)</a>
+      <a href="embeddings/embedding_639823972.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-49" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 506482651,
+  &quot;text&quot;: &quot;1 Darcy Rd, PORT KEMBLA NSW 2505&quot;,
+  &quot;isprimary&quot;: true,
+  &quot;postalcode&quot;: &quot;2505&quot;,
+  &quot;street1&quot;: &quot;1 Darcy Rd&quot;,
+  &quot;street2&quot;: &quot;PORT KEMBLA NSW&quot;,
+  &quot;suburbid&quot;: 1178,
+  &quot;suburbname&quot;: &quot;PORT KEMBLA&quot;,
+  &quot;ispartner&quot;: false
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-50" class="collapsable-control">
+    <a>Attachment 10 (HTML)</a>
+    <a href="embeddings/embedding_-1633255862.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-50" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1633255862.html" srcdoc="/wow/v2/lists"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-51" class="collapsable-control">
+      <a>Attachment 11 (JSON)</a>
+      <a href="embeddings/embedding_3059451.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-51" class="collapse collapsable-details">
+      <pre class="embedding-content">{}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-52" class="collapsable-control">
+      <a>Attachment 12 (JSON)</a>
+      <a href="embeddings/embedding_1328145454.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-52" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;lists&quot;: []
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-53" class="collapsable-control">
+    <a>Attachment 13 (HTML)</a>
+    <a href="embeddings/embedding_-1633255862.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-53" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1633255862.html" srcdoc="/wow/v2/lists"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-54" class="collapsable-control">
+      <a>Attachment 14 (JSON)</a>
+      <a href="embeddings/embedding_-1157448393.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-54" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 0,
+  &quot;title&quot;: &quot;AutoList Exact&quot;,
+  &quot;lastsynced&quot;: 0,
+  &quot;timestamp&quot;: 1586848695037,
+  &quot;checked&quot;: false
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-55" class="collapsable-control">
+      <a>Attachment 15 (JSON)</a>
+      <a href="embeddings/embedding_1769205318.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-55" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;update&quot;: {
+    &quot;id&quot;: 18289867,
+    &quot;title&quot;: &quot;AutoList Exact&quot;,
+    &quot;timestamp&quot;: 1586848695037,
+    &quot;freeTextItems&quot;: [],
+    &quot;products&quot;: []
+  },
+  &quot;changes&quot;: {
+    &quot;updates&quot;: [],
+    &quot;deletes&quot;: []
+  }
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-56" class="collapsable-control">
+    <a>Attachment 16 (HTML)</a>
+    <a href="embeddings/embedding_-2055025677.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-56" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-2055025677.html" srcdoc="/wow/v2/lists/18289867/items"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-57" class="collapsable-control">
+      <a>Attachment 17 (JSON)</a>
+      <a href="embeddings/embedding_793154327.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-57" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 0,
+  &quot;text&quot;: &quot;Coke&quot;,
+  &quot;lastsynced&quot;: 1586848695338,
+  &quot;timestamp&quot;: 1586848695337,
+  &quot;checked&quot;: false
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-58" class="collapsable-control">
+      <a>Attachment 18 (JSON)</a>
+      <a href="embeddings/embedding_-329549724.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-58" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;update&quot;: {
+    &quot;id&quot;: 269238918,
+    &quot;text&quot;: &quot;Coke&quot;,
+    &quot;checked&quot;: false,
+    &quot;timestamp&quot;: 1586848695337
+  },
+  &quot;changes&quot;: {
+    &quot;freeTextItems&quot;: {
+      &quot;updates&quot;: [],
+      &quot;deletes&quot;: []
+    },
+    &quot;products&quot;: {
+      &quot;updates&quot;: [],
+      &quot;deletes&quot;: []
+    }
+  }
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-59" class="collapsable-control">
+    <a>Attachment 19 (HTML)</a>
+    <a href="embeddings/embedding_-477122116.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-59" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-477122116.html" srcdoc="wow/v2/lists/18289867"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-60" class="collapsable-control">
+      <a>Attachment 20 (JSON)</a>
+      <a href="embeddings/embedding_3059451.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-60" class="collapse collapsable-details">
+      <pre class="embedding-content">{}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-61" class="collapsable-control">
+      <a>Attachment 21 (JSON)</a>
+      <a href="embeddings/embedding_-810020623.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-61" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 18289867,
+  &quot;title&quot;: &quot;AutoList Exact&quot;,
+  &quot;timestamp&quot;: 1586848695337,
+  &quot;lastUpdated&quot;: 0,
+  &quot;count&quot;: 1,
+  &quot;page&quot;: 0,
+  &quot;freeTextItems&quot;: [
+    {
+      &quot;id&quot;: 269238918,
+      &quot;text&quot;: &quot;Coke&quot;,
+      &quot;timestamp&quot;: 1586848695337,
+      &quot;checked&quot;: false
+    }
+  ],
+  &quot;products&quot;: []
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-62" class="collapsable-control">
+    <a>Attachment 22 (HTML)</a>
+    <a href="embeddings/embedding_-477122116.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-62" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-477122116.html" srcdoc="wow/v2/lists/18289867"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-63" class="collapsable-control">
+      <a>Attachment 23 (JSON)</a>
+      <a href="embeddings/embedding_3059451.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-63" class="collapse collapsable-details">
+      <pre class="embedding-content">{}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-64" class="collapsable-control">
+      <a>Attachment 24 (JSON)</a>
+      <a href="embeddings/embedding_-810020623.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-64" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 18289867,
+  &quot;title&quot;: &quot;AutoList Exact&quot;,
+  &quot;timestamp&quot;: 1586848695337,
+  &quot;lastUpdated&quot;: 0,
+  &quot;count&quot;: 1,
+  &quot;page&quot;: 0,
+  &quot;freeTextItems&quot;: [
+    {
+      &quot;id&quot;: 269238918,
+      &quot;text&quot;: &quot;Coke&quot;,
+      &quot;timestamp&quot;: 1586848695337,
+      &quot;checked&quot;: false
+    }
+  ],
+  &quot;products&quot;: []
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-65" class="collapsable-control">
+    <a>Attachment 25 (HTML)</a>
+    <a href="embeddings/embedding_-25486260.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-65" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-25486260.html" srcdoc="wow/v2/lists/18289867/items"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-66" class="collapsable-control">
+      <a>Attachment 26 (JSON)</a>
+      <a href="embeddings/embedding_1605494820.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-66" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 269238918,
+  &quot;lastsynced&quot;: 1586848695893,
+  &quot;timestamp&quot;: 1586848695892
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-67" class="collapsable-control">
+      <a>Attachment 27 (JSON)</a>
+      <a href="embeddings/embedding_-1914865510.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-67" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;update&quot;: {
+    &quot;id&quot;: 269238918,
+    &quot;text&quot;: &quot;Coke&quot;,
+    &quot;quantity&quot;: 0.0,
+    &quot;checked&quot;: false,
+    &quot;timestamp&quot;: 1586848695892,
+    &quot;status&quot;: &quot;DELETE&quot;
+  },
+  &quot;changes&quot;: {
+    &quot;freeTextItems&quot;: {
+      &quot;updates&quot;: [],
+      &quot;deletes&quot;: []
+    },
+    &quot;products&quot;: {
+      &quot;updates&quot;: [],
+      &quot;deletes&quot;: []
+    }
+  }
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-68" class="collapsable-control">
+    <a>Attachment 28 (HTML)</a>
+    <a href="embeddings/embedding_-477122116.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-68" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-477122116.html" srcdoc="wow/v2/lists/18289867"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-69" class="collapsable-control">
+      <a>Attachment 29 (JSON)</a>
+      <a href="embeddings/embedding_-1763738185.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-69" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;lastsynced&quot;: 1586848696929,
+  &quot;timestamp&quot;: 1586848696928
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-70" class="collapsable-control">
+      <a>Attachment 30 (JSON)</a>
+      <a href="embeddings/embedding_1664006682.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-70" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;update&quot;: {
+    &quot;id&quot;: 18289867,
+    &quot;title&quot;: &quot;AutoList Exact&quot;,
+    &quot;timestamp&quot;: 1586848696928,
+    &quot;freeTextItems&quot;: [],
+    &quot;products&quot;: []
+  },
+  &quot;changes&quot;: {
+    &quot;updates&quot;: [],
+    &quot;deletes&quot;: []
+  }
+}</pre>
+    </div>
+  </div>
+            </div>
+  
+        
+
+      </div>
+      </div>
+</div>
+
+
+    
+  <div class="inner-level hooks-element-after">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-71">
+      
+<div class="brief passed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+  
+
+       <i class="chevron fa fa-fw"></i>
+  </div>
+
+    </div>
+
+    <div id="after-71" class="inner-level collapse collapsable-details ">
+              <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">After</span>
+                          <span class="location name">ServiceHooks.finaliseTest(Scenario)</span>
+                        
+  <span class="lead-duration duration">0.003</span>
+
+          </div>
+
+                      
+
+          
+                    
+
+          
+  
+        </div>
+          </div>
+  </div>
+
+  </div>
+</div>
+
+                  
+<div class="element">
+      <div class="indention">
+      <b>Feature:</b>
+      <a href="report-feature_4_3127560844.html">Verify Apigee List scenarios</a>
+    </div>
+  
+  
+<div class="tags indention">
+      <b>Tags:</b>
+           <a href="report-tag_4058773774.html">@SMOKE</a>
+           <a href="report-tag_2208925787.html">@LION</a>
+           <a href="report-tag_2208925917.html">@LIST</a>
+           <a href="report-tag_718150784.html">@REGRESSION</a>
+      </div>
+
+  
+  <span class="lead-duration duration">3.722</span>
+
+
+    <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-72">
+    
+<div class="brief passed">
+  <span class="keyword indention">Scenario Outline</span>
+  <span class="name">Create List and check / uncheck free text item to the list</span>
+  
+
+       <i class="chevron fa fa-fw"></i>
+  </div>
+
+  </span>
+  <div class="description indention"></div>
+
+  <div id="element-72" class="collapse collapsable-details ">
+    
+  <div class="inner-level hooks-element-before">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-73">
+      
+<div class="brief passed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+  
+
+       <i class="chevron fa fa-fw"></i>
+  </div>
+
+    </div>
+
+    <div id="before-73" class="inner-level collapse collapsable-details ">
+              <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+                          <span class="location name">ServiceHooks.initializeTest()</span>
+                        
+  <span class="lead-duration duration">0.000</span>
+
+          </div>
+
+                      
+
+          
+                    
+
+          
+  
+        </div>
+          </div>
+  </div>
+
+
+    
+<div class="steps inner-level">
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-74">
+    
+<div class="brief passed">
+  <span class="keyword indention">Steps</span>
+  <span class="name"></span>
+  
+
+       <i class="chevron fa fa-fw"></i>
+  </div>
+
+  </div>
+
+  <div id="steps-74" class="inner-level collapse collapsable-details ">
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">Given</span>
+  <span class="name">user continue to connect to apigee with login containing <span class="argument">apigee99</span></span>
+  
+  <span class="lead-duration duration">0.967</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">When</span>
+  <span class="name">connection from user to apigee endpoint happens</span>
+  
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I search for the address &quot;<span class="argument">Darcy Road</span>&quot;</span>
+  
+  <span class="lead-duration duration">0.458</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I select the &quot;<span class="argument">1</span>&quot; address as fulfilment address from matching addresses</span>
+  
+  <span class="lead-duration duration">0.227</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I clear ALL the list for the user</span>
+  
+  <span class="lead-duration duration">0.258</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I create a list with exact list name as &quot;<span class="argument">AutoList Exact</span>&quot;</span>
+  
+  <span class="lead-duration duration">0.108</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I add free text item &quot;<span class="argument">Coke</span>&quot; to list and check the item to list</span>
+  
+  <span class="lead-duration duration">0.138</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">Then</span>
+  <span class="name">user verifies the free text item &quot;<span class="argument">Coke</span>&quot; is added to list and is checked</span>
+  
+  <span class="lead-duration duration">0.132</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">When</span>
+  <span class="name">user un-checks the free text item &quot;<span class="argument">Coke</span>&quot; from the newly created list</span>
+  
+  <span class="lead-duration duration">0.360</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">Then</span>
+  <span class="name">user verifies the free text item &quot;<span class="argument">Coke</span>&quot; is added to &quot;<span class="argument">AutoList Exact</span>&quot; is unchecked</span>
+  
+  <span class="lead-duration duration">0.317</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">And</span>
+  <span class="name">checks free text item &quot;<span class="argument">Coke</span>&quot; from the &quot;<span class="argument">AutoList Exact</span>&quot;</span>
+  
+  <span class="lead-duration duration">0.433</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+  
+        
+
+      </div>
+          <div class="step">
+        
+<div class="brief passed">
+  <span class="keyword indention">Then</span>
+  <span class="name">user verifies the free text item &quot;<span class="argument">Coke</span>&quot; is added to &quot;<span class="argument">AutoList Exact</span>&quot; is checked</span>
+  
+  <span class="lead-duration duration">0.319</span>
+
+</div>
+
+        
+
+        
+
+
+        
+        
+
+        
+
+        
+    <div class="embeddings inner-level">
+                  <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-75" class="collapsable-control">
+    <a>Attachment 1 (HTML)</a>
+    <a href="embeddings/embedding_48702594.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-75" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_48702594.html" srcdoc="/wow/v2/commerce/token"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-76" class="collapsable-control">
+      <a>Attachment 2 (JSON)</a>
+      <a href="embeddings/embedding_-1592672251.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-76" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;user_name&quot;: &quot;apigee99@testautomation.com&quot;,
+  &quot;password&quot;: &quot;123456&quot;
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-77" class="collapsable-control">
+      <a>Attachment 3 (JSON)</a>
+      <a href="embeddings/embedding_-122398389.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-77" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;access_token&quot;: &quot;9GwWOBqdTcjnv4HtzVgbCYrcGjk4&quot;,
+  &quot;refresh_token&quot;: &quot;jbDTMtiu6Eicnd6lSGXUWa0GgohG3qhW&quot;,
+  &quot;expires_in&quot;: &quot;119&quot;,
+  &quot;trolleyhref&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/trolley&quot;,
+  &quot;fulfilmenthref&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/fulfilment&quot;,
+  &quot;paymenthref&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/commerce/checkout/payment&quot;,
+  &quot;shopperid&quot;: &quot;505616000&quot;,
+  &quot;title&quot;: &quot; &quot;,
+  &quot;firstname&quot;: &quot;apigee&quot;,
+  &quot;lastname&quot;: &quot;test&quot;,
+  &quot;email&quot;: &quot;apigee99@testautomation.com&quot;,
+  &quot;dateofbirth&quot;: &quot;&quot;,
+  &quot;primaryphone&quot;: &quot;0400000000&quot;,
+  &quot;secondaryphone&quot;: &quot;0400000000&quot;,
+  &quot;otherphone&quot;: &quot;&quot;,
+  &quot;fulfilmentstoreid&quot;: &quot;1649&quot;,
+  &quot;fulfilmentmethod&quot;: &quot;&quot;,
+  &quot;fulfilmentstorename&quot;: &quot;&quot;,
+  &quot;deliverymethod&quot;: &quot;Pickup&quot;,
+  &quot;deliverystoreaddressid&quot;: &quot;932627&quot;,
+  &quot;deliverystoreaddresscity&quot;: &quot;1649 Marrickville Metro LOCAL&quot;,
+  &quot;deliverystoreaddresscountry&quot;: &quot;Australia&quot;,
+  &quot;deliveryaddressstreet1&quot;: &quot;MARRICKVILLE METRO SHOPPING CENTRE&quot;,
+  &quot;deliveryaddressstreet2&quot;: &quot;34 VICTORIA ROAD&quot;,
+  &quot;deliveryaddresssuburb&quot;: &quot;  MARRICKVILLE&quot;,
+  &quot;deliveryinstructions&quot;: &quot;&quot;,
+  &quot;isservicable&quot;: &quot;true&quot;,
+  &quot;rewardscardNumber&quot;: &quot;&quot;,
+  &quot;teammember&quot;: &quot;false&quot;,
+  &quot;trolleymergestatus&quot;: &quot;&quot;
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-78" class="collapsable-control">
+    <a>Attachment 4 (HTML)</a>
+    <a href="embeddings/embedding_-1593605634.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-78" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1593605634.html" srcdoc="/wow/v2/addresses"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-79" class="collapsable-control">
+      <a>Attachment 5 (JSON)</a>
+      <a href="embeddings/embedding_2073435522.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-79" class="collapse collapsable-details">
+      <pre class="embedding-content">{q=Darcy Road}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-80" class="collapsable-control">
+      <a>Attachment 6 (JSON)</a>
+      <a href="embeddings/embedding_-755259051.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-80" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;addresses&quot;: [
+    {
+      &quot;amasid&quot;: &quot;AUE|90cd5f06-edfd-4b38-b123-e4217ad103c1|7.730POAUEGgLkBwAAAAAIAgEAAAAApqWSEAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;1 Darcy Road, PORT KEMBLA  NSW  2505&quot;,
+      &quot;postcode&quot;: &quot;2505&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|90cd5f06-edfd-4b38-b123-e4217ad103c1|7.730UOAUEGgLkBwAAAAAIAgEAAAAApqWU0AAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;6 Darcy Road, PORT KEMBLA  NSW  2505&quot;,
+      &quot;postcode&quot;: &quot;2505&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|90cd5f06-edfd-4b38-b123-e4217ad103c1|7.730wOAUEGgLkBwAAAAAIAgEAAAAAyQp6UAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;8 Darcy Road, TINONEE  NSW  2430&quot;,
+      &quot;postcode&quot;: &quot;2430&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|90cd5f06-edfd-4b38-b123-e4217ad103c1|7.730eOAUEGgLkBwAAAAAIAgEAAAAApqWXkAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;10 Darcy Road, PORT KEMBLA  NSW  2505&quot;,
+      &quot;postcode&quot;: &quot;2505&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|90cd5f06-edfd-4b38-b123-e4217ad103c1|7.730mOAUEGgLkBwAAAAAIAgEAAAAA1xnT0AAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;16 Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|90cd5f06-edfd-4b38-b123-e4217ad103c1|7.730mOAUEGgLkBwAAAAAIAgEAAAAA1xnWkAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;16a Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|90cd5f06-edfd-4b38-b123-e4217ad103c1|7.730FOAUEGgLkBwAAAAAIAgEAAAAA1xnZUAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;16b Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|90cd5f06-edfd-4b38-b123-e4217ad103c1|7.730wOAUEGgLkBwAAAAAIAgEAAAAA1xnckAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;18 Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|90cd5f06-edfd-4b38-b123-e4217ad103c1|7.730GOAUEGgLkBwAAAAAIAgEAAAAA1xnfUAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;18a Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    },
+    {
+      &quot;amasid&quot;: &quot;AUE|90cd5f06-edfd-4b38-b123-e4217ad103c1|7.7307OAUEGgLkBwAAAAAIAgEAAAAA1xniEAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;,
+      &quot;text&quot;: &quot;20 Darcy Road, WENTWORTHVILLE  NSW  2145&quot;,
+      &quot;postcode&quot;: &quot;2145&quot;
+    }
+  ]
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-81" class="collapsable-control">
+    <a>Attachment 7 (HTML)</a>
+    <a href="embeddings/embedding_-1593605634.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-81" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1593605634.html" srcdoc="/wow/v2/addresses"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-82" class="collapsable-control">
+      <a>Attachment 8 (JSON)</a>
+      <a href="embeddings/embedding_757811885.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-82" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;amasId&quot;: &quot;AUE|90cd5f06-edfd-4b38-b123-e4217ad103c1|7.730POAUEGgLkBwAAAAAIAgEAAAAApqWSEAAhAA4AAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAAAERhcmN5IFJvYWQAAAAAAA--$10&quot;
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-83" class="collapsable-control">
+      <a>Attachment 9 (JSON)</a>
+      <a href="embeddings/embedding_272495406.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-83" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 506468118,
+  &quot;text&quot;: &quot;1 Darcy Rd, PORT KEMBLA NSW 2505&quot;,
+  &quot;isprimary&quot;: false,
+  &quot;postalcode&quot;: &quot;2505&quot;,
+  &quot;street1&quot;: &quot;1 Darcy Rd&quot;,
+  &quot;street2&quot;: &quot;PORT KEMBLA NSW&quot;,
+  &quot;suburbid&quot;: 1178,
+  &quot;suburbname&quot;: &quot;PORT KEMBLA&quot;,
+  &quot;ispartner&quot;: false
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-84" class="collapsable-control">
+    <a>Attachment 10 (HTML)</a>
+    <a href="embeddings/embedding_-1633255862.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-84" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1633255862.html" srcdoc="/wow/v2/lists"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-85" class="collapsable-control">
+      <a>Attachment 11 (JSON)</a>
+      <a href="embeddings/embedding_3059451.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-85" class="collapse collapsable-details">
+      <pre class="embedding-content">{}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-86" class="collapsable-control">
+      <a>Attachment 12 (JSON)</a>
+      <a href="embeddings/embedding_1736641275.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-86" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;lists&quot;: [
+    {
+      &quot;id&quot;: 18289842,
+      &quot;title&quot;: &quot;AutoList Exact&quot;,
+      &quot;timestamp&quot;: 1586846328811,
+      &quot;url&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/lists/18289842&quot;,
+      &quot;productCount&quot;: 1
+    }
+  ]
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-87" class="collapsable-control">
+    <a>Attachment 13 (HTML)</a>
+    <a href="embeddings/embedding_-477122294.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-87" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-477122294.html" srcdoc="wow/v2/lists/18289842"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-88" class="collapsable-control">
+      <a>Attachment 14 (JSON)</a>
+      <a href="embeddings/embedding_-566209319.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-88" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;lastsynced&quot;: 1586848699403,
+  &quot;timestamp&quot;: 1586848699403
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-89" class="collapsable-control">
+      <a>Attachment 15 (JSON)</a>
+      <a href="embeddings/embedding_245038402.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-89" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;update&quot;: {
+    &quot;id&quot;: 18289842,
+    &quot;title&quot;: &quot;AutoList Exact&quot;,
+    &quot;timestamp&quot;: 1586848699403,
+    &quot;freeTextItems&quot;: [],
+    &quot;products&quot;: []
+  },
+  &quot;changes&quot;: {
+    &quot;updates&quot;: [],
+    &quot;deletes&quot;: []
+  }
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-90" class="collapsable-control">
+    <a>Attachment 16 (HTML)</a>
+    <a href="embeddings/embedding_-1633255862.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-90" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1633255862.html" srcdoc="/wow/v2/lists"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-91" class="collapsable-control">
+      <a>Attachment 17 (JSON)</a>
+      <a href="embeddings/embedding_-1696110938.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-91" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 0,
+  &quot;title&quot;: &quot;AutoList Exact&quot;,
+  &quot;lastsynced&quot;: 0,
+  &quot;timestamp&quot;: 1586848699540,
+  &quot;checked&quot;: false
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-92" class="collapsable-control">
+      <a>Attachment 18 (JSON)</a>
+      <a href="embeddings/embedding_1997821531.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-92" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;update&quot;: {
+    &quot;id&quot;: 18289868,
+    &quot;title&quot;: &quot;AutoList Exact&quot;,
+    &quot;timestamp&quot;: 1586848699540,
+    &quot;freeTextItems&quot;: [],
+    &quot;products&quot;: []
+  },
+  &quot;changes&quot;: {
+    &quot;updates&quot;: [],
+    &quot;deletes&quot;: []
+  }
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-93" class="collapsable-control">
+    <a>Attachment 19 (HTML)</a>
+    <a href="embeddings/embedding_620149916.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-93" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_620149916.html" srcdoc="/wow/v2/lists/18289868/items"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-94" class="collapsable-control">
+      <a>Attachment 20 (JSON)</a>
+      <a href="embeddings/embedding_1779325745.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-94" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 0,
+  &quot;text&quot;: &quot;Coke&quot;,
+  &quot;lastsynced&quot;: 1586848699650,
+  &quot;timestamp&quot;: 1586848699649,
+  &quot;checked&quot;: true
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-95" class="collapsable-control">
+      <a>Attachment 21 (JSON)</a>
+      <a href="embeddings/embedding_-1996392944.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-95" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;update&quot;: {
+    &quot;id&quot;: 269238919,
+    &quot;text&quot;: &quot;Coke&quot;,
+    &quot;checked&quot;: true,
+    &quot;timestamp&quot;: 1586848699649
+  },
+  &quot;changes&quot;: {
+    &quot;freeTextItems&quot;: {
+      &quot;updates&quot;: [],
+      &quot;deletes&quot;: []
+    },
+    &quot;products&quot;: {
+      &quot;updates&quot;: [],
+      &quot;deletes&quot;: []
+    }
+  }
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-96" class="collapsable-control">
+    <a>Attachment 22 (HTML)</a>
+    <a href="embeddings/embedding_-477122115.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-96" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-477122115.html" srcdoc="wow/v2/lists/18289868"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-97" class="collapsable-control">
+      <a>Attachment 23 (JSON)</a>
+      <a href="embeddings/embedding_3059451.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-97" class="collapse collapsable-details">
+      <pre class="embedding-content">{}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-98" class="collapsable-control">
+      <a>Attachment 24 (JSON)</a>
+      <a href="embeddings/embedding_634926976.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-98" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 18289868,
+  &quot;title&quot;: &quot;AutoList Exact&quot;,
+  &quot;timestamp&quot;: 1586848699649,
+  &quot;lastUpdated&quot;: 0,
+  &quot;count&quot;: 1,
+  &quot;page&quot;: 0,
+  &quot;freeTextItems&quot;: [
+    {
+      &quot;id&quot;: 269238919,
+      &quot;text&quot;: &quot;Coke&quot;,
+      &quot;timestamp&quot;: 1586848699649,
+      &quot;checked&quot;: true
+    }
+  ],
+  &quot;products&quot;: []
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-99" class="collapsable-control">
+    <a>Attachment 25 (HTML)</a>
+    <a href="embeddings/embedding_620149916.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-99" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_620149916.html" srcdoc="/wow/v2/lists/18289868/items"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-100" class="collapsable-control">
+      <a>Attachment 26 (JSON)</a>
+      <a href="embeddings/embedding_388414542.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-100" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 269238919,
+  &quot;text&quot;: &quot;Coke&quot;,
+  &quot;lastsynced&quot;: 1586848699921,
+  &quot;timestamp&quot;: 1586848699921,
+  &quot;checked&quot;: false
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-101" class="collapsable-control">
+      <a>Attachment 27 (JSON)</a>
+      <a href="embeddings/embedding_-500325351.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-101" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;update&quot;: {
+    &quot;id&quot;: 269238919,
+    &quot;text&quot;: &quot;Coke&quot;,
+    &quot;quantity&quot;: 0.0,
+    &quot;checked&quot;: false,
+    &quot;timestamp&quot;: 1586848699921,
+    &quot;status&quot;: &quot;UPDATE&quot;
+  },
+  &quot;changes&quot;: {
+    &quot;freeTextItems&quot;: {
+      &quot;updates&quot;: [],
+      &quot;deletes&quot;: []
+    },
+    &quot;products&quot;: {
+      &quot;updates&quot;: [],
+      &quot;deletes&quot;: []
+    }
+  }
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-102" class="collapsable-control">
+    <a>Attachment 28 (HTML)</a>
+    <a href="embeddings/embedding_-1633255862.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-102" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1633255862.html" srcdoc="/wow/v2/lists"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-103" class="collapsable-control">
+      <a>Attachment 29 (JSON)</a>
+      <a href="embeddings/embedding_3059451.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-103" class="collapse collapsable-details">
+      <pre class="embedding-content">{}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-104" class="collapsable-control">
+      <a>Attachment 30 (JSON)</a>
+      <a href="embeddings/embedding_-1477176231.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-104" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;lists&quot;: [
+    {
+      &quot;id&quot;: 18289868,
+      &quot;title&quot;: &quot;AutoList Exact&quot;,
+      &quot;timestamp&quot;: 1586848699921,
+      &quot;url&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/lists/18289868&quot;,
+      &quot;productCount&quot;: 1
+    }
+  ]
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-105" class="collapsable-control">
+    <a>Attachment 31 (HTML)</a>
+    <a href="embeddings/embedding_-477122115.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-105" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-477122115.html" srcdoc="wow/v2/lists/18289868"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-106" class="collapsable-control">
+      <a>Attachment 32 (JSON)</a>
+      <a href="embeddings/embedding_3059451.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-106" class="collapse collapsable-details">
+      <pre class="embedding-content">{}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-107" class="collapsable-control">
+      <a>Attachment 33 (JSON)</a>
+      <a href="embeddings/embedding_-376651815.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-107" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 18289868,
+  &quot;title&quot;: &quot;AutoList Exact&quot;,
+  &quot;timestamp&quot;: 1586848699921,
+  &quot;lastUpdated&quot;: 0,
+  &quot;count&quot;: 1,
+  &quot;page&quot;: 0,
+  &quot;freeTextItems&quot;: [
+    {
+      &quot;id&quot;: 269238919,
+      &quot;text&quot;: &quot;Coke&quot;,
+      &quot;timestamp&quot;: 1586848699921,
+      &quot;checked&quot;: false
+    }
+  ],
+  &quot;products&quot;: []
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-108" class="collapsable-control">
+    <a>Attachment 34 (HTML)</a>
+    <a href="embeddings/embedding_-1633255862.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-108" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1633255862.html" srcdoc="/wow/v2/lists"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-109" class="collapsable-control">
+      <a>Attachment 35 (JSON)</a>
+      <a href="embeddings/embedding_3059451.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-109" class="collapse collapsable-details">
+      <pre class="embedding-content">{}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-110" class="collapsable-control">
+      <a>Attachment 36 (JSON)</a>
+      <a href="embeddings/embedding_-1477176231.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-110" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;lists&quot;: [
+    {
+      &quot;id&quot;: 18289868,
+      &quot;title&quot;: &quot;AutoList Exact&quot;,
+      &quot;timestamp&quot;: 1586848699921,
+      &quot;url&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/lists/18289868&quot;,
+      &quot;productCount&quot;: 1
+    }
+  ]
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-111" class="collapsable-control">
+    <a>Attachment 37 (HTML)</a>
+    <a href="embeddings/embedding_-477122115.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-111" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-477122115.html" srcdoc="wow/v2/lists/18289868"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-112" class="collapsable-control">
+      <a>Attachment 38 (JSON)</a>
+      <a href="embeddings/embedding_3059451.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-112" class="collapse collapsable-details">
+      <pre class="embedding-content">{}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-113" class="collapsable-control">
+      <a>Attachment 39 (JSON)</a>
+      <a href="embeddings/embedding_-376651815.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-113" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 18289868,
+  &quot;title&quot;: &quot;AutoList Exact&quot;,
+  &quot;timestamp&quot;: 1586848699921,
+  &quot;lastUpdated&quot;: 0,
+  &quot;count&quot;: 1,
+  &quot;page&quot;: 0,
+  &quot;freeTextItems&quot;: [
+    {
+      &quot;id&quot;: 269238919,
+      &quot;text&quot;: &quot;Coke&quot;,
+      &quot;timestamp&quot;: 1586848699921,
+      &quot;checked&quot;: false
+    }
+  ],
+  &quot;products&quot;: []
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-114" class="collapsable-control">
+    <a>Attachment 40 (HTML)</a>
+    <a href="embeddings/embedding_620149916.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-114" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_620149916.html" srcdoc="/wow/v2/lists/18289868/items"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-115" class="collapsable-control">
+      <a>Attachment 41 (JSON)</a>
+      <a href="embeddings/embedding_729232664.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-115" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 269238919,
+  &quot;text&quot;: &quot;Coke&quot;,
+  &quot;lastsynced&quot;: 1586848700857,
+  &quot;timestamp&quot;: 1586848700857,
+  &quot;checked&quot;: true
+}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-116" class="collapsable-control">
+      <a>Attachment 42 (JSON)</a>
+      <a href="embeddings/embedding_-451681054.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-116" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;update&quot;: {
+    &quot;id&quot;: 269238919,
+    &quot;text&quot;: &quot;Coke&quot;,
+    &quot;quantity&quot;: 0.0,
+    &quot;checked&quot;: true,
+    &quot;timestamp&quot;: 1586848700857,
+    &quot;status&quot;: &quot;UPDATE&quot;
+  },
+  &quot;changes&quot;: {
+    &quot;freeTextItems&quot;: {
+      &quot;updates&quot;: [],
+      &quot;deletes&quot;: []
+    },
+    &quot;products&quot;: {
+      &quot;updates&quot;: [],
+      &quot;deletes&quot;: []
+    }
+  }
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-117" class="collapsable-control">
+    <a>Attachment 43 (HTML)</a>
+    <a href="embeddings/embedding_-1633255862.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-117" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-1633255862.html" srcdoc="/wow/v2/lists"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-118" class="collapsable-control">
+      <a>Attachment 44 (JSON)</a>
+      <a href="embeddings/embedding_3059451.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-118" class="collapse collapsable-details">
+      <pre class="embedding-content">{}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-119" class="collapsable-control">
+      <a>Attachment 45 (JSON)</a>
+      <a href="embeddings/embedding_-2133681100.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-119" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;lists&quot;: [
+    {
+      &quot;id&quot;: 18289868,
+      &quot;title&quot;: &quot;AutoList Exact&quot;,
+      &quot;timestamp&quot;: 1586848700857,
+      &quot;url&quot;: &quot;https://test.mobile-api.woolworths.com.au/wow/v2/lists/18289868&quot;,
+      &quot;productCount&quot;: 1
+    }
+  ]
+}</pre>
+    </div>
+  </div>
+                        <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-120" class="collapsable-control">
+    <a>Attachment 46 (HTML)</a>
+    <a href="embeddings/embedding_-477122115.html" download target="_blank">
+      <span class="download-button glyphicon glyphicon-download-alt"></span>
+    </a>
+  </div>
+  <div id="embedding-120" class="collapse collapsable-details">
+    <div class="embedding-content">
+      <div class="html-content">
+        <iframe seamless="true" sandbox="allow-scripts" src="embeddings/embedding_-477122115.html" srcdoc="wow/v2/lists/18289868"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-121" class="collapsable-control">
+      <a>Attachment 47 (JSON)</a>
+      <a href="embeddings/embedding_3059451.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-121" class="collapse collapsable-details">
+      <pre class="embedding-content">{}</pre>
+    </div>
+  </div>
+                          <div class="embedding indention">
+        <div data-toggle="collapse" data-target="#embedding-122" class="collapsable-control">
+      <a>Attachment 48 (JSON)</a>
+      <a href="embeddings/embedding_-2030454418.json" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-122" class="collapse collapsable-details">
+      <pre class="embedding-content">{
+  &quot;id&quot;: 18289868,
+  &quot;title&quot;: &quot;AutoList Exact&quot;,
+  &quot;timestamp&quot;: 1586848700857,
+  &quot;lastUpdated&quot;: 0,
+  &quot;count&quot;: 1,
+  &quot;page&quot;: 0,
+  &quot;freeTextItems&quot;: [
+    {
+      &quot;id&quot;: 269238919,
+      &quot;text&quot;: &quot;Coke&quot;,
+      &quot;timestamp&quot;: 1586848700857,
+      &quot;checked&quot;: true
+    }
+  ],
+  &quot;products&quot;: []
+}</pre>
+    </div>
+  </div>
+            </div>
+  
+        
+
+      </div>
+      </div>
+</div>
+
+
+    
+  <div class="inner-level hooks-element-after">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-123">
+      
+<div class="brief passed">
+  <span class="keyword indention">Hooks</span>
+  <span class="name"></span>
+  
+
+       <i class="chevron fa fa-fw"></i>
+  </div>
+
+    </div>
+
+    <div id="after-123" class="inner-level collapse collapsable-details ">
+              <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">After</span>
+                          <span class="location name">ServiceHooks.finaliseTest(Scenario)</span>
+                        
+  <span class="lead-duration duration">0.004</span>
+
+          </div>
+
+                      
+
+          
+                    
+
+          
+  
+        </div>
+          </div>
+  </div>
+
+  </div>
+</div>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1 col-md-offset-10">
+      <i class="fa fa-chevron-circle-down fa-2x collapsable-control"
+        onClick="javascript:$('#report .collapsable-details').collapse('show')"></i>
+      <i class="fa fa-chevron-circle-up fa-2x collapsable-control"
+        onClick="javascript:$('#report .collapsable-details').collapse('hide')"></i>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<nav class="navbar navbar-default" id="footer">
+  <div class="container-fluid">
+    <p class="navbar-text navbar-right">
+        <small>generate Cucumber HTML reports via:&nbsp;</small>
+        <a class="navbar-link" href="https://github.com/jenkinsci/cucumber-reports-plugin">Jenkins Plugin</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-reporting">Standalone</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-sandwich">Sandwich</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/maven-cucumber-reporting">Maven</a>
+        &nbsp;&nbsp;
+    </p>
+  </div>
+</nav>
+
+</body>
+</html>

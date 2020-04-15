@@ -1,0 +1,26 @@
+{
+  "addresses": [
+    {
+      "id": 506481094,
+      "text": "1 Darcy Rd, PORT KEMBLA NSW 2505",
+      "isprimary": true,
+      "postalcode": "2505",
+      "street1": "1 Darcy Rd",
+      "street2": "PORT KEMBLA NSW",
+      "suburbid": 1178,
+      "suburbname": "PORT KEMBLA",
+      "ispartner": false
+    },
+    {
+      "id": 6021097,
+      "text": "12-14 Silvereye Cr, GREENBANK QLD 4124",
+      "isprimary": false,
+      "postalcode": "4124",
+      "street1": "12-14 Silvereye Cr",
+      "street2": "GREENBANK QLD",
+      "suburbid": 3387,
+      "suburbname": "GREENBANK",
+      "ispartner": false
+    }
+  ]
+}

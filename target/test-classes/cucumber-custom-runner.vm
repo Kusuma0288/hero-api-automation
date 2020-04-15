@@ -1,0 +1,36 @@
+#parse("/array.java.vm")
+#if ($packageName)
+package $packageName;
+
+#end##
+import cucumber.api.CucumberOptions;
+import cucumber.api.testng.AbstractTestNGCucumberTests;
+import org.testng.*;
+import org.testng.annotations.*;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Logger;
+
+@CucumberOptions(
+        strict = $strict,
+        features = {"$featureFile"},
+        plugin = #stringArray($plugins),
+        monochrome = ${monochrome},
+#if(!$featureFile.contains(".feature:") && $tags)
+        tags = #stringArray($tags),
+#end
+        glue = #stringArray($glue),
+        format = {
+                        "pretty",
+                        "rerun:target/cucumber-reports/rerun.txt"
+                })
+
+public class $className extends AbstractTestNGCucumberTests {
+
+    private static Logger logger = Logger.getLogger("$className"+".class");
+
+}
+
+
