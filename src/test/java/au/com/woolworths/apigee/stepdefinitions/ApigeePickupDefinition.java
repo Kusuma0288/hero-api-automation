@@ -8,6 +8,7 @@ import au.com.woolworths.apigee.context.ApigeeApplicationContext;
 import au.com.woolworths.apigee.helpers.ApigeeAddressHelper;
 import au.com.woolworths.apigee.model.ApigeeStores;
 import au.com.woolworths.apigee.model.ApigeeV2AddressStores;
+import au.com.woolworths.apigee.model.AddressesV2ErrorResponse;
 import au.com.woolworths.apigee.model.FulFilmentResponse;
 import cucumber.api.java.en.*;
 import org.testng.Assert;
@@ -56,12 +57,24 @@ public class ApigeePickupDefinition extends ApigeeAddressHelper{
 
     }
 
-    @When("^I search for the pick up stores with Store AddressID (.*) and validate that AddressText, Area and SuburbId are not blank")
-    public void storesForStoreAddressID(String StoreAddressID) throws Throwable{
-        ApigeeV2AddressStores searchStoresResponse = getStoresByAddressID(StoreAddressID, sharedData.accessToken);
+    @When("^I search for the pick up stores with Store AddressID (.*) and validate that AddressText, Description and SuburbId are not blank")
+    public void storesForStoreAddressID(String StoreID) throws Throwable{
+        ApigeeV2AddressStores searchStoresResponse = getStoresByAddressID(StoreID, sharedData.accessToken);
         //Assert at least 1 store is returned
         Assert.assertTrue(searchStoresResponse.getStores().length > 0, "Stores not returned for the given address id");
-        Assert.assertTrue(!searchStoresResponse.getStores()[0].getAddressText().isEmpty());
+        Assert.assertTrue(!searchStoresResponse.getStores()[0].getAddressText().isEmpty(), "Address text is empty");
+        Assert.assertTrue(!searchStoresResponse.getStores()[0].getDescription().isEmpty(), "Description is empty");
+        Assert.assertTrue(searchStoresResponse.getStores()[0].getSuburbID() > 0, "Suburb ID is not valid");
+    }
+
+    @When("^I search for the pickup stores with StoreID (.*) and validate the AddressText, Description and SuburbId are not blank")
+    public void storesForStoreID(String storeID) throws Throwable{
+        ApigeeV2AddressStores searchStoresResponse = getStoresByStoreID(storeID, sharedData.accessToken);
+        //Assert at least 1 store is returned
+        Assert.assertTrue(searchStoresResponse.getStores().length > 0, "Stores not returned for the given store id");
+        Assert.assertTrue(!searchStoresResponse.getStores()[0].getAddressText().isEmpty(), "Address text is empty");
+        Assert.assertTrue(!searchStoresResponse.getStores()[0].getDescription().isEmpty(), "Description is empty");
+        Assert.assertTrue(searchStoresResponse.getStores()[0].getSuburbID() > 0, "Suburb ID is not valid");
     }
 
     @When("^I search for the pick up stores using latitude (.*) & longitude (.*) and verify if stores returned are sorted by distance by default$")
@@ -81,7 +94,17 @@ public class ApigeePickupDefinition extends ApigeeAddressHelper{
         Assert.assertTrue(Utilities.isSorted(stores),"Stores retrieved are not in order");
     }
 
+    @When("^I search for the pick up stores with invalid Store AddressID (.*) and validate the response")
+    public void storesForInvalidStoreAddressID(String invalidStoreAddressID) throws Throwable{
+        AddressesV2ErrorResponse v2AddressesErrorResponse = getStoresForInvalidParams(invalidStoreAddressID, "storeAddressId", sharedData.accessToken);
+        Assert.assertTrue(v2AddressesErrorResponse.getErrorMessage().equalsIgnoreCase("Not Found"));
+    }
 
+    @When("^I search for the pickup stores with invalid StoreID (.*) and validate the response")
+    public void storesForInvalidStoreID(String invalidStoreID) throws Throwable{
+        AddressesV2ErrorResponse v2AddressesErrorResponse = getStoresForInvalidParams(invalidStoreID, "storeid", sharedData.accessToken);
+        Assert.assertTrue(v2AddressesErrorResponse.getErrorMessage().equalsIgnoreCase("Not Found"));
+    }
 
     @Then("^I validate that the fulfilmentMethod match to (.*)$")
     public void validateFulfilmentMethod(String fulfilmentMethod) throws Throwable {

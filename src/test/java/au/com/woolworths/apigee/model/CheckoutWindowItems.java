@@ -4,19 +4,19 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class CheckoutWindowItems {
     @JsonInclude(JsonInclude.Include.NON_NULL)
         private String StartTimeRange;
-        private CheckoutWindowSlots CheckoutWindowSlots;
+        private CheckoutWindowSlots[] Slots;
 
 
         @Override
         public String toString() {
             return "CheckoutWindowItemsResponse {" +
                     "StartTimeRange=" + StartTimeRange +
-                    ", Slots=" + CheckoutWindowSlots +'}';
+                    ", Slots=" + Slots +'}';
         }
 
-    public String getIsReserved() {return StartTimeRange; }
-    public void setIsReserved(String startTimeRange) { StartTimeRange = startTimeRange; }
+    public String getStartTimeRange() {return StartTimeRange; }
+    public void setStartTimeRange(String startTimeRange) { StartTimeRange = startTimeRange; }
 
-    public CheckoutWindowSlots getCheckoutWindowSlots() {return CheckoutWindowSlots; }
-    public void setCheckoutWindowSlots(CheckoutWindowSlots checkoutWindowSlots) { CheckoutWindowSlots = checkoutWindowSlots; }
+    public CheckoutWindowSlots[] getSlots() {return Slots; }
+    public void setSlots(CheckoutWindowSlots[] slots) { Slots = slots; }
 }

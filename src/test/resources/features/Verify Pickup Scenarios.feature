@@ -22,14 +22,23 @@ Scenario Outline: Verify whether user is able to search for a  pickup store by p
       |0100    |
 
 
-  Scenario Outline: Verify whether user is able to search stores by lat & long
+  Scenario Outline: Verify whether user is able to search stores by valid lat & long, storeAddressId and storeID
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME6"
     When connection from user to apigee endpoint happens
     Then I search for the pick up stores using latitude <latitude> & longitude <longitude> and verify if stores returned are sorted by distance by default
-    Then I search for the pick up stores with Store AddressID <StoreAddressID> and validate that AddressText, Area and SuburbId are not blank
+    Then I search for the pick up stores with Store AddressID <StoreAddressID> and validate that AddressText, Description and SuburbId are not blank
+    Then I search for the pickup stores with StoreID <StoreID> and validate the AddressText, Description and SuburbId are not blank
     Examples:
-      | latitude    | longitude   | StoreAddressID   |
-      | -33.8854348 | 151.2079537 |  932627          |
+      | latitude    | longitude   | StoreAddressID   | StoreID     |
+      | -33.8854348 | 151.2079537 |  932627          |   1248      |
 
 
+  Scenario Outline: Verify whether user is able to search stores by Invalid lat & long, storeAddressId and storeID
+    Given user continue to connect to apigee with login username as "SHOPPER_USERNAME6"
+    When connection from user to apigee endpoint happens
+    Then I search for the pick up stores with invalid Store AddressID <StoreAddressID> and validate the response
+    Then I search for the pickup stores with invalid StoreID <StoreID> and validate the response
+    Examples:
+      | StoreAddressID   | StoreID       |
+      |  567             |   4500        |
 

@@ -4,18 +4,18 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 
 public class CheckoutRequest {
-    private String date;
     private int window;
+    private String date;
 
     @Override
     public String toString() {
         return "CheckoutRequest{" +
-                "date='" + date + '\'' +
                 "window='" + window + '\'' +
+                "date='" + date + '\'' +
                 '}';
     }
 
-    public String getDates()
+    public String getDate()
     {
         return date;
     }

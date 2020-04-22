@@ -6,7 +6,7 @@ public class CheckoutResponse {
     private Object Order;
     private Object DeliveryPackagingPreferences;
     private CheckoutFulfilmentWindows[] FulfilmentWindows;
-    private Object Results;
+    private CheckoutResultsResponse Results;
 
 
     @Override
@@ -27,6 +27,6 @@ public class CheckoutResponse {
     public CheckoutFulfilmentWindows[] getFulfilmentWindows() {return FulfilmentWindows; }
     public void setFulfilmentWindows(CheckoutFulfilmentWindows[] fulfilmentWindows) { FulfilmentWindows = fulfilmentWindows; }
 
-    public Object getResults() {return Results; }
-    public void setResults(Object results) { Results = results; }
+    public CheckoutResultsResponse getResults() {return Results; }
+    public void setResults(CheckoutResultsResponse results) { Results = results; }
 }

@@ -11,5 +11,7 @@ public class ApigeeContainer {
     public String defaultListId;
     public String currentFreeTextId;
     public ApigeeListResponse updatedListResponse;
+    public int windowId;
+    public String windowStartTime;
 
 }

@@ -26,10 +26,10 @@ Scenario Outline: Verify whether user is able to search for a  pickup store by p
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME6"
     When connection from user to apigee endpoint happens
     Then I search for the pick up stores using latitude <latitude> & longitude <longitude> and verify if stores returned are sorted by distance by default
-    Then I search for the pick up stores with Store AddressID <StoreAddressID> and validate that AddressText, Area and SuburbId are not blank
+
     Examples:
-      | latitude    | longitude   | StoreAddressID   |
-      | -33.8854348 | 151.2079537 |  932627          |
+      | latitude    | longitude   |
+      | -33.8854348 | 151.2079537 |
 
 
 

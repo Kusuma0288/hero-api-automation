@@ -114,6 +114,25 @@ public class ApigeeAddressHelper extends BaseHelper {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         storeLocatorResponse = mapper.readValue(responseStr, ApigeeV2AddressStores.class);
         return storeLocatorResponse;
+    }
+
+    public ApigeeV2AddressStores getStoresByStoreID(String storeID, String accessToken) throws Throwable{
+        String endPoint = URLResources.APIGEE_V2_SEARCH_ADDRESS_POSTCODE;
+        Map<String, String> queryParams = new HashMap<String, String>();
+        queryParams.put("storeid", storeID);
+        ApigeeV2AddressStores storeLocatorResponse;
+
+        Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
+        mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+        String responseStr = mapWebserviceResponse.get("response");
+
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+        storeLocatorResponse = mapper.readValue(responseStr, ApigeeV2AddressStores.class);
+        return storeLocatorResponse;
 
     }
 
@@ -135,6 +154,31 @@ public class ApigeeAddressHelper extends BaseHelper {
         storeLocatorResponse = mapper.readValue(responseStr, ApigeeV2AddressStores.class);
         return storeLocatorResponse;
     }
+
+    public AddressesV2ErrorResponse getStoresForInvalidParams(String param, String type, String accessToken) throws Throwable{
+        String endPoint = URLResources.APIGEE_V2_SEARCH_ADDRESS_POSTCODE;
+        Map<String, String> queryParams = new HashMap<String, String>();
+        if(type.equals("storeid")) {
+            queryParams.put("storeid", param);
+        }
+        else{
+            queryParams.put("storeAddressId", param);
+        }
+        AddressesV2ErrorResponse v2ErrorResponse;
+
+        Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
+        mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+        String responseStr = mapWebserviceResponse.get("response");
+
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+        v2ErrorResponse = mapper.readValue(responseStr, AddressesV2ErrorResponse.class);
+        return v2ErrorResponse;
+    }
+
     public FulFilmentResponse setTheFulfilmentForTheStore(String storeAddressId,String accessToken) throws Throwable {
 
         Map<String, String> mapWebserviceResponse;
