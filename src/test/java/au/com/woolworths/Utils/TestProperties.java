@@ -15,7 +15,7 @@ public class TestProperties {
         InputStream input = null;
         try {
             if (System.getProperty("env") == null) {
-                System.setProperty("env","test");
+                System.setProperty("env","uat");
             }
             input = TestProperties.class.getResourceAsStream("/config/"+ System.getProperty("env") + ".properties");
             props.load(input);

@@ -13,5 +13,6 @@ public class ApigeeContainer {
     public ApigeeListResponse updatedListResponse;
     public int windowId;
     public String windowStartTime;
+    public String packagingPreference;
 
 }

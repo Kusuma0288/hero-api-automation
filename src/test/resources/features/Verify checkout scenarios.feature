@@ -11,4 +11,6 @@ Scenario: Verify getting and setting of v3/checkout windows
    And I add the 2 available products with 1 each from the store to the V3 trolley
    And I get the available pickup windows for the logged in user with storeId or addressId
    Then I set the selected available pickup window for the logged in user
+   And I validate the default selected packaging preference for Pickup
+   #Then I validate that user is able to select 'Reusable bags' as packaging preference
 

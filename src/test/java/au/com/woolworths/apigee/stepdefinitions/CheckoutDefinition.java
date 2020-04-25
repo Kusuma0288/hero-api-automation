@@ -56,10 +56,17 @@ public class CheckoutDefinition extends CheckoutHelper{
 
 
     }
-    @Then("I set the selected available pickup window for the logged in user$")
+    @Then("^I set the selected available pickup window for the logged in user$")
     public void iSetAvailablePickupWindow() throws Throwable{
         CheckoutResponse checkoutResponse = postSetCheckoutWindow(picoContainer.windowId, picoContainer.windowStartTime, sharedData.accessToken);
+        picoContainer.packagingPreference = checkoutResponse.getDeliveryPackagingPreferences().toString();
         Assert.assertEquals("Selected window is not set",checkoutResponse.getResults().getSetDeliveryWindow().getHttpStatusCode(), 200);
+    }
+
+    @And("^I validate the default selected packaging preference for Pickup$")
+    public void iValidateDefaultPackagingPreference(){
+        logger.info("aasdasd = " + picoContainer.packagingPreference);
+
     }
 }
 
