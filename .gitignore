@@ -1,2 +1,8 @@
 .idea/*
 APIGEEAPI.iml
+target/*
+target/test-classes/*
+target/test-classes/au/com/woolworths/apigee/model/CheckoutRequest.class
+*.class
+*.properties
+

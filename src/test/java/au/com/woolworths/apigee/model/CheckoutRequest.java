@@ -6,12 +6,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class CheckoutRequest {
     private int window;
     private String date;
+    private int packaging;
 
     @Override
     public String toString() {
         return "CheckoutRequest{" +
                 "window='" + window + '\'' +
                 "date='" + date + '\'' +
+                "packaging='" + packaging + '\'' +
                 '}';
     }
 
@@ -33,4 +35,6 @@ public class CheckoutRequest {
         this.window = window;
     }
 
+    public int getPackaging() {return packaging; }
+    public void setPackaging(int Packaging) { packaging = Packaging; }
 }

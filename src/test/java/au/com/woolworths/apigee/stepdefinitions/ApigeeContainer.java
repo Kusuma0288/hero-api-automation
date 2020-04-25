@@ -1,6 +1,8 @@
 package au.com.woolworths.apigee.stepdefinitions;
 
 import au.com.woolworths.apigee.model.ApigeeListResponse;
+import au.com.woolworths.apigee.model.CheckoutPackagingPreferencesResponse;
+import au.com.woolworths.apigee.model.CheckoutPackagingPreferencesResponse;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +15,6 @@ public class ApigeeContainer {
     public ApigeeListResponse updatedListResponse;
     public int windowId;
     public String windowStartTime;
-    public String packagingPreference;
+    public CheckoutPackagingPreferencesResponse[] packagingPreference;
 
 }

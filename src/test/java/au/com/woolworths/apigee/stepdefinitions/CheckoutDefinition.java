@@ -2,12 +2,9 @@ package au.com.woolworths.apigee.stepdefinitions;
 
 import au.com.woolworths.apigee.context.ApigeeApplicationContext;
 import au.com.woolworths.apigee.helpers.CheckoutHelper;
-import au.com.woolworths.apigee.model.CheckoutResponse;
-import au.com.woolworths.apigee.model.CheckoutFulfilmentWindows;
-import au.com.woolworths.apigee.model.CheckoutWindowItems;
-import au.com.woolworths.apigee.model.CheckoutWindowSlots;
+import au.com.woolworths.apigee.model.*;
+import au.com.woolworths.apigee.model.CheckoutPackagingPreferencesResponse;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import cucumber.api.java.en.And;
 import junit.framework.Assert;
 
@@ -59,14 +56,31 @@ public class CheckoutDefinition extends CheckoutHelper{
     @Then("^I set the selected available pickup window for the logged in user$")
     public void iSetAvailablePickupWindow() throws Throwable{
         CheckoutResponse checkoutResponse = postSetCheckoutWindow(picoContainer.windowId, picoContainer.windowStartTime, sharedData.accessToken);
-        picoContainer.packagingPreference = checkoutResponse.getDeliveryPackagingPreferences().toString();
+        picoContainer.packagingPreference = checkoutResponse.getDeliveryPackagingPreferences();
         Assert.assertEquals("Selected window is not set",checkoutResponse.getResults().getSetDeliveryWindow().getHttpStatusCode(), 200);
     }
 
-    @And("^I validate the default selected packaging preference for Pickup$")
-    public void iValidateDefaultPackagingPreference(){
-        logger.info("aasdasd = " + picoContainer.packagingPreference);
+    @And("^I validate the default selected packaging preference for Delivery is Reusable bags$")
+    public void iValidateDefaultPackagingPreference() throws Throwable{
+        CheckoutPackagingPreferencesResponse[] checkoutPackagingPreferences = picoContainer.packagingPreference;
+        Arrays.stream(checkoutPackagingPreferences).filter(i -> i.getIsSelected()).findFirst().get().getName();
+        Assert.assertTrue(Arrays.stream(checkoutPackagingPreferences).filter(i -> i.getIsSelected()).findFirst().get().getName().equalsIgnoreCase("Reusable bags"));
+    }
 
+    @Then("^I validate that user is able to select (.*) as packaging preference$")
+    public void iSelectPackagingPreference(String packagingPref) throws Throwable{
+        if(packagingPref.contains("Reusable")) {
+            CheckoutResponse checkoutResponse = postSetPackagingPreference(34, sharedData.accessToken);
+            Assert.assertEquals("Packaging Preference is not set",checkoutResponse.getResults().getSetPackagingOption().getHttpStatusCode(), 200);
+            Assert.assertTrue("Packaging Preference not set correctly", Arrays.stream(checkoutResponse.getDeliveryPackagingPreferences()).filter(i->  i.getIsSelected()).findFirst().get().getName().equalsIgnoreCase("Reusable bags"));
+
+        }
+        else if(packagingPref.contains("BYO")){
+            CheckoutResponse checkoutResponse = postSetPackagingPreference(16, sharedData.accessToken);
+            Assert.assertEquals("Packaging Preference is not set",checkoutResponse.getResults().getSetPackagingOption().getHttpStatusCode(), 200);
+            Assert.assertTrue("Packaging Preference not set correctly", Arrays.stream(checkoutResponse.getDeliveryPackagingPreferences()).filter(i->  i.getIsSelected()).findFirst().get().getName().equalsIgnoreCase("BYO bags"));
+
+        }
     }
 }
 

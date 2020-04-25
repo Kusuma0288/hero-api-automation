@@ -26,14 +26,3 @@ Feature: v3 Fulfilment API scenarios
       | lookupAddress | position |
       | Darcy Road | 1 |
 
-    Scenario Outline: To verify that the logged in user is able to set an address as fulfilment address
-      Given user continue to connect to apigee with login username as "<Username>"
-      When connection from user to apigee endpoint happens
-      And I search for the address "<lookupAddress>"
-      And I select the "<position>" address as fulfilment address from matching addresses
-      Then I make a request to fulfilment api with primary address id to set the address as fulfilment address
-
-
-      Examples:
-        | lookupAddress | position | Username         |
-        | Charles street    | 1        |SHOPPER_USERNAME10 |
