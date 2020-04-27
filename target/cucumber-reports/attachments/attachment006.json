@@ -1,32 +1,39 @@
 {
-  "access_token": "I8Eud7nHISymKvCGu8E0aEQI6Q7B",
-  "refresh_token": "K4NFgR0aAZNpHTxRSVPiLy0qeG9LXScP",
-  "expires_in": "119",
-  "trolleyhref": "https://test.mobile-api.woolworths.com.au/wow/v2/trolley",
-  "fulfilmenthref": "https://test.mobile-api.woolworths.com.au/wow/v2/fulfilment",
-  "paymenthref": "https://test.mobile-api.woolworths.com.au/wow/v2/commerce/checkout/payment",
-  "shopperid": "5278577",
-  "title": " ",
-  "firstname": "KNHCQDPC",
-  "lastname": "LHCWGMZI",
-  "email": "5278577@5278577.com",
-  "dateofbirth": "1901-01-01T00:00:00.0000000",
-  "primaryphone": "0200000000",
-  "secondaryphone": "0400000000",
-  "otherphone": "0200000000",
-  "fulfilmentstoreid": "1387",
-  "fulfilmentmethod": "",
-  "fulfilmentstorename": "",
-  "deliverymethod": "Courier",
-  "deliverystoreaddressid": "506481094",
-  "deliverystoreaddresscity": "1387 Unanderra LOCAL",
-  "deliverystoreaddresscountry": "Australia",
-  "deliveryaddressstreet1": "1 Darcy Rd",
-  "deliveryaddressstreet2": "PORT KEMBLA NSW",
-  "deliveryaddresssuburb": "PORT KEMBLA",
-  "deliveryinstructions": "",
-  "isservicable": "true",
-  "rewardscardNumber": "",
-  "teammember": "false",
-  "trolleymergestatus": ""
+  "categories": [
+    {
+      "products_href": "",
+      "title": "My Specials",
+      "product_count": "0"
+    },
+    {
+      "products_href": "https://prod.mobile-api.woolworths.com.au/wow/v2/products?type\u003dspecials\u0026filter\u003dbuymoresavemore",
+      "title": "Buy More Save More",
+      "product_count": "265"
+    },
+    {
+      "products_href": "https://prod.mobile-api.woolworths.com.au/wow/v2/products?type\u003dspecials\u0026filter\u003dlowerpriceeveryday",
+      "title": "Lower Price Every Day",
+      "product_count": "2512"
+    },
+    {
+      "products_href": "https://prod.mobile-api.woolworths.com.au/wow/v2/products?type\u003dspecials\u0026filter\u003dallspecials",
+      "title": "All Specials",
+      "product_count": "4055"
+    },
+    {
+      "products_href": "https://prod.mobile-api.woolworths.com.au/wow/v2/products?type\u003dspecials\u0026filter\u003dbrochure",
+      "title": "Catalogue Specials",
+      "product_count": "770"
+    },
+    {
+      "products_href": "https://prod.mobile-api.woolworths.com.au/wow/v2/products?type\u003dspecials\u0026filter\u003dredspot",
+      "title": "Red Spot",
+      "product_count": "0"
+    },
+    {
+      "products_href": "https://prod.mobile-api.woolworths.com.au/wow/v2/products?type\u003dspecials\u0026filter\u003dhalfprice",
+      "title": "Half Price",
+      "product_count": "1117"
+    }
+  ]
 }
