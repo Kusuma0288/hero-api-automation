@@ -10,10 +10,10 @@ import java.util.logging.Logger;
 
 @CucumberOptions(
         strict = false,
-        features = {"/Users/xkgu1/Documents/AutoFix/shop-app-apigee-iris-api-automation/src/test/resources/features/Specials.feature"},
-        plugin = {"json:/Users/xkgu1/Documents/AutoFix/shop-app-apigee-iris-api-automation/target/cucumber-reports/advanced-reports/1.json"},
+        features = {"/Users/njbh1/Documents/Official/woolworths-app-apigee/src/test/resources/features/Homepage.feature"},
+        plugin = {"json:/Users/njbh1/Documents/Official/woolworths-app-apigee/target/cucumber-reports/advanced-reports/2.json"},
         monochrome = false,
-        tags = {"@IN_PROGRESS"},
+        tags = {"@REGRESSION"},
         glue = {"au.com.woolworths.apigee.stepdefinitions"},
         format = {
                         "pretty",

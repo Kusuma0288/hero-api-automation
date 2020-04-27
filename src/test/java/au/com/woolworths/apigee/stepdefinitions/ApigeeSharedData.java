@@ -25,6 +25,5 @@ public class ApigeeSharedData {
     public List<String> stockCode =  new ArrayList<String>();
     public String mode;
     public String edrStatus;
-    public SpecialspageResponse specialspageResponse;
 
 }

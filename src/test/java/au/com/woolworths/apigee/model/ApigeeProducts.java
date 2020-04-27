@@ -33,8 +33,6 @@ public class ApigeeProducts {
     private String specialbadge;
     private String savingsamount;
     private Object stock;
-    private String hasBeenBoughtBefore;
-    private Object footerNew;
 
 
     @Override
@@ -69,8 +67,6 @@ public class ApigeeProducts {
                 "specialbadge=" + specialbadge +
                 "savingsamount=" + savingsamount +
                 "stock=" + stock +
-                "hasBeenBoughtBefore=" + hasBeenBoughtBefore +
-                "footerNew=" + footerNew +
                 +'}';
     }
 
@@ -303,25 +299,5 @@ public class ApigeeProducts {
 
     public void setProductbadge(Object productbadge) {
         this.productbadge = productbadge;
-    }
-
-    public void setPromo(Object promo) {
-        this.promo = promo;
-    }
-
-    public String getHasBeenBoughtBefore() {
-        return hasBeenBoughtBefore;
-    }
-
-    public void setHasBeenBoughtBefore(String hasBeenBoughtBefore) {
-        this.hasBeenBoughtBefore = hasBeenBoughtBefore;
-    }
-
-    public Object getFooterNew() {
-        return footerNew;
-    }
-
-    public void setFooterNew(Object footerNew) {
-        this.footerNew = footerNew;
     }
 }

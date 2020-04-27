@@ -1,5 +1,5 @@
 {
-  "filter": "buymoresavemore",
-  "store": 1248,
-  "type": "specials"
+  "mode": "online",
+  "q": "Apple",
+  "type": "products"
 }
