@@ -88,6 +88,7 @@ public class ApigeeProductsDefinition extends ApigeeProductsHelper {
         //Asserting that at least 1 product has been returned
         Assert.assertNotNull("No products returned",productsSpecial.getProducts());
 
+        //Asserting that name and article of the product is not null
         Assert.assertNotNull("Name of the product is not null",productsSpecial.getProducts()[0].getName());
         Assert.assertNotNull("Article id of the product is not null",productsSpecial.getProducts()[0].getArticle());
 
@@ -103,6 +104,7 @@ public class ApigeeProductsDefinition extends ApigeeProductsHelper {
         //Asserting that at least 1 product has been returned
         Assert.assertNotNull("No products returned",productsSpecial.getProducts());
 
+        //Asserting that name and article of the product is not null
         Assert.assertNotNull("Name of the product is not null",productsSpecial.getProducts()[0].getName());
         Assert.assertNotNull("Article id of the product is not null",productsSpecial.getProducts()[0].getArticle());
 
