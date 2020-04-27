@@ -145,7 +145,7 @@ public class RestInvocationUtil {
             if (isTestMode) {
 
                 response = given().log().all()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                       // .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
@@ -158,7 +158,7 @@ public class RestInvocationUtil {
             }
             else {
                 response = given()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                       // .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
@@ -190,7 +190,7 @@ public class RestInvocationUtil {
 
             if (isTestMode) {
                 response = given().log().all()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                       // .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
@@ -201,7 +201,7 @@ public class RestInvocationUtil {
                         .extract().response();
             } else {
                 response = given()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                       // .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
@@ -230,7 +230,7 @@ public class RestInvocationUtil {
             if (isTestMode) {
                 response = given()
                         .log().all()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                       // .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
@@ -242,7 +242,7 @@ public class RestInvocationUtil {
                         .extract().response();
             } else {
                 response = given()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                       // .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
@@ -275,7 +275,7 @@ public class RestInvocationUtil {
             if (isTestMode) {
                 response = given()
                         .log().all()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                       // .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
@@ -287,7 +287,7 @@ public class RestInvocationUtil {
                         .extract().response();
             } else {
                 response = given()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                       // .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
@@ -316,7 +316,7 @@ public class RestInvocationUtil {
             if (isTestMode) {
                 response = given()
                         .log().all()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                       // .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
@@ -328,7 +328,7 @@ public class RestInvocationUtil {
                         .extract().response();
             } else {
                 response = given()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                       // .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
@@ -358,7 +358,7 @@ public class RestInvocationUtil {
             if (isTestMode) {
                 response = given()
                         .log().all()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                       // .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
@@ -370,7 +370,7 @@ public class RestInvocationUtil {
                         .extract().response();
             } else {
                 response = given()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                      //  .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
@@ -399,7 +399,7 @@ public class RestInvocationUtil {
             if (isTestMode) {
                 response = given()
                         .log().all()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                       // .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
@@ -410,7 +410,7 @@ public class RestInvocationUtil {
                         .extract().response();
             } else {
                 response = given()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                      //  .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
@@ -441,7 +441,7 @@ public class RestInvocationUtil {
             if (isTestMode) {
                 response = given()
                         .log().all()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                      //  .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
@@ -453,7 +453,7 @@ public class RestInvocationUtil {
                         .extract().response();
             } else {
                 response = given()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                      //  .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
@@ -484,7 +484,7 @@ public class RestInvocationUtil {
             if (isTestMode) {
                 response = given()
                         .log().all()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                       // .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
@@ -496,7 +496,7 @@ public class RestInvocationUtil {
                         .extract().response();
             } else {
                 response = given()
-                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                      //  .proxy(TestProperties.get("LOCAL_PROXY"))
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .headers(headers)
