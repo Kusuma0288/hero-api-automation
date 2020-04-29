@@ -78,5 +78,38 @@ public class ApigeeProductsDefinition extends ApigeeProductsHelper {
         Assert.assertEquals("Product does not have liquor disclaimer",productsSpecial.getProducts()[0].getDisclaimer().getLiquor()," ");
     }
 
+    @When("^I make a request to Products API to filter the products based on \"([^\"]*)\" Specials group for store \"([^\"]*)\"$")
+    public void retrieveProductsWithSpecialInStoreMode(int position,String store) throws Throwable {
+
+        String specialsGroup= sharedData.specialspageResponse.getCategories()[position].getProducts_href().replaceAll("(.*)filter=","");
+
+        ApigeeProductsSpecial productsSpecial = iRetreiveSpecialsProductsInStore(specialsGroup,store,sharedData.accessToken);
+
+        //Asserting that at least 1 product has been returned
+        Assert.assertNotNull("No products returned",productsSpecial.getProducts());
+
+        //Asserting that name and article of the product is not null
+        Assert.assertNotNull("Name of the product is not null",productsSpecial.getProducts()[0].getName());
+        Assert.assertNotNull("Article id of the product is not null",productsSpecial.getProducts()[0].getArticle());
+
+    }
+
+    @When("^I make a request to Products API to filter the products based on \"([^\"]*)\" Specials group in \"([^\"]*)\" mode$")
+    public void retrieveProductsWithSpecialOnlinePickupMode(int position,String mode) throws Throwable {
+
+        String specialsGroup= sharedData.specialspageResponse.getCategories()[position].getProducts_href().replaceAll("(.*)filter=","");
+
+        ApigeeProductsSpecial productsSpecial = iRetreiveSpecialsProductsOnlinePickup(specialsGroup,mode,sharedData.accessToken);
+
+        //Asserting that at least 1 product has been returned
+        Assert.assertNotNull("No products returned",productsSpecial.getProducts());
+
+        //Asserting that name and article of the product is not null
+        Assert.assertNotNull("Name of the product is not null",productsSpecial.getProducts()[0].getName());
+        Assert.assertNotNull("Article id of the product is not null",productsSpecial.getProducts()[0].getArticle());
+
+        sharedData.stockCode.add(productsSpecial.getProducts()[0].getArticle());
+
+    }
 
 }

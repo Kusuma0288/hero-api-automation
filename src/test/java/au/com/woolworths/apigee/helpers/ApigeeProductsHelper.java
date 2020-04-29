@@ -100,4 +100,47 @@ public class ApigeeProductsHelper extends BaseHelper {
         ApigeeProductsSpecial productsSpecial = mapper.readValue(responseStr, ApigeeProductsSpecial.class);
         return productsSpecial;
     }
+
+    public ApigeeProductsSpecial iRetreiveSpecialsProductsInStore(String specialsGroup, String store,String accessToken) throws Throwable {
+
+        String endPoint = URLResources.APIGEE_V2_PRODUCTS;
+        Map<String, String> queryParams = new HashMap<String, String>();
+
+        queryParams.put("filter", specialsGroup);
+        queryParams.put("type", "specials");
+        queryParams.put("store",store);
+
+        Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
+        mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken,queryParams);
+        String responseStr = mapWebserviceResponse.get("response");
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+        ApigeeProductsSpecial productsSpecial = mapper.readValue(responseStr, ApigeeProductsSpecial.class);
+        return productsSpecial;
+    }
+
+    public ApigeeProductsSpecial iRetreiveSpecialsProductsOnlinePickup(String specialsGroup, String mode,String accessToken) throws Throwable {
+
+        String endPoint = URLResources.APIGEE_V2_PRODUCTS;
+        Map<String, String> queryParams = new HashMap<String, String>();
+
+        queryParams.put("filter", specialsGroup);
+        queryParams.put("type", "specials");
+        queryParams.put("mode",mode);
+
+        Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
+        mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken,queryParams);
+        String responseStr = mapWebserviceResponse.get("response");
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+        ApigeeProductsSpecial productsSpecial = mapper.readValue(responseStr, ApigeeProductsSpecial.class);
+        return productsSpecial;
+    }
+
 }

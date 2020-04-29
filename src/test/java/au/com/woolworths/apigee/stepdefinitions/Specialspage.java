@@ -22,19 +22,21 @@ public class Specialspage extends SpecialspageHelper {
     }
 
 
-    @Then("^I make a request to Speicals page in \"([^\"]*)\" mode and verify the response$")
+    @Then("^I make a request to Specials page in \"([^\"]*)\" mode and verify the response$")
     public void verifySpecialspage(String shoppingMode) throws Throwable {
         SpecialspageResponse speicalspageResponse = iRetrieveSpecialspageWithOnlineMode(shoppingMode, sharedData.accessToken);
 
+        sharedData.specialspageResponse=speicalspageResponse;
         //Assert Response is not Null
         Assert.assertNotNull("wow/v2/specials ONLINE response has Categories set as NULL",speicalspageResponse.getCategories());
 
     }
 
-    @Then("^I make a request to Speicals page in IN-STORE mode and with store id \"([^\"]*)\" verify the response$")
-    public void iMakeARequestToSpeicalsPageInINSTOREModeAndWithStoreIdVerifyTheResponse(String store) throws Throwable {
+    @Then("^I make a request to Specials page in IN-STORE mode and with store id \"([^\"]*)\" verify the response$")
+    public void iMakeARequestToSpecialsPageInINSTOREModeAndWithStoreIdVerifyTheResponse(String store) throws Throwable {
         SpecialspageResponse speicalspageResponse = iRetrieveSpecialspageWithInStoreMode(store, sharedData.accessToken);
 
+        sharedData.specialspageResponse=speicalspageResponse;
         //Assert Response is not Null
         Assert.assertNotNull("wow/v2/specials IN-STORE response has Categories set as NULL",speicalspageResponse.getCategories());
     }
