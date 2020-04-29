@@ -60,25 +60,28 @@ public class CheckoutDefinition extends CheckoutHelper{
         Assert.assertEquals("Selected window is not set",checkoutResponse.getResults().getSetDeliveryWindow().getHttpStatusCode(), 200);
     }
 
-    @And("^I validate the default selected packaging preference for Delivery is Reusable bags$")
-    public void iValidateDefaultPackagingPreference() throws Throwable{
+    @And("^I validate the default selected packaging preference for Delivery is (.*)$")
+    public void iValidateDefaultPackagingPreference(String packagingPref) throws Throwable{
         CheckoutPackagingPreferencesResponse[] checkoutPackagingPreferences = picoContainer.packagingPreference;
         Arrays.stream(checkoutPackagingPreferences).filter(i -> i.getIsSelected()).findFirst().get().getName();
-        Assert.assertTrue(Arrays.stream(checkoutPackagingPreferences).filter(i -> i.getIsSelected()).findFirst().get().getName().equalsIgnoreCase("Reusable bags"));
+        Assert.assertTrue(Arrays.stream(checkoutPackagingPreferences).filter(i -> i.getIsSelected()).findFirst().get().getName().equalsIgnoreCase(packagingPref));
     }
 
     @Then("^I validate that user is able to select (.*) as packaging preference$")
     public void iSelectPackagingPreference(String packagingPref) throws Throwable{
+        int packagingID;
         if(packagingPref.contains("Reusable")) {
-            CheckoutResponse checkoutResponse = postSetPackagingPreference(34, sharedData.accessToken);
+            packagingID = Arrays.stream(picoContainer.packagingPreference).filter(i->i.getName().contains("Reusable")).findFirst().get().getId();
+            CheckoutResponse checkoutResponse = postSetPackagingPreference(packagingID, sharedData.accessToken);
             Assert.assertEquals("Packaging Preference is not set",checkoutResponse.getResults().getSetPackagingOption().getHttpStatusCode(), 200);
-            Assert.assertTrue("Packaging Preference not set correctly", Arrays.stream(checkoutResponse.getDeliveryPackagingPreferences()).filter(i->  i.getIsSelected()).findFirst().get().getName().equalsIgnoreCase("Reusable bags"));
+            Assert.assertTrue("Packaging Preference not set correctly", Arrays.stream(checkoutResponse.getDeliveryPackagingPreferences()).filter(i->  i.getName().contains(packagingPref)).findFirst().get().getIsSelected());
 
         }
         else if(packagingPref.contains("BYO")){
-            CheckoutResponse checkoutResponse = postSetPackagingPreference(16, sharedData.accessToken);
+            packagingID = Arrays.stream(picoContainer.packagingPreference).filter(i->i.getName().contains("BYO")).findFirst().get().getId();
+            CheckoutResponse checkoutResponse = postSetPackagingPreference(packagingID, sharedData.accessToken);
             Assert.assertEquals("Packaging Preference is not set",checkoutResponse.getResults().getSetPackagingOption().getHttpStatusCode(), 200);
-            Assert.assertTrue("Packaging Preference not set correctly", Arrays.stream(checkoutResponse.getDeliveryPackagingPreferences()).filter(i->  i.getIsSelected()).findFirst().get().getName().equalsIgnoreCase("BYO bags"));
+            Assert.assertTrue("Packaging Preference not set correctly", Arrays.stream(checkoutResponse.getDeliveryPackagingPreferences()).filter(i->  i.getName().contains(packagingPref)).findFirst().get().getIsSelected());
 
         }
     }

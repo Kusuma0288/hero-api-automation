@@ -15,6 +15,7 @@ public class CheckoutWindowSlots {
     private boolean IsAvailable;
     private boolean IsReserved;
     private String Duration;
+    private Object BadgeLabel;
 
 
     @Override
@@ -32,6 +33,7 @@ public class CheckoutWindowSlots {
                 ", IsAvailable=" + IsAvailable +
                 ", IsReserved=" + IsReserved +
                 ", Duration=" + Duration +
+                ", BadgeLabel=" + BadgeLabel +
                 '}';
     }
     public int getId() {return Id; }
@@ -69,4 +71,7 @@ public class CheckoutWindowSlots {
 
     public String getDuration() {return Duration; }
     public void setDuration(String duration) { Duration = duration; }
+
+    public Object getBadgeLabel() {return BadgeLabel; }
+    public void setBadgeLabel(Object badgeLabel) { BadgeLabel = badgeLabel; }
 }
