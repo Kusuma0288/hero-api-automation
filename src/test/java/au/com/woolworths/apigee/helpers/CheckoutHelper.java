@@ -73,4 +73,34 @@ public CheckoutResponse postSetCheckoutWindow(int windowID, String windowDate,St
     checkoutResponse = mapper.readValue(responseStr, CheckoutResponse.class);
     return checkoutResponse;
 }
+
+public CheckoutResponse postSetPackagingPreference(int packagingID, String accessToken) throws Throwable{
+    String requestStr = null;
+    String responseStr = null;
+
+    CheckoutRequest checkoutRequest = new CheckoutRequest();
+    CheckoutResponse checkoutResponse;
+
+    checkoutRequest.setPackaging(packagingID);
+
+    String endPoint = URLResources.APIGEE_CHECKOUT;
+
+    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
+    List<Header> headerList  = new LinkedList<Header>();
+    Header deliveryNow = new Header("x-enable-feature", "DYNAMIC_WINDOWS,DELIVERY_NOW");
+    headerList.add(deliveryNow);
+
+    ObjectMapper mapper = new ObjectMapper();
+    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+    requestStr = mapper.writeValueAsString(checkoutRequest);
+
+    // invoke the service with the framed request
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, accessToken, headerList);
+    responseStr = mapWebserviceResponse.get("response");
+    checkoutResponse = mapper.readValue(responseStr, CheckoutResponse.class);
+    return checkoutResponse;
+
+}
 }

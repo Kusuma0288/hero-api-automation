@@ -6,6 +6,7 @@ public class CheckoutResultsResponse {
     private CheckoutResultsErrorResponse DeliveryPackagingPreferences;
     private CheckoutResultsErrorResponse FulfilmentWindows;
     private CheckoutResultsErrorResponse PickupStores;
+    private CheckoutResultsErrorResponse SetPackagingOption;
 
 
     @Override
@@ -15,7 +16,9 @@ public class CheckoutResultsResponse {
                 ", Order=" + Order +
                 ", DeliveryPackagingPreferences=" + DeliveryPackagingPreferences +
                 ", FulfilmentWindows=" + FulfilmentWindows +
-                ", PickupStores =" + PickupStores + '}';
+                ", PickupStores =" + PickupStores +
+                ", SetPackagingOption =" + SetPackagingOption +
+                '}';
     }
 
     public CheckoutResultsErrorResponse getSetDeliveryWindow() {return SetDeliveryWindow; }
@@ -33,4 +36,6 @@ public class CheckoutResultsResponse {
     public CheckoutResultsErrorResponse getPickupStoress() {return PickupStores; }
     public void setPickupStores(CheckoutResultsErrorResponse pickupStores) { PickupStores = pickupStores; }
 
+    public CheckoutResultsErrorResponse getSetPackagingOption() {return SetPackagingOption; }
+    public void setSetPackagingOption(CheckoutResultsErrorResponse setPackagingOption) { SetPackagingOption = setPackagingOption; }
 }
