@@ -61,10 +61,9 @@ public class CheckoutDefinition extends CheckoutHelper{
     }
 
     @And("^I validate the default selected packaging preference for Delivery is (.*)$")
-    public void iValidateDefaultPackagingPreference(String packagingPref) throws Throwable{
+    public void iValidateDefaultPackagingPreference(String packagingPref) {
         CheckoutPackagingPreferencesResponse[] checkoutPackagingPreferences = picoContainer.packagingPreference;
-        Arrays.stream(checkoutPackagingPreferences).filter(i -> i.getIsSelected()).findFirst().get().getName();
-        Assert.assertTrue(Arrays.stream(checkoutPackagingPreferences).filter(i -> i.getIsSelected()).findFirst().get().getName().equalsIgnoreCase(packagingPref));
+        Assert.assertTrue("Packaging Preference not set correctly", Arrays.stream(checkoutPackagingPreferences).filter(i -> i.getName().contains(packagingPref)).findFirst().get().getIsSelected());
     }
 
     @Then("^I validate that user is able to select (.*) as packaging preference$")

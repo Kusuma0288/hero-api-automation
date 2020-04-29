@@ -17,6 +17,7 @@ public class Apigeev3SearchProducts {
         private String instoreaisleside;
         private String instoreaislebay;
         private Object instoreprice;
+        private Object offers;
         private Object promo;
         private Object footer;
         private Object footerNew;
@@ -51,6 +52,7 @@ public class Apigeev3SearchProducts {
                     "instoreaisleside=" + instoreaisleside +
                     "instoreaislebay=" + instoreaislebay +
                     "instoreprice=" + instoreprice +
+                    "offers=" + offers +
                     "promo=" + promo +
                     "footer" + footer +
                     "footerNew=" + footerNew +
@@ -121,6 +123,10 @@ public class Apigeev3SearchProducts {
         public Object getInstoreprice() {
             return instoreprice;
         }
+
+        public Object getOffers() {
+        return offers;
+    }
 
         public Object getPromotions() {
             return promotions;
@@ -213,6 +219,10 @@ public class Apigeev3SearchProducts {
         public void setInstoreprice(Object instoreprice) {
             this.instoreprice = instoreprice;
         }
+
+        public void setOffers(Object offers) {
+        this.offers = offers;
+    }
 
         public void setPromo(Object promo){this.promo = promo;}
 
