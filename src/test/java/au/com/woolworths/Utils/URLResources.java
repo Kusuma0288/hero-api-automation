@@ -1,6 +1,7 @@
 package au.com.woolworths.Utils;
 
 public final class URLResources {
+    public static final String APIGEE_V2_SIGNUP = "/wow/v2/commerce/signup";
     public static final String APIGEE_V2_GUEST_LOGIN = "/wow/v2/commerce/guest";
     public static final String APIGEE_V2_SHOPPER_LOGIN = "/wow/v2/commerce/token";
     public static final String APIGEE_V2_RETRIEVE_TROLLEY = "wow/v2/trolley";
