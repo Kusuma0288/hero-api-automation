@@ -97,7 +97,18 @@ public class RestInvocationUtil {
         responses.add(response);
         return mapWebServiceResponse;
     }
-
+    
+    public Map<String, String> invokeGetWithoutParam(String endPoint, String authToken) {
+        response = getResponseWithoutParam(endPoint, authToken);
+        String strResponse = response.getBody().asString();
+        mapWebServiceResponse.put("response", strResponse);
+        mapWebServiceResponse.put("statusCode", Integer.toString(response.getStatusCode()));
+        mapWebServiceResponse.put("contentType", (response.contentType()));
+        endPoints.add(endPoint);
+        responses.add(response);
+        return mapWebServiceResponse;
+    }
+    
     public Map<String, String> invokePut(String endPoint, String requestPayload, String authToken) {
         response = putRestWithBody(endPoint, requestPayload, authToken);
         String strResponse = response.getBody().asString();
@@ -514,6 +525,44 @@ public class RestInvocationUtil {
         }
         return response;
     }
-
+    
+    private Response getResponseWithoutParam(String endPoint, String authToken) {
+        try {
+            RestAssured.baseURI = TestProperties.get("BASE_URI");
+            List<Header> headerList = new LinkedList<Header>();
+            headerList.add(new Header("x-api-key",TestProperties.get("x-api-key")));
+            headerList.add(new Header("Authorization","Bearer "+authToken));
+            Headers headers=new Headers(headerList);
+            if (isTestMode) {
+                response = given()
+                        .log().all()
+                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                        .header("Content-Type", "application/json")
+                        .header("Accept", "application/json")
+                        .headers(headers)
+                        .when()
+                        .get(endPoint)
+                        .then()
+                        .log().all()
+                        .extract().response();
+            } else {
+                response = given()
+                        .proxy(TestProperties.get("LOCAL_PROXY"))
+                        .header("Content-Type", "application/json")
+                        .header("Accept", "application/json")
+                        .headers(headers)
+                        .when()
+                        .get(endPoint)
+                        .then()
+                        .extract().response();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            StringWriter errors = new StringWriter();
+            e.printStackTrace(new PrintWriter(errors));
+            Assert.assertTrue(false, "Endpoint::"+endPoint+"Error::"+e.getMessage()+"Stack Trace::"+errors.toString());
+        }
+        return response;
+    }
 
 }
