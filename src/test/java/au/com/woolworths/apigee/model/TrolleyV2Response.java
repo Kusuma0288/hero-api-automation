@@ -3,6 +3,7 @@ package au.com.woolworths.apigee.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.Arrays;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TrolleyV2Response {
@@ -10,7 +11,7 @@ public class TrolleyV2Response {
     private int savingsontrolley;
     private int totalproducts;
     private int deliveryfee;
-    private Object[] items;
+    private List<TrolleyItemsListResponse> items;
     private Object wowrewardssummary;
     private Object loyalty;
     private Object[] errors;
@@ -22,7 +23,7 @@ public class TrolleyV2Response {
                 ", savingsontrolley=" + savingsontrolley +
                 ", totalproducts=" + totalproducts +
                 ", deliveryfee=" + deliveryfee +
-                ", items=" + Arrays.toString(items) +
+                ", items=" + items +
                 ", wowrewardssummary=" + wowrewardssummary +
                 ", loyalty=" + loyalty +
                 ", errors=" + Arrays.toString(errors) +
@@ -61,11 +62,11 @@ public class TrolleyV2Response {
         this.deliveryfee = deliveryfee;
     }
 
-    public Object[] getItems() {
+    public List<TrolleyItemsListResponse> getItems() {
         return items;
     }
 
-    public void setItems(Object[] items) {
+    public void setItems(List<TrolleyItemsListResponse> items) {
         this.items = items;
     }
 

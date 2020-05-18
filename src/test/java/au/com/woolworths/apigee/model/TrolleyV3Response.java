@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TrolleyV3Response {
     private Object Order;
-    private Object Trolley;
+    private TrolleyDetails Trolley;
     private TrolleyResults Results;
 
     @Override
@@ -25,11 +25,11 @@ public class TrolleyV3Response {
         Order = order;
     }
 
-    public Object getTrolley() {
+    public TrolleyDetails getTrolley() {
         return Trolley;
     }
 
-    public void setTrolley(Object trolley) {
+    public void setTrolley(TrolleyDetails trolley) {
         Trolley = trolley;
     }
 
