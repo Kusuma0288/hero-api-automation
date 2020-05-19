@@ -103,9 +103,8 @@ public class TrolleyHelper extends BaseHelper {
         return trolleyResponse;
     }
 
-    public TrolleyV3Response getV3Trolley(String accessToken) throws Throwable {
+    public TrolleyV3Response retriveV3Trolley(String accessToken) throws Throwable{
         String endPoint = URLResources.APIGEE_V3_RETRIEVE_TROLLEY;
-        Map<String, String> queryParams = new HashMap<String, String>();
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
@@ -114,11 +113,61 @@ public class TrolleyHelper extends BaseHelper {
 
         Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
         // invoke the service with the framed request
-        mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+        mapWebserviceResponse = invocationUtil.invokeGetWithoutParam(endPoint, accessToken);
         String responseStr = mapWebserviceResponse.get("response");
 
         TrolleyV3Response trolleyResponse = mapper.readValue(responseStr, TrolleyV3Response.class);
-
         return trolleyResponse;
+    }
+
+    public TrolleyV2Response retriveV2Trolley(String accessToken) throws Throwable{
+        String endPoint = URLResources.APIGEE_V2_RETRIEVE_TROLLEY;
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+
+        Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
+        // invoke the service with the framed request
+        mapWebserviceResponse = invocationUtil.invokeGetWithoutParam(endPoint, accessToken);
+        String responseStr = mapWebserviceResponse.get("response");
+
+        TrolleyV2Response trolleyResponse = mapper.readValue(responseStr, TrolleyV2Response.class);
+        return trolleyResponse;
+    }
+    
+    public TrolleyV3Response delStockCodesFromV3Trolley(String stockCode, String accessToken) throws Throwable {
+        Map<String, String> mapWebserviceResponse;
+        String responseStr = null;
+        String endPoint = URLResources.APIGEE_V3_TROLLEY+stockCode+"/clear";
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+        // invoke the service with the framed request
+      
+        mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint,accessToken);
+        responseStr = mapWebserviceResponse.get("response");
+
+        TrolleyV3Response trolleyV3Response = mapper.readValue(responseStr, TrolleyV3Response.class);
+        return trolleyV3Response;
+    }
+    
+    public TrolleyV2Response delStockCodesFromV2Trolley(String stockCode, String accessToken) throws Throwable {
+        Map<String, String> mapWebserviceResponse;
+        String responseStr = null;
+        String endPoint = URLResources.APIGEE_V2_TROLLEY+stockCode+"/clear";
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+        // invoke the service with the framed request
+      
+        mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint,accessToken);
+        responseStr = mapWebserviceResponse.get("response");
+
+        TrolleyV2Response trolleyV2Response = mapper.readValue(responseStr, TrolleyV2Response.class);
+        return trolleyV2Response;
     }
 }
