@@ -51,6 +51,7 @@ public class TrolleyHelper extends BaseHelper {
         responseStr = mapWebserviceResponse.get("response");
 
         TrolleyV3Response trolleyV3Response = mapper.readValue(responseStr, TrolleyV3Response.class);
+
         return trolleyV3Response;
     }
 
@@ -99,6 +100,25 @@ public class TrolleyHelper extends BaseHelper {
         String responseStr = mapWebserviceResponse.get("response");
 
         TrolleyV2Response trolleyResponse = mapper.readValue(responseStr, TrolleyV2Response.class);
+        return trolleyResponse;
+    }
+
+    public TrolleyV3Response getV3Trolley(String accessToken) throws Throwable {
+        String endPoint = URLResources.APIGEE_V3_RETRIEVE_TROLLEY;
+        Map<String, String> queryParams = new HashMap<String, String>();
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+
+        Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
+        // invoke the service with the framed request
+        mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+        String responseStr = mapWebserviceResponse.get("response");
+
+        TrolleyV3Response trolleyResponse = mapper.readValue(responseStr, TrolleyV3Response.class);
+
         return trolleyResponse;
     }
 }

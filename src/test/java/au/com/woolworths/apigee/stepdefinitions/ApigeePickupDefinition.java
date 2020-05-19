@@ -128,4 +128,10 @@ public class ApigeePickupDefinition extends ApigeeAddressHelper{
         Assert.assertNotNull(searchPostCodeResponse.getStores(), "Pick up stores response is not null");
 
     }
+
+    @When("^I set a pick up store$")
+    public void setPickUpStore() throws Throwable {
+        searchForThePostCode("2204");
+        i_set_the_fulfilmentMethod_to_for_the_store("Pickup", 1);
+    }
 }

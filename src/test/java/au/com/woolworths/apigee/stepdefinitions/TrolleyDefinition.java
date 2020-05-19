@@ -1,6 +1,7 @@
 package au.com.woolworths.apigee.stepdefinitions;
 
 import au.com.woolworths.apigee.context.ApigeeApplicationContext;
+import au.com.woolworths.apigee.helpers.SearchHelper;
 import au.com.woolworths.apigee.helpers.TrolleyHelper;
 import au.com.woolworths.apigee.model.ApigeeSearchInStore;
 import au.com.woolworths.apigee.model.ApigeeV3SearchResponse;
@@ -22,6 +23,7 @@ public class TrolleyDefinition extends TrolleyHelper {
         private final static Logger logger = Logger.getLogger("TrolleyDefinition.class");
         private ApigeeSharedData sharedData;
         private ApigeeContainer picoContainer;
+        private SearchHelper searchHelper = new SearchHelper();
 
         public TrolleyDefinition(ApigeeContainer container) {
             this.sharedData = ApigeeApplicationContext.getSharedData();
@@ -65,6 +67,24 @@ public class TrolleyDefinition extends TrolleyHelper {
 
     }
 
+    @When("^I add some items to the trolley$")
+    public void i_add_some_items_to_the_trolley() throws Throwable {
+        ApigeeV3SearchResponse v3SearchResponse = searchHelper.getProductItems("milk", "pickup", sharedData.accessToken);
+        sharedData.searchProductResponse = v3SearchResponse;
+
+        List<String> stockCodes =  new ArrayList<String>();
+        for (int i=0;i<v3SearchResponse.getProducts().length;i++) {
+            if (v3SearchResponse.getProducts()[i].getIs().isRanged()) {
+                stockCodes.add(v3SearchResponse.getProducts()[i].getArticle().replaceFirst("^0+(?!$)", ""));
+            }
+            if (stockCodes.size() == 1) {
+                break;
+            }
+        }
+
+        TrolleyV3Response trolleyResponse = addStockCodesToTheV3Trolley(stockCodes, 1, true,sharedData.accessToken);
+    }
+
     @And("^I clear the trolley$")
     public void i_clear_the_trolley() throws Throwable{
         TrolleyV2Response trolleyResponse=clearTrolley(sharedData.accessToken);
@@ -81,7 +101,25 @@ public class TrolleyDefinition extends TrolleyHelper {
                 ,trolleyResponse.getTotalproducts()>0);
     }
 
+    @Then("^I should be able to successfully view the items in my trolley$")
+    public void canViewItemsInTrolley() throws Throwable{
+        TrolleyV3Response trolleyResponse = getV3Trolley(sharedData.accessToken);
 
-
-
+        System.out.println("****************************************************");
+        System.out.println("****************************************************");
+        System.out.println("****************************************************");
+        System.out.println(trolleyResponse.getTrolley());
+        Assert.assertTrue("Error in Trolley Results",trolleyResponse.getResults().getTrolley().getHttpStatusCode() == 200);
+//        Assert.assertTrue("Products is not added as expected:"+availableProducts,trolleyResponse.getTotalproducts() == availableProducts);
+//        Assert.assertTrue("Products is not added as expected and trolley product count:" + trolleyResponse.getTotalproducts(),trolleyResponse.getTotalproducts()>0);
+//        Assert.assertEquals("Some items are there in trolley", 0,trolleyResponse.getTotaltrolleyprice());
+        System.out.println("****************************************************");
+        System.out.println("****************************************************");
+        System.out.println("****************************************************");
+        System.out.println(trolleyResponse.getTotaltrolleyprice());
+        System.out.println("****************************************************");
+        System.out.println("****************************************************");
+        System.out.println("****************************************************");
+        System.out.println(trolleyResponse.getItems());
+    }
 }
