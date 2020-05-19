@@ -198,6 +198,7 @@
                     <configLocation>checkstyle.xml</configLocation>
                     <includeTestResources>true</includeTestResources>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <violationSeverity>warning</violationSeverity>
                 </configuration>
             </plugin>
         </plugins>
