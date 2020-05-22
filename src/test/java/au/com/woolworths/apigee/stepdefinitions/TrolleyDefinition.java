@@ -14,9 +14,7 @@ import cucumber.api.java.en.When;
 import junit.framework.Assert;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class TrolleyDefinition extends TrolleyHelper {
@@ -24,6 +22,8 @@ public class TrolleyDefinition extends TrolleyHelper {
         private ApigeeSharedData sharedData;
         private ApigeeContainer picoContainer;
         private SearchHelper searchHelper = new SearchHelper();
+        private double expectedTotalPrice = 0;
+        private List<String> productNames = new ArrayList();
 
         public TrolleyDefinition(ApigeeContainer container) {
             this.sharedData = ApigeeApplicationContext.getSharedData();
@@ -67,22 +67,37 @@ public class TrolleyDefinition extends TrolleyHelper {
 
     }
 
-    @When("^I add some items to the trolley$")
-    public void i_add_some_items_to_the_trolley() throws Throwable {
-        ApigeeV3SearchResponse v3SearchResponse = searchHelper.getProductItems("milk", "pickup", sharedData.accessToken);
-        sharedData.searchProductResponse = v3SearchResponse;
+    @When("^I add some items to the V3 trolley$")
+    public void i_add_some_items_to_the_v3_trolley() throws Throwable {
+        Map<String, Integer> productsToAdd = new HashMap<>();
 
-        List<String> stockCodes =  new ArrayList<String>();
-        for (int i=0;i<v3SearchResponse.getProducts().length;i++) {
-            if (v3SearchResponse.getProducts()[i].getIs().isRanged()) {
-                stockCodes.add(v3SearchResponse.getProducts()[i].getArticle().replaceFirst("^0+(?!$)", ""));
+        productsToAdd.put("milk", 2);
+        productsToAdd.put("bread", 1);
+        productsToAdd.put("pasta", 2);
+
+        for (String product : productsToAdd.keySet()) {
+            ApigeeV3SearchResponse v3SearchResponse = searchHelper.getProductItems(product, "pickup", sharedData.accessToken);
+            sharedData.searchProductResponse = v3SearchResponse;
+
+            List<String> stockCodes =  new ArrayList<String>();
+
+            for (int i = 0; i < v3SearchResponse.getProducts().length; i++) {
+                if (v3SearchResponse.getProducts()[i].getIs().isRanged()) {
+                    stockCodes.add(v3SearchResponse.getProducts()[i].getArticle().replaceFirst("^0+(?!$)", ""));
+                }
+                if (stockCodes.size() == 1) {
+                    break;
+                }
             }
-            if (stockCodes.size() == 1) {
-                break;
-            }
+
+            // Update the productNames list with the products that have been added so we can verify later
+            String updatedProductName = v3SearchResponse.getProducts()[0].getDescription();
+            productNames.add(updatedProductName);
+
+            // Update the expected price so we can verify later
+            expectedTotalPrice = expectedTotalPrice + (productsToAdd.get(product) * v3SearchResponse.getProducts()[0].getInstoreprice().getPriceGst());
+            addStockCodesToTheV3Trolley(stockCodes, productsToAdd.get(product), true,sharedData.accessToken);
         }
-
-        TrolleyV3Response trolleyResponse = addStockCodesToTheV3Trolley(stockCodes, 1, true,sharedData.accessToken);
     }
 
     @And("^I clear the trolley$")
@@ -161,26 +176,22 @@ public class TrolleyDefinition extends TrolleyHelper {
     	
     }
 
-    @Then("^I should be able to successfully view the items in my trolley$")
-    public void canViewItemsInTrolley() throws Throwable{
+    @Then("^I should be able to successfully view all the items in my V3 trolley$")
+    public void canViewAllItemsInTrolley() throws Throwable{
         TrolleyV3Response trolleyResponse = retriveV3Trolley(sharedData.accessToken);
 
-        System.out.println("****************************************************");
-        System.out.println("****************************************************");
-        System.out.println("****************************************************");
-        System.out.println(trolleyResponse.getTrolley());
         Assert.assertTrue("Error in Trolley Results",trolleyResponse.getResults().getTrolley().getHttpStatusCode() == 200);
-//        Assert.assertTrue("Products is not added as expected:"+availableProducts,trolleyResponse.getTotalproducts() == availableProducts);
-//        Assert.assertTrue("Products is not added as expected and trolley product count:" + trolleyResponse.getTotalproducts(),trolleyResponse.getTotalproducts()>0);
-//        Assert.assertEquals("Some items are there in trolley", 0,trolleyResponse.getTotaltrolleyprice());
-        System.out.println("****************************************************");
-        System.out.println("****************************************************");
-        System.out.println("****************************************************");
-        System.out.println(trolleyResponse.getTrolley().getSubtotalInclDelivery());
-        System.out.println(trolleyResponse.getTrolley().getTotalProducts());
-        System.out.println("****************************************************");
-        System.out.println("****************************************************");
-        System.out.println("****************************************************");
-        System.out.println(trolleyResponse.getOrder());
+        Assert.assertTrue("The number of products in the trolley is incorrect",trolleyResponse.getTrolley().getTotalProducts() == productNames.size());
+        Assert.assertTrue("Subtotal price is not correct", trolleyResponse.getTrolley().getSubtotalInclDelivery() == (expectedTotalPrice + trolleyResponse.getTrolley().getDeliveryFee()));
+
+        // Reverse the list first
+        Collections.reverse(productNames);
+
+        // Verify all the products are correct
+        for (String productName : productNames) {
+            String description = trolleyResponse.getTrolley().getTrolleyitemsListResp().get(productNames.indexOf(productName)).getDescription();
+
+            Assert.assertTrue("Product description is not correct (Expected - " + productName + ", but got - " + description, productName.equals(description));
+        }
     }
 }
