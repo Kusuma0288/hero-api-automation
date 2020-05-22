@@ -40,9 +40,8 @@ Feature: Verify Apigee Trolley functions
     When I search for the product Milk in pickup mode and store response
     And I add the 3 available products with 1 each from the store to the V2 trolley
     Then I remove 5 product from V2 trolley and verify it is deleted
-
-  @IN_PROGRESS
-  Scenario: Verify get items from V3 trolley
+    
+  Scenario: Add multiple products to the trolley and then verify the V3 trolley is as expected
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME7"
     When connection from user to apigee endpoint happens
     And I clear the trolley
