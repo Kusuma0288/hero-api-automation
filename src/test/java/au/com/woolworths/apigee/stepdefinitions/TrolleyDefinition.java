@@ -82,6 +82,66 @@ public class TrolleyDefinition extends TrolleyHelper {
     }
 
 
+    @Then("^I remove (.*) product from V3 trolley and verify it is deleted$")
+    public void i_remove_product_from_V3_trolley_and_verify_it_is_deleted(int itemsToBeDeleted) throws Throwable {
+    	
+    	TrolleyV3Response trolleyResponse = retriveV3Trolley(sharedData.accessToken); //Get the latest items from trolley.
+    	int prodCountBefore = trolleyResponse.getTrolley().getTotalProducts(); //Check if the trolley is null
+    	Assert.assertTrue("Trolley is null. There are no products in Trolley for Deletion",prodCountBefore!=0);
+    	/*  
+		 * Go through the list of items to be deleted. Ignores the number, if the provided count of items to be deleted is more than available items.
+		 *  for e.g.  if available items is 5 and user has provided 6 for deletion. It will ignore 6th item and will delete only 5 items.
+	 	 */
+    	for(int i=0;i<itemsToBeDeleted &&i<trolleyResponse.getTrolley().getTotalProducts();i++) 
+    	{  
+       		trolleyResponse = retriveV3Trolley(sharedData.accessToken); //Get the latest items from trolley.
+    		prodCountBefore = trolleyResponse.getTrolley().getTotalProducts();	
+    		String stockCode = trolleyResponse.getTrolley().getTrolleyitemsListResp().get(0).getArticle();
+    		trolleyResponse = delStockCodesFromV3Trolley(stockCode,sharedData.accessToken);
+    		int prodCountAfter = trolleyResponse.getTrolley().getTotalProducts(); 
+    		for (int j = 0; j < trolleyResponse.getTrolley().getTotalProducts(); j++) 
+    		{
+                //Verify the deleted item is not present in trolley
+                Assert.assertTrue( "StockCode "+stockCode+" not deleted from trolley. Error in deletion",!trolleyResponse.getTrolley().getTrolleyitemsListResp().get(j).getArticle().equals(stockCode));
+ 
+    		}
+    		//Verify item count after  deletion
+        	Assert.assertTrue("Error in item deletion",prodCountAfter == (prodCountBefore-1));	
+    		
+    	}
+    	
+    }
+        
+    @Then("^I remove (.*) product from V2 trolley and verify it is deleted$")
+    public void i_remove_product_from_V2_trolley_and_verify_it_is_deleted(int itemsToBeDeleted) throws Throwable {
+    
+    	TrolleyV2Response trolleyResponse = retriveV2Trolley(sharedData.accessToken); //Get the latest items from trolley. 	
+    	int prodCountBefore = trolleyResponse.getTotalproducts(); //Check if the trolley is null
+    	Assert.assertTrue("Trolley is null. There are no products in Trolley for Deletion",prodCountBefore!=0);
+    	/*
+    	 *  Go through the list of items to be deleted. Ignores the number, if the provided count of items to be deleted is more than available items.
+		 *	for e.g.  if available items is 5 and user has provided 6 for deletion. It will ignore 6th item and will delete only 5 items.
+	 	 */
+    	for(int i=0;i<itemsToBeDeleted && i<trolleyResponse.getTotalproducts();i++) 
+    	{  
+    		trolleyResponse = retriveV2Trolley(sharedData.accessToken); //Get the latest items from trolley.
+    		prodCountBefore = trolleyResponse.getTotalproducts();	
+    		String stockCode=trolleyResponse.getItems().get(0).getArticle();
+    		trolleyResponse = delStockCodesFromV2Trolley(stockCode,sharedData.accessToken);
+    		int prodCountAfter = trolleyResponse.getTotalproducts();
+    		for (int j = 0; j < trolleyResponse.getTotalproducts(); j++) 
+    		{
+            //Verify the deleted item is not present in trolley
+                Assert.assertTrue( "StockCode "+stockCode+" not deleted from trolley. Error in deletion",!trolleyResponse.getItems().get(j).getArticle().equals(stockCode));
+               
+    		}
+    		//Verify item count after  deletion
+        	Assert.assertTrue("Error in item deletion",prodCountAfter == (prodCountBefore-1));	
+    		
+    	}
+    	
+    }
+
 
 
 }
