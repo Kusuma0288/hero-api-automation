@@ -13,12 +13,13 @@ public class AddProductsToListRequest {
 
     @Override
     public String toString() {
-        return "ApigeeListRequest{" +
+        return "AddProductsToListRequest{" +
                 "articleId=" + articleId +
                 ", quantity='" + quantity + '\'' +
                 ", lastsynced=" + lastsynced +
                 ", checked=" + checked +
                 ", timestamp=" + timestamp +
+                ", apigeeListDetailsResponse=" + apigeeListDetailsResponse +
                 '}';
     }
 
@@ -60,6 +61,14 @@ public class AddProductsToListRequest {
 
 	public void setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
+	}
+
+	public ApigeeListDetailsResponse getApigeeListDetailsResponse() {
+		return apigeeListDetailsResponse;
+	}
+
+	public void setApigeeListDetailsResponse(ApigeeListDetailsResponse apigeeListDetailsResponse) {
+		this.apigeeListDetailsResponse = apigeeListDetailsResponse;
 	}
 
     

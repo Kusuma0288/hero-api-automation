@@ -13,7 +13,7 @@ public class ApigeeProductsInList {
 
     @Override
     public String toString() {
-        return "ApigeeFreeTextItem{" +
+        return "ApigeeProductsInList{" +
                 "id=" + id +
                 ", articleId='" + articleId + '\'' +
                 ", quantity=" + quantity +
