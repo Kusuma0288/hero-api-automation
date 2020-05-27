@@ -129,9 +129,9 @@ public class ApigeePickupDefinition extends ApigeeAddressHelper{
 
     }
 
-    @When("^I set a pick up store$")
-    public void setPickUpStore() throws Throwable {
-        searchForThePostCode("2204");
+    @When("^I set a pick up store using post code(.*)$")
+    public void setPickUpStoreUsingPostCode(String postCode) throws Throwable {
+        searchForThePostCode(postCode);
         i_set_the_fulfilmentMethod_to_for_the_store("Pickup", 1);
     }
 }

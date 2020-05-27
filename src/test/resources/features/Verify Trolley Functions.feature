@@ -23,6 +23,6 @@ Feature: Verify Apigee Trolley functions
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME7"
     When connection from user to apigee endpoint happens
     And I clear the trolley
-    And I set a pick up store
-    And I add some items to the V3 trolley
+    And I set a pick up store using post code 2204
+    And I add some items to the V3 trolley for pickup
     Then I should be able to successfully view all the items in my V3 trolley

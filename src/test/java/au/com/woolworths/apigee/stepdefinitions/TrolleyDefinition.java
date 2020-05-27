@@ -67,8 +67,8 @@ public class TrolleyDefinition extends TrolleyHelper {
 
     }
 
-    @When("^I add some items to the V3 trolley$")
-    public void i_add_some_items_to_the_v3_trolley() throws Throwable {
+    @When("^I add some items to the V3 trolley for (.*)$")
+    public void iAddSomeItemsToTheV3Trolley(String mode) throws Throwable {
         Map<String, Integer> productsToAdd = new HashMap<>();
 
         productsToAdd.put("milk", 2);
@@ -76,7 +76,7 @@ public class TrolleyDefinition extends TrolleyHelper {
         productsToAdd.put("pasta", 2);
 
         for (String product : productsToAdd.keySet()) {
-            ApigeeV3SearchResponse v3SearchResponse = searchHelper.getProductItems(product, "pickup", sharedData.accessToken);
+            ApigeeV3SearchResponse v3SearchResponse = searchHelper.getProductItems(product, mode, sharedData.accessToken);
             sharedData.searchProductResponse = v3SearchResponse;
 
             List<String> stockCodes =  new ArrayList<String>();
