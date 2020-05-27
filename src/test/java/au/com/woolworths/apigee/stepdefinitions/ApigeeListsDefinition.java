@@ -1,16 +1,24 @@
 package au.com.woolworths.apigee.stepdefinitions;
 
+import au.com.woolworths.apigee.helpers.TrolleyHelper;
 import au.com.woolworths.Utils.Utilities;
 import au.com.woolworths.apigee.context.ApigeeApplicationContext;
 import au.com.woolworths.apigee.helpers.ApigeeListHelper;
+import au.com.woolworths.apigee.model.AddProdListDetailsResponse;
+import au.com.woolworths.apigee.model.AddProductsToListResponse;
 import au.com.woolworths.apigee.model.ApigeeGetListResponse;
 import au.com.woolworths.apigee.model.ApigeeListDetailsResponse;
 import au.com.woolworths.apigee.model.ApigeeListResponse;
 import au.com.woolworths.apigee.model.ApigeeSwitchDefaultListResponse;
+import au.com.woolworths.apigee.model.ApigeeV3SearchResponse;
+import au.com.woolworths.apigee.model.TrolleyV2Response;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class ApigeeListsDefinition extends ApigeeListHelper {
@@ -197,6 +205,84 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
                 Assert.assertTrue(listId + " (List ID) Could not be deleted",deleteListResponse.getUpdate().getId().equals(listId));
                 Assert.assertTrue(listName + " (List Name) Could not be deleted",deleteListResponse.getUpdate().getTitle().equals(listName));
             }
-        }
+            
+        }        
+
+
     }
+    
+    @When("^I add (.*) available products with \"([^\"]*)\" each from the store to (.*) list \"([^\"]*)\"$")
+    public void i_add_available_products_with_each_from_the_store_to_list(int prodQty, int listQty, String version, String listName) throws Throwable {
+    	ApigeeV3SearchResponse searchResponse = sharedData.searchProductResponse;
+        List<String> stockCodes =  new ArrayList<String>();
+        for (int i=0;i<searchResponse.getProducts().length;i++) {
+            if (searchResponse.getProducts()[i].getIs().isRanged()) {
+            	AddProductsToListResponse addProductsToListResponse = addItemsToTheList(searchResponse.getProducts()[i].getArticle(), listQty, picoContainer.currentListId, true,sharedData.accessToken,version);
+                 stockCodes.add(searchResponse.getProducts()[i].getArticle().replaceFirst("^0+(?!$)", ""));
+            }
+            if (stockCodes.size() == prodQty) {
+                break;
+            }
+            Assert.assertTrue("There are no products available in Store",stockCodes.size()!=0);
+            ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName,sharedData.accessToken)),sharedData.accessToken);
+            Assert.assertTrue("Error: Invalid number of items in the list",prodQty != listDetails.getCount());
+              		
+        }
+        Assert.assertTrue("There are no products available in Store",stockCodes.size()!=0);
+        
+    }
+
+    @Then("^I verify that the items are saved to list \"([^\"]*)\" and is unchecked$")
+    public void i_verify_that_the_items_are_saved_to_list_and_is_unchecked(String listName) throws Throwable {
+    	ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName,sharedData.accessToken)),sharedData.accessToken);
+        Assert.assertTrue("Error:There are no products in the list",listDetails.getProducts().length >= 1);
+    
+        for (int i=0;i<listDetails.getProducts().length;i++) {
+           
+                Assert.assertTrue("Items(" +listDetails.getProducts()[i].getArticleId() +") is checked",listDetails.getProducts()[i].isChecked());
+       
+        }
+
+    }
+    
+
+    @Then("^I select the quantity \"([^\"]*)\" from list \"([^\"]*)\" and add the item to the cart$")
+    public void i_select_the_quantity_and_add_the_item_to_the_cart(int quantity,String listName) throws Throwable {
+    	ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName,sharedData.accessToken)),sharedData.accessToken);
+    	TrolleyHelper trolleyHelper = new TrolleyHelper();
+    	List<String> stockCodes =  new ArrayList<String>();
+    	for (int i=0;i<listDetails.getProducts().length;i++) { 
+    		stockCodes.add(String.valueOf(listDetails.getProducts()[i].getArticleId()));
+    	}
+    	
+    	TrolleyV2Response trolleyResponse = trolleyHelper.addStockCodesToTheV2Trolley(stockCodes, quantity,true,sharedData.accessToken);
+         
+         Assert.assertTrue("Products is not added as expected:"+listDetails.getProducts().length,trolleyResponse.getTotalproducts() == listDetails.getProducts().length);
+         sharedData.trolleyV2Response = trolleyResponse;
+    }
+
+    @Then("^I verify that the correct items with quantity from list \"([^\"]*)\" are added to the cart$")
+    public void i_verify_that_the_correct_items_with_quantity_are_added_to_the_cart(String listName) throws Throwable {
+    	ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName,sharedData.accessToken)),sharedData.accessToken);
+    	TrolleyV2Response trolleyResponse = sharedData.trolleyV2Response;
+    	List<String> trolleyStockCodes =  new ArrayList<String>();
+    	List<String> listStockCodes =  new ArrayList<String>();
+    	
+    	for(int i=0; i<listDetails.getProducts().length;i++) {
+    		
+    		listStockCodes.add(String.valueOf(listDetails.getProducts()[i].getArticleId()));    	
+    		}
+    	for(int i=0; i<trolleyResponse.getItems().size();i++) {
+    		
+    		trolleyStockCodes.add(trolleyResponse.getItems().get(i).getArticle().replaceFirst("^0+(?!$)", ""));    	
+    		}
+    	
+    	Assert.assertTrue("Error:Item not found: Items present in the cart doesn't exsist in list",trolleyStockCodes.containsAll(listStockCodes));
+    	
+    }
+    
+    
+    
+    
+    
 }

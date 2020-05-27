@@ -47,4 +47,24 @@ Feature: Verify Apigee List scenarios
     Examples:
       | address    | List Name      | Free Text Item |
       | Darcy Road | AutoList Exact | Coke           |
+      
+      
+    Scenario Outline: Validate list to trolley merge scenario for a logged in user
+	 Given user continue to connect to apigee with login username as "SHOPPER_USERNAME7"
+	 When connection from user to apigee endpoint happens
+	 And I search for the pickup stores in the postcode 2204
+	 And I set the fulfilmentMethod to "<Fulfillment>" for the 1 store
+	 And I clear ALL the list for the user
+	 And I clear the trolley
+   	 And I create a list with exact list name as "<List Name>"
+	 And I search for the product Milk in pickup mode and store response
+	 And I add 2 available products with "<Quantity>" each from the store to "<Version>" list "<List Name>"
+	 Then I verify that the items are saved to list "<List Name>" and is unchecked
+	 And I select the quantity "<Quantity>" from list "<List Name>" and add the item to the cart
+	 Then I verify that the correct items with quantity from list "<List Name>" are added to the cart
+	 Examples:
+	   | Quantity  | List Name      | Fulfillment | Product | Version |
+	   | 1	   	   | AutoList Exact | Pickup      | Milk    | V2      |
+	   | 1	   	   | AutoList Exact | Pickup      | Bread	| V3      |
+   
 

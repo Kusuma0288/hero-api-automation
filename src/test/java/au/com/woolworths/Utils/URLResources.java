@@ -20,6 +20,7 @@ public final class URLResources {
     public static final String APIGEE_V2_PRODUCTS = "/wow/v2/products";
     public static final String APIGEE_V2_LISTS = "/wow/v2/lists";
     public static final String APIGEE_V2_UPDATE_LIST_FREETEXT = "/wow/v2/lists/{list_id}/items";
+    public static final String APIGEE_V3_ADD_PROD_TO_LIST = "/wow/v3/lists/{list_id}/items";
     public static final String APIGEE_V2_GET_LIST_BY_ID = "wow/v2/lists/{list_id}";
     public static final String APIGEE_V2_LIST_ITEMS = "wow/v2/lists/{list_id}/items";
     public static final String HERMES_V1_HOMEPAGE = "/hermes/iris/v1/pages/home";
