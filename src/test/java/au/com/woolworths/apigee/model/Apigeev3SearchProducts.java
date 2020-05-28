@@ -16,7 +16,7 @@ public class Apigeev3SearchProducts {
         private int instoreaisleid;
         private String instoreaisleside;
         private String instoreaislebay;
-        private Object instoreprice;
+        private InStorePrice instoreprice;
         private Object offers;
         private Object promo;
         private Object footer;
@@ -120,7 +120,7 @@ public class Apigeev3SearchProducts {
             return instoreaislebay;
         }
 
-        public Object getInstoreprice() {
+        public InStorePrice getInstoreprice() {
             return instoreprice;
         }
 
@@ -216,7 +216,7 @@ public class Apigeev3SearchProducts {
             this.instoreaislebay = instoreaislebay;
         }
 
-        public void setInstoreprice(Object instoreprice) {
+        public void setInstoreprice(InStorePrice instoreprice) {
             this.instoreprice = instoreprice;
         }
 
