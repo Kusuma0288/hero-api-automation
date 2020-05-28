@@ -268,13 +268,11 @@ public class ApigeeListHelper extends BaseHelper {
 
     }
     
-    public AddProductsToListResponse addItemsToTheList(String articleId,int quantity, String listId, boolean checkItem, String accessToken,String version) throws Throwable{
-    	
-
+    public AddProductsToListResponse addItemsToTheList(String articleId,int quantity, String listId, boolean checkItem, String accessToken,String version) throws Throwable{ 	
         Map<String, String> mapWebserviceResponse;
-        String requestStr = null;
-        String responseStr = null;
-        ObjectMapper mapper;
+        String requestStr = "";
+        String responseStr = "";
+        
         AddProductsToListRequest apigeeListRequest = new AddProductsToListRequest();
         AddProductsToListResponse response;
         apigeeListRequest.setArticleId(articleId);
@@ -288,11 +286,11 @@ public class ApigeeListHelper extends BaseHelper {
         	endPoint = URLResources.APIGEE_V2_UPDATE_LIST_FREETEXT;
         	endPoint = endPoint.replace("{list_id}",listId);
         }else {
-        	endPoint = URLResources.APIGEE_V3_ADD_PROD_TO_LIST;
+        	endPoint = URLResources.APIGEE_V3_LIST_ITEMS;
         	endPoint = endPoint.replace("{list_id}",listId);
         }
    
-        mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
@@ -306,16 +304,22 @@ public class ApigeeListHelper extends BaseHelper {
 
     }
 
-    public ApigeeListDetailsResponse getListDetails(String listId, String accessToken) throws Throwable {
+    public ApigeeListDetailsResponse getListDetails(String listId, String accessToken,String version) throws Throwable {
         Map<String, String> mapWebserviceResponse;
         String responseStr = null;
         Map<String, String> queryParams = new HashMap<String, String>();
 
         ApigeeListDetailsResponse response;
-
-        String endPoint = URLResources.APIGEE_V2_GET_LIST_BY_ID;
-        endPoint = endPoint.replace("{list_id}",listId);
-
+        String endPoint;
+        if (version.equals("V2")) {
+        
+        	endPoint = URLResources.APIGEE_V2_GET_LIST_BY_ID;
+        	endPoint = endPoint.replace("{list_id}",listId);
+        }else {
+        	endPoint = URLResources.APIGEE_V3_LISTS;
+        	endPoint = endPoint.concat("/"+listId);
+        }
+        
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);

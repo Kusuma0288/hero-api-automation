@@ -12,6 +12,7 @@ import au.com.woolworths.apigee.model.ApigeeListResponse;
 import au.com.woolworths.apigee.model.ApigeeSwitchDefaultListResponse;
 import au.com.woolworths.apigee.model.ApigeeV3SearchResponse;
 import au.com.woolworths.apigee.model.TrolleyV2Response;
+import au.com.woolworths.apigee.model.TrolleyV3Response;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -68,7 +69,7 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
 
     @When("^user verifies the free text item \"([^\"]*)\" is added to list$")
     public void user_verifies_the_free_text_item_is_added_to_list(String freeTextItem) throws Throwable {
-        ApigeeListDetailsResponse listDetails = getListDetails(picoContainer.currentListId,sharedData.accessToken);
+        ApigeeListDetailsResponse listDetails = getListDetails(picoContainer.currentListId,sharedData.accessToken,"V2");
         Assert.assertTrue("List is empty",listDetails.getCount() >= 1);
         if (listDetails.getFreeTextItems().length==1) {
             Assert.assertTrue("Text item name is not matching with expected:"+freeTextItem,listDetails.getFreeTextItems()[0].getText().equalsIgnoreCase(freeTextItem));
@@ -79,7 +80,7 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
 
     @When("^user verifies the free text item \"([^\"]*)\" is added to list and is checked$")
     public void user_verifies_the_free_text_item_is_added_to_list_and_is_checked(String freeText) throws Throwable {
-        ApigeeListDetailsResponse listDetails = getListDetails(picoContainer.currentListId,sharedData.accessToken);
+        ApigeeListDetailsResponse listDetails = getListDetails(picoContainer.currentListId,sharedData.accessToken,"V2");
         Assert.assertTrue("Free Text item is empty",listDetails.getFreeTextItems().length >= 1);
         boolean foundFreeText = false;
         for (int i=0;i<listDetails.getFreeTextItems().length;i++) {
@@ -93,7 +94,7 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
 
     @And("^user verifies the free text item \"([^\"]*)\" is added to \"([^\"]*)\" is checked$")
     public void user_verifies_the_free_text_item_is_added_to_is_checked(String freeText, String listName) throws Throwable {
-        ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName,sharedData.accessToken)),sharedData.accessToken);
+        ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName,sharedData.accessToken)),sharedData.accessToken,"V2");
         Assert.assertTrue("Free Text item is empty",listDetails.getFreeTextItems().length >= 1);
         boolean foundFreeText = false;
         for (int i=0;i<listDetails.getFreeTextItems().length;i++) {
@@ -107,7 +108,7 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
 
     @And("^user verifies the free text item \"([^\"]*)\" is added to \"([^\"]*)\" is unchecked$")
     public void user_verifies_the_free_text_item_is_added_to_is_unchecked(String freeText, String listName) throws Throwable {
-        ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName,sharedData.accessToken)),sharedData.accessToken);
+        ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName,sharedData.accessToken)),sharedData.accessToken,"V2");
         Assert.assertTrue("Free Text item is empty",listDetails.getFreeTextItems().length >= 1);
         boolean foundFreeText = false;
         for (int i=0;i<listDetails.getFreeTextItems().length;i++) {
@@ -139,7 +140,7 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
 
     @When("^user deletes free text item \"([^\"]*)\" from the new list$")
     public void user_deletes_free_text_item_from_the_new_list(String freeTextItem) throws Throwable {
-        ApigeeListDetailsResponse listDetails = getListDetails(picoContainer.currentListId,sharedData.accessToken);
+        ApigeeListDetailsResponse listDetails = getListDetails(picoContainer.currentListId,sharedData.accessToken,"V2");
         boolean foundFreeTextItem=false;
         String freeTextId ="";
         int countOfFreeTextItems = listDetails.getFreeTextItems().length;
@@ -217,53 +218,53 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
         List<String> stockCodes =  new ArrayList<String>();
         for (int i=0;i<searchResponse.getProducts().length;i++) {
             if (searchResponse.getProducts()[i].getIs().isRanged()) {
-            	AddProductsToListResponse addProductsToListResponse = addItemsToTheList(searchResponse.getProducts()[i].getArticle(), listQty, picoContainer.currentListId, true,sharedData.accessToken,version);
-                 stockCodes.add(searchResponse.getProducts()[i].getArticle().replaceFirst("^0+(?!$)", ""));
+            	addItemsToTheList(searchResponse.getProducts()[i].getArticle(), listQty, picoContainer.currentListId, true,sharedData.accessToken,version);
+                stockCodes.add(searchResponse.getProducts()[i].getArticle().replaceFirst("^0+(?!$)", ""));
+
             }
             if (stockCodes.size() == prodQty) {
                 break;
-            }
-            Assert.assertTrue("There are no products available in Store",stockCodes.size()!=0);
-            ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName,sharedData.accessToken)),sharedData.accessToken);
-            Assert.assertTrue("Error: Invalid number of items in the list",prodQty != listDetails.getCount());
-              		
+            }                   		
         }
-        Assert.assertTrue("There are no products available in Store",stockCodes.size()!=0);
         
+        Assert.assertTrue("There are no products available in Store",stockCodes.size()!=0);
+        ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName,sharedData.accessToken)),sharedData.accessToken,version);
+        Assert.assertTrue("Error: Invalid number of items in the list",prodQty == listDetails.getCount());
     }
 
-    @Then("^I verify that the items are saved to list \"([^\"]*)\" and is unchecked$")
-    public void i_verify_that_the_items_are_saved_to_list_and_is_unchecked(String listName) throws Throwable {
-    	ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName,sharedData.accessToken)),sharedData.accessToken);
-        Assert.assertTrue("Error:There are no products in the list",listDetails.getProducts().length >= 1);
-    
+    @Then("^I verify that the items saved to \"([^\"]*)\" list \"([^\"]*)\" are unchecked$")
+    public void i_verify_that_the_items_saved_to_list_are_unchecked(String version, String listName) throws Throwable {
+    	ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName,sharedData.accessToken)),sharedData.accessToken,version);
+        Assert.assertTrue("Error:There are no products in the list",listDetails.getProducts().length >= 1);  
         for (int i=0;i<listDetails.getProducts().length;i++) {
-           
-                Assert.assertTrue("Items(" +listDetails.getProducts()[i].getArticleId() +") is checked",listDetails.getProducts()[i].isChecked());
-       
+        	
+            Assert.assertTrue("Items(" +listDetails.getProducts()[i].getArticleId() +") is checked",listDetails.getProducts()[i].isChecked());   
         }
 
     }
-    
-
-    @Then("^I select the quantity \"([^\"]*)\" from list \"([^\"]*)\" and add the item to the cart$")
-    public void i_select_the_quantity_and_add_the_item_to_the_cart(int quantity,String listName) throws Throwable {
-    	ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName,sharedData.accessToken)),sharedData.accessToken);
+    @Then("^I add items to cart after selecting \"([^\"]*)\" for every item from \"([^\"]*)\" list \"([^\"]*)\"$")
+    public void i_add_items_to_cart_after_selecting_for_every_item_from_list(int quantity,String version, String listName) throws Throwable {
+    	ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName,sharedData.accessToken)),sharedData.accessToken,version);
     	TrolleyHelper trolleyHelper = new TrolleyHelper();
     	List<String> stockCodes =  new ArrayList<String>();
     	for (int i=0;i<listDetails.getProducts().length;i++) { 
     		stockCodes.add(String.valueOf(listDetails.getProducts()[i].getArticleId()));
     	}
+    	if(version.equals("V2")) {
+    		TrolleyV2Response trolleyResponse = trolleyHelper.addStockCodesToTheV2Trolley(stockCodes, quantity,true,sharedData.accessToken); 
+    		Assert.assertTrue("Products is not added as expected:"+listDetails.getProducts().length,trolleyResponse.getTotalproducts() == listDetails.getProducts().length);
+            sharedData.trolleyV2Response = trolleyResponse;
+    	}else {
+    		TrolleyV3Response trolleyResponse = trolleyHelper.addStockCodesToTheV3Trolley(stockCodes, quantity,true,sharedData.accessToken); 
+    		Assert.assertTrue("Products is not added as expected:"+listDetails.getProducts().length,trolleyResponse.getTrolley().getTotalProducts() == listDetails.getProducts().length);
+            sharedData.trolleyV3Response = trolleyResponse;
+    	}
     	
-    	TrolleyV2Response trolleyResponse = trolleyHelper.addStockCodesToTheV2Trolley(stockCodes, quantity,true,sharedData.accessToken);
-         
-         Assert.assertTrue("Products is not added as expected:"+listDetails.getProducts().length,trolleyResponse.getTotalproducts() == listDetails.getProducts().length);
-         sharedData.trolleyV2Response = trolleyResponse;
     }
-
-    @Then("^I verify that the correct items with quantity from list \"([^\"]*)\" are added to the cart$")
-    public void i_verify_that_the_correct_items_with_quantity_are_added_to_the_cart(String listName) throws Throwable {
-    	ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName,sharedData.accessToken)),sharedData.accessToken);
+    
+    @Then("^I verify that the correct items with quantity from \"([^\"]*)\" list \"([^\"]*)\" are added to the cart$")
+    public void i_verify_that_the_correct_items_with_quantity_are_added_to_the_cart(String version,String listName) throws Throwable {
+    	ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName,sharedData.accessToken)),sharedData.accessToken,version);
     	TrolleyV2Response trolleyResponse = sharedData.trolleyV2Response;
     	List<String> trolleyStockCodes =  new ArrayList<String>();
     	List<String> listStockCodes =  new ArrayList<String>();
@@ -279,10 +280,5 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
     	
     	Assert.assertTrue("Error:Item not found: Items present in the cart doesn't exsist in list",trolleyStockCodes.containsAll(listStockCodes));
     	
-    }
-    
-    
-    
-    
-    
+    }    
 }

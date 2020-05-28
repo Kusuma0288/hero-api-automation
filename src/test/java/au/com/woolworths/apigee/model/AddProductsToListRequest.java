@@ -8,7 +8,6 @@ public class AddProductsToListRequest {
     private boolean checked;
     private long timestamp;
     private long lastsynced;
-    private ApigeeListDetailsResponse apigeeListDetailsResponse;
     
 
     @Override
@@ -19,7 +18,6 @@ public class AddProductsToListRequest {
                 ", lastsynced=" + lastsynced +
                 ", checked=" + checked +
                 ", timestamp=" + timestamp +
-                ", apigeeListDetailsResponse=" + apigeeListDetailsResponse +
                 '}';
     }
 
@@ -62,14 +60,5 @@ public class AddProductsToListRequest {
 	public void setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 	}
-
-	public ApigeeListDetailsResponse getApigeeListDetailsResponse() {
-		return apigeeListDetailsResponse;
-	}
-
-	public void setApigeeListDetailsResponse(ApigeeListDetailsResponse apigeeListDetailsResponse) {
-		this.apigeeListDetailsResponse = apigeeListDetailsResponse;
-	}
-
     
 }

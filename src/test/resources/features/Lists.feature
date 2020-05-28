@@ -59,12 +59,12 @@ Feature: Verify Apigee List scenarios
    	 And I create a list with exact list name as "<List Name>"
 	 And I search for the product Milk in pickup mode and store response
 	 And I add 2 available products with "<Quantity>" each from the store to "<Version>" list "<List Name>"
-	 Then I verify that the items are saved to list "<List Name>" and is unchecked
-	 And I select the quantity "<Quantity>" from list "<List Name>" and add the item to the cart
-	 Then I verify that the correct items with quantity from list "<List Name>" are added to the cart
+	 Then I verify that the items saved to "<Version>" list "<List Name>" are unchecked
+	 And I add items to cart after selecting "<Quantity>" for every item from "<Version>" list "<List Name>"
+	 Then I verify that the correct items with quantity from "<Version>" list "<List Name>" are added to the cart
 	 Examples:
-	   | Quantity  | List Name      | Fulfillment | Product | Version |
-	   | 1	   	   | AutoList Exact | Pickup      | Milk    | V2      |
-	   | 1	   	   | AutoList Exact | Pickup      | Bread	| V3      |
+	   | Quantity  | List Name      | Fulfillment | Version |
+	   | 1	   	   | AutoList Exact | Pickup      | V2      |
+	   | 1	   	   | AutoList Exact | Pickup      | V3      |
    
 

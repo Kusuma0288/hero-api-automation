@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class AddProductsToListResponse {
     private AddProdListDetailsResponse update;
     private Object changes;
-   // private Object products;
 
     @Override
     public String toString() {
