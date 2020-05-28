@@ -21,7 +21,7 @@ public class Apigeev3SearchProducts {
         private Object promo;
         private Object footer;
         private Object footerNew;
-        private Object promotions;
+        private Promotions promotions;
         private float stockqty;
         private float defaultqty;
         private float incrementalquantity;
@@ -128,7 +128,7 @@ public class Apigeev3SearchProducts {
         return offers;
     }
 
-        public Object getPromotions() {
+        public Promotions getPromotions() {
             return promotions;
         }
 
@@ -230,7 +230,7 @@ public class Apigeev3SearchProducts {
 
         public void setFooterNew(Object footerNew){this.footerNew = footerNew;}
 
-        public void setPromotions(Object promotions) {
+        public void setPromotions(Promotions promotions) {
             this.promotions = promotions;
         }
 

@@ -94,9 +94,19 @@ public class TrolleyDefinition extends TrolleyHelper {
             String updatedProductName = v3SearchResponse.getProducts()[0].getDescription();
             productNames.add(updatedProductName);
 
-            // Update the expected price so we can verify later
-            expectedTotalPrice = expectedTotalPrice + (productsToAdd.get(product) * v3SearchResponse.getProducts()[0].getInstoreprice().getPriceGst());
+            // Update the expected price so we can verify later (ensure to use the promo price if it has one)
+            if (v3SearchResponse.getProducts()[0].getPromotions() != null) {
+              // This product has a promo so get the promo price
+              expectedTotalPrice = expectedTotalPrice + (productsToAdd.get(product) * (v3SearchResponse.getProducts()[0].getPromotions().getPrice()));
+            } else {
+              // No promo
+              expectedTotalPrice = expectedTotalPrice + (productsToAdd.get(product) * (v3SearchResponse.getProducts()[0].getInstoreprice().getPriceGst()));
+            }
+
             addStockCodesToTheV3Trolley(stockCodes, productsToAdd.get(product), true,sharedData.accessToken);
+
+            // Round up the price before asserting it
+            expectedTotalPrice = Math.round(expectedTotalPrice * 100.0 ) / 100.0;
         }
     }
 

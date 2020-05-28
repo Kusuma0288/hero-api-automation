@@ -18,7 +18,7 @@ Feature: Verify Apigee Trolley functions
     Then I set the fulfilmentMethod to "Pickup" for the 1 store
     When I search for the product Milk in pickup mode and store response
     And I add the 2 available products with 1 each from the store to the V2 trolley
-
+@IN_PROGRESS
   Scenario: Add multiple products to the trolley and then verify the V3 trolley is as expected
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME7"
     When connection from user to apigee endpoint happens
