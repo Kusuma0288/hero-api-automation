@@ -16,12 +16,12 @@ public class Apigeev3SearchProducts {
         private int instoreaisleid;
         private String instoreaisleside;
         private String instoreaislebay;
-        private Object instoreprice;
+        private InStorePrice instoreprice;
         private Object offers;
         private Object promo;
         private Object footer;
         private Object footerNew;
-        private Object promotions;
+        private Promotions promotions;
         private float stockqty;
         private float defaultqty;
         private float incrementalquantity;
@@ -120,7 +120,7 @@ public class Apigeev3SearchProducts {
             return instoreaislebay;
         }
 
-        public Object getInstoreprice() {
+        public InStorePrice getInstoreprice() {
             return instoreprice;
         }
 
@@ -128,7 +128,7 @@ public class Apigeev3SearchProducts {
         return offers;
     }
 
-        public Object getPromotions() {
+        public Promotions getPromotions() {
             return promotions;
         }
 
@@ -216,7 +216,7 @@ public class Apigeev3SearchProducts {
             this.instoreaislebay = instoreaislebay;
         }
 
-        public void setInstoreprice(Object instoreprice) {
+        public void setInstoreprice(InStorePrice instoreprice) {
             this.instoreprice = instoreprice;
         }
 
@@ -230,7 +230,7 @@ public class Apigeev3SearchProducts {
 
         public void setFooterNew(Object footerNew){this.footerNew = footerNew;}
 
-        public void setPromotions(Object promotions) {
+        public void setPromotions(Promotions promotions) {
             this.promotions = promotions;
         }
 

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TrolleyDetails {
-	private int subtotalInclDelivery;
+	private double subtotalInclDelivery;
 	private int savingsOnTrolley;
 	private int totalProducts;
 	private int deliveryFee;
@@ -28,11 +28,11 @@ public class TrolleyDetails {
                 '}';
     }
 
-	public int getSubtotalInclDelivery() {
+	public double getSubtotalInclDelivery() {
 		return subtotalInclDelivery;
 	}
 
-	public void setSubtotalInclDelivery(int subtotalInclDelivery) {
+	public void setSubtotalInclDelivery(double subtotalInclDelivery) {
 		this.subtotalInclDelivery = subtotalInclDelivery;
 	}
 

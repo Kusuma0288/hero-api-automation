@@ -18,7 +18,7 @@ public class ApigeeListDetailsResponse {
     private int page;
     private Object nextPage;
     private ApigeeFreeTextItem[] freeTextItems;
-    private Object[] products;
+    private ApigeeProductsInList[] products;
 
     @Override
     public String toString() {
@@ -103,11 +103,11 @@ public class ApigeeListDetailsResponse {
         this.freeTextItems = freeTextItems;
     }
 
-    public Object[] getProducts() {
+    public ApigeeProductsInList[] getProducts() {
         return products;
     }
 
-    public void setProducts(Object[] products) {
+    public void setProducts(ApigeeProductsInList[] products) {
         this.products = products;
     }
 

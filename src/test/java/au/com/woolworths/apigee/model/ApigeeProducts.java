@@ -19,7 +19,7 @@ public class ApigeeProducts {
     private String ecfcategory1;
     private String ecfcategory2;
     private String ecfcategory3;
-    private Object instoreprice;
+    private InStorePrice instoreprice;
     private Object offers;
     private Object promo;
     private float stockqty;
@@ -133,7 +133,7 @@ public class ApigeeProducts {
         return ecfcategory3;
     }
 
-    public Object getInstoreprice() {
+    public InStorePrice getInstoreprice() {
         return instoreprice;
     }
 
@@ -245,7 +245,7 @@ public class ApigeeProducts {
         this.ecfcategory3 = ecfcategory3;
     }
 
-    public void setInstoreprice(Object instoreprice) {
+    public void setInstoreprice(InStorePrice instoreprice) {
         this.instoreprice = instoreprice;
     }
 
