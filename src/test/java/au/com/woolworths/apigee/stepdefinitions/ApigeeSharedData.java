@@ -26,4 +26,7 @@ public class ApigeeSharedData {
     public String mode;
     public String edrStatus;
     public SpecialspageResponse specialspageResponse;
+    public TrolleyV2Response trolleyV2Response;
+    public TrolleyV3Response trolleyV3Response;
+    
 }

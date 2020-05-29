@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -266,17 +267,59 @@ public class ApigeeListHelper extends BaseHelper {
         return response;
 
     }
+    
+    public AddProductsToListResponse addItemsToTheList(String articleId,int quantity, String listId, boolean checkItem, String accessToken,String version) throws Throwable{ 	
+        Map<String, String> mapWebserviceResponse;
+        String requestStr = "";
+        String responseStr = "";
+        
+        AddProductsToListRequest apigeeListRequest = new AddProductsToListRequest();
+        AddProductsToListResponse response;
+        apigeeListRequest.setArticleId(articleId);
+        apigeeListRequest.setQuantity(quantity);
+        apigeeListRequest.setChecked(checkItem);
+        apigeeListRequest.setTimestamp(convertToEpochTime());
+        apigeeListRequest.setLastsynced(convertToEpochTime());
+        String endPoint;
+        if (version.equals("V2")) {
+        
+        	endPoint = URLResources.APIGEE_V2_UPDATE_LIST_FREETEXT;
+        	endPoint = endPoint.replace("{list_id}",listId);
+        }else {
+        	endPoint = URLResources.APIGEE_V3_LIST_ITEMS;
+        	endPoint = endPoint.replace("{list_id}",listId);
+        }
+   
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
 
-    public ApigeeListDetailsResponse getListDetails(String listId, String accessToken) throws Throwable {
+        requestStr = mapper.writeValueAsString(apigeeListRequest);   
+        // invoke the service with the framed request
+        mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
+        responseStr = mapWebserviceResponse.get("response");
+        response = mapper.readValue(responseStr, AddProductsToListResponse.class);
+        return response;
+
+    }
+
+    public ApigeeListDetailsResponse getListDetails(String listId, String accessToken,String version) throws Throwable {
         Map<String, String> mapWebserviceResponse;
         String responseStr = null;
         Map<String, String> queryParams = new HashMap<String, String>();
 
         ApigeeListDetailsResponse response;
-
-        String endPoint = URLResources.APIGEE_V2_GET_LIST_BY_ID;
-        endPoint = endPoint.replace("{list_id}",listId);
-
+        String endPoint;
+        if (version.equals("V2")) {
+        
+        	endPoint = URLResources.APIGEE_V2_GET_LIST_BY_ID;
+        	endPoint = endPoint.replace("{list_id}",listId);
+        }else {
+        	endPoint = URLResources.APIGEE_V3_LISTS;
+        	endPoint = endPoint.concat("/"+listId);
+        }
+        
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
