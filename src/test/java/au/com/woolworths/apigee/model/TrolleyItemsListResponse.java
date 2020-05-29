@@ -18,7 +18,8 @@ public class TrolleyItemsListResponse {
 	private String instorelocation;
 	private boolean allowsubstitution;
 	private String comment;
-	private Object instoreprice;
+	private InStorePrice instoreprice;
+	private Object footer;
 	private int maxquantitylimit;
 	private int defaultquantity;
 	private int minquantitylimit;
@@ -35,40 +36,41 @@ public class TrolleyItemsListResponse {
 	private Object supplementaryinfo;
 	private String updated;
 	private Object disclaimer;
-	
-	
-    @Override
-    public String toString() {
-        return "TrolleyItems{" +
-                "name=" + name +
-                ", article=" + article +
-                ", description=" + description +
-                ", images=" + images +
-                ", href=" + href +
-                ", size=" + size +
-                ", measure=" + measure +
-                ", is=" + is +
-                ", instorelocation=" + instorelocation +
-                ", allowsubstitution=" + allowsubstitution +
-                ", comment=" + comment +
-                ", instoreprice=" + instoreprice +
-                ", maxquantitylimit=" + maxquantitylimit +
-                ", defaultquantity=" + defaultquantity +
-                ", minquantitylimit=" + minquantitylimit +
-                ", incrementalquantity=" + incrementalquantity +
-                ", totalitemprice=" + totalitemprice +
-                ", supplementaryInfoTextAll=" + supplementaryInfoTextAll +
-                ", isrestricted=" + isrestricted +
-                ", isdeliverypass=" + isdeliverypass +
-                ", isavailable=" + isavailable +
-                ", ispmrestriction=" + ispmrestriction +
-                ", isforcollection=" + isforcollection +
-                ", isfordelivery=" + isfordelivery +
-                ", supplementaryinfo=" + supplementaryinfo +
-                ", updated=" + updated +
-                ", disclaimer=" + disclaimer +
-                '}';
-    }
+
+
+	@Override
+	public String toString() {
+		return "TrolleyItems{" +
+				"name=" + name +
+				", article=" + article +
+				", description=" + description +
+				", images=" + images +
+				", href=" + href +
+				", size=" + size +
+				", measure=" + measure +
+				", is=" + is +
+				", instorelocation=" + instorelocation +
+				", allowsubstitution=" + allowsubstitution +
+				", comment=" + comment +
+				", instoreprice=" + instoreprice +
+				", footer=" + footer +
+				", maxquantitylimit=" + maxquantitylimit +
+				", defaultquantity=" + defaultquantity +
+				", minquantitylimit=" + minquantitylimit +
+				", incrementalquantity=" + incrementalquantity +
+				", totalitemprice=" + totalitemprice +
+				", supplementaryInfoTextAll=" + supplementaryInfoTextAll +
+				", isrestricted=" + isrestricted +
+				", isdeliverypass=" + isdeliverypass +
+				", isavailable=" + isavailable +
+				", ispmrestriction=" + ispmrestriction +
+				", isforcollection=" + isforcollection +
+				", isfordelivery=" + isfordelivery +
+				", supplementaryinfo=" + supplementaryinfo +
+				", updated=" + updated +
+				", disclaimer=" + disclaimer +
+				'}';
+	}
 
 
 	public String getName() {
@@ -181,13 +183,22 @@ public class TrolleyItemsListResponse {
 	}
 
 
-	public Object getInstoreprice() {
+	public InStorePrice getInstoreprice() {
 		return instoreprice;
 	}
 
 
-	public void setInstoreprice(Object instoreprice) {
+	public void setInstoreprice(InStorePrice instoreprice) {
 		this.instoreprice = instoreprice;
+	}
+
+	public Object getFooter() {
+		return footer;
+	}
+
+
+	public void setFooter(Object footer) {
+		this.footer = footer;
 	}
 
 
@@ -340,7 +351,6 @@ public class TrolleyItemsListResponse {
 		this.updated = updated;
 	}
 
-
 	public Object getDisclaimer() {
 		return disclaimer;
 	}
@@ -350,5 +360,5 @@ public class TrolleyItemsListResponse {
 		this.disclaimer = disclaimer;
 	}
 
-   
+
 }

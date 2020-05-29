@@ -51,6 +51,7 @@ public class TrolleyHelper extends BaseHelper {
         responseStr = mapWebserviceResponse.get("response");
 
         TrolleyV3Response trolleyV3Response = mapper.readValue(responseStr, TrolleyV3Response.class);
+
         return trolleyV3Response;
     }
 
@@ -101,7 +102,7 @@ public class TrolleyHelper extends BaseHelper {
         TrolleyV2Response trolleyResponse = mapper.readValue(responseStr, TrolleyV2Response.class);
         return trolleyResponse;
     }
-    
+
     public TrolleyV3Response retriveV3Trolley(String accessToken) throws Throwable{
         String endPoint = URLResources.APIGEE_V3_RETRIEVE_TROLLEY;
 
@@ -118,7 +119,7 @@ public class TrolleyHelper extends BaseHelper {
         TrolleyV3Response trolleyResponse = mapper.readValue(responseStr, TrolleyV3Response.class);
         return trolleyResponse;
     }
-    
+
     public TrolleyV2Response retriveV2Trolley(String accessToken) throws Throwable{
         String endPoint = URLResources.APIGEE_V2_RETRIEVE_TROLLEY;
 
@@ -169,6 +170,4 @@ public class TrolleyHelper extends BaseHelper {
         TrolleyV2Response trolleyV2Response = mapper.readValue(responseStr, TrolleyV2Response.class);
         return trolleyV2Response;
     }
-
-
 }
