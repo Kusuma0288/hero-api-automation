@@ -3,23 +3,23 @@ package au.com.woolworths.apigee.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-public class ApigeeListResponse {
-    private ApigeeListDetailsResponse update;
+public class AddProductsToListResponse {
+    private AddProdListDetailsResponse update;
     private Object changes;
 
     @Override
     public String toString() {
-        return "ApigeeListResponse{" +
+        return "AddProductsToListResponse{" +
                 "update='" + update + '\'' +
-                ", changes='" + changes + '\'' +
+                "changes='" + changes + '\''+
                 '}';
     }
 
-    public ApigeeListDetailsResponse getUpdate() {
+    public AddProdListDetailsResponse getUpdate() {
         return update;
     }
 
-    public void setUpdate(ApigeeListDetailsResponse update) {
+    public void setUpdate(AddProdListDetailsResponse update) {
         this.update = update;
     }
 
