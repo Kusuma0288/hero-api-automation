@@ -4,23 +4,22 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class HomepageData {
-    private HomepageComponents[] Items;
+  private HomepageComponents[] Items;
 
+  @Override
+  public String toString() {
+    return "HomepageData{" +
+            "Items=" + Items +
+            +'}';
+  }
 
-    @Override
-    public String toString() {
-        return "HomepageData{" +
-                "Items=" + Items +
-                + '}';
-    }
+  public HomepageComponents[] getItems() {
+    return Items;
+  }
 
-    public HomepageComponents[] getItems() {
-        return Items;
-    }
-
-    public void setItems(HomepageComponents[] items) {
-        Items = items;
-    }
+  public void setItems(HomepageComponents[] items) {
+    Items = items;
+  }
 }
 
 

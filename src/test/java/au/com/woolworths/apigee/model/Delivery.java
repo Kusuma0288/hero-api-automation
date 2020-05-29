@@ -6,22 +6,21 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class Delivery {
 
-    private Address Address;
+  private Address Address;
 
-    @Override
-    public String toString() {
-        return "Delivery{" +
-                "Address=" + Address +
-                '}';
-    }
-    public Address getAddress() {
-        return Address;
-    }
+  @Override
+  public String toString() {
+    return "Delivery{" +
+            "Address=" + Address +
+            '}';
+  }
 
-    public void setAddress(Address address) {
-        Address = address;
-    }
+  public Address getAddress() {
+    return Address;
+  }
 
-
+  public void setAddress(Address address) {
+    Address = address;
+  }
 
 }

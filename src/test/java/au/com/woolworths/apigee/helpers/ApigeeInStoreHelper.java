@@ -15,28 +15,28 @@ import java.util.logging.Logger;
 
 public class ApigeeInStoreHelper extends BaseHelper {
 
-    RestInvocationUtil invocationUtil;
-    private final static Logger logger = Logger.getLogger("ApigeeInStoreHelper.class");
+  RestInvocationUtil invocationUtil;
+  private final static Logger logger = Logger.getLogger("ApigeeInStoreHelper.class");
 
-    public ApigeeInStoreHelper() {
-        this.invocationUtil = ServiceHooks.restInvocationUtil;
-    }
+  public ApigeeInStoreHelper() {
+    this.invocationUtil = ServiceHooks.restInvocationUtil;
+  }
 
-    public ApigeeSearchInStore iSearchForInStore(String postcode, String accessToken) throws Throwable {
+  public ApigeeSearchInStore iSearchForInStore(String postcode, String accessToken) throws Throwable {
 
-        String endPoint = URLResources.APIGEE_V2_IN_STORE;
-        Map<String, String> queryParams = new HashMap<String, String>();
-        queryParams.put("q", postcode);
+    String endPoint = URLResources.APIGEE_V2_IN_STORE;
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("q", postcode);
 
-        Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-        mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken,queryParams);
-        String responseStr = mapWebserviceResponse.get("response");
+    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
+    mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+    String responseStr = mapWebserviceResponse.get("response");
 
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        ApigeeSearchInStore searchForInStore = mapper.readValue(responseStr, ApigeeSearchInStore.class);
-        return searchForInStore;
-    }
+    ObjectMapper mapper = new ObjectMapper();
+    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+    ApigeeSearchInStore searchForInStore = mapper.readValue(responseStr, ApigeeSearchInStore.class);
+    return searchForInStore;
+  }
 }
