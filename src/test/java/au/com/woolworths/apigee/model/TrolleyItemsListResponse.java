@@ -19,6 +19,7 @@ public class TrolleyItemsListResponse {
 	private boolean allowsubstitution;
 	private String comment;
 	private InStorePrice instoreprice;
+	private Promotions promotions;
 	private Object footer;
 	private int maxquantitylimit;
 	private int defaultquantity;
@@ -53,6 +54,7 @@ public class TrolleyItemsListResponse {
 				", allowsubstitution=" + allowsubstitution +
 				", comment=" + comment +
 				", instoreprice=" + instoreprice +
+				", promotions=" + promotions +
 				", footer=" + footer +
 				", maxquantitylimit=" + maxquantitylimit +
 				", defaultquantity=" + defaultquantity +
@@ -190,6 +192,15 @@ public class TrolleyItemsListResponse {
 
 	public void setInstoreprice(InStorePrice instoreprice) {
 		this.instoreprice = instoreprice;
+	}
+
+	public Promotions getPromotions() {
+		return promotions;
+	}
+
+
+	public void setPromotions(Promotions promotions) {
+		this.promotions = promotions;
 	}
 
 	public Object getFooter() {
