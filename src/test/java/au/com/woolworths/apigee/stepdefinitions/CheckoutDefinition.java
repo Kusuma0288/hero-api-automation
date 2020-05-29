@@ -4,8 +4,10 @@ import au.com.woolworths.apigee.context.ApigeeApplicationContext;
 import au.com.woolworths.apigee.helpers.CheckoutHelper;
 import au.com.woolworths.apigee.model.*;
 import au.com.woolworths.apigee.model.CheckoutPackagingPreferencesResponse;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.When;
 import junit.framework.Assert;
 
 import java.util.Arrays;
@@ -14,8 +16,8 @@ import java.util.logging.Logger;
 public class CheckoutDefinition extends CheckoutHelper{
     private final static Logger logger = Logger.getLogger("DeliveryAddressDefinition.class");
 
-    private ApigeeSharedData sharedData;
-    private ApigeeContainer picoContainer;
+    private final ApigeeSharedData sharedData;
+    private final ApigeeContainer picoContainer;
 
     public CheckoutDefinition(ApigeeContainer container) {
         this.sharedData = ApigeeApplicationContext.getSharedData();
@@ -81,6 +83,34 @@ public class CheckoutDefinition extends CheckoutHelper{
             CheckoutResponse checkoutResponse = postSetPackagingPreference(packagingID, sharedData.accessToken);
             Assert.assertEquals("Packaging Preference is not set",checkoutResponse.getResults().getSetPackagingOption().getHttpStatusCode(), 200);
             Assert.assertTrue("Packaging Preference not set correctly", Arrays.stream(checkoutResponse.getDeliveryPackagingPreferences()).filter(i->  i.getName().contains(packagingPref)).findFirst().get().getIsSelected());
+
+        }
+    }
+
+    @Then("^I validate the selected \"([^\"]*)\" and selected windows$")
+    public void iValidateTheSelectedAndSelectedWindows(String collectionMode) {
+
+    }
+
+    @Then("^I validate the product subtotal and total GST$")
+    public void iValidateTheProductSubtotalAndTotalGST() {
+        
+    }
+
+    @And("^I validate the packaging fee and preference$")
+    public void iValidateThePackagingFeeAndPreference() {
+    }
+
+    @When("^I get the checkout summary details for the \"([^\"]*)\" order$")
+    public void iGetTheCheckoutSummaryDetailsForThePickupOrder(String collectionMode) throws Throwable {
+        CheckoutPaymentSummaryResponse checkoutResponse = getCheckoutPaymentResponse(sharedData.accessToken);
+        if(collectionMode.equals("Pickup")) {
+            picoContainer.orderPickupDetails = checkoutResponse.getOrder().getPickup().getStore().getText();
+            picoContainer.windowDate = checkoutResponse.getOrder().getPickup().getWindow().getDisplayDate();
+            picoContainer.windowTime = checkoutResponse.getOrder().getPickup().getWindow().getDisplayTime();
+        }
+        else if(collectionMode.equals("Delivery"))
+        {
 
         }
     }

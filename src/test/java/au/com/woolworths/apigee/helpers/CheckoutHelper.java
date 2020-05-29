@@ -2,6 +2,7 @@ package au.com.woolworths.apigee.helpers;
 
 import au.com.woolworths.Utils.RestInvocationUtil;
 import au.com.woolworths.Utils.URLResources;
+import au.com.woolworths.apigee.model.CheckoutPaymentSummaryResponse;
 import au.com.woolworths.apigee.model.CheckoutRequest;
 import au.com.woolworths.apigee.model.CheckoutResponse;
 import au.com.woolworths.apigee.stepdefinitions.ServiceHooks;
@@ -41,6 +42,25 @@ public class CheckoutHelper {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         CheckoutResponse checkoutResponse  = mapper.readValue(responseStr, CheckoutResponse.class);
         return checkoutResponse;
+
+    }
+
+    public CheckoutPaymentSummaryResponse getCheckoutPaymentResponse(String accessToken) throws Throwable {
+        String endPoint = URLResources.APIGEE_CHECKOUT_PAYMENT_SUMMARY;
+
+        Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
+        List<Header> headerList  = new LinkedList<Header>();
+        Header deliveryNow = new Header("x-enable-feature", "DELIVERY_NOW,CROWDSOURCE_DELIVERY,DYNAMIC_WINDOWS");
+        headerList.add(deliveryNow);
+
+        mapWebserviceResponse = invocationUtil.invokeWithHeaders(endPoint, accessToken, new HashMap<String, String>(), headerList);
+        String responseStr = mapWebserviceResponse.get("response");
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+        return mapper.readValue(responseStr, CheckoutPaymentSummaryResponse.class);
 
     }
 

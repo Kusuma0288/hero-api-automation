@@ -1,7 +1,7 @@
 @REGRESSION
 Feature: Checkout API scenarios
 
-   Scenario: Verify getting and setting of v3/checkout windows and Packaging preference for Pick up mode
+   Scenario Outline: Verify getting and setting of v3/checkout windows and Packaging preference for Pick up mode
 
      Given user continue to connect to apigee with login username as "SHOPPER_USERNAME6"
      When connection from user to apigee endpoint happens
@@ -13,7 +13,14 @@ Feature: Checkout API scenarios
      And I get the available pickup windows for the logged in user with storeId or addressId
      Then I set the selected available pickup window for the logged in user
      Then I validate that user is able to select Reusable bags as packaging preference
-     And I validate that user is able to select BYO bags as packaging preference
+     #And I validate that user is able to select BYO bags as packaging preference
+     When I get the checkout summary details for the "<Pickup>" order
+     Then I validate the selected "<Store/Address>" and selected windows
+     Then I validate the product subtotal and total GST
+     And I validate the packaging fee and preference
+     Examples:
+     |Pickup|Store/Address|
+     |Pickup|1759 Granville LOCAL|
 
 
    Scenario Outline:  Verify getting and setting of v3/checkout windows and Packaging preference for Delivery mode
