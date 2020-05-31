@@ -1,11 +1,9 @@
 package au.com.woolworths.apigee.model;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class OrderDetails {
+public class Order {
     private Object PrimaryAddress;
     private DeliveryDetails Delivery;
     private PickupDetails Pickup;
@@ -43,7 +41,7 @@ public class OrderDetails {
 
     @Override
     public String toString() {
-        return "OrderDetails {" +
+        return "Order {" +
                 "PrimaryAddress=" + PrimaryAddress + ", Delivery=" + Delivery + "Pickup=" + Pickup +
                 "Fulfilment=" + Fulfilment +
                 "Instructions=" + Instructions +

@@ -3,7 +3,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CheckoutPaymentSummaryResponse {
-    private OrderDetails Order;
+    private Order Order;
     private Object PaymentMessages;
     private Object Results;
 
@@ -16,11 +16,11 @@ public class CheckoutPaymentSummaryResponse {
                 '}';
     }
 
-    public OrderDetails getOrder() {
+    public Order getOrder() {
         return Order;
     }
 
-    public void setOrder(OrderDetails order) {
+    public void setOrder(au.com.woolworths.apigee.model.Order order) {
         Order = order;
     }
 

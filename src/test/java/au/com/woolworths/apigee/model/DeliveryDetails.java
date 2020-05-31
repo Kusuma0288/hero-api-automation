@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class DeliveryDetails {
     private AddressInfo Address;
-    private WindowInfo Window;
+    private au.com.woolworths.apigee.model.Window Window;
 
     @Override
     public String toString() {
@@ -24,11 +24,11 @@ public class DeliveryDetails {
         Address = address;
     }
 
-    public WindowInfo getWindow() {
+    public au.com.woolworths.apigee.model.Window getWindow() {
         return Window;
     }
 
-    public void setWindow(WindowInfo window) {
+    public void setWindow(au.com.woolworths.apigee.model.Window window) {
         Window = window;
     }
 }

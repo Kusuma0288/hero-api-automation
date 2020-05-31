@@ -5,27 +5,27 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 public class PickupDetails {
-    private StoreInfo Store;
-    private WindowInfo Window;
+    private Store Store;
+    private Window Window;
 
     @Override
     public String toString(){
         return "PickupDetails {" + "Store=" + Store + "Window=" + Window + '}';
     }
 
-    public StoreInfo getStore() {
+    public Store getStore() {
         return Store;
     }
 
-    public void setStore(StoreInfo store) {
+    public void setStore(Store store) {
         Store = store;
     }
 
-    public WindowInfo getWindow() {
+    public Window getWindow() {
         return Window;
     }
 
-    public void setWindow(WindowInfo window) {
+    public void setWindow(Window window) {
         Window = window;
     }
 }

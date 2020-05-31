@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
-public class WindowInfo {
+public class Window {
     private int Id;
     private String DisplayDate;
     private String DisplayTime;
@@ -15,7 +15,7 @@ public class WindowInfo {
 
     @Override
     public String toString() {
-        return "WindowInfo{" +
+        return "Window{" +
                 "Id=" + Id +
                 ", DisplayDate='" + DisplayDate + '\'' +
                 ", DisplayTime='" + DisplayTime + '\'' +
@@ -74,11 +74,11 @@ public class WindowInfo {
         EndTime = endTime;
     }
 
-    public Boolean getExpress() {
+    public Boolean getIsExpress() {
         return IsExpress;
     }
 
-    public void setExpress(Boolean express) {
-        IsExpress = express;
+    public void setIsExpress(Boolean isExpress) {
+        IsExpress = isExpress;
     }
 }
