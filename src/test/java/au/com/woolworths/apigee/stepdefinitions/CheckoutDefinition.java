@@ -4,40 +4,60 @@ import au.com.woolworths.apigee.context.ApigeeApplicationContext;
 import au.com.woolworths.apigee.helpers.CheckoutHelper;
 import au.com.woolworths.apigee.model.*;
 import au.com.woolworths.apigee.model.CheckoutPackagingPreferencesResponse;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.When;
 import junit.framework.Assert;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 public class CheckoutDefinition extends CheckoutHelper{
     private final static Logger logger = Logger.getLogger("DeliveryAddressDefinition.class");
 
-    private ApigeeSharedData sharedData;
-    private ApigeeContainer picoContainer;
+    private final ApigeeSharedData sharedData;
+    private final ApigeeContainer picoContainer;
 
     public CheckoutDefinition(ApigeeContainer container) {
         this.sharedData = ApigeeApplicationContext.getSharedData();
         this.picoContainer = container;
     }
 
-    @And("^I get the available pickup windows for the logged in user with storeId or addressId$")
-    public void iGetAvailablePickupWindow() throws Throwable{
+    @And("^I get the available \"([^\"]*)\" windows for the logged in user with storeId or addressId$")
+    public void iGetAvailablePickupWindow(String collectionMode) throws Throwable{
         CheckoutResponse checkoutResponse = getCheckoutResponse(sharedData.accessToken);
+        if(collectionMode.equals("Pickup")) {
+            picoContainer.orderCheckoutPAddress = checkoutResponse.getOrder().getPickup().getStore().getText();
+            picoContainer.orderCheckoutPWindowDate = checkoutResponse.getOrder().getPickup().getWindow().getDisplayDate();
+            picoContainer.orderCheckoutPWindowTime = checkoutResponse.getOrder().getPickup().getWindow().getDisplayTime();
+
+        }
+        else if(collectionMode.equals("Delivery"))
+        {
+            picoContainer.orderCheckoutDAddress = checkoutResponse.getOrder().getDelivery().getAddress().getText();
+            picoContainer.orderCheckoutDWindowDate = checkoutResponse.getOrder().getDelivery().getWindow().getDisplayDate();
+            picoContainer.orderCheckoutDWindowTime = checkoutResponse.getOrder().getDelivery().getWindow().getDisplayTime();
+        }
+        picoContainer.orderCheckoutSubtotal = checkoutResponse.getOrder().getSubtotal();
+        picoContainer.orderCheckoutTotalGST = checkoutResponse.getOrder().getTotalIncludingGst();
+        picoContainer.orderCheckoutPackagingFee = checkoutResponse.getOrder().getPackagingFee();
+        picoContainer.orderCheckoutPackagingPreference = checkoutResponse.getOrder().getPackagingFeeLabel();
+
         CheckoutFulfilmentWindows[] checkoutFulfilmentWindows = checkoutResponse.getFulfilmentWindows();
-        checkoutFulfilmentWindows[0] = Arrays.asList(checkoutResponse.getFulfilmentWindows()).stream().filter(i -> i.getIsAvailable().equals(true))
-                .findFirst().get();
+        checkoutFulfilmentWindows[0] = Arrays.stream(checkoutResponse.getFulfilmentWindows()).filter(i -> i.getIsAvailable().equals(true))
+                .findFirst().orElse(null);
         //Get Afternoon or Evening Slot
+        assert checkoutFulfilmentWindows[0] != null;
         CheckoutWindowItems checkoutWindowItems = checkoutFulfilmentWindows[0].getAfternoon();
         CheckoutWindowSlots[] checkoutWindowSlots = checkoutWindowItems.getSlots();
         try {
-            if (Arrays.asList(checkoutFulfilmentWindows[0].getAfternoon().getSlots()).stream().filter(j -> j.getIsAvailable()).count() > 0) {
-                checkoutWindowSlots[0] = Arrays.asList(checkoutFulfilmentWindows[0].getAfternoon().getSlots()).stream().filter(j -> j.getIsAvailable()).findFirst().get();
-                if (checkoutWindowSlots[0] != null) {
-                    picoContainer.windowId = checkoutWindowSlots[0].getId();
-                    picoContainer.windowStartTime = checkoutWindowSlots[0].getStartTime();
-                }
+            if (Arrays.stream(checkoutFulfilmentWindows[0].getAfternoon().getSlots()).anyMatch(CheckoutWindowSlots::getIsAvailable)) {
+                checkoutWindowSlots[0] = Arrays.stream(checkoutFulfilmentWindows[0].getAfternoon().getSlots()).filter(CheckoutWindowSlots::getIsAvailable).findFirst().orElse(null);
+                assert checkoutWindowSlots[0] != null;
+                picoContainer.windowId = checkoutWindowSlots[0].getId();
+                picoContainer.windowStartTime = checkoutWindowSlots[0].getStartTime();
             } else {
                 checkoutWindowItems = checkoutFulfilmentWindows[0].getEvening();
                 checkoutWindowSlots = checkoutWindowItems.getSlots();
@@ -63,17 +83,17 @@ public class CheckoutDefinition extends CheckoutHelper{
     @And("^I validate the default selected packaging preference for Delivery is (.*)$")
     public void iValidateDefaultPackagingPreference(String packagingPref) {
         CheckoutPackagingPreferencesResponse[] checkoutPackagingPreferences = picoContainer.packagingPreference;
-        Assert.assertTrue("Packaging Preference not set correctly", Arrays.stream(checkoutPackagingPreferences).filter(i -> i.getName().contains(packagingPref)).findFirst().get().getIsSelected());
+        Assert.assertTrue("Packaging Preference not set correctly", Objects.requireNonNull(Arrays.stream(checkoutPackagingPreferences).filter(i -> i.getName().contains(packagingPref)).findFirst().orElse(null)).getIsSelected());
     }
 
     @Then("^I validate that user is able to select (.*) as packaging preference$")
     public void iSelectPackagingPreference(String packagingPref) throws Throwable{
         int packagingID;
         if(packagingPref.contains("Reusable")) {
-            packagingID = Arrays.stream(picoContainer.packagingPreference).filter(i->i.getName().contains("Reusable")).findFirst().get().getId();
+            packagingID = Objects.requireNonNull(Arrays.stream(picoContainer.packagingPreference).filter(i -> i.getName().contains("Reusable")).findFirst().orElse(null)).getId();
             CheckoutResponse checkoutResponse = postSetPackagingPreference(packagingID, sharedData.accessToken);
             Assert.assertEquals("Packaging Preference is not set",checkoutResponse.getResults().getSetPackagingOption().getHttpStatusCode(), 200);
-            Assert.assertTrue("Packaging Preference not set correctly", Arrays.stream(checkoutResponse.getDeliveryPackagingPreferences()).filter(i->  i.getName().contains(packagingPref)).findFirst().get().getIsSelected());
+            Assert.assertTrue("Packaging Preference not set correctly", Objects.requireNonNull(Arrays.stream(checkoutResponse.getDeliveryPackagingPreferences()).filter(i -> i.getName().contains(packagingPref)).findFirst().orElse(null)).getIsSelected());
 
         }
         else if(packagingPref.contains("BYO")){
