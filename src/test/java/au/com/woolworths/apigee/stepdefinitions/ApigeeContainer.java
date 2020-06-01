@@ -17,7 +17,24 @@ public class ApigeeContainer {
     public int windowId;
     public String windowStartTime;
     public CheckoutPackagingPreferencesResponse[] packagingPreference;
-    public String orderPickupDetails;
-    public String windowDate;
-    public Object windowTime;
+    public String orderCheckoutPaymentAddress;
+    public String orderCheckoutPaymentWindowDate;
+    public Object orderCheckoutPaymentWindowTime;
+    public String orderCheckoutPAddress;
+    public String orderCheckoutPWindowDate;
+    public String orderCheckoutPWindowTime;
+    public int orderCheckoutSubtotal;
+    public int orderCheckoutTotalGST;
+    public int orderCheckoutPackagingFee;
+    public String orderCheckoutPackagingPreference;
+    public String orderCheckoutDAddress;
+    public String orderCheckoutDWindowDate;
+    public String orderCheckoutDWindowTime;
+    public String orderCheckoutDPaymentAddress;
+    public String orderCheckoutDPaymentWindowDate;
+    public String orderCheckoutDPaymentWindowTime;
+    public int orderCheckoutPaymentSubtotal;
+    public int orderCheckoutPaymentTotalGST;
+    public int orderCheckoutPaymentPackagingFee;
+    public String orderCheckoutPaymentPackagingPreference;
 }
