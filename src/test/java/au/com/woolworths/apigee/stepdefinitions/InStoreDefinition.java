@@ -10,28 +10,28 @@ import java.util.logging.Logger;
 
 public class InStoreDefinition extends ApigeeInStoreHelper {
 
-    private final static Logger logger = Logger.getLogger("InStoreDefinition.class");
+  private final static Logger logger = Logger.getLogger("InStoreDefinition.class");
 
-    private ApigeeSharedData sharedData;
-    private ApigeeContainer picoContainer;
+  private ApigeeSharedData sharedData;
+  private ApigeeContainer picoContainer;
 
-    public InStoreDefinition(ApigeeContainer container) {
-        this.sharedData = ApigeeApplicationContext.getSharedData();
-        this.picoContainer = container;
-    }
+  public InStoreDefinition(ApigeeContainer container) {
+    this.sharedData = ApigeeApplicationContext.getSharedData();
+    this.picoContainer = container;
+  }
 
-    @When("^I search for an IN-STORE with postcode \"([^\"]*)\" and I select the \"([^\"]*)\" store from matching in-stores$")
-    public void searchForInStore(String postcode, int position) throws Throwable {
+  @When("^I search for an IN-STORE with postcode \"([^\"]*)\" and I select the \"([^\"]*)\" store from matching in-stores$")
+  public void searchForInStore(String postcode, int position) throws Throwable {
 
-        ApigeeSearchInStore searchInStoresResponse = iSearchForInStore(postcode, sharedData.accessToken);
+    ApigeeSearchInStore searchInStoresResponse = iSearchForInStore(postcode, sharedData.accessToken);
 
-        //These assertions are to make sure there are no NULL FIELDS
-        Assert.assertNotNull(searchInStoresResponse.getstores()[0].getNo());
-        Assert.assertNotNull(searchInStoresResponse.getstores()[0].getName());
-        Assert.assertNotNull(searchInStoresResponse.getstores()[0].getDivision());
+    //These assertions are to make sure there are no NULL FIELDS
+    Assert.assertNotNull(searchInStoresResponse.getstores()[0].getNo());
+    Assert.assertNotNull(searchInStoresResponse.getstores()[0].getName());
+    Assert.assertNotNull(searchInStoresResponse.getstores()[0].getDivision());
 
-        sharedData.searchInStoreResponse=searchInStoresResponse;
-        sharedData.inStoreId=searchInStoresResponse.getstores()[position-1].getNo();
-    }
+    sharedData.searchInStoreResponse = searchInStoresResponse;
+    sharedData.inStoreId = searchInStoresResponse.getstores()[position - 1].getNo();
+  }
 
 }

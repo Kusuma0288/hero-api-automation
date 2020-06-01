@@ -7,30 +7,30 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TrolleyItems {
-    private List<Item> items;
-    private boolean replaceTrolley;
+  private List<Item> items;
+  private boolean replaceTrolley;
 
-    @Override
-    public String toString() {
-        return "TrolleyItems{" +
-                "items=" + items +
-                ", replaceTrolley=" + replaceTrolley +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "TrolleyItems{" +
+            "items=" + items +
+            ", replaceTrolley=" + replaceTrolley +
+            '}';
+  }
 
-    public List<Item> getItems() {
-        return items;
-    }
+  public List<Item> getItems() {
+    return items;
+  }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
+  public void setItems(List<Item> items) {
+    this.items = items;
+  }
 
-    public boolean isReplaceTrolley() {
-        return replaceTrolley;
-    }
+  public boolean isReplaceTrolley() {
+    return replaceTrolley;
+  }
 
-    public void setReplaceTrolley(boolean replaceTrolley) {
-        this.replaceTrolley = replaceTrolley;
-    }
+  public void setReplaceTrolley(boolean replaceTrolley) {
+    this.replaceTrolley = replaceTrolley;
+  }
 }

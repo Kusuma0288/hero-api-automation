@@ -5,24 +5,22 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 
 public class DeliveryAddressRequest {
-    private String address;
+  private String address;
 
-    @Override
-    public String toString() {
-        return "DeliveryAddressRequest{" +
-                "address='" + address + '\'' +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "DeliveryAddressRequest{" +
+            "address='" + address + '\'' +
+            '}';
+  }
 
-    public String getAddress()
-    {
-        return address;
-    }
+  public String getAddress() {
+    return address;
+  }
 
-    public void setAddress(String address)
-    {
-        this.address = address;
-    }
+  public void setAddress(String address) {
+    this.address = address;
+  }
 
 }
 
