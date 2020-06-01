@@ -4,20 +4,20 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class StoreAddressRequest {
-    private String storeAddressId;
+  private String storeAddressId;
 
-    @Override
-    public String toString() {
-        return "StoreAddressRequest{" +
-                "storeAddressId='" + storeAddressId + '\'' +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "StoreAddressRequest{" +
+            "storeAddressId='" + storeAddressId + '\'' +
+            '}';
+  }
 
-    public String getStoreAddressId() {
-        return storeAddressId;
-    }
+  public String getStoreAddressId() {
+    return storeAddressId;
+  }
 
-    public void setStoreAddressId(String storeAddressId) {
-        this.storeAddressId = storeAddressId;
-    }
+  public void setStoreAddressId(String storeAddressId) {
+    this.storeAddressId = storeAddressId;
+  }
 }

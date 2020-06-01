@@ -8,25 +8,39 @@ public class CheckoutResponse {
     private CheckoutFulfilmentWindows[] FulfilmentWindows;
     private CheckoutResultsResponse Results;
 
-
-    @Override
-    public String toString() {
-        return "CheckoutResponse {" +
-                "order=" + Order +
-                ", deliveryPackagingPreferences=" + DeliveryPackagingPreferences +
-                ", fulfilmentWindows=" + FulfilmentWindows +
-                ", results=" + Results +'}';
-    }
+  @Override
+  public String toString() {
+    return "CheckoutResponse {" +
+            "order=" + Order +
+            ", deliveryPackagingPreferences=" + DeliveryPackagingPreferences +
+            ", fulfilmentWindows=" + FulfilmentWindows +
+            ", results=" + Results + '}';
+  }
 
     public Order getOrder() {return Order; }
     public void setOrder(Order order) { Order = order; }
 
-    public CheckoutPackagingPreferencesResponse[] getDeliveryPackagingPreferences() {return DeliveryPackagingPreferences; }
-    public void setDeliveryPackagingPreferences(CheckoutPackagingPreferencesResponse[] deliveryPackagingPreferences) { DeliveryPackagingPreferences = deliveryPackagingPreferences; }
+  public CheckoutPackagingPreferencesResponse[] getDeliveryPackagingPreferences() {
+    return DeliveryPackagingPreferences;
+  }
 
-    public CheckoutFulfilmentWindows[] getFulfilmentWindows() {return FulfilmentWindows; }
-    public void setFulfilmentWindows(CheckoutFulfilmentWindows[] fulfilmentWindows) { FulfilmentWindows = fulfilmentWindows; }
+  public void setDeliveryPackagingPreferences(CheckoutPackagingPreferencesResponse[] deliveryPackagingPreferences) {
+    DeliveryPackagingPreferences = deliveryPackagingPreferences;
+  }
 
-    public CheckoutResultsResponse getResults() {return Results; }
-    public void setResults(CheckoutResultsResponse results) { Results = results; }
+  public CheckoutFulfilmentWindows[] getFulfilmentWindows() {
+    return FulfilmentWindows;
+  }
+
+  public void setFulfilmentWindows(CheckoutFulfilmentWindows[] fulfilmentWindows) {
+    FulfilmentWindows = fulfilmentWindows;
+  }
+
+  public CheckoutResultsResponse getResults() {
+    return Results;
+  }
+
+  public void setResults(CheckoutResultsResponse results) {
+    Results = results;
+  }
 }

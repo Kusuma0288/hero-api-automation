@@ -4,50 +4,50 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Item {
-    private Object article;
-    private int itemquantityintrolley;
-    private String allowsubstitution;
-    private String comment;
+  private Object article;
+  private int itemquantityintrolley;
+  private String allowsubstitution;
+  private String comment;
 
-    @Override
-    public String toString() {
-        return "Item{" +
-                "article=" + article +
-                ", itemquantityintrolley=" + itemquantityintrolley +
-                ", allowsubstitution='" + allowsubstitution + '\'' +
-                ", comment='" + comment + '\'' +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "Item{" +
+            "article=" + article +
+            ", itemquantityintrolley=" + itemquantityintrolley +
+            ", allowsubstitution='" + allowsubstitution + '\'' +
+            ", comment='" + comment + '\'' +
+            '}';
+  }
 
-    public Object getArticle() {
-        return article;
-    }
+  public Object getArticle() {
+    return article;
+  }
 
-    public void setArticle(Object article) {
-        this.article = article;
-    }
+  public void setArticle(Object article) {
+    this.article = article;
+  }
 
-    public int getItemquantityintrolley() {
-        return itemquantityintrolley;
-    }
+  public int getItemquantityintrolley() {
+    return itemquantityintrolley;
+  }
 
-    public void setItemquantityintrolley(int itemquantityintrolley) {
-        this.itemquantityintrolley = itemquantityintrolley;
-    }
+  public void setItemquantityintrolley(int itemquantityintrolley) {
+    this.itemquantityintrolley = itemquantityintrolley;
+  }
 
-    public String getAllowsubstitution() {
-        return allowsubstitution;
-    }
+  public String getAllowsubstitution() {
+    return allowsubstitution;
+  }
 
-    public void setAllowsubstitution(String allowsubstitution) {
-        this.allowsubstitution = allowsubstitution;
-    }
+  public void setAllowsubstitution(String allowsubstitution) {
+    this.allowsubstitution = allowsubstitution;
+  }
 
-    public String getComment() {
-        return comment;
-    }
+  public String getComment() {
+    return comment;
+  }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+  public void setComment(String comment) {
+    this.comment = comment;
+  }
 }
