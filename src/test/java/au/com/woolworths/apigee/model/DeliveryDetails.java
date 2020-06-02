@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 public class DeliveryDetails {
-    private AddressInfo Address;
-    private au.com.woolworths.apigee.model.Window Window;
+    private Address Address;
+    private Window Window;
 
     @Override
     public String toString() {
@@ -16,19 +16,19 @@ public class DeliveryDetails {
                 '}';
     }
 
-    public AddressInfo getAddress() {
+    public Address getAddress() {
         return Address;
     }
 
-    public void setAddress(AddressInfo address) {
+    public void setAddress(Address address) {
         Address = address;
     }
 
-    public au.com.woolworths.apigee.model.Window getWindow() {
+    public Window getWindow() {
         return Window;
     }
 
-    public void setWindow(au.com.woolworths.apigee.model.Window window) {
+    public void setWindow(Window window) {
         Window = window;
     }
 }

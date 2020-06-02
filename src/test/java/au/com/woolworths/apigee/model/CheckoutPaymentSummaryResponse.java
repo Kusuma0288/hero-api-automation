@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CheckoutPaymentSummaryResponse {
     private Order Order;
-    private Object PaymentMessages;
+    private Object paymentMessages;
     private Object Results;
 
     @Override
     public String toString() {
         return "CheckoutPaymentSummaryResponse{" +
                 "Order=" + Order +
-                ", PaymentMessages=" + PaymentMessages +
+                ", PaymentMessages=" + paymentMessages +
                 ", Results=" + Results +
                 '}';
     }
@@ -25,11 +25,11 @@ public class CheckoutPaymentSummaryResponse {
     }
 
     public Object getPaymentMessages() {
-        return PaymentMessages;
+        return paymentMessages;
     }
 
-    public void setPaymentMessages(Object paymentMessages) {
-        PaymentMessages = paymentMessages;
+    public void setPaymentMessages(Object paymentMessage) {
+        paymentMessages = paymentMessage;
     }
 
     public Object getResults() {

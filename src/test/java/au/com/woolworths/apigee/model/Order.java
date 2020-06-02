@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class Order {
     private Object PrimaryAddress;
     private DeliveryDetails Delivery;
-    private PickupDetails Pickup;
+    private Pickup Pickup;
     private Object Fulfilment;
     private String Instructions;
     private double Savings;
@@ -82,11 +82,11 @@ public class Order {
         Delivery = delivery;
     }
 
-    public PickupDetails getPickup() {
+    public Pickup getPickup() {
         return Pickup;
     }
 
-    public void setPickup(PickupDetails pickup) {
+    public void setPickup(Pickup pickup) {
         Pickup = pickup;
     }
 
