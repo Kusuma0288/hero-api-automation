@@ -34,7 +34,7 @@ public class CheckoutHelper {
     Header deliveryNow = new Header("x-enable-feature", "DYNAMIC_WINDOWS,DELIVERY_NOW");
     headerList.add(deliveryNow);
 
-    mapWebserviceResponse = invocationUtil.invokeWithHeaders(endPoint, accessToken, new HashMap<String, String>(), headerList);
+          mapWebserviceResponse = invocationUtil.invokeWithHeaders(endPoint, accessToken, new HashMap<String, String>(), headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();
