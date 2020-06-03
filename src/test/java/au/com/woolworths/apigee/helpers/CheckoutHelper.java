@@ -64,9 +64,9 @@ public class CheckoutHelper {
     headerList.add(deliveryNow);
 
     ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+      mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+      mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+      mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
     requestStr = mapper.writeValueAsString(checkoutRequest);
 
     // invoke the service with the framed request
