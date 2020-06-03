@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Pickup {
   private Store Store;
+  private Window Window;
 
   @Override
   public String toString() {
@@ -19,5 +20,13 @@ public class Pickup {
 
   public void setStore(Store store) {
     Store = store;
+  }
+
+  public Window getWindow() {
+    return Window;
+  }
+
+  public void setWindow(Window window) {
+    Window = window;
   }
 }
