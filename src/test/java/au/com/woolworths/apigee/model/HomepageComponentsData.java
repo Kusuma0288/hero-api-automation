@@ -163,9 +163,13 @@ public class HomepageComponentsData {
     this.height = height;
   }
 
-  public HomepageQueryParameters getQueryParameters() { return queryParameters; }
+  public HomepageQueryParameters getQueryParameters() {
+    return queryParameters;
+  }
 
-  public void setQueryParameters(HomepageQueryParameters queryParameters) { this.queryParameters = queryParameters; }
+  public void setQueryParameters(HomepageQueryParameters queryParameters) {
+    this.queryParameters = queryParameters;
+  }
 
 }
 
