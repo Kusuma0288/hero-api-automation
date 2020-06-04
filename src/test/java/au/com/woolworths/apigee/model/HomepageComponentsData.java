@@ -19,6 +19,7 @@ public class HomepageComponentsData {
   private String url;
   private String altText;
   private String height;
+  private HomepageQueryParameters queryParameters;
 
   @Override
   public String toString() {
@@ -38,6 +39,7 @@ public class HomepageComponentsData {
             ", url=" + url +
             ", altText=" + altText +
             ", height=" + height +
+            ", queryParameters=" + queryParameters
             +'}';
   }
 
@@ -160,6 +162,10 @@ public class HomepageComponentsData {
   public void setHeight(String height) {
     this.height = height;
   }
+
+  public HomepageQueryParameters getQueryParameters() { return queryParameters; }
+
+  public void setQueryParameters(HomepageQueryParameters queryParameters) { this.queryParameters = queryParameters; }
 
 }
 

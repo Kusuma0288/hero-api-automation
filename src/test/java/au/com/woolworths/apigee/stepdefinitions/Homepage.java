@@ -106,11 +106,11 @@ public class Homepage extends HomepageHelper {
 
     //Assert Promo card details
 
-    Assert.assertTrue("Promotion card component missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item3 -> item3.getType().equals("PromotionCard")));
-    HomepageComponentsData item3 = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("PromotionCard")).findFirst().get().getData();
+    Assert.assertTrue("Promotion card component missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item3 -> item3.getType().equals("PromoCard")));
+    HomepageComponentsData item3 = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("PromoCard")).findFirst().get().getData();
     sharedData.promoTileDataPath = item3.getDataPath();
     Assert.assertNotNull("Promotion card title is not present", item3.getTitle());
-    Assert.assertEquals("Promotion card promotionType is not aisleCategory", item3.getPromotionType(), "aisleCategory");
+    Assert.assertNotNull("Promotion card promotionType is not present", item3.getPromotionType());
     Assert.assertNotNull("Promotion card dataPath is not present", item3.getDataPath());
     Assert.assertNotNull("Promotion card image is not present", item3.getImage());
 

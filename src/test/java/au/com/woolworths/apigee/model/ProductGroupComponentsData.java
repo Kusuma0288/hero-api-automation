@@ -16,6 +16,7 @@ public class ProductGroupComponentsData {
   private ProductGroupTrolleyResponse trolley;
   private String badgeImage;
   private String wasPrice;
+  private String purchaseWarning;
 
   @Override
   public String toString() {
@@ -30,6 +31,7 @@ public class ProductGroupComponentsData {
             ", promotionValue=" + promotionValue +
             ", promotionType=" + promotionType +
             ", wasPrice=" + wasPrice +
+            ", purchaseWarning=" + purchaseWarning +
             ", trolley=" + trolley +
             +'}';
   }
@@ -128,6 +130,14 @@ public class ProductGroupComponentsData {
 
   public void setWasPrice(String wasPrice) {
     this.wasPrice = wasPrice;
+  }
+
+  public String getPurchaseWarning() {
+    return purchaseWarning;
+  }
+
+  public void setPurchaseWarning(String purchaseWarning) {
+    this.purchaseWarning = purchaseWarning;
   }
 
 }

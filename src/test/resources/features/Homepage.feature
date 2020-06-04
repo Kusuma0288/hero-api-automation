@@ -27,7 +27,7 @@ Feature: Verify the HomePage components in different Shopping modes for guest/lo
     And I clear the trolley
     Then I verify the stockcode is not added to trolley when I make a request to Homepage
 
-  Scenario: Verify the Homepage components for guest user without EDR and in Delivery mode
+  Scenario: Verify the Homepage components for guest user without EDR and in Online Pickup mode
     Given mobile user connect to apigee endpoint as guest
     When connection from user to apigee endpoint happens
     And I search for the pickup stores in the postcode 2204
