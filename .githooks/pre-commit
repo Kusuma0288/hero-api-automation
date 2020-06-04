@@ -9,28 +9,23 @@ file=$(<target/checkstyle-result.xml)
 
 
 input="target/checkstyle-result.xml"
+errors=false
 while IFS= read -r line
 do
   if [[ "$line" == *"<error"* ]]; then
-  	echo "+++++++++++++++++++++++++++++++++++++++++++++"
+  	errors=true
   	endSubstring=$(awk -v a="$line" -v b=" source" 'BEGIN{print index(a,b)}')
-  	# awk -v a="$line" -v b="puppycrawl" 'BEGIN{print index(a,b)}'
-  	# echo "!!!!!"
-  	echo $endSubstring
-  	echo "+++++++++++++++++++++++++++++++++++++++++++++"
     echo "$line" | cut -b 2-$endSubstring
   fi
-  echo ""
-  echo "Please  fix the above errors"
 done < "$input"
 
-
-# if [[ "$file" == *"<error"* ]]; then
-#   echo "There are linting errors. Please check the report (target/site/checkstyle.html)"
-#   echo
-#   exit 1
-# else
-#   echo "No linting errors"
-#   echo
-#   exit 0
-# fi
+if [ "$errors" = true ]; 
+then
+	echo ""
+	echo "Please fix the above errors"
+	echo ""
+	exit 1
+else
+	echo "No errors found"
+	exit 0
+fi
