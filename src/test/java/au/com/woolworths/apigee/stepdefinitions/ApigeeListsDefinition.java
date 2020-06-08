@@ -263,6 +263,7 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
   public void i_verify_that_the_correct_items_with_quantity_are_added_to_the_cart(String version, String listName) throws Throwable {
 	//Initialize a list of stock codes.  
 	List<String> listStockCodes = new ArrayList<String>();
+	List<String> trolleyStockCodes = new ArrayList<String>();
 	ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName, sharedData.accessToken)), sharedData.accessToken, version);
     
 	for (int i = 0; i < listDetails.getProducts().length; i++) {
@@ -271,26 +272,21 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
     
     if (version.equals("V2")) {
     TrolleyV2Response trolleyResponse = sharedData.trolleyV2Response;
-    List<String> trolleyStockCodes = new ArrayList<String>();
     
     for (int i = 0; i < trolleyResponse.getItems().size(); i++) {
       trolleyStockCodes.add(trolleyResponse.getItems().get(i).getArticle().replaceFirst("^0+(?!$)", ""));
-    }
-
-     Assert.assertTrue("Error:Item not found: Items present in the cart doesn't exsist in list", trolleyStockCodes.containsAll(listStockCodes));
+    }   
   
     }else {
     	
       TrolleyV3Response trolleyResponse = sharedData.trolleyV3Response;
-      List<String> trolleyStockCodes = new ArrayList<String>();
       for (int i = 0; i < trolleyResponse.getTrolley().getTrolleyitemsListResp().size(); i++) {
 
         trolleyStockCodes.add(trolleyResponse.getTrolley().getTrolleyitemsListResp().get(i).getArticle().replaceFirst("^0+(?!$)", ""));
       }
-      
-      Assert.assertTrue("Error:Item not found: Items present in the cart doesn't exsist in list", trolleyStockCodes.containsAll(listStockCodes));
-      
+            
     }
+    Assert.assertTrue("Error:Item not found: Items present in the cart doesn't exsist in list", trolleyStockCodes.containsAll(listStockCodes));
     
   }
 }
