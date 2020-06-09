@@ -49,7 +49,7 @@ Feature: Verify Apigee List scenarios
       | Darcy Road | AutoList Exact | Coke           |
       
       
-    Scenario Outline: Validate list to trolley merge scenario for a logged in user
+    Scenario Outline: Validate "<Version>" list to trolley merge scenario for a logged in user
 	 Given user continue to connect to apigee with login username as "SHOPPER_USERNAME7"
 	 When connection from user to apigee endpoint happens
 	 And I search for the pickup stores in the postcode 2204
