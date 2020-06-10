@@ -7,7 +7,7 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TrolleyV2Response {
-  private int totaltrolleyprice;
+  private double totaltrolleyprice;
   private int savingsontrolley;
   private int totalproducts;
   private int deliveryfee;
@@ -30,11 +30,11 @@ public class TrolleyV2Response {
             '}';
   }
 
-  public int getTotaltrolleyprice() {
+  public double getTotaltrolleyprice() {
     return totaltrolleyprice;
   }
 
-  public void setTotaltrolleyprice(int totaltrolleyprice) {
+  public void setTotaltrolleyprice(double totaltrolleyprice) {
     this.totaltrolleyprice = totaltrolleyprice;
   }
 
