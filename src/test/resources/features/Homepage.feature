@@ -39,8 +39,8 @@ Feature: Verify the HomePage components in different Shopping modes for guest/lo
     Then I verify the stockcode is not added to trolley when I make a request to Homepage
 
   @REGRESSION
-  Scenario: Verify the PromoTile, add products to trolley and verify the status of the product in PromoTile for guest user
-    Given user continue to connect to apigee with login username as "SHOPPER_USERNAME10"
+  Scenario: Verify the PromoTile, add products to trolley and verify the status of the product in PromoTile for logged-in user
+    Given user continue to connect to apigee with login username as "SHOPPER_USERNAME"
     When connection from user to apigee endpoint happens
     And I search for the address "Darcy Road"
     And I select the "1" address as fulfilment address from matching addresses
@@ -52,7 +52,7 @@ Feature: Verify the HomePage components in different Shopping modes for guest/lo
     Then I verify the stockcode is not added to trolley when I make a request to PromoTile
 
   @REGRESSION
-  Scenario: Verify the PromoTile, add products to trolley and verify the status of the product in PromoTile for logged-in user
+  Scenario: Verify the PromoTile, add products to trolley and verify the status of the product in PromoTile for guest user
     Given mobile user connect to apigee endpoint as guest
     When connection from user to apigee endpoint happens
     And I search for the address "Darcy Road"
