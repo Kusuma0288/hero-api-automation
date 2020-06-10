@@ -3,23 +3,25 @@ package au.com.woolworths.apigee.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Pickup {
-  private Store Store;
+
+public class DeliveryDetails {
+  private Address Address;
   private Window Window;
 
   @Override
   public String toString() {
-    return "Pickup{" +
-            "Store=" + Store +
+    return "DeliveryDetails{" +
+            "Address=" + Address +
+            ", Window=" + Window +
             '}';
   }
 
-  public Store getStore() {
-    return Store;
+  public Address getAddress() {
+    return Address;
   }
 
-  public void setStore(Store store) {
-    Store = store;
+  public void setAddress(Address address) {
+    Address = address;
   }
 
   public Window getWindow() {

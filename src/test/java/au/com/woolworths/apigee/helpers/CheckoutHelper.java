@@ -2,6 +2,7 @@ package au.com.woolworths.apigee.helpers;
 
 import au.com.woolworths.Utils.RestInvocationUtil;
 import au.com.woolworths.Utils.URLResources;
+import au.com.woolworths.apigee.model.CheckoutPaymentSummaryResponse;
 import au.com.woolworths.apigee.model.CheckoutRequest;
 import au.com.woolworths.apigee.model.CheckoutResponse;
 import au.com.woolworths.apigee.stepdefinitions.ServiceHooks;
@@ -15,13 +16,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
-
 import io.restassured.http.Header;
 
 public class CheckoutHelper {
   RestInvocationUtil invocationUtil;
   private final static Logger logger = Logger.getLogger("CheckoutHelper.class");
-
   public CheckoutHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
@@ -29,8 +28,8 @@ public class CheckoutHelper {
   public CheckoutResponse getCheckoutResponse(String accessToken) throws Throwable {
     String endPoint = URLResources.APIGEE_CHECKOUT;
 
-    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    List<Header> headerList = new LinkedList<Header>();
+    Map<String, String> mapWebserviceResponse;
+    List<Header> headerList  = new LinkedList<>();
     Header deliveryNow = new Header("x-enable-feature", "DYNAMIC_WINDOWS,DELIVERY_NOW");
     headerList.add(deliveryNow);
 
@@ -41,14 +40,32 @@ public class CheckoutHelper {
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
     mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    CheckoutResponse checkoutResponse = mapper.readValue(responseStr, CheckoutResponse.class);
-    return checkoutResponse;
+    return mapper.readValue(responseStr, CheckoutResponse.class);
 
   }
 
-  public CheckoutResponse postSetCheckoutWindow(int windowID, String windowDate, String accessToken) throws Throwable {
-    String requestStr = null;
-    String responseStr = null;
+  public CheckoutPaymentSummaryResponse getCheckoutPaymentResponse(String accessToken) throws Throwable {
+    String endPoint = URLResources.APIGEE_CHECKOUT_PAYMENT_SUMMARY;
+
+    Map<String, String> mapWebserviceResponse;
+    List<Header> headerList  = new LinkedList<>();
+    Header deliveryNow = new Header("x-enable-feature", "DELIVERY_NOW,CROWDSOURCE_DELIVERY,DYNAMIC_WINDOWS");
+    headerList.add(deliveryNow);
+
+    mapWebserviceResponse = invocationUtil.invokeWithHeaders(endPoint, accessToken, new HashMap<String, String>(), headerList);
+    String responseStr = mapWebserviceResponse.get("response");
+
+    ObjectMapper mapper = new ObjectMapper();
+    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+    return mapper.readValue(responseStr, CheckoutPaymentSummaryResponse.class);
+
+  }
+
+  public CheckoutResponse postSetCheckoutWindow(int windowID, String windowDate,String accessToken) throws Throwable{
+    String requestStr;
+    String responseStr;
 
     CheckoutRequest checkoutRequest = new CheckoutRequest();
     CheckoutResponse checkoutResponse;
@@ -58,8 +75,8 @@ public class CheckoutHelper {
 
     String endPoint = URLResources.APIGEE_CHECKOUT;
 
-    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    List<Header> headerList = new LinkedList<Header>();
+    Map<String, String> mapWebserviceResponse;
+    List<Header> headerList  = new LinkedList<>();
     Header deliveryNow = new Header("x-enable-feature", "DYNAMIC_WINDOWS,DELIVERY_NOW");
     headerList.add(deliveryNow);
 
@@ -76,9 +93,9 @@ public class CheckoutHelper {
     return checkoutResponse;
   }
 
-  public CheckoutResponse postSetPackagingPreference(int packagingID, String accessToken) throws Throwable {
-    String requestStr = null;
-    String responseStr = null;
+  public CheckoutResponse postSetPackagingPreference(int packagingID, String accessToken) throws Throwable{
+    String requestStr;
+    String responseStr;
 
     CheckoutRequest checkoutRequest = new CheckoutRequest();
     CheckoutResponse checkoutResponse;
@@ -87,8 +104,8 @@ public class CheckoutHelper {
 
     String endPoint = URLResources.APIGEE_CHECKOUT;
 
-    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    List<Header> headerList = new LinkedList<Header>();
+    Map<String, String> mapWebserviceResponse;
+    List<Header> headerList  = new LinkedList<>();
     Header deliveryNow = new Header("x-enable-feature", "DYNAMIC_WINDOWS,DELIVERY_NOW");
     headerList.add(deliveryNow);
 

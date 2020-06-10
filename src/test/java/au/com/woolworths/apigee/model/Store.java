@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class Store {
   private String Id;
   private double AddressId;
-  private String AddressText;
+  private String AddressText, Text;
   private String Name;
 
   @Override
@@ -15,6 +15,7 @@ public class Store {
             "Id='" + Id + '\'' +
             ", AddressId=" + AddressId +
             ", AddressText='" + AddressText + '\'' +
+            ", Text='" + Text + '\'' +
             ", Name='" + Name + '\'' +
             '}';
   }
@@ -41,6 +42,14 @@ public class Store {
 
   public void setAddressText(String addressText) {
     AddressText = addressText;
+  }
+
+  public String getText() {
+    return Text;
+  }
+
+  public void setText(String text) {
+    Text = text;
   }
 
   public String getName() {

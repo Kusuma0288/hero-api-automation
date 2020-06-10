@@ -28,4 +28,5 @@ public final class URLResources {
   public static final String APIGEE_CHECKOUT = "/wow/checkout";
   public static final String HERMES_V1 = "/hermes/iris/v1";
   public static final String APIGEE_V2_SPECIALS = "/wow/v2/specials";
+  public static final String APIGEE_CHECKOUT_PAYMENT_SUMMARY = "/wow/checkout/payment";
 }
