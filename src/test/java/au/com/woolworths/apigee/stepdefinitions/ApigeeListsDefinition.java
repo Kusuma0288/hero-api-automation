@@ -277,7 +277,7 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
         trolleyStockCodes.add(trolleyResponse.getItems().get(i).getArticle().replaceFirst("^0+(?!$)", ""));
       }
 
-    }else {
+    } else {
 
       TrolleyV3Response trolleyResponse = sharedData.trolleyV3Response;
       for (int i = 0; i < trolleyResponse.getTrolley().getTrolleyitemsListResp().size(); i++) {
