@@ -66,8 +66,8 @@ public class TrolleyDefinition extends TrolleyHelper {
 
   }
 
-  @When("^I add some items to the V3 trolley for (.*)$")
-  public void iAddSomeItemsToTheV3Trolley(String mode) throws Throwable {
+  @When("^I add some items to the (.*) trolley for (.*)$")
+  public void iAddSomeItemsToTheV3Trolley(String version, String mode) throws Throwable {
     Map<String, Integer> productsToAdd = new HashMap<>();
 
     productsToAdd.put("milk", 2);
@@ -102,7 +102,11 @@ public class TrolleyDefinition extends TrolleyHelper {
         expectedTotalPrice = expectedTotalPrice + (productsToAdd.get(product) * (v3SearchResponse.getProducts()[0].getInstoreprice().getPriceGst()));
       }
 
-      addStockCodesToTheV3Trolley(stockCodes, productsToAdd.get(product), true, sharedData.accessToken);
+      if (version.equals("V2")) {
+        addStockCodesToTheV2Trolley(stockCodes, productsToAdd.get(product), true, sharedData.accessToken);
+      } else {
+        addStockCodesToTheV3Trolley(stockCodes, productsToAdd.get(product), true, sharedData.accessToken);
+      }
 
       // Round up the price before asserting it
       expectedTotalPrice = Math.round(expectedTotalPrice * 100.0) / 100.0;
@@ -113,7 +117,7 @@ public class TrolleyDefinition extends TrolleyHelper {
   public void i_clear_the_trolley() throws Throwable {
     TrolleyV2Response trolleyResponse = clearTrolley(sharedData.accessToken);
 
-    Assert.assertEquals("Some items are there in trolley", 0, trolleyResponse.getTotaltrolleyprice());
+    Assert.assertEquals("Some items are there in trolley", 0.0, trolleyResponse.getTotaltrolleyprice());
   }
 
   @And("^I add the stockcode with quantity \"([^\"]*)\" to trolley$")
@@ -181,12 +185,30 @@ public class TrolleyDefinition extends TrolleyHelper {
 
   }
 
+  @Then("^I should be able to successfully view all the items in my V2 trolley$")
+  public void canViewAllItemsInV2Trolley() throws Throwable {
+    TrolleyV2Response trolleyResponse = retriveV2Trolley(sharedData.accessToken);
+
+    Assert.assertTrue("The number of products in the V2 trolley is incorrect", trolleyResponse.getTotalproducts() == productNames.size());
+    Assert.assertTrue("Subtotal price is not correct", trolleyResponse.getTotaltrolleyprice() == (expectedTotalPrice));
+
+    // Reverse the list first
+    Collections.reverse(productNames);
+
+    // Verify all the products are correct
+    for (String productName : productNames) {
+      String description = trolleyResponse.getItems().get(productNames.indexOf(productName)).getDescription();
+
+      Assert.assertTrue("Product description is not correct (Expected - " + productName + ", but got - " + description, productName.equals(description));
+    }
+  }
+
   @Then("^I should be able to successfully view all the items in my V3 trolley$")
-  public void canViewAllItemsInTrolley() throws Throwable {
+  public void canViewAllItemsInV3Trolley() throws Throwable {
     TrolleyV3Response trolleyResponse = retriveV3Trolley(sharedData.accessToken);
 
-    Assert.assertTrue("Error in Trolley Results", trolleyResponse.getResults().getTrolley().getHttpStatusCode() == 200);
-    Assert.assertTrue("The number of products in the trolley is incorrect", trolleyResponse.getTrolley().getTotalProducts() == productNames.size());
+    Assert.assertTrue("Error in V3 Trolley Results", trolleyResponse.getResults().getTrolley().getHttpStatusCode() == 200);
+    Assert.assertTrue("The number of products in the V3 trolley is incorrect", trolleyResponse.getTrolley().getTotalProducts() == productNames.size());
     Assert.assertTrue("Subtotal price is not correct", trolleyResponse.getTrolley().getSubtotalInclDelivery() == (expectedTotalPrice + trolleyResponse.getTrolley().getDeliveryFee()));
 
     // Reverse the list first
