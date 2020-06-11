@@ -19,21 +19,13 @@ Feature: Verify Apigee Trolley functions
     When I search for the product Milk in pickup mode and store response
     And I add the 2 available products with 1 each from the store to the V2 trolley
     
-  Scenario: Add multiple products to the trolley and then verify the V2 trolley is as expected
-    Given user continue to connect to apigee with login username as "SHOPPER_USERNAME7"
-    When connection from user to apigee endpoint happens
-    And I clear the trolley
-    And I set a pick up store using post code 2204
-    And I add some items to the V2 trolley for pickup
-    Then I should be able to successfully view all the items in my V2 trolley
-    
   Scenario Outline: Add multiple products to the trolley and then verify the trolley is as expected
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME7"
     When connection from user to apigee endpoint happens
     And I clear the trolley
     And I set a pick up store using post code 2204
     And I add some items to the <version> trolley for pickup
-    Then I should be able to successfully view all the items in my V3 trolley
+    Then I should be able to successfully view all the items in my <version> trolley
 
     Examples:
       | version |
