@@ -261,20 +261,31 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
 
   @Then("^I verify that the correct items with quantity from \"([^\"]*)\" list \"([^\"]*)\" are added to the cart$")
   public void i_verify_that_the_correct_items_with_quantity_are_added_to_the_cart(String version, String listName) throws Throwable {
-    ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName, sharedData.accessToken)), sharedData.accessToken, version);
-    TrolleyV2Response trolleyResponse = sharedData.trolleyV2Response;
-    List<String> trolleyStockCodes = new ArrayList<String>();
+    //Initialize a list of stock codes.
     List<String> listStockCodes = new ArrayList<String>();
+    List<String> trolleyStockCodes = new ArrayList<String>();
+    ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName, sharedData.accessToken)), sharedData.accessToken, version);
 
     for (int i = 0; i < listDetails.getProducts().length; i++) {
-
       listStockCodes.add(String.valueOf(listDetails.getProducts()[i].getArticleId()));
     }
-    for (int i = 0; i < trolleyResponse.getItems().size(); i++) {
 
-      trolleyStockCodes.add(trolleyResponse.getItems().get(i).getArticle().replaceFirst("^0+(?!$)", ""));
+    if (version.equals("V2")) {
+      TrolleyV2Response trolleyResponse = sharedData.trolleyV2Response;
+
+      for (int i = 0; i < trolleyResponse.getItems().size(); i++) {
+        trolleyStockCodes.add(trolleyResponse.getItems().get(i).getArticle().replaceFirst("^0+(?!$)", ""));
+      }
+
+    }else {
+
+      TrolleyV3Response trolleyResponse = sharedData.trolleyV3Response;
+      for (int i = 0; i < trolleyResponse.getTrolley().getTrolleyitemsListResp().size(); i++) {
+
+        trolleyStockCodes.add(trolleyResponse.getTrolley().getTrolleyitemsListResp().get(i).getArticle().replaceFirst("^0+(?!$)", ""));
+      }
+
     }
-
     Assert.assertTrue("Error:Item not found: Items present in the cart doesn't exsist in list", trolleyStockCodes.containsAll(listStockCodes));
 
   }
