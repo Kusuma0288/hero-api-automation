@@ -8,9 +8,11 @@ import java.util.Arrays;
 public class ApigeeV3SearchResponse {
 
   private Apigeev3SearchProducts[] Products;
+  private Apigeev3SearchProducts[] fault;
   private int Product_count;
   private String Nextpage;
   private Object Sortoptions;
+  private String FaultString;
 
   @Override
   public String toString() {
@@ -19,6 +21,8 @@ public class ApigeeV3SearchResponse {
             ", Product_count=" + Product_count +
             ", Nextpage='" + Nextpage + '\'' +
             ", Sortoptions=" + Sortoptions +
+            "fault = " + Arrays.toString(fault) +
+            ", faultstring = " + FaultString+
             '}';
   }
 
@@ -53,4 +57,9 @@ public class ApigeeV3SearchResponse {
   public void setSortoptions(Object sortoptions) {
     Sortoptions = sortoptions;
   }
+  public void setfaultString(String faultstring){
+    FaultString = faultstring;
+  }
+
+  public String getFaultString(){ return FaultString;}
 }

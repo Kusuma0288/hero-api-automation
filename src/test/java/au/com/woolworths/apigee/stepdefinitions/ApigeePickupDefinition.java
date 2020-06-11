@@ -24,7 +24,7 @@ public class ApigeePickupDefinition extends ApigeeAddressHelper {
     this.picoContainer = container;
   }
 
-  @When("^I search for the pickup stores in the postcode (.*)$")
+  @When("^I search for the pickup stores in the (.*)$")
   public void searchForThePostCode(String postCode) throws Throwable {
     postCode = Utilities.replaceMultipleandTrimSpaces(postCode);
 
