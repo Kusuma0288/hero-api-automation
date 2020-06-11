@@ -25,7 +25,7 @@ Feature: Verify Apigee Trolley functions
     And I clear the trolley
     And I set a pick up store using post code 2204
     And I add some items to the <version> trolley for pickup
-    Then I should be able to successfully view all the items in my V3 trolley
+    Then I should be able to successfully view all the items in my <version> trolley
 
     Examples:
       | version |
