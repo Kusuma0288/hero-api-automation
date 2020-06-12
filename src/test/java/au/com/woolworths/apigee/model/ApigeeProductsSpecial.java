@@ -13,12 +13,12 @@ public class ApigeeProductsSpecial {
   @Override
   public String toString() {
     return "ApigeeProducts{" +
-            "page=" + page +
-            "nextpage=" + nextpage +
-            "count=" + count +
-            "products=" + products +
-            "sortoptions=" + sortoptions +
-            +'}';
+        "page=" + page +
+        "nextpage=" + nextpage +
+        "count=" + count +
+        "products=" + products +
+        "sortoptions=" + sortoptions +
+        +'}';
   }
 
   public int getPage() {

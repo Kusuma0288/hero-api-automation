@@ -12,12 +12,12 @@ public class AddProductsToListRequest {
   @Override
   public String toString() {
     return "AddProductsToListRequest{" +
-            "articleId=" + articleId +
-            ", quantity='" + quantity + '\'' +
-            ", lastsynced=" + lastsynced +
-            ", checked=" + checked +
-            ", timestamp=" + timestamp +
-            '}';
+        "articleId=" + articleId +
+        ", quantity='" + quantity + '\'' +
+        ", lastsynced=" + lastsynced +
+        ", checked=" + checked +
+        ", timestamp=" + timestamp +
+        '}';
   }
 
   public String getArticleId() {

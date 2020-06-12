@@ -11,10 +11,10 @@ public class TrolleyV3Response {
   @Override
   public String toString() {
     return "TrolleyV3Response{" +
-            "Order=" + Order +
-            ", Trolley=" + Trolley +
-            ", Results=" + Results +
-            '}';
+        "Order=" + Order +
+        ", Trolley=" + Trolley +
+        ", Results=" + Results +
+        '}';
   }
 
   public Object getOrder() {

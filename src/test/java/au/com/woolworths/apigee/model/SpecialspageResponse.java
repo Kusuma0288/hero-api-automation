@@ -9,8 +9,8 @@ public class SpecialspageResponse {
   @Override
   public String toString() {
     return "getCategories{" +
-            "categories='" + categories + '\'' +
-            '}';
+        "categories='" + categories + '\'' +
+        '}';
   }
 
   public SpecialsCategories[] getCategories() {

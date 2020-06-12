@@ -10,9 +10,9 @@ public class FulfilmentMethod {
   @Override
   public String toString() {
     return "FulfilmentMethod{" +
-            "Method='" + Method + '\'' +
-            ", Label='" + Label + '\'' +
-            '}';
+        "Method='" + Method + '\'' +
+        ", Label='" + Label + '\'' +
+        '}';
   }
 
   public String getMethod() {

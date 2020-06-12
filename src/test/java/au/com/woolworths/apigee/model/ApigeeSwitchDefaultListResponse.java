@@ -9,8 +9,8 @@ public class ApigeeSwitchDefaultListResponse {
   @Override
   public String toString() {
     return "ApigeeSwitchDefaultListResponse{" +
-            "status='" + status + '\'' +
-            '}';
+        "status='" + status + '\'' +
+        '}';
   }
 
   public String getStatus() {

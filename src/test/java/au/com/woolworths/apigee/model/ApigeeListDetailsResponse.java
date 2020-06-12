@@ -23,20 +23,20 @@ public class ApigeeListDetailsResponse {
   @Override
   public String toString() {
     return "ApigeeListDetailsResponse{" +
-            "id='" + id + '\'' +
-            ", text='" + text + '\'' +
-            ", quantity=" + quantity +
-            ", checked=" + checked +
-            ", status=" + status +
-            ", title='" + title + '\'' +
-            ", timestamp=" + timestamp +
-            ", lastUpdated=" + lastUpdated +
-            ", count=" + count +
-            ", page=" + page +
-            ", nextPage=" + nextPage +
-            ", freeTextItems=" + Arrays.toString(freeTextItems) +
-            ", products=" + Arrays.toString(products) +
-            '}';
+        "id='" + id + '\'' +
+        ", text='" + text + '\'' +
+        ", quantity=" + quantity +
+        ", checked=" + checked +
+        ", status=" + status +
+        ", title='" + title + '\'' +
+        ", timestamp=" + timestamp +
+        ", lastUpdated=" + lastUpdated +
+        ", count=" + count +
+        ", page=" + page +
+        ", nextPage=" + nextPage +
+        ", freeTextItems=" + Arrays.toString(freeTextItems) +
+        ", products=" + Arrays.toString(products) +
+        '}';
   }
 
   public String getText() {

@@ -156,7 +156,7 @@ public class ApigeeListHelper extends BaseHelper {
     Map<String, String> queryParams = new HashMap<String, String>();
 
     String listId = Arrays.stream(retrieveList(accessToken).getLists()).filter(item -> item.getTitle().contains(listName))
-            .findFirst().get().getId();
+        .findFirst().get().getId();
     ApigeeSwitchDefaultListResponse response;
 
     String endPoint = URLResources.APIGEE_V2_LISTS + "/" + listId + "/default";

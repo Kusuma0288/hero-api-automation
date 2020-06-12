@@ -18,17 +18,17 @@ public class ApigeeIsProductFlag {
   @Override
   public String toString() {
     return "ApigeeIsProductFlag{" +
-            "liquor=" + liquor +
-            "ranged=" + ranged +
-            "weighed=" + weighed +
-            "weightonline=" + weightonline +
-            "tobacco=" + tobacco +
-            "everydaypricecut=" + everydaypricecut +
-            "pmrestriction=" + pmrestriction +
-            "forcollection=" + forcollection +
-            "fordelivery=" + fordelivery +
-            "meatstockloss=" + meatstockloss
-            + '}';
+        "liquor=" + liquor +
+        "ranged=" + ranged +
+        "weighed=" + weighed +
+        "weightonline=" + weightonline +
+        "tobacco=" + tobacco +
+        "everydaypricecut=" + everydaypricecut +
+        "pmrestriction=" + pmrestriction +
+        "forcollection=" + forcollection +
+        "fordelivery=" + fordelivery +
+        "meatstockloss=" + meatstockloss
+        + '}';
   }
 
   public boolean isLiquor() {

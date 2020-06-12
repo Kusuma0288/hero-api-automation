@@ -24,23 +24,23 @@ public class HomepageComponentsData {
   @Override
   public String toString() {
     return "HomepageComponents{" +
-            "title=" + title +
-            ", subtitle=" + subtitle +
-            ", actionTitle=" + actionTitle +
-            ", actionPath=" + actionPath +
-            ", items=" + items +
-            ", image=" + image +
-            ", productId=" + productId +
-            ", promotionType=" + promotionType +
-            ", dataPathType=" + dataPathType +
-            ", dataPath=" + dataPath +
-            ", isExternal=" + isExternal +
-            ", requiresAuth=" + requiresAuth +
-            ", url=" + url +
-            ", altText=" + altText +
-            ", height=" + height +
-            ", queryParameters=" + queryParameters
-            +'}';
+        "title=" + title +
+        ", subtitle=" + subtitle +
+        ", actionTitle=" + actionTitle +
+        ", actionPath=" + actionPath +
+        ", items=" + items +
+        ", image=" + image +
+        ", productId=" + productId +
+        ", promotionType=" + promotionType +
+        ", dataPathType=" + dataPathType +
+        ", dataPath=" + dataPath +
+        ", isExternal=" + isExternal +
+        ", requiresAuth=" + requiresAuth +
+        ", url=" + url +
+        ", altText=" + altText +
+        ", height=" + height +
+        ", queryParameters=" + queryParameters
+        + '}';
   }
 
   public String getTitle() {

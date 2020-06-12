@@ -11,13 +11,13 @@ public class CheckoutResultsResponse {
   @Override
   public String toString() {
     return "CheckoutResultsResponse {" +
-            "SetDeliveryWindow=" + SetDeliveryWindow +
-            ", Order=" + Order +
-            ", DeliveryPackagingPreferences=" + DeliveryPackagingPreferences +
-            ", FulfilmentWindows=" + FulfilmentWindows +
-            ", PickupStores =" + PickupStores +
-            ", SetPackagingOption =" + SetPackagingOption +
-            '}';
+        "SetDeliveryWindow=" + SetDeliveryWindow +
+        ", Order=" + Order +
+        ", DeliveryPackagingPreferences=" + DeliveryPackagingPreferences +
+        ", FulfilmentWindows=" + FulfilmentWindows +
+        ", PickupStores =" + PickupStores +
+        ", SetPackagingOption =" + SetPackagingOption +
+        '}';
   }
 
   public CheckoutResultsErrorResponse getSetDeliveryWindow() {

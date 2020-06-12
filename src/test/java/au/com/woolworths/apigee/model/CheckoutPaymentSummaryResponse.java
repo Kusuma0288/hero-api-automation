@@ -1,4 +1,5 @@
 package au.com.woolworths.apigee.model;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -10,10 +11,10 @@ public class CheckoutPaymentSummaryResponse {
   @Override
   public String toString() {
     return "CheckoutPaymentSummaryResponse{" +
-            "Order=" + Order +
-            ", PaymentMessages=" + paymentMessages +
-            ", Results=" + Results +
-            '}';
+        "Order=" + Order +
+        ", PaymentMessages=" + paymentMessages +
+        ", Results=" + Results +
+        '}';
   }
 
   public Order getOrder() {

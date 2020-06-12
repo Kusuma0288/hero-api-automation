@@ -39,7 +39,7 @@ public class ApigeeProductsDefinition extends ApigeeProductsHelper {
   public void retrieveProductsWithSpecial() throws Throwable {
 
     ApigeeProductsSpecial productsSpecial = iRetreiveProductsWithSpecial(sharedData.inStoreId, sharedData.productAisle,
-            sharedData.productCategory, sharedData.accessToken);
+        sharedData.productCategory, sharedData.accessToken);
 
     //Asserting sort, tobacco, disclaimer attributes
     Assert.assertNotNull(productsSpecial.getProducts()[0]);
@@ -68,7 +68,7 @@ public class ApigeeProductsDefinition extends ApigeeProductsHelper {
   public void retrieveProducts() throws Throwable {
 
     ApigeeProductsSpecial productsSpecial = iRetreiveProducts(sharedData.inStoreId, sharedData.productAisle,
-            sharedData.productCategory, sharedData.accessToken);
+        sharedData.productCategory, sharedData.accessToken);
 
     //Asserting sort, tobacco, disclaimer attributes
     Assert.assertNotNull(productsSpecial.getProducts()[0]);

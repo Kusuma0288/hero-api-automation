@@ -11,9 +11,9 @@ public class DeliveryDetails {
   @Override
   public String toString() {
     return "DeliveryDetails{" +
-            "Address=" + Address +
-            ", Window=" + Window +
-            '}';
+        "Address=" + Address +
+        ", Window=" + Window +
+        '}';
   }
 
   public Address getAddress() {

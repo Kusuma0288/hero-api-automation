@@ -9,8 +9,8 @@ public class HomepageData {
   @Override
   public String toString() {
     return "HomepageData{" +
-            "Items=" + Items +
-            +'}';
+        "Items=" + Items +
+        +'}';
   }
 
   public HomepageComponents[] getItems() {

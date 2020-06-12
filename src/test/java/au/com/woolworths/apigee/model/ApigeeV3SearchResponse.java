@@ -15,11 +15,11 @@ public class ApigeeV3SearchResponse {
   @Override
   public String toString() {
     return "ApigeeV3SearchResponse{" +
-            "Products=" + Arrays.toString(Products) +
-            ", Product_count=" + Product_count +
-            ", Nextpage='" + Nextpage + '\'' +
-            ", Sortoptions=" + Sortoptions +
-            '}';
+        "Products=" + Arrays.toString(Products) +
+        ", Product_count=" + Product_count +
+        ", Nextpage='" + Nextpage + '\'' +
+        ", Sortoptions=" + Sortoptions +
+        '}';
   }
 
   public Apigeev3SearchProducts[] getProducts() {

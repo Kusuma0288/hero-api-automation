@@ -11,10 +11,10 @@ public class FulFilmentResponse {
   @Override
   public String toString() {
     return "FulFilmentResponse{" +
-            "Pickup=" + Pickup +
-            ", Fulfilment=" + Fulfilment +
-            ", Results=" + Results +
-            '}';
+        "Pickup=" + Pickup +
+        ", Fulfilment=" + Fulfilment +
+        ", Results=" + Results +
+        '}';
   }
 
   public au.com.woolworths.apigee.model.Pickup getPickup() {

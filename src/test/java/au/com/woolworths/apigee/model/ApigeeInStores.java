@@ -46,42 +46,42 @@ public class ApigeeInStores {
   @Override
   public String toString() {
     return "InStore{" +
-            "name=" + name +
-            ", addressLine1=" + addressLine1 +
-            ", addressLine2=" + addressLine2 +
-            ", country=" + country +
-            ", division=" + division +
-            ", email=" + email +
-            ", extra1=" + extra1 +
-            ", extra2=" + extra2 +
-            ", extra3=" + extra3 +
-            ", extra4=" + extra4 +
-            ", extra5=" + extra5 +
-            ", extra6=" + extra6 +
-            ", extra7=" + extra7 +
-            ", extra8=" + extra8 +
-            ", extra9=" + extra9 +
-            ", extra10=" + extra10 +
-            ", extra11=" + extra11 +
-            ", extra12=" + extra12 +
-            ", extra13=" + extra13 +
-            ", extra14=" + extra14 +
-            ", extra15=" + extra15 +
-            ", facilities=" + facilities +
-            ", geoLevel=" + geoLevel +
-            ", GMTZone=" + GMTZone +
-            ", images=" + images +
-            ", manager=" + manager +
-            ", no=" + no +
-            ", phone=" + phone +
-            ", postcode=" + postcode +
-            ", state=" + state +
-            ", suburb=" + suburb +
-            ", trading_hours=" + trading_hours +
-            ", distance=" + distance +
-            ", latitude=" + latitude +
-            ", longtitude=" + longtitude +
-            '}';
+        "name=" + name +
+        ", addressLine1=" + addressLine1 +
+        ", addressLine2=" + addressLine2 +
+        ", country=" + country +
+        ", division=" + division +
+        ", email=" + email +
+        ", extra1=" + extra1 +
+        ", extra2=" + extra2 +
+        ", extra3=" + extra3 +
+        ", extra4=" + extra4 +
+        ", extra5=" + extra5 +
+        ", extra6=" + extra6 +
+        ", extra7=" + extra7 +
+        ", extra8=" + extra8 +
+        ", extra9=" + extra9 +
+        ", extra10=" + extra10 +
+        ", extra11=" + extra11 +
+        ", extra12=" + extra12 +
+        ", extra13=" + extra13 +
+        ", extra14=" + extra14 +
+        ", extra15=" + extra15 +
+        ", facilities=" + facilities +
+        ", geoLevel=" + geoLevel +
+        ", GMTZone=" + GMTZone +
+        ", images=" + images +
+        ", manager=" + manager +
+        ", no=" + no +
+        ", phone=" + phone +
+        ", postcode=" + postcode +
+        ", state=" + state +
+        ", suburb=" + suburb +
+        ", trading_hours=" + trading_hours +
+        ", distance=" + distance +
+        ", latitude=" + latitude +
+        ", longtitude=" + longtitude +
+        '}';
   }
 
   public String getName() {

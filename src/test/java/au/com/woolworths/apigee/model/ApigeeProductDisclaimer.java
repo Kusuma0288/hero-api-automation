@@ -10,9 +10,9 @@ public class ApigeeProductDisclaimer {
   @Override
   public String toString() {
     return "ApigeeIsProductFlag{" +
-            "tobacco=" + tobacco +
-            "liquor=" + liquor +
-            +'}';
+        "tobacco=" + tobacco +
+        "liquor=" + liquor +
+        +'}';
   }
 
   public String getTobacco() {

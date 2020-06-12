@@ -16,14 +16,14 @@ public class AddProdListDetailsResponse {
   @Override
   public String toString() {
     return "ApigeeListDetailsResponse{" +
-            "id='" + id + '\'' +
-            ", articleId='" + articleId + '\'' +
-            ", quantity=" + quantity +
-            ", checked=" + checked +
-            ", status=" + status +
-            ", timestamp=" + timestamp +
+        "id='" + id + '\'' +
+        ", articleId='" + articleId + '\'' +
+        ", quantity=" + quantity +
+        ", checked=" + checked +
+        ", status=" + status +
+        ", timestamp=" + timestamp +
 
-            '}';
+        '}';
   }
 
   public long getId() {

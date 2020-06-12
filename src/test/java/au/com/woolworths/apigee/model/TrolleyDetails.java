@@ -17,14 +17,14 @@ public class TrolleyDetails {
   @Override
   public String toString() {
     return "TrolleyResults{" +
-            "SubtotalInclDelivery=" + subtotalInclDelivery +
-            ", SavingsOnTrolley=" + savingsOnTrolley +
-            ", TotalProducts=" + totalProducts +
-            ", DeliveryFee=" + deliveryFee +
-            ",items=" + items +
-            ",WowRewardsSummary=" + wowRewardsSummary +
-            ",Loyalty=" + loyalty +
-            '}';
+        "SubtotalInclDelivery=" + subtotalInclDelivery +
+        ", SavingsOnTrolley=" + savingsOnTrolley +
+        ", TotalProducts=" + totalProducts +
+        ", DeliveryFee=" + deliveryFee +
+        ",items=" + items +
+        ",WowRewardsSummary=" + wowRewardsSummary +
+        ",Loyalty=" + loyalty +
+        '}';
   }
 
   public double getSubtotalInclDelivery() {

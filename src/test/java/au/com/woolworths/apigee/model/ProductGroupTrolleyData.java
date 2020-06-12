@@ -19,15 +19,15 @@ public class ProductGroupTrolleyData {
   @Override
   public String toString() {
     return "ProductGroupTrolleyResponse{" +
-            "minimum=" + minimum +
-            ", maximum=" + maximum +
-            ", increment=" + increment +
-            ", inTrolley=" + inTrolley +
-            ", unit=" + unit +
-            ", buttonState=" + buttonState +
-            ", buttonLabel=" + buttonLabel +
-            ", buttonQuantity=" + buttonQuantity +
-            +'}';
+        "minimum=" + minimum +
+        ", maximum=" + maximum +
+        ", increment=" + increment +
+        ", inTrolley=" + inTrolley +
+        ", unit=" + unit +
+        ", buttonState=" + buttonState +
+        ", buttonLabel=" + buttonLabel +
+        ", buttonQuantity=" + buttonQuantity +
+        +'}';
   }
 
   public String getMinimum() {

@@ -10,9 +10,9 @@ public class TrolleyResults {
   @Override
   public String toString() {
     return "TrolleyResults{" +
-            "Order=" + Order +
-            ", Trolley=" + Trolley +
-            '}';
+        "Order=" + Order +
+        ", Trolley=" + Trolley +
+        '}';
   }
 
   public ResultStatus getOrder() {

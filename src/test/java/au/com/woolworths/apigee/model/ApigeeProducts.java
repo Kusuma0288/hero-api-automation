@@ -39,38 +39,38 @@ public class ApigeeProducts {
   @Override
   public String toString() {
     return "ApigeeProducts{" +
-            "name=" + name +
-            "article=" + article +
-            "description=" + description +
-            "images=" + images +
-            "size=" + size +
-            "measure=" + measure +
-            "is=" + is +
-            "timeslotrestriction=" + timeslotrestriction +
-            "instorelocation=" + instorelocation +
-            "instoreaisleid=" + instoreaisleid +
-            "instoreaisleside=" + instoreaisleside +
-            "instoreaislebay=" + instoreaislebay +
-            "ecfcategory1=" + ecfcategory1 +
-            "ecfcategory2=" + ecfcategory2 +
-            "ecfcategory3=" + ecfcategory3 +
-            "instoreprice=" + instoreprice +
-            "offers=" + offers +
-            "promotions=" + promo +
-            "stockqty=" + stockqty +
-            "defaultqty=" + defaultqty +
-            "incrementalquantity=" + incrementalquantity +
-            "supplementaryinfo=" + supplementaryinfo +
-            "details=" + details +
-            "badge=" + badge +
-            "productbadge=" + productbadge +
-            "disclaimer=" + disclaimer +
-            "specialbadge=" + specialbadge +
-            "savingsamount=" + savingsamount +
-            "stock=" + stock +
-            "hasBeenBoughtBefore=" + hasBeenBoughtBefore +
-            "footerNew=" + footerNew +
-            +'}';
+        "name=" + name +
+        "article=" + article +
+        "description=" + description +
+        "images=" + images +
+        "size=" + size +
+        "measure=" + measure +
+        "is=" + is +
+        "timeslotrestriction=" + timeslotrestriction +
+        "instorelocation=" + instorelocation +
+        "instoreaisleid=" + instoreaisleid +
+        "instoreaisleside=" + instoreaisleside +
+        "instoreaislebay=" + instoreaislebay +
+        "ecfcategory1=" + ecfcategory1 +
+        "ecfcategory2=" + ecfcategory2 +
+        "ecfcategory3=" + ecfcategory3 +
+        "instoreprice=" + instoreprice +
+        "offers=" + offers +
+        "promotions=" + promo +
+        "stockqty=" + stockqty +
+        "defaultqty=" + defaultqty +
+        "incrementalquantity=" + incrementalquantity +
+        "supplementaryinfo=" + supplementaryinfo +
+        "details=" + details +
+        "badge=" + badge +
+        "productbadge=" + productbadge +
+        "disclaimer=" + disclaimer +
+        "specialbadge=" + specialbadge +
+        "savingsamount=" + savingsamount +
+        "stock=" + stock +
+        "hasBeenBoughtBefore=" + hasBeenBoughtBefore +
+        "footerNew=" + footerNew +
+        +'}';
   }
 
   public String getName() {

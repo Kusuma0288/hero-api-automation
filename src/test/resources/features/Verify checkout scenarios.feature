@@ -18,8 +18,8 @@ Feature: Checkout API scenarios
     Then I validate the product subtotal and total GST
     And I validate the packaging fee and preference
     Examples:
-      |Mode|
-      |Pickup|
+      | Mode   |
+      | Pickup |
 
 
   Scenario Outline:  Verify getting and setting of v3/checkout windows and Packaging preference for Delivery mode
@@ -39,5 +39,5 @@ Feature: Checkout API scenarios
     Then I validate the product subtotal and total GST
     And I validate the packaging fee and preference
     Examples:
-      |Mode| lookupAddress     | position | Username          |
-      |Delivery| Charles street    | 1        |SHOPPER_USERNAME10 |
+      | Mode     | lookupAddress  | position | Username           |
+      | Delivery | Charles street | 1        | SHOPPER_USERNAME10 |

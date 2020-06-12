@@ -10,8 +10,8 @@ public class DeliveryAddressRequest {
   @Override
   public String toString() {
     return "DeliveryAddressRequest{" +
-            "address='" + address + '\'' +
-            '}';
+        "address='" + address + '\'' +
+        '}';
   }
 
   public String getAddress() {

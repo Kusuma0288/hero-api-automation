@@ -41,36 +41,36 @@ public class TrolleyItemsListResponse {
   @Override
   public String toString() {
     return "TrolleyItems{" +
-            "name=" + name +
-            ", article=" + article +
-            ", description=" + description +
-            ", images=" + images +
-            ", href=" + href +
-            ", size=" + size +
-            ", measure=" + measure +
-            ", is=" + is +
-            ", instorelocation=" + instorelocation +
-            ", allowsubstitution=" + allowsubstitution +
-            ", comment=" + comment +
-            ", instoreprice=" + instoreprice +
-            ", promotions=" + promotions +
-            ", footer=" + footer +
-            ", maxquantitylimit=" + maxquantitylimit +
-            ", defaultquantity=" + defaultquantity +
-            ", minquantitylimit=" + minquantitylimit +
-            ", incrementalquantity=" + incrementalquantity +
-            ", totalitemprice=" + totalitemprice +
-            ", supplementaryInfoTextAll=" + supplementaryInfoTextAll +
-            ", isrestricted=" + isrestricted +
-            ", isdeliverypass=" + isdeliverypass +
-            ", isavailable=" + isavailable +
-            ", ispmrestriction=" + ispmrestriction +
-            ", isforcollection=" + isforcollection +
-            ", isfordelivery=" + isfordelivery +
-            ", supplementaryinfo=" + supplementaryinfo +
-            ", updated=" + updated +
-            ", disclaimer=" + disclaimer +
-            '}';
+        "name=" + name +
+        ", article=" + article +
+        ", description=" + description +
+        ", images=" + images +
+        ", href=" + href +
+        ", size=" + size +
+        ", measure=" + measure +
+        ", is=" + is +
+        ", instorelocation=" + instorelocation +
+        ", allowsubstitution=" + allowsubstitution +
+        ", comment=" + comment +
+        ", instoreprice=" + instoreprice +
+        ", promotions=" + promotions +
+        ", footer=" + footer +
+        ", maxquantitylimit=" + maxquantitylimit +
+        ", defaultquantity=" + defaultquantity +
+        ", minquantitylimit=" + minquantitylimit +
+        ", incrementalquantity=" + incrementalquantity +
+        ", totalitemprice=" + totalitemprice +
+        ", supplementaryInfoTextAll=" + supplementaryInfoTextAll +
+        ", isrestricted=" + isrestricted +
+        ", isdeliverypass=" + isdeliverypass +
+        ", isavailable=" + isavailable +
+        ", ispmrestriction=" + ispmrestriction +
+        ", isforcollection=" + isforcollection +
+        ", isfordelivery=" + isfordelivery +
+        ", supplementaryinfo=" + supplementaryinfo +
+        ", updated=" + updated +
+        ", disclaimer=" + disclaimer +
+        '}';
   }
 
   public String getName() {

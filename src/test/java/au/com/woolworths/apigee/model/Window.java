@@ -16,14 +16,14 @@ public class Window {
   @Override
   public String toString() {
     return "Window{" +
-            "Id=" + Id +
-            ", DisplayDate='" + DisplayDate + '\'' +
-            ", DisplayTime='" + DisplayTime + '\'' +
-            ", DisplayDeliveryFee='" + DisplayDeliveryFee + '\'' +
-            ", StartTime='" + StartTime + '\'' +
-            ", EndTime='" + EndTime + '\'' +
-            ", IsExpress=" + IsExpress +
-            '}';
+        "Id=" + Id +
+        ", DisplayDate='" + DisplayDate + '\'' +
+        ", DisplayTime='" + DisplayTime + '\'' +
+        ", DisplayDeliveryFee='" + DisplayDeliveryFee + '\'' +
+        ", StartTime='" + StartTime + '\'' +
+        ", EndTime='" + EndTime + '\'' +
+        ", IsExpress=" + IsExpress +
+        '}';
   }
 
   public int getId() {

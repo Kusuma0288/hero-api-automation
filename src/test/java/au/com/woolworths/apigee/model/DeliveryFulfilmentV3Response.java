@@ -10,8 +10,8 @@ public class DeliveryFulfilmentV3Response {
   @Override
   public String toString() {
     return "DeliveryFulfilmentV3Response {" +
-            "Delivery=" + delivery +
-            ", Fulfilment=" + fulfilment + '}';
+        "Delivery=" + delivery +
+        ", Fulfilment=" + fulfilment + '}';
   }
 
   public Delivery getDelivery() {

@@ -12,11 +12,11 @@ public class ApigeeFreeTextItem {
   @Override
   public String toString() {
     return "ApigeeFreeTextItem{" +
-            "id=" + id +
-            ", text='" + text + '\'' +
-            ", timestamp=" + timestamp +
-            ", checked=" + checked +
-            '}';
+        "id=" + id +
+        ", text='" + text + '\'' +
+        ", timestamp=" + timestamp +
+        ", checked=" + checked +
+        '}';
   }
 
   public long getId() {

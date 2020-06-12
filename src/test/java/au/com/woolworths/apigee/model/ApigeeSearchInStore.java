@@ -9,8 +9,8 @@ public class ApigeeSearchInStore {
   @Override
   public String toString() {
     return "InStores{" +
-            "stores=" + stores +
-            +'}';
+        "stores=" + stores +
+        +'}';
   }
 
   public ApigeeInStores[] getstores() {

@@ -63,8 +63,8 @@ Feature: Verify Apigee List scenarios
     And I add items to cart after selecting "<Quantity>" for every item from "<Version>" list "<List Name>"
     Then I verify that the correct items with quantity from "<Version>" list "<List Name>" are added to the cart
     Examples:
-      | Quantity  | List Name      | Fulfillment | Version |
-      | 1	   	   | AutoList Exact | Pickup      | V2      |
-      | 1	   	   | AutoList Exact | Pickup      | V3      |
+      | Quantity | List Name      | Fulfillment | Version |
+      | 1        | AutoList Exact | Pickup      | V2      |
+      | 1        | AutoList Exact | Pickup      | V3      |
    
 

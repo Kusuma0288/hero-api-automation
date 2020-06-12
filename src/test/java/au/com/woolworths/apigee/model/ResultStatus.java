@@ -15,13 +15,13 @@ public class ResultStatus {
   @Override
   public String toString() {
     return "ResultStatus{" +
-            "httpStatusCode=" + httpStatusCode +
-            ", errorCode=" + errorCode +
-            ", errorDetail=" + errorDetail +
-            ", errorMessage='" + errorMessage + '\'' +
-            ", method='" + method + '\'' +
-            ", function='" + function + '\'' +
-            '}';
+        "httpStatusCode=" + httpStatusCode +
+        ", errorCode=" + errorCode +
+        ", errorDetail=" + errorDetail +
+        ", errorMessage='" + errorMessage + '\'' +
+        ", method='" + method + '\'' +
+        ", function='" + function + '\'' +
+        '}';
   }
 
   public int getHttpStatusCode() {

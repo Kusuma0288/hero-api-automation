@@ -14,15 +14,15 @@ public class CheckoutPackagingPreferencesResponse {
   @Override
   public String toString() {
     return "CheckoutPackagingPreferencesResponse{" +
-            "  Id=" + Id +
-            ", Code=" + Code +
-            ", Name='" + Name + '\'' +
-            ", Cost=" + Cost +
-            ", IsSelected=" + IsSelected +
-            ", Image=" + Image +
-            ", Description=" + Description +
-            ", FeeLabel=" + FeeLabel +
-            '}';
+        "  Id=" + Id +
+        ", Code=" + Code +
+        ", Name='" + Name + '\'' +
+        ", Cost=" + Cost +
+        ", IsSelected=" + IsSelected +
+        ", Image=" + Image +
+        ", Description=" + Description +
+        ", FeeLabel=" + FeeLabel +
+        '}';
   }
 
   public int getId() {

@@ -15,13 +15,13 @@ public class InStorePrice {
   @Override
   public String toString() {
     return "InStorePrice{" +
-            "CupUom=" + cupuom +
-            "CupSize=" + cupsize +
-            "CupPrice=" + uom +
-            "Uom=" + pricegst +
-            "PriceGst=" + cupprice +
-            "PriceGst=" + previousprice +
-            +'}';
+        "CupUom=" + cupuom +
+        "CupSize=" + cupsize +
+        "CupPrice=" + uom +
+        "Uom=" + pricegst +
+        "PriceGst=" + cupprice +
+        "PriceGst=" + previousprice +
+        +'}';
   }
 
   public String getCUom() {

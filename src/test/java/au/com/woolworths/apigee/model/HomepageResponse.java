@@ -10,9 +10,9 @@ public class HomepageResponse {
   @Override
   public String toString() {
     return "Homepage{" +
-            "data=" + data +
-            ", type=" + type +
-            +'}';
+        "data=" + data +
+        ", type=" + type +
+        +'}';
   }
 
   public HomepageData getData() {

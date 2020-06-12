@@ -13,9 +13,9 @@ public class TrolleyItems {
   @Override
   public String toString() {
     return "TrolleyItems{" +
-            "items=" + items +
-            ", replaceTrolley=" + replaceTrolley +
-            '}';
+        "items=" + items +
+        ", replaceTrolley=" + replaceTrolley +
+        '}';
   }
 
   public List<Item> getItems() {

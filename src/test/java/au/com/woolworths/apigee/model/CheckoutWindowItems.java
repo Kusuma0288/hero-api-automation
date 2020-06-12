@@ -10,8 +10,8 @@ public class CheckoutWindowItems {
   @Override
   public String toString() {
     return "CheckoutWindowItemsResponse {" +
-            "StartTimeRange=" + StartTimeRange +
-            ", Slots=" + Slots + '}';
+        "StartTimeRange=" + StartTimeRange +
+        ", Slots=" + Slots + '}';
   }
 
   public String getStartTimeRange() {

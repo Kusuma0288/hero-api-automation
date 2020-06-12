@@ -12,11 +12,11 @@ public class Item {
   @Override
   public String toString() {
     return "Item{" +
-            "article=" + article +
-            ", itemquantityintrolley=" + itemquantityintrolley +
-            ", allowsubstitution='" + allowsubstitution + '\'' +
-            ", comment='" + comment + '\'' +
-            '}';
+        "article=" + article +
+        ", itemquantityintrolley=" + itemquantityintrolley +
+        ", allowsubstitution='" + allowsubstitution + '\'' +
+        ", comment='" + comment + '\'' +
+        '}';
   }
 
   public Object getArticle() {

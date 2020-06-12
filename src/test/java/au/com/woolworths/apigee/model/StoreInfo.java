@@ -11,7 +11,7 @@ public class StoreInfo {
   private String Name;
 
   @Override
-  public String toString(){
+  public String toString() {
     return "StoreInfo {" + "Id=" + Id + "AddressId=" + AddressId + "Text=" + Text + "Name=" + Name + '}';
   }
 

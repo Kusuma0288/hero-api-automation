@@ -9,8 +9,8 @@ public class ApigeeGetListResponse {
   @Override
   public String toString() {
     return "ApigeeGetLists{" +
-            "lists='" + lists + '\'' +
-            '}';
+        "lists='" + lists + '\'' +
+        '}';
   }
 
   public ApigeeLists[] getLists() {

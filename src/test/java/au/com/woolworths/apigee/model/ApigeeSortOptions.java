@@ -10,9 +10,9 @@ public class ApigeeSortOptions {
   @Override
   public String toString() {
     return "ApigeeSortOptions{" +
-            "description=" + description +
-            "params=" + params +
-            +'}';
+        "description=" + description +
+        "params=" + params +
+        +'}';
   }
 
   public String getDescription() {

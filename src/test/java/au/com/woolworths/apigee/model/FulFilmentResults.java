@@ -7,9 +7,9 @@ public class FulFilmentResults {
   @Override
   public String toString() {
     return "FulFilmentResults{" +
-            "SetPickupAddress=" + SetPickupAddress +
-            ", PickupStores=" + PickupStores +
-            '}';
+        "SetPickupAddress=" + SetPickupAddress +
+        ", PickupStores=" + PickupStores +
+        '}';
   }
 
   public ResultStatus getSetPickupAddress() {

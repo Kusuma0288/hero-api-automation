@@ -10,8 +10,8 @@ public class Pickup {
   @Override
   public String toString() {
     return "Pickup{" +
-            "Store=" + Store +
-            '}';
+        "Store=" + Store +
+        '}';
   }
 
   public Store getStore() {

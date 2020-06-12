@@ -39,37 +39,37 @@ public class Apigeev3SearchProducts {
   @Override
   public String toString() {
     return "Apigeev3SearchProducts{" +
-            "name=" + name +
-            "article=" + article +
-            "description=" + description +
-            "images=" + images +
-            "size=" + size +
-            "measure=" + measure +
-            "is=" + is +
-            "timeslotrestriction=" + timeslotrestriction +
-            "instorelocation=" + instorelocation +
-            "instoreaisleid=" + instoreaisleid +
-            "instoreaisleside=" + instoreaisleside +
-            "instoreaislebay=" + instoreaislebay +
-            "instoreprice=" + instoreprice +
-            "offers=" + offers +
-            "promo=" + promo +
-            "footer" + footer +
-            "footerNew=" + footerNew +
-            "promotions=" + promotions +
-            "stockqty=" + stockqty +
-            "defaultqty=" + defaultqty +
-            "incrementalquantity=" + incrementalquantity +
-            "supplementaryinfo=" + supplementaryinfo +
-            "details=" + details +
-            "badge=" + badge +
-            "productbadge=" + productbadge +
-            "disclaimer=" + disclaimer +
-            "stock=" + stock +
-            "hasBeenBoughtBefore=" + hasBeenBoughtBefore +
-            "specialbadge=" + specialbadge +
-            "savingsamount=" + savingsamount +
-            +'}';
+        "name=" + name +
+        "article=" + article +
+        "description=" + description +
+        "images=" + images +
+        "size=" + size +
+        "measure=" + measure +
+        "is=" + is +
+        "timeslotrestriction=" + timeslotrestriction +
+        "instorelocation=" + instorelocation +
+        "instoreaisleid=" + instoreaisleid +
+        "instoreaisleside=" + instoreaisleside +
+        "instoreaislebay=" + instoreaislebay +
+        "instoreprice=" + instoreprice +
+        "offers=" + offers +
+        "promo=" + promo +
+        "footer" + footer +
+        "footerNew=" + footerNew +
+        "promotions=" + promotions +
+        "stockqty=" + stockqty +
+        "defaultqty=" + defaultqty +
+        "incrementalquantity=" + incrementalquantity +
+        "supplementaryinfo=" + supplementaryinfo +
+        "details=" + details +
+        "badge=" + badge +
+        "productbadge=" + productbadge +
+        "disclaimer=" + disclaimer +
+        "stock=" + stock +
+        "hasBeenBoughtBefore=" + hasBeenBoughtBefore +
+        "specialbadge=" + specialbadge +
+        "savingsamount=" + savingsamount +
+        +'}';
   }
 
   public String getName() {

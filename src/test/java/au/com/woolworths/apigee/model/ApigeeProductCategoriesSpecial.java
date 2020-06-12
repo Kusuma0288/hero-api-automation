@@ -9,8 +9,8 @@ public class ApigeeProductCategoriesSpecial {
   @Override
   public String toString() {
     return "Categories{" +
-            "aisles=" + aisles +
-            +'}';
+        "aisles=" + aisles +
+        +'}';
   }
 
   public ApigeeAisles[] getAisles() {

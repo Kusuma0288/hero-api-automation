@@ -9,8 +9,8 @@ public class StoreAddressRequest {
   @Override
   public String toString() {
     return "StoreAddressRequest{" +
-            "storeAddressId='" + storeAddressId + '\'' +
-            '}';
+        "storeAddressId='" + storeAddressId + '\'' +
+        '}';
   }
 
   public String getStoreAddressId() {

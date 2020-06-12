@@ -11,10 +11,10 @@ public class SpecialsCategories {
   @Override
   public String toString() {
     return "categories{" +
-            "products_href='" + products_href + '\'' +
-            "title='" + title + '\'' +
-            "product_count='" + product_count + '\'' +
-            '}';
+        "products_href='" + products_href + '\'' +
+        "title='" + title + '\'' +
+        "product_count='" + product_count + '\'' +
+        '}';
   }
 
   public String getProducts_href() {

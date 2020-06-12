@@ -11,13 +11,13 @@ public class CheckoutResultsErrorResponse {
   @Override
   public String toString() {
     return "CheckoutResultsErrorResponse {" +
-            "httpStatusCode=" + httpStatusCode +
-            ", errorCode=" + errorCode +
-            ", errorMessage=" + errorMessage +
-            ", errorDetail=" + errorDetail +
-            ", method=" + method +
-            ", function=" + function +
-            '}';
+        "httpStatusCode=" + httpStatusCode +
+        ", errorCode=" + errorCode +
+        ", errorMessage=" + errorMessage +
+        ", errorDetail=" + errorDetail +
+        ", method=" + method +
+        ", function=" + function +
+        '}';
   }
 
   public int getHttpStatusCode() {

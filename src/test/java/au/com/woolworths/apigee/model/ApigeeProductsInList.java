@@ -14,13 +14,13 @@ public class ApigeeProductsInList {
   @Override
   public String toString() {
     return "ApigeeProductsInList{" +
-            "id=" + id +
-            ", articleId='" + articleId + '\'' +
-            ", quantity=" + quantity +
-            ", timestamp=" + timestamp +
-            ", checked=" + checked +
-            ", description=" + description +
-            '}';
+        "id=" + id +
+        ", articleId='" + articleId + '\'' +
+        ", quantity=" + quantity +
+        ", timestamp=" + timestamp +
+        ", checked=" + checked +
+        ", description=" + description +
+        '}';
   }
 
   public long getId() {

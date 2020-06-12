@@ -1,4 +1,5 @@
 package au.com.woolworths.apigee.model;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -11,14 +12,19 @@ public class CheckoutResponse {
   @Override
   public String toString() {
     return "CheckoutResponse {" +
-            "order=" + Order +
-            ", deliveryPackagingPreferences=" + DeliveryPackagingPreferences +
-            ", fulfilmentWindows=" + FulfilmentWindows +
-            ", results=" + Results + '}';
+        "order=" + Order +
+        ", deliveryPackagingPreferences=" + DeliveryPackagingPreferences +
+        ", fulfilmentWindows=" + FulfilmentWindows +
+        ", results=" + Results + '}';
   }
 
-  public Order getOrder() {return Order; }
-  public void setOrder(Order order) { Order = order; }
+  public Order getOrder() {
+    return Order;
+  }
+
+  public void setOrder(Order order) {
+    Order = order;
+  }
 
   public CheckoutPackagingPreferencesResponse[] getDeliveryPackagingPreferences() {
     return DeliveryPackagingPreferences;

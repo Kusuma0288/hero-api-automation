@@ -12,10 +12,10 @@ public class ApigeeAddress {
   @Override
   public String toString() {
     return "Address{" +
-            "amasid=" + AmasID +
-            ", text=" + Text +
-            ", postcode=" + PostCode +
-            '}';
+        "amasid=" + AmasID +
+        ", text=" + Text +
+        ", postcode=" + PostCode +
+        '}';
   }
 
   public String getAmasID() {

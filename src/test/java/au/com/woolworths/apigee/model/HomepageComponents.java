@@ -10,9 +10,9 @@ public class HomepageComponents {
   @Override
   public String toString() {
     return "HomepageComponents{" +
-            "data=" + data +
-            ", type=" + type +
-            +'}';
+        "data=" + data +
+        ", type=" + type +
+        +'}';
   }
 
   public HomepageComponentsData getData() {

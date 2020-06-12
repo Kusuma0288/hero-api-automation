@@ -19,16 +19,16 @@ public class CheckoutFulfilmentWindows {
   @Override
   public String toString() {
     return "CheckoutFulfilmentWindows{" +
-            "  IsReserved=" + IsReserved +
-            ", StartsFrom=" + StartsFrom +
-            ", Date='" + Date + '\'' +
-            ", IsAvailable=" + IsAvailable +
-            ", DateText=" + DateText +
-            ", IsEligibleForDeliverySaver=" + IsEligibleForDeliverySaver +
-            ", Morning=" + Morning +
-            ", Afternoon=" + Afternoon +
-            ", Evening=" + Evening +
-            '}';
+        "  IsReserved=" + IsReserved +
+        ", StartsFrom=" + StartsFrom +
+        ", Date='" + Date + '\'' +
+        ", IsAvailable=" + IsAvailable +
+        ", DateText=" + DateText +
+        ", IsEligibleForDeliverySaver=" + IsEligibleForDeliverySaver +
+        ", Morning=" + Morning +
+        ", Afternoon=" + Afternoon +
+        ", Evening=" + Evening +
+        '}';
   }
 
   public boolean getIsReserved() {

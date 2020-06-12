@@ -42,7 +42,7 @@ public class Homepage extends HomepageHelper {
 
     //Assert Horizontal list details - All Specials
     Assert.assertTrue("Horizontal list component missing " + Offer
-            , Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item1 -> item1.getType().equals("HorizontalList")));
+        , Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item1 -> item1.getType().equals("HorizontalList")));
     HomepageComponentsData item1 = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("HorizontalList")).findFirst().get().getData();
     Assert.assertEquals("All Specials title is mismatch", item1.getTitle(), "All Specials");
     Assert.assertEquals("All Specials subtitle is mismatch", item1.getSubtitle(), "All the latest specials and offers");
@@ -86,7 +86,7 @@ public class Homepage extends HomepageHelper {
 
     //Assert Horizontal list details - Online Only Offers
     Assert.assertTrue("Horizontal list component missing " + Offer,
-            Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item1 -> item1.getType().equals("HorizontalList")));
+        Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item1 -> item1.getType().equals("HorizontalList")));
     HomepageComponentsData item1 = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("HorizontalList")).findFirst().get().getData();
     Assert.assertEquals("All Specials title is mismatch", item1.getTitle(), "Online Only Offers");
     Assert.assertEquals("All Specials subtitle is mismatch", item1.getSubtitle(), "Specials available exclusively online");
@@ -95,7 +95,7 @@ public class Homepage extends HomepageHelper {
     Assert.assertNotNull("No products under All Specials", item1.getItems());
 
     sharedData.stockCode.add(Arrays.stream(item1.getItems()).filter(item7 -> item7.getData().getIsAvailable().equals("true")).
-            findFirst().get().getData().getProductId().replaceFirst("^0+(?!$)", ""));
+        findFirst().get().getData().getProductId().replaceFirst("^0+(?!$)", ""));
 
     //Assert Recipe details
     Assert.assertTrue("Recipes card component missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item2 -> item2.getType().equals("RecipesCard")));
@@ -121,7 +121,7 @@ public class Homepage extends HomepageHelper {
     ProductGroupResponse productGroupResponse = iRetrieveProductGroup(mode, sharedData.promoTileDataPath, sharedData.accessToken);
 
     ProductGroupComponents product = Arrays.stream(productGroupResponse.getData().getItems())
-            .filter(item -> item.getData().getIsAvailable().equals("true")).findFirst().get();
+        .filter(item -> item.getData().getIsAvailable().equals("true")).findFirst().get();
     //Assert ProductGroup returns at least 1 product
     Assert.assertNotNull("Product Group has at least 1 item", product);
 
@@ -141,8 +141,8 @@ public class Homepage extends HomepageHelper {
     Assert.assertNotNull("Product Group has at least 1 item", productGroupResponse.getData().getItems()[0]);
 
     ProductGroupTrolleyData product = Arrays.stream(productGroupResponse.getData().getItems()).
-            filter(item -> item.getData().getProductId().contains(sharedData.stockCode.get(0))).
-            findFirst().get().getData().getTrolley().getData();
+        filter(item -> item.getData().getProductId().contains(sharedData.stockCode.get(0))).
+        findFirst().get().getData().getTrolley().getData();
 
     //Assert the quantity of the product in PromoTile
     Assert.assertEquals("The button quantity of the product does not match with trolley", quantity, product.getButtonQuantity());
@@ -159,8 +159,8 @@ public class Homepage extends HomepageHelper {
     Assert.assertNotNull("Product Group has at least 1 item", productGroupResponse.getData().getItems()[0]);
 
     ProductGroupTrolleyData product = Arrays.stream(productGroupResponse.getData().getItems()).
-            filter(item -> item.getData().getProductId().contains(sharedData.stockCode.get(0))).
-            findFirst().get().getData().getTrolley().getData();
+        filter(item -> item.getData().getProductId().contains(sharedData.stockCode.get(0))).
+        findFirst().get().getData().getTrolley().getData();
 
     //Assert the button label is ADD when the product is not added to trolley
     Assert.assertEquals("Button label of the product is not Add", "Add", product.getButtonLabel());
@@ -217,7 +217,7 @@ public class Homepage extends HomepageHelper {
 
     HomepageComponentsData productList = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("HorizontalList")).findFirst().get().getData();
     ProductGroupTrolleyData product = Arrays.stream(productList.getItems()).filter(item -> item.getData().getProductId().contains(sharedData.stockCode.get(0))).
-            findFirst().get().getData().getTrolley().getData();
+        findFirst().get().getData().getTrolley().getData();
 
     //Assert the quantity of the product in PromoTile
     Assert.assertEquals("The button quantity of the product does not match with trolley", quantity, product.getButtonQuantity());
@@ -236,7 +236,7 @@ public class Homepage extends HomepageHelper {
 
     HomepageComponentsData productList = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("HorizontalList")).findFirst().get().getData();
     ProductGroupTrolleyData product = Arrays.stream(productList.getItems()).filter(item -> item.getData().getProductId().contains(sharedData.stockCode.get(0))).
-            findFirst().get().getData().getTrolley().getData();
+        findFirst().get().getData().getTrolley().getData();
 
     //Assert the button label is ADD when the product is not added to trolley
     Assert.assertEquals("Button label of the product is not Add", "Add", product.getButtonLabel());

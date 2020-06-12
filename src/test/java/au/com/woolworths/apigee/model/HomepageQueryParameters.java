@@ -10,7 +10,7 @@ public class HomepageQueryParameters {
   @Override
   public String toString() {
     return "HomepageQueryParameters: {" +
-            "groupId=" + groupId + "}";
+        "groupId=" + groupId + "}";
   }
 
   public String getGroupId() {

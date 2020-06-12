@@ -56,7 +56,7 @@ public class DeliveryAddressDefinition extends ApigeeAddressHelper {
     ApigeeAddressDetails[] addressDetails = addressesInMyAccount.getAddresses();
 
     boolean isPrimary = Arrays.stream(addressDetails).filter(x -> x.getId().equals(sharedData.addressId))
-            .findFirst().get().getIsprimary();
+        .findFirst().get().getIsprimary();
 
     Assert.assertTrue("Recently saved address is set as primary", isPrimary);
   }
@@ -67,7 +67,7 @@ public class DeliveryAddressDefinition extends ApigeeAddressHelper {
     ApigeeAddressDetails[] addressDetails = addressesInMyAccount.getAddresses();
 
     boolean isPrimary = Arrays.stream(addressDetails).filter(x -> x.getText().equals(sharedData.addressText))
-            .findFirst().get().getIsprimary();
+        .findFirst().get().getIsprimary();
 
     Assert.assertTrue("Recently saved address is set as primary", isPrimary);
 

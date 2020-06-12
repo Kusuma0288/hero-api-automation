@@ -29,27 +29,27 @@ public class HomepageItemsData {
   @Override
   public String toString() {
     return "ProductGroupComponentsData{" +
-            "productId=" + productId +
-            ", name=" + name +
-            ", productImage=" + productImage +
-            ", isAvailable=" + isAvailable +
-            ", isNew=" + isNew +
-            ", unitPriceDescription=" + unitPriceDescription +
-            ", badgeImage=" + badgeImage +
-            ", promotionValue=" + promotionValue +
-            ", promotionType=" + promotionType +
-            ", wasPrice=" + wasPrice +
-            ", trolley=" + trolley +
-            ", title=" + title +
-            ", subtitle=" + subtitle +
-            ", status=" + status +
-            ", id=" + id +
-            ", total=" + total +
-            ", timeLabel=" + timeLabel +
-            ", timeValue=" + timeValue +
-            ", date=" + date +
-            ", icon=" + icon +
-            +'}';
+        "productId=" + productId +
+        ", name=" + name +
+        ", productImage=" + productImage +
+        ", isAvailable=" + isAvailable +
+        ", isNew=" + isNew +
+        ", unitPriceDescription=" + unitPriceDescription +
+        ", badgeImage=" + badgeImage +
+        ", promotionValue=" + promotionValue +
+        ", promotionType=" + promotionType +
+        ", wasPrice=" + wasPrice +
+        ", trolley=" + trolley +
+        ", title=" + title +
+        ", subtitle=" + subtitle +
+        ", status=" + status +
+        ", id=" + id +
+        ", total=" + total +
+        ", timeLabel=" + timeLabel +
+        ", timeValue=" + timeValue +
+        ", date=" + date +
+        ", icon=" + icon +
+        +'}';
   }
 
   public String getProductId() {

@@ -9,8 +9,8 @@ public class ApigeeSearchAddresses {
   @Override
   public String toString() {
     return "Addresses{" +
-            "addresses=" + addresses +
-            +'}';
+        "addresses=" + addresses +
+        +'}';
   }
 
   public ApigeeAddress[] getaddresses() {

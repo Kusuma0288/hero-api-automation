@@ -10,9 +10,9 @@ public class ApigeeListResponse {
   @Override
   public String toString() {
     return "ApigeeListResponse{" +
-            "update='" + update + '\'' +
-            ", changes='" + changes + '\'' +
-            '}';
+        "update='" + update + '\'' +
+        ", changes='" + changes + '\'' +
+        '}';
   }
 
   public ApigeeListDetailsResponse getUpdate() {
