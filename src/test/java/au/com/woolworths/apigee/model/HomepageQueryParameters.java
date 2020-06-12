@@ -5,20 +5,20 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class HomepageQueryParameters {
 
-    private String groupId;
+  private String groupId;
 
-    @Override
-    public String toString() {
-        return "HomepageQueryParameters: {" +
-                "groupId=" + groupId + "}";
-    }
+  @Override
+  public String toString() {
+    return "HomepageQueryParameters: {" +
+            "groupId=" + groupId + "}";
+  }
 
-    public String getGroupId() {
-        return groupId;
-    }
+  public String getGroupId() {
+    return groupId;
+  }
 
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
-    }
+  public void setGroupId(String groupId) {
+    this.groupId = groupId;
+  }
 
 }

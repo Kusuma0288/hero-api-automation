@@ -1,4 +1,4 @@
-@REGRESSION @LIST @LION @SMOKE @basav
+@REGRESSION @LIST @LION @SMOKE
 Feature: Verify Apigee List scenarios
 
   Scenario Outline: Verify whether user is able to create List and switch the created List to default List
@@ -65,5 +65,3 @@ Feature: Verify Apigee List scenarios
 	   | Quantity  | List Name      | Fulfillment | Version | Post Code| Product  |
 	   | 1	   	   | AutoList Exact | Pickup      | V2      | 2204     | Milk     |
 	   | 1	   	   | AutoList Exact | Pickup      | V3      | 2204     | Milk     |
-   
-

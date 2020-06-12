@@ -15,7 +15,6 @@ Feature: Verify the HomePage components in different Shopping modes for guest/lo
     And I search for an IN-STORE with postcode "2000" and I select the "1" store from matching in-stores
     Then I make a request to Homepage in IN-STORE mode with store id "1248" with "NoEDR" and verify the response for Offer "All Specials"
 
-  @PROD
   Scenario: Verify the Homepage components for guest user without EDR and in Delivery mode
     Given mobile user connect to apigee endpoint as guest
     When connection from user to apigee endpoint happens
@@ -39,8 +38,8 @@ Feature: Verify the HomePage components in different Shopping modes for guest/lo
     Then I verify the stockcode is not added to trolley when I make a request to Homepage
 
   @REGRESSION
-  Scenario: Verify the PromoTile, add products to trolley and verify the status of the product in PromoTile for guest user
-    Given user continue to connect to apigee with login username as "SHOPPER_USERNAME10"
+  Scenario: Verify the PromoTile, add products to trolley and verify the status of the product in PromoTile for logged-in user
+    Given user continue to connect to apigee with login username as "SHOPPER_USERNAME"
     When connection from user to apigee endpoint happens
     And I search for the address "Darcy Road"
     And I select the "1" address as fulfilment address from matching addresses
@@ -52,7 +51,7 @@ Feature: Verify the HomePage components in different Shopping modes for guest/lo
     Then I verify the stockcode is not added to trolley when I make a request to PromoTile
 
   @REGRESSION
-  Scenario: Verify the PromoTile, add products to trolley and verify the status of the product in PromoTile for logged-in user
+  Scenario: Verify the PromoTile, add products to trolley and verify the status of the product in PromoTile for guest user
     Given mobile user connect to apigee endpoint as guest
     When connection from user to apigee endpoint happens
     And I search for the address "Darcy Road"

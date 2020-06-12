@@ -3,10 +3,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CheckoutResponse {
-    private Order Order;
-    private CheckoutPackagingPreferencesResponse[] DeliveryPackagingPreferences;
-    private CheckoutFulfilmentWindows[] FulfilmentWindows;
-    private CheckoutResultsResponse Results;
+  private Order Order;
+  private CheckoutPackagingPreferencesResponse[] DeliveryPackagingPreferences;
+  private CheckoutFulfilmentWindows[] FulfilmentWindows;
+  private CheckoutResultsResponse Results;
 
   @Override
   public String toString() {
@@ -17,8 +17,8 @@ public class CheckoutResponse {
             ", results=" + Results + '}';
   }
 
-    public Order getOrder() {return Order; }
-    public void setOrder(Order order) { Order = order; }
+  public Order getOrder() {return Order; }
+  public void setOrder(Order order) { Order = order; }
 
   public CheckoutPackagingPreferencesResponse[] getDeliveryPackagingPreferences() {
     return DeliveryPackagingPreferences;
