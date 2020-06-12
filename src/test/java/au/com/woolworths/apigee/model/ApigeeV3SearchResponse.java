@@ -7,59 +7,54 @@ import java.util.Arrays;
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class ApigeeV3SearchResponse {
 
-  private Apigeev3SearchProducts[] Products;
+  private Apigeev3SearchProducts[] products;
   private Apigeev3SearchProducts[] fault;
-  private int Product_count;
-  private String Nextpage;
-  private Object Sortoptions;
-  private String FaultString;
+  private int productCount;
+  private String nextPage;
+  private Object sortOptions;
+  private String faultString;
 
   @Override
   public String toString() {
-    return "ApigeeV3SearchResponse{" +
-            "Products=" + Arrays.toString(Products) +
-            ", Product_count=" + Product_count +
-            ", Nextpage='" + Nextpage + '\'' +
-            ", Sortoptions=" + Sortoptions +
-            "fault = " + Arrays.toString(fault) +
-            ", faultstring = " + FaultString+
-            '}';
+    return "ApigeeV3SearchResponse{" + "products=" + Arrays.toString(products) + ", ProductCount=" + productCount + ", nextPage='" + nextPage + '\'' + ", sortOptions=" + sortOptions + "fault = " + Arrays.toString(fault) + ", faultString = " + faultString+ '}';
   }
 
   public Apigeev3SearchProducts[] getProducts() {
-    return Products;
+    return products;
   }
 
-  public void setProducts(Apigeev3SearchProducts[] products) {
-    Products = products;
+  public void setProducts(Apigeev3SearchProducts[] product) {
+    products = product;
   }
 
   public int getProduct_count() {
-    return Product_count;
+    return productCount;
   }
 
   public void setProduct_count(int product_count) {
-    Product_count = product_count;
+    productCount = product_count;
   }
 
   public String getNextpage() {
-    return Nextpage;
+    return nextPage;
   }
 
   public void setNextpage(String nextpage) {
-    Nextpage = nextpage;
+    nextPage = nextpage;
   }
 
   public Object getSortoptions() {
-    return Sortoptions;
+    return sortOptions;
   }
 
   public void setSortoptions(Object sortoptions) {
-    Sortoptions = sortoptions;
+    sortOptions = sortoptions;
   }
   public void setfaultString(String faultstring){
-    FaultString = faultstring;
+    faultString = faultstring;
   }
 
-  public String getFaultString(){ return FaultString;}
+  public String getFaultString() {
+    return faultString;
+  }
 }
