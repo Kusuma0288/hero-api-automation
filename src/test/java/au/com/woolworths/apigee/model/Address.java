@@ -11,9 +11,9 @@ public class Address {
   @Override
   public String toString() {
     return "Address{" +
-            "Id='" + Id + '\'' +
-            ", Text=" + Text +
-            '}';
+        "Id='" + Id + '\'' +
+        ", Text=" + Text +
+        '}';
   }
 
   public Integer getId() {

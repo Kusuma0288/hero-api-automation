@@ -9,11 +9,11 @@ public class AddressesV2ErrorResponse {
   @Override
   public String toString() {
     return "Fulfilmentv3ErrorResponse{" +
-            "httpStatusCode=" + httpStatusCode +
-            ", errorCode=" + errorCode +
-            ", errorMessage=" + errorMessage +
-            ", errorDetail=" + errorDetail +
-            '}';
+        "httpStatusCode=" + httpStatusCode +
+        ", errorCode=" + errorCode +
+        ", errorMessage=" + errorMessage +
+        ", errorDetail=" + errorDetail +
+        '}';
   }
 
   public int getHttpStatusCode() {

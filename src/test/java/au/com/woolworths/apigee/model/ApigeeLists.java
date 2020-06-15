@@ -13,12 +13,12 @@ public class ApigeeLists {
   @Override
   public String toString() {
     return "ApigeeLists{" +
-            "id='" + id + '\'' +
-            "title='" + title + '\'' +
-            "timestamp='" + timestamp + '\'' +
-            "url='" + url + '\'' +
-            "productCount='" + productCount + '\'' +
-            '}';
+        "id='" + id + '\'' +
+        "title='" + title + '\'' +
+        "timestamp='" + timestamp + '\'' +
+        "url='" + url + '\'' +
+        "productCount='" + productCount + '\'' +
+        '}';
   }
 
   public String getId() {

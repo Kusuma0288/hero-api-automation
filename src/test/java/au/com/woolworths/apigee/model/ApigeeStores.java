@@ -34,31 +34,31 @@ public class ApigeeStores {
   @Override
   public String toString() {
     return "ApigeeStores{" +
-            "deliveryMethod='" + deliveryMethod + '\'' +
-            ", description='" + description + '\'' +
-            ", addressText='" + addressText + '\'' +
-            ", street1='" + street1 + '\'' +
-            ", street2='" + street2 + '\'' +
-            ", suburb='" + suburb + '\'' +
-            ", area='" + area + '\'' +
-            ", suburbID=" + suburbID +
-            ", areaId=" + areaId +
-            ", postCode='" + postCode + '\'' +
-            ", isPrimary=" + isPrimary +
-            ", postalAddressID=" + postalAddressID +
-            ", distance=" + distance +
-            ", storeNumber='" + storeNumber + '\'' +
-            ", tradingHours=" + tradingHours +
-            ", phone='" + phone + '\'' +
-            ", facilities=" + facilities +
-            ", customerFriendlyAddress='" + customerFriendlyAddress + '\'' +
-            ", latitude='" + latitude + '\'' +
-            ", longitude='" + longitude + '\'' +
-            ", division='" + division + '\'' +
-            ", state='" + state + '\'' +
-            ", fulfilmentMethod='" + fulfilmentMethod + '\'' +
-            ", pickUpType=" + Arrays.toString(pickUpType) +
-            '}';
+        "deliveryMethod='" + deliveryMethod + '\'' +
+        ", description='" + description + '\'' +
+        ", addressText='" + addressText + '\'' +
+        ", street1='" + street1 + '\'' +
+        ", street2='" + street2 + '\'' +
+        ", suburb='" + suburb + '\'' +
+        ", area='" + area + '\'' +
+        ", suburbID=" + suburbID +
+        ", areaId=" + areaId +
+        ", postCode='" + postCode + '\'' +
+        ", isPrimary=" + isPrimary +
+        ", postalAddressID=" + postalAddressID +
+        ", distance=" + distance +
+        ", storeNumber='" + storeNumber + '\'' +
+        ", tradingHours=" + tradingHours +
+        ", phone='" + phone + '\'' +
+        ", facilities=" + facilities +
+        ", customerFriendlyAddress='" + customerFriendlyAddress + '\'' +
+        ", latitude='" + latitude + '\'' +
+        ", longitude='" + longitude + '\'' +
+        ", division='" + division + '\'' +
+        ", state='" + state + '\'' +
+        ", fulfilmentMethod='" + fulfilmentMethod + '\'' +
+        ", pickUpType=" + Arrays.toString(pickUpType) +
+        '}';
   }
 
   public String getDeliveryMethod() {

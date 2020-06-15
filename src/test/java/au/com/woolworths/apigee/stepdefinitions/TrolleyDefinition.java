@@ -126,7 +126,7 @@ public class TrolleyDefinition extends TrolleyHelper {
 
     //Assert if product has been added
     Assert.assertTrue("Products is not added as expected and trolley product count:" + trolleyResponse.getTotalproducts()
-            , trolleyResponse.getTotalproducts() > 0);
+        , trolleyResponse.getTotalproducts() > 0);
   }
 
   @Then("^I remove (.*) product from V3 trolley and verify it is deleted$")

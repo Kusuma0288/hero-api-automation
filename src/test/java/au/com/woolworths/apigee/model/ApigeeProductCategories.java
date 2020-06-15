@@ -13,12 +13,12 @@ public class ApigeeProductCategories {
   @Override
   public String toString() {
     return "ProductCategories{" +
-            "title=" + title +
-            "images=" + images +
-            "category_order=" + category_order +
-            "products_href=" + products_href +
-            "product_count=" + product_count +
-            +'}';
+        "title=" + title +
+        "images=" + images +
+        "category_order=" + category_order +
+        "products_href=" + products_href +
+        "product_count=" + product_count +
+        +'}';
   }
 
   public String getTitle() {

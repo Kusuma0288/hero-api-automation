@@ -11,10 +11,10 @@ public class ApigeeGuestLoginRequest {
   @Override
   public String toString() {
     return "ApigeeGuestRequest{" +
-            "device_auth_token='" + device_auth_token + '\'' +
-            ", store='" + store + '\'' +
-            ", postcode='" + postcode + '\'' +
-            '}';
+        "device_auth_token='" + device_auth_token + '\'' +
+        ", store='" + store + '\'' +
+        ", postcode='" + postcode + '\'' +
+        '}';
   }
 
   public String getDevice_auth_token() {

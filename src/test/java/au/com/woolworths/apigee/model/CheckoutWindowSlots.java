@@ -21,20 +21,20 @@ public class CheckoutWindowSlots {
   @Override
   public String toString() {
     return "CheckoutWindowItemsResponse {" +
-            "  Id=" + Id +
-            ", StartTime=" + StartTime +
-            ", EndTime=" + EndTime +
-            ", Status=" + Status +
-            ", StatusText=" + StatusText +
-            ", BasePrice=" + BasePrice +
-            ", Discount=" + Discount +
-            ", SalePrice=" + SalePrice +
-            ", DisplayPrice= " + DisplayPrice +
-            ", IsAvailable=" + IsAvailable +
-            ", IsReserved=" + IsReserved +
-            ", Duration=" + Duration +
-            ", BadgeLabel=" + BadgeLabel +
-            '}';
+        "  Id=" + Id +
+        ", StartTime=" + StartTime +
+        ", EndTime=" + EndTime +
+        ", Status=" + Status +
+        ", StatusText=" + StatusText +
+        ", BasePrice=" + BasePrice +
+        ", Discount=" + Discount +
+        ", SalePrice=" + SalePrice +
+        ", DisplayPrice= " + DisplayPrice +
+        ", IsAvailable=" + IsAvailable +
+        ", IsReserved=" + IsReserved +
+        ", Duration=" + Duration +
+        ", BadgeLabel=" + BadgeLabel +
+        '}';
   }
 
   public int getId() {

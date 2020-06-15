@@ -42,27 +42,27 @@ public class Order {
   @Override
   public String toString() {
     return "Order {" +
-            "PrimaryAddress=" + PrimaryAddress + ", Delivery=" + Delivery + "Pickup=" + Pickup +
-            "Fulfilment=" + Fulfilment +
-            "Instructions=" + Instructions +
-            "Savings=" + Savings +
-            "TeamDiscount=" + TeamDiscount + "OrderDiscount=" + OrderDiscount +
-            "SubTotal=" + Subtotal +
-            "PackagingFee=" + PackagingFee +
-            "PackagingFeeLabel=" + PackagingFeeLabel +
-            "DeliveryFee=" + DeliveryFee + "DeliveryFeeDiscount=" + DeliveryFeeDiscount +
-            "DeliveryFeeBeforeDiscount=" + DeliveryFeeBeforeDiscount +
-            "BalanceToPay=" + BalanceToPay +
-            "TotalIncludingGst=" + TotalIncludingGst +
-            "WowRewardsPaymentAmount=" + WowRewardsPaymentAmount + "RedeemableWowRewardsDollars=" + RedeemableWowRewardsDollars +
-            "DeferredWowRewardsDollars=" + DeferredWowRewardsDollars +
-            "StoreCreditTotal=" + StoreCreditTotal +
-            "EdrNumber=" + EdrNumber +
-            "Loyalty=" + Loyalty + "Discounts=" + Discounts + "GiftCardPayments=" + GiftCardPayments + "AvailableOrderItems=" + AvailableOrderItems
-            + "UnavailableOrderItems=" + UnavailableOrderItems + "RestrictedOrderItems=" + RestrictedOrderItems + "ExceededSupplyLimitProducts=" +
-            ExceededSupplyLimitProducts + "RestrictedProductsByDeliveryMethod=" + RestrictedProductsByDeliveryMethod + "RestrictedProductsByDeliPlatter="
-            + RestrictedProductsByDeliPlatter + "Errors=" + Errors + "CanProceedToPayment=" + CanProceedToPayment + "OrderTotalsTableData=" + OrderTotalsTableData
-            + "LeaveUnattended=" + LeaveUnattended + '}';
+        "PrimaryAddress=" + PrimaryAddress + ", Delivery=" + Delivery + "Pickup=" + Pickup +
+        "Fulfilment=" + Fulfilment +
+        "Instructions=" + Instructions +
+        "Savings=" + Savings +
+        "TeamDiscount=" + TeamDiscount + "OrderDiscount=" + OrderDiscount +
+        "SubTotal=" + Subtotal +
+        "PackagingFee=" + PackagingFee +
+        "PackagingFeeLabel=" + PackagingFeeLabel +
+        "DeliveryFee=" + DeliveryFee + "DeliveryFeeDiscount=" + DeliveryFeeDiscount +
+        "DeliveryFeeBeforeDiscount=" + DeliveryFeeBeforeDiscount +
+        "BalanceToPay=" + BalanceToPay +
+        "TotalIncludingGst=" + TotalIncludingGst +
+        "WowRewardsPaymentAmount=" + WowRewardsPaymentAmount + "RedeemableWowRewardsDollars=" + RedeemableWowRewardsDollars +
+        "DeferredWowRewardsDollars=" + DeferredWowRewardsDollars +
+        "StoreCreditTotal=" + StoreCreditTotal +
+        "EdrNumber=" + EdrNumber +
+        "Loyalty=" + Loyalty + "Discounts=" + Discounts + "GiftCardPayments=" + GiftCardPayments + "AvailableOrderItems=" + AvailableOrderItems
+        + "UnavailableOrderItems=" + UnavailableOrderItems + "RestrictedOrderItems=" + RestrictedOrderItems + "ExceededSupplyLimitProducts=" +
+        ExceededSupplyLimitProducts + "RestrictedProductsByDeliveryMethod=" + RestrictedProductsByDeliveryMethod + "RestrictedProductsByDeliPlatter="
+        + RestrictedProductsByDeliPlatter + "Errors=" + Errors + "CanProceedToPayment=" + CanProceedToPayment + "OrderTotalsTableData=" + OrderTotalsTableData
+        + "LeaveUnattended=" + LeaveUnattended + '}';
 
   }
 

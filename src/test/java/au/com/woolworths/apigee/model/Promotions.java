@@ -13,12 +13,12 @@ public class Promotions {
   @Override
   public String toString() {
     return "promotions{" +
-            "Price='" + price + '\'' +
-            "IsEDR='" + isEDR + '\'' +
-            "CupUom='" + cupUom + '\'' +
-            "CupSize='" + cupSize + '\'' +
-            "CupPrice='" + cupPrice + '\'' +
-            '}';
+        "Price='" + price + '\'' +
+        "IsEDR='" + isEDR + '\'' +
+        "CupUom='" + cupUom + '\'' +
+        "CupSize='" + cupSize + '\'' +
+        "CupPrice='" + cupPrice + '\'' +
+        '}';
   }
 
   public double getPrice() {

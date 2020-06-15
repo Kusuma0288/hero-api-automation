@@ -11,10 +11,10 @@ public class ApigeeShopperLoginRequest {
   @Override
   public String toString() {
     return "ApigeeShopperLoginRequest{" +
-            "device_auth_token='" + device_auth_token + '\'' +
-            ", user_name='" + user_name + '\'' +
-            ", password='" + password + '\'' +
-            '}';
+        "device_auth_token='" + device_auth_token + '\'' +
+        ", user_name='" + user_name + '\'' +
+        ", password='" + password + '\'' +
+        '}';
   }
 
   public String getDevice_auth_token() {

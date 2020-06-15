@@ -10,8 +10,8 @@ public class ApigeeAddressRequest {
   @Override
   public String toString() {
     return "AddressRequest{" +
-            "AmasId='" + AmasId + '\'' +
-            '}';
+        "AmasId='" + AmasId + '\'' +
+        '}';
   }
 
   public String getAmasId() {

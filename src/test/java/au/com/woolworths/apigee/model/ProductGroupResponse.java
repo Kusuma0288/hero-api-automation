@@ -10,9 +10,9 @@ public class ProductGroupResponse {
   @Override
   public String toString() {
     return "ProductGroupResponse{" +
-            "data=" + data +
-            ", type=" + type +
-            +'}';
+        "data=" + data +
+        ", type=" + type +
+        +'}';
   }
 
   public ProductGroupData getData() {

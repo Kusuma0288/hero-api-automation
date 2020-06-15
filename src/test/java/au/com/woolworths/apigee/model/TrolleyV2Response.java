@@ -19,15 +19,15 @@ public class TrolleyV2Response {
   @Override
   public String toString() {
     return "TrolleyV2Response{" +
-            "totaltrolleyprice=" + totaltrolleyprice +
-            ", savingsontrolley=" + savingsontrolley +
-            ", totalproducts=" + totalproducts +
-            ", deliveryfee=" + deliveryfee +
-            ", items=" + items +
-            ", wowrewardssummary=" + wowrewardssummary +
-            ", loyalty=" + loyalty +
-            ", errors=" + Arrays.toString(errors) +
-            '}';
+        "totaltrolleyprice=" + totaltrolleyprice +
+        ", savingsontrolley=" + savingsontrolley +
+        ", totalproducts=" + totalproducts +
+        ", deliveryfee=" + deliveryfee +
+        ", items=" + items +
+        ", wowrewardssummary=" + wowrewardssummary +
+        ", loyalty=" + loyalty +
+        ", errors=" + Arrays.toString(errors) +
+        '}';
   }
 
   public double getTotaltrolleyprice() {

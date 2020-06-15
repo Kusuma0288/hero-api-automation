@@ -10,9 +10,9 @@ public class AddProductsToListResponse {
   @Override
   public String toString() {
     return "AddProductsToListResponse{" +
-            "update='" + update + '\'' +
-            "changes='" + changes + '\'' +
-            '}';
+        "update='" + update + '\'' +
+        "changes='" + changes + '\'' +
+        '}';
   }
 
   public AddProdListDetailsResponse getUpdate() {

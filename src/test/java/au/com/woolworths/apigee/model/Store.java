@@ -12,12 +12,12 @@ public class Store {
   @Override
   public String toString() {
     return "Store{" +
-            "Id='" + Id + '\'' +
-            ", AddressId=" + AddressId +
-            ", AddressText='" + AddressText + '\'' +
-            ", Text='" + Text + '\'' +
-            ", Name='" + Name + '\'' +
-            '}';
+        "Id='" + Id + '\'' +
+        ", AddressId=" + AddressId +
+        ", AddressText='" + AddressText + '\'' +
+        ", Text='" + Text + '\'' +
+        ", Name='" + Name + '\'' +
+        '}';
   }
 
   public String getId() {

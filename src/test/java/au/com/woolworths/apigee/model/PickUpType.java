@@ -12,11 +12,11 @@ public class PickUpType {
   @Override
   public String toString() {
     return "PickUpType{" +
-            "AddressId=" + AddressId +
-            ", Type='" + Type + '\'' +
-            ", Label='" + Label + '\'' +
-            ", Text='" + Text + '\'' +
-            '}';
+        "AddressId=" + AddressId +
+        ", Type='" + Type + '\'' +
+        ", Label='" + Label + '\'' +
+        ", Text='" + Text + '\'' +
+        '}';
   }
 
   public long getAddressId() {

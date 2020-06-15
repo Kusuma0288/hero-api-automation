@@ -10,9 +10,9 @@ public class ProductGroupComponents {
   @Override
   public String toString() {
     return "ProductGroupComponents{" +
-            "data=" + data +
-            ", type=" + type +
-            +'}';
+        "data=" + data +
+        ", type=" + type +
+        +'}';
   }
 
   public ProductGroupComponentsData getData() {

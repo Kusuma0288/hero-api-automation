@@ -13,13 +13,13 @@ public class ApigeeListRequest {
   @Override
   public String toString() {
     return "ApigeeListRequest{" +
-            "id=" + id +
-            ", title='" + title + '\'' +
-            ", text='" + text + '\'' +
-            ", lastsynced=" + lastsynced +
-            ", checked=" + checked +
-            ", timestamp=" + timestamp +
-            '}';
+        "id=" + id +
+        ", title='" + title + '\'' +
+        ", text='" + text + '\'' +
+        ", lastsynced=" + lastsynced +
+        ", checked=" + checked +
+        ", timestamp=" + timestamp +
+        '}';
   }
 
   public long getId() {

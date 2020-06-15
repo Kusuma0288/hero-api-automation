@@ -9,8 +9,8 @@ public class ProductGroupData {
   @Override
   public String toString() {
     return "ProductGroupData{" +
-            "Items=" + Items +
-            +'}';
+        "Items=" + Items +
+        +'}';
   }
 
   public ProductGroupComponents[] getItems() {

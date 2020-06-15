@@ -16,15 +16,15 @@ public class SignUpRequest {
   @Override
   public String toString() {
     return "SignUpRequest{" +
-            "firstname='" + firstname + '\'' +
-            ", lastname='" + lastname + '\'' +
-            ", emailaddress='" + emailaddress + '\'' +
-            ", password='" + password + '\'' +
-            ", dateofbirth='" + dateofbirth + '\'' +
-            ", mobilephone='" + mobilephone + '\'' +
-            ", emailproductsandservices='" + emailproductsandservices + '\'' +
-            ", smsproductsservicesandpromotions='" + smsproductsservicesandpromotions + '\'' +
-            '}';
+        "firstname='" + firstname + '\'' +
+        ", lastname='" + lastname + '\'' +
+        ", emailaddress='" + emailaddress + '\'' +
+        ", password='" + password + '\'' +
+        ", dateofbirth='" + dateofbirth + '\'' +
+        ", mobilephone='" + mobilephone + '\'' +
+        ", emailproductsandservices='" + emailproductsandservices + '\'' +
+        ", smsproductsservicesandpromotions='" + smsproductsservicesandpromotions + '\'' +
+        '}';
   }
 
   public String getFirstname() {

@@ -13,12 +13,12 @@ public class ApigeeAisles {
   @Override
   public String toString() {
     return "Aisles{" +
-            "title=" + title +
-            "categories=" + categories +
-            "number=" + number +
-            "images=" + images +
-            "color=" + color +
-            +'}';
+        "title=" + title +
+        "categories=" + categories +
+        "number=" + number +
+        "images=" + images +
+        "color=" + color +
+        +'}';
   }
 
   public String getTitle() {

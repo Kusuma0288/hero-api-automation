@@ -21,19 +21,19 @@ public class ProductGroupComponentsData {
   @Override
   public String toString() {
     return "ProductGroupComponentsData{" +
-            "productId=" + productId +
-            ", name=" + name +
-            ", productImage=" + productImage +
-            ", isAvailable=" + isAvailable +
-            ", isNew=" + isNew +
-            ", unitPriceDescription=" + unitPriceDescription +
-            ", badgeImage=" + badgeImage +
-            ", promotionValue=" + promotionValue +
-            ", promotionType=" + promotionType +
-            ", wasPrice=" + wasPrice +
-            ", purchaseWarning=" + purchaseWarning +
-            ", trolley=" + trolley +
-            +'}';
+        "productId=" + productId +
+        ", name=" + name +
+        ", productImage=" + productImage +
+        ", isAvailable=" + isAvailable +
+        ", isNew=" + isNew +
+        ", unitPriceDescription=" + unitPriceDescription +
+        ", badgeImage=" + badgeImage +
+        ", promotionValue=" + promotionValue +
+        ", promotionType=" + promotionType +
+        ", wasPrice=" + wasPrice +
+        ", purchaseWarning=" + purchaseWarning +
+        ", trolley=" + trolley +
+        +'}';
   }
 
   public String getProductId() {

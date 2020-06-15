@@ -16,7 +16,7 @@ public class ApigeeV3SearchResponse {
 
   @Override
   public String toString() {
-    return "ApigeeV3SearchResponse{" + "products=" + Arrays.toString(products) + ", ProductCount=" + productCount + ", nextPage='" + nextPage + '\'' + ", sortOptions=" + sortOptions + "fault = " + Arrays.toString(fault) + ", faultString = " + faultString+ '}';
+    return "ApigeeV3SearchResponse{" + "products=" + Arrays.toString(products) + ", ProductCount=" + productCount + ", nextPage='" + nextPage + '\'' + ", sortOptions=" + sortOptions + "fault = " + Arrays.toString(fault) + ", faultString = " + faultString + '}';
   }
 
   public Apigeev3SearchProducts[] getProducts() {

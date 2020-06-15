@@ -27,11 +27,11 @@ public class PushLogToEventStream {
     final TransportType transportType = TransportType.AMQP_WEB_SOCKETS;
 
     final ConnectionStringBuilder connStr = new ConnectionStringBuilder()
-            .setNamespaceName(namespaceName)
-            .setEventHubName(eventHubName)
-            .setSasKeyName(sasKeyName)
-            .setSasKey(sasKey)
-            .setTransportType(transportType);
+        .setNamespaceName(namespaceName)
+        .setEventHubName(eventHubName)
+        .setSasKeyName(sasKeyName)
+        .setSasKey(sasKey)
+        .setTransportType(transportType);
 
     final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
     final EventHubClient ehClient = EventHubClient.createSync(connStr.toString(), executorService);

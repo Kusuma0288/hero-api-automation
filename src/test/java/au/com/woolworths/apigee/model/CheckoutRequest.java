@@ -12,10 +12,10 @@ public class CheckoutRequest {
   @Override
   public String toString() {
     return "CheckoutRequest{" +
-            "window='" + window + '\'' +
-            "date='" + date + '\'' +
-            "packaging='" + packaging + '\'' +
-            '}';
+        "window='" + window + '\'' +
+        "date='" + date + '\'' +
+        "packaging='" + packaging + '\'' +
+        '}';
   }
 
   public String getDate() {

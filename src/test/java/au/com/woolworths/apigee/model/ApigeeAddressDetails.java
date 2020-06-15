@@ -18,17 +18,17 @@ public class ApigeeAddressDetails {
   @Override
   public String toString() {
     return "AddressDetail{" +
-            "id=" + id +
-            ", text=" + text +
-            ", isprimary=" + isprimary +
-            ", postalcode=" + postalcode +
-            ", street1=" + street1 +
-            ", street2=" + street2 +
-            ", suburbid=" + suburbid +
-            ", suburbname=" + suburbname +
-            ", ispartner=" + ispartner +
-            ", partnerbranchid=" + partnerbranchid +
-            '}';
+        "id=" + id +
+        ", text=" + text +
+        ", isprimary=" + isprimary +
+        ", postalcode=" + postalcode +
+        ", street1=" + street1 +
+        ", street2=" + street2 +
+        ", suburbid=" + suburbid +
+        ", suburbname=" + suburbname +
+        ", ispartner=" + ispartner +
+        ", partnerbranchid=" + partnerbranchid +
+        '}';
   }
   // Getter Methods
 
