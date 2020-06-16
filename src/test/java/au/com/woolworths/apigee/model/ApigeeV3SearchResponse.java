@@ -58,7 +58,6 @@ public class ApigeeV3SearchResponse {
   public void setfaultString(String faultstring) {
     faultString = faultstring;
   }
-
   public String getFaultString() {
     return faultString;
   }
