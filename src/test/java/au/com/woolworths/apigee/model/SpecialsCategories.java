@@ -18,10 +18,12 @@ public class SpecialsCategories {
         '}';
   }
 
+  @JsonProperty("products_href")
   public String getProductsHref() {
     return products_href;
   }
 
+  @JsonProperty("products_href")
   public void setProductsHref(String products_href) {
     this.products_href = products_href;
   }
