@@ -1,4 +1,4 @@
-@REGRESSION @LIST @LION @SMOKE @ANAND
+@REGRESSION @LIST @LION @SMOKE
 Feature: Verify Apigee List scenarios
 
   Scenario Outline: Verify whether user is able to create List and switch the created List to default List
