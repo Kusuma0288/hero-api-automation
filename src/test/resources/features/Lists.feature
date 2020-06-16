@@ -88,7 +88,7 @@ Feature: Verify Apigee List scenarios
 	Given mobile user connect to apigee endpoint as guest
     When connection from user to apigee endpoint happens
     And user successfully authenticate to apigee public api as guest
-	And I search for the pickup stores in the <Post Code>
+	And I search for the pickup stores in the postcode <Post Code>
 	And I set the fulfilmentMethod to "<Fulfillment>" for the 1 store
 	And I clear ALL the list for the user
 	And I clear the trolley
