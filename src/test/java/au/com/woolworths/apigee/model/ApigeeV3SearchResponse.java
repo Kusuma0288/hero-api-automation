@@ -24,11 +24,12 @@ public class ApigeeV3SearchResponse {
     return products;
   }
 
-  @JsonProperty("product_count")
+
   public void setProducts(Apigeev3SearchProducts[] product) {
     products = product;
   }
 
+  @JsonProperty("product_count")
   public int getProductCount() {
     return productCount;
   }
