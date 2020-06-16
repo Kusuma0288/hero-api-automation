@@ -3,12 +3,10 @@ package au.com.woolworths.apigee.stepdefinitions;
 import au.com.woolworths.apigee.context.ApigeeApplicationContext;
 import au.com.woolworths.apigee.helpers.SearchHelper;
 import au.com.woolworths.apigee.helpers.TrolleyHelper;
-import au.com.woolworths.apigee.model.ApigeeSearchInStore;
 import au.com.woolworths.apigee.model.ApigeeV3SearchResponse;
 import au.com.woolworths.apigee.model.TrolleyV2Response;
 import au.com.woolworths.apigee.model.TrolleyV3Response;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
@@ -30,7 +28,7 @@ public class TrolleyDefinition extends TrolleyHelper {
   }
 
   @When("^I add the (.*) available products with (.*) each from the store to the V3 trolley$")
-  public void i_add_the_available_products_from_the_store_to_the_V3_trolley(int availableProducts, int quantity) throws Throwable {
+  public void iAddTheAvailableProductsFromTheStoreToTheV3Trolley(int availableProducts, int quantity) throws Throwable {
     ApigeeV3SearchResponse searchResponse = sharedData.searchProductResponse;
     List<String> stockCodes = new ArrayList<String>();
     for (int i = 0; i < searchResponse.getProducts().length; i++) {
@@ -49,7 +47,7 @@ public class TrolleyDefinition extends TrolleyHelper {
   }
 
   @When("^I add the (.*) available products with (.*) each from the store to the V2 trolley$")
-  public void i_add_the_available_products_from_the_store_to_the_V2_trolley(int availableProducts, int quantity) throws Throwable {
+  public void iAddTheAvailableProductsFromTheStoreToTheV2Trolley(int availableProducts, int quantity) throws Throwable {
     ApigeeV3SearchResponse searchResponse = sharedData.searchProductResponse;
     List<String> stockCodes = new ArrayList<String>();
     for (int i = 0; i < searchResponse.getProducts().length; i++) {
@@ -114,7 +112,7 @@ public class TrolleyDefinition extends TrolleyHelper {
   }
 
   @And("^I clear the trolley$")
-  public void i_clear_the_trolley() throws Throwable {
+  public void iClearTheTrolley() throws Throwable {
     TrolleyV2Response trolleyResponse = clearTrolley(sharedData.accessToken);
 
     Assert.assertEquals("Some items are there in trolley", 0.0, trolleyResponse.getTotaltrolleyprice());
@@ -130,7 +128,7 @@ public class TrolleyDefinition extends TrolleyHelper {
   }
 
   @Then("^I remove (.*) product from V3 trolley and verify it is deleted$")
-  public void i_remove_product_from_V3_trolley_and_verify_it_is_deleted(int itemsToBeDeleted) throws Throwable {
+  public void iRemoveProductFromV3TrolleyAndVerifyItIsDeleted(int itemsToBeDeleted) throws Throwable {
 
     TrolleyV3Response trolleyResponse = retriveV3Trolley(sharedData.accessToken); //Get the latest items from trolley.
     int prodCountBefore = trolleyResponse.getTrolley().getTotalProducts(); //Check if the trolley is null
@@ -158,7 +156,7 @@ public class TrolleyDefinition extends TrolleyHelper {
   }
 
   @Then("^I remove (.*) product from V2 trolley and verify it is deleted$")
-  public void i_remove_product_from_V2_trolley_and_verify_it_is_deleted(int itemsToBeDeleted) throws Throwable {
+  public void iRemoveProductFromV2TrolleyAndVerifyItIsDeleted(int itemsToBeDeleted) throws Throwable {
 
     TrolleyV2Response trolleyResponse = retriveV2Trolley(sharedData.accessToken); //Get the latest items from trolley.
     int prodCountBefore = trolleyResponse.getTotalproducts(); //Check if the trolley is null

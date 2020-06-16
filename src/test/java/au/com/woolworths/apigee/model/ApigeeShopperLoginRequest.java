@@ -17,19 +17,19 @@ public class ApigeeShopperLoginRequest {
         '}';
   }
 
-  public String getDevice_auth_token() {
+  public String getDeviceAuthToken() {
     return device_auth_token;
   }
 
-  public void setDevice_auth_token(String device_auth_token) {
+  public void setDeviceAuthToken(String device_auth_token) {
     this.device_auth_token = device_auth_token;
   }
 
-  public String getUser_name() {
+  public String getUserName() {
     return user_name;
   }
 
-  public void setUser_name(String user_name) {
+  public void setUserName(String user_name) {
     this.user_name = user_name;
   }
 

@@ -17,11 +17,11 @@ public class SpecialsCategories {
         '}';
   }
 
-  public String getProducts_href() {
+  public String getProductsHref() {
     return products_href;
   }
 
-  public void setProducts_href(String products_href) {
+  public void setProductsHref(String products_href) {
     this.products_href = products_href;
   }
 
@@ -33,11 +33,11 @@ public class SpecialsCategories {
     this.title = title;
   }
 
-  public int getProduct_count() {
+  public int getProductCount() {
     return product_count;
   }
 
-  public void setProduct_count(int product_count) {
+  public void setProductCount(int product_count) {
     this.product_count = product_count;
   }
 }

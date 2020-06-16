@@ -29,7 +29,7 @@ public class ApigeeGuestHelper extends BaseHelper {
     ApigeeGuestLoginRequest guestLoginRequest = new ApigeeGuestLoginRequest();
     ApigeeLoginReponse response;
 
-    guestLoginRequest.setDevice_auth_token(deviceId);
+    guestLoginRequest.setDeviceAuthToken(deviceId);
 
     String endPoint = URLResources.APIGEE_V2_GUEST_LOGIN;
     ObjectMapper mapper = new ObjectMapper();

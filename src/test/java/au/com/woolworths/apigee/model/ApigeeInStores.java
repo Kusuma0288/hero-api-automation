@@ -204,7 +204,7 @@ public class ApigeeInStores {
     return suburb;
   }
 
-  public Object getTrading_hours() {
+  public Object getTradingHours() {
     return trading_hours;
   }
 
@@ -346,7 +346,7 @@ public class ApigeeInStores {
     this.suburb = suburb;
   }
 
-  public void setTrading_hours(Object trading_hoursObject) {
+  public void setTradingHours(Object trading_hoursObject) {
     this.trading_hours = trading_hoursObject;
   }
 

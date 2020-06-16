@@ -29,15 +29,15 @@ public class ApigeeProductCategories {
     return images;
   }
 
-  public int getCategory_order() {
+  public int getCategoryOrder() {
     return category_order;
   }
 
-  public Object getProducts_href() {
+  public Object getProductsHref() {
     return products_href;
   }
 
-  public int getProduct_count() {
+  public int getProductCount() {
     return product_count;
   }
 
@@ -49,15 +49,15 @@ public class ApigeeProductCategories {
     this.images = images;
   }
 
-  public void setCategory_order(int category_order) {
+  public void setCategoryOrder(int category_order) {
     this.category_order = category_order;
   }
 
-  public void setProducts_href(Object products_href) {
+  public void setProductsHref(Object products_href) {
     this.products_href = products_href;
   }
 
-  public void setProduct_count(int product_count) {
+  public void setProductCount(int product_count) {
     this.product_count = product_count;
   }
 }

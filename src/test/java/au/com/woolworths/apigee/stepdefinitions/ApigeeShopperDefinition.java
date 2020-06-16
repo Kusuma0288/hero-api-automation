@@ -33,14 +33,14 @@ public class ApigeeShopperDefinition extends ApigeeShopperHelper {
   }
 
   @When("^user continue to connect to apigee with login (.*) and password (.*)$")
-  public void user_continue_to_connect_to_apigee_with_login_nouser_automation_com_and_password(String userName, String password) throws Throwable {
+  public void userContinueToConnectToApigeeWithLoginNouserAutomationComAndPassword(String userName, String password) throws Throwable {
     ApigeeLoginReponse response = userToConnectApigeewithLoginAndPassword(userName, password, sharedData.deviceId);
     sharedData.responseStatusCode = response.getStatusCode();
     sharedData.shopperResponse = response;
   }
 
   @Then("^user fails to authenticate as shopper$")
-  public void user_fails_to_authenticate_as_shopper() throws Throwable {
+  public void userFailsToAuthenticateAsShopper() throws Throwable {
     Assert.assertTrue(sharedData.responseStatusCode.equals("401"), "Status Code is::" + sharedData.responseStatusCode);
     Assert.assertTrue(sharedData.shopperResponse.getError().equals("The email address & password combination you have entered is incorrect.  Please try again or click the forgotten password link below to reset your password."), "Error Message is::" + sharedData.shopperResponse.getError());
     Assert.assertNull(sharedData.shopperResponse.getAccessToken(), "Access Token is NOT NULL");
@@ -71,7 +71,7 @@ public class ApigeeShopperDefinition extends ApigeeShopperHelper {
   }
 
   @When("^user continue to connect to apigee with login containing (.*)$")
-  public void user_continue_to_connect_to_apigee_with_login_containing_username(String userName) throws Throwable {
+  public void userContinueToConnectToApigeeWithLoginContainingUsername(String userName) throws Throwable {
     ApigeeLoginReponse response = userToConnectApigeewithLoginAndPassword(userName + "@" + TestProperties.get("EMAIL_DOMAINNAME"), TestProperties.get("SHOPPER_PASSWORD"), sharedData.deviceId);
     sharedData.responseStatusCode = response.getStatusCode();
     sharedData.shopperResponse = response;
