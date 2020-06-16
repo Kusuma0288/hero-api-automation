@@ -1,6 +1,7 @@
 package au.com.woolworths.apigee.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Arrays;
 
@@ -23,6 +24,7 @@ public class ApigeeV3SearchResponse {
     return products;
   }
 
+  @JsonProperty("product_count")
   public void setProducts(Apigeev3SearchProducts[] product) {
     products = product;
   }
@@ -31,6 +33,7 @@ public class ApigeeV3SearchResponse {
     return productCount;
   }
 
+  @JsonProperty("product_count")
   public void setProductCount(int product_count) {
     productCount = product_count;
   }
@@ -50,6 +53,7 @@ public class ApigeeV3SearchResponse {
   public void setSortoptions(Object sortoptions) {
     sortOptions = sortoptions;
   }
+
   public void setfaultString(String faultstring) {
     faultString = faultstring;
   }
