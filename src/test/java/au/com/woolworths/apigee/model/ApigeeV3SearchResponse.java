@@ -50,7 +50,8 @@ public class ApigeeV3SearchResponse {
   public void setSortoptions(Object sortoptions) {
     sortOptions = sortoptions;
   }
-  public void setfaultString(String faultstring){
+
+  public void setfaultString(String faultstring) {
     faultString = faultstring;
   }
 
