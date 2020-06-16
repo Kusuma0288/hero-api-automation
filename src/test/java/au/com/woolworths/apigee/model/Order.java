@@ -32,6 +32,7 @@ public class Order {
   private Object UnavailableOrderItems;
   private Object RestrictedOrderItems;
   private Object ExceededSupplyLimitProducts;
+  private Object ExceededSupplyLimitProductGroups;
   private Object RestrictedProductsByDeliveryMethod;
   private Object RestrictedProductsByDeliPlatter;
   private Object Errors;
@@ -60,7 +61,7 @@ public class Order {
         "EdrNumber=" + EdrNumber +
         "Loyalty=" + Loyalty + "Discounts=" + Discounts + "GiftCardPayments=" + GiftCardPayments + "AvailableOrderItems=" + AvailableOrderItems
         + "UnavailableOrderItems=" + UnavailableOrderItems + "RestrictedOrderItems=" + RestrictedOrderItems + "ExceededSupplyLimitProducts=" +
-        ExceededSupplyLimitProducts + "RestrictedProductsByDeliveryMethod=" + RestrictedProductsByDeliveryMethod + "RestrictedProductsByDeliPlatter="
+        ExceededSupplyLimitProducts + "ExceededSupplyLimitProductGroups=" + ExceededSupplyLimitProductGroups + "RestrictedProductsByDeliveryMethod=" + RestrictedProductsByDeliveryMethod + "RestrictedProductsByDeliPlatter="
         + RestrictedProductsByDeliPlatter + "Errors=" + Errors + "CanProceedToPayment=" + CanProceedToPayment + "OrderTotalsTableData=" + OrderTotalsTableData
         + "LeaveUnattended=" + LeaveUnattended + '}';
 
@@ -288,6 +289,14 @@ public class Order {
 
   public void setExceededSupplyLimitProducts(Object exceededSupplyLimitProducts) {
     ExceededSupplyLimitProducts = exceededSupplyLimitProducts;
+  }
+
+  public Object getExceededSupplyLimitProductGroups() {
+    return ExceededSupplyLimitProductGroups;
+  }
+
+  public void setExceededSupplyLimitProductGroups(Object exceededSupplyLimitProductGroups) {
+    ExceededSupplyLimitProductGroups = exceededSupplyLimitProductGroups;
   }
 
   public Object getRestrictedProductsByDeliveryMethod() {
