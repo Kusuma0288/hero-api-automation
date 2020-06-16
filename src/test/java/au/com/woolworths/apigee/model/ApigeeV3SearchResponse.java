@@ -27,11 +27,11 @@ public class ApigeeV3SearchResponse {
     products = product;
   }
 
-  public int getProduct_count() {
+  public int getProductCount() {
     return productCount;
   }
 
-  public void setProduct_count(int product_count) {
+  public void setProductCount(int product_count) {
     productCount = product_count;
   }
 
@@ -50,7 +50,6 @@ public class ApigeeV3SearchResponse {
   public void setSortoptions(Object sortoptions) {
     sortOptions = sortoptions;
   }
-
   public void setfaultString(String faultstring) {
     faultString = faultstring;
   }

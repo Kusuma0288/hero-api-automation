@@ -40,7 +40,7 @@ public class ApigeePickupDefinition extends ApigeeAddressHelper {
   }
 
   @Then("^I set the fulfilmentMethod to (.*) for the (.*) store$")
-  public void i_set_the_fulfilmentMethod_to_for_the_store(String fulfilmentMethod, int order) throws Throwable {
+  public void iSetTheFulfilmentMethodToForTheStore(String fulfilmentMethod, int order) throws Throwable {
     ApigeeV2AddressStores searchStoresResponse = sharedData.searchPostCodeResponse;
     String getFulFilmentMethod = searchStoresResponse.getStores()[order - 1].getFulfilmentMethod();
     if (getFulFilmentMethod.contains("Pickup")) {
@@ -132,6 +132,6 @@ public class ApigeePickupDefinition extends ApigeeAddressHelper {
   @When("^I set a pick up store using post code(.*)$")
   public void setPickUpStoreUsingPostCode(String postCode) throws Throwable {
     searchForThePostCode(postCode);
-    i_set_the_fulfilmentMethod_to_for_the_store("Pickup", 1);
+    iSetTheFulfilmentMethodToForTheStore("Pickup", 1);
   }
 }

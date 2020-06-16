@@ -56,20 +56,20 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
   }
 
   @When("^I add free text item \"([^\"]*)\" to list$")
-  public void i_add_free_text_item_to_list(String freeTextItem) throws Throwable {
+  public void iAddFreeTextItemToList(String freeTextItem) throws Throwable {
     ApigeeListResponse updatedResponse = addFreeTextItemToTheList(picoContainer.currentListId, freeTextItem, sharedData.accessToken);
     Assert.assertNotNull("The Update List did not happen", updatedResponse.getUpdate());
   }
 
   @When("^I add free text item \"([^\"]*)\" to list and check the item to list$")
-  public void i_add_free_text_item_to_list_and_check_the_item(String freeTextItem) throws Throwable {
+  public void iAddFreeTextItemToListAndCheckTheItem(String freeTextItem) throws Throwable {
     ApigeeListResponse updatedResponse = addFreeTextItemToTheList(picoContainer.currentListId, freeTextItem, true, sharedData.accessToken);
     Assert.assertNotNull("Free Text is not created", updatedResponse.getUpdate().getId());
     picoContainer.currentFreeTextId = updatedResponse.getUpdate().getId();
   }
 
   @When("^user verifies the free text item \"([^\"]*)\" is added to list$")
-  public void user_verifies_the_free_text_item_is_added_to_list(String freeTextItem) throws Throwable {
+  public void userVerifiesTheFreeTextItemIsAddedToList(String freeTextItem) throws Throwable {
     ApigeeListDetailsResponse listDetails = getListDetails(picoContainer.currentListId, sharedData.accessToken, "V2");
     Assert.assertTrue("List is empty", listDetails.getCount() >= 1);
     if (listDetails.getFreeTextItems().length == 1) {
@@ -80,7 +80,7 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
   }
 
   @When("^user verifies the free text item \"([^\"]*)\" is added to list and is checked$")
-  public void user_verifies_the_free_text_item_is_added_to_list_and_is_checked(String freeText) throws Throwable {
+  public void userVerifiesTheFreeTextItemIsAddedToListAndIsChecked(String freeText) throws Throwable {
     ApigeeListDetailsResponse listDetails = getListDetails(picoContainer.currentListId, sharedData.accessToken, "V2");
     Assert.assertTrue("Free Text item is empty", listDetails.getFreeTextItems().length >= 1);
     boolean foundFreeText = false;
@@ -94,7 +94,7 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
   }
 
   @And("^user verifies the free text item \"([^\"]*)\" is added to \"([^\"]*)\" is checked$")
-  public void user_verifies_the_free_text_item_is_added_to_is_checked(String freeText, String listName) throws Throwable {
+  public void userVerifiesTheFreeTextItemIsAddedToIsChecked(String freeText, String listName) throws Throwable {
     ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName, sharedData.accessToken)), sharedData.accessToken, "V2");
     Assert.assertTrue("Free Text item is empty", listDetails.getFreeTextItems().length >= 1);
     boolean foundFreeText = false;
@@ -108,7 +108,7 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
   }
 
   @And("^user verifies the free text item \"([^\"]*)\" is added to \"([^\"]*)\" is unchecked$")
-  public void user_verifies_the_free_text_item_is_added_to_is_unchecked(String freeText, String listName) throws Throwable {
+  public void userVerifiesTheFreeTextItemIsAddedToIsUnchecked(String freeText, String listName) throws Throwable {
     ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName, sharedData.accessToken)), sharedData.accessToken, "V2");
     Assert.assertTrue("Free Text item is empty", listDetails.getFreeTextItems().length >= 1);
     boolean foundFreeText = false;
@@ -122,14 +122,14 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
   }
 
   @When("^user un-checks the free text item \"([^\"]*)\" from the newly created list$")
-  public void user_un_checks_the_free_text_item_from_the_newly_created_list(String freeText) throws Throwable {
+  public void userUnChecksTheFreeTextItemFromTheNewlyCreatedList(String freeText) throws Throwable {
     ApigeeListResponse listUpdateResponse = updateFreeTextItemInTheList(Long.parseLong(picoContainer.currentListId), Long.parseLong(picoContainer.currentFreeTextId), freeText, false, sharedData.accessToken);
     Assert.assertTrue("Free Text Item status is not set to UPDATE", listUpdateResponse.getUpdate().getStatus().equalsIgnoreCase("UPDATE"));
     Assert.assertTrue("Free Text Item could not be updated", listUpdateResponse.getUpdate().getText().equalsIgnoreCase(freeText));
   }
 
   @When("^checks free text item \"([^\"]*)\" from the \"([^\"]*)\"$")
-  public void checks_free_text_item_from_the_list(String freeText, String listName) throws Throwable {
+  public void checksFreeTextItemFromTheList(String freeText, String listName) throws Throwable {
     long listId = getListIdForTheUser(listName, sharedData.accessToken);
     ApigeeListResponse listUpdateResponse = updateFreeTextItemInTheList(listId, getFreeTextIdForTheList(freeText, listId, sharedData.accessToken), freeText, true, sharedData.accessToken);
     Assert.assertTrue("Free Text Item status is not set to UPDATE", listUpdateResponse.getUpdate().getStatus().equalsIgnoreCase("UPDATE"));
@@ -137,7 +137,7 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
   }
 
   @When("^user deletes free text item \"([^\"]*)\" from the new list$")
-  public void user_deletes_free_text_item_from_the_new_list(String freeTextItem) throws Throwable {
+  public void userDeletesFreeTextItemFromTheNewList(String freeTextItem) throws Throwable {
     ApigeeListDetailsResponse listDetails = getListDetails(picoContainer.currentListId, sharedData.accessToken, "V2");
     boolean foundFreeTextItem = false;
     String freeTextId = "";
@@ -176,13 +176,13 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
   }
 
   @And("^I delete the newly created list$")
-  public void i_delete_the_newly_created_list() throws Throwable {
+  public void iDeleteTheNewlyCreatedList() throws Throwable {
     ApigeeListResponse response = deleteNewlyCreatedList(picoContainer.currentListId, picoContainer.listTimeStamp, sharedData.accessToken);
     Assert.assertTrue("List couldn't be deleted", response.getUpdate().getId().equals(picoContainer.currentListId));
   }
 
   @When("^I delete all the list for the user$")
-  public void i_delete_all_the_list_for_the_user() throws Throwable {
+  public void iDeleteAllTheListForTheUser() throws Throwable {
     ApigeeGetListResponse apigeeListResponse = retrieveList(sharedData.accessToken);
     //Please make sure to delete all list except 1 as default list is needed
     for (int i = 1; i < apigeeListResponse.getLists().length; i++) {
@@ -192,7 +192,7 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
   }
 
   @And("^I clear ALL the list for the user$")
-  public void i_clear_all_the_list_for_the_user() throws Throwable {
+  public void iClearAllTheListForTheUser() throws Throwable {
     ApigeeGetListResponse getListResponse = getAllListForTheUser(sharedData.accessToken);
     if (getListResponse.getLists().length != 0) {
       for (int i = 0; i < getListResponse.getLists().length; i++) {
@@ -209,7 +209,7 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
   }
 
   @When("^I add (.*) available products with \"([^\"]*)\" each from the store to (.*) list \"([^\"]*)\"$")
-  public void i_add_available_products_with_each_from_the_store_to_list(int prodQty, int listQty, String version, String listName) throws Throwable {
+  public void iAddAvailableProductsWithEachFromTheStoreToList(int prodQty, int listQty, String version, String listName) throws Throwable {
     ApigeeV3SearchResponse searchResponse = sharedData.searchProductResponse;
     List<String> stockCodes = new ArrayList<String>();
     for (int i = 0; i < searchResponse.getProducts().length; i++) {
@@ -229,7 +229,7 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
   }
 
   @Then("^I verify that the items saved to \"([^\"]*)\" list \"([^\"]*)\" are unchecked$")
-  public void i_verify_that_the_items_saved_to_list_are_unchecked(String version, String listName) throws Throwable {
+  public void iVerifyThatTheItemsSavedToListAreUnchecked(String version, String listName) throws Throwable {
     ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName, sharedData.accessToken)), sharedData.accessToken, version);
     Assert.assertTrue("Error:There are no products in the list", listDetails.getProducts().length >= 1);
     for (int i = 0; i < listDetails.getProducts().length; i++) {
@@ -240,7 +240,7 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
   }
 
   @Then("^I add items to cart after selecting \"([^\"]*)\" for every item from \"([^\"]*)\" list \"([^\"]*)\"$")
-  public void i_add_items_to_cart_after_selecting_for_every_item_from_list(int quantity, String version, String listName) throws Throwable {
+  public void iAddItemsToCartAfterSelectingForEveryItemFromList(int quantity, String version, String listName) throws Throwable {
     ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName, sharedData.accessToken)), sharedData.accessToken, version);
     TrolleyHelper trolleyHelper = new TrolleyHelper();
     List<String> stockCodes = new ArrayList<String>();
@@ -260,7 +260,7 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
   }
 
   @Then("^I verify that the correct items with quantity from \"([^\"]*)\" list \"([^\"]*)\" are added to the cart$")
-  public void i_verify_that_the_correct_items_with_quantity_are_added_to_the_cart(String version, String listName) throws Throwable {
+  public void iVerifyThatTheCorrectItemsWithQuantityAreAddedToTheCart(String version, String listName) throws Throwable {
     //Initialize a list of stock codes.
     List<String> listStockCodes = new ArrayList<String>();
     List<String> trolleyStockCodes = new ArrayList<String>();

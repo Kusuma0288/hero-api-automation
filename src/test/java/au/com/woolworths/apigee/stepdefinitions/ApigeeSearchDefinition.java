@@ -23,7 +23,7 @@ public class ApigeeSearchDefinition extends SearchHelper {
   public void userSearchProduct(String searchItem, String mode) throws Throwable {
     ApigeeV3SearchResponse v3SearchResponse = getProductItems(searchItem, mode, sharedData.accessToken);
 
-    Assert.assertTrue(v3SearchResponse.getProduct_count() >= 1, "Product count attribute are not more than or equal to 1");
+    Assert.assertTrue(v3SearchResponse.getProductCount() >= 1, "Product count attribute are not more than or equal to 1");
     Assert.assertTrue(v3SearchResponse.getProducts().length >= 1, "Product Search Results are not more than or equal to 1");
   }
 

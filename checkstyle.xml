@@ -42,5 +42,10 @@
                       value="COMMA, SEMI, POST_INC, POST_DEC, DOT, METHOD_REF"/>
             <property name="allowLineBreaks" value="true"/>
         </module>
+        <module name="MethodName">
+            <property name="format" value="^[a-z][a-z0-9]*[a-zA-Z0-9]*$"/>
+            <message key="name.invalidPattern"
+                     value="Method name ''{0}'' must match pattern ''{1}''."/>
+        </module>
     </module>
 </module>
