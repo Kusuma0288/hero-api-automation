@@ -1,6 +1,7 @@
 package au.com.woolworths.apigee.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 
@@ -204,6 +205,7 @@ public class ApigeeInStores {
     return suburb;
   }
 
+  @JsonProperty("trading_hours")
   public Object getTradingHours() {
     return trading_hours;
   }
@@ -346,8 +348,9 @@ public class ApigeeInStores {
     this.suburb = suburb;
   }
 
-  public void setTradingHours(Object trading_hoursObject) {
-    this.trading_hours = trading_hoursObject;
+  @JsonProperty("trading_hours")
+  public void setTradingHours(Object trading_hours) {
+    this.trading_hours = trading_hours;
   }
 
   public void setDistance(float distance) {
