@@ -206,8 +206,6 @@ public class ApigeeListHelper extends BaseHelper {
     headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerList.add(new Header("Authorization", "Bearer " + accessToken));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
-
-    //mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, ApigeeListResponse.class);
     return response;
@@ -272,7 +270,6 @@ public class ApigeeListHelper extends BaseHelper {
     headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerList.add(new Header("Authorization", "Bearer " + accessToken));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
-    //mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, ApigeeListResponse.class);
     return response;
@@ -312,7 +309,6 @@ public class ApigeeListHelper extends BaseHelper {
     headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerList.add(new Header("Authorization", "Bearer " + accessToken));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
-    //mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, AddProductsToListResponse.class);
     return response;

@@ -84,7 +84,6 @@ public class ApigeeShopperHelper extends BaseHelper {
     headerList.add(new Header("x-api-key", apiKey));
     headerList.add(new Header("user-agent", TestProperties.get("user-agent")));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
-    //mapWebserviceResponse = invocationUtil.invokeWithAPIKey(endPoint, requestStr, apiKey);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, ApigeeLoginReponse.class);
     response.setStatusCode(mapWebserviceResponse.get("statusCode"));

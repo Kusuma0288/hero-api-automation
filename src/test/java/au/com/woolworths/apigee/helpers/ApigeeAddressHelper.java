@@ -60,14 +60,11 @@ public class ApigeeAddressHelper extends BaseHelper {
 
     // invoke the service with the framed request
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-
-
     List<Header> headerList = new LinkedList<>();
     headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerList.add(new Header("Authorization", "Bearer " + accessToken));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, addressRequestStr, headerList);
 
-    //mapWebserviceResponse = invocationUtil.invoke(endPoint, addressRequestStr, accessToken);
     String responseStr = mapWebserviceResponse.get("response");
 
     ApigeeAddressDetails addressDetailResponse = mapper.readValue(responseStr, ApigeeAddressDetails.class);
@@ -237,7 +234,6 @@ public class ApigeeAddressHelper extends BaseHelper {
     headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerList.add(new Header("Authorization", "Bearer " + accessToken));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
-    //mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
     responseStr = mapWebserviceResponse.get("response");
 
     DeliveryFulfilmentV3Response deliveryFulfilmentV3Response = mapper.readValue(responseStr, DeliveryFulfilmentV3Response.class);
@@ -266,7 +262,6 @@ public class ApigeeAddressHelper extends BaseHelper {
     headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerList.add(new Header("Authorization", "Bearer " + accessToken));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
-    //mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
     responseStr = mapWebserviceResponse.get("response");
 
     Fulfilmentv3ErrorResponse fulfilmentv3ErrorResponse = mapper.readValue(responseStr, Fulfilmentv3ErrorResponse.class);
