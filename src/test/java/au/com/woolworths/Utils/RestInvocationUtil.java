@@ -150,17 +150,16 @@ public class RestInvocationUtil {
       headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
       headerList.add(new Header("user-agent", TestProperties.get("user-agent")));
       Headers headers = new Headers(headerList);
-
-        response = given()
-            // .proxy(TestProperties.get("LOCAL_PROXY"))
-            .header("Content-Type", "application/json")
-            .header("Accept", "application/json")
-            .headers(headers)
-            .body(requestPayload)
-            .when()
-            .post(endPoint)
-            .then()
-            .extract().response();
+      response = given()
+          // .proxy(TestProperties.get("LOCAL_PROXY"))
+          .header("Content-Type", "application/json")
+          .header("Accept", "application/json")
+          .headers(headers)
+          .body(requestPayload)
+          .when()
+          .post(endPoint)
+          .then()
+          .extract().response();
     } catch (Exception e) {
       e.printStackTrace();
       StringWriter errors = new StringWriter();
@@ -178,8 +177,7 @@ public class RestInvocationUtil {
       headerList.add(new Header("user-agent", TestProperties.get("user-agent")));
 
       Headers headers = new Headers(headerList);
-        response = given()
-            // .proxy(TestProperties.get("LOCAL_PROXY"))
+      response = given()
             .header("Content-Type", "application/json")
             .header("Accept", "application/json")
             .headers(headers)
@@ -205,7 +203,7 @@ public class RestInvocationUtil {
 
       headerList.add(dynamicHeaderList.get(0));
       Headers headers = new Headers(headerList);
-        response = given()
+      response = given()
             // .proxy(TestProperties.get("LOCAL_PROXY"))
             .header("Content-Type", "application/json")
             .header("Accept", "application/json")
@@ -233,8 +231,7 @@ public class RestInvocationUtil {
       headerList.add(new Header("Authorization", "Bearer " + authToken));
 
       Headers headers = new Headers(headerList);
-
-        response = given()
+      response = given()
             // .proxy(TestProperties.get("LOCAL_PROXY"))
             .header("Content-Type", "application/json")
             .header("Accept", "application/json")
@@ -259,8 +256,7 @@ public class RestInvocationUtil {
       headerList.add(new Header("Authorization", "Bearer " + authToken));
       headerList.add(dynamicHeaderList.get(0));
       Headers headers = new Headers(headerList);
-
-        response = given()
+      response = given()
             // .proxy(TestProperties.get("LOCAL_PROXY"))
             .header("Content-Type", "application/json")
             .header("Accept", "application/json")
@@ -285,8 +281,7 @@ public class RestInvocationUtil {
       headerList.add(new Header("Authorization", "Bearer " + authToken));
 
       Headers headers = new Headers(headerList);
-
-        response = given()
+      response = given()
             //  .proxy(TestProperties.get("LOCAL_PROXY"))
             .header("Content-Type", "application/json")
             .header("Accept", "application/json")
@@ -311,7 +306,7 @@ public class RestInvocationUtil {
       headerList.add(new Header("Authorization", "Bearer " + authToken));
 
       Headers headers = new Headers(headerList);
-        response = given()
+      response = given()
             //  .proxy(TestProperties.get("LOCAL_PROXY"))
             .header("Content-Type", "application/json")
             .header("Accept", "application/json")
@@ -338,7 +333,7 @@ public class RestInvocationUtil {
       headerList.add(new Header("Authorization", "Bearer " + authToken));
 
       Headers headers = new Headers(headerList);
-        response = given()
+      response = given()
             //  .proxy(TestProperties.get("LOCAL_PROXY"))
             .header("Content-Type", "application/json")
             .header("Accept", "application/json")
@@ -365,7 +360,7 @@ public class RestInvocationUtil {
       headerList.add(new Header("Authorization", "Bearer " + authToken));
 
       Headers headers = new Headers(headerList);
-        response = given()
+      response = given()
             //  .proxy(TestProperties.get("LOCAL_PROXY"))
             .header("Content-Type", "application/json")
             .header("Accept", "application/json")
@@ -391,7 +386,7 @@ public class RestInvocationUtil {
       headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
       headerList.add(new Header("Authorization", "Bearer " + authToken));
       Headers headers = new Headers(headerList);
-        response = given()
+      response = given()
             // .proxy(TestProperties.get("LOCAL_PROXY"))
             .header("Content-Type", "application/json")
             .header("Accept", "application/json")
