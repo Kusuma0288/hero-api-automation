@@ -1,6 +1,7 @@
 package au.com.woolworths.apigee.helpers;
 
 import au.com.woolworths.Utils.RestInvocationUtil;
+import au.com.woolworths.Utils.TestProperties;
 import au.com.woolworths.Utils.URLResources;
 import au.com.woolworths.apigee.model.*;
 import au.com.woolworths.apigee.stepdefinitions.ServiceHooks;
@@ -8,11 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.restassured.http.Header;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class ApigeeListHelper extends BaseHelper {
@@ -43,7 +42,12 @@ public class ApigeeListHelper extends BaseHelper {
     requestStr = mapper.writeValueAsString(apigeeListRequest);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
+    List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + accessToken));
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
+
+  //  mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, ApigeeListResponse.class);
     return response;
@@ -198,7 +202,12 @@ public class ApigeeListHelper extends BaseHelper {
     requestStr = mapper.writeValueAsString(apigeeListRequest);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
+    List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + accessToken));
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
+
+    //mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, ApigeeListResponse.class);
     return response;
@@ -259,7 +268,11 @@ public class ApigeeListHelper extends BaseHelper {
     requestStr = mapper.writeValueAsString(apigeeListRequest);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
+    List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + accessToken));
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
+    //mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, ApigeeListResponse.class);
     return response;
@@ -295,7 +308,11 @@ public class ApigeeListHelper extends BaseHelper {
 
     requestStr = mapper.writeValueAsString(apigeeListRequest);
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
+    List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + accessToken));
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
+    //mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, AddProductsToListResponse.class);
     return response;

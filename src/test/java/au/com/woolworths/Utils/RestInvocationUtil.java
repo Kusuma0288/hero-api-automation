@@ -23,43 +23,6 @@ public class RestInvocationUtil {
   public ArrayList<String> requests = new ArrayList<>();
   public ArrayList<Response> responses = new ArrayList<>();
 
-
-  public Map<String, String> invoke(String endPoint, String requestPayload) {
-    response = postRestWithBody(endPoint, requestPayload);
-    String strResponse = response.getBody().asString();
-    mapWebServiceResponse.put("response", strResponse);
-    mapWebServiceResponse.put("statusCode", Integer.toString(response.getStatusCode()));
-    mapWebServiceResponse.put("contentType", (response.contentType()));
-    endPoints.add(endPoint);
-    requests.add(requestPayload);
-    responses.add(response);
-    return mapWebServiceResponse;
-  }
-
-  public Map<String, String> invoke(String endPoint, String requestPayload, String authToken) {
-    response = postRestWithBody(endPoint, requestPayload, authToken);
-    String strResponse = response.getBody().asString();
-    mapWebServiceResponse.put("response", strResponse);
-    mapWebServiceResponse.put("statusCode", Integer.toString(response.getStatusCode()));
-    mapWebServiceResponse.put("contentType", (response.contentType()));
-    endPoints.add(endPoint);
-    requests.add(requestPayload);
-    responses.add(response);
-    return mapWebServiceResponse;
-  }
-
-  public Map<String, String> invokeWithAPIKey(String endPoint, String requestPayload, String apiKey) {
-    response = postRestWithBodyAndAPIkey(endPoint, requestPayload, apiKey);
-    String strResponse = response.getBody().asString();
-    mapWebServiceResponse.put("response", strResponse);
-    mapWebServiceResponse.put("statusCode", Integer.toString(response.getStatusCode()));
-    mapWebServiceResponse.put("contentType", (response.contentType()));
-    endPoints.add(endPoint);
-    requests.add(requestPayload);
-    responses.add(response);
-    return mapWebServiceResponse;
-  }
-
   public Map<String, String> invoke(String endPoint, String authToken, Map<String, ?> queryParams) {
     response = getResponse(endPoint, authToken, queryParams);
     String strResponse = response.getBody().asString();
@@ -72,8 +35,8 @@ public class RestInvocationUtil {
     return mapWebServiceResponse;
   }
 
-  public Map<String, String> invokePostWithHeaders(String endPoint, String requestPayload, String authToken, List<Header> headerList) {
-    response = postRestWithBodyAndHeaders(endPoint, requestPayload, authToken, headerList);
+  public Map<String, String> invokePostWithHeaders(String endPoint, String requestPayload, List<Header> headerList) {
+    response = postRestWithBodyAndHeaders(endPoint, requestPayload, headerList);
     String strResponse = response.getBody().asString();
     mapWebServiceResponse.put("response", strResponse);
     mapWebServiceResponse.put("statusCode", Integer.toString(response.getStatusCode()));
@@ -143,58 +106,6 @@ public class RestInvocationUtil {
     return mapWebServiceResponse;
   }
 
-  private Response postRestWithBody(String endPoint, String requestPayload) {
-    try {
-      RestAssured.baseURI = TestProperties.get("BASE_URI");
-      List<Header> headerList = new LinkedList<Header>();
-      headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-      headerList.add(new Header("user-agent", TestProperties.get("user-agent")));
-      Headers headers = new Headers(headerList);
-      response = given()
-          // .proxy(TestProperties.get("LOCAL_PROXY"))
-          .header("Content-Type", "application/json")
-          .header("Accept", "application/json")
-          .headers(headers)
-          .body(requestPayload)
-          .when()
-          .post(endPoint)
-          .then()
-          .extract().response();
-    } catch (Exception e) {
-      e.printStackTrace();
-      StringWriter errors = new StringWriter();
-      e.printStackTrace(new PrintWriter(errors));
-      Assert.assertTrue(false, "Endpoint::" + endPoint + "Request PayLoad::" + requestPayload + "Error::" + e.getMessage() + "Stack Trace::" + errors.toString());
-    }
-    return response;
-  }
-
-  private Response postRestWithBodyAndAPIkey(String endPoint, String requestPayload, String apiKey) {
-    try {
-      RestAssured.baseURI = TestProperties.get("BASE_URI");
-      List<Header> headerList = new LinkedList<Header>();
-      headerList.add(new Header("x-api-key", apiKey));
-      headerList.add(new Header("user-agent", TestProperties.get("user-agent")));
-
-      Headers headers = new Headers(headerList);
-      response = given()
-          // .proxy(TestProperties.get("LOCAL_PROXY"))
-          .header("Content-Type", "application/json")
-          .header("Accept", "application/json")
-          .headers(headers)
-          .body(requestPayload)
-          .when()
-          .post(endPoint).then()
-          .extract().response();
-    } catch (Exception e) {
-      e.printStackTrace();
-      StringWriter errors = new StringWriter();
-      e.printStackTrace(new PrintWriter(errors));
-      Assert.assertTrue(false, "Endpoint::" + endPoint + "Request PayLoad::" + requestPayload + "Error::" + e.getMessage() + "Stack Trace::" + errors.toString());
-    }
-    return response;
-  }
-
   private Response getRestWithDynamicHeaders(String endPoint, String authToken, Map<String, ?> params, List<Header> dynamicHeaderList) {
     try {
       RestAssured.baseURI = TestProperties.get("BASE_URI");
@@ -249,41 +160,12 @@ public class RestInvocationUtil {
     return response;
   }
 
-  private Response postRestWithBodyAndHeaders(String endPoint, String requestPayload, String authToken, List<Header> dynamicHeaderList) {
+  private Response postRestWithBodyAndHeaders(String endPoint, String requestPayload, List<Header> dynamicHeaderList) {
     try {
       RestAssured.baseURI = TestProperties.get("BASE_URI");
-      List<Header> headerList = new LinkedList<Header>();
-      headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-      headerList.add(new Header("Authorization", "Bearer " + authToken));
-      headerList.add(dynamicHeaderList.get(0));
-      Headers headers = new Headers(headerList);
+      Headers headers = new Headers(dynamicHeaderList);
       response = given()
           // .proxy(TestProperties.get("LOCAL_PROXY"))
-          .header("Content-Type", "application/json")
-          .header("Accept", "application/json")
-          .headers(headers)
-          .body(requestPayload)
-          .when()
-          .post(endPoint)
-          .then()
-          .extract().response();
-    } catch (Exception e) {
-      e.printStackTrace();
-      Assert.assertTrue(false, "Endpoint::" + endPoint + "Request PayLoad::" + requestPayload + "Error::" + e.getMessage());
-    }
-    return response;
-  }
-
-  private Response postRestWithBody(String endPoint, String requestPayload, String authToken) {
-    try {
-      RestAssured.baseURI = TestProperties.get("BASE_URI");
-      List<Header> headerList = new LinkedList<Header>();
-      headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-      headerList.add(new Header("Authorization", "Bearer " + authToken));
-
-      Headers headers = new Headers(headerList);
-      response = given()
-          //  .proxy(TestProperties.get("LOCAL_PROXY"))
           .header("Content-Type", "application/json")
           .header("Accept", "application/json")
           .headers(headers)
