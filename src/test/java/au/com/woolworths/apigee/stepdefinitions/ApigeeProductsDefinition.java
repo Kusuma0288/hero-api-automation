@@ -81,7 +81,7 @@ public class ApigeeProductsDefinition extends ApigeeProductsHelper {
   @When("^I make a request to Products API to filter the products based on \"([^\"]*)\" Specials group for store \"([^\"]*)\"$")
   public void retrieveProductsWithSpecialInStoreMode(int position, String store) throws Throwable {
 
-    String specialsGroup = sharedData.specialspageResponse.getCategories()[position].getProductsHref().replaceAll("(.*)filter=", "");
+    String specialsGroup = sharedData.specialspageResponse.getCategories()[position].getProducts_href().replaceAll("(.*)filter=", "");
 
     ApigeeProductsSpecial productsSpecial = iRetreiveSpecialsProductsInStore(specialsGroup, store, sharedData.accessToken);
 
@@ -97,7 +97,7 @@ public class ApigeeProductsDefinition extends ApigeeProductsHelper {
   @When("^I make a request to Products API to filter the products based on \"([^\"]*)\" Specials group in \"([^\"]*)\" mode$")
   public void retrieveProductsWithSpecialOnlinePickupMode(int position, String mode) throws Throwable {
 
-    String specialsGroup = sharedData.specialspageResponse.getCategories()[position].getProductsHref().replaceAll("(.*)filter=", "");
+    String specialsGroup = sharedData.specialspageResponse.getCategories()[position].getProducts_href().replaceAll("(.*)filter=", "");
 
     ApigeeProductsSpecial productsSpecial = iRetreiveSpecialsProductsOnlinePickup(specialsGroup, mode, sharedData.accessToken);
 
