@@ -1,6 +1,7 @@
 package au.com.woolworths.apigee.helpers;
 
 import au.com.woolworths.Utils.RestInvocationUtil;
+import au.com.woolworths.Utils.TestProperties;
 import au.com.woolworths.Utils.URLResources;
 import au.com.woolworths.apigee.model.CheckoutPaymentSummaryResponse;
 import au.com.woolworths.apigee.model.CheckoutRequest;
@@ -79,6 +80,8 @@ public class CheckoutHelper {
 
     Map<String, String> mapWebserviceResponse;
     List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + accessToken));
     Header deliveryNow = new Header("x-enable-feature", "DYNAMIC_WINDOWS,DELIVERY_NOW");
     headerList.add(deliveryNow);
 
@@ -89,7 +92,7 @@ public class CheckoutHelper {
     requestStr = mapper.writeValueAsString(checkoutRequest);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, accessToken, headerList);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
     checkoutResponse = mapper.readValue(responseStr, CheckoutResponse.class);
     return checkoutResponse;
@@ -108,6 +111,8 @@ public class CheckoutHelper {
 
     Map<String, String> mapWebserviceResponse;
     List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + accessToken));
     Header deliveryNow = new Header("x-enable-feature", "DYNAMIC_WINDOWS,DELIVERY_NOW");
     headerList.add(deliveryNow);
 
@@ -118,7 +123,7 @@ public class CheckoutHelper {
     requestStr = mapper.writeValueAsString(checkoutRequest);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, accessToken, headerList);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
     checkoutResponse = mapper.readValue(responseStr, CheckoutResponse.class);
     return checkoutResponse;

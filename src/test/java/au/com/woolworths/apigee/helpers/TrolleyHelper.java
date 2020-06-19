@@ -1,6 +1,7 @@
 package au.com.woolworths.apigee.helpers;
 
 import au.com.woolworths.Utils.RestInvocationUtil;
+import au.com.woolworths.Utils.TestProperties;
 import au.com.woolworths.Utils.URLResources;
 import au.com.woolworths.apigee.model.*;
 import au.com.woolworths.apigee.stepdefinitions.ServiceHooks;
@@ -8,11 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.restassured.http.Header;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class TrolleyHelper extends BaseHelper {
@@ -47,7 +46,10 @@ public class TrolleyHelper extends BaseHelper {
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
     requestStr = mapper.writeValueAsString(trolleyItemRequest);
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
+    List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + accessToken));
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
 
     TrolleyV3Response trolleyV3Response = mapper.readValue(responseStr, TrolleyV3Response.class);
@@ -79,7 +81,10 @@ public class TrolleyHelper extends BaseHelper {
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
     requestStr = mapper.writeValueAsString(trolleyItemRequest);
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
+    List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + accessToken));
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
 
     TrolleyV2Response trolleyV2Response = mapper.readValue(responseStr, TrolleyV2Response.class);
