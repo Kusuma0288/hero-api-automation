@@ -205,7 +205,6 @@ public class ApigeeAddressHelper extends BaseHelper {
     headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerList.add(new Header("Authorization", "Bearer " + accessToken));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
-   // mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
     responseStr = mapWebserviceResponse.get("response");
 
     FulFilmentResponse fulFilmentResponse = mapper.readValue(responseStr, FulFilmentResponse.class);

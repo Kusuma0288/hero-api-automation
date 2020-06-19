@@ -85,7 +85,6 @@ public class TrolleyHelper extends BaseHelper {
     headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerList.add(new Header("Authorization", "Bearer " + accessToken));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
-    //mapWebserviceResponse = invocationUtil.invoke(endPoint, requestStr, accessToken);
     responseStr = mapWebserviceResponse.get("response");
 
     TrolleyV2Response trolleyV2Response = mapper.readValue(responseStr, TrolleyV2Response.class);
