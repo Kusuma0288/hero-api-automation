@@ -3,7 +3,7 @@ package au.com.woolworths.apigee.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
-@JsonInclude(JsonInclude.Include.NON_DEFAULT)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CheckoutFulfilmentWindows {
 
   private boolean IsReserved;
@@ -15,20 +15,22 @@ public class CheckoutFulfilmentWindows {
   private CheckoutWindowItems Morning;
   private CheckoutWindowItems Afternoon;
   private CheckoutWindowItems Evening;
+  private DeliveryNowWindows DeliveryNow;
 
   @Override
   public String toString() {
     return "CheckoutFulfilmentWindows{" +
-        "  IsReserved=" + IsReserved +
-        ", StartsFrom=" + StartsFrom +
-        ", Date='" + Date + '\'' +
-        ", IsAvailable=" + IsAvailable +
-        ", DateText=" + DateText +
-        ", IsEligibleForDeliverySaver=" + IsEligibleForDeliverySaver +
-        ", Morning=" + Morning +
-        ", Afternoon=" + Afternoon +
-        ", Evening=" + Evening +
-        '}';
+            "IsReserved=" + IsReserved +
+            ", StartsFrom='" + StartsFrom + '\'' +
+            ", Date='" + Date + '\'' +
+            ", IsAvailable=" + IsAvailable +
+            ", DateText='" + DateText + '\'' +
+            ", IsEligibleForDeliverySaver=" + IsEligibleForDeliverySaver +
+            ", Morning=" + Morning +
+            ", Afternoon=" + Afternoon +
+            ", Evening=" + Evening +
+            ", DeliveryNow=" + DeliveryNow +
+            '}';
   }
 
   public boolean getIsReserved() {
@@ -101,5 +103,13 @@ public class CheckoutFulfilmentWindows {
 
   public void setEvening(CheckoutWindowItems evening) {
     Evening = evening;
+  }
+
+  public DeliveryNowWindows getDeliveryNow() {
+    return DeliveryNow;
+  }
+
+  public void setDeliveryNow(DeliveryNowWindows deliveryNow) {
+    DeliveryNow = deliveryNow;
   }
 }

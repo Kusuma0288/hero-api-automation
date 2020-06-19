@@ -24,7 +24,7 @@ public class CheckoutDefinition extends CheckoutHelper {
   }
 
   @And("^I get the available \"([^\"]*)\" windows for the logged in user with storeId or addressId$")
-  public void iGetAvailablePickupWindow(String collectionMode) throws Throwable {
+  public void iGetAvailableWindow(String collectionMode) throws Throwable {
     CheckoutResponse checkoutResponse = getCheckoutResponse(sharedData.accessToken);
     if (collectionMode.equals("Pickup")) {
       picoContainer.orderCheckoutPaymentAddress = checkoutResponse.getOrder().getPickup().getStore().getText();
@@ -68,8 +68,9 @@ public class CheckoutDefinition extends CheckoutHelper {
 
   }
 
-  @Then("^I set the selected available pickup window for the logged in user$")
-  public void iSetAvailablePickupWindow() throws Throwable {
+
+  @Then("^I set the selected available window for the logged in user$")
+  public void iSetAvailableWindow() throws Throwable {
     CheckoutResponse checkoutResponse = postSetCheckoutWindow(picoContainer.windowId, picoContainer.windowStartTime, sharedData.accessToken);
     picoContainer.packagingPreference = checkoutResponse.getDeliveryPackagingPreferences();
     Assert.assertEquals("Selected window is not set", checkoutResponse.getResults().getSetDeliveryWindow().getHttpStatusCode(), 200);
@@ -140,6 +141,26 @@ public class CheckoutDefinition extends CheckoutHelper {
     picoContainer.orderCheckoutPaymentTotalGST = checkoutPaymentResponse.getOrder().getTotalIncludingGst();
     picoContainer.orderCheckoutPaymentPackagingFee = checkoutPaymentResponse.getOrder().getPackagingFee();
     picoContainer.orderCheckoutPaymentPackagingPreference = checkoutPaymentResponse.getOrder().getPackagingFeeLabel();
+  }
+
+  @And("^I get the available Delivery Now window to reserve them and validate the leave unattended flag$")
+  public void iGetTheAvailableDeliveryNowWindowToReserveThemAndValidateTheLeaveUnattendedFlag() throws Throwable {
+    CheckoutResponse checkoutResponse = getCheckoutResponse(sharedData.accessToken);
+    CheckoutFulfilmentWindows[] checkoutFulfilmentWindows = checkoutResponse.getFulfilmentWindows();
+
+    boolean windowAvailability = checkoutFulfilmentWindows[0].getIsAvailable();
+    if (windowAvailability) {
+      //Assert Delivery Now Window is not Null
+      Assert.assertNotNull("Delivery Now window is not available",checkoutFulfilmentWindows[0].getDeliveryNow());
+      picoContainer.windowId = checkoutFulfilmentWindows[0].getDeliveryNow().getId();
+      picoContainer.windowStartTime = checkoutFulfilmentWindows[0].getDeliveryNow().getStartTime();
+      CheckoutResponse postCheckoutResponse = postSetCheckoutWindow(picoContainer.windowId, picoContainer.windowStartTime, sharedData.accessToken);
+
+      //Assert the leave unattended flag is true when delivery now window is selected
+      Assert.assertTrue("Disable Leave Unattended flag is not set to True", postCheckoutResponse.getOrder().getLeaveUnattended().isDisableLeaveUnattended());
+      //Assert the warning message field contains the exact message
+      Assert.assertEquals("Warning message is incorrect",postCheckoutResponse.getOrder().getLeaveUnattended().getWarningMessage(),"A signature is required for Delivery Now orders.");
+    }
   }
 }
 

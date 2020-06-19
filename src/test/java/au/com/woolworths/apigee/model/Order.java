@@ -38,7 +38,7 @@ public class Order {
   private Object Errors;
   private boolean CanProceedToPayment;
   private Object OrderTotalsTableData;
-  private Object LeaveUnattended;
+  private LeaveUnattended LeaveUnattended;
 
   @Override
   public String toString() {
@@ -339,11 +339,11 @@ public class Order {
     OrderTotalsTableData = orderTotalsTableData;
   }
 
-  public Object getLeaveUnattended() {
+  public LeaveUnattended getLeaveUnattended() {
     return LeaveUnattended;
   }
 
-  public void setLeaveUnattended(Object leaveUnattended) {
+  public void setLeaveUnattended(LeaveUnattended leaveUnattended) {
     LeaveUnattended = leaveUnattended;
   }
 }
