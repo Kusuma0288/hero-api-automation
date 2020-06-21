@@ -220,7 +220,7 @@ public class TrolleyDefinition extends TrolleyHelper {
     }
   }
   
-  @When("^I store (\\d+) products with quantity (\\d+) to the V(\\d+) trolley\\.$")
+  @When("^I store (.*) products with quantity (.*) to the V(.*) trolley\\.$")
   public void iStoreProductsWithQuantityToTheVTrolley(int productQty, int quantity, String version) throws Throwable {
 
     if (version.equals("V3")) {
