@@ -38,7 +38,6 @@ public class ApigeeInStoreHelper extends BaseHelper {
     headerList.add(new Header("Authorization", "Bearer " + accessToken));
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, accessToken, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
-
     ObjectMapper mapper = new ObjectMapper();
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
