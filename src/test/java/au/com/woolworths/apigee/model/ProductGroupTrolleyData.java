@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
   private String minimum;
   private String maximum;
   private String increment;
+  //TODO rename default to default in Trolley
   @JsonProperty("default")
   private String defaultInTrolley;
   private String inTrolley;
