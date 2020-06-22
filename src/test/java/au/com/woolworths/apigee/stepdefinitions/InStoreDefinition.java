@@ -26,12 +26,12 @@ public class InStoreDefinition extends ApigeeInStoreHelper {
     ApigeeSearchInStore searchInStoresResponse = iSearchForInStore(postcode, sharedData.accessToken);
 
     //These assertions are to make sure there are no NULL FIELDS
-    Assert.assertNotNull(searchInStoresResponse.getstores()[0].getNo());
-    Assert.assertNotNull(searchInStoresResponse.getstores()[0].getName());
-    Assert.assertNotNull(searchInStoresResponse.getstores()[0].getDivision());
+    Assert.assertNotNull(searchInStoresResponse.getStores()[0].getNo());
+    Assert.assertNotNull(searchInStoresResponse.getStores()[0].getName());
+    Assert.assertNotNull(searchInStoresResponse.getStores()[0].getDivision());
 
     sharedData.searchInStoreResponse = searchInStoresResponse;
-    sharedData.inStoreId = searchInStoresResponse.getstores()[position - 1].getNo();
+    sharedData.inStoreId = searchInStoresResponse.getStores()[position - 1].getNo();
   }
 
 }

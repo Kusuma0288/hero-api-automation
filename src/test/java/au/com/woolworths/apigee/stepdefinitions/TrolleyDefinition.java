@@ -97,7 +97,7 @@ public class TrolleyDefinition extends TrolleyHelper {
         expectedTotalPrice = expectedTotalPrice + (productsToAdd.get(product) * (v3SearchResponse.getProducts()[0].getPromotions().getPrice()));
       } else {
         // No promo
-        expectedTotalPrice = expectedTotalPrice + (productsToAdd.get(product) * (v3SearchResponse.getProducts()[0].getInstoreprice().getPriceGst()));
+        expectedTotalPrice = expectedTotalPrice + (productsToAdd.get(product) * (v3SearchResponse.getProducts()[0].getInstoreprice().getPricegst()));
       }
 
       if (version.equals("V2")) {
@@ -140,12 +140,12 @@ public class TrolleyDefinition extends TrolleyHelper {
     for (int i = 0; i < itemsToBeDeleted && i < trolleyResponse.getTrolley().getTotalProducts(); i++) {
       trolleyResponse = retriveV3Trolley(sharedData.accessToken); //Get the latest items from trolley.
       prodCountBefore = trolleyResponse.getTrolley().getTotalProducts();
-      String stockCode = trolleyResponse.getTrolley().getTrolleyitemsListResp().get(0).getArticle();
+      String stockCode = trolleyResponse.getTrolley().getItems().get(0).getArticle();
       trolleyResponse = delStockCodesFromV3Trolley(stockCode, sharedData.accessToken);
       int prodCountAfter = trolleyResponse.getTrolley().getTotalProducts();
       for (int j = 0; j < trolleyResponse.getTrolley().getTotalProducts(); j++) {
         //Verify the deleted item is not present in trolley
-        Assert.assertTrue("StockCode " + stockCode + " not deleted from trolley. Error in deletion", !trolleyResponse.getTrolley().getTrolleyitemsListResp().get(j).getArticle().equals(stockCode));
+        Assert.assertTrue("StockCode " + stockCode + " not deleted from trolley. Error in deletion", !trolleyResponse.getTrolley().getItems().get(j).getArticle().equals(stockCode));
 
       }
       //Verify item count after  deletion
@@ -214,7 +214,7 @@ public class TrolleyDefinition extends TrolleyHelper {
 
     // Verify all the products are correct
     for (String productName : productNames) {
-      String description = trolleyResponse.getTrolley().getTrolleyitemsListResp().get(productNames.indexOf(productName)).getDescription();
+      String description = trolleyResponse.getTrolley().getItems().get(productNames.indexOf(productName)).getDescription();
 
       Assert.assertTrue("Product description is not correct (Expected - " + productName + ", but got - " + description, productName.equals(description));
     }

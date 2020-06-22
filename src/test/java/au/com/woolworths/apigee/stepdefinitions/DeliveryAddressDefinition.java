@@ -32,15 +32,15 @@ public class DeliveryAddressDefinition extends ApigeeAddressHelper {
     sharedData.searchAddressResponse = searchAddressResponse;
 
     //These assertions are to make sure there are no NULL FIELDS
-    Assert.assertNotNull(searchAddressResponse.getaddresses()[0].getPostCode());
-    Assert.assertNotNull(searchAddressResponse.getaddresses()[0].getText());
-    Assert.assertNotNull(searchAddressResponse.getaddresses()[0].getAmasID());
+    Assert.assertNotNull(searchAddressResponse.getAddresses()[0].getPostCode());
+    Assert.assertNotNull(searchAddressResponse.getAddresses()[0].getText());
+    Assert.assertNotNull(searchAddressResponse.getAddresses()[0].getAmasID());
   }
 
   @When("^I select the \"([^\"]*)\" address as fulfilment address from matching addresses$")
   public void iSelectTheAddressAsFulfilmentAddressFromMatchingAddresses(int position) throws Throwable {
     ApigeeSearchAddresses addressResponse = sharedData.searchAddressResponse;
-    ApigeeAddress[] addressItem = addressResponse.getaddresses();
+    ApigeeAddress[] addressItem = addressResponse.getAddresses();
 
     ApigeeAddressDetails addressDetailResponse = iGetTheAddressIdFromAmasId(addressItem[position - 1].getAmasID(), sharedData.accessToken);
 
@@ -56,7 +56,7 @@ public class DeliveryAddressDefinition extends ApigeeAddressHelper {
     ApigeeAddressDetails[] addressDetails = addressesInMyAccount.getAddresses();
 
     boolean isPrimary = Arrays.stream(addressDetails).filter(x -> x.getId().equals(sharedData.addressId))
-        .findFirst().get().getIsprimary();
+        .findFirst().get().isIsprimary();
 
     Assert.assertTrue("Recently saved address is set as primary", isPrimary);
   }
@@ -67,7 +67,7 @@ public class DeliveryAddressDefinition extends ApigeeAddressHelper {
     ApigeeAddressDetails[] addressDetails = addressesInMyAccount.getAddresses();
 
     boolean isPrimary = Arrays.stream(addressDetails).filter(x -> x.getText().equals(sharedData.addressText))
-        .findFirst().get().getIsprimary();
+        .findFirst().get().isIsprimary();
 
     Assert.assertTrue("Recently saved address is set as primary", isPrimary);
 

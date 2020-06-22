@@ -280,9 +280,9 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
     } else {
 
       TrolleyV3Response trolleyResponse = sharedData.trolleyV3Response;
-      for (int i = 0; i < trolleyResponse.getTrolley().getTrolleyitemsListResp().size(); i++) {
+      for (int i = 0; i < trolleyResponse.getTrolley().getItems().size(); i++) {
 
-        trolleyStockCodes.add(trolleyResponse.getTrolley().getTrolleyitemsListResp().get(i).getArticle().replaceFirst("^0+(?!$)", ""));
+        trolleyStockCodes.add(trolleyResponse.getTrolley().getItems().get(i).getArticle().replaceFirst("^0+(?!$)", ""));
       }
 
     }

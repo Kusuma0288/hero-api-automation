@@ -34,8 +34,8 @@ public class ApigeeShopperHelper extends BaseHelper {
     ApigeeShopperLoginRequest loginRequest = new ApigeeShopperLoginRequest();
     ApigeeLoginReponse response;
 
-    loginRequest.setDeviceAuthToken(deviceId);
-    loginRequest.setUserName(userName);
+    loginRequest.setDevice_auth_token(deviceId);
+    loginRequest.setUser_name(userName);
     loginRequest.setPassword(password);
 
     String endPoint = URLResources.APIGEE_V2_SHOPPER_LOGIN;
@@ -66,8 +66,8 @@ public class ApigeeShopperHelper extends BaseHelper {
     ApigeeShopperLoginRequest loginRequest = new ApigeeShopperLoginRequest();
     ApigeeLoginReponse response;
 
-    loginRequest.setDeviceAuthToken(deviceId);
-    loginRequest.setUserName(userName);
+    loginRequest.setDevice_auth_token(deviceId);
+    loginRequest.setUser_name(userName);
     loginRequest.setPassword(password);
 
     String endPoint = URLResources.APIGEE_V2_SHOPPER_LOGIN;
