@@ -68,7 +68,10 @@ public class ApigeeListHelper extends BaseHelper {
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+    List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + accessToken));
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, accessToken, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, ApigeeGetListResponse.class);
     return response;
@@ -90,7 +93,10 @@ public class ApigeeListHelper extends BaseHelper {
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+    List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + accessToken));
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, accessToken, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, ApigeeGetListResponse.class);
     return response;
@@ -110,7 +116,10 @@ public class ApigeeListHelper extends BaseHelper {
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+    List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + accessToken));
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, accessToken, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
     ApigeeGetListResponse response = mapper.readValue(responseStr, ApigeeGetListResponse.class);
 
@@ -137,7 +146,10 @@ public class ApigeeListHelper extends BaseHelper {
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+    List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + accessToken));
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, accessToken, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
 
     ApigeeListDetailsResponse response = mapper.readValue(responseStr, ApigeeListDetailsResponse.class);
@@ -336,7 +348,10 @@ public class ApigeeListHelper extends BaseHelper {
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+    List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + accessToken));
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, accessToken, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, ApigeeListDetailsResponse.class);
     return response;

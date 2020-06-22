@@ -1,6 +1,7 @@
 package au.com.woolworths.apigee.helpers;
 
 import au.com.woolworths.Utils.RestInvocationUtil;
+import au.com.woolworths.Utils.TestProperties;
 import au.com.woolworths.Utils.URLResources;
 import au.com.woolworths.apigee.model.ApigeeV3SearchResponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -8,8 +9,11 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import au.com.woolworths.apigee.stepdefinitions.ServiceHooks;
+import io.restassured.http.Header;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -40,7 +44,10 @@ public class SearchHelper extends BaseHelper {
     mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, authToken, queryParams);
+    List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + authToken));
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, authToken, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
 
     response = mapper.readValue(responseStr, ApigeeV3SearchResponse.class);
