@@ -5,7 +5,8 @@ import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data public class Order {
+@Data
+public class Order {
   private Object PrimaryAddress;
   private DeliveryDetails Delivery;
   private Pickup Pickup;
@@ -41,5 +42,5 @@ import com.fasterxml.jackson.annotation.JsonInclude;
   private Object Errors;
   private boolean CanProceedToPayment;
   private Object OrderTotalsTableData;
-  private Object LeaveUnattended;
+  private LeaveUnattended LeaveUnattended;
 }

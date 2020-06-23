@@ -5,8 +5,9 @@ import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
-@JsonInclude(JsonInclude.Include.NON_DEFAULT)
-@Data public class CheckoutFulfilmentWindows {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Data
+public class CheckoutFulfilmentWindows {
 
   private boolean IsReserved;
   private String StartsFrom;
@@ -17,4 +18,5 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
   private CheckoutWindowItems Morning;
   private CheckoutWindowItems Afternoon;
   private CheckoutWindowItems Evening;
+  private DeliveryNowWindows DeliveryNow;
 }
