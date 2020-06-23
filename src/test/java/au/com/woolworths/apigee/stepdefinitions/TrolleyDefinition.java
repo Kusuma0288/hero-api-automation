@@ -219,4 +219,101 @@ public class TrolleyDefinition extends TrolleyHelper {
       Assert.assertTrue("Product description is not correct (Expected - " + productName + ", but got - " + description, productName.equals(description));
     }
   }
+  
+  @When("^I store (.*) products with quantity (.*) to the V(.*) trolley\\.$")
+  public void iStoreProductsWithQuantityToTheVTrolley(int productQty, int quantity, String version) throws Throwable {
+
+    if (version.equals("V3")) {
+      ApigeeV3SearchResponse searchResponse = sharedData.searchProductResponse;
+      List<String> stockCodes = new ArrayList<String>();
+      for (int i = 0; i < searchResponse.getProducts().length; i++) {
+
+        if (searchResponse.getProducts()[i].getIs().isRanged()) {
+          stockCodes.add(searchResponse.getProducts()[i].getArticle().replaceFirst("^0+(?!$)", ""));
+        }
+        if (stockCodes.size() == productQty) {
+          break;
+        }
+      }
+      Assert.assertTrue("There are no products available in Store", stockCodes.size() != 0);
+      TrolleyV3Response trolleyResponse = addStockCodesToTheV3Trolley(stockCodes, quantity, true, sharedData.accessToken);
+      Assert.assertTrue("Error in Order adding to the trolley", trolleyResponse.getResults().getOrder().getHttpStatusCode() == 200);
+      Assert.assertTrue("Error in Trolley Results", trolleyResponse.getResults().getTrolley().getHttpStatusCode() == 200);
+    } else {
+      ApigeeV3SearchResponse searchResponse = sharedData.searchProductResponse;
+      List<String> stockCodes = new ArrayList<String>();
+      for (int i = 0; i < searchResponse.getProducts().length; i++) {
+        if (searchResponse.getProducts()[i].getIs().isRanged()) {
+          stockCodes.add(searchResponse.getProducts()[i].getArticle().replaceFirst("^0+(?!$)", ""));
+        }
+        if (stockCodes.size() == productQty) {
+          break;
+        }
+      }
+      Assert.assertTrue("There are no products available in Store", stockCodes.size() != 0);
+      TrolleyV2Response trolleyResponse = addStockCodesToTheV2Trolley(stockCodes, quantity, true, sharedData.accessToken);
+      Assert.assertTrue("Products is not added as expected:" + productQty, trolleyResponse.getTotalproducts() == productQty);
+    }
+  }
+
+  @Then("^I am able to successfully view (.*) items in my V(.*) trolley$")
+  public void iAmAbleToSuccessfullyViewItemsInMyVTrolley(int productQty, String version) throws Throwable {
+
+    if (version.equals("V3")) {
+      TrolleyV3Response trolleyResponse = retriveV3Trolley(sharedData.accessToken);
+      Assert.assertTrue("Products is not added as expected:" + productQty, trolleyResponse.getTrolley().getTotalProducts() == productQty);
+
+    } else {
+      TrolleyV2Response trolleyResponse = retriveV2Trolley(sharedData.accessToken);
+      Assert.assertTrue("Products is not added as expected:" + productQty, trolleyResponse.getTotalproducts() == productQty);
+    }
+  }
+
+  @Then("^I update the qantity for every item in V(.*) cart to new value (.*)$")
+  public void iUpdateTheQantityForEveryItemInVCartToNewValue(String version, int quantity) throws Throwable {
+
+    List<String> stockCodes = new ArrayList<String>();
+    if (version.equals("V3")) {
+      TrolleyV3Response trolleyResponse = retriveV3Trolley(sharedData.accessToken);
+      Assert.assertTrue("There are no products in Trolley:", trolleyResponse.getTrolley().getTotalProducts() > 0);
+
+      for (int i = 0; i < trolleyResponse.getTrolley().getTotalProducts(); i++) {
+        stockCodes.add(trolleyResponse.getTrolley().getTrolleyitemsListResp().get(0).getArticle());
+      }
+          //Update the items in trolley with new quantity.
+      trolleyResponse = addStockCodesToTheV3Trolley(stockCodes, quantity, true, sharedData.accessToken);
+    } else {
+
+      TrolleyV2Response trolleyResponse = retriveV2Trolley(sharedData.accessToken);
+      Assert.assertTrue("There are no products in Trolley:", trolleyResponse.getTotalproducts() > 0);
+
+      for (int i = 0; i < trolleyResponse.getTotalproducts(); i++) {
+        stockCodes.add(trolleyResponse.getItems().get(i).getArticle());
+      }
+    //Update the items in trolley with new quantity.
+      trolleyResponse = addStockCodesToTheV2Trolley(stockCodes, quantity, true, sharedData.accessToken);
+    }
+  }
+
+  @Then("^I verify that every item in V(.*) cart is updated with correct quantity (.*)$")
+  public void iVerifyThatEveryItemInVCartIsUpdatedWithCorrectQuantity(String version, int quantity) throws Throwable {
+
+    if (version.equals("V3")) {
+      TrolleyV3Response trolleyResponse = retriveV3Trolley(sharedData.accessToken);
+      Assert.assertTrue("There are no products in Trolley:", trolleyResponse.getTrolley().getTotalProducts() > 0);
+
+      for (int i = 0; i < trolleyResponse.getTrolley().getTotalProducts(); i++) {
+        Assert.assertTrue("Items not updated with correct qantity:", trolleyResponse.getTrolley().getTrolleyitemsListResp().get(i).getItemquantityintrolley() == quantity);	
+      }
+
+    } else {
+
+      TrolleyV2Response trolleyResponse = retriveV2Trolley(sharedData.accessToken);
+      Assert.assertTrue("There are no products in Trolley:", trolleyResponse.getTotalproducts() > 0);	
+
+      for (int i = 0; i < trolleyResponse.getTotalproducts(); i++) {
+        Assert.assertTrue("Items not updated with correct qantity:", trolleyResponse.getItems().get(i).getItemquantityintrolley() == quantity);	
+      }
+    }
+  }
 }
