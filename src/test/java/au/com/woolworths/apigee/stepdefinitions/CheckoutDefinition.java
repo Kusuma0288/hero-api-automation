@@ -73,6 +73,7 @@ public class CheckoutDefinition extends CheckoutHelper {
   public void iSetAvailableWindow() throws Throwable {
     CheckoutResponse checkoutResponse = postSetCheckoutWindow(picoContainer.windowId, picoContainer.windowStartTime, sharedData.accessToken);
     picoContainer.packagingPreference = checkoutResponse.getDeliveryPackagingPreferences();
+    picoContainer.leaveUnattended = checkoutResponse.getOrder().getLeaveUnattended().isDisableLeaveUnattended();
     Assert.assertEquals("Selected window is not set", checkoutResponse.getResults().getSetDeliveryWindow().getHttpStatusCode(), 200);
   }
 
@@ -158,6 +159,11 @@ public class CheckoutDefinition extends CheckoutHelper {
     Assert.assertTrue("Disable Leave Unattended flag is not set to True", postCheckoutResponse.getOrder().getLeaveUnattended().isDisableLeaveUnattended());
     //Assert the warning message field contains the exact message
     Assert.assertEquals("Warning message is incorrect", postCheckoutResponse.getOrder().getLeaveUnattended().getWarningMessage(), "A signature is required for Delivery Now orders.");
+  }
+
+  @And("^I validate the leave unattended flag$")
+  public void iValidateTheLeaveUnattendedFlag() {
+    Assert.assertFalse("Disable Leave Unattended flag is not set to False", picoContainer.leaveUnattended);
   }
 }
 
