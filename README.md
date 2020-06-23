@@ -35,7 +35,8 @@ For Regression
 mvn clean test verify -Denv=test -Pregression -DsaveRequestResponse=yes
 ```
 
-# Project Lombok Plugin in Intellij
+# Installing Project Lombok Plugin in Intellij
+
 Go to File > Settings > Plugins
 Click on Browse repositories...
 Search for Lombok Plugin
