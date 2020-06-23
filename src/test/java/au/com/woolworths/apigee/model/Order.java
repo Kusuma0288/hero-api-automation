@@ -38,6 +38,7 @@ public class Order {
   private Object ExceededSupplyLimitProductGroups;
   private Object RestrictedProductsByDeliveryMethod;
   private Object RestrictedProductsByDeliPlatter;
+  private Object BonusItems;
   private Object Errors;
   private boolean CanProceedToPayment;
   private Object OrderTotalsTableData;
