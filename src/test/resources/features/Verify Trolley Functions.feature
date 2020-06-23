@@ -54,3 +54,24 @@ Feature: Verify Apigee Trolley functions
     When I search for the product Milk in pickup mode and store response
     And I add the 3 available products with 1 each from the store to the V2 trolley
     Then I remove 5 product from V2 trolley and verify it is deleted
+    
+ Scenario Outline: Update product quantities in "<Version>" trolley.
+    Given user continue to connect to apigee with login username as "SHOPPER_USERNAME7"
+    When connection from user to apigee endpoint happens
+    And I search for the pickup stores in the postcode <Post Code>
+    And I set the fulfilmentMethod to <Fulfillment> for the 1 store
+    And I clear the trolley
+    And I search for the product <Product> in <Fulfillment> mode and store response 
+    And I store <ProdQty> products with quantity <Quantity> to the <Version> trolley.
+    Then I am able to successfully view <ProdQty> items in my <Version> trolley
+    And I update the qantity for every item in <Version> cart to new value <New Quantity> 
+	Then I verify that every item in <Version> cart is updated with correct quantity <New Quantity>
+	And I update the qantity for every item in <Version> cart to new value <Quantity> 
+	Then I verify that every item in <Version> cart is updated with correct quantity <Quantity>	
+    
+    Examples:
+      | Quantity | Fulfillment | Version | Post Code | Product | New Quantity | ProdQty |
+      | 1        | Pickup      | V2      | 2204      | Milk    | 3            | 2       |
+      | 1        | Pickup      | V3      | 2204      | Milk    | 3            | 2       |
+ 
+  
