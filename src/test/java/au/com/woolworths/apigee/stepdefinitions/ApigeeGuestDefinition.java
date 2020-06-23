@@ -33,7 +33,7 @@ public class ApigeeGuestDefinition extends ApigeeGuestHelper {
     sharedData.deviceId = deviceId;
     sharedData.responseStatusCode = response.getStatusCode();
     sharedData.guestResponse = response;
-    sharedData.accessToken = response.getAccessToken();
+    sharedData.accessToken = response.getAccess_token();
   }
 
   @When("^connection from user to apigee endpoint happens$")
@@ -51,7 +51,7 @@ public class ApigeeGuestDefinition extends ApigeeGuestHelper {
   @Then("^user successfully authenticate to apigee public api as guest$")
   public void userSuccessfullyAuthenticateToApigeePublicAPIEndpointAsGuest() {
     Assert.assertTrue(sharedData.responseStatusCode.equals("200"), "Expected Status Code is 200 but found::" + sharedData.responseStatusCode);
-    Assert.assertNotNull(response.getAccessToken(), "Access Token is Null");
-    Assert.assertNotEquals(response.getRefreshToken(), "Refresh Token is Null");
+    Assert.assertNotNull(response.getAccess_token(), "Access Token is Null");
+    Assert.assertNotEquals(response.getRefresh_token(), "Refresh Token is Null");
   }
 }
