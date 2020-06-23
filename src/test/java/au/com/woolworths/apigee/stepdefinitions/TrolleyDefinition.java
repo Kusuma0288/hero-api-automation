@@ -303,7 +303,7 @@ public class TrolleyDefinition extends TrolleyHelper {
       Assert.assertTrue("There are no products in Trolley:", trolleyResponse.getTrolley().getTotalProducts() > 0);
 
       for (int i = 0; i < trolleyResponse.getTrolley().getTotalProducts(); i++) {
-        Assert.assertTrue("Items not updated with correct qantity:", trolleyResponse.getTrolley().getTrolleyitemsListResp().get(i).getItemquantityintrolley() == quantity);	
+        Assert.assertTrue("Items not updated with correct quantity:", trolleyResponse.getTrolley().getItems().get(i).getItemquantityintrolley() == quantity);
       }
 
     } else {
@@ -312,7 +312,7 @@ public class TrolleyDefinition extends TrolleyHelper {
       Assert.assertTrue("There are no products in Trolley:", trolleyResponse.getTotalproducts() > 0);	
 
       for (int i = 0; i < trolleyResponse.getTotalproducts(); i++) {
-        Assert.assertTrue("Items not updated with correct qantity:", trolleyResponse.getItems().get(i).getItemquantityintrolley() == quantity);	
+        Assert.assertTrue("Items not updated with correct qantity:", trolleyResponse.getItems().get(i).getItemquantityintrolley() == quantity);
       }
     }
   }
