@@ -278,7 +278,7 @@ public class TrolleyDefinition extends TrolleyHelper {
       Assert.assertTrue("There are no products in Trolley:", trolleyResponse.getTrolley().getTotalProducts() > 0);
 
       for (int i = 0; i < trolleyResponse.getTrolley().getTotalProducts(); i++) {
-        stockCodes.add(trolleyResponse.getTrolley().getTrolleyitemsListResp().get(0).getArticle());
+        stockCodes.add(trolleyResponse.getTrolley().getItems().get(0).getArticle());
       }
           //Update the items in trolley with new quantity.
       trolleyResponse = addStockCodesToTheV3Trolley(stockCodes, quantity, true, sharedData.accessToken);
