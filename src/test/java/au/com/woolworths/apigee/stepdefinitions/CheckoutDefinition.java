@@ -161,7 +161,7 @@ public class CheckoutDefinition extends CheckoutHelper {
     Assert.assertEquals("Warning message is incorrect", postCheckoutResponse.getOrder().getLeaveUnattended().getWarningMessage(), "A signature is required for Delivery Now orders.");
   }
 
-  @And("^I validate the leave unattended flag to be disabled$")
+  @And("^I validate the leave unattended flag to be enabled$")
   public void iValidateTheLeaveUnattendedFlag() {
     Assert.assertFalse("Disable Leave Unattended flag is not set to False", picoContainer.leaveUnattended);
   }
