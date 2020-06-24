@@ -83,7 +83,7 @@ Feature: Verify Apigee List scenarios
       | Quantity | List Name      | Fulfillment | Version | Post Code | Product |
       | 1        | AutoList Exact | Pickup      | V2      | 2204      | Milk    |
       | 1        | AutoList Exact | Pickup      | V3      | 2204      | Milk    |
-     
+#
   Scenario Outline: Validate "<Version>" list to trolley sync scenario for a guest user
 	Given mobile user connect to apigee endpoint as guest
     When connection from user to apigee endpoint happens
@@ -102,5 +102,24 @@ Feature: Verify Apigee List scenarios
 	  | Quantity   | List Name      | Fulfillment | Version | Post Code | Product  |
 	  | 1	   	   | AutoList Exact | Pickup      | V2      | 2204      | Milk     |
 	  | 1	   	   | AutoList Exact | Pickup      | V3      | 2204      | Bread    |
-	 
+
+
+  Scenario Outline: Validate "<Version>" list to trolley merge scenario for a logged in user
+    Given user continue to connect to apigee with login username as "SHOPPER_USERNAME7"
+    When connection from user to apigee endpoint happens
+    And I search for the address "Darcy Road"
+    And I select the "1" address as fulfilment address from matching addresses
+    And I clear ALL the list for the user
+    And I clear the trolley
+    And I create a list with exact list name as "<List Name>"
+    And I search for the product <Product> in <Fulfillment> mode and store response
+    And I add 2 available products with "<Quantity>" each from the store to "<Version>" list "<List Name>"
+    Then I verify that the items saved to "<Version>" list "<List Name>" are unchecked
+    And I add items to cart after selecting "<Quantity>" for every item from "<Version>" list "<List Name>"
+    Then I verify that the correct items with quantity from "<Version>" list "<List Name>" are added to the cart
+    Examples:
+      | Quantity | List Name      | Fulfillment | Version  | Product |
+      | 1        | AutoList Exact | online      | V3      | Bread    |
+      | 1        | AutoList Exact | online      | V2      | Bread    |
+
   
