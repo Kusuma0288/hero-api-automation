@@ -29,9 +29,8 @@ public class ApigeeInStoreHelper extends BaseHelper {
     queryParams.put("q", postcode);
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
-
     ObjectMapper mapper = new ObjectMapper();
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);

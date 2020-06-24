@@ -23,17 +23,6 @@ public class RestInvocationUtil {
   public ArrayList<String> requests = new ArrayList<>();
   public ArrayList<Response> responses = new ArrayList<>();
 
-  public Map<String, String> invoke(String endPoint, String authToken, Map<String, ?> queryParams) {
-    response = getResponse(endPoint, authToken, queryParams);
-    String strResponse = response.getBody().asString();
-    mapWebServiceResponse.put("response", strResponse);
-    mapWebServiceResponse.put("statusCode", Integer.toString(response.getStatusCode()));
-    mapWebServiceResponse.put("contentType", (response.contentType()));
-    endPoints.add(endPoint);
-    requests.add(queryParams.toString());
-    responses.add(response);
-    return mapWebServiceResponse;
-  }
 
   public Map<String, String> invokePostWithHeaders(String endPoint, String requestPayload, List<Header> headerList) {
     response = postRestWithBodyAndHeaders(endPoint, requestPayload, headerList);
@@ -47,8 +36,8 @@ public class RestInvocationUtil {
     return mapWebServiceResponse;
   }
 
-  public Map<String, String> invokeWithHeaders(String endPoint, String authToken, Map<String, ?> queryParams, List<Header> headerList) {
-    response = getRestWithDynamicHeaders(endPoint, authToken, queryParams, headerList);
+  public Map<String, String> invokeGetWithHeaders(String endPoint, Map<String, ?> queryParams, List<Header> headerList) {
+    response = getRestWithDynamicHeaders(endPoint, queryParams, headerList);
     String strResponse = response.getBody().asString();
     mapWebServiceResponse.put("response", strResponse);
     mapWebServiceResponse.put("statusCode", Integer.toString(response.getStatusCode()));
@@ -59,8 +48,8 @@ public class RestInvocationUtil {
     return mapWebServiceResponse;
   }
 
-  public Map<String, String> invokeGetWithoutParam(String endPoint, String authToken) {
-    response = getResponseWithoutParam(endPoint, authToken);
+  public Map<String, String> invokeGetWithoutParam(String endPoint, List<Header> headerList) {
+    response = getResponseWithoutParam(endPoint, headerList);
     String strResponse = response.getBody().asString();
     mapWebServiceResponse.put("response", strResponse);
     mapWebServiceResponse.put("statusCode", Integer.toString(response.getStatusCode()));
@@ -70,8 +59,8 @@ public class RestInvocationUtil {
     return mapWebServiceResponse;
   }
 
-  public Map<String, String> invokePut(String endPoint, String requestPayload, String authToken) {
-    response = putRestWithBody(endPoint, requestPayload, authToken);
+  public Map<String, String> invokePut(String endPoint, String requestPayload, List<Header> dynamicHeaderList) {
+    response = putRestWithBody(endPoint, requestPayload, dynamicHeaderList);
     String strResponse = response.getBody().asString();
     mapWebServiceResponse.put("response", strResponse);
     mapWebServiceResponse.put("statusCode", Integer.toString(response.getStatusCode()));
@@ -82,8 +71,8 @@ public class RestInvocationUtil {
     return mapWebServiceResponse;
   }
 
-  public Map<String, String> invokeDelete(String endPoint, String authToken, Map<String, ?> queryParams) {
-    response = getDeleteResponse(endPoint, authToken, queryParams);
+  public Map<String, String> invokeDelete(String endPoint, Map<String, ?> queryParams, List<Header> dynamicHeaderList) {
+    response = getDeleteResponse(endPoint, queryParams, dynamicHeaderList);
     String strResponse = response.getBody().asString();
     mapWebServiceResponse.put("response", strResponse);
     mapWebServiceResponse.put("statusCode", Integer.toString(response.getStatusCode()));
@@ -94,8 +83,8 @@ public class RestInvocationUtil {
     return mapWebServiceResponse;
   }
 
-  public Map<String, String> invokePostWithoutBody(String endPoint, String authToken) {
-    response = postRestWithoutBody(endPoint, authToken);
+  public Map<String, String> invokePostWithoutBody(String endPoint, List<Header> dynamicHeaderList) {
+    response = postRestWithoutBody(endPoint, dynamicHeaderList);
     String strResponse = response.getBody().asString();
     mapWebServiceResponse.put("response", strResponse);
     mapWebServiceResponse.put("statusCode", Integer.toString(response.getStatusCode()));
@@ -106,15 +95,10 @@ public class RestInvocationUtil {
     return mapWebServiceResponse;
   }
 
-  private Response getRestWithDynamicHeaders(String endPoint, String authToken, Map<String, ?> params, List<Header> dynamicHeaderList) {
+  private Response getRestWithDynamicHeaders(String endPoint, Map<String, ?> params, List<Header> dynamicHeaderList) {
     try {
       RestAssured.baseURI = TestProperties.get("BASE_URI");
-      List<Header> headerList = new LinkedList<Header>();
-      headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-      headerList.add(new Header("Authorization", "Bearer " + authToken));
-
-      headerList.add(dynamicHeaderList.get(0));
-      Headers headers = new Headers(headerList);
+      Headers headers = new Headers(dynamicHeaderList);
       response = given()
           // .proxy(TestProperties.get("LOCAL_PROXY"))
           .header("Content-Type", "application/json")
@@ -135,13 +119,9 @@ public class RestInvocationUtil {
 
   }
 
-  private Response putRestWithBody(String endPoint, String requestPayload, String authToken) {
+  private Response putRestWithBody(String endPoint, String requestPayload, List<Header> headerList) {
     try {
       RestAssured.baseURI = TestProperties.get("BASE_URI");
-      List<Header> headerList = new LinkedList<Header>();
-      headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-      headerList.add(new Header("Authorization", "Bearer " + authToken));
-
       Headers headers = new Headers(headerList);
       response = given()
           // .proxy(TestProperties.get("LOCAL_PROXY"))
@@ -181,13 +161,9 @@ public class RestInvocationUtil {
     return response;
   }
 
-  private Response postRestWithoutBody(String endPoint, String authToken) {
+  private Response postRestWithoutBody(String endPoint, List<Header> headerList) {
     try {
       RestAssured.baseURI = TestProperties.get("BASE_URI");
-      List<Header> headerList = new LinkedList<Header>();
-      headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-      headerList.add(new Header("Authorization", "Bearer " + authToken));
-
       Headers headers = new Headers(headerList);
       response = given()
           //  .proxy(TestProperties.get("LOCAL_PROXY"))
@@ -208,40 +184,10 @@ public class RestInvocationUtil {
     return response;
   }
 
-  private Response getResponse(String endPoint, String authToken, Map<String, ?> params) {
+
+  private Response getDeleteResponse(String endPoint, Map<String, ?> params, List<Header> headerList) {
     try {
       RestAssured.baseURI = TestProperties.get("BASE_URI");
-      List<Header> headerList = new LinkedList<Header>();
-      headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-      headerList.add(new Header("Authorization", "Bearer " + authToken));
-
-      Headers headers = new Headers(headerList);
-      response = given()
-          //  .proxy(TestProperties.get("LOCAL_PROXY"))
-          .header("Content-Type", "application/json")
-          .header("Accept", "application/json")
-          .headers(headers)
-          .params(params)
-          .when()
-          .get(endPoint)
-          .then()
-          .extract().response();
-    } catch (Exception e) {
-      e.printStackTrace();
-      StringWriter errors = new StringWriter();
-      e.printStackTrace(new PrintWriter(errors));
-      Assert.assertTrue(false, "Endpoint::" + endPoint + "Error::" + e.getMessage() + "Stack Trace::" + errors.toString());
-    }
-    return response;
-  }
-
-  private Response getDeleteResponse(String endPoint, String authToken, Map<String, ?> params) {
-    try {
-      RestAssured.baseURI = TestProperties.get("BASE_URI");
-      List<Header> headerList = new LinkedList<Header>();
-      headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-      headerList.add(new Header("Authorization", "Bearer " + authToken));
-
       Headers headers = new Headers(headerList);
       response = given()
           //  .proxy(TestProperties.get("LOCAL_PROXY"))
@@ -262,12 +208,9 @@ public class RestInvocationUtil {
     return response;
   }
 
-  private Response getResponseWithoutParam(String endPoint, String authToken) {
+  private Response getResponseWithoutParam(String endPoint, List<Header> headerList) {
     try {
       RestAssured.baseURI = TestProperties.get("BASE_URI");
-      List<Header> headerList = new LinkedList<Header>();
-      headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-      headerList.add(new Header("Authorization", "Bearer " + authToken));
       Headers headers = new Headers(headerList);
       response = given()
           // .proxy(TestProperties.get("LOCAL_PROXY"))

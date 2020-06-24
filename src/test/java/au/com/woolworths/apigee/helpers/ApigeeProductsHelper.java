@@ -31,7 +31,7 @@ public class ApigeeProductsHelper extends BaseHelper {
     queryParams.put("type", "specials");
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();
@@ -52,7 +52,7 @@ public class ApigeeProductsHelper extends BaseHelper {
     queryParams.put("type", "specials");
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();
@@ -70,7 +70,7 @@ public class ApigeeProductsHelper extends BaseHelper {
     queryParams.put("store", inStoreId);
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();
@@ -90,7 +90,7 @@ public class ApigeeProductsHelper extends BaseHelper {
     queryParams.put("category", category);
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();
@@ -111,7 +111,7 @@ public class ApigeeProductsHelper extends BaseHelper {
     queryParams.put("store", store);
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();
@@ -132,7 +132,7 @@ public class ApigeeProductsHelper extends BaseHelper {
     queryParams.put("mode", mode);
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();

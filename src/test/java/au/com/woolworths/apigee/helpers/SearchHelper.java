@@ -40,7 +40,7 @@ public class SearchHelper extends BaseHelper {
     mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, authToken, queryParams);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
 
     response = mapper.readValue(responseStr, ApigeeV3SearchResponse.class);

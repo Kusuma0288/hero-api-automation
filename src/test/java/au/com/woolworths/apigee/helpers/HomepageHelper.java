@@ -35,7 +35,7 @@ public class HomepageHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("store", store);
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
 
     String responseStr = mapWebserviceResponse.get("response");
 
@@ -56,7 +56,7 @@ public class HomepageHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("mode", shoppingMode);
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
 
     String responseStr = mapWebserviceResponse.get("response");
 
@@ -77,7 +77,7 @@ public class HomepageHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("mode", shoppingMode);
-    mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
 
     String responseStr = mapWebserviceResponse.get("response");
 
