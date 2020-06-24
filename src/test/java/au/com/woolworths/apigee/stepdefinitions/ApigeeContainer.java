@@ -32,4 +32,5 @@ public class ApigeeContainer {
   public int orderCheckoutPaymentTotalGST;
   public int orderCheckoutPaymentPackagingFee;
   public String orderCheckoutPaymentPackagingPreference;
+  public boolean leaveUnattended;
 }
