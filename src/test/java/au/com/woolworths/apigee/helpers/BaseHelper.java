@@ -1,14 +1,31 @@
 package au.com.woolworths.apigee.helpers;
 
+import au.com.woolworths.Utils.TestProperties;
+import au.com.woolworths.apigee.context.ApigeeApplicationContext;
+import au.com.woolworths.apigee.stepdefinitions.ApigeeSharedData;
+import io.restassured.http.Header;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class BaseHelper {
 
   private final static Logger logger = Logger.getLogger("BaseHelper.class");
+  protected ApigeeSharedData sharedData;
+  protected List<Header> headerList;
+
+  public BaseHelper() {
+    this.headerList = new LinkedList<>();
+    this.sharedData = ApigeeApplicationContext.getSharedData();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
+  }
+
 
   public long convertToEpochTime() {
     Date today = Calendar.getInstance().getTime();

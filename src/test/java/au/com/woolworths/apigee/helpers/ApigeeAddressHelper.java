@@ -1,20 +1,15 @@
 package au.com.woolworths.apigee.helpers;
 
 import au.com.woolworths.Utils.RestInvocationUtil;
-import au.com.woolworths.Utils.TestProperties;
 import au.com.woolworths.Utils.URLResources;
 import au.com.woolworths.apigee.model.*;
-import au.com.woolworths.apigee.model.ApigeeV2AddressStores;
 import au.com.woolworths.apigee.stepdefinitions.ServiceHooks;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.restassured.http.Header;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -34,10 +29,7 @@ public class ApigeeAddressHelper extends BaseHelper {
     queryParams.put("q", lookupAddress);
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    List<Header> headerList = new LinkedList<>();
-    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-    headerList.add(new Header("Authorization", "Bearer " + accessToken));
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, accessToken, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();
@@ -63,9 +55,6 @@ public class ApigeeAddressHelper extends BaseHelper {
 
     // invoke the service with the framed request
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    List<Header> headerList = new LinkedList<>();
-    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-    headerList.add(new Header("Authorization", "Bearer " + accessToken));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, addressRequestStr, headerList);
 
     String responseStr = mapWebserviceResponse.get("response");
@@ -79,10 +68,7 @@ public class ApigeeAddressHelper extends BaseHelper {
     String endPoint = URLResources.APIGEE_V2_LIST_ADDRESSES;
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    List<Header> headerList = new LinkedList<>();
-    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-    headerList.add(new Header("Authorization", "Bearer " + accessToken));
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, accessToken, new HashMap<String, String>(), headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();
@@ -100,10 +86,7 @@ public class ApigeeAddressHelper extends BaseHelper {
     queryParams.put("postcode", postCode);
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    List<Header> headerList = new LinkedList<>();
-    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-    headerList.add(new Header("Authorization", "Bearer " + accessToken));
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, accessToken, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();
@@ -122,10 +105,7 @@ public class ApigeeAddressHelper extends BaseHelper {
     ApigeeV2AddressStores storeLocatorResponse;
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    List<Header> headerList = new LinkedList<>();
-    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-    headerList.add(new Header("Authorization", "Bearer " + accessToken));
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, accessToken, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();
@@ -143,10 +123,7 @@ public class ApigeeAddressHelper extends BaseHelper {
     ApigeeV2AddressStores storeLocatorResponse;
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    List<Header> headerList = new LinkedList<>();
-    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-    headerList.add(new Header("Authorization", "Bearer " + accessToken));
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, accessToken, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();
@@ -166,10 +143,7 @@ public class ApigeeAddressHelper extends BaseHelper {
     ApigeeV2AddressStores storeLocatorResponse;
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    List<Header> headerList = new LinkedList<>();
-    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-    headerList.add(new Header("Authorization", "Bearer " + accessToken));
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, accessToken, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();
@@ -191,10 +165,7 @@ public class ApigeeAddressHelper extends BaseHelper {
     AddressesV2ErrorResponse v2ErrorResponse;
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    List<Header> headerList = new LinkedList<>();
-    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-    headerList.add(new Header("Authorization", "Bearer " + accessToken));
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, accessToken, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();
@@ -222,9 +193,6 @@ public class ApigeeAddressHelper extends BaseHelper {
     requestStr = mapper.writeValueAsString(storeAddressRequest);
 
     // invoke the service with the framed request
-    List<Header> headerList = new LinkedList<>();
-    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-    headerList.add(new Header("Authorization", "Bearer " + accessToken));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
 
@@ -250,9 +218,6 @@ public class ApigeeAddressHelper extends BaseHelper {
     requestStr = mapper.writeValueAsString(deliveryAddressRequest);
 
     // invoke the service with the framed request
-    List<Header> headerList = new LinkedList<>();
-    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-    headerList.add(new Header("Authorization", "Bearer " + accessToken));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
 
@@ -278,9 +243,6 @@ public class ApigeeAddressHelper extends BaseHelper {
     requestStr = mapper.writeValueAsString(deliveryAddressRequest);
 
     // invoke the service with the framed request
-    List<Header> headerList = new LinkedList<>();
-    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-    headerList.add(new Header("Authorization", "Bearer " + accessToken));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
 
@@ -300,10 +262,7 @@ public class ApigeeAddressHelper extends BaseHelper {
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     Map<String, String> queryParams = new HashMap<String, String>();
-    List<Header> headerList = new LinkedList<>();
-    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-    headerList.add(new Header("Authorization", "Bearer " + accessToken));
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, accessToken, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
 
 

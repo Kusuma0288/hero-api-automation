@@ -37,7 +37,7 @@ public class CheckoutHelper {
     headerList.add(new Header("Authorization", "Bearer " + accessToken));
     Header deliveryNow = new Header("x-enable-feature", "DYNAMIC_WINDOWS,DELIVERY_NOW");
     headerList.add(deliveryNow);
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, accessToken, new HashMap<String, String>(), headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();
@@ -58,7 +58,7 @@ public class CheckoutHelper {
     headerList.add(new Header("Authorization", "Bearer " + accessToken));
     Header deliveryNow = new Header("x-enable-feature", "DYNAMIC_WINDOWS,DELIVERY_NOW");
     headerList.add(deliveryNow);
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, accessToken, new HashMap<String, String>(), headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();
