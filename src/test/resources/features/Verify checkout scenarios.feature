@@ -38,7 +38,7 @@ Feature: Checkout API scenarios
     Then I validate the selected "<Mode>" store and selected windows
     Then I validate the product subtotal and total GST
     And I validate the packaging fee and preference
-    And I validate the leave unattended flag
+    And I validate the leave unattended flag to be disabled
     Examples:
       | Mode     | lookupAddress  | position | Username           |
       | Delivery | Charles street | 1        | SHOPPER_USERNAME10 |
