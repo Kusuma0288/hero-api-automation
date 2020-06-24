@@ -114,6 +114,7 @@ public class TrolleyDefinition extends TrolleyHelper {
   @And("^I clear the trolley$")
   public void iClearTheTrolley() throws Throwable {
     TrolleyV2Response trolleyResponse = clearTrolley(sharedData.accessToken);
+
     Assert.assertEquals("Some items are there in trolley", 0.0, trolleyResponse.getTotaltrolleyprice());
   }
 
