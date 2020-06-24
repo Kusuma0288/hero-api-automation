@@ -137,5 +137,5 @@ Feature: Verify Apigee List scenarios
     Then I verify that the correct items with quantity from "<Version>" list "<List Name>" are added to the cart
     Examples:
       | Quantity   | List Name      | Fulfillment | Version | Address    | Product  |
-      | 1	   	   | AutoList Exact | Pickup      | V2      | Darcy Road | Milk     |
-      | 1	   	   | AutoList Exact | Pickup      | V3      | Darcy Road | Bread    |
+      | 1	   	   | AutoList Exact | Online      | V2      | Darcy Road | Milk     |
+      | 1	   	   | AutoList Exact | Online      | V3      | Darcy Road | Bread    |
