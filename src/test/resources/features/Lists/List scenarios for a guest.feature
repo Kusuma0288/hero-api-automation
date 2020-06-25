@@ -1,5 +1,5 @@
 @REGRESSION @LIST @LION @SMOKE @VEGEMITE
-Feature: Verify Apigee List scenarios for User
+Feature: Verify Apigee List scenarios for Guest
 
 
   Background:
