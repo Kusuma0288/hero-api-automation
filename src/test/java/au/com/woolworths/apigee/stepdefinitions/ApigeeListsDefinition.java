@@ -191,7 +191,7 @@ public class ApigeeListsDefinition extends ApigeeListHelper {
 
   }
 
-  @And("^I clear ALL the list for the user$")
+  @And("^I clear ALL the lists for the user$")
   public void iClearAllTheListForTheUser() throws Throwable {
     ApigeeGetListResponse getListResponse = getAllListForTheUser(sharedData.accessToken);
     if (getListResponse.getLists().length != 0) {
