@@ -1,7 +1,6 @@
 package au.com.woolworths.apigee.helpers;
 
 import au.com.woolworths.Utils.RestInvocationUtil;
-import au.com.woolworths.Utils.TestProperties;
 import au.com.woolworths.Utils.URLResources;
 import au.com.woolworths.apigee.model.ApigeeLoginReponse;
 import au.com.woolworths.apigee.model.SignUpRequest;
@@ -11,10 +10,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import au.com.woolworths.Utils.Utilities;
-import io.restassured.http.Header;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -52,9 +48,6 @@ public class SignuppageHelper extends BaseHelper {
     requestStr = mapper.writeValueAsString(signUpRequest);
 
     // invoke the service with the framed request
-    List<Header> headerList = new LinkedList<>();
-    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
-    headerList.add(new Header("Authorization", "Bearer " + accessToken));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, ApigeeLoginReponse.class);

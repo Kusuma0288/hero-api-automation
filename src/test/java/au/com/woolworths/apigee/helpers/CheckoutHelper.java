@@ -33,10 +33,11 @@ public class CheckoutHelper {
 
     Map<String, String> mapWebserviceResponse;
     List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + accessToken));
     Header deliveryNow = new Header("x-enable-feature", "DYNAMIC_WINDOWS,DELIVERY_NOW");
     headerList.add(deliveryNow);
-
-    mapWebserviceResponse = invocationUtil.invokeWithHeaders(endPoint, accessToken, new HashMap<String, String>(), headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();
@@ -51,11 +52,13 @@ public class CheckoutHelper {
     String endPoint = URLResources.APIGEE_CHECKOUT_PAYMENT_SUMMARY;
 
     Map<String, String> mapWebserviceResponse;
-    List<Header> headerList = new LinkedList<>();
-    Header deliveryNow = new Header("x-enable-feature", "DELIVERY_NOW,CROWDSOURCE_DELIVERY,DYNAMIC_WINDOWS");
-    headerList.add(deliveryNow);
 
-    mapWebserviceResponse = invocationUtil.invokeWithHeaders(endPoint, accessToken, new HashMap<String, String>(), headerList);
+    List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + accessToken));
+    Header deliveryNow = new Header("x-enable-feature", "DYNAMIC_WINDOWS,DELIVERY_NOW");
+    headerList.add(deliveryNow);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
     ObjectMapper mapper = new ObjectMapper();
