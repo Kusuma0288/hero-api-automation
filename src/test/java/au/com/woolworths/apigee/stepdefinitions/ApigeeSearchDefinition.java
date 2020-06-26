@@ -42,9 +42,9 @@ public class ApigeeSearchDefinition extends SearchHelper {
 
 
   @When("^I search to add \"([^\"]*)\" \"([^\"]*)\" products to the \"([^\"]*)\" list \"([^\"]*)\"$")
-  public void userSearchProductToList(String prodQuantity,String searchItem, String version, String listName) throws Throwable {
+  public void userSearchProductToList(String prodQuantity, String searchItem, String version, String listName) throws Throwable {
     ApigeeListsDefinition apigeeListsDefinition = new ApigeeListsDefinition(picoContainer);
-    userSearchProductAndStore(searchItem,picoContainer.fulfilment);
-    apigeeListsDefinition.iAddAvailableProductsWithEachFromTheStoreToList(Integer.parseInt(prodQuantity),2,version,listName);
+    userSearchProductAndStore(searchItem, picoContainer.fulfilment);
+    apigeeListsDefinition.iAddAvailableProductsWithEachFromTheStoreToList(Integer.parseInt(prodQuantity), 2, version, listName);
   }
 }

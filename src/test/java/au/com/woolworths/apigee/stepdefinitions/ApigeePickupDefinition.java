@@ -115,7 +115,7 @@ public class ApigeePickupDefinition extends ApigeeAddressHelper {
   }
 
   @Then("^I validate that the no matching results are returned for the invalid postcode$")
-  public void validateInvalidPostCodeSearch(){
+  public void validateInvalidPostCodeSearch() {
     Assert.assertTrue(sharedData.searchPostCodeResponse.getStores().length == 0, "Some record is being returned for the entered post code");
   }
 

@@ -26,7 +26,7 @@ public class DeliveryAddressDefinition extends ApigeeAddressHelper {
 
   @When("^I pick a location at \"([^\"]*)\" for delivery$")
   public void iPickALocationAtForDelivery(String address) throws Throwable {
-    picoContainer.fulfilment ="online";
+    picoContainer.fulfilment = "online";
     searchForTheAddresses(address);
     iSelectTheAddressAsFulfilmentAddressFromMatchingAddresses(1);
   }
