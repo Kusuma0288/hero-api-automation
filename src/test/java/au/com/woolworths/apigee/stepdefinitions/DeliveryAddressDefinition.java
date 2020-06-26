@@ -24,6 +24,15 @@ public class DeliveryAddressDefinition extends ApigeeAddressHelper {
     this.picoContainer = container;
   }
 
+  @When("^I pick a location at \"([^\"]*)\" for delivery$")
+  public void iPickALocationAtForDelivery(String address) throws Throwable {
+    picoContainer.fulfilment = "online";
+    searchForTheAddresses(address);
+    iSelectTheAddressAsFulfilmentAddressFromMatchingAddresses(1);
+  }
+
+
+
   @When("^I search for the address \"([^\"]*)\"$")
   public void searchForTheAddresses(String lookupAddress) throws Throwable {
     lookupAddress = Utilities.replaceMultipleandTrimSpaces(lookupAddress);
@@ -104,5 +113,6 @@ public class DeliveryAddressDefinition extends ApigeeAddressHelper {
     Assert.assertTrue("Error Code not matching", fulfilmentv3ErrorResponse.getErrorCode().equals("AP004"));
     Assert.assertTrue("Error Message not matching", fulfilmentv3ErrorResponse.getErrorMessage().equals("Not Found"));
   }
+
 
 }

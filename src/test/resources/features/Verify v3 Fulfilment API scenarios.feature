@@ -4,25 +4,23 @@ Feature: v3 Fulfilment API scenarios
   Verify the transition from guest user to logged in user with an address ID
     Given mobile user connect to apigee endpoint as guest
     When connection from user to apigee endpoint happens
-    And I search for the address "<lookupAddress>"
-    And I select the "<position>" address as fulfilment address from matching addresses
+    And I pick a location at "<lookupAddress>" for delivery
     Then I make a request to fulfilment api with primary address id to set the address as fulfilment address
     And  user continue to connect to apigee with login username as "<Username>"
     When connection from user to apigee endpoint happens
     Then filter the address by address text and verify address saved is set as primary address in MyAccount
     Then I make a GET request to fulfilment api and verify the fulfilment address
     Examples:
-      | lookupAddress | position | Username          |
-      | Darcy Road    | 1        | SHOPPER_USERNAME8 |
+      | lookupAddress  | Username          |
+      | Darcy Road     | SHOPPER_USERNAME8 |
 
 
   Scenario Outline:  To verify the fulfilment api response with invalid access token
     Given mobile user connect to apigee endpoint as guest
     When connection from user to apigee endpoint happens
-    And I search for the address "<lookupAddress>"
-    And I select the "<position>" address as fulfilment address from matching addresses
+    And I pick a location at "<lookupAddress>" for delivery
     Then I make a request with invalid address to fulfilment api with primary address id to set the address as fulfilment address
     Examples:
-      | lookupAddress | position |
-      | Darcy Road    | 1        |
+      | lookupAddress |
+      | Darcy Road    |
 
