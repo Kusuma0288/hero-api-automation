@@ -12,27 +12,25 @@ Feature: Verify Apigee List scenarios for Guest
     When I clear ALL the lists for the user
     And I clear the trolley
     And I create a list with exact list name as "<List Name>"
-    And I search for the product <Product> in <Fulfillment> mode and store response
-    And I add 2 available products with "<Quantity>" each from the store to "<Version>" list "<List Name>"
+    And I search to add "<Quantity>" "<Product>" products to the "<Version>" list "<List Name>"
     Then I verify that the items saved to "<Version>" list "<List Name>" are unchecked
     And I add items to cart after selecting "<Quantity>" for every item from "<Version>" list "<List Name>"
     And I verify that the correct items with quantity from "<Version>" list "<List Name>" are added to the cart
     Examples:
-      | Quantity   | List Name      | Fulfillment | Version | Post Code | Product  |
-      | 1	   	   | AutoList Exact | Pickup      | V2      | 2204      | Milk     |
-      | 1	   	   | AutoList Exact | Pickup      | V3      | 2204      | Bread    |
+      | Quantity   | List Name       | Version | Post Code | Product  |
+      | 1	   	   | AutoList Exact  | V2      | 2204      | Milk     |
+      | 1	   	   | AutoList Exact  | V3      | 2204      | Bread    |
 
   Scenario Outline: Validate "<Version>" list to trolley sync scenario for a guest user in Delivery mode
-    Given I pick a location at <Address> for delivery
+    Given I pick a location at "<Address>" for delivery
     When I clear ALL the lists for the user
     And I clear the trolley
     And I create a list with exact list name as "<List Name>"
-    And I search for the product <Product> in <Fulfillment> mode and store response
-    And I add 2 available products with "<Quantity>" each from the store to "<Version>" list "<List Name>"
+    And I search to add "<Quantity>" "<Product>" products to the "<Version>" list "<List Name>"
     Then I verify that the items saved to "<Version>" list "<List Name>" are unchecked
     And I add items to cart after selecting "<Quantity>" for every item from "<Version>" list "<List Name>"
     And I verify that the correct items with quantity from "<Version>" list "<List Name>" are added to the cart
     Examples:
-      | Quantity   | List Name      | Fulfillment | Version | Address    | Product  |
-      | 1	   	   | AutoList Exact | Online      | V2      | Darcy Road | Milk     |
-      | 1	   	   | AutoList Exact | Online      | V3      | Darcy Road | Bread    |
+      | Quantity   | List Name      | Version | Address    | Product  |
+      | 1	   	   | AutoList Exact | V2      | Darcy Road | Milk     |
+      | 1	   	   | AutoList Exact | V3      | Darcy Road | Bread    |

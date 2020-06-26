@@ -269,8 +269,8 @@ public class TrolleyDefinition extends TrolleyHelper {
     }
   }
 
-  @Then("^I update the qantity for every item in V(.*) cart to new value (.*)$")
-  public void iUpdateTheQantityForEveryItemInVCartToNewValue(String version, int quantity) throws Throwable {
+  @Then("^I update the quantity for every item in V(.*) cart to new value (.*)$")
+  public void iUpdateTheQuantityForEveryItemInVCartToNewValue(String version, int quantity) throws Throwable {
 
     List<String> stockCodes = new ArrayList<String>();
     if (version.equals("V3")) {
@@ -312,7 +312,7 @@ public class TrolleyDefinition extends TrolleyHelper {
       Assert.assertTrue("There are no products in Trolley:", trolleyResponse.getTotalproducts() > 0);	
 
       for (int i = 0; i < trolleyResponse.getTotalproducts(); i++) {
-        Assert.assertTrue("Items not updated with correct qantity:", trolleyResponse.getItems().get(i).getItemquantityintrolley() == quantity);
+        Assert.assertTrue("Items not updated with correct quantity:", trolleyResponse.getItems().get(i).getItemquantityintrolley() == quantity);
       }
     }
   }
