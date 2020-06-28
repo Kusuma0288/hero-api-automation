@@ -20,9 +20,9 @@ public class InStoreDefinition extends ApigeeInStoreHelper {
     this.picoContainer = container;
   }
 
-  @When("^I search for an IN-STORE with postcode \"([^\"]*)\" and I select the \"([^\"]*)\" store from matching in-stores$")
-  public void searchForInStore(String postcode, int position) throws Throwable {
-
+  @When("^I select an IN-STORE shop in postcode \"([^\"]*)\"$")
+  public void searchForInStore(String postcode) throws Throwable {
+    int position = 1;
     ApigeeSearchInStore searchInStoresResponse = iSearchForInStore(postcode, sharedData.accessToken);
 
     //These assertions are to make sure there are no NULL FIELDS

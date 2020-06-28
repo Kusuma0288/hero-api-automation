@@ -115,7 +115,7 @@ public class ApigeePickupDefinition extends ApigeeAddressHelper {
   }
 
   @Then("^I validate that the no matching results are returned for the invalid postcode$")
-  public void validateInvalidPostCodeSearch() throws Throwable {
+  public void validateInvalidPostCodeSearch() {
     Assert.assertTrue(sharedData.searchPostCodeResponse.getStores().length == 0, "Some record is being returned for the entered post code");
   }
 
@@ -131,7 +131,8 @@ public class ApigeePickupDefinition extends ApigeeAddressHelper {
 
   @When("^I set a pick up store using post code(.*)$")
   public void setPickUpStoreUsingPostCode(String postCode) throws Throwable {
+    picoContainer.fulfilment = "pickup";
     searchForThePostCode(postCode);
-    iSetTheFulfilmentMethodToForTheStore("Pickup", 1);
+    iSetTheFulfilmentMethodToForTheStore( picoContainer.fulfilment, 1);
   }
 }
