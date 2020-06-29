@@ -1,12 +1,11 @@
-package au.com.woolworths.apigee.model;
+package au.com.woolworths.apigee.model.ProductGroups;
 
-import au.com.woolworths.apigee.model.ProductGroups.ProductGroupTrolleyResponse;
 import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data public class HomepageItemsData {
+@Data public class ProductGroupComponentsData {
   private String productId;
   private String name;
   private String productImage;
@@ -19,15 +18,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
   private ProductGroupTrolleyResponse trolley;
   private String badgeImage;
   private String wasPrice;
-  private String title;
-  private String subtitle;
-  private String status;
-  private String id;
-  private String total;
-  private String timeLabel;
-  private String timeValue;
-  private String date;
-  private String icon;
+  private String purchaseWarning;
+
 }
 
 

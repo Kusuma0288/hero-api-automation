@@ -1,5 +1,6 @@
 package au.com.woolworths.apigee.model;
 
+import au.com.woolworths.apigee.model.Products.ApigeeProductCategories;
 import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;

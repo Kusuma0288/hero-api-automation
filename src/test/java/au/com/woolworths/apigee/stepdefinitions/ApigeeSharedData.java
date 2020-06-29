@@ -1,6 +1,9 @@
 package au.com.woolworths.apigee.stepdefinitions;
 
 import au.com.woolworths.apigee.model.*;
+import au.com.woolworths.apigee.model.Trolley.TrolleyV2Response;
+import au.com.woolworths.apigee.model.Trolley.TrolleyV3Response;
+import au.com.woolworths.apigee.model.V3SearchProducts.ApigeeV3SearchResponse;
 
 import java.util.ArrayList;
 import java.util.List;

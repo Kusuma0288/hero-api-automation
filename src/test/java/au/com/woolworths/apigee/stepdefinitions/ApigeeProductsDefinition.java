@@ -2,8 +2,8 @@ package au.com.woolworths.apigee.stepdefinitions;
 
 import au.com.woolworths.apigee.context.ApigeeApplicationContext;
 import au.com.woolworths.apigee.helpers.ApigeeProductsHelper;
-import au.com.woolworths.apigee.model.ApigeeProductCategoriesSpecial;
-import au.com.woolworths.apigee.model.ApigeeProductsSpecial;
+import au.com.woolworths.apigee.model.Products.ApigeeProductCategoriesSpecial;
+import au.com.woolworths.apigee.model.Products.ApigeeProductsSpecial;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
 

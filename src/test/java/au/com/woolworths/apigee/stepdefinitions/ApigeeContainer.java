@@ -1,7 +1,7 @@
 package au.com.woolworths.apigee.stepdefinitions;
 
 import au.com.woolworths.apigee.model.ApigeeListResponse;
-import au.com.woolworths.apigee.model.CheckoutPackagingPreferencesResponse;
+import au.com.woolworths.apigee.model.Checkout.CheckoutPackagingPreferencesResponse;
 
 public class ApigeeContainer {
   public String currentListId;

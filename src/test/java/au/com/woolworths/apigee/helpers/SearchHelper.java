@@ -2,7 +2,7 @@ package au.com.woolworths.apigee.helpers;
 
 import au.com.woolworths.Utils.RestInvocationUtil;
 import au.com.woolworths.Utils.URLResources;
-import au.com.woolworths.apigee.model.ApigeeV3SearchResponse;
+import au.com.woolworths.apigee.model.V3SearchProducts.ApigeeV3SearchResponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
