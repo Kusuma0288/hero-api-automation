@@ -3,6 +3,8 @@ package au.com.woolworths.apigee.stepdefinitions;
 import au.com.woolworths.apigee.context.ApigeeApplicationContext;
 import au.com.woolworths.apigee.helpers.CheckoutHelper;
 import au.com.woolworths.apigee.model.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -102,7 +104,10 @@ public class CheckoutDefinition extends CheckoutHelper {
   }
 
   @Then("^I validate the selected \"([^\"]*)\" store and selected windows$")
-  public void iValidateTheSelectedStoreAndSelectedWindows(String collectionMode) {
+  public void iValidateTheSelectedStoreAndSelectedWindows(String collectionMode) throws Throwable {
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+    Date d = df.parse(picoContainer.orderCheckoutSelectedWindowDate);
+
     if (collectionMode.equals("Pickup")) {
       Assert.assertEquals("Pick up store is verified", picoContainer.orderCheckoutPaymentAddress, picoContainer.orderCheckoutSummaryPaymentAddress);
       Assert.assertEquals("Pick up window is verified", picoContainer.orderCheckoutSelectedWindowDate, picoContainer.orderCheckoutSummaryPaymentWindowDate);
