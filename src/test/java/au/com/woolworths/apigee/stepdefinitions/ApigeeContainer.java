@@ -21,12 +21,6 @@ public class ApigeeContainer {
   public int orderCheckoutTotalGST;
   public int orderCheckoutPackagingFee;
   public String orderCheckoutPackagingPreference;
-  public String orderCheckoutDeliveryAddress;
-  public String orderCheckoutDeliveryWindowDate;
-  public String orderCheckoutDeliveryWindowTime;
-  public String orderCheckoutSummaryDeliveryPaymentAddress;
-  public String orderCheckoutSummaryDeliveryPaymentWindowDate;
-  public String orderCheckoutSummaryDeliveryPaymentWindowTime;
   public int orderCheckoutPaymentSubtotal;
   public int orderCheckoutPaymentTotalGST;
   public int orderCheckoutPaymentPackagingFee;
