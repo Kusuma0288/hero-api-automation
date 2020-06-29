@@ -10,14 +10,13 @@ public class ApigeeContainer {
   public String currentFreeTextId;
   public ApigeeListResponse updatedListResponse;
   public int windowId;
-  public String windowStartTime;
+  public String orderCheckoutPaymentWindowTime;
   public CheckoutPackagingPreferencesResponse[] packagingPreference;
   public String orderCheckoutSummaryPaymentAddress;
   public String orderCheckoutSummaryPaymentWindowDate;
   public Object orderCheckoutSummaryPaymentWindowTime;
   public String orderCheckoutPaymentAddress;
-  public String orderCheckoutPaymentWindowDate;
-  public String orderCheckoutPaymentWindowTime;
+  public String orderCheckoutSelectedWindowDate;
   public int orderCheckoutSubtotal;
   public int orderCheckoutTotalGST;
   public int orderCheckoutPackagingFee;
