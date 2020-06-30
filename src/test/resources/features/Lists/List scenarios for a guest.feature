@@ -34,3 +34,19 @@ Feature: Verify Apigee List scenarios for Guest
       | Quantity   | List Name      | Version | Address    | Product  |
       | 1	   	   | AutoList Exact | V2      | Darcy Road | Milk     |
       | 1	   	   | AutoList Exact | V3      | Darcy Road | Bread    |
+
+
+
+  Scenario Outline: Validate "<Version>" list sync/merge for guest user when user logs in to the app in Delivery mode
+    Given I pick a location at "<Address>" for delivery
+    When I clear ALL the lists for the user
+    And I create a list with exact list name as "<List Name>"
+    And I search to add "<Quantity>" "<Product>" products to the "<Version>" list "<List Name>"
+    And I add free text item "Buy Flowers" to list and check the item to list
+    Then user continue to connect to apigee with login username as "SHOPPER_USERNAME8"
+    And I verify that the items saved to "<Version>" list "<List Name>" are unchecked
+    And user verifies the free text item "Buy Flowers" is added to "<List Name>" is checked
+    Examples:
+      | Quantity   | List Name      | Version | Address    | Product  |
+      | 1	   	   | AutoList Exact | V2      | Darcy Road | Milk     |
+      | 1	   	   | AutoList Exact | V3      | Darcy Road | Bread    |
