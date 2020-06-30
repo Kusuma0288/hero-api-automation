@@ -42,11 +42,11 @@ Feature: Verify Apigee List scenarios for Guest
     When I clear ALL the lists for the user
     And I create a list with exact list name as "<List Name>"
     And I search to add "<Quantity>" "<Product>" products to the "<Version>" list "<List Name>"
-    And I add free text item "Buy Flowers" to list and check the item to list
+    And I add free text item "<Free Text Item>" to list and check the item to list
     Then user continue to connect to apigee with login username as "SHOPPER_USERNAME8"
     And I verify that the items saved to "<Version>" list "<List Name>" are unchecked
-    And user verifies the free text item "Buy Flowers" is added to "<List Name>" is checked
+    And user verifies the free text item "<Free Text Item>" is added to "<List Name>" is checked
     Examples:
-      | Quantity   | List Name      | Version | Address    | Product  |
-      | 1	   	   | AutoList Exact | V2      | Darcy Road | Milk     |
-      | 1	   	   | AutoList Exact | V3      | Darcy Road | Bread    |
+      | Quantity   | List Name      | Version | Address    | Product  | Free Text Item |
+      | 1	   	   | AutoList Exact | V2      | Darcy Road | Milk     | Coke           |
+      | 1	   	   | AutoList Exact | V3      | Darcy Road | Bread    | Coke           |
