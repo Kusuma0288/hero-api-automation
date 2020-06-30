@@ -23,24 +23,9 @@ public class CheckoutDefinition extends CheckoutHelper {
     this.picoContainer = container;
   }
 
-  @And("^I get the available \"([^\"]*)\" windows for the logged in user with storeId or addressId$")
-  public void iGetAvailableWindow(String collectionMode) throws Throwable {
+  @And("^I get the available windows for the logged in user with storeId or addressId$")
+  public void iGetAvailableWindow() throws Throwable {
     CheckoutResponse checkoutResponse = getCheckoutResponse(sharedData.accessToken);
-    if (collectionMode.equals("Pickup")) {
-      picoContainer.orderCheckoutPaymentAddress = checkoutResponse.getOrder().getPickup().getStore().getText();
-      picoContainer.orderCheckoutPaymentWindowDate = checkoutResponse.getOrder().getPickup().getWindow().getDisplayDate();
-      picoContainer.orderCheckoutPaymentWindowTime = checkoutResponse.getOrder().getPickup().getWindow().getDisplayTime();
-
-    } else if (collectionMode.equals("Delivery")) {
-      picoContainer.orderCheckoutDeliveryAddress = checkoutResponse.getOrder().getDelivery().getAddress().getText();
-      picoContainer.orderCheckoutDeliveryWindowDate = checkoutResponse.getOrder().getDelivery().getWindow().getDisplayDate();
-      picoContainer.orderCheckoutDeliveryWindowTime = checkoutResponse.getOrder().getDelivery().getWindow().getDisplayTime();
-    }
-    picoContainer.orderCheckoutSubtotal = checkoutResponse.getOrder().getSubtotal();
-    picoContainer.orderCheckoutTotalGST = checkoutResponse.getOrder().getTotalIncludingGst();
-    picoContainer.orderCheckoutPackagingFee = checkoutResponse.getOrder().getPackagingFee();
-    picoContainer.orderCheckoutPackagingPreference = checkoutResponse.getOrder().getPackagingFeeLabel();
-
     CheckoutFulfilmentWindows[] checkoutFulfilmentWindows = checkoutResponse.getFulfilmentWindows();
     checkoutFulfilmentWindows[0] = Arrays.stream(checkoutResponse.getFulfilmentWindows()).filter(i -> i.getIsAvailable().equals(true))
         .findFirst().orElse(null);
@@ -49,17 +34,18 @@ public class CheckoutDefinition extends CheckoutHelper {
     CheckoutWindowItems checkoutWindowItems = checkoutFulfilmentWindows[0].getAfternoon();
     CheckoutWindowSlots[] checkoutWindowSlots = checkoutWindowItems.getSlots();
     try {
+      picoContainer.orderCheckoutSelectedWindowDate = checkoutFulfilmentWindows[0].getDate();
       if (Arrays.stream(checkoutFulfilmentWindows[0].getAfternoon().getSlots()).anyMatch(CheckoutWindowSlots::isIsAvailable)) {
         checkoutWindowSlots[0] = Arrays.stream(checkoutFulfilmentWindows[0].getAfternoon().getSlots()).filter(CheckoutWindowSlots::isIsAvailable).findFirst().orElse(null);
         assert checkoutWindowSlots[0] != null;
         picoContainer.windowId = checkoutWindowSlots[0].getId();
-        picoContainer.windowStartTime = checkoutWindowSlots[0].getStartTime();
+        picoContainer.orderCheckoutPaymentWindowTime = checkoutWindowSlots[0].getStartTime();
       } else {
         checkoutWindowItems = checkoutFulfilmentWindows[0].getEvening();
         checkoutWindowSlots = checkoutWindowItems.getSlots();
         if (checkoutWindowSlots[0] != null) {
           picoContainer.windowId = checkoutWindowSlots[0].getId();
-          picoContainer.windowStartTime = checkoutWindowSlots[0].getStartTime();
+          picoContainer.orderCheckoutPaymentWindowTime = checkoutWindowSlots[0].getStartTime();
         }
       }
     } catch (Exception ex) {
@@ -68,12 +54,25 @@ public class CheckoutDefinition extends CheckoutHelper {
 
   }
 
-
-  @Then("^I set the selected available window for the logged in user$")
-  public void iSetAvailableWindow() throws Throwable {
-    CheckoutResponse checkoutResponse = postSetCheckoutWindow(picoContainer.windowId, picoContainer.windowStartTime, sharedData.accessToken);
+  @Then("^I reserve the available window for the selected \"([^\"]*)\"$")
+  public void iReserveTheAvailableWindowForTheSelected(String collectionMode) throws Throwable {
+    CheckoutResponse checkoutResponse = postSetCheckoutWindow(picoContainer.windowId, picoContainer.orderCheckoutPaymentWindowTime, sharedData.accessToken);
+    if (collectionMode.equals("Pickup")) {
+      picoContainer.orderCheckoutPaymentAddress = checkoutResponse.getOrder().getPickup().getStore().getText();
+      picoContainer.orderCheckoutSelectedWindowDate = checkoutResponse.getOrder().getPickup().getWindow().getDisplayDate();
+      picoContainer.orderCheckoutPaymentWindowTime = checkoutResponse.getOrder().getPickup().getWindow().getDisplayTime();
+    } else if (collectionMode.equals("Delivery")) {
+      picoContainer.orderCheckoutPaymentAddress = checkoutResponse.getOrder().getDelivery().getAddress().getText();
+      picoContainer.orderCheckoutSelectedWindowDate = checkoutResponse.getOrder().getDelivery().getWindow().getDisplayDate();
+      picoContainer.orderCheckoutPaymentWindowTime = checkoutResponse.getOrder().getDelivery().getWindow().getDisplayTime();
+    }
+    picoContainer.orderCheckoutSubtotal = checkoutResponse.getOrder().getSubtotal();
+    picoContainer.orderCheckoutTotalGST = checkoutResponse.getOrder().getTotalIncludingGst();
+    picoContainer.orderCheckoutPackagingFee = checkoutResponse.getOrder().getPackagingFee();
+    picoContainer.orderCheckoutPackagingPreference = checkoutResponse.getOrder().getPackagingFeeLabel();
     picoContainer.packagingPreference = checkoutResponse.getDeliveryPackagingPreferences();
     picoContainer.leaveUnattended = checkoutResponse.getOrder().getLeaveUnattended().isDisableLeaveUnattended();
+
     Assert.assertEquals("Selected window is not set", checkoutResponse.getResults().getSetDeliveryWindow().getHttpStatusCode(), 200);
   }
 
@@ -101,29 +100,23 @@ public class CheckoutDefinition extends CheckoutHelper {
     }
   }
 
-  @Then("^I validate the selected \"([^\"]*)\" store and selected windows$")
+  @Then("^I validate the selected \"([^\"]*)\" and selected windows$")
   public void iValidateTheSelectedStoreAndSelectedWindows(String collectionMode) {
-    if (collectionMode.equals("Pickup")) {
-      Assert.assertEquals("Pick up store is verified", picoContainer.orderCheckoutPaymentAddress, picoContainer.orderCheckoutSummaryPaymentAddress);
-      Assert.assertEquals("Pick up window is verified", picoContainer.orderCheckoutPaymentWindowDate, picoContainer.orderCheckoutSummaryPaymentWindowDate);
-      Assert.assertEquals("Pick up time is verified", picoContainer.orderCheckoutPaymentWindowTime, picoContainer.orderCheckoutSummaryPaymentWindowTime);
-    } else if (collectionMode.equals("Delivery")) {
-      Assert.assertEquals("Delivery address is verified", picoContainer.orderCheckoutDeliveryAddress, picoContainer.orderCheckoutSummaryDeliveryPaymentAddress);
-      Assert.assertEquals("Delivery window is verified", picoContainer.orderCheckoutDeliveryWindowDate, picoContainer.orderCheckoutSummaryDeliveryPaymentWindowDate);
-      Assert.assertEquals("Delivery time is verified", picoContainer.orderCheckoutDeliveryWindowTime, picoContainer.orderCheckoutSummaryDeliveryPaymentWindowTime);
-    }
+    Assert.assertEquals("Selected " + collectionMode + " address doesn't match ", picoContainer.orderCheckoutPaymentAddress, picoContainer.orderCheckoutSummaryPaymentAddress);
+    Assert.assertEquals("Reserved window date doesn't match", picoContainer.orderCheckoutSelectedWindowDate, picoContainer.orderCheckoutSummaryPaymentWindowDate);
+    Assert.assertEquals("Reserved time doesn't match", picoContainer.orderCheckoutPaymentWindowTime, picoContainer.orderCheckoutSummaryPaymentWindowTime);
   }
 
   @Then("^I validate the product subtotal and total GST$")
   public void iValidateTheProductSubtotalAndTotalGST() {
-    Assert.assertEquals("Pick up subtotal is verified", picoContainer.orderCheckoutSubtotal, picoContainer.orderCheckoutPaymentSubtotal);
-    Assert.assertEquals("Pick up totalGST is verified", picoContainer.orderCheckoutTotalGST, picoContainer.orderCheckoutPaymentTotalGST);
+    Assert.assertEquals("Order subtotal is not matching", picoContainer.orderCheckoutSubtotal, picoContainer.orderCheckoutPaymentSubtotal);
+    Assert.assertEquals("Order totalGST is not matching", picoContainer.orderCheckoutTotalGST, picoContainer.orderCheckoutPaymentTotalGST);
   }
 
   @And("^I validate the packaging fee and preference$")
   public void iValidateThePackagingFeeAndPreference() {
-    Assert.assertEquals("Pick up packaging fee is verified", picoContainer.orderCheckoutPackagingFee, picoContainer.orderCheckoutPaymentPackagingFee);
-    Assert.assertEquals("Pick up packaging preference is verified", picoContainer.orderCheckoutPackagingPreference, picoContainer.orderCheckoutPaymentPackagingPreference);
+    Assert.assertEquals("Packaging fee is not matching", picoContainer.orderCheckoutPackagingFee, picoContainer.orderCheckoutPaymentPackagingFee);
+    Assert.assertEquals("Packaging preference is not matching", picoContainer.orderCheckoutPackagingPreference, picoContainer.orderCheckoutPaymentPackagingPreference);
   }
 
   @When("^I get the checkout summary details for the \"([^\"]*)\" order$")
@@ -134,9 +127,9 @@ public class CheckoutDefinition extends CheckoutHelper {
       picoContainer.orderCheckoutSummaryPaymentWindowDate = checkoutPaymentResponse.getOrder().getPickup().getWindow().getDisplayDate();
       picoContainer.orderCheckoutSummaryPaymentWindowTime = checkoutPaymentResponse.getOrder().getPickup().getWindow().getDisplayTime();
     } else if (collectionMode.equals("Delivery")) {
-      picoContainer.orderCheckoutSummaryDeliveryPaymentAddress = checkoutPaymentResponse.getOrder().getDelivery().getAddress().getText();
-      picoContainer.orderCheckoutSummaryDeliveryPaymentWindowDate = checkoutPaymentResponse.getOrder().getDelivery().getWindow().getDisplayDate();
-      picoContainer.orderCheckoutSummaryDeliveryPaymentWindowTime = checkoutPaymentResponse.getOrder().getDelivery().getWindow().getDisplayTime();
+      picoContainer.orderCheckoutSummaryPaymentAddress = checkoutPaymentResponse.getOrder().getDelivery().getAddress().getText();
+      picoContainer.orderCheckoutSummaryPaymentWindowDate = checkoutPaymentResponse.getOrder().getDelivery().getWindow().getDisplayDate();
+      picoContainer.orderCheckoutSummaryPaymentWindowTime = checkoutPaymentResponse.getOrder().getDelivery().getWindow().getDisplayTime();
     }
     picoContainer.orderCheckoutPaymentSubtotal = checkoutPaymentResponse.getOrder().getSubtotal();
     picoContainer.orderCheckoutPaymentTotalGST = checkoutPaymentResponse.getOrder().getTotalIncludingGst();
@@ -152,8 +145,8 @@ public class CheckoutDefinition extends CheckoutHelper {
     //Assert Delivery Now Window is not Null
     Assert.assertNotNull("Delivery Now window is not available", checkoutFulfilmentWindows[0].getDeliveryNow());
     picoContainer.windowId = checkoutFulfilmentWindows[0].getDeliveryNow().getId();
-    picoContainer.windowStartTime = checkoutFulfilmentWindows[0].getDeliveryNow().getStartTime();
-    CheckoutResponse postCheckoutResponse = postSetCheckoutWindow(picoContainer.windowId, picoContainer.windowStartTime, sharedData.accessToken);
+    picoContainer.orderCheckoutPaymentWindowTime = checkoutFulfilmentWindows[0].getDeliveryNow().getStartTime();
+    CheckoutResponse postCheckoutResponse = postSetCheckoutWindow(picoContainer.windowId, picoContainer.orderCheckoutPaymentWindowTime, sharedData.accessToken);
 
     //Assert the leave unattended flag is true when delivery now window is selected
     Assert.assertTrue("Disable Leave Unattended flag is not set to True", postCheckoutResponse.getOrder().getLeaveUnattended().isDisableLeaveUnattended());
