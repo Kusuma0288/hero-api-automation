@@ -3,7 +3,7 @@ package au.com.woolworths.apigee.stepdefinitions;
 import au.com.woolworths.apigee.context.ApigeeApplicationContext;
 import au.com.woolworths.apigee.helpers.SearchHelper;
 import au.com.woolworths.apigee.helpers.TrolleyHelper;
-import au.com.woolworths.apigee.model.V3SearchProducts.ApigeeV3SearchResponse;
+import au.com.woolworths.apigee.model.SearchProducts.ApigeeV3SearchResponse;
 import au.com.woolworths.apigee.model.Trolley.TrolleyV2Response;
 import au.com.woolworths.apigee.model.Trolley.TrolleyV3Response;
 import cucumber.api.java.en.And;

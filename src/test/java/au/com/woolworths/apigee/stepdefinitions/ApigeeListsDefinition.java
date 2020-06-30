@@ -8,7 +8,7 @@ import au.com.woolworths.apigee.model.ApigeeGetListResponse;
 import au.com.woolworths.apigee.model.ApigeeListDetailsResponse;
 import au.com.woolworths.apigee.model.ApigeeListResponse;
 import au.com.woolworths.apigee.model.ApigeeSwitchDefaultListResponse;
-import au.com.woolworths.apigee.model.V3SearchProducts.ApigeeV3SearchResponse;
+import au.com.woolworths.apigee.model.SearchProducts.ApigeeV3SearchResponse;
 import au.com.woolworths.apigee.model.Trolley.TrolleyV2Response;
 import au.com.woolworths.apigee.model.Trolley.TrolleyV3Response;
 import cucumber.api.java.en.And;

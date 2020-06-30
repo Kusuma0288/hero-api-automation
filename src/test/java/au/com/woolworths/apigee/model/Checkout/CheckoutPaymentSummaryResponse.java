@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data public class CheckoutPaymentSummaryResponse {
-  private au.com.woolworths.apigee.model.Order Order;
+  private Order Order;
   private Object paymentMessages;
   private Object Results;
 
