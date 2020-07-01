@@ -39,6 +39,7 @@ public class SignuppageHelper extends BaseHelper {
     signUpRequest.setMobilephone("0421000000");
     signUpRequest.setEmailproductsandservices("true");
     signUpRequest.setSmsproductsservicesandpromotions("true");
+    signUpRequest.setAgreetotsandcs(true);
 
     String endPoint = URLResources.APIGEE_V2_SIGNUP;
     ObjectMapper mapper = new ObjectMapper();

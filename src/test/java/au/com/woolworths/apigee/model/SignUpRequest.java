@@ -14,4 +14,5 @@ import com.fasterxml.jackson.annotation.JsonInclude;
   private String mobilephone;
   private String emailproductsandservices;
   private String smsproductsservicesandpromotions;
+  private boolean agreetotsandcs;
 }
