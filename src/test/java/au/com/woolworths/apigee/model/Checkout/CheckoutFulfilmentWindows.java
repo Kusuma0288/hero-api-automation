@@ -1,6 +1,5 @@
 package au.com.woolworths.apigee.model.Checkout;
 
-import au.com.woolworths.apigee.model.DeliveryNowWindows;
 import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;

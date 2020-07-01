@@ -1,11 +1,9 @@
 package au.com.woolworths.apigee.model.Trolley;
 
-import au.com.woolworths.apigee.model.Item;
 import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import java.util.Arrays;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)

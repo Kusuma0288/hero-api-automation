@@ -1,7 +1,6 @@
 package au.com.woolworths.apigee.model.Products;
 
 import au.com.woolworths.apigee.model.ApigeeIsProductFlag;
-import au.com.woolworths.apigee.model.InStorePrice;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 

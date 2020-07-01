@@ -1,5 +1,8 @@
-package au.com.woolworths.apigee.model;
+package au.com.woolworths.apigee.model.Checkout;
 
+import au.com.woolworths.apigee.model.DeliveryDetails;
+import au.com.woolworths.apigee.model.LeaveUnattended;
+import au.com.woolworths.apigee.model.Pickup;
 import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -9,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class Order {
   private Object PrimaryAddress;
   private DeliveryDetails Delivery;
-  private Pickup Pickup;
+  private au.com.woolworths.apigee.model.Pickup Pickup;
   private Object Fulfilment;
   private String Instructions;
   private double Savings;
@@ -42,5 +45,5 @@ public class Order {
   private Object Errors;
   private boolean CanProceedToPayment;
   private Object OrderTotalsTableData;
-  private LeaveUnattended LeaveUnattended;
+  private au.com.woolworths.apigee.model.LeaveUnattended LeaveUnattended;
 }
