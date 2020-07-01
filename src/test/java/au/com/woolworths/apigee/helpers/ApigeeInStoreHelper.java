@@ -4,11 +4,6 @@ import au.com.woolworths.Utils.RestInvocationUtil;
 import au.com.woolworths.Utils.URLResources;
 import au.com.woolworths.apigee.model.ApigeeSearchInStore;
 import au.com.woolworths.apigee.stepdefinitions.ServiceHooks;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -22,7 +17,7 @@ public class ApigeeInStoreHelper extends BaseHelper {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 
-  public ApigeeSearchInStore iSearchForInStore(String postcode, String accessToken) throws Throwable {
+  public ApigeeSearchInStore iSearchForInStore(String postcode) throws Throwable {
 
     String endPoint = URLResources.APIGEE_V2_IN_STORE;
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -31,10 +26,6 @@ public class ApigeeInStoreHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
     ApigeeSearchInStore searchForInStore = mapper.readValue(responseStr, ApigeeSearchInStore.class);
     return searchForInStore;
   }

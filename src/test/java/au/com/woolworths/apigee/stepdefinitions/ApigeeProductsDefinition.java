@@ -1,30 +1,26 @@
 package au.com.woolworths.apigee.stepdefinitions;
 
-import au.com.woolworths.apigee.context.ApigeeApplicationContext;
 import au.com.woolworths.apigee.helpers.ApigeeProductsHelper;
 import au.com.woolworths.apigee.model.ApigeeProductCategoriesSpecial;
 import au.com.woolworths.apigee.model.ApigeeProductsSpecial;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 public class ApigeeProductsDefinition extends ApigeeProductsHelper {
 
   private final static Logger logger = Logger.getLogger("ApigeeProductsDefinition.class");
 
-  private ApigeeSharedData sharedData;
-  private ApigeeContainer picoContainer;
-
-  public ApigeeProductsDefinition(ApigeeContainer container) {
-    this.sharedData = ApigeeApplicationContext.getSharedData();
-    this.picoContainer = container;
-  }
 
   @When("^I make a request to V3 categories with type as Specials$")
   public void retrieveProductCategoriesWithSpecial() throws Throwable {
-
-    ApigeeProductCategoriesSpecial productCategoriesSpecial = iRetreiveProductCategoriesWithSpecial(sharedData.inStoreId, sharedData.accessToken);
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("store", sharedData.inStoreId);
+    queryParams.put("type", "specials");
+    ApigeeProductCategoriesSpecial productCategoriesSpecial = iRetreiveProductCategories(queryParams);
 
     //These assertions are to make sure there are no NULL FIELDS
     Assert.assertNotNull("There are no Aisles", productCategoriesSpecial.getAisles()[0]);
@@ -37,9 +33,12 @@ public class ApigeeProductsDefinition extends ApigeeProductsHelper {
 
   @When("^I make a request to V2 products with specials and verify the response$")
   public void retrieveProductsWithSpecial() throws Throwable {
-
-    ApigeeProductsSpecial productsSpecial = iRetreiveProductsWithSpecial(sharedData.inStoreId, sharedData.productAisle,
-        sharedData.productCategory, sharedData.accessToken);
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("store", sharedData.inStoreId);
+    queryParams.put("aisle", sharedData.productAisle);
+    queryParams.put("category", sharedData.productCategory);
+    queryParams.put("type", "specials");
+    ApigeeProductsSpecial productsSpecial = iRetreiveProducts(queryParams);
 
     //Asserting sort, tobacco, disclaimer attributes
     Assert.assertNotNull(productsSpecial.getProducts()[0]);
@@ -52,8 +51,9 @@ public class ApigeeProductsDefinition extends ApigeeProductsHelper {
 
   @When("^I make a request to V3 categories without type as Specials$")
   public void retrieveProductCategories() throws Throwable {
-
-    ApigeeProductCategoriesSpecial productCategoriesSpecial = iRetreiveProductCategories(sharedData.inStoreId, sharedData.accessToken);
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("store", sharedData.inStoreId);
+    ApigeeProductCategoriesSpecial productCategoriesSpecial = iRetreiveProductCategories(queryParams);
 
     //These assertions are to make sure there are no NULL FIELDS
     Assert.assertNotNull("There are no Aisles", productCategoriesSpecial.getAisles()[0]);
@@ -66,9 +66,11 @@ public class ApigeeProductsDefinition extends ApigeeProductsHelper {
 
   @When("^I make a request to V2 products without specials and verify the response$")
   public void retrieveProducts() throws Throwable {
-
-    ApigeeProductsSpecial productsSpecial = iRetreiveProducts(sharedData.inStoreId, sharedData.productAisle,
-        sharedData.productCategory, sharedData.accessToken);
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("store", sharedData.inStoreId);
+    queryParams.put("aisle", sharedData.productAisle);
+    queryParams.put("category", sharedData.productCategory);
+    ApigeeProductsSpecial productsSpecial = iRetreiveProducts(queryParams);
 
     //Asserting sort, tobacco, disclaimer attributes
     Assert.assertNotNull(productsSpecial.getProducts()[0]);
@@ -82,8 +84,11 @@ public class ApigeeProductsDefinition extends ApigeeProductsHelper {
   public void retrieveProductsWithSpecialInStoreMode(int position, String store) throws Throwable {
 
     String specialsGroup = sharedData.specialspageResponse.getCategories()[position].getProducts_href().replaceAll("(.*)filter=", "");
-
-    ApigeeProductsSpecial productsSpecial = iRetreiveSpecialsProductsInStore(specialsGroup, store, sharedData.accessToken);
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("filter", specialsGroup);
+    queryParams.put("type", "specials");
+    queryParams.put("store", store);
+    ApigeeProductsSpecial productsSpecial = iRetreiveProducts(queryParams);
 
     //Asserting that at least 1 product has been returned
     Assert.assertNotNull("No products returned", productsSpecial.getProducts());
@@ -98,8 +103,12 @@ public class ApigeeProductsDefinition extends ApigeeProductsHelper {
   public void retrieveProductsWithSpecialOnlinePickupMode(int position, String mode) throws Throwable {
 
     String specialsGroup = sharedData.specialspageResponse.getCategories()[position].getProducts_href().replaceAll("(.*)filter=", "");
+    Map<String, String> queryParams = new HashMap<String, String>();
 
-    ApigeeProductsSpecial productsSpecial = iRetreiveSpecialsProductsOnlinePickup(specialsGroup, mode, sharedData.accessToken);
+    queryParams.put("filter", specialsGroup);
+    queryParams.put("type", "specials");
+    queryParams.put("mode", mode);
+    ApigeeProductsSpecial productsSpecial = iRetreiveProducts(queryParams);
 
     //Asserting that at least 1 product has been returned
     Assert.assertNotNull("No products returned", productsSpecial.getProducts());
