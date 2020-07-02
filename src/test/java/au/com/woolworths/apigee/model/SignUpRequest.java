@@ -6,13 +6,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @Data public class SignUpRequest {
-  private String firstname = "Naeem";
-  private String lastname = "Raza";
+  private String firstname;
+  private String lastname;
   private String emailaddress;
-  private String password = "123456";
+  private String password;
   private String dateofbirth;
-  private String mobilephone = "0421000000";
-  private String emailproductsandservices = "true";
-  private String smsproductsservicesandpromotions = "true";
-  private boolean agreetotsandcs = true;
+  private String mobilephone;
+  private String emailproductsandservices;
+  private String smsproductsservicesandpromotions;
+  private boolean agreetotsandcs;
 }

@@ -25,8 +25,15 @@ public class SignuppageHelper extends BaseHelper {
     String responseStr = null;
 
     SignUpRequest signUpRequest = new SignUpRequest();
+    signUpRequest.setFirstname("Naeem");
+    signUpRequest.setLastname("Raza");
     signUpRequest.setEmailaddress(Utilities.getRandomEmailAddress());
+    signUpRequest.setPassword("123456");
     signUpRequest.setDateofbirth(DateOfBirth);
+    signUpRequest.setMobilephone("0421000000");
+    signUpRequest.setEmailproductsandservices("true");
+    signUpRequest.setSmsproductsservicesandpromotions("true");
+    signUpRequest.setAgreetotsandcs(true);
 
     String endPoint = URLResources.APIGEE_V2_SIGNUP;
     requestStr = mapper.writeValueAsString(signUpRequest);
