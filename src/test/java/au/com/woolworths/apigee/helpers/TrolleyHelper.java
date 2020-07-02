@@ -136,7 +136,7 @@ public class TrolleyHelper extends BaseHelper {
 
     HashMap<String, Object> output = new HashMap<String, Object>();
     for (String product : productsToAdd.keySet()) {
-      ApigeeV3SearchResponse v3SearchResponse = searchHelper.getProductItems(product, mode, sharedData.accessToken);
+      ApigeeV3SearchResponse v3SearchResponse = searchHelper.getProductItems(product, mode);
       sharedData.searchProductResponse = v3SearchResponse;
 
       List<String> stockCodes = new ArrayList<String>();
@@ -164,9 +164,9 @@ public class TrolleyHelper extends BaseHelper {
       }
 
       if (version.equals("V2")) {
-        addStockCodesToTheV2Trolley(stockCodes, productsToAdd.get(product), true, sharedData.accessToken);
+        addStockCodesToTheV2Trolley(stockCodes, productsToAdd.get(product), true);
       } else {
-        addStockCodesToTheV3Trolley(stockCodes, productsToAdd.get(product), true, sharedData.accessToken);
+        addStockCodesToTheV3Trolley(stockCodes, productsToAdd.get(product), true);
       }
 
       // Round up the price before asserting it
