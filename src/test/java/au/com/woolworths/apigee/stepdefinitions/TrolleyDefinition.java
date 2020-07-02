@@ -72,10 +72,43 @@ public class TrolleyDefinition extends TrolleyHelper {
     productsToAdd.put("bread", 1);
     productsToAdd.put("pasta", 2);
 
-//
-    Map<String, Object> outputMap = addItemsToTrolley(productsToAdd, mode, version);
-    expectedTotalPrice = (double) outputMap.get("expectedTotalPrice");
-    productNames = (List<String>) outputMap.get("productNames");
+    for (String product : productsToAdd.keySet()) {
+      ApigeeV3SearchResponse v3SearchResponse = searchHelper.getProductItems(product, mode, sharedData.accessToken);
+      sharedData.searchProductResponse = v3SearchResponse;
+
+      List<String> stockCodes = new ArrayList<String>();
+
+      for (int i = 0; i < v3SearchResponse.getProducts().length; i++) {
+        if (v3SearchResponse.getProducts()[i].getIs().isRanged()) {
+          stockCodes.add(v3SearchResponse.getProducts()[i].getArticle().replaceFirst("^0+(?!$)", ""));
+        }
+        if (stockCodes.size() == 1) {
+          break;
+        }
+      }
+
+      // Update the productNames list with the products that have been added so we can verify later
+      String updatedProductName = v3SearchResponse.getProducts()[0].getDescription();
+      productNames.add(updatedProductName);
+
+      // Update the expected price so we can verify later (ensure to use the promo price if it has one)
+      if (v3SearchResponse.getProducts()[0].getPromotions() != null) {
+        // This product has a promo so get the promo price
+        expectedTotalPrice = expectedTotalPrice + (productsToAdd.get(product) * (v3SearchResponse.getProducts()[0].getPromotions().getPrice()));
+      } else {
+        // No promo
+        expectedTotalPrice = expectedTotalPrice + (productsToAdd.get(product) * (v3SearchResponse.getProducts()[0].getInstoreprice().getPricegst()));
+      }
+
+      if (version.equals("V2")) {
+        addStockCodesToTheV2Trolley(stockCodes, productsToAdd.get(product), true, sharedData.accessToken);
+      } else {
+        addStockCodesToTheV3Trolley(stockCodes, productsToAdd.get(product), true, sharedData.accessToken);
+      }
+
+      // Round up the price before asserting it
+      expectedTotalPrice = Math.round(expectedTotalPrice * 100.0) / 100.0;
+    }
   }
 
   @And("^I clear the trolley$")
