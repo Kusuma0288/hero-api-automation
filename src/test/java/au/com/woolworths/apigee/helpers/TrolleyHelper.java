@@ -11,9 +11,6 @@ import java.util.logging.Logger;
 public class TrolleyHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
   private final static Logger logger = Logger.getLogger("TrolleyHelper.class");
-  private final SearchHelper searchHelper = new SearchHelper();
-  private final List<String> productNames = new ArrayList();
-  private double expectedTotalPrice = 0;
 
   public TrolleyHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
@@ -25,7 +22,6 @@ public class TrolleyHelper extends BaseHelper {
     String responseStr = null;
     TrolleyItems trolleyItemRequest = new TrolleyItems();
     List<Item> productItems = new ArrayList<Item>();
-
     for (int i = 0; i < stockCodes.size(); i++) {
       Item trolleyItem = new Item();
       trolleyItem.setArticle(Long.parseLong(stockCodes.get(i)));
