@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 import io.restassured.http.Header;
 
-public class CheckoutHelper extends BaseHelper{
+public class CheckoutHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
   private final static Logger logger = Logger.getLogger("CheckoutHelper.class");
 
