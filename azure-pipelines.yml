@@ -103,13 +103,6 @@ steps:
       $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/$(Build.BuildNumber)/index.html"
 
       $imageURL = "${{ parameters.ClusterUrl }}/$(Build.BuildNumber)/advanced-reports/test.png"
-      $passedCount = ($mostRecentTestRun.runStatistics | Where-Object {$_.outcome -eq 'Passed'}).count
-      $failedCount = ($mostRecentTestRun.runStatistics | Where-Object {$_.outcome -eq 'Failed'}).count
-      $totalCount = $passedCount + $failedCount
-      if ($totalCount -le 0) {
-        return
-      }
-      $passRate = [math]::Round($passedCount / $totalCount * 100, 2)
       $color = 'good';
        $slackMessage = @{
          attachments = @(
