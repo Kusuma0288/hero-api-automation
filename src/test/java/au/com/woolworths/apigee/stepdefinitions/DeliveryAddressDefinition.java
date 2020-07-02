@@ -1,7 +1,6 @@
 package au.com.woolworths.apigee.stepdefinitions;
 
 import au.com.woolworths.Utils.Utilities;
-import au.com.woolworths.apigee.context.ApigeeApplicationContext;
 import au.com.woolworths.apigee.helpers.ApigeeAddressHelper;
 import au.com.woolworths.apigee.model.*;
 import cucumber.api.java.en.Then;
@@ -16,28 +15,18 @@ public class DeliveryAddressDefinition extends ApigeeAddressHelper {
 
   private final static Logger logger = Logger.getLogger("DeliveryAddressDefinition.class");
 
-  private ApigeeSharedData sharedData;
-  private ApigeeContainer picoContainer;
-
-  public DeliveryAddressDefinition(ApigeeContainer container) {
-    this.sharedData = ApigeeApplicationContext.getSharedData();
-    this.picoContainer = container;
-  }
 
   @When("^I pick a location at \"([^\"]*)\" for delivery$")
   public void iPickALocationAtForDelivery(String address) throws Throwable {
-    picoContainer.fulfilment = "online";
+    sharedData.fulfilment = "online";
     searchForTheAddresses(address);
     iSelectTheAddressAsFulfilmentAddressFromMatchingAddresses(1);
   }
 
-
-
-  @When("^I search for the address \"([^\"]*)\"$")
   public void searchForTheAddresses(String lookupAddress) throws Throwable {
     lookupAddress = Utilities.replaceMultipleandTrimSpaces(lookupAddress);
 
-    ApigeeSearchAddresses searchAddressResponse = iSearchForTheAddress(lookupAddress, sharedData.accessToken);
+    ApigeeSearchAddresses searchAddressResponse = iSearchForTheAddress(lookupAddress);
     sharedData.searchAddressResponse = searchAddressResponse;
 
     //These assertions are to make sure there are no NULL FIELDS
@@ -46,12 +35,11 @@ public class DeliveryAddressDefinition extends ApigeeAddressHelper {
     Assert.assertNotNull(searchAddressResponse.getAddresses()[0].getAmasID());
   }
 
-  @When("^I select the \"([^\"]*)\" address as fulfilment address from matching addresses$")
   public void iSelectTheAddressAsFulfilmentAddressFromMatchingAddresses(int position) throws Throwable {
     ApigeeSearchAddresses addressResponse = sharedData.searchAddressResponse;
     ApigeeAddress[] addressItem = addressResponse.getAddresses();
 
-    ApigeeAddressDetails addressDetailResponse = iGetTheAddressIdFromAmasId(addressItem[position - 1].getAmasID(), sharedData.accessToken);
+    ApigeeAddressDetails addressDetailResponse = iGetTheAddressIdFromAmasId(addressItem[position - 1].getAmasID());
 
     String addressId = addressDetailResponse.getId();
     Assert.assertNotNull(addressId);
@@ -61,7 +49,7 @@ public class DeliveryAddressDefinition extends ApigeeAddressHelper {
 
   @When("^verify the address saved is set as primary address in MyAccount$")
   public void verifyPrimaryAddressInMyAccount() throws Throwable {
-    ApigeeListAddresses addressesInMyAccount = iGetTheListAddresses(sharedData.accessToken);
+    ApigeeListAddresses addressesInMyAccount = iGetTheListAddresses();
     ApigeeAddressDetails[] addressDetails = addressesInMyAccount.getAddresses();
 
     boolean isPrimary = Arrays.stream(addressDetails).filter(x -> x.getId().equals(sharedData.addressId))
@@ -72,7 +60,7 @@ public class DeliveryAddressDefinition extends ApigeeAddressHelper {
 
   @Then("^filter the address by address text and verify address saved is set as primary address in MyAccount$")
   public void verifyPrimaryAddressByAddressText() throws Throwable {
-    ApigeeListAddresses addressesInMyAccount = iGetTheListAddresses(sharedData.accessToken);
+    ApigeeListAddresses addressesInMyAccount = iGetTheListAddresses();
     ApigeeAddressDetails[] addressDetails = addressesInMyAccount.getAddresses();
 
     boolean isPrimary = Arrays.stream(addressDetails).filter(x -> x.getText().equals(sharedData.addressText))
@@ -85,7 +73,7 @@ public class DeliveryAddressDefinition extends ApigeeAddressHelper {
   @Then("^I make a request to fulfilment api with primary address id to set the address as fulfilment address$")
   public void iMakeARequestToFulfilmentApiWithPrimaryAddressIdToSetTheAddressAsFulfilmentAddress() throws Throwable {
 
-    DeliveryFulfilmentV3Response deliveryFulfilmentV3Response = setTheFulfilmentForAddress(sharedData.addressId, sharedData.accessToken);
+    DeliveryFulfilmentV3Response deliveryFulfilmentV3Response = setTheFulfilmentForAddress();
     Integer deliveryFulfilmentID = deliveryFulfilmentV3Response.getDelivery().getAddress().getId();
 
     sharedData.addressText = deliveryFulfilmentV3Response.getDelivery().getAddress().getText();
@@ -100,7 +88,7 @@ public class DeliveryAddressDefinition extends ApigeeAddressHelper {
 
   @Then("^I make a GET request to fulfilment api and verify the fulfilment address$")
   public void iMakeGETRequestToFulfilementApi() throws Throwable {
-    DeliveryFulfilmentV3Response deliveryFulfilmentV3Response = getTheFulfilmentAddress(sharedData.accessToken);
+    DeliveryFulfilmentV3Response deliveryFulfilmentV3Response = getTheFulfilmentAddress();
 
     deliveryFulfilmentV3Response.getDelivery().getAddress().getId();
 
@@ -109,7 +97,7 @@ public class DeliveryAddressDefinition extends ApigeeAddressHelper {
 
   @Then("^I make a request with invalid address to fulfilment api with primary address id to set the address as fulfilment address$")
   public void iMakeARequestToFulfilmentApiWithInvalidAccessToken() throws Throwable {
-    Fulfilmentv3ErrorResponse fulfilmentv3ErrorResponse = setTheFulfilmentForAddressErrorScenario(" ", sharedData.accessToken);
+    Fulfilmentv3ErrorResponse fulfilmentv3ErrorResponse = setTheFulfilmentForAddressErrorScenario(" ");
     Assert.assertTrue("Error Code not matching", fulfilmentv3ErrorResponse.getErrorCode().equals("AP004"));
     Assert.assertTrue("Error Message not matching", fulfilmentv3ErrorResponse.getErrorMessage().equals("Not Found"));
   }

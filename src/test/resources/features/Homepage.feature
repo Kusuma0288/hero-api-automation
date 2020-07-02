@@ -28,8 +28,7 @@ Feature: Verify the HomePage components in different Shopping modes for guest/lo
   Scenario: Verify the Homepage components for guest user without EDR and in Online Pickup mode
     Given mobile user connect to apigee endpoint as guest
     When connection from user to apigee endpoint happens
-    And I search for the pickup stores in the postcode 2204
-    And I set the fulfilmentMethod to "Pickup" for the 1 store
+    And I set a pick up store using post code 2204
     Then I make a request to Homepage in "pickup" mode with "NoEDR" and verify the response for Offer "Online Only Offers"
     And I add the stockcode with quantity "2" to trolley
     Then I verify the stockcode is set to "2" when I make a request to Homepage

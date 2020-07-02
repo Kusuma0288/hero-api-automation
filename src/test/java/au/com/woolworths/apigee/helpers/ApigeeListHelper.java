@@ -4,11 +4,6 @@ import au.com.woolworths.Utils.RestInvocationUtil;
 import au.com.woolworths.Utils.URLResources;
 import au.com.woolworths.apigee.model.*;
 import au.com.woolworths.apigee.stepdefinitions.ServiceHooks;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -20,89 +15,49 @@ public class ApigeeListHelper extends BaseHelper {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 
-  public ApigeeListResponse createList(String listName, String accessToken) throws Throwable {
+  public ApigeeListResponse createList(String listName) throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
     String responseStr = null;
 
     ApigeeListRequest apigeeListRequest = new ApigeeListRequest();
-    ApigeeListResponse response;
 
     apigeeListRequest.setTitle(listName);
     apigeeListRequest.setTimestamp(convertToEpochTime());
 
     String endPoint = URLResources.APIGEE_V2_LISTS;
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
     requestStr = mapper.writeValueAsString(apigeeListRequest);
 
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
 
     responseStr = mapWebserviceResponse.get("response");
-    response = mapper.readValue(responseStr, ApigeeListResponse.class);
+    ApigeeListResponse response = mapper.readValue(responseStr, ApigeeListResponse.class);
     return response;
 
   }
 
-  public ApigeeGetListResponse retrieveList(String accessToken) throws Throwable {
-
+  public ApigeeGetListResponse retrieveList() throws Throwable {
     Map<String, String> mapWebserviceResponse;
     String responseStr = null;
     Map<String, String> queryParams = new HashMap<String, String>();
-
-    ApigeeGetListResponse response;
-
     String endPoint = URLResources.APIGEE_V2_LISTS;
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
-    response = mapper.readValue(responseStr, ApigeeGetListResponse.class);
+    ApigeeGetListResponse response = mapper.readValue(responseStr, ApigeeGetListResponse.class);
     return response;
 
   }
 
-  public ApigeeGetListResponse getAllListForTheUser(String accessToken) throws Throwable {
-
-    Map<String, String> mapWebserviceResponse;
-    String responseStr = null;
-    Map<String, String> queryParams = new HashMap<String, String>();
-
-    ApigeeGetListResponse response;
-
-    String endPoint = URLResources.APIGEE_V2_LISTS;
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-
-    // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
-    responseStr = mapWebserviceResponse.get("response");
-    response = mapper.readValue(responseStr, ApigeeGetListResponse.class);
-    return response;
-
-  }
-
-  public long getListIdForTheUser(String listName, String accessToken) throws Throwable {
+  public long getListIdForTheUser(String listName) throws Throwable {
     Map<String, String> mapWebserviceResponse;
     String responseStr = null;
     long listId = 0L;
     Map<String, String> queryParams = new HashMap<String, String>();
 
     String endPoint = URLResources.APIGEE_V2_LISTS;
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
 
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
@@ -118,18 +73,13 @@ public class ApigeeListHelper extends BaseHelper {
     return listId;
   }
 
-  public long getFreeTextIdForTheList(String freeText, long listId, String accessToken) throws Throwable {
+  public long getFreeTextIdForTheList(String freeText, long listId) throws Throwable {
     Map<String, String> mapWebserviceResponse;
     String responseStr = null;
     long freeTextId = 0L;
     Map<String, String> queryParams = new HashMap<String, String>();
-
     String endPoint = URLResources.APIGEE_V2_GET_LIST_BY_ID;
     endPoint = endPoint.replace("{list_id}", String.valueOf(listId));
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
 
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
@@ -147,32 +97,25 @@ public class ApigeeListHelper extends BaseHelper {
     return freeTextId;
   }
 
-  public ApigeeSwitchDefaultListResponse switchToDefaultList(String listName, String accessToken) throws Throwable {
+  public ApigeeSwitchDefaultListResponse switchToDefaultList(String listName) throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
     String responseStr = null;
-    Map<String, String> queryParams = new HashMap<String, String>();
 
-    String listId = Arrays.stream(retrieveList(accessToken).getLists()).filter(item -> item.getTitle().contains(listName))
+    String listId = Arrays.stream(retrieveList().getLists()).filter(item -> item.getTitle().contains(listName))
         .findFirst().get().getId();
-    ApigeeSwitchDefaultListResponse response;
 
     String endPoint = URLResources.APIGEE_V2_LISTS + "/" + listId + "/default";
-
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
 
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerList);
     responseStr = mapWebserviceResponse.get("response");
-    response = mapper.readValue(responseStr, ApigeeSwitchDefaultListResponse.class);
+    ApigeeSwitchDefaultListResponse response = mapper.readValue(responseStr, ApigeeSwitchDefaultListResponse.class);
     return response;
 
   }
 
-  public ApigeeListResponse addFreeTextItemToTheList(String listId, String freeText, String accessToken) throws Throwable {
+  public ApigeeListResponse addFreeTextItemToTheList(String listId, String freeText) throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
@@ -188,11 +131,6 @@ public class ApigeeListHelper extends BaseHelper {
     String endPoint = URLResources.APIGEE_V2_UPDATE_LIST_FREETEXT;
     endPoint = endPoint.replace("{list_id}", listId);
 
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-
     requestStr = mapper.writeValueAsString(apigeeListRequest);
 
     // invoke the service with the framed request
@@ -203,7 +141,7 @@ public class ApigeeListHelper extends BaseHelper {
 
   }
 
-  public ApigeeListResponse updateFreeTextItemInTheList(long listId, long freeTextId, String freeText, boolean checkItem, String accessToken) throws Throwable {
+  public ApigeeListResponse updateFreeTextItemInTheList(long listId, long freeTextId, String freeText, boolean checkItem) throws Throwable {
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
     String responseStr = null;
@@ -219,11 +157,6 @@ public class ApigeeListHelper extends BaseHelper {
     String endPoint = URLResources.APIGEE_V2_UPDATE_LIST_FREETEXT;
     endPoint = endPoint.replace("{list_id}", Long.toString(listId));
 
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-
     requestStr = mapper.writeValueAsString(apigeeListRequest);
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokePut(endPoint, requestStr, headerList);
@@ -233,14 +166,13 @@ public class ApigeeListHelper extends BaseHelper {
 
   }
 
-  public ApigeeListResponse addFreeTextItemToTheList(String listId, String freeText, boolean checkItem, String accessToken) throws Throwable {
+  public ApigeeListResponse addFreeTextItemToTheList(String listId, String freeText, boolean checkItem) throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
     String responseStr = null;
 
     ApigeeListRequest apigeeListRequest = new ApigeeListRequest();
-    ApigeeListResponse response;
     apigeeListRequest.setText(freeText);
     apigeeListRequest.setTimestamp(convertToEpochTime());
     apigeeListRequest.setLastsynced(convertToEpochTime());
@@ -249,28 +181,22 @@ public class ApigeeListHelper extends BaseHelper {
     String endPoint = URLResources.APIGEE_V2_UPDATE_LIST_FREETEXT;
     endPoint = endPoint.replace("{list_id}", listId);
 
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-
     requestStr = mapper.writeValueAsString(apigeeListRequest);
 
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
-    response = mapper.readValue(responseStr, ApigeeListResponse.class);
+    ApigeeListResponse response = mapper.readValue(responseStr, ApigeeListResponse.class);
     return response;
 
   }
 
-  public AddProductsToListResponse addItemsToTheList(String articleId, int quantity, String listId, boolean checkItem, String accessToken, String version) throws Throwable {
+  public AddProductsToListResponse addItemsToTheList(String articleId, int quantity, String listId, boolean checkItem, String version) throws Throwable {
     Map<String, String> mapWebserviceResponse;
     String requestStr = "";
     String responseStr = "";
 
     AddProductsToListRequest apigeeListRequest = new AddProductsToListRequest();
-    AddProductsToListResponse response;
     apigeeListRequest.setArticleId(articleId);
     apigeeListRequest.setQuantity(quantity);
     apigeeListRequest.setChecked(checkItem);
@@ -286,26 +212,20 @@ public class ApigeeListHelper extends BaseHelper {
       endPoint = endPoint.replace("{list_id}", listId);
     }
 
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-
     requestStr = mapper.writeValueAsString(apigeeListRequest);
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
-    response = mapper.readValue(responseStr, AddProductsToListResponse.class);
+    AddProductsToListResponse response = mapper.readValue(responseStr, AddProductsToListResponse.class);
     return response;
 
   }
 
-  public ApigeeListDetailsResponse getListDetails(String listId, String accessToken, String version) throws Throwable {
+  public ApigeeListDetailsResponse getListDetails(String listId, String version) throws Throwable {
     Map<String, String> mapWebserviceResponse;
     String responseStr = null;
     Map<String, String> queryParams = new HashMap<String, String>();
 
-    ApigeeListDetailsResponse response;
     String endPoint;
     if (version.equals("V2")) {
 
@@ -316,19 +236,14 @@ public class ApigeeListHelper extends BaseHelper {
       endPoint = endPoint.concat("/" + listId);
     }
 
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
-    response = mapper.readValue(responseStr, ApigeeListDetailsResponse.class);
+    ApigeeListDetailsResponse response = mapper.readValue(responseStr, ApigeeListDetailsResponse.class);
     return response;
   }
 
-  public ApigeeListResponse deleteFreeTextFromList(String listId, String freeTextId, String accessToken) throws Throwable {
+  public ApigeeListResponse deleteFreeTextFromList(String listId, String freeTextId) throws Throwable {
     Map<String, String> mapWebserviceResponse;
     String responseStr = null;
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -336,22 +251,16 @@ public class ApigeeListHelper extends BaseHelper {
     queryParams.put("timestamp", String.valueOf(convertToEpochTime()));
     queryParams.put("lastsynced", String.valueOf(convertToEpochTime()));
 
-    ApigeeListResponse response;
-
     String endPoint = URLResources.APIGEE_V2_LIST_ITEMS;
     endPoint = endPoint.replace("{list_id}", listId);
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
     mapWebserviceResponse = invocationUtil.invokeDelete(endPoint, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
 
-    response = mapper.readValue(responseStr, ApigeeListResponse.class);
+    ApigeeListResponse response = mapper.readValue(responseStr, ApigeeListResponse.class);
     return response;
   }
 
-  public ApigeeListResponse deleteNewlyCreatedList(String listId, long timestamp, String accessToken) throws Throwable {
+  public ApigeeListResponse deleteNewlyCreatedList(String listId, long timestamp) throws Throwable {
     Map<String, String> mapWebserviceResponse;
     String responseStr = null;
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -361,10 +270,6 @@ public class ApigeeListHelper extends BaseHelper {
 
     String endPoint = URLResources.APIGEE_V2_GET_LIST_BY_ID;
     endPoint = endPoint.replace("{list_id}", listId);
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
     mapWebserviceResponse = invocationUtil.invokeDelete(endPoint, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
 
@@ -373,7 +278,7 @@ public class ApigeeListHelper extends BaseHelper {
 
   }
 
-  public ApigeeListResponse deleteTheList(long listId, long timeStamp, String accessToken) throws Throwable {
+  public ApigeeListResponse deleteTheList(long listId, long timeStamp) throws Throwable {
     Map<String, String> mapWebserviceResponse;
     String responseStr = null;
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -384,10 +289,6 @@ public class ApigeeListHelper extends BaseHelper {
 
     String endPoint = URLResources.APIGEE_V2_GET_LIST_BY_ID;
     endPoint = endPoint.replace("{list_id}", Long.toString(listId));
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
     mapWebserviceResponse = invocationUtil.invokeDelete(endPoint, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
 

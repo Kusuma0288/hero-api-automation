@@ -39,10 +39,6 @@ public class ApigeeShopperHelper extends BaseHelper {
     loginRequest.setPassword(password);
 
     String endPoint = URLResources.APIGEE_V2_SHOPPER_LOGIN;
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
     requestStr = mapper.writeValueAsString(loginRequest);
 
     // invoke the service with the framed request
@@ -71,10 +67,6 @@ public class ApigeeShopperHelper extends BaseHelper {
     loginRequest.setPassword(password);
 
     String endPoint = URLResources.APIGEE_V2_SHOPPER_LOGIN;
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
     requestStr = mapper.writeValueAsString(loginRequest);
 
     // invoke the service with the framed request

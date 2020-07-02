@@ -270,11 +270,6 @@
             <version>${cucumber.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-picocontainer</artifactId>
-            <version>${cucumber.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>com.github.temyers</groupId>

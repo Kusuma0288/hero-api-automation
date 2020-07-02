@@ -22,58 +22,20 @@ public class HomepageHelper extends BaseHelper {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 
-  public HomepageResponse iRetrieveHomepageWithInStore(String store, String accessToken) throws Throwable {
-    HomepageResponse response;
-
+  public HomepageResponse iRetrieveHomepageWithInStore(Map<String, String> queryParams) throws Throwable {
     String endPoint = URLResources.HERMES_V1_HOMEPAGE;
-
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    Map<String, String> queryParams = new HashMap<String, String>();
-    queryParams.put("store", store);
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
 
     String responseStr = mapWebserviceResponse.get("response");
 
-    response = mapper.readValue(responseStr, HomepageResponse.class);
+    HomepageResponse response = mapper.readValue(responseStr, HomepageResponse.class);
     return response;
   }
 
-  public HomepageResponse iRetrieveHomepageWithOnlinePickup(String shoppingMode, String accessToken) throws Throwable {
-    HomepageResponse response;
-
-    String endPoint = URLResources.HERMES_V1_HOMEPAGE;
-
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-
-    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    Map<String, String> queryParams = new HashMap<String, String>();
-    queryParams.put("mode", shoppingMode);
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
-
-    String responseStr = mapWebserviceResponse.get("response");
-
-    response = mapper.readValue(responseStr, HomepageResponse.class);
-    return response;
-  }
-
-  public ProductGroupResponse iRetrieveProductGroup(String shoppingMode, String dataPath, String accessToken) throws Throwable {
-    ProductGroupResponse response;
-
+  public ProductGroupResponse iRetrieveProductGroup(String shoppingMode, String dataPath) throws Throwable {
     String endPoint = URLResources.HERMES_V1 + dataPath;
 
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("mode", shoppingMode);
@@ -81,7 +43,7 @@ public class HomepageHelper extends BaseHelper {
 
     String responseStr = mapWebserviceResponse.get("response");
 
-    response = mapper.readValue(responseStr, ProductGroupResponse.class);
+    ProductGroupResponse response = mapper.readValue(responseStr, ProductGroupResponse.class);
     return response;
   }
 
