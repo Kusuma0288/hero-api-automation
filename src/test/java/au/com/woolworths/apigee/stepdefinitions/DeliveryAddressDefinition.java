@@ -23,7 +23,6 @@ public class DeliveryAddressDefinition extends ApigeeAddressHelper {
     iSelectTheAddressAsFulfilmentAddressFromMatchingAddresses(1);
   }
 
-//  @When("^I search for the address \"([^\"]*)\"$")
   public void searchForTheAddresses(String lookupAddress) throws Throwable {
     lookupAddress = Utilities.replaceMultipleandTrimSpaces(lookupAddress);
 
@@ -36,7 +35,6 @@ public class DeliveryAddressDefinition extends ApigeeAddressHelper {
     Assert.assertNotNull(searchAddressResponse.getAddresses()[0].getAmasID());
   }
 
-//  @When("^I select the \"([^\"]*)\" address as fulfilment address from matching addresses$")
   public void iSelectTheAddressAsFulfilmentAddressFromMatchingAddresses(int position) throws Throwable {
     ApigeeSearchAddresses addressResponse = sharedData.searchAddressResponse;
     ApigeeAddress[] addressItem = addressResponse.getAddresses();
