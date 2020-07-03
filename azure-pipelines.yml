@@ -139,9 +139,4 @@ schedules:
     - azure-pipelines
   always: true  
   
-- cron: "0 * * * *"
-  displayName: "hourly build"
-  branches:
-    include:
-    - azure-pipelines
-  always: "true"
+
