@@ -15,6 +15,9 @@ channel_name = '#testing_python_slack'
 if user == 'jenkins':
 	workspace = os.environ['WORKSPACE']
 	channel_name = '#shopapp-auto-reports'
+elif user == 'vsts':
+	workspace = '/home/vsts/work/1/s'
+	channel_name = '#testing-azure-pipeline'
 
 path = workspace+'/target/cucumber-reports/advanced-reports/'
 
