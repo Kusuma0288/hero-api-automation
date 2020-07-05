@@ -2,13 +2,15 @@ import os
 import io
 import glob
 import json
+import sys
 import jsonpath_rw_ext as jp
 
 #from slackclient import SlackClient
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 user = os.environ['USER']
-
 workspace = '~/Woolworths/woolworths-mobile-api-automation'
 channel_name = '#testing_python_slack'
 
@@ -17,7 +19,7 @@ if user == 'jenkins':
 	channel_name = '#shopapp-auto-reports'
 elif user == 'vsts':
 	workspace = '/home/vsts/work/1/s'
-	channel_name = '#testing-azure-pipeline'
+	channel_name = '#azureautomation'
 
 path = workspace+'/target/cucumber-reports/advanced-reports/'
 
@@ -42,7 +44,7 @@ labels = ('Passed: '+str((total_no_of_scenarios-total_scenarios_failed)), 'Faile
 colors = ['#58FB4C', '#F8183A']
 explode = (0.1, 0)
 plt.pie(sizes, explode=explode,labels=labels,colors=colors, autopct='%1.1f%%',shadow=True, startangle=90)
-plt.title("Scenario coverage")
+plt.title("PUBLIC TRADER API - REPORT")
 filename = workspace+'/target/cucumber-reports/advanced-reports/test.png'
 plt.savefig(os.path.expanduser(filename))
 
@@ -59,7 +61,7 @@ if total_scenarios_failed > 0:
         			"type": "section",
         			"text": {
             				"type": "mrkdwn",
-            				"text": "@here Overall Scenario Status::FAILED ("+str(total_scenarios_failed)+")"
+            				"text": "Overall Scenario Status::FAILED ("+str(total_scenarios_failed)+")"
         			}
     		}])
 else:
@@ -70,6 +72,5 @@ else:
         )
 
 with open(os.path.expanduser(filename),'rb') as f:
-		sc.api_call("files.upload", filename='overall_scenarios.png', title='Scenario coverage', file=io.BytesIO(f.read()),    channels=channel_name)
-
+		sc.api_call("files.upload", filename='overall_scenarios.png', title='Prod Public Trader APIs- Results Breakdown', file=io.BytesIO(f.read()),    channels=channel_name)
 '''
