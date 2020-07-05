@@ -1,3 +1,8 @@
-.idea/
+
+.idea/*
 APIGEEAPI.iml
 target/*
+target/test-classes/*
+*.properties
+APIGEEAPI.iml
+

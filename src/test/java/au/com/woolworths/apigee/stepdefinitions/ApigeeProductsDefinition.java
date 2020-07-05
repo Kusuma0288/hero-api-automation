@@ -1,82 +1,124 @@
 package au.com.woolworths.apigee.stepdefinitions;
 
-import au.com.woolworths.apigee.context.ApigeeApplicationContext;
 import au.com.woolworths.apigee.helpers.ApigeeProductsHelper;
 import au.com.woolworths.apigee.model.ApigeeProductCategoriesSpecial;
 import au.com.woolworths.apigee.model.ApigeeProductsSpecial;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 public class ApigeeProductsDefinition extends ApigeeProductsHelper {
 
-    private final static Logger logger = Logger.getLogger("ApigeeProductsDefinition.class");
+  private final static Logger logger = Logger.getLogger("ApigeeProductsDefinition.class");
 
-    private ApigeeSharedData sharedData;
-    private ApigeeContainer picoContainer;
 
-    public ApigeeProductsDefinition(ApigeeContainer container) {
-        this.sharedData = ApigeeApplicationContext.getSharedData();
-        this.picoContainer = container;
-    }
+  @When("^I make a request to V3 categories with type as Specials$")
+  public void retrieveProductCategoriesWithSpecial() throws Throwable {
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("store", sharedData.inStoreId);
+    queryParams.put("type", "specials");
+    ApigeeProductCategoriesSpecial productCategoriesSpecial = iRetreiveProductCategories(queryParams);
 
-    @When("^I make a request to V3 categories with type as Specials$")
-    public void retrieveProductCategoriesWithSpecial() throws Throwable {
+    //These assertions are to make sure there are no NULL FIELDS
+    Assert.assertNotNull("There are no Aisles", productCategoriesSpecial.getAisles()[0]);
+    Assert.assertNotNull("There are no categories", productCategoriesSpecial.getAisles()[0].getCategories()[0].getTitle());
 
-        ApigeeProductCategoriesSpecial productCategoriesSpecial = iRetreiveProductCategoriesWithSpecial(sharedData.inStoreId,sharedData.accessToken);
+    sharedData.productAisle = productCategoriesSpecial.getAisles()[0].getTitle();
+    sharedData.productCategory = productCategoriesSpecial.getAisles()[0].getCategories()[0].getTitle();
 
-        //These assertions are to make sure there are no NULL FIELDS
-        Assert.assertNotNull("There are no Aisles", productCategoriesSpecial.getAisles()[0]);
-        Assert.assertNotNull("There are no categories",productCategoriesSpecial.getAisles()[0].getCategories()[0].getTitle());
+  }
 
-        sharedData.productAisle=productCategoriesSpecial.getAisles()[0].getTitle();
-        sharedData.productCategory=productCategoriesSpecial.getAisles()[0].getCategories()[0].getTitle();
+  @When("^I make a request to V2 products with specials and verify the response$")
+  public void retrieveProductsWithSpecial() throws Throwable {
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("store", sharedData.inStoreId);
+    queryParams.put("aisle", sharedData.productAisle);
+    queryParams.put("category", sharedData.productCategory);
+    queryParams.put("type", "specials");
+    ApigeeProductsSpecial productsSpecial = iRetreiveProducts(queryParams);
 
-    }
+    //Asserting sort, tobacco, disclaimer attributes
+    Assert.assertNotNull(productsSpecial.getProducts()[0]);
 
-    @When("^I make a request to V2 products with specials and verify the response$")
-    public void retrieveProductsWithSpecial() throws Throwable {
+    Assert.assertEquals("Sort option Relevance did not match", productsSpecial.getSortoptions()[0].getDescription(), "Relevance");
+    Assert.assertFalse("Tobacco flag is true", productsSpecial.getProducts()[0].getIs().isTobacco());
+    Assert.assertEquals("Product does not have tobacco disclaimer", productsSpecial.getProducts()[0].getDisclaimer().getTobacco(), " ");
+    Assert.assertEquals("Product does not have liquor disclaimer", productsSpecial.getProducts()[0].getDisclaimer().getLiquor(), " ");
+  }
 
-        ApigeeProductsSpecial productsSpecial = iRetreiveProductsWithSpecial(sharedData.inStoreId,sharedData.productAisle,
-                sharedData.productCategory,sharedData.accessToken);
+  @When("^I make a request to V3 categories without type as Specials$")
+  public void retrieveProductCategories() throws Throwable {
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("store", sharedData.inStoreId);
+    ApigeeProductCategoriesSpecial productCategoriesSpecial = iRetreiveProductCategories(queryParams);
 
-        //Asserting sort, tobacco, disclaimer attributes
-        Assert.assertNotNull(productsSpecial.getProducts()[0]);
+    //These assertions are to make sure there are no NULL FIELDS
+    Assert.assertNotNull("There are no Aisles", productCategoriesSpecial.getAisles()[0]);
+    Assert.assertNotNull("There are no categories", productCategoriesSpecial.getAisles()[0].getCategories()[0].getTitle());
 
-        Assert.assertEquals("Sort option Relevance did not match",productsSpecial.getSortoptions()[0].getDescription(),"Relevance");
-        Assert.assertFalse("Tobacco flag is true",productsSpecial.getProducts()[0].getIs().isTobacco());
-        Assert.assertEquals("Product does not have tobacco disclaimer",productsSpecial.getProducts()[0].getDisclaimer().getTobacco()," ");
-        Assert.assertEquals("Product does not have liquor disclaimer",productsSpecial.getProducts()[0].getDisclaimer().getLiquor()," ");
-    }
+    sharedData.productAisle = productCategoriesSpecial.getAisles()[0].getTitle();
+    sharedData.productCategory = productCategoriesSpecial.getAisles()[0].getCategories()[0].getTitle();
 
-    @When("^I make a request to V3 categories without type as Specials$")
-    public void retrieveProductCategories() throws Throwable {
+  }
 
-        ApigeeProductCategoriesSpecial productCategoriesSpecial = iRetreiveProductCategories(sharedData.inStoreId,sharedData.accessToken);
+  @When("^I make a request to V2 products without specials and verify the response$")
+  public void retrieveProducts() throws Throwable {
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("store", sharedData.inStoreId);
+    queryParams.put("aisle", sharedData.productAisle);
+    queryParams.put("category", sharedData.productCategory);
+    ApigeeProductsSpecial productsSpecial = iRetreiveProducts(queryParams);
 
-        //These assertions are to make sure there are no NULL FIELDS
-        Assert.assertNotNull("There are no Aisles", productCategoriesSpecial.getAisles()[0]);
-        Assert.assertNotNull("There are no categories",productCategoriesSpecial.getAisles()[0].getCategories()[0].getTitle());
+    //Asserting sort, tobacco, disclaimer attributes
+    Assert.assertNotNull(productsSpecial.getProducts()[0]);
+    Assert.assertEquals("Sort option Relevance did not match", productsSpecial.getSortoptions()[0].getDescription(), "Relevance");
+    Assert.assertFalse("Tobacco flag is true", productsSpecial.getProducts()[0].getIs().isTobacco());
+    Assert.assertEquals("Product does not have tobacco disclaimer", productsSpecial.getProducts()[0].getDisclaimer().getTobacco(), " ");
+    Assert.assertEquals("Product does not have liquor disclaimer", productsSpecial.getProducts()[0].getDisclaimer().getLiquor(), " ");
+  }
 
-        sharedData.productAisle=productCategoriesSpecial.getAisles()[0].getTitle();
-        sharedData.productCategory=productCategoriesSpecial.getAisles()[0].getCategories()[0].getTitle();
+  @When("^I make a request to Products API to filter the products based on \"([^\"]*)\" Specials group for store \"([^\"]*)\"$")
+  public void retrieveProductsWithSpecialInStoreMode(int position, String store) throws Throwable {
 
-    }
+    String specialsGroup = sharedData.specialspageResponse.getCategories()[position].getProducts_href().replaceAll("(.*)filter=", "");
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("filter", specialsGroup);
+    queryParams.put("type", "specials");
+    queryParams.put("store", store);
+    ApigeeProductsSpecial productsSpecial = iRetreiveProducts(queryParams);
 
-    @When("^I make a request to V2 products without specials and verify the response$")
-    public void retrieveProducts() throws Throwable {
+    //Asserting that at least 1 product has been returned
+    Assert.assertNotNull("No products returned", productsSpecial.getProducts());
 
-        ApigeeProductsSpecial productsSpecial = iRetreiveProducts(sharedData.inStoreId,sharedData.productAisle,
-                sharedData.productCategory,sharedData.accessToken);
+    //Asserting that name and article of the product is not null
+    Assert.assertNotNull("Name of the product is not null", productsSpecial.getProducts()[0].getName());
+    Assert.assertNotNull("Article id of the product is not null", productsSpecial.getProducts()[0].getArticle());
 
-        //Asserting sort, tobacco, disclaimer attributes
-        Assert.assertNotNull(productsSpecial.getProducts()[0]);
-        Assert.assertEquals("Sort option Relevance did not match",productsSpecial.getSortoptions()[0].getDescription(),"Relevance");
-        Assert.assertFalse("Tobacco flag is true",productsSpecial.getProducts()[0].getIs().isTobacco());
-        Assert.assertEquals("Product does not have tobacco disclaimer",productsSpecial.getProducts()[0].getDisclaimer().getTobacco()," ");
-        Assert.assertEquals("Product does not have liquor disclaimer",productsSpecial.getProducts()[0].getDisclaimer().getLiquor()," ");
-    }
+  }
 
+  @When("^I make a request to Products API to filter the products based on \"([^\"]*)\" Specials group in \"([^\"]*)\" mode$")
+  public void retrieveProductsWithSpecialOnlinePickupMode(int position, String mode) throws Throwable {
+
+    String specialsGroup = sharedData.specialspageResponse.getCategories()[position].getProducts_href().replaceAll("(.*)filter=", "");
+    Map<String, String> queryParams = new HashMap<String, String>();
+
+    queryParams.put("filter", specialsGroup);
+    queryParams.put("type", "specials");
+    queryParams.put("mode", mode);
+    ApigeeProductsSpecial productsSpecial = iRetreiveProducts(queryParams);
+
+    //Asserting that at least 1 product has been returned
+    Assert.assertNotNull("No products returned", productsSpecial.getProducts());
+
+    //Asserting that name and article of the product is not null
+    Assert.assertNotNull("Name of the product is not null", productsSpecial.getProducts()[0].getName());
+    Assert.assertNotNull("Article id of the product is not null", productsSpecial.getProducts()[0].getArticle());
+
+    sharedData.stockCode.add(productsSpecial.getProducts()[0].getArticle());
+
+  }
 
 }

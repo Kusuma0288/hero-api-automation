@@ -15,77 +15,36 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 public class HomepageHelper extends BaseHelper {
-    RestInvocationUtil invocationUtil;
-    private final static Logger logger = Logger.getLogger("HomepageHelper.class");
+  RestInvocationUtil invocationUtil;
+  private final static Logger logger = Logger.getLogger("HomepageHelper.class");
 
-    public HomepageHelper() {
-        this.invocationUtil = ServiceHooks.restInvocationUtil;
-    }
+  public HomepageHelper() {
+    this.invocationUtil = ServiceHooks.restInvocationUtil;
+  }
 
-    public HomepageResponse iRetrieveHomepageWithInStore(String store, String accessToken) throws Throwable {
-        HomepageResponse response;
+  public HomepageResponse iRetrieveHomepageWithInStore(Map<String, String> queryParams) throws Throwable {
+    String endPoint = URLResources.HERMES_V1_HOMEPAGE;
+    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
 
-        String endPoint = URLResources.HERMES_V1_HOMEPAGE;
+    String responseStr = mapWebserviceResponse.get("response");
 
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+    HomepageResponse response = mapper.readValue(responseStr, HomepageResponse.class);
+    return response;
+  }
 
-        Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-        Map<String, String> queryParams = new HashMap<String, String>();
-        queryParams.put("store", store);
-        mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
+  public ProductGroupResponse iRetrieveProductGroup(String shoppingMode, String dataPath) throws Throwable {
+    String endPoint = URLResources.HERMES_V1 + dataPath;
 
-        String responseStr = mapWebserviceResponse.get("response");
+    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("mode", shoppingMode);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
 
-        response = mapper.readValue(responseStr, HomepageResponse.class);
-        return response;
-    }
+    String responseStr = mapWebserviceResponse.get("response");
 
-    public HomepageResponse iRetrieveHomepageWithOnlinePickup(String shoppingMode, String accessToken) throws Throwable {
-        HomepageResponse response;
-
-        String endPoint = URLResources.HERMES_V1_HOMEPAGE;
-
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-
-        Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-        Map<String, String> queryParams = new HashMap<String, String>();
-        queryParams.put("mode", shoppingMode);
-        mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
-
-        String responseStr = mapWebserviceResponse.get("response");
-
-        response = mapper.readValue(responseStr, HomepageResponse.class);
-        return response;
-    }
-
-    public ProductGroupResponse iRetrieveProductGroup(String shoppingMode, String dataPath, String accessToken) throws Throwable {
-        ProductGroupResponse response;
-
-        String endPoint = URLResources.HERMES_V1 + dataPath;
-
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-
-        Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-        Map<String, String> queryParams = new HashMap<String, String>();
-        queryParams.put("mode", shoppingMode);
-        mapWebserviceResponse = invocationUtil.invoke(endPoint, accessToken, queryParams);
-
-        String responseStr = mapWebserviceResponse.get("response");
-
-        response = mapper.readValue(responseStr, ProductGroupResponse.class);
-        return response;
-    }
-
-
-
+    ProductGroupResponse response = mapper.readValue(responseStr, ProductGroupResponse.class);
+    return response;
+  }
 
 }
