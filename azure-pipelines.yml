@@ -22,8 +22,6 @@ parameters:
   - uat
   - test
  
-name: $(Date:yyyy.MM.dd)$(Rev:.rr)
-
 trigger:
  none
       
@@ -31,10 +29,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: |
-    mvn install
-    mvn clean verify test -P ${{ parameters.Profile }} -Denv=${{ parameters.RunEnv }} -DsaveRequestResponse=yes 
-  displayName: 'Run maven task'   
+- task: DockerCompose@0
+  displayName: 'Run Apigee Automation'
+  inputs:
+    dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
+    dockerComposeCommand: 'run --entrypoint="mvn clean verify test -P${{ parameters.Profile }} -Denv=${{ parameters.RunEnv }} -DsaveRequestResponse=yes" tests'
+  continueOnError: true  
+  
 - task: PublishTestResults@2
   displayName: 'Publish Test Results' 
   inputs:
@@ -59,6 +60,7 @@ steps:
   displayName: 'Install dependencies for Python'    
   continueOnError: true
   condition: always()  
+
 - task: PythonScript@0
   inputs:
     scriptSource: 'filePath'
@@ -96,10 +98,10 @@ steps:
     $testRunId = $mostRecentTestRun.id;
     if ($mostRecentTestRun) {
       $testRunId = $mostRecentTestRun.id;
-      #$testResultDetailsUrl = "$(System.TeamFoundationCollectionUri)$(System.TeamProject)/_testManagement/runs?_a=runCharts&runId=$testRunId"
-      $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/$(Build.BuildNumber)/index.html"
 
+      $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/$(Build.BuildNumber)/index.html"
       $imageURL = "${{ parameters.ClusterUrl }}/$(Build.BuildNumber)/advanced-reports/test.png"
+
       $color = 'good';
        $slackMessage = @{
          attachments = @(
@@ -129,10 +131,12 @@ steps:
   condition: and(succeeded(), ne('${{ parameters.SlackWebhookUrl }}', ''))
 
 schedules:
+
 - cron: "0 */6 * * *"
-  displayName: Run automation every 6 hours
+  displayName: Trigger automation regression run every 6 hours
   branches:
     include:
+    - develop
     - azure-pipelines
   always: true  
   
