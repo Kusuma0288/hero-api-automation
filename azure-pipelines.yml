@@ -1,8 +1,7 @@
 parameters:
 - name: SlackWebHookUrl
   type: string
-  default: https://hooks.slack.com/services/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
-  #default: https://hooks.slack.com/services/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
+  default: https://hooks.slack.com/services/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
 
 - name: TestRunTitle
   type: string
@@ -127,11 +126,11 @@ steps:
       
   displayName: 'Post test results to Slack'
   continueOnError: true
-  condition: and(succeededOrFailed(), ne('${{ parameters.SlackWebhookUrl }}', ''))
+  condition: and(succeeded(), ne('${{ parameters.SlackWebhookUrl }}', ''))
 
 schedules:
-- cron: "0 0,6,12,18 * * *"
-  displayName: Build every 6 hours
+- cron: "0 */6 * * *"
+  displayName: Run automation every 6 hours
   branches:
     include:
     - azure-pipelines
