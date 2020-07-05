@@ -23,8 +23,6 @@ parameters:
   - uat
   - test
  
-name: $(Date:yyyy.MM.dd)$(Rev:.rr)
-
 trigger:
  none
       
@@ -63,6 +61,7 @@ steps:
   displayName: 'Install dependencies for Python'    
   continueOnError: true
   condition: always()  
+
 - task: PythonScript@0
   inputs:
     scriptSource: 'filePath'
@@ -100,10 +99,10 @@ steps:
     $testRunId = $mostRecentTestRun.id;
     if ($mostRecentTestRun) {
       $testRunId = $mostRecentTestRun.id;
-      #$testResultDetailsUrl = "$(System.TeamFoundationCollectionUri)$(System.TeamProject)/_testManagement/runs?_a=runCharts&runId=$testRunId"
-      $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/$(Build.BuildNumber)/index.html"
 
+      $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/$(Build.BuildNumber)/index.html"
       $imageURL = "${{ parameters.ClusterUrl }}/$(Build.BuildNumber)/advanced-reports/test.png"
+
       $color = 'good';
        $slackMessage = @{
          attachments = @(
@@ -134,9 +133,10 @@ steps:
 
 schedules:
 - cron: "0 0,6,12,18 * * *"
-  displayName: Build every 6 hours
+  displayName: Trigger automation regression run every 6 hours
   branches:
     include:
+    - develop
     - azure-pipelines
   always: true  
   
