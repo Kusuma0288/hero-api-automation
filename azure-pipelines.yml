@@ -32,12 +32,10 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: DockerCompose@0
-  displayName: 'Run Apigee Automation'
-  inputs:
-    dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
-    dockerComposeCommand: 'run --entrypoint="mvn clean verify test -P${{ parameters.Profile }} -Denv=${{ parameters.RunEnv }} -DsaveRequestResponse=yes" tests'
-  continueOnError: true  
+- script: |
+    mvn install
+    mvn clean verify test -P ${{ parameters.Profile }} -Denv=${{ parameters.RunEnv }} -DsaveRequestResponse=yes 
+  displayName: 'Run maven task'   
 - task: PublishTestResults@2
   displayName: 'Publish Test Results' 
   inputs:
