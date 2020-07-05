@@ -8,6 +8,12 @@ RUN apt-get update && \
     wget \
     openjdk-8-jdk
 
+/# echo "---java version---"
+/# java -version
+
+/# update-alternatives --list java    
+#FROM maven:3.6.0-jdk-11 AS build
+
 WORKDIR /usr/share/wow
 
 COPY ./pom.xml ./pom.xml
@@ -20,5 +26,19 @@ COPY ./src ./src
 # build for release
 RUN mvn package
 
+#
+## Step : Package image
+#FROM openjdk:8-jre-alpine
+#
+#EXPOSE 4567
+#
+## copy over the built artifact from the maven image
+#COPY --from=target /usr/share/wow/target/*.jar ./
+#
+### set the startup command to run your binary
+#CMD ["java", "-jar", "./target/*.jar"]
+#
 ENTRYPOINT [mvn clean test verify]
+
+#ENTRYPOINT ["/bin/sh", "-c", "sh testexecution.sh"]
 #########################################################################################################
