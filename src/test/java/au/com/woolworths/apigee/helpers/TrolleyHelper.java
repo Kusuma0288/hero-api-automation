@@ -11,6 +11,9 @@ import java.util.logging.Logger;
 public class TrolleyHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
   private final static Logger logger = Logger.getLogger("TrolleyHelper.class");
+  private final SearchHelper searchHelper = new SearchHelper();
+  private final List<String> productNames = new ArrayList();
+  private double expectedTotalPrice = 0;
 
   public TrolleyHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
@@ -128,4 +131,49 @@ public class TrolleyHelper extends BaseHelper {
     TrolleyV2Response trolleyV2Response = mapper.readValue(responseStr, TrolleyV2Response.class);
     return trolleyV2Response;
   }
+  public Map<String, Object> addItemsToTrolley(Map<String, Integer> productsToAdd, String mode, String version) throws Throwable {
+
+    HashMap<String, Object> output = new HashMap<String, Object>();
+    for (String product : productsToAdd.keySet()) {
+      ApigeeV3SearchResponse v3SearchResponse = searchHelper.getProductItems(product, mode);
+      sharedData.searchProductResponse = v3SearchResponse;
+
+      List<String> stockCodes = new ArrayList<String>();
+
+      for (int i = 0; i < v3SearchResponse.getProducts().length; i++) {
+        if (v3SearchResponse.getProducts()[i].getIs().isRanged()) {
+          stockCodes.add(v3SearchResponse.getProducts()[i].getArticle().replaceFirst("^0+(?!$)", ""));
+        }
+        if (stockCodes.size() == 1) {
+          break;
+        }
+      }
+
+      // Update the productNames list with the products that have been added so we can verify later
+      String updatedProductName = v3SearchResponse.getProducts()[0].getDescription();
+      productNames.add(updatedProductName);
+
+      // Update the expected price so we can verify later (ensure to use the promo price if it has one)
+      if (v3SearchResponse.getProducts()[0].getPromotions() != null) {
+        // This product has a promo so get the promo price
+        expectedTotalPrice = expectedTotalPrice + (productsToAdd.get(product) * (v3SearchResponse.getProducts()[0].getPromotions().getPrice()));
+      } else {
+        // No promo
+        expectedTotalPrice = expectedTotalPrice + (productsToAdd.get(product) * (v3SearchResponse.getProducts()[0].getInstoreprice().getPricegst()));
+      }
+
+      if (version.equals("V2")) {
+        addStockCodesToTheV2Trolley(stockCodes, productsToAdd.get(product), true);
+      } else {
+        addStockCodesToTheV3Trolley(stockCodes, productsToAdd.get(product), true);
+      }
+
+      // Round up the price before asserting it
+      expectedTotalPrice = Math.round(expectedTotalPrice * 100.0) / 100.0;
+    }
+    output.put("expectedTotalPrice", expectedTotalPrice);
+    output.put("productNames", productNames);
+    return output;
+  }
+
 }

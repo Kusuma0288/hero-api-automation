@@ -6,4 +6,4 @@ target/test-classes/*
 target/test-classes/au/com/woolworths/apigee/model/CheckoutRequest.class
 *.properties
 APIGEEAPI.iml
-
+.DS_Store
