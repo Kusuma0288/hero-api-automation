@@ -1,4 +1,4 @@
-@REGRESSION @DELIVERY @PROD
+@REGRESSION @DELIVERY @PROD @Wolves
 Feature: Verify Apigee Delivery scenarios
 
   Scenario Outline: Verify whether user is able to add a delivery address and the recently added address is set as primary

@@ -1,4 +1,4 @@
-@HOMEPAGE @LOL
+@HOMEPAGE @Lobsters
 Feature: Verify the HomePage components in different Shopping modes for guest/logged-in user
 
   @PROD

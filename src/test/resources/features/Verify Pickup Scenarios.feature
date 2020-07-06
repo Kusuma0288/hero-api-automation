@@ -1,4 +1,4 @@
-@REGRESSION @DELIVERY @PROD
+@REGRESSION @DELIVERY @PROD @Wolves
 Feature: APIGEE : Pickup - Verify Apigee Pickup scenarios
 
   Scenario Outline: Verify whether user is able to search for a  pickup store by postcode

@@ -1,4 +1,4 @@
-@REGRESSION @PRODUCTS @PROD
+@REGRESSION @PRODUCTS @PROD @Lobsters
 Feature: Verify products by aisle and category
 
   Scenario: Verify products by aisle and category in INSTORE mode with type as specials

@@ -1,4 +1,4 @@
-@SPECIALSPAGE @LOL @REGRESSION
+@SPECIALSPAGE @Lobsters @REGRESSION
 Feature: Verify the Specials components in Online mode for logged-in user
 
   Scenario: Verify the "/wow/v2/specials" Specials component and the list of products ("/wow/v2/products") under a Specials Group for logged-in user and in IN-Store mode

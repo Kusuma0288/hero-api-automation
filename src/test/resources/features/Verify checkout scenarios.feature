@@ -1,4 +1,4 @@
-@REGRESSION
+@REGRESSION @Wolves
 Feature: Checkout API scenarios
   Background:
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME6"
