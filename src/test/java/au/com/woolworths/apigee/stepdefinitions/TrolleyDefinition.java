@@ -67,7 +67,7 @@ public class TrolleyDefinition extends TrolleyHelper {
     productsToAdd.put("bread", 1);
     productsToAdd.put("pasta", 2);
 
-//
+
     Map<String, Object> outputMap = addItemsToTrolley(productsToAdd, mode, version);
     expectedTotalPrice = (double) outputMap.get("expectedTotalPrice");
     productNames = (List<String>) outputMap.get("productNames");
