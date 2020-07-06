@@ -1,4 +1,4 @@
-package au.com.woolworths.apigee.model.SearchProducts;
+package au.com.woolworths.apigee.model.CommonModel;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
