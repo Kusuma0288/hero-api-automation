@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 import io.restassured.http.Header;
 
-public class CheckoutHelper {
+public class CheckoutHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
   private final static Logger logger = Logger.getLogger("CheckoutHelper.class");
 
@@ -39,11 +39,6 @@ public class CheckoutHelper {
     headerList.add(deliveryNow);
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerList);
     String responseStr = mapWebserviceResponse.get("response");
-
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
     return mapper.readValue(responseStr, CheckoutResponse.class);
 
   }
@@ -60,11 +55,6 @@ public class CheckoutHelper {
     headerList.add(deliveryNow);
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerList);
     String responseStr = mapWebserviceResponse.get("response");
-
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
     return mapper.readValue(responseStr, CheckoutPaymentSummaryResponse.class);
 
   }
@@ -74,7 +64,6 @@ public class CheckoutHelper {
     String responseStr;
 
     CheckoutRequest checkoutRequest = new CheckoutRequest();
-    CheckoutResponse checkoutResponse;
 
     checkoutRequest.setWindow(windowID);
     checkoutRequest.setDate(windowDate);
@@ -88,16 +77,12 @@ public class CheckoutHelper {
     Header deliveryNow = new Header("x-enable-feature", "DYNAMIC_WINDOWS,DELIVERY_NOW");
     headerList.add(deliveryNow);
 
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
     requestStr = mapper.writeValueAsString(checkoutRequest);
 
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
-    checkoutResponse = mapper.readValue(responseStr, CheckoutResponse.class);
+    CheckoutResponse checkoutResponse = mapper.readValue(responseStr, CheckoutResponse.class);
     return checkoutResponse;
   }
 
@@ -106,7 +91,6 @@ public class CheckoutHelper {
     String responseStr;
 
     CheckoutRequest checkoutRequest = new CheckoutRequest();
-    CheckoutResponse checkoutResponse;
 
     checkoutRequest.setPackaging(packagingID);
 
@@ -119,16 +103,12 @@ public class CheckoutHelper {
     Header deliveryNow = new Header("x-enable-feature", "DYNAMIC_WINDOWS,DELIVERY_NOW");
     headerList.add(deliveryNow);
 
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
     requestStr = mapper.writeValueAsString(checkoutRequest);
 
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
-    checkoutResponse = mapper.readValue(responseStr, CheckoutResponse.class);
+    CheckoutResponse checkoutResponse = mapper.readValue(responseStr, CheckoutResponse.class);
     return checkoutResponse;
 
   }

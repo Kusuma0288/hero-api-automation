@@ -1,6 +1,5 @@
 package au.com.woolworths.apigee.stepdefinitions;
 
-import au.com.woolworths.apigee.context.ApigeeApplicationContext;
 import au.com.woolworths.apigee.helpers.HomepageHelper;
 import au.com.woolworths.apigee.model.Homepage.HomepageComponents;
 import au.com.woolworths.apigee.model.Homepage.HomepageComponentsData;
@@ -12,22 +11,20 @@ import cucumber.api.java.en.When;
 import junit.framework.Assert;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 public class Homepage extends HomepageHelper {
 
   private final static Logger logger = Logger.getLogger("Homepage.class");
-  private ApigeeSharedData sharedData;
-  private ApigeeContainer picoContainer;
-
-  public Homepage(ApigeeContainer container) {
-    this.sharedData = ApigeeApplicationContext.getSharedData();
-    this.picoContainer = container;
-  }
 
   @When("^I make a request to Homepage in IN-STORE mode with store id \"([^\"]*)\" with \"([^\"]*)\" and verify the response for Offer \"([^\"]*)\"$")
   public void verifyHomepageInStoreResponse(String storeId, String EDRStatus, String Offer) throws Throwable {
-    HomepageResponse homepageResponse = iRetrieveHomepageWithInStore(storeId, sharedData.accessToken);
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("store", storeId);
+    HomepageResponse homepageResponse = iRetrieveHomepageWithInStore(queryParams);
+
     //Assert Response is not Null
     Assert.assertNotNull(homepageResponse.getData());
 
@@ -69,7 +66,9 @@ public class Homepage extends HomepageHelper {
 
   @When("^I make a request to Homepage in \"([^\"]*)\" mode with \"([^\"]*)\" and verify the response for Offer \"([^\"]*)\"$")
   public void verifyHomepageOnlinePickupResponse(String shoppingMode, String EDRStatus, String Offer) throws Throwable {
-    HomepageResponse homepageResponse = iRetrieveHomepageWithOnlinePickup(shoppingMode, sharedData.accessToken);
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("mode", shoppingMode);
+    HomepageResponse homepageResponse = iRetrieveHomepageWithInStore(queryParams);
     //Assert Response is not Null
     Assert.assertNotNull(homepageResponse.getData());
 
@@ -123,7 +122,7 @@ public class Homepage extends HomepageHelper {
 
   @When("^I navigate to PromoTile from Homepage in \"([^\"]*)\" mode$")
   public void navigateToPromoTile(String mode) throws Throwable {
-    ProductGroupResponse productGroupResponse = iRetrieveProductGroup(mode, sharedData.promoTileDataPath, sharedData.accessToken);
+    ProductGroupResponse productGroupResponse = iRetrieveProductGroup(mode, sharedData.promoTileDataPath);
 
     ProductGroupComponents product = Arrays.stream(productGroupResponse.getData().getItems())
         .filter(item -> item.getData().getIsAvailable().equals("true")).findFirst().get();
@@ -140,7 +139,7 @@ public class Homepage extends HomepageHelper {
 
   @When("^I verify the stockcode is set to \"([^\"]*)\" when I make a request to PromoTile$")
   public void verifyProductQuantityOfPromoTile(String quantity) throws Throwable {
-    ProductGroupResponse productGroupResponse = iRetrieveProductGroup(sharedData.mode, sharedData.promoTileDataPath, sharedData.accessToken);
+    ProductGroupResponse productGroupResponse = iRetrieveProductGroup(sharedData.mode, sharedData.promoTileDataPath);
 
     //Assert ProductGroup returns at least 1 product
     Assert.assertNotNull("Product Group has at least 1 item", productGroupResponse.getData().getItems()[0]);
@@ -158,7 +157,7 @@ public class Homepage extends HomepageHelper {
 
   @When("^I verify the stockcode is not added to trolley when I make a request to PromoTile$")
   public void navigateToPromoTile() throws Throwable {
-    ProductGroupResponse productGroupResponse = iRetrieveProductGroup(sharedData.mode, sharedData.promoTileDataPath, sharedData.accessToken);
+    ProductGroupResponse productGroupResponse = iRetrieveProductGroup(sharedData.mode, sharedData.promoTileDataPath);
 
     //Assert ProductGroup returns at least 1 product
     Assert.assertNotNull("Product Group has at least 1 item", productGroupResponse.getData().getItems()[0]);
@@ -175,7 +174,9 @@ public class Homepage extends HomepageHelper {
 
   @When("^I make a request to Homepage in \"([^\"]*)\" mode with \"([^\"]*)\" and verify the response with PromoCard$")
   public void verifyHomepageOnlinePickupResponseWithPromoCard(String shoppingMode, String EDRStatus) throws Throwable {
-    HomepageResponse homepageResponse = iRetrieveHomepageWithOnlinePickup(shoppingMode, sharedData.accessToken);
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("mode", shoppingMode);
+    HomepageResponse homepageResponse = iRetrieveHomepageWithInStore(queryParams);
     //Assert Response is not Null
     Assert.assertNotNull(homepageResponse.getData());
 
@@ -215,7 +216,9 @@ public class Homepage extends HomepageHelper {
 
   @When("^I verify the stockcode is set to \"([^\"]*)\" when I make a request to Homepage$")
   public void verifyHomepageResponseWithProductAdded(String quantity) throws Throwable {
-    HomepageResponse homepageResponse = iRetrieveHomepageWithOnlinePickup(sharedData.mode, sharedData.accessToken);
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("mode", sharedData.mode);
+    HomepageResponse homepageResponse = iRetrieveHomepageWithInStore(queryParams);
 
     //Assert Response is not Null
     Assert.assertNotNull(homepageResponse.getData());
@@ -234,7 +237,9 @@ public class Homepage extends HomepageHelper {
 
   @When("^I verify the stockcode is not added to trolley when I make a request to Homepage$")
   public void verifyHomepageResponseWithProductNotAdded() throws Throwable {
-    HomepageResponse homepageResponse = iRetrieveHomepageWithOnlinePickup(sharedData.mode, sharedData.accessToken);
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("mode", sharedData.mode);
+    HomepageResponse homepageResponse = iRetrieveHomepageWithInStore(queryParams);
 
     //Assert Response is not Null
     Assert.assertNotNull(homepageResponse.getData());

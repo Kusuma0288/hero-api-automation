@@ -4,10 +4,6 @@ import au.com.woolworths.Utils.RestInvocationUtil;
 import au.com.woolworths.Utils.URLResources;
 import au.com.woolworths.apigee.model.*;
 import au.com.woolworths.apigee.stepdefinitions.ServiceHooks;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +18,7 @@ public class ApigeeAddressHelper extends BaseHelper {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 
-  public ApigeeSearchAddresses iSearchForTheAddress(String lookupAddress, String accessToken) throws Throwable {
+  public ApigeeSearchAddresses iSearchForTheAddress(String lookupAddress) throws Throwable {
 
     String endPoint = URLResources.APIGEE_V2_SEARCH_ADDRESS;
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -31,25 +27,15 @@ public class ApigeeAddressHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
-
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
     ApigeeSearchAddresses searchAddressResponse = mapper.readValue(responseStr, ApigeeSearchAddresses.class);
     return searchAddressResponse;
   }
 
-  public ApigeeAddressDetails iGetTheAddressIdFromAmasId(String amasId, String accessToken) throws Throwable {
+  public ApigeeAddressDetails iGetTheAddressIdFromAmasId(String amasId) throws Throwable {
 
     ApigeeAddressRequest addressRequest = new ApigeeAddressRequest();
     String endPoint = URLResources.APIGEE_V2_ADDRESS;
     addressRequest.setAmasId(amasId);
-
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 
     String addressRequestStr = mapper.writeValueAsString(addressRequest);
 
@@ -63,7 +49,7 @@ public class ApigeeAddressHelper extends BaseHelper {
     return addressDetailResponse;
   }
 
-  public ApigeeListAddresses iGetTheListAddresses(String accessToken) throws Throwable {
+  public ApigeeListAddresses iGetTheListAddresses() throws Throwable {
 
     String endPoint = URLResources.APIGEE_V2_LIST_ADDRESSES;
 
@@ -71,112 +57,36 @@ public class ApigeeAddressHelper extends BaseHelper {
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
     ApigeeListAddresses myAddressResponse = mapper.readValue(responseStr, ApigeeListAddresses.class);
     return myAddressResponse;
 
   }
 
-  public ApigeeV2AddressStores iSearchForThePostCode(String postCode, String accessToken) throws Throwable {
+  public ApigeeV2AddressStores getStore(Map<String, String> queryParams) throws Throwable {
     String endPoint = URLResources.APIGEE_V2_SEARCH_ADDRESS_POSTCODE;
-    Map<String, String> queryParams = new HashMap<String, String>();
-    queryParams.put("postcode", postCode);
-
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
     ApigeeV2AddressStores searchPostCodeResponse = mapper.readValue(responseStr, ApigeeV2AddressStores.class);
     return searchPostCodeResponse;
 
   }
 
-  public ApigeeV2AddressStores getStoresByAddressID(String storeAddressID, String accessToken) throws Throwable {
+  public AddressesV2ErrorResponse getStoresForInvalidParams(String type, String param) throws Throwable {
     String endPoint = URLResources.APIGEE_V2_SEARCH_ADDRESS_POSTCODE;
     Map<String, String> queryParams = new HashMap<String, String>();
-    queryParams.put("storeAddressId", storeAddressID);
-    ApigeeV2AddressStores storeLocatorResponse;
+    queryParams.put(type, param);
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    storeLocatorResponse = mapper.readValue(responseStr, ApigeeV2AddressStores.class);
-    return storeLocatorResponse;
-  }
-
-  public ApigeeV2AddressStores getStoresByStoreID(String storeID, String accessToken) throws Throwable {
-    String endPoint = URLResources.APIGEE_V2_SEARCH_ADDRESS_POSTCODE;
-    Map<String, String> queryParams = new HashMap<String, String>();
-    queryParams.put("storeid", storeID);
-    ApigeeV2AddressStores storeLocatorResponse;
-
-    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
-    String responseStr = mapWebserviceResponse.get("response");
-
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    storeLocatorResponse = mapper.readValue(responseStr, ApigeeV2AddressStores.class);
-    return storeLocatorResponse;
-
-  }
-
-  public ApigeeV2AddressStores getStoresForLatLong(String latitude, String longitude, String accessToken) throws Throwable {
-    String endPoint = URLResources.APIGEE_V2_SEARCH_ADDRESS_POSTCODE;
-    Map<String, String> queryParams = new HashMap<String, String>();
-    queryParams.put("latitude", latitude);
-    queryParams.put("longitude", longitude);
-    ApigeeV2AddressStores storeLocatorResponse;
-
-    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
-    String responseStr = mapWebserviceResponse.get("response");
-
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    storeLocatorResponse = mapper.readValue(responseStr, ApigeeV2AddressStores.class);
-    return storeLocatorResponse;
-  }
-
-  public AddressesV2ErrorResponse getStoresForInvalidParams(String param, String type, String accessToken) throws Throwable {
-    String endPoint = URLResources.APIGEE_V2_SEARCH_ADDRESS_POSTCODE;
-    Map<String, String> queryParams = new HashMap<String, String>();
-    if (type.equals("storeid")) {
-      queryParams.put("storeid", param);
-    } else {
-      queryParams.put("storeAddressId", param);
-    }
-    AddressesV2ErrorResponse v2ErrorResponse;
-
-    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
-    String responseStr = mapWebserviceResponse.get("response");
-
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    v2ErrorResponse = mapper.readValue(responseStr, AddressesV2ErrorResponse.class);
+    AddressesV2ErrorResponse v2ErrorResponse = mapper.readValue(responseStr, AddressesV2ErrorResponse.class);
     return v2ErrorResponse;
   }
 
-  public FulFilmentResponse setTheFulfilmentForTheStore(String storeAddressId, String accessToken) throws Throwable {
+  public FulFilmentResponse setTheFulfilmentForTheStore(String storeAddressId) throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
@@ -186,10 +96,7 @@ public class ApigeeAddressHelper extends BaseHelper {
     storeAddressRequest.setStoreAddressId(storeAddressId);
 
     String endPoint = URLResources.APIGEE_V3_FULFILMENT;
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+
     requestStr = mapper.writeValueAsString(storeAddressRequest);
 
     // invoke the service with the framed request
@@ -201,20 +108,17 @@ public class ApigeeAddressHelper extends BaseHelper {
 
   }
 
-  public DeliveryFulfilmentV3Response setTheFulfilmentForAddress(String address, String accessToken) throws Throwable {
+  public DeliveryFulfilmentV3Response setTheFulfilmentForAddress() throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
     String responseStr = null;
 
     DeliveryAddressRequest deliveryAddressRequest = new DeliveryAddressRequest();
-    deliveryAddressRequest.setAddress(address);
+    deliveryAddressRequest.setAddress(sharedData.addressId);
 
     String endPoint = URLResources.APIGEE_V3_FULFILMENT;
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+
     requestStr = mapper.writeValueAsString(deliveryAddressRequest);
 
     // invoke the service with the framed request
@@ -226,7 +130,7 @@ public class ApigeeAddressHelper extends BaseHelper {
 
   }
 
-  public Fulfilmentv3ErrorResponse setTheFulfilmentForAddressErrorScenario(String address, String accessToken) throws Throwable {
+  public Fulfilmentv3ErrorResponse setTheFulfilmentForAddressErrorScenario(String address) throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
@@ -236,10 +140,7 @@ public class ApigeeAddressHelper extends BaseHelper {
     deliveryAddressRequest.setAddress(address);
 
     String endPoint = URLResources.APIGEE_V3_FULFILMENT;
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+
     requestStr = mapper.writeValueAsString(deliveryAddressRequest);
 
     // invoke the service with the framed request
@@ -251,20 +152,14 @@ public class ApigeeAddressHelper extends BaseHelper {
 
   }
 
-  public DeliveryFulfilmentV3Response getTheFulfilmentAddress(String accessToken) throws Throwable {
+  public DeliveryFulfilmentV3Response getTheFulfilmentAddress() throws Throwable {
     String responseStr = null;
 
     String endPoint = URLResources.APIGEE_V3_FULFILMENT;
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     Map<String, String> queryParams = new HashMap<String, String>();
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
-
 
     DeliveryFulfilmentV3Response deliveryFulfilmentV3Response = mapper.readValue(responseStr, DeliveryFulfilmentV3Response.class);
 

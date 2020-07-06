@@ -2,7 +2,6 @@ package au.com.woolworths.apigee.stepdefinitions;
 
 import au.com.woolworths.Utils.TestProperties;
 import au.com.woolworths.Utils.Utilities;
-import au.com.woolworths.apigee.context.ApigeeApplicationContext;
 import au.com.woolworths.apigee.helpers.ApigeeShopperHelper;
 import au.com.woolworths.apigee.model.ApigeeLoginReponse;
 import cucumber.api.java.en.Given;
@@ -15,13 +14,7 @@ import java.util.logging.Logger;
 public class ApigeeShopperDefinition extends ApigeeShopperHelper {
 
   private final static Logger logger = Logger.getLogger("ApigeeGuestDefinition.class");
-  private ApigeeSharedData sharedData;
-  private ApigeeContainer picoContainer;
 
-  public ApigeeShopperDefinition(ApigeeContainer container) {
-    this.sharedData = ApigeeApplicationContext.getSharedData();
-    this.picoContainer = container;
-  }
 
   @When("^user continue to connect to apigee with default login and password$")
   public void userContinueToConnectToApigeeWithDefaultLoginAndPassword() throws Throwable {

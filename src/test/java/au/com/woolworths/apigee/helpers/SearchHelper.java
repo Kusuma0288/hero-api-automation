@@ -21,10 +21,9 @@ public class SearchHelper extends BaseHelper {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 
-  public ApigeeV3SearchResponse getProductItems(String searchProduct, String mode, String authToken) throws Throwable {
+  public ApigeeV3SearchResponse getProductItems(String searchProduct, String mode) throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
-    String requestStr = null;
     String responseStr = null;
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("q", searchProduct);
@@ -33,11 +32,6 @@ public class SearchHelper extends BaseHelper {
 
     ApigeeV3SearchResponse response;
     String endPoint = URLResources.APIGEE_V3_SEARCH;
-
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
