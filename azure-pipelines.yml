@@ -132,8 +132,8 @@ steps:
 
 schedules:
 
-  - cron: "0 6,10,14 * * *"
-    displayName: Trigger automation regression run every 4 hours starting at 6:00
+  - cron: "0 9,15,21 * * *"
+    displayName: Trigger automation regression run every 6 hours
     branches:
       include:
         - develop
