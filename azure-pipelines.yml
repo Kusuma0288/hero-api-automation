@@ -132,7 +132,7 @@ steps:
 
 schedules:
  - cron: "0 0-20/5 * * *"
-   displayName: Trigger apigee automation regression run every 5 hours
+   displayName: Trigger automation regression run every 5 hours
    branches:
     include:
       - develop
