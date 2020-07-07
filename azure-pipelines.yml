@@ -131,9 +131,8 @@ steps:
     condition: and(succeeded(), ne('${{ parameters.SlackWebhookUrl }}', ''))
 
 schedules:
-
-  - cron: "0 9,15,21 * * *"
-    displayName: Trigger automation regression run every 6 hours
+  - cron: "0 9,12,15 * * *"
+    displayName: Trigger automation regression run every 3 hours
     branches:
       include:
         - develop
