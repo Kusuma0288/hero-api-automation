@@ -1,23 +1,24 @@
-@REGRESSION @TROLLEY @LION @SMOKE
+@REGRESSION @TROLLEY @SMOKE
 Feature: Verify Apigee Trolley functions
-
   Background:
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME7"
     When connection from user to apigee endpoint happens
 
-  @PROD
+  @PROD @LION
   Scenario: Searching the product and adding to V3 trolley
     Given I set a pick up store using post code 2204
     And I clear the trolley
     When I search for the product Milk in pickup mode and store response
     And I add the 2 available products with 1 each from the store to the V3 trolley
 
+  @LION
   Scenario: Searching the product and adding to V2 trolley
     Given I set a pick up store using post code 2204
     And I clear the trolley
     When I search for the product Milk in pickup mode and store response
     And I add the 2 available products with 1 each from the store to the V2 trolley
 
+  @LION
   Scenario Outline: Add multiple products to the trolley and then verify the trolley is as expected
     Given I set a pick up store using post code 2204
     And I clear the trolley
@@ -29,6 +30,7 @@ Feature: Verify Apigee Trolley functions
       | V2      |
       | V3      |
 
+  @Lobsters
   Scenario: Deleting products from V3 trolley
     Given I set a pick up store using post code 2204
     And I clear the trolley
@@ -38,6 +40,7 @@ Feature: Verify Apigee Trolley functions
     And I add the 2 available products with 1 each from the store to the V3 trolley
     Then I remove 5 product from V3 trolley and verify it is deleted
 
+  @Lobsters
   Scenario: Deleting products from V2 trolley
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME7"
     When connection from user to apigee endpoint happens
@@ -48,6 +51,7 @@ Feature: Verify Apigee Trolley functions
     And I add the 3 available products with 1 each from the store to the V2 trolley
     Then I remove 5 product from V2 trolley and verify it is deleted
 
+  @Lobsters
   Scenario Outline: Update product quantities in "<Version>" trolley.
     Given I set a pick up store using post code <Post Code>
     And I clear the trolley

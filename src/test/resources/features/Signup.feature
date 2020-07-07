@@ -1,4 +1,4 @@
-@SIGNUPPAGE @LOL @REGRESSION
+@SIGNUPPAGE @LION @REGRESSION
 Feature: Verify that Customer is able to sign-up
 
 

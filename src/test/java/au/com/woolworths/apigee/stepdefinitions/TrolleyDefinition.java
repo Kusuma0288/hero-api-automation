@@ -21,6 +21,7 @@ public class TrolleyDefinition extends TrolleyHelper {
   private List<String> productNames = new ArrayList();
 
 
+
   @When("^I add the (.*) available products with (.*) each from the store to the V3 trolley$")
   public void iAddTheAvailableProductsFromTheStoreToTheV3Trolley(int availableProducts, int quantity) throws Throwable {
     ApigeeV3SearchResponse searchResponse = sharedData.searchProductResponse;
@@ -37,6 +38,7 @@ public class TrolleyDefinition extends TrolleyHelper {
     TrolleyV3Response trolleyResponse = addStockCodesToTheV3Trolley(stockCodes, quantity, true);
     Assert.assertTrue("Error in Order adding to the trolley", trolleyResponse.getResults().getOrder().getHttpStatusCode() == 200);
     Assert.assertTrue("Error in Trolley Results", trolleyResponse.getResults().getTrolley().getHttpStatusCode() == 200);
+
   }
 
   @When("^I add the (.*) available products with (.*) each from the store to the V2 trolley$")
@@ -54,6 +56,7 @@ public class TrolleyDefinition extends TrolleyHelper {
     Assert.assertTrue("There are no products available in Store", stockCodes.size() != 0);
     TrolleyV2Response trolleyResponse = addStockCodesToTheV2Trolley(stockCodes, quantity, true);
     Assert.assertTrue("Products is not added as expected:" + availableProducts, trolleyResponse.getTotalproducts() == availableProducts);
+
   }
 
   @When("^I add some items to the (.*) trolley for (.*)$")
@@ -64,43 +67,10 @@ public class TrolleyDefinition extends TrolleyHelper {
     productsToAdd.put("bread", 1);
     productsToAdd.put("pasta", 2);
 
-    for (String product : productsToAdd.keySet()) {
-      ApigeeV3SearchResponse v3SearchResponse = searchHelper.getProductItems(product, mode);
-      sharedData.searchProductResponse = v3SearchResponse;
 
-      List<String> stockCodes = new ArrayList<String>();
-
-      for (int i = 0; i < v3SearchResponse.getProducts().length; i++) {
-        if (v3SearchResponse.getProducts()[i].getIs().isRanged()) {
-          stockCodes.add(v3SearchResponse.getProducts()[i].getArticle().replaceFirst("^0+(?!$)", ""));
-        }
-        if (stockCodes.size() == 1) {
-          break;
-        }
-      }
-
-      // Update the productNames list with the products that have been added so we can verify later
-      String updatedProductName = v3SearchResponse.getProducts()[0].getDescription();
-      productNames.add(updatedProductName);
-
-      // Update the expected price so we can verify later (ensure to use the promo price if it has one)
-      if (v3SearchResponse.getProducts()[0].getPromotions() != null) {
-      // This product has a promo so get the promo price
-        expectedTotalPrice = expectedTotalPrice + (productsToAdd.get(product) * (v3SearchResponse.getProducts()[0].getPromotions().getPrice()));
-      } else {
-         // No promo
-        expectedTotalPrice = expectedTotalPrice + (productsToAdd.get(product) * (v3SearchResponse.getProducts()[0].getInstoreprice().getPricegst()));
-      }
-
-      if (version.equals("V2")) {
-        addStockCodesToTheV2Trolley(stockCodes, productsToAdd.get(product), true);
-      } else {
-        addStockCodesToTheV3Trolley(stockCodes, productsToAdd.get(product), true);
-      }
-
-      // Round up the price before asserting it
-      expectedTotalPrice = Math.round(expectedTotalPrice * 100.0) / 100.0;
-    }
+    Map<String, Object> outputMap = addItemsToTrolley(productsToAdd, mode, version);
+    expectedTotalPrice = (double) outputMap.get("expectedTotalPrice");
+    productNames = (List<String>) outputMap.get("productNames");
   }
 
   @And("^I clear the trolley$")
@@ -116,7 +86,7 @@ public class TrolleyDefinition extends TrolleyHelper {
 
     //Assert if product has been added
     Assert.assertTrue("Products is not added as expected and trolley product count:" + trolleyResponse.getTotalproducts()
-                , trolleyResponse.getTotalproducts() > 0);
+            , trolleyResponse.getTotalproducts() > 0);
   }
 
   @Then("^I remove (.*) product from V3 trolley and verify it is deleted$")
@@ -126,9 +96,9 @@ public class TrolleyDefinition extends TrolleyHelper {
     int prodCountBefore = trolleyResponse.getTrolley().getTotalProducts(); //Check if the trolley is null
     Assert.assertTrue("Trolley is null. There are no products in Trolley for Deletion", prodCountBefore != 0);
     /*
-    * Go through the list of items to be deleted. Ignores the number, if the provided count of items to be deleted is more than available items.
-    *  for e.g.  if available items is 5 and user has provided 6 for deletion. It will ignore 6th item and will delete only 5 items.
-    */
+     * Go through the list of items to be deleted. Ignores the number, if the provided count of items to be deleted is more than available items.
+     *  for e.g.  if available items is 5 and user has provided 6 for deletion. It will ignore 6th item and will delete only 5 items.
+     */
     for (int i = 0; i < itemsToBeDeleted && i < trolleyResponse.getTrolley().getTotalProducts(); i++) {
       trolleyResponse = retriveV3Trolley(); //Get the latest items from trolley.
       prodCountBefore = trolleyResponse.getTrolley().getTotalProducts();
@@ -140,9 +110,11 @@ public class TrolleyDefinition extends TrolleyHelper {
         Assert.assertTrue("StockCode " + stockCode + " not deleted from trolley. Error in deletion", !trolleyResponse.getTrolley().getItems().get(j).getArticle().equals(stockCode));
 
       }
-        //Verify item count after  deletion
+      //Verify item count after  deletion
       Assert.assertTrue("Error in item deletion", prodCountAfter == (prodCountBefore - 1));
+
     }
+
   }
 
   @Then("^I remove (.*) product from V2 trolley and verify it is deleted$")
@@ -152,9 +124,9 @@ public class TrolleyDefinition extends TrolleyHelper {
     int prodCountBefore = trolleyResponse.getTotalproducts(); //Check if the trolley is null
     Assert.assertTrue("Trolley is null. There are no products in Trolley for Deletion", prodCountBefore != 0);
     /*
-    *  Go through the list of items to be deleted. Ignores the number, if the provided count of items to be deleted is more than available items.
-    *	for e.g.  if available items is 5 and user has provided 6 for deletion. It will ignore 6th item and will delete only 5 items.
-    */
+     *  Go through the list of items to be deleted. Ignores the number, if the provided count of items to be deleted is more than available items.
+     *	for e.g.  if available items is 5 and user has provided 6 for deletion. It will ignore 6th item and will delete only 5 items.
+     */
     for (int i = 0; i < itemsToBeDeleted && i < trolleyResponse.getTotalproducts(); i++) {
       trolleyResponse = retriveV2Trolley(); //Get the latest items from trolley.
       prodCountBefore = trolleyResponse.getTotalproducts();
@@ -217,6 +189,7 @@ public class TrolleyDefinition extends TrolleyHelper {
       ApigeeV3SearchResponse searchResponse = sharedData.searchProductResponse;
       List<String> stockCodes = new ArrayList<String>();
       for (int i = 0; i < searchResponse.getProducts().length; i++) {
+
         if (searchResponse.getProducts()[i].getIs().isRanged()) {
           stockCodes.add(searchResponse.getProducts()[i].getArticle().replaceFirst("^0+(?!$)", ""));
         }
