@@ -1,7 +1,12 @@
 package au.com.woolworths.apigee.stepdefinitions;
 
 import au.com.woolworths.apigee.helpers.HomepageHelper;
-import au.com.woolworths.apigee.model.*;
+import au.com.woolworths.apigee.model.Homepage.HomepageComponents;
+import au.com.woolworths.apigee.model.Homepage.HomepageComponentsData;
+import au.com.woolworths.apigee.model.Homepage.HomepageResponse;
+import au.com.woolworths.apigee.model.ProductGroups.ProductGroupComponents;
+import au.com.woolworths.apigee.model.ProductGroups.ProductGroupResponse;
+import au.com.woolworths.apigee.model.ProductGroups.ProductGroupTrolleyData;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
 

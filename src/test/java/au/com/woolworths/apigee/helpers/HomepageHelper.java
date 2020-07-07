@@ -2,8 +2,8 @@ package au.com.woolworths.apigee.helpers;
 
 import au.com.woolworths.Utils.RestInvocationUtil;
 import au.com.woolworths.Utils.URLResources;
-import au.com.woolworths.apigee.model.HomepageResponse;
-import au.com.woolworths.apigee.model.ProductGroupResponse;
+import au.com.woolworths.apigee.model.Homepage.HomepageResponse;
+import au.com.woolworths.apigee.model.ProductGroups.ProductGroupResponse;
 import au.com.woolworths.apigee.stepdefinitions.ServiceHooks;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;

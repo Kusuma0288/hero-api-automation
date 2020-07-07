@@ -2,8 +2,8 @@ package au.com.woolworths.apigee.helpers;
 
 import au.com.woolworths.Utils.RestInvocationUtil;
 import au.com.woolworths.Utils.URLResources;
-import au.com.woolworths.apigee.model.ApigeeProductCategoriesSpecial;
-import au.com.woolworths.apigee.model.ApigeeProductsSpecial;
+import au.com.woolworths.apigee.model.Products.ApigeeProductCategoriesSpecial;
+import au.com.woolworths.apigee.model.Products.ApigeeProductsSpecial;
 import au.com.woolworths.apigee.stepdefinitions.ServiceHooks;
 
 import java.util.HashMap;
