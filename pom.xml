@@ -174,9 +174,6 @@
                     <execution>
                         <id>execution</id>
                         <phase>verify</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
                         <configuration>
                             <projectName>APIGEE API Testing</projectName>
                             <inputDirectory>target/cucumber-reports/advanced-reports</inputDirectory>

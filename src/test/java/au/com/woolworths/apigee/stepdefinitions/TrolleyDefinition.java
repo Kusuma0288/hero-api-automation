@@ -86,7 +86,7 @@ public class TrolleyDefinition extends TrolleyHelper {
 
     //Assert if product has been added
     Assert.assertTrue("Products is not added as expected and trolley product count:" + trolleyResponse.getTotalproducts()
-        , trolleyResponse.getTotalproducts() > 0);
+            , trolleyResponse.getTotalproducts() > 0);
   }
 
   @Then("^I remove (.*) product from V3 trolley and verify it is deleted$")
@@ -181,7 +181,7 @@ public class TrolleyDefinition extends TrolleyHelper {
       Assert.assertTrue("Product description is not correct (Expected - " + productName + ", but got - " + description, productName.equals(description));
     }
   }
-  
+
   @When("^I store (.*) products with quantity (.*) to the V(.*) trolley\\.$")
   public void iStoreProductsWithQuantityToTheVTrolley(int productQty, int quantity, String version) throws Throwable {
 
@@ -242,7 +242,7 @@ public class TrolleyDefinition extends TrolleyHelper {
       for (int i = 0; i < trolleyResponse.getTrolley().getTotalProducts(); i++) {
         stockCodes.add(trolleyResponse.getTrolley().getItems().get(0).getArticle());
       }
-          //Update the items in trolley with new quantity.
+      //Update the items in trolley with new quantity.
       trolleyResponse = addStockCodesToTheV3Trolley(stockCodes, quantity, true);
     } else {
 
@@ -252,7 +252,7 @@ public class TrolleyDefinition extends TrolleyHelper {
       for (int i = 0; i < trolleyResponse.getTotalproducts(); i++) {
         stockCodes.add(trolleyResponse.getItems().get(i).getArticle());
       }
-    //Update the items in trolley with new quantity.
+      //Update the items in trolley with new quantity.
       trolleyResponse = addStockCodesToTheV2Trolley(stockCodes, quantity, true);
     }
   }
@@ -271,7 +271,7 @@ public class TrolleyDefinition extends TrolleyHelper {
     } else {
 
       TrolleyV2Response trolleyResponse = retriveV2Trolley();
-      Assert.assertTrue("There are no products in Trolley:", trolleyResponse.getTotalproducts() > 0);	
+      Assert.assertTrue("There are no products in Trolley:", trolleyResponse.getTotalproducts() > 0);
 
       for (int i = 0; i < trolleyResponse.getTotalproducts(); i++) {
         Assert.assertTrue("Items not updated with correct quantity:", trolleyResponse.getItems().get(i).getItemquantityintrolley() == quantity);

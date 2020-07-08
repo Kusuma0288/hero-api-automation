@@ -1,8 +1,8 @@
 @REGRESSION @TROLLEY @SMOKE
 Feature: Verify Apigee Trolley functions
-Background:
-  Given user continue to connect to apigee with login username as "SHOPPER_USERNAME7"
-  When connection from user to apigee endpoint happens
+  Background:
+    Given user continue to connect to apigee with login username as "SHOPPER_USERNAME7"
+    When connection from user to apigee endpoint happens
 
   @PROD @LION
   Scenario: Searching the product and adding to V3 trolley
@@ -52,20 +52,19 @@ Background:
     Then I remove 5 product from V2 trolley and verify it is deleted
 
   @Lobsters
- Scenario Outline: Update product quantities in "<Version>" trolley.
+  Scenario Outline: Update product quantities in "<Version>" trolley.
     Given I set a pick up store using post code <Post Code>
     And I clear the trolley
-    And I search for the product <Product> in <Fulfillment> mode and store response 
+    And I search for the product <Product> in <Fulfillment> mode and store response
     And I store <ProdQty> products with quantity <Quantity> to the <Version> trolley.
     Then I am able to successfully view <ProdQty> items in my <Version> trolley
     And I update the quantity for every item in <Version> cart to new value <New Quantity>
-	Then I verify that every item in <Version> cart is updated with correct quantity <New Quantity>
-	And I update the quantity for every item in <Version> cart to new value <Quantity>
-	Then I verify that every item in <Version> cart is updated with correct quantity <Quantity>	
-    
+    Then I verify that every item in <Version> cart is updated with correct quantity <New Quantity>
+    And I update the quantity for every item in <Version> cart to new value <Quantity>
+    Then I verify that every item in <Version> cart is updated with correct quantity <Quantity>
+
     Examples:
       | Quantity | Fulfillment | Version | Post Code | Product | New Quantity | ProdQty |
       | 1        | Pickup      | V2      | 2204      | Milk    | 3            | 2       |
       | 1        | Pickup      | V3      | 2204      | Milk    | 3            | 2       |
- 
-  
+

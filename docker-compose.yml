@@ -1,0 +1,10 @@
+#Container for apigee automation tests
+version: "3.7"
+
+services:
+  tests:
+    image: wowtestautomation/wowonline:v6
+    working_dir: /usr/share/wow
+    volumes:
+      - ./:/usr/share/wow
+
