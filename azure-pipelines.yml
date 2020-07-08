@@ -132,7 +132,7 @@ steps:
 
 schedules:
 - cron: "10 23 * * *"
-  displayName: Trigger automation regression run at 8AM
+  displayName: Trigger automation regression run at 9:10AM
   branches:
     include:
       - develop
@@ -140,7 +140,7 @@ schedules:
   always: true
 
 - cron: "10 04 * * *"
-  displayName: Trigger automation regression run at 1PM
+  displayName: Trigger automation regression run at 2:10PM
   branches:
     include:
       - develop
