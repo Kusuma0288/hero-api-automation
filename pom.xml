@@ -101,7 +101,7 @@
                     <configuration>
                         <!-- Mandatory -->
                         <!-- comma separated list of package names to scan for glue code -->
-                        <glue>au.com.woolworths.apigee.stepdefinitions</glue>
+                        <glue>au.com.woolworths.stepdefinitions</glue>
                         <outputDirectory>${project.build.directory}/generated-test-sources/cucumber</outputDirectory>
                         <!-- The directory, which must be in the root of the runtime classpath, containing your feature files.  -->
                         <featuresDirectory>src/test/resources/features/</featuresDirectory>
