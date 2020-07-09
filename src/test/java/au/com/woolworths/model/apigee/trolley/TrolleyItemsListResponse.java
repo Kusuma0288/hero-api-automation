@@ -1,7 +1,7 @@
-package au.com.woolworths.apigee.model.Trolley;
+package au.com.woolworths.model.apigee.trolley;
 
-import au.com.woolworths.apigee.model.Products.InStorePrice;
-import au.com.woolworths.apigee.model.CommonModel.Promotions;
+import au.com.woolworths.model.apigee.products.InStorePrice;
+import au.com.woolworths.model.common.Promotions;
 import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -38,5 +38,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
   private Object supplementaryinfo;
   private String updated;
   private Object disclaimer;
+  private String loyaltypoints;
 
 }
