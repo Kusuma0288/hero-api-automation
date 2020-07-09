@@ -3,11 +3,9 @@ package au.com.woolworths.apigee.model.Trolley;
 import au.com.woolworths.apigee.model.Products.InStorePrice;
 import au.com.woolworths.apigee.model.CommonModel.Promotions;
 import lombok.Data;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties(ignoreUnknown = true)
 @Data public class TrolleyItemsListResponse {
   private String name;
   private String article;
@@ -39,5 +37,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
   private Object supplementaryinfo;
   private String updated;
   private Object disclaimer;
+  private String loyaltypoints;
 
 }
