@@ -13,7 +13,7 @@ Feature: v3 Fulfilment API scenarios
     Then I make a GET request to fulfilment api and verify the fulfilment address
     Examples:
       | lookupAddress  | Username          |
-      | Darcy Road     | SHOPPER_USERNAME8 |
+      | Darcy Road     | SHOPPER_USERNAME6 |
 
 
   Scenario Outline:  To verify the fulfilment api response with invalid access token
