@@ -1,151 +1,48 @@
-parameters:
-  - name: SlackWebHookUrl
-    type: string
-    default: https://hooks.slack.com/services/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
-
-  - name: TestRunTitle
-    type: string
-    default: Apigee Automation Run Report
-
-  - name: Profile
-    type: string
-    default: regression
-
-  - name: ClusterUrl
-    type: string
-    default: https://wowuatmobileautoreports.z8.web.core.windows.net
-
-  - name: RunEnv
-    type: string
-    default: uat
-    values:
-      - uat
-      - test
-
 trigger:
   none
 
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-  - task: DockerCompose@0
-    displayName: 'Run Apigee Automation'
-    inputs:
-      dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
-      dockerComposeCommand: 'run --entrypoint="mvn clean verify test -P${{ parameters.Profile }} -Denv=${{ parameters.RunEnv }} -DsaveRequestResponse=yes" tests'
-    continueOnError: true
+jobs:
+  - job: Test
+    displayName: Test Automation Run
+    steps:
+      - template: pipelines/templates/base-template.yml
+        parameters:
+          TestRunTitle: Apigee Automation Run Report
+          SlackWebhookUrl: https://hooks.slack.com/services/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
+          ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
+          RunEnv: test
 
-  - task: PublishTestResults@2
-    displayName: 'Publish Test Results'
-    inputs:
-      testResultsFormat: 'JUnit'
-      testResultsFiles: '**/junitreports/TEST-*.xml'
-      searchFolder: '$(Build.SourcesDirectory)'
-      mergeTestResults: true
-    continueOnError: true
-    condition: always()
+  - job: Uat
+    displayName: Uat Automation Run
+    steps:
+      - script: |
+          echo "Setting up delay for the next job"
+          sleep 10m
+      - template: pipelines/templates/base-template.yml
+        parameters:
+          TestRunTitle: Apigee Automation Run Report
+          SlackWebhookUrl: https://hooks.slack.com/services/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
+          ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
+          RunEnv: uat
 
-  - script: |
-      echo "--Giving permissions to update target directory--"
-      cd $(Build.SourcesDirectory)
-      ls
-      sudo chmod -R 0777 target/
-      echo "--Installing python dependencies--"
-      cd /usr/lib
-      pip install jsonpath-rw-ext
-      pip install matplotlib
-      sudo apt-get install python-tk
-
-    displayName: 'Install dependencies for Python'
-    continueOnError: true
-    condition: always()
-
-  - task: PythonScript@0
-    inputs:
-      scriptSource: 'filePath'
-      scriptPath: '$(Build.SourcesDirectory)/src/test/resources/slack_reporting.py'
-    displayName: 'Execute Python script'
-    continueOnError: true
-    condition: always()
-
-  - powershell: |
-      az storage blob upload-batch `
-       --account-key 'qzySpscvrIRAlI1W/WBKEDLG7mdFh4l1thcKewSfcJmoff0A+fNpvvAB6eASFBJYWRMCi7hw+arzJyKUmWWI+Q==' `
-       --account-name wowuatmobileautoreports `
-       --destination '$web/$(Build.BuildNumber)' `
-       --source '$(Build.SourcesDirectory)/target/cucumber-reports/'
-
-    displayName: 'Post test results to Azure blob storage'
-    continueOnError: true
-    condition: always()
-
-  - powershell: |
-      $queryString = "runTitle=JUnit_TestResults&buildIds=$(Build.BuildId)&api-version=5.0-preview.2";
-      $testRuns = Invoke-RestMethod -Uri "$(System.TeamFoundationCollectionUri)$(System.TeamProject)/_apis/test/runs/?$queryString" `
-        -Method Get `
-        -UseBasicParsing `
-        -Authentication Bearer `
-        -Token (ConvertTo-SecureString -String $(System.AccessToken) -AsPlainText -Force)
-
-      $testRunsIdSorted = $testRuns.value | sort-object id -Descending
-      $mostRecentTestRun = Invoke-RestMethod -Uri "$(System.TeamFoundationCollectionUri)$(System.TeamProject)/_apis/test/runs/$($testRunsIdSorted[0].id)?api-version=5.0-preview.2" `
-        -Method Get `
-        -UseBasicParsing `
-        -Authentication Bearer `
-        -Token (ConvertTo-SecureString -String $(System.AccessToken) -AsPlainText -Force)
-
-      $testRunId = $mostRecentTestRun.id;
-      if ($mostRecentTestRun) {
-        $testRunId = $mostRecentTestRun.id;
-
-        $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/$(Build.BuildNumber)/index.html"
-        $imageURL = "${{ parameters.ClusterUrl }}/$(Build.BuildNumber)/advanced-reports/test.png"
-
-        $color = 'good';
-         $slackMessage = @{
-           attachments = @(
-              @{
-                title = '${{ parameters.TestRunTitle }}'
-                color = $color
-                title_link = $testResultDetailsUrl
-                fields = @(
-                    @{title = 'Source Branch'; value = '$(Build.SourceBranchName)' ; short = 'true'},
-                    @{title = 'Run Env'; value = '${{ parameters.RunEnv }}'; short = 'true'}
-                )
-                image_url = $imageURL
-              }
-
-            )
-        } | ConvertTo-Json -Depth 5
-
-      Invoke-RestMethod -Uri '${{ parameters.SlackWebhookUrl }}' `
-          -Method Post `
-          -Body $slackMessage `
-          -UseBasicParsing `
-          -ContentType 'application/json'
-      }
-
-    displayName: 'Post test results to Slack'
-    continueOnError: true
-    condition: and(succeeded(), ne('${{ parameters.SlackWebhookUrl }}', ''))
 
 schedules:
-- cron: "10 23 * * *"
-  displayName: Trigger automation regression run at 9:10AM
-  branches:
-    include:
-      - develop
-      - azure-pipelines
-  always: true
+  - cron: "10 23 * * *"
+    displayName: Trigger automation regression run at 9:10AM
+    branches:
+      include:
+        - azure-pipelines
+    always: true
 
-- cron: "10 04 * * *"
-  displayName: Trigger automation regression run at 2:10PM
-  branches:
-    include:
-      - develop
-      - azure-pipelines
-  always: true
-  
-  
+  - cron: "10 04 * * *"
+    displayName: Trigger automation regression run at 2:10PM
+    branches:
+      include:
+        - azure-pipelines
+    always: true
+
+
 
