@@ -23,12 +23,6 @@ parameters:
       - uat
       - test
 
-trigger:
-  none
-
-pool:
-  vmImage: 'ubuntu-latest'
-
 steps:
   - task: DockerCompose@0
     displayName: 'Run Apigee Automation'
