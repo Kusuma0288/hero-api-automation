@@ -11,7 +11,7 @@ jobs:
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
-          SlackWebhookUrl: https://hooks.slack.com/services/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
+          SlackWebhookUrl: https://hooks.slack.com/services/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
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           RunEnv: test
 
@@ -24,23 +24,25 @@ jobs:
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
-          SlackWebhookUrl: https://hooks.slack.com/services/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
+          SlackWebhookUrl: https://hooks.slack.com/services/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
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           RunEnv: uat
 
 
 schedules:
   - cron: "10 23 * * *"
-    displayName: Trigger automation regression run at 9:10AM
+    displayName: Morning build (starts at 9:10AM)
     branches:
       include:
+        - develop
         - azure-pipelines
     always: true
 
   - cron: "10 04 * * *"
-    displayName: Trigger automation regression run at 2:10PM
+    displayName: Afternoon build (starts at 2:10PM)
     branches:
       include:
+        - develop
         - azure-pipelines
     always: true
 
