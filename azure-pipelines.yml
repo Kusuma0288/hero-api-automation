@@ -34,14 +34,14 @@ schedules:
     displayName: Morning build (starts at 9:10AM)
     branches:
       include:
-        - develop
+        - azure-pipelines
     always: true
 
   - cron: "10 04 * * *"
     displayName: Afternoon build (starts at 2:10PM)
     branches:
       include:
-        - develop
+        - azure-pipelines
     always: true
 
 
