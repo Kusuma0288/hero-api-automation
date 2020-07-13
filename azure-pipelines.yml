@@ -1,3 +1,11 @@
+parameters:
+- name: RunEnv
+  type: string
+  default: uat
+  values:
+    - uat
+    - test
+
 trigger:
   none
 
