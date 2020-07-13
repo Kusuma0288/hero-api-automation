@@ -15,6 +15,12 @@ parameters:
     type: string
     default: https://wowuatmobileautoreports.z8.web.core.windows.net
 
+  - name: RunEnv
+    type: string
+    default: uat
+    values:
+      - uat
+      - test
 
 steps:
   - task: DockerCompose@0
