@@ -72,34 +72,31 @@ steps:
     condition: always()
 
   - powershell: |
+      $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/index.html"
+      $imageURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/advanced-reports/test.png"
 
+      $color = 'good';
+      $slackMessage = @{
+      attachments = @(
+      @{
+        title = '${{ parameters.TestRunTitle }}'
+        color = $color
+        title_link = $testResultDetailsUrl
+        fields = @(
+            @{title = 'Source Branch'; value = '$(Build.SourceBranchName)' ; short = 'true'},
+            @{title = 'Run Env'; value = '${{ parameters.RunEnv }}'; short = 'true'}
+          )
+          image_url = $imageURL
+       }
 
-        $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/index.html"
-        $imageURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/advanced-reports/test.png"
-
-        $color = 'good';
-         $slackMessage = @{
-           attachments = @(
-              @{
-                title = '${{ parameters.TestRunTitle }}'
-                color = $color
-                title_link = $testResultDetailsUrl
-                fields = @(
-                    @{title = 'Source Branch'; value = '$(Build.SourceBranchName)' ; short = 'true'},
-                    @{title = 'Run Env'; value = '${{ parameters.RunEnv }}'; short = 'true'}
-                )
-                image_url = $imageURL
-              }
-
-            )
-        } | ConvertTo-Json -Depth 5
+      )
+      } | ConvertTo-Json -Depth 5
 
       Invoke-RestMethod -Uri '${{ parameters.SlackWebhookUrl }}' `
-          -Method Post `
-          -Body $slackMessage `
-          -UseBasicParsing `
-          -ContentType 'application/json'
-
+       -Method Post `
+       -Body $slackMessage `
+       -UseBasicParsing `
+       -ContentType 'application/json'
 
     displayName: 'Post test results to Slack'
     continueOnError: true
