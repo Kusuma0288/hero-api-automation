@@ -67,7 +67,7 @@ steps:
       az storage blob upload-batch `
        --account-key 'qzySpscvrIRAlI1W/WBKEDLG7mdFh4l1thcKewSfcJmoff0A+fNpvvAB6eASFBJYWRMCi7hw+arzJyKUmWWI+Q==' `
        --account-name wowuatmobileautoreports `
-       --destination '$web/${{ parameters.RunEnv }}_$(Build.BuildNumber)' `
+       --destination '$web/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)' `
        --source '$(Build.SourcesDirectory)/target/cucumber-reports/'
 
     displayName: 'Post test results to Azure blob storage'
@@ -75,26 +75,10 @@ steps:
     condition: always()
 
   - powershell: |
-      $queryString = "runTitle=JUnit_TestResults&buildIds=$(Build.BuildId)&api-version=5.0-preview.2";
-      $testRuns = Invoke-RestMethod -Uri "$(System.TeamFoundationCollectionUri)$(System.TeamProject)/_apis/test/runs/?$queryString" `
-        -Method Get `
-        -UseBasicParsing `
-        -Authentication Bearer `
-        -Token (ConvertTo-SecureString -String $(System.AccessToken) -AsPlainText -Force)
 
-      $testRunsIdSorted = $testRuns.value | sort-object id -Descending
-      $mostRecentTestRun = Invoke-RestMethod -Uri "$(System.TeamFoundationCollectionUri)$(System.TeamProject)/_apis/test/runs/$($testRunsIdSorted[0].id)?api-version=5.0-preview.2" `
-        -Method Get `
-        -UseBasicParsing `
-        -Authentication Bearer `
-        -Token (ConvertTo-SecureString -String $(System.AccessToken) -AsPlainText -Force)
 
-      $testRunId = $mostRecentTestRun.id;
-      if ($mostRecentTestRun) {
-        $testRunId = $mostRecentTestRun.id;
-
-        $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/${{ parameters.RunEnv }}_$(Build.BuildNumber)/index.html"
-        $imageURL = "${{ parameters.ClusterUrl }}/${{ parameters.RunEnv }}_$(Build.BuildNumber)/advanced-reports/test.png"
+        $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/index.html"
+        $imageURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/advanced-reports/test.png"
 
         $color = 'good';
          $slackMessage = @{
@@ -118,7 +102,7 @@ steps:
           -Body $slackMessage `
           -UseBasicParsing `
           -ContentType 'application/json'
-      }
+
 
     displayName: 'Post test results to Slack'
     continueOnError: true
