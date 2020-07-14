@@ -1,8 +1,8 @@
 package au.com.woolworths.helpers.apigee;
 
-import au.com.woolworths.Utils.RestInvocationUtil;
-import au.com.woolworths.Utils.TestProperties;
-import au.com.woolworths.Utils.URLResources;
+import au.com.woolworths.utils.RestInvocationUtil;
+import au.com.woolworths.utils.TestProperties;
+import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.apigee.ApigeeGuestLoginRequest;
 import au.com.woolworths.model.apigee.ApigeeLoginReponse;
@@ -14,12 +14,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class ApigeeGuestHelper extends BaseHelper {
+public class GuestHelper extends BaseHelper {
 
   RestInvocationUtil invocationUtil;
   private final static Logger logger = Logger.getLogger("ApigeeGuestHelper.class");
 
-  public ApigeeGuestHelper() {
+  public GuestHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 

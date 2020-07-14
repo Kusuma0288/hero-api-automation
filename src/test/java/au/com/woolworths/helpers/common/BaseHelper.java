@@ -1,8 +1,8 @@
 package au.com.woolworths.helpers.common;
 
-import au.com.woolworths.Utils.TestProperties;
+import au.com.woolworths.utils.TestProperties;
 import au.com.woolworths.context.ApigeeApplicationContext;
-import au.com.woolworths.stepdefinitions.apigee.ApigeeSharedData;
+import au.com.woolworths.utils.SharedData;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class BaseHelper {
 
   private final static Logger logger = Logger.getLogger("BaseHelper.class");
-  protected ApigeeSharedData sharedData;
+  protected SharedData sharedData;
   protected List<Header> headerList;
   protected ObjectMapper mapper = new ObjectMapper();
 

@@ -1,6 +1,6 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
-import au.com.woolworths.helpers.apigee.SpecialspageHelper;
+import au.com.woolworths.helpers.apigee.SpecialsHelper;
 import au.com.woolworths.model.apigee.SpecialspageResponse;
 import cucumber.api.java.en.Then;
 import junit.framework.Assert;
@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class Specialspage extends SpecialspageHelper {
+public class Specialspage extends SpecialsHelper {
 
   private final static Logger logger = Logger.getLogger("Homepage.class");
 

@@ -1,6 +1,6 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
-import au.com.woolworths.helpers.apigee.ApigeeProductsHelper;
+import au.com.woolworths.helpers.apigee.ProductsHelper;
 import au.com.woolworths.model.apigee.products.ApigeeProductCategoriesSpecial;
 import au.com.woolworths.model.apigee.products.ApigeeProductsSpecial;
 import cucumber.api.java.en.When;
@@ -10,9 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class ApigeeProductsDefinition extends ApigeeProductsHelper {
+public class ProductsDefinition extends ProductsHelper {
 
-  private final static Logger logger = Logger.getLogger("ApigeeProductsDefinition.class");
+  private final static Logger logger = Logger.getLogger("ProductsDefinition.class");
 
 
   @When("^I make a request to V3 categories with type as Specials$")

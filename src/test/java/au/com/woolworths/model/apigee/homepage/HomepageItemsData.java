@@ -1,6 +1,6 @@
 package au.com.woolworths.model.apigee.homepage;
 
-import au.com.woolworths.model.apigee.productGroups.ProductGroupTrolleyResponse;
+import au.com.woolworths.model.apigee.productgroups.ProductGroupTrolleyResponse;
 import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;

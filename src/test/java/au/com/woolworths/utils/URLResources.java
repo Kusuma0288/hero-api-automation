@@ -1,4 +1,4 @@
-package au.com.woolworths.Utils;
+package au.com.woolworths.utils;
 
 public final class URLResources {
   public static final String APIGEE_V2_SIGNUP = "/wow/v2/commerce/signup";

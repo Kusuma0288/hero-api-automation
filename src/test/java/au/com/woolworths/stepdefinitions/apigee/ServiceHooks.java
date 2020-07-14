@@ -1,6 +1,6 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
-import au.com.woolworths.Utils.RestInvocationUtil;
+import au.com.woolworths.utils.RestInvocationUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;

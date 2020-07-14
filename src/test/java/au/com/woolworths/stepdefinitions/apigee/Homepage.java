@@ -4,9 +4,9 @@ import au.com.woolworths.helpers.apigee.HomepageHelper;
 import au.com.woolworths.model.apigee.homepage.HomepageComponents;
 import au.com.woolworths.model.apigee.homepage.HomepageComponentsData;
 import au.com.woolworths.model.apigee.homepage.HomepageResponse;
-import au.com.woolworths.model.apigee.productGroups.ProductGroupComponents;
-import au.com.woolworths.model.apigee.productGroups.ProductGroupResponse;
-import au.com.woolworths.model.apigee.productGroups.ProductGroupTrolleyData;
+import au.com.woolworths.model.apigee.productgroups.ProductGroupComponents;
+import au.com.woolworths.model.apigee.productgroups.ProductGroupResponse;
+import au.com.woolworths.model.apigee.productgroups.ProductGroupTrolleyData;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
 

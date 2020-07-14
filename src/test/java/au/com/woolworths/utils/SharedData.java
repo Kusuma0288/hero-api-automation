@@ -1,4 +1,4 @@
-package au.com.woolworths.stepdefinitions.apigee;
+package au.com.woolworths.utils;
 
 import au.com.woolworths.model.apigee.*;
 import au.com.woolworths.model.apigee.trolley.TrolleyV2Response;
@@ -9,7 +9,7 @@ import au.com.woolworths.model.apigee.checkout.CheckoutPackagingPreferencesRespo
 import java.util.ArrayList;
 import java.util.List;
 
-public class ApigeeSharedData {
+public class SharedData {
   public String deviceId;
   public String authToken;
   public String responseStatusCode;

@@ -1,4 +1,4 @@
-package au.com.woolworths.model.apigee.productGroups;
+package au.com.woolworths.model.apigee.productgroups;
 
 import lombok.Data;
 

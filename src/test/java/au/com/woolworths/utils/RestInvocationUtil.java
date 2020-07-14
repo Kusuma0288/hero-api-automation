@@ -1,4 +1,4 @@
-package au.com.woolworths.Utils;
+package au.com.woolworths.utils;
 
 import io.restassured.RestAssured;
 import io.restassured.http.Header;

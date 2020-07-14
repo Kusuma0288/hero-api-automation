@@ -7,8 +7,8 @@ import org.testng.Assert;
 
 import java.util.logging.Logger;
 
-public class ApigeeSearchDefinition extends SearchHelper {
-  private final static Logger logger = Logger.getLogger("ApigeeSearchDefinition.class");
+public class SearchDefinition extends SearchHelper {
+  private final static Logger logger = Logger.getLogger("SearchDefinition.class");
 
 
   @When("^I search for the product (.*) in (.*) mode and should see more than 1 matching results$")
@@ -36,8 +36,8 @@ public class ApigeeSearchDefinition extends SearchHelper {
 
   @When("^I search to add \"([^\"]*)\" \"([^\"]*)\" products to the \"([^\"]*)\" list \"([^\"]*)\"$")
   public void userSearchProductToList(String prodQuantity, String searchItem, String version, String listName) throws Throwable {
-    ApigeeListsDefinition apigeeListsDefinition = new ApigeeListsDefinition();
+    ListsDefinition listsDefinition = new ListsDefinition();
     userSearchProductAndStore(searchItem, sharedData.fulfilment);
-    apigeeListsDefinition.iAddAvailableProductsWithEachFromTheStoreToList(Integer.parseInt(prodQuantity), 2, version, listName);
+    listsDefinition.iAddAvailableProductsWithEachFromTheStoreToList(Integer.parseInt(prodQuantity), 2, version, listName);
   }
 }

@@ -3,8 +3,8 @@ package au.com.woolworths.stepdefinitions.apigee;
 import java.util.*;
 import java.util.logging.Logger;
 
-import au.com.woolworths.Utils.Utilities;
-import au.com.woolworths.helpers.apigee.ApigeeAddressHelper;
+import au.com.woolworths.utils.Utilities;
+import au.com.woolworths.helpers.apigee.AddressHelper;
 import au.com.woolworths.model.apigee.ApigeeStores;
 import au.com.woolworths.model.apigee.ApigeeV2AddressStores;
 import au.com.woolworths.model.apigee.AddressesV2ErrorResponse;
@@ -12,8 +12,8 @@ import au.com.woolworths.model.apigee.FulFilmentResponse;
 import cucumber.api.java.en.*;
 import org.testng.Assert;
 
-public class ApigeePickupDefinition extends ApigeeAddressHelper {
-  private final static Logger logger = Logger.getLogger("ApigeePickupDefinition.class");
+public class PickupDefinition extends AddressHelper {
+  private final static Logger logger = Logger.getLogger("PickupDefinition.class");
 
 
 

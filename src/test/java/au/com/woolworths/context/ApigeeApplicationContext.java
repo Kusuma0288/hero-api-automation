@@ -1,6 +1,6 @@
 package au.com.woolworths.context;
 
-import au.com.woolworths.stepdefinitions.apigee.ApigeeSharedData;
+import au.com.woolworths.utils.SharedData;
 
 public class ApigeeApplicationContext {
 
@@ -11,18 +11,18 @@ public class ApigeeApplicationContext {
 
     INSTANCE;
 
-    private ApigeeSharedData sharedData;
+    private SharedData sharedData;
 
     Singleton() {
-      sharedData = new ApigeeSharedData();
+      sharedData = new SharedData();
     }
 
-    public ApigeeSharedData getSharedData() {
+    public SharedData getSharedData() {
       return sharedData;
     }
   }
 
-  public static ApigeeSharedData getSharedData() {
+  public static SharedData getSharedData() {
     return Singleton.INSTANCE.getSharedData();
   }
 }

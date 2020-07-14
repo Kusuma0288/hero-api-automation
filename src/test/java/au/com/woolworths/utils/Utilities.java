@@ -1,4 +1,4 @@
-package au.com.woolworths.Utils;
+package au.com.woolworths.utils;
 
 import java.util.Random;
 import java.util.UUID;

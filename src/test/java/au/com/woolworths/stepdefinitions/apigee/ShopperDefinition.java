@@ -1,8 +1,8 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
-import au.com.woolworths.Utils.TestProperties;
-import au.com.woolworths.Utils.Utilities;
-import au.com.woolworths.helpers.apigee.ApigeeShopperHelper;
+import au.com.woolworths.utils.TestProperties;
+import au.com.woolworths.utils.Utilities;
+import au.com.woolworths.helpers.apigee.ShopperHelper;
 import au.com.woolworths.model.apigee.ApigeeLoginReponse;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -11,9 +11,9 @@ import org.testng.Assert;
 
 import java.util.logging.Logger;
 
-public class ApigeeShopperDefinition extends ApigeeShopperHelper {
+public class ShopperDefinition extends ShopperHelper {
 
-  private final static Logger logger = Logger.getLogger("ApigeeGuestDefinition.class");
+  private final static Logger logger = Logger.getLogger("GuestDefinition.class");
 
 
   @When("^user continue to connect to apigee with default login and password$")

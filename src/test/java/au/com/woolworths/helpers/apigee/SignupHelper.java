@@ -1,21 +1,21 @@
 package au.com.woolworths.helpers.apigee;
 
-import au.com.woolworths.Utils.RestInvocationUtil;
-import au.com.woolworths.Utils.URLResources;
+import au.com.woolworths.utils.RestInvocationUtil;
+import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.apigee.ApigeeLoginReponse;
 import au.com.woolworths.model.apigee.SignUpRequest;
 import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
-import au.com.woolworths.Utils.Utilities;
+import au.com.woolworths.utils.Utilities;
 
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class SignuppageHelper extends BaseHelper {
+public class SignupHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
-  private final static Logger logger = Logger.getLogger("SignuppageHelper.class");
+  private final static Logger logger = Logger.getLogger("SignupPageHelper.class");
 
-  public SignuppageHelper() {
+  public SignupHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 

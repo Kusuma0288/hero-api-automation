@@ -1,7 +1,7 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
-import au.com.woolworths.Utils.Utilities;
-import au.com.woolworths.helpers.apigee.ApigeeGuestHelper;
+import au.com.woolworths.utils.Utilities;
+import au.com.woolworths.helpers.apigee.GuestHelper;
 
 import au.com.woolworths.model.apigee.ApigeeLoginReponse;
 import cucumber.api.java.en.Given;
@@ -11,11 +11,11 @@ import org.testng.Assert;
 
 import java.util.logging.Logger;
 
-public class ApigeeGuestDefinition extends ApigeeGuestHelper {
+public class GuestDefinition extends GuestHelper {
 
   private ApigeeLoginReponse response = new ApigeeLoginReponse();
 
-  private final static Logger logger = Logger.getLogger("ApigeeGuestDefinition.class");
+  private final static Logger logger = Logger.getLogger("GuestDefinition.class");
 
   @Given("^mobile user connect to apigee endpoint as guest$")
   public void mobileUserConnectToApigeeAPIEndpointAsGuest() throws Throwable {

@@ -1,4 +1,4 @@
-package au.com.woolworths.Utils;
+package au.com.woolworths.utils;
 
 import java.io.IOException;
 import java.io.InputStream;

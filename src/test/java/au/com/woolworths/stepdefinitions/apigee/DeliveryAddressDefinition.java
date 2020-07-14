@@ -1,7 +1,7 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
-import au.com.woolworths.Utils.Utilities;
-import au.com.woolworths.helpers.apigee.ApigeeAddressHelper;
+import au.com.woolworths.utils.Utilities;
+import au.com.woolworths.helpers.apigee.AddressHelper;
 import au.com.woolworths.model.apigee.*;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -10,7 +10,7 @@ import junit.framework.Assert;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
-public class DeliveryAddressDefinition extends ApigeeAddressHelper {
+public class DeliveryAddressDefinition extends AddressHelper {
 
   private final static Logger logger = Logger.getLogger("DeliveryAddressDefinition.class");
 

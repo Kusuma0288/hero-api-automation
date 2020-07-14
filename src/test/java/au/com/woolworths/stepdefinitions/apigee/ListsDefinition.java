@@ -1,8 +1,8 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
 import au.com.woolworths.helpers.apigee.TrolleyHelper;
-import au.com.woolworths.Utils.Utilities;
-import au.com.woolworths.helpers.apigee.ApigeeListHelper;
+import au.com.woolworths.utils.Utilities;
+import au.com.woolworths.helpers.apigee.ListHelper;
 import au.com.woolworths.model.apigee.ApigeeGetListResponse;
 import au.com.woolworths.model.apigee.ApigeeListDetailsResponse;
 import au.com.woolworths.model.apigee.ApigeeListResponse;
@@ -19,9 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class ApigeeListsDefinition extends ApigeeListHelper {
+public class ListsDefinition extends ListHelper {
 
-  private final static Logger logger = Logger.getLogger("ApigeeListsDefinition.class");
+  private final static Logger logger = Logger.getLogger("ListsDefinition.class");
 
 
   @When("^I create a list with exact list name as \"([^\"]*)\"$")

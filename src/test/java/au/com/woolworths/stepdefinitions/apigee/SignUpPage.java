@@ -1,6 +1,6 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
-import au.com.woolworths.helpers.apigee.SignuppageHelper;
+import au.com.woolworths.helpers.apigee.SignupHelper;
 import au.com.woolworths.model.apigee.ApigeeLoginReponse;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -8,7 +8,7 @@ import junit.framework.Assert;
 
 import java.util.logging.Logger;
 
-public class SignUpPage extends SignuppageHelper {
+public class SignUpPage extends SignupHelper {
 
   private final static Logger logger = Logger.getLogger("SignUpPage.class");
   private ApigeeLoginReponse apigeeLoginReponse;

@@ -1,13 +1,13 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
-import au.com.woolworths.helpers.apigee.ApigeeInStoreHelper;
+import au.com.woolworths.helpers.apigee.InStoreHelper;
 import au.com.woolworths.model.apigee.ApigeeSearchInStore;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
 
 import java.util.logging.Logger;
 
-public class InStoreDefinition extends ApigeeInStoreHelper {
+public class InStoreDefinition extends InStoreHelper {
 
   private final static Logger logger = Logger.getLogger("InStoreDefinition.class");
 
