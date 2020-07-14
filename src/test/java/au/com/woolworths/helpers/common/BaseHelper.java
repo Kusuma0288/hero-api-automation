@@ -1,7 +1,7 @@
 package au.com.woolworths.helpers.common;
 
 import au.com.woolworths.utils.TestProperties;
-import au.com.woolworths.context.ApigeeApplicationContext;
+import au.com.woolworths.context.ApplicationContext;
 import au.com.woolworths.utils.SharedData;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -26,7 +26,7 @@ public class BaseHelper {
 
   public BaseHelper() {
     this.headerList = new LinkedList<>();
-    this.sharedData = ApigeeApplicationContext.getSharedData();
+    this.sharedData = ApplicationContext.getSharedData();
     headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerList.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);

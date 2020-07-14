@@ -2,9 +2,9 @@ package au.com.woolworths.context;
 
 import au.com.woolworths.utils.SharedData;
 
-public class ApigeeApplicationContext {
+public class ApplicationContext {
 
-  private ApigeeApplicationContext() {
+  private ApplicationContext() {
   }
 
   private enum Singleton {
