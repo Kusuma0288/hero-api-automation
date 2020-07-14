@@ -11,8 +11,7 @@ jobs:
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
-          #SlackWebhookUrl: https://hooks.slack.com/services/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
-          SlackWebhookUrl: https://hooks.slack.com/services/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
+          SlackWebhookUrl: https://hooks.slack.com/services/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
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           RunEnv: test
 
@@ -25,8 +24,7 @@ jobs:
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
-          #SlackWebhookUrl: https://hooks.slack.com/services/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
-          SlackWebhookUrl: https://hooks.slack.com/services/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
+          SlackWebhookUrl: https://hooks.slack.com/services/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
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           RunEnv: uat
 
@@ -39,8 +37,7 @@ jobs:
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
-          #SlackWebhookUrl: https://hooks.slack.com/services/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
-          SlackWebhookUrl: https://hooks.slack.com/services/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
+          SlackWebhookUrl: https://hooks.slack.com/services/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
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: ProdRegression
           RunEnv: prod
@@ -53,19 +50,13 @@ schedules:
         - develop
     always: true
 
-  - cron: "10 07 * * Mon-Fri"
+  - cron: "10 04 * * Mon-Fri"
     displayName: Afternoon build (starts at 2:10PM)
     branches:
       include:
         - develop
     always: true
 
-  - cron: "10 05 * * Mon-Fri"
-    displayName: Afternoon build (starts at 2:10PM)
-    branches:
-      include:
-        - develop
-    always: true
 
 
 
