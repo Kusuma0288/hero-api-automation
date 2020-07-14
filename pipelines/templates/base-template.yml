@@ -18,9 +18,6 @@ parameters:
   - name: RunEnv
     type: string
     default: uat
-    values:
-      - uat
-      - test
 
 steps:
   - task: DockerCompose@0
