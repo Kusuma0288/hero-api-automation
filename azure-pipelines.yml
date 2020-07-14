@@ -28,6 +28,19 @@ jobs:
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           RunEnv: uat
 
+  - job: Prod
+    displayName: Prod Automation Run
+    steps:
+      - script: |
+          echo "Setting up delay for the next job"
+          sleep 10m
+      - template: pipelines/templates/base-template.yml
+        parameters:
+          TestRunTitle: Apigee Automation Run Report
+          SlackWebhookUrl: https://hooks.slack.com/services/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
+          ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
+          Profile: ProdRegression
+          RunEnv: prod
 
 schedules:
   - cron: "10 23 * * Mon-Fri"
@@ -43,6 +56,7 @@ schedules:
       include:
         - develop
     always: true
+
 
 
 
