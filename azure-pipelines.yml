@@ -2,9 +2,9 @@ parameters:
   - name: Environment
     type: string
     values:
-      uat
-      test
-      prod
+     - uat
+     - test
+     - prod
 
 trigger:
   none
