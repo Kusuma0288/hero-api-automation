@@ -9,7 +9,6 @@ parameters:
 
   - name: Profile
     type: string
-    default: regression
 
   - name: ClusterUrl
     type: string

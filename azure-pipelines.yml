@@ -5,43 +5,46 @@ pool:
   vmImage: 'ubuntu-latest'
 
 jobs:
-  - job: Test
-    displayName: Test Automation Run
+  - job: Prod
+    displayName: Prod Automation Run
     steps:
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
           SlackWebhookUrl: https://hooks.slack.com/services/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
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
-          RunEnv: test
+          Profile: prod
+          RunEnv: prod
 
   - job: Uat
     displayName: Uat Automation Run
     steps:
       - script: |
-          echo "Setting up delay for the next job"
+          echo "Setting up delay for the job"
           sleep 10m
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
           SlackWebhookUrl: https://hooks.slack.com/services/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
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
+          Profile: regression
           RunEnv: uat
 
-  - job: Prod
-    displayName: Prod Automation Run
+  - job: Test
+    displayName: Test Automation Run
     steps:
       - script: |
-          echo "Setting up delay for the next job"
+          echo "Setting up delay for the job"
           sleep 10m
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
           SlackWebhookUrl: https://hooks.slack.com/services/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
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
-          Profile: ProdRegression
-          RunEnv: prod
+          Profile: regression
+          RunEnv: test
 
+ 
 schedules:
   - cron: "10 23 * * Mon-Fri"
     displayName: Morning build (starts at 9:10AM)
