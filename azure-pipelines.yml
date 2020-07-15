@@ -32,7 +32,7 @@ jobs:
           Profile: regression
           RunEnv: uat
 
-  - job: Uat
+  - job: Test
     displayName: Test Automation Run
     steps:
       - script: |
