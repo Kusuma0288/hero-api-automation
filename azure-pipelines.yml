@@ -39,7 +39,7 @@ jobs:
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: regression
           RunEnv: ${{ parameters.Environment }}
-    condition: and(succeeded(), eq('${{ parameters.Environment }}', 'uat'))
+    condition: and(succeeded(), ne('${{ parameters.Environment }}', ' ') )
 
   # - job: Test
   #   displayName: Test Automation Run
