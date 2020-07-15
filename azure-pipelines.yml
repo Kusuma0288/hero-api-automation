@@ -5,6 +5,15 @@ parameters:
      - uat
      - test
      - prod
+     - uat
+     - test
+     - prod
+     - uat
+     - test
+     - prod
+     - uat
+     - test
+     - prod
 
 trigger:
   none
