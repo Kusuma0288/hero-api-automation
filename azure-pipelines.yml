@@ -13,24 +13,24 @@ pool:
   vmImage: 'ubuntu-latest'
 
 jobs:
-  - job: Prod
-    displayName: Prod Automation Run
-    steps:
-      - template: pipelines/templates/base-template.yml
-        parameters:
-          TestRunTitle: Apigee Automation Run Report
-          #SlackWebhookUrl: https://hooks.slack.com/services/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
-          SlackWebhookUrl: https://hooks.slack.com/services/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
-          ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
-          Profile: prod
-          RunEnv: prod
-    condition:
+  # - job: Prod
+  #   displayName: Prod Automation Run
+  #   steps:
+  #     - template: pipelines/templates/base-template.yml
+  #       parameters:
+  #         TestRunTitle: Apigee Automation Run Report
+  #         #SlackWebhookUrl: https://hooks.slack.com/services/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
+  #         SlackWebhookUrl: https://hooks.slack.com/services/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
+  #         ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
+  #         Profile: prod
+  #         RunEnv: prod
+  #   condition:
   - job: Uat
     displayName: Uat Automation Run
     steps:
       - script: |
           echo "Setting up delay for the job"
-          sleep 10m
+          echo ${{ parameters.Environment }}
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
@@ -39,21 +39,22 @@ jobs:
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: regression
           RunEnv: uat
+          condition: and(succeeded(), ne('${{ parameters.Environment }}', ''))
 
-  - job: Test
-    displayName: Test Automation Run
-    steps:
-      - script: |
-          echo "Setting up delay for the job"
-          sleep 10m
-      - template: pipelines/templates/base-template.yml
-        parameters:
-          TestRunTitle: Apigee Automation Run Report
-          #SlackWebhookUrl: https://hooks.slack.com/services/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
-          SlackWebhookUrl: https://hooks.slack.com/services/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
-          ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
-          Profile: regression
-          RunEnv: test
+  # - job: Test
+  #   displayName: Test Automation Run
+  #   steps:
+  #     - script: |
+  #         echo "Setting up delay for the job"
+  #         sleep 10m
+  #     - template: pipelines/templates/base-template.yml
+  #       parameters:
+  #         TestRunTitle: Apigee Automation Run Report
+  #         #SlackWebhookUrl: https://hooks.slack.com/services/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
+  #         SlackWebhookUrl: https://hooks.slack.com/services/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
+  #         ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
+  #         Profile: regression
+  #         RunEnv: test
 
  
 schedules:
