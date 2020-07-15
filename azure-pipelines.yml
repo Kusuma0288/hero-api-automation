@@ -38,8 +38,8 @@ jobs:
           SlackWebhookUrl: https://hooks.slack.com/services/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
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: regression
-          RunEnv: uat
-          condition: and(succeeded(), ne('${{ parameters.Environment }}', ''))
+          RunEnv: ${{ parameters.Environment }}
+          condition: and(succeeded(), eq('${{ parameters.Environment }}', 'uat'))
 
   # - job: Test
   #   displayName: Test Automation Run
