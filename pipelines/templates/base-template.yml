@@ -9,7 +9,7 @@ parameters:
 
   - name: Profile
     type: string
-   
+
   - name: ClusterUrl
     type: string
     default: https://wowuatmobileautoreports.z8.web.core.windows.net
