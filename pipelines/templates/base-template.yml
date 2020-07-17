@@ -73,11 +73,12 @@ steps:
   - powershell: |
       $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/index.html"
       $imageURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/advanced-reports/test.png"
-      $wolvesURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Wolves.html"
+      $wolvesURL = "https://wowuatmobileautoreports.z8.web.core.windows.net/apigee_uat_20200717.4/pages/tag-scenarios/tag_Wolves.html"
 
       $searchClass = "text-danger"
       $req = Invoke-Webrequest -URI $wolvesURL
-      $req.ParsedHtml.getElementsByClassName($searchClass) | %{Write-Host $_.innerhtml}
+      echo "request = " + $req
+
 
       $color = 'good';
       $slackMessage = @{
