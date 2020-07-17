@@ -78,6 +78,8 @@ steps:
 
       $pattern='<li .*class=\s*"list-group-item"[^>]*>(?:.|\n)+?</li>'
       $pattern11='<i[^>]*>(?:.|\n)+?</i>'
+
+      $pattern='<li .*class=\s*"list-group-item"[^>]*>(?:.|\n)+?</li>'
       $webclient = New-Object System.Net.WebClient
       $html = $webclient.DownloadString($wolvesURL)
       $Regex = [Regex]::Matches($html, $pattern)
@@ -85,13 +87,7 @@ steps:
       $pattern11='<i[^>]*>(?:.|\n)+?</i>'
       $Regex1 = [Regex]::Matches($newVal, $pattern11)
       echo $Regex1.value.split('title="passed"></i>')
-      $wolvesCount = $Regex1.value.split('title="passed"></i>')[1].Trim().Substring(0,1)
-
-      $html = $webclient.DownloadString($lionURL)
-      $Regex = [Regex]::Matches($html, $pattern)
-      $newVal = $Regex.value
-      $Regex1 = [Regex]::Matches($newVal, $pattern11)
-      $lionCount = $Regex1.value.split('title="passed"></i>')[1].Trim().Substring(0,1)
+      $wolvesCount= $Regex1.value.split('title="passed"></i>')[1].Trim().Substring(0,1)
 
       $color = 'good';
       $slackMessage = @{
@@ -104,11 +100,8 @@ steps:
             @{title = 'Source Branch'; value = '$(Build.SourceBranchName)' ; short = 'true'},
             @{title = 'Run Env'; value = '${{ parameters.RunEnv }}'; short = 'true'}
             @{title = 'Wolves'; value = $wolvesCount; short = 'true'}
-            @{title = 'Lion'; value = $lionCount; short = 'true'}
-            }
+            @{title = 'Lion'; value = $wolvesCount; short = 'true'}
           )
-         title = 'wolves'
-         title_link = $wolvesURL
          image_url = $imageURL
        }
 
