@@ -74,10 +74,24 @@ steps:
       $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/index.html"
       $imageURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/advanced-reports/test.png"
       $wolvesURL = "https://wowuatmobileautoreports.z8.web.core.windows.net/apigee_uat_20200717.4/pages/tag-scenarios/tag_Wolves.html"
+      $lionURL = "https://wowuatmobileautoreports.z8.web.core.windows.net/apigee_uat_20200717.4/pages/tag-scenarios/tag_LION.html"
 
-      $searchClass = "text-danger"
-      $req = Invoke-Webrequest -URI $wolvesURL
-      echo $req.AllElements | Where {$_.TagName -eq "li"}
+      $pattern='<li .*class=\s*"list-group-item"[^>]*>(?:.|\n)+?</li>'
+      $pattern11='<i[^>]*>(?:.|\n)+?</i>'
+      $webclient = New-Object System.Net.WebClient
+      $html = $webclient.DownloadString($wolvesURL)
+      $Regex = [Regex]::Matches($html, $pattern)
+      $newVal = $Regex.value
+      $pattern11='<i[^>]*>(?:.|\n)+?</i>'
+      $Regex1 = [Regex]::Matches($newVal, $pattern11)
+      echo $Regex1.value.split('title="passed"></i>')
+      $wolvesCount = $Regex1.value.split('title="passed"></i>')[1].Trim().Substring(0,1)
+
+      $html = $webclient.DownloadString($lionURL)
+      $Regex = [Regex]::Matches($html, $pattern)
+      $newVal = $Regex.value
+      $Regex1 = [Regex]::Matches($newVal, $pattern11)
+      $lionCount = $Regex1.value.split('title="passed"></i>')[1].Trim().Substring(0,1)
 
       $color = 'good';
       $slackMessage = @{
@@ -89,15 +103,13 @@ steps:
         fields = @(
             @{title = 'Source Branch'; value = '$(Build.SourceBranchName)' ; short = 'true'},
             @{title = 'Run Env'; value = '${{ parameters.RunEnv }}'; short = 'true'}
-            @{title = 'Wolves'; value = $wolvesURL; short = 'true'}
-            @{title_link = 'Lion'; value = $wolvesURL; short = 'true'}
-            @{type = 'section'; block_id = 'section567';text = {
-              type = 'mrkdwn',
-              'text' = "<https://example.com|Overlook Hotel> \n :star: \n Doors had too many axe holes, guest in room 237 was far too rowdy, whole place felt stuck in the 1920s."
-              }
+            @{title = 'Wolves'; value = $wolvesCount; short = 'true'}
+            @{title = 'Lion'; value = $lionCount; short = 'true'}
             }
           )
-          image_url = $imageURL
+         title = 'wolves'
+         title_link = $wolvesURL
+         image_url = $imageURL
        }
 
       )
