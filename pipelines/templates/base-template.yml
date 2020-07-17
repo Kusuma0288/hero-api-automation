@@ -73,7 +73,7 @@ steps:
   - powershell: |
       $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/index.html"
       $imageURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/advanced-reports/test.png"
-
+      $wolvesURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/advanced-reports/pages/tag-scenarios/tag_Wolves.html"
       $color = 'good';
       $slackMessage = @{
       attachments = @(
@@ -84,6 +84,8 @@ steps:
         fields = @(
             @{title = 'Source Branch'; value = '$(Build.SourceBranchName)' ; short = 'true'},
             @{title = 'Run Env'; value = '${{ parameters.RunEnv }}'; short = 'true'}
+            @{title = 'Wolves'; value = '$wolvesURL'; short = 'true'}
+            @{title = 'Lion'; value = $wolvesURL; short = 'true'}
           )
           image_url = $imageURL
        }
