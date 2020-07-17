@@ -77,8 +77,7 @@ steps:
 
       $searchClass = "text-danger"
       $req = Invoke-Webrequest -URI $wolvesURL
-      echo "request = " + $req
-
+      echo $req.AllElements | Where {$_.TagName -eq "li"}
 
       $color = 'good';
       $slackMessage = @{
