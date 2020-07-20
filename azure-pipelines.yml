@@ -59,10 +59,10 @@ stages:
           RunEnv: test
 
   - stage: Manual
-    condition: and(succeeded(), ne('${{ parameters.Environment }}', ' ') )
+    condition: and(succeeded(), eq('${{ parameters.Environment }}', 'uat') )
     jobs:
     - job: ManualRun
-      displayName: Uat Automation Run
+      displayName: Manual Automation Run
       steps:
       - script: |
           echo "Setting up delay for the job"
