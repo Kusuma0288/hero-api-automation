@@ -13,7 +13,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 stages:
-  - stage: Auto Runs jobs
+  - stage: Auto
     condition: and(succeeded(), eq('${{ parameters.Environment }}', ' ') )
     jobs:
   # - job: Prod
@@ -58,7 +58,7 @@ stages:
           Profile: regression
           RunEnv: test
 
-  - stage: Manual Runs jobs
+  - stage: Manual
     condition: and(succeeded(), ne('${{ parameters.Environment }}', ' ') )
     jobs:
     - job: ManualRun
