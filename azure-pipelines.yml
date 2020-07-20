@@ -59,7 +59,6 @@ stages:
           RunEnv: test
 
   - stage: Manual
-    condition: and(succeeded(), eq('${{ parameters.Environment }}', 'uat') )
     jobs:
     - job: ManualRun
       displayName: Manual Automation Run
