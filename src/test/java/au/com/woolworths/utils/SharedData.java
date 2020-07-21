@@ -26,7 +26,7 @@ public class SharedData {
   public String productCategory;
   public ApigeeV3SearchResponse searchProductResponse;
   public String promoTileDataPath;
-  public List<String> stockCode = new ArrayList<String>();
+  public List<String> stockCode = new ArrayList<>();
   public String mode;
   public String edrStatus;
   public SpecialspageResponse specialspageResponse;
@@ -47,11 +47,11 @@ public class SharedData {
   public String orderCheckoutPaymentAddress;
   public String orderCheckoutSelectedWindowDate;
   public int orderCheckoutSubtotal;
-  public int orderCheckoutTotalGST;
+  public float orderCheckoutTotalGST;
   public int orderCheckoutPackagingFee;
   public String orderCheckoutPackagingPreference;
   public int orderCheckoutPaymentSubtotal;
-  public int orderCheckoutPaymentTotalGST;
+  public float orderCheckoutPaymentTotalGST;
   public int orderCheckoutPaymentPackagingFee;
   public String orderCheckoutPaymentPackagingPreference;
   public boolean leaveUnattended;

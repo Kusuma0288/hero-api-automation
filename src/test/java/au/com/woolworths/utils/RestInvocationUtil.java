@@ -17,7 +17,7 @@ public class RestInvocationUtil {
 
   private final static Logger logger = Logger.getLogger("RestInvocationUtil.class");
 
-  private Map<String, String> mapWebServiceResponse = new HashMap<>();
+  private final Map<String, String> mapWebServiceResponse = new HashMap<>();
   public Response response;
   public ArrayList<String> endPoints = new ArrayList<>();
   public ArrayList<String> requests = new ArrayList<>();
@@ -95,6 +95,18 @@ public class RestInvocationUtil {
     return mapWebServiceResponse;
   }
 
+  public Map<String, String> invokePostOtherAPI(String endPoint, String requestPayload, List<Header> headerList) {
+    response = postRestOtherAPI(endPoint, requestPayload, headerList);
+    String strResponse = response.getBody().asString();
+    mapWebServiceResponse.put("response", strResponse);
+    mapWebServiceResponse.put("statusCode", Integer.toString(response.getStatusCode()));
+    mapWebServiceResponse.put("contentType", (response.contentType()));
+    endPoints.add(endPoint);
+    requests.add(requestPayload);
+    responses.add(response);
+    return mapWebServiceResponse;
+  }
+
   private Response getRestWithDynamicHeaders(String endPoint, Map<String, ?> params, List<Header> dynamicHeaderList) {
     try {
       RestAssured.baseURI = TestProperties.get("BASE_URI");
@@ -113,7 +125,7 @@ public class RestInvocationUtil {
       e.printStackTrace();
       StringWriter errors = new StringWriter();
       e.printStackTrace(new PrintWriter(errors));
-      Assert.assertTrue(false, "Endpoint::" + endPoint + "Error::" + e.getMessage() + "Stack Trace::" + errors.toString());
+      Assert.fail("Endpoint::" + endPoint + "Error::" + e.getMessage() + "Stack Trace::" + errors.toString());
     }
     return response;
 
@@ -135,7 +147,7 @@ public class RestInvocationUtil {
           .extract().response();
     } catch (Exception e) {
       e.printStackTrace();
-      Assert.assertTrue(false, "Endpoint::" + endPoint + "Request PayLoad::" + requestPayload + "Error::" + e.getMessage());
+      Assert.fail("Endpoint::" + endPoint + "Request PayLoad::" + requestPayload + "Error::" + e.getMessage());
     }
     return response;
   }
@@ -156,7 +168,7 @@ public class RestInvocationUtil {
           .extract().response();
     } catch (Exception e) {
       e.printStackTrace();
-      Assert.assertTrue(false, "Endpoint::" + endPoint + "Request PayLoad::" + requestPayload + "Error::" + e.getMessage());
+      Assert.fail("Endpoint::" + endPoint + "Request PayLoad::" + requestPayload + "Error::" + e.getMessage());
     }
     return response;
   }
@@ -178,7 +190,7 @@ public class RestInvocationUtil {
       e.printStackTrace();
       StringWriter errors = new StringWriter();
       e.printStackTrace(new PrintWriter(errors));
-      Assert.assertTrue(false, "Endpoint::" + endPoint + "Error::" + e.getMessage() + "Stack Trace::" + errors.toString());
+      Assert.fail("Endpoint::" + endPoint + "Error::" + e.getMessage() + "Stack Trace::" + errors.toString());
 
     }
     return response;
@@ -203,7 +215,7 @@ public class RestInvocationUtil {
       e.printStackTrace();
       StringWriter errors = new StringWriter();
       e.printStackTrace(new PrintWriter(errors));
-      Assert.assertTrue(false, "Endpoint::" + endPoint + "Error::" + e.getMessage() + "Stack Trace::" + errors.toString());
+      Assert.fail("Endpoint::" + endPoint + "Error::" + e.getMessage() + "Stack Trace::" + errors.toString());
     }
     return response;
   }
@@ -225,9 +237,28 @@ public class RestInvocationUtil {
       e.printStackTrace();
       StringWriter errors = new StringWriter();
       e.printStackTrace(new PrintWriter(errors));
-      Assert.assertTrue(false, "Endpoint::" + endPoint + "Error::" + e.getMessage() + "Stack Trace::" + errors.toString());
+      Assert.fail("Endpoint::" + endPoint + "Error::" + e.getMessage() + "Stack Trace::" + errors.toString());
     }
     return response;
   }
 
+  private Response postRestOtherAPI(String endPoint, String requestPayload, List<Header> dynamicHeaderList) {
+    try {
+      Headers headers = new Headers(dynamicHeaderList);
+      response = given()
+              // .proxy(TestProperties.get("LOCAL_PROXY"))
+              .header("Content-Type", "application/json")
+              .header("Accept", "application/json")
+              .headers(headers)
+              .body(requestPayload)
+              .when()
+              .post(endPoint)
+              .then()
+              .extract().response();
+    } catch (Exception e) {
+      e.printStackTrace();
+      Assert.fail("Endpoint::" + endPoint + "Request PayLoad::" + requestPayload + "Error::" + e.getMessage());
+    }
+    return response;
+  }
 }

@@ -29,4 +29,10 @@ public final class URLResources {
   public static final String HERMES_V1 = "/hermes/iris/v1";
   public static final String APIGEE_V2_SPECIALS = "/wow/v2/specials";
   public static final String APIGEE_CHECKOUT_PAYMENT_SUMMARY = "/wow/checkout/payment";
+  public static final String APIGEE_PAYMENT_INSTRUMENTS = "/wow/v1/pay/instruments";
+  public static final String APIGEE_PAYMENT_CARDS = "/wow/v1/pay/cards/initcapture";
+  public static final String APIGEE_iFRAME_UAT = "https://iframe.nonprod.payments.woolworths.com.au/container-ws/tokens/creditcard";
+  public static final String APIGEE_iFRAME_TEST = "https://iframe.sit.payments.woolworths.com.au/container-ws/tokens/creditcard";
+  public static final String APIGEE_PAYMENT_DIGITALPAY = "/wow/v2/commerce/checkout/payment/digitalpay";
+
 }

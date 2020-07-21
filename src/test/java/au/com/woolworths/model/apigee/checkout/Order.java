@@ -22,8 +22,8 @@ public class Order {
   private int DeliveryFee;
   private int DeliveryFeeDiscount;
   private int DeliveryFeeBeforeDiscount;
-  private int BalanceToPay;
-  private int TotalIncludingGst;
+  private float BalanceToPay;
+  private float TotalIncludingGst;
   private int WowRewardsPaymentAmount;
   private int RedeemableWowRewardsDollars;
   private int DeferredWowRewardsDollars;
