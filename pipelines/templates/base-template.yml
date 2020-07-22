@@ -102,7 +102,7 @@ steps:
       $lionCount = calculation $lionURL
       $lobsterCount = calculation $lobsterURL
       $vegemiteCount = calculation $vegemiteURL
-      $nutellaCount = calculation $nutellaURL
+      $nutellaCount = 0
 
 
       $color = 'good';
