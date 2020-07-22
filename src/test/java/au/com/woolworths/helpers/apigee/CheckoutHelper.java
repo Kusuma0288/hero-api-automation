@@ -130,8 +130,7 @@ public class CheckoutHelper extends BaseHelper {
     }else { //endPoint = URLResources.APIGEE_iFRAME_TEST;
       logger.info("There is an existing issue with Digipay in Test environment, will be updated once the issue is addressed"); }
 
-    iFrameRequest iframeRequest;
-    iframeRequest = new iFrameRequest();
+    iFrameRequest iframeRequest = new iFrameRequest();
     Authentication authentication = new Authentication();
     iframeRequest.setAuthentication(authentication);
 
