@@ -79,6 +79,8 @@ steps:
       $pattern='<li .*class=\s*"list-group-item"[^>]*>(?:.|\n)+?</li>'
       $pattern11='<i[^>]*>(?:.|\n)+?</i>'
 
+      ."$(Build.SourcesDirectory)/src/test/resources/squad_counts.ps1" -ServerName medsys-dev
+
       ##Get wolves count
       $webclient = New-Object System.Net.WebClient
       $html = $webclient.DownloadString($wolvesURL)
@@ -107,11 +109,11 @@ steps:
         fields = @(
             @{title = 'Source Branch'; value = '$(Build.SourceBranchName)' ; short = 'true'},
             @{title = 'Run Env'; value = '${{ parameters.RunEnv }}'; short = 'true'}
-            @{title = 'Wolves'; value = $wolvesCount; short = 'true'}
-            @{title = 'Lion'; value = $lionCount; short = 'true'}
-            @{title = 'Lobsters'; value = $lionCount; short = 'true'}
-            @{title = 'Vegemite'; value = $lionCount; short = 'true'}
-            @{title = 'Nutella'; value = $lionCount; short = 'true'}
+            @{title = 'Wolves'; value = $wolvesCount; short = 'false'}
+            @{title = 'Lion'; value = $lionCount; short = 'false'}
+            @{title = 'Lobsters'; value = $lionCount; short = 'false'}
+            @{title = 'Vegemite'; value = $lionCount; short = 'false'}
+            @{title = 'Nutella'; value = $lionCount; short = 'false'}
           )
          image_url = $imageURL
        }
