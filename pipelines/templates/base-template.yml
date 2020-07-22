@@ -84,25 +84,25 @@ steps:
       echo $lobsterURL
       echo $vegemiteURL
 
-      function getSquadCount {
-        param ([string]$value)
-        echo "in squad count function"
-        $pattern='<li .*class=\s*"list-group-item"[^>]*>(?:.|\n)+?</li>'
-        $pattern11='<i[^>]*>(?:.|\n)+?</i>'
+      function calculation {
+       param ([string]$value)
 
-         $webclient = New-Object System.Net.WebClient
-         $html = $webclient.DownloadString($value)
-         $Regex = [Regex]::Matches($html, $pattern)
-         $newVal = $Regex.value
-         $pattern11='<i[^>]*>(?:.|\n)+?</i>'
-         $Regex1 = [Regex]::Matches($newVal, $pattern11)
-         return $Regex1.value.split('title="passed"></i>')[1].Trim().Substring(0,1)
+       $pattern='<li .*class=\s*"list-group-item"[^>]*>(?:.|\n)+?</li>'
+       $pattern11='<i[^>]*>(?:.|\n)+?</i>'
+
+       $webclient = New-Object System.Net.WebClient
+       $html = $webclient.DownloadString($value)
+       $Regex = [Regex]::Matches($html, $pattern)
+       $newVal = $Regex.value
+       $pattern11='<i[^>]*>(?:.|\n)+?</i>'
+       $Regex1 = [Regex]::Matches($newVal, $pattern11)
+       return $Regex1.value.split('title="passed"></i>')[1].Trim().Substring(0,1)
       }
-      $wolvesCount = getSquadCount $wolvesURL
-      $lionCount = getSquadCount $lionURL
-      $lobsterCount = getSquadCount $lobsterURL
-      $vegemiteCount = getSquadCount $vegemiteURL
-      $nutellaCount = getSquadCount $nutellaURL
+      $wolvesCount = calculation $wolvesURL
+      $lionCount = calculation $lionURL
+      $lobsterCount = calculation $lobsterURL
+      $vegemiteCount = calculation $vegemiteURL
+      $nutellaCount = calculation $nutellaURL
 
 
       $color = 'good';
