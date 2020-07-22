@@ -76,14 +76,11 @@ steps:
       $wolvesURL = "https://wowuatmobileautoreports.z8.web.core.windows.net/apigee_uat_20200717.4/pages/tag-scenarios/tag_Wolves.html"
       $lionURL = "https://wowuatmobileautoreports.z8.web.core.windows.net/apigee_uat_20200717.4/pages/tag-scenarios/tag_LION.html"
 
-      $pattern='<li .*class=\s*"list-group-item"[^>]*>(?:.|\n)+?</li>'
-      $pattern11='<i[^>]*>(?:.|\n)+?</i>'
 
-      ."$(Build.SourcesDirectory)/src/test/resources/squad_counts.ps1" -ServerName medsys-dev
 
       ##Get wolves count
       $wolvesCount = ."$(Build.SourcesDirectory)/src/test/resources/squad_counts.ps1" -ServerName $wolvesURL
-      echo "$wolvesCount in == " $wolvesCount
+      echo "wolvesCount in == " $wolvesCount
       ##Get lion count
       $html = $webclient.DownloadString($lionURL)
       $Regex = [Regex]::Matches($html, $pattern)
@@ -92,6 +89,7 @@ steps:
       $Regex1 = [Regex]::Matches($newVal, $pattern11)
       $lionCount= $Regex1.value.split('title="passed"></i>')[1].Trim().Substring(0,1)
 
+      echo "lionCount =  "  $lionCount
 
       $color = 'good';
       $slackMessage = @{
@@ -103,10 +101,10 @@ steps:
         fields = @(
             @{title = 'Source Branch'; value = '$(Build.SourceBranchName)' ; short = 'true'},
             @{title = 'Run Env'; value = '${{ parameters.RunEnv }}'; short = 'true'}
-            if($wolvesCount -ne '0'){
+            if($wolvesCount -ne 0){
             @{title = 'Wolves'; value = $wolvesCount; short = 'false'}
             }
-            if($lionCount -ne '0'){
+            if($lionCount -ne 0){
             @{title = 'Lion'; value = $lionCount; short = 'false'}
             }
             @{title = 'Lobsters'; value = $lionCount; short = 'false'}
