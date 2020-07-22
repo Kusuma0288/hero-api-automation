@@ -79,6 +79,20 @@ steps:
       $vegemiteURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
       ##$nutellaURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
 
+      function getSquadCount {
+        param ([string]$url)
+        echo "in squad count function"
+        $pattern='<li .*class=\s*"list-group-item"[^>]*>(?:.|\n)+?</li>'
+        $pattern11='<i[^>]*>(?:.|\n)+?</i>'
+
+         $webclient = New-Object System.Net.WebClient
+         $html = $webclient.DownloadString($url)
+         $Regex = [Regex]::Matches($html, $pattern)
+         $newVal = $Regex.value
+         $pattern11='<i[^>]*>(?:.|\n)+?</i>'
+         $Regex1 = [Regex]::Matches($newVal, $pattern11)
+         return $Regex1.value.split('title="passed"></i>')[1].Trim().Substring(0,1)
+      }
       $wolvesCount = getSquadCount $wolvesURL
       $lionCount = getSquadCount $lionURL
       $lobsterCount = getSquadCount $lobsterURL
@@ -109,7 +123,7 @@ steps:
             @{title = 'Vegemite'; value = $vegemiteCount; short = 'true'}
             }
             if($nutellaCount -ne 0){
-            @{title = 'Nutella'; value = $nutellaCount; short = 'false'}
+            @{title = 'Nutella'; value = $nutellaCount; short = 'true'}
             }
           )
          image_url = $imageURL
@@ -123,21 +137,6 @@ steps:
        -Body $slackMessage `
        -UseBasicParsing `
        -ContentType 'application/json'
-
-      function getSquadCount {
-        param ([string]$url)
-        echo "in squad count function"
-        $pattern='<li .*class=\s*"list-group-item"[^>]*>(?:.|\n)+?</li>'
-        $pattern11='<i[^>]*>(?:.|\n)+?</i>'
-
-        $webclient = New-Object System.Net.WebClient
-        $html = $webclient.DownloadString($url)
-        $Regex = [Regex]::Matches($html, $pattern)
-        $newVal = $Regex.value
-        $pattern11='<i[^>]*>(?:.|\n)+?</i>'
-        $Regex1 = [Regex]::Matches($newVal, $pattern11)
-        return $Regex1.value.split('title="passed"></i>')[1].Trim().Substring(0,1)
-      }
 
     displayName: 'Post test results to Slack'
     continueOnError: true
