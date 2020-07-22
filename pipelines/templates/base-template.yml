@@ -82,14 +82,8 @@ steps:
       ."$(Build.SourcesDirectory)/src/test/resources/squad_counts.ps1" -ServerName medsys-dev
 
       ##Get wolves count
-      $webclient = New-Object System.Net.WebClient
-      $html = $webclient.DownloadString($wolvesURL)
-      $Regex = [Regex]::Matches($html, $pattern)
-      $newVal = $Regex.value
-      $pattern11='<i[^>]*>(?:.|\n)+?</i>'
-      $Regex1 = [Regex]::Matches($newVal, $pattern11)
-      $wolvesCount= $Regex1.value.split('title="passed"></i>')[1].Trim().Substring(0,1)
-
+      $wolvesCount = ."$(Build.SourcesDirectory)/src/test/resources/squad_counts.ps1" -ServerName $wolvesURL
+      echo "$wolvesCount in == " $wolvesCount
       ##Get lion count
       $html = $webclient.DownloadString($lionURL)
       $Regex = [Regex]::Matches($html, $pattern)
