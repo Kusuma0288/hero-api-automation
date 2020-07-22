@@ -13,10 +13,7 @@ import static au.com.woolworths.model.apigee.payment.iFrameRequest.*;
 import static au.com.woolworths.model.apigee.payment.iFrameRequest.Authentication.*;
 import static au.com.woolworths.model.apigee.payment.iFrameRequest.Item.*;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
@@ -168,7 +165,7 @@ public class CheckoutHelper extends BaseHelper {
 
     iFrameRequeststr = mapper.writeValueAsString(iframeRequest);
     List<Header> headerList = new LinkedList<>();
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostOtherAPI(endPoint, iFrameRequeststr, headerList);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, iFrameRequeststr, headerList);
     responseStr = mapWebserviceResponse.get("response");
     return mapper.readValue(responseStr, iFrameResponse.class);
 
