@@ -80,8 +80,9 @@ steps:
 
       ##Get wolves count
       $wolvesCount = ."$(Build.SourcesDirectory)/src/test/resources/squad_counts.ps1" -ServerName $wolvesURL
-      echo "wolvesCount in == " ."$(Build.SourcesDirectory)/src/test/resources/squad_counts.ps1" -ServerName $wolvesURL set returnValue=%%i
-      echo "returnValue ==" + returnValue
+      $result = &."$(Build.SourcesDirectory)/src/test/resources/squad_counts.ps1" -ServerName $wolvesURL | select -Last 1
+
+      echo "wolvesCount in == " $result
       ##Get lion count
       $html = $webclient.DownloadString($lionURL)
       $Regex = [Regex]::Matches($html, $pattern)
