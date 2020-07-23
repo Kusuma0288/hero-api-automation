@@ -79,11 +79,6 @@ steps:
       $vegemiteURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
       ##$nutellaURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
 
-      echo $wolvesURL
-      echo $lionURL
-      echo $lobsterURL
-      echo $vegemiteURL
-
       function calculation {
        param ([string]$value)
 
