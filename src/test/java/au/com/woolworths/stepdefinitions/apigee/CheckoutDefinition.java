@@ -2,6 +2,9 @@ package au.com.woolworths.stepdefinitions.apigee;
 
 import au.com.woolworths.helpers.apigee.CheckoutHelper;
 import au.com.woolworths.model.apigee.checkout.*;
+import au.com.woolworths.model.apigee.payment.PayCardCaptureResponse;
+import au.com.woolworths.model.apigee.payment.PayIntrumentsRepsonse;
+import au.com.woolworths.utils.TestProperties;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -149,6 +152,23 @@ public class CheckoutDefinition extends CheckoutHelper {
   @And("^I validate the leave unattended flag to be enabled$")
   public void iValidateTheLeaveUnattendedFlag() {
     Assert.assertFalse("Disable Leave Unattended flag is not set to False", sharedData.leaveUnattended);
+  }
+
+  @And("^I make a payment using (.*)$")
+  public void iMakeAPaymentUsing(String paymentMode) throws Throwable {
+    PayIntrumentsRepsonse payIntrumentsRepsonse=getPayInstruments();
+    PayCardCaptureResponse payCardCaptureResponse=getCardCapture();
+    String sessionID;
+    if(System.getProperty("env").equals("uat"))
+    { sessionID=payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_UAT_URL"),"");
+      String instrumentId=postiFrameCardDetails(sessionID).getItem().getItemID();
+      float amount=sharedData.orderCheckoutPaymentTotalGST;
+      postDigitalPay(instrumentId,String.valueOf(amount));
+    }else {
+      logger.info("There is an existing issue with Digipay in Test environment, will be updated once the issue is addressed");
+      //**There are digipay issues in TEST environment**//
+      //sessionID=payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_TEST_URL"),"");
+    }
   }
 }
 
