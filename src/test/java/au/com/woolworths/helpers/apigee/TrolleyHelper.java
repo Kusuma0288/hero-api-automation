@@ -8,7 +8,7 @@ import au.com.woolworths.model.apigee.trolley.TrolleyItems;
 import au.com.woolworths.model.apigee.trolley.TrolleyV2Response;
 import au.com.woolworths.model.apigee.trolley.TrolleyV3Response;
 import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
-import au.com.woolworths.model.apigee.search.ApigeeV3SearchResponse;
+import au.com.woolworths.model.apigee.search.SearchResponseV3;
 
 import java.util.*;
 import java.util.logging.Logger;
@@ -140,7 +140,7 @@ public class TrolleyHelper extends BaseHelper {
 
     HashMap<String, Object> output = new HashMap<String, Object>();
     for (String product : productsToAdd.keySet()) {
-      ApigeeV3SearchResponse v3SearchResponse = searchHelper.getProductItems(product, mode);
+      SearchResponseV3 v3SearchResponse = searchHelper.getProductItems(product, mode);
       sharedData.searchProductResponse = v3SearchResponse;
 
       List<String> stockCodes = new ArrayList<String>();

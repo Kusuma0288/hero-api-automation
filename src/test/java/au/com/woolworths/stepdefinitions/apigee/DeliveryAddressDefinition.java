@@ -25,7 +25,7 @@ public class DeliveryAddressDefinition extends AddressHelper {
   public void searchForTheAddresses(String lookupAddress) throws Throwable {
     lookupAddress = Utilities.replaceMultipleandTrimSpaces(lookupAddress);
 
-    ApigeeSearchAddresses searchAddressResponse = iSearchForTheAddress(lookupAddress);
+    SearchAddresses searchAddressResponse = iSearchForTheAddress(lookupAddress);
     sharedData.searchAddressResponse = searchAddressResponse;
 
     //These assertions are to make sure there are no NULL FIELDS
@@ -35,10 +35,10 @@ public class DeliveryAddressDefinition extends AddressHelper {
   }
 
   public void iSelectTheAddressAsFulfilmentAddressFromMatchingAddresses(int position) throws Throwable {
-    ApigeeSearchAddresses addressResponse = sharedData.searchAddressResponse;
+    SearchAddresses addressResponse = sharedData.searchAddressResponse;
     ApigeeAddress[] addressItem = addressResponse.getAddresses();
 
-    ApigeeAddressDetails addressDetailResponse = iGetTheAddressIdFromAmasId(addressItem[position - 1].getAmasID());
+    AddressDetails addressDetailResponse = iGetTheAddressIdFromAmasId(addressItem[position - 1].getAmasID());
 
     String addressId = addressDetailResponse.getId();
     Assert.assertNotNull(addressId);
@@ -48,8 +48,8 @@ public class DeliveryAddressDefinition extends AddressHelper {
 
   @When("^verify the address saved is set as primary address in MyAccount$")
   public void verifyPrimaryAddressInMyAccount() throws Throwable {
-    ApigeeListAddresses addressesInMyAccount = iGetTheListAddresses();
-    ApigeeAddressDetails[] addressDetails = addressesInMyAccount.getAddresses();
+    ListAddresses addressesInMyAccount = iGetTheListAddresses();
+    AddressDetails[] addressDetails = addressesInMyAccount.getAddresses();
 
     boolean isPrimary = Arrays.stream(addressDetails).filter(x -> x.getId().equals(sharedData.addressId))
         .findFirst().get().isIsprimary();
@@ -59,8 +59,8 @@ public class DeliveryAddressDefinition extends AddressHelper {
 
   @Then("^filter the address by address text and verify address saved is set as primary address in MyAccount$")
   public void verifyPrimaryAddressByAddressText() throws Throwable {
-    ApigeeListAddresses addressesInMyAccount = iGetTheListAddresses();
-    ApigeeAddressDetails[] addressDetails = addressesInMyAccount.getAddresses();
+    ListAddresses addressesInMyAccount = iGetTheListAddresses();
+    AddressDetails[] addressDetails = addressesInMyAccount.getAddresses();
 
     boolean isPrimary = Arrays.stream(addressDetails).filter(x -> x.getText().equals(sharedData.addressText))
         .findFirst().get().isIsprimary();

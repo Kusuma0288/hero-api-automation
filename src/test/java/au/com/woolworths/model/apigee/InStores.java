@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.ArrayList;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data public class ApigeeInStores {
+@Data public class InStores {
 
   private String name;
   private String addressLine1;

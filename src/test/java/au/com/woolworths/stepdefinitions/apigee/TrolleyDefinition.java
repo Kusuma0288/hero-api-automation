@@ -2,7 +2,7 @@ package au.com.woolworths.stepdefinitions.apigee;
 
 import au.com.woolworths.helpers.apigee.SearchHelper;
 import au.com.woolworths.helpers.apigee.TrolleyHelper;
-import au.com.woolworths.model.apigee.search.ApigeeV3SearchResponse;
+import au.com.woolworths.model.apigee.search.SearchResponseV3;
 import au.com.woolworths.model.apigee.trolley.TrolleyV2Response;
 import au.com.woolworths.model.apigee.trolley.TrolleyV3Response;
 import cucumber.api.java.en.And;
@@ -23,7 +23,7 @@ public class TrolleyDefinition extends TrolleyHelper {
 
   @When("^I add the (.*) available products with (.*) each from the store to the V3 trolley$")
   public void iAddTheAvailableProductsFromTheStoreToTheV3Trolley(int availableProducts, int quantity) throws Throwable {
-    ApigeeV3SearchResponse searchResponse = sharedData.searchProductResponse;
+    SearchResponseV3 searchResponse = sharedData.searchProductResponse;
     List<String> stockCodes = new ArrayList<String>();
     for (int i = 0; i < searchResponse.getProducts().length; i++) {
       if (searchResponse.getProducts()[i].getIs().isRanged()) {
@@ -42,7 +42,7 @@ public class TrolleyDefinition extends TrolleyHelper {
 
   @When("^I add the (.*) available products with (.*) each from the store to the V2 trolley$")
   public void iAddTheAvailableProductsFromTheStoreToTheV2Trolley(int availableProducts, int quantity) throws Throwable {
-    ApigeeV3SearchResponse searchResponse = sharedData.searchProductResponse;
+    SearchResponseV3 searchResponse = sharedData.searchProductResponse;
     List<String> stockCodes = new ArrayList<String>();
     for (int i = 0; i < searchResponse.getProducts().length; i++) {
       if (searchResponse.getProducts()[i].getIs().isRanged()) {
@@ -185,7 +185,7 @@ public class TrolleyDefinition extends TrolleyHelper {
   public void iStoreProductsWithQuantityToTheVTrolley(int productQty, int quantity, String version) throws Throwable {
 
     if (version.equals("V3")) {
-      ApigeeV3SearchResponse searchResponse = sharedData.searchProductResponse;
+      SearchResponseV3 searchResponse = sharedData.searchProductResponse;
       List<String> stockCodes = new ArrayList<String>();
       for (int i = 0; i < searchResponse.getProducts().length; i++) {
 
@@ -201,7 +201,7 @@ public class TrolleyDefinition extends TrolleyHelper {
       Assert.assertTrue("Error in Order adding to the trolley", trolleyResponse.getResults().getOrder().getHttpStatusCode() == 200);
       Assert.assertTrue("Error in Trolley Results", trolleyResponse.getResults().getTrolley().getHttpStatusCode() == 200);
     } else {
-      ApigeeV3SearchResponse searchResponse = sharedData.searchProductResponse;
+      SearchResponseV3 searchResponse = sharedData.searchProductResponse;
       List<String> stockCodes = new ArrayList<String>();
       for (int i = 0; i < searchResponse.getProducts().length; i++) {
         if (searchResponse.getProducts()[i].getIs().isRanged()) {

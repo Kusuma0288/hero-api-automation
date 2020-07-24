@@ -6,7 +6,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
-@Data public class Address {
+@Data
+public class Address {
   private Integer Id;
   private String Text;
 }

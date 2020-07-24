@@ -19,7 +19,7 @@ public class AddressHelper extends BaseHelper {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 
-  public ApigeeSearchAddresses iSearchForTheAddress(String lookupAddress) throws Throwable {
+  public SearchAddresses iSearchForTheAddress(String lookupAddress) throws Throwable {
 
     String endPoint = URLResources.APIGEE_V2_SEARCH_ADDRESS;
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -28,13 +28,13 @@ public class AddressHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
-    ApigeeSearchAddresses searchAddressResponse = mapper.readValue(responseStr, ApigeeSearchAddresses.class);
+    SearchAddresses searchAddressResponse = mapper.readValue(responseStr, SearchAddresses.class);
     return searchAddressResponse;
   }
 
-  public ApigeeAddressDetails iGetTheAddressIdFromAmasId(String amasId) throws Throwable {
+  public AddressDetails iGetTheAddressIdFromAmasId(String amasId) throws Throwable {
 
-    ApigeeAddressRequest addressRequest = new ApigeeAddressRequest();
+    AddressRequest addressRequest = new AddressRequest();
     String endPoint = URLResources.APIGEE_V2_ADDRESS;
     addressRequest.setAmasId(amasId);
 
@@ -46,11 +46,11 @@ public class AddressHelper extends BaseHelper {
 
     String responseStr = mapWebserviceResponse.get("response");
 
-    ApigeeAddressDetails addressDetailResponse = mapper.readValue(responseStr, ApigeeAddressDetails.class);
+    AddressDetails addressDetailResponse = mapper.readValue(responseStr, AddressDetails.class);
     return addressDetailResponse;
   }
 
-  public ApigeeListAddresses iGetTheListAddresses() throws Throwable {
+  public ListAddresses iGetTheListAddresses() throws Throwable {
 
     String endPoint = URLResources.APIGEE_V2_LIST_ADDRESSES;
 
@@ -58,23 +58,23 @@ public class AddressHelper extends BaseHelper {
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
-    ApigeeListAddresses myAddressResponse = mapper.readValue(responseStr, ApigeeListAddresses.class);
+    ListAddresses myAddressResponse = mapper.readValue(responseStr, ListAddresses.class);
     return myAddressResponse;
 
   }
 
-  public ApigeeV2AddressStores getStore(Map<String, String> queryParams) throws Throwable {
+  public AddressStoresV2 getStore(Map<String, String> queryParams) throws Throwable {
     String endPoint = URLResources.APIGEE_V2_SEARCH_ADDRESS_POSTCODE;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
-    ApigeeV2AddressStores searchPostCodeResponse = mapper.readValue(responseStr, ApigeeV2AddressStores.class);
+    AddressStoresV2 searchPostCodeResponse = mapper.readValue(responseStr, AddressStoresV2.class);
     return searchPostCodeResponse;
 
   }
 
-  public AddressesV2ErrorResponse getStoresForInvalidParams(String type, String param) throws Throwable {
+  public ErrorResponseV2 getStoresForInvalidParams(String type, String param) throws Throwable {
     String endPoint = URLResources.APIGEE_V2_SEARCH_ADDRESS_POSTCODE;
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put(type, param);
@@ -83,8 +83,8 @@ public class AddressHelper extends BaseHelper {
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     String responseStr = mapWebserviceResponse.get("response");
 
-    AddressesV2ErrorResponse v2ErrorResponse = mapper.readValue(responseStr, AddressesV2ErrorResponse.class);
-    return v2ErrorResponse;
+    ErrorResponseV2 errorResponseV2 = mapper.readValue(responseStr, ErrorResponseV2.class);
+    return errorResponseV2;
   }
 
   public FulFilmentResponse setTheFulfilmentForTheStore(String storeAddressId) throws Throwable {

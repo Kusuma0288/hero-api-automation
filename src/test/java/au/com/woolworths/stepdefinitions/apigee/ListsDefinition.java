@@ -3,11 +3,11 @@ package au.com.woolworths.stepdefinitions.apigee;
 import au.com.woolworths.helpers.apigee.TrolleyHelper;
 import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.apigee.ListHelper;
-import au.com.woolworths.model.apigee.ApigeeGetListResponse;
-import au.com.woolworths.model.apigee.ApigeeListDetailsResponse;
-import au.com.woolworths.model.apigee.ApigeeListResponse;
-import au.com.woolworths.model.apigee.ApigeeSwitchDefaultListResponse;
-import au.com.woolworths.model.apigee.search.ApigeeV3SearchResponse;
+import au.com.woolworths.model.apigee.GetListResponse;
+import au.com.woolworths.model.apigee.ListDetailsResponse;
+import au.com.woolworths.model.apigee.ListResponse;
+import au.com.woolworths.model.apigee.SwitchDefaultListResponse;
+import au.com.woolworths.model.apigee.search.SearchResponseV3;
 import au.com.woolworths.model.apigee.trolley.TrolleyV2Response;
 import au.com.woolworths.model.apigee.trolley.TrolleyV3Response;
 import cucumber.api.java.en.And;
@@ -36,31 +36,31 @@ public class ListsDefinition extends ListHelper {
   }
 
   public void createLists(String listName) throws Throwable {
-    ApigeeListResponse apigeeListResponse = createList(listName);
-    sharedData.currentListId = apigeeListResponse.getUpdate().getId();
-    sharedData.listTimeStamp = apigeeListResponse.getUpdate().getTimestamp();
+    ListResponse listResponse = createList(listName);
+    sharedData.currentListId = listResponse.getUpdate().getId();
+    sharedData.listTimeStamp = listResponse.getUpdate().getTimestamp();
     //These assertions are to make sure there are no NULL FIELDS
-    Assert.assertNotNull(apigeeListResponse.getChanges());
-    Assert.assertTrue("List name added does not match the returned list name", listName.matches(apigeeListResponse.getUpdate().getTitle()));
+    Assert.assertNotNull(listResponse.getChanges());
+    Assert.assertTrue("List name added does not match the returned list name", listName.matches(listResponse.getUpdate().getTitle()));
 
   }
 
   @When("^I add free text item \"([^\"]*)\" to list$")
   public void iAddFreeTextItemToList(String freeTextItem) throws Throwable {
-    ApigeeListResponse updatedResponse = addFreeTextItemToTheList(sharedData.currentListId, freeTextItem);
+    ListResponse updatedResponse = addFreeTextItemToTheList(sharedData.currentListId, freeTextItem);
     Assert.assertNotNull("The Update List did not happen", updatedResponse.getUpdate());
   }
 
   @When("^I add free text item \"([^\"]*)\" to list and check the item to list$")
   public void iAddFreeTextItemToListAndCheckTheItem(String freeTextItem) throws Throwable {
-    ApigeeListResponse updatedResponse = addFreeTextItemToTheList(sharedData.currentListId, freeTextItem, true);
+    ListResponse updatedResponse = addFreeTextItemToTheList(sharedData.currentListId, freeTextItem, true);
     Assert.assertNotNull("Free Text is not created", updatedResponse.getUpdate().getId());
     sharedData.currentFreeTextId = updatedResponse.getUpdate().getId();
   }
 
   @When("^user verifies the free text item \"([^\"]*)\" is added to list$")
   public void userVerifiesTheFreeTextItemIsAddedToList(String freeTextItem) throws Throwable {
-    ApigeeListDetailsResponse listDetails = getListDetails(sharedData.currentListId, "V2");
+    ListDetailsResponse listDetails = getListDetails(sharedData.currentListId, "V2");
     Assert.assertTrue("List is empty", listDetails.getCount() >= 1);
     if (listDetails.getFreeTextItems().length == 1) {
       Assert.assertTrue("Text item name is not matching with expected:" + freeTextItem, listDetails.getFreeTextItems()[0].getText().equalsIgnoreCase(freeTextItem));
@@ -71,7 +71,7 @@ public class ListsDefinition extends ListHelper {
 
   @When("^user verifies the free text item \"([^\"]*)\" is added to list and is checked$")
   public void userVerifiesTheFreeTextItemIsAddedToListAndIsChecked(String freeText) throws Throwable {
-    ApigeeListDetailsResponse listDetails = getListDetails(sharedData.currentListId, "V2");
+    ListDetailsResponse listDetails = getListDetails(sharedData.currentListId, "V2");
     Assert.assertTrue("Free Text item is empty", listDetails.getFreeTextItems().length >= 1);
     boolean foundFreeText = false;
     for (int i = 0; i < listDetails.getFreeTextItems().length; i++) {
@@ -85,7 +85,7 @@ public class ListsDefinition extends ListHelper {
 
   @And("^user verifies the free text item \"([^\"]*)\" is added to \"([^\"]*)\" is checked$")
   public void userVerifiesTheFreeTextItemIsAddedToIsChecked(String freeText, String listName) throws Throwable {
-    ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName)), "V2");
+    ListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName)), "V2");
     Assert.assertTrue("Free Text item is empty", listDetails.getFreeTextItems().length >= 1);
     boolean foundFreeText = false;
     for (int i = 0; i < listDetails.getFreeTextItems().length; i++) {
@@ -99,7 +99,7 @@ public class ListsDefinition extends ListHelper {
 
   @And("^user verifies the free text item \"([^\"]*)\" is added to \"([^\"]*)\" is unchecked$")
   public void userVerifiesTheFreeTextItemIsAddedToIsUnchecked(String freeText, String listName) throws Throwable {
-    ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName)), "V2");
+    ListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName)), "V2");
     Assert.assertTrue("Free Text item is empty", listDetails.getFreeTextItems().length >= 1);
     boolean foundFreeText = false;
     for (int i = 0; i < listDetails.getFreeTextItems().length; i++) {
@@ -113,7 +113,7 @@ public class ListsDefinition extends ListHelper {
 
   @When("^user un-checks the free text item \"([^\"]*)\" from the newly created list$")
   public void userUnChecksTheFreeTextItemFromTheNewlyCreatedList(String freeText) throws Throwable {
-    ApigeeListResponse listUpdateResponse = updateFreeTextItemInTheList(Long.parseLong(sharedData.currentListId), Long.parseLong(sharedData.currentFreeTextId), freeText, false);
+    ListResponse listUpdateResponse = updateFreeTextItemInTheList(Long.parseLong(sharedData.currentListId), Long.parseLong(sharedData.currentFreeTextId), freeText, false);
     Assert.assertTrue("Free Text Item status is not set to UPDATE", listUpdateResponse.getUpdate().getStatus().equalsIgnoreCase("UPDATE"));
     Assert.assertTrue("Free Text Item could not be updated", listUpdateResponse.getUpdate().getText().equalsIgnoreCase(freeText));
   }
@@ -121,14 +121,14 @@ public class ListsDefinition extends ListHelper {
   @When("^checks free text item \"([^\"]*)\" from the \"([^\"]*)\"$")
   public void checksFreeTextItemFromTheList(String freeText, String listName) throws Throwable {
     long listId = getListIdForTheUser(listName);
-    ApigeeListResponse listUpdateResponse = updateFreeTextItemInTheList(listId, getFreeTextIdForTheList(freeText, listId), freeText, true);
+    ListResponse listUpdateResponse = updateFreeTextItemInTheList(listId, getFreeTextIdForTheList(freeText, listId), freeText, true);
     Assert.assertTrue("Free Text Item status is not set to UPDATE", listUpdateResponse.getUpdate().getStatus().equalsIgnoreCase("UPDATE"));
     Assert.assertTrue("Free Text Item could not be updated", listUpdateResponse.getUpdate().getText().equalsIgnoreCase(freeText));
   }
 
   @When("^user deletes free text item \"([^\"]*)\" from the new list$")
   public void userDeletesFreeTextItemFromTheNewList(String freeTextItem) throws Throwable {
-    ApigeeListDetailsResponse listDetails = getListDetails(sharedData.currentListId, "V2");
+    ListDetailsResponse listDetails = getListDetails(sharedData.currentListId, "V2");
     boolean foundFreeTextItem = false;
     String freeTextId = "";
     int countOfFreeTextItems = listDetails.getFreeTextItems().length;
@@ -141,7 +141,7 @@ public class ListsDefinition extends ListHelper {
     Assert.assertTrue("The Free Text item is not available in the list", foundFreeTextItem);
     Assert.assertTrue("FreeText Id is BLANK", freeTextId != "");
 
-    ApigeeListResponse response = deleteFreeTextFromList(sharedData.currentListId, freeTextId);
+    ListResponse response = deleteFreeTextFromList(sharedData.currentListId, freeTextId);
     Assert.assertTrue("The Free text item is not matching", response.getUpdate().getText().equals(freeTextItem));
     Assert.assertTrue("Status of Free Text is not DELETE", response.getUpdate().getStatus().equals("DELETE"));
   }
@@ -149,7 +149,7 @@ public class ListsDefinition extends ListHelper {
   @And("^I verify list \"([^\"]*)\" is set as default list$")
   public void verifyDefaultList(String listName) throws Throwable {
 
-    ApigeeGetListResponse apigeeListResponse = retrieveList();
+    GetListResponse apigeeListResponse = retrieveList();
     //These assertions are to make sure there are no NULL FIELDS
     Assert.assertNotNull(apigeeListResponse.getLists());
     Assert.assertTrue("List " + listName + " is not set as Default List", apigeeListResponse.getLists()[0].getTitle().contains(listName));
@@ -159,7 +159,7 @@ public class ListsDefinition extends ListHelper {
   @And("^I switch the default list to \"([^\"]*)\"$")
   public void switchDefaultList(String listName) throws Throwable {
 
-    ApigeeSwitchDefaultListResponse switchDefaultListResponse = switchToDefaultList(listName);
+    SwitchDefaultListResponse switchDefaultListResponse = switchToDefaultList(listName);
     //These assertions are to make sure there are no NULL FIELDS
     Assert.assertTrue("Not switched to default list", switchDefaultListResponse.getStatus().matches("OK"));
 
@@ -167,29 +167,29 @@ public class ListsDefinition extends ListHelper {
 
   @And("^I delete the newly created list$")
   public void iDeleteTheNewlyCreatedList() throws Throwable {
-    ApigeeListResponse response = deleteNewlyCreatedList(sharedData.currentListId, sharedData.listTimeStamp);
+    ListResponse response = deleteNewlyCreatedList(sharedData.currentListId, sharedData.listTimeStamp);
     Assert.assertTrue("List couldn't be deleted", response.getUpdate().getId().equals(sharedData.currentListId));
   }
 
   @When("^I delete all the list for the user$")
   public void iDeleteAllTheListForTheUser() throws Throwable {
-    ApigeeGetListResponse apigeeListResponse = retrieveList();
+    GetListResponse apigeeListResponse = retrieveList();
     //Please make sure to delete all list except 1 as default list is needed
     for (int i = 1; i < apigeeListResponse.getLists().length; i++) {
-      ApigeeListResponse response = deleteNewlyCreatedList(apigeeListResponse.getLists()[i].getId(), Long.parseLong(apigeeListResponse.getLists()[i].getTimestamp()));
+      ListResponse response = deleteNewlyCreatedList(apigeeListResponse.getLists()[i].getId(), Long.parseLong(apigeeListResponse.getLists()[i].getTimestamp()));
     }
 
   }
 
   @And("^I clear ALL the lists for the user$")
   public void iClearAllTheListForTheUser() throws Throwable {
-    ApigeeGetListResponse getListResponse = retrieveList();
+    GetListResponse getListResponse = retrieveList();
     if (getListResponse.getLists().length != 0) {
       for (int i = 0; i < getListResponse.getLists().length; i++) {
         String listId = getListResponse.getLists()[i].getId();
         String timestamp = getListResponse.getLists()[i].getTimestamp();
         String listName = getListResponse.getLists()[i].getTitle();
-        ApigeeListResponse deleteListResponse = deleteTheList(Long.parseLong(listId), Long.parseLong(timestamp));
+        ListResponse deleteListResponse = deleteTheList(Long.parseLong(listId), Long.parseLong(timestamp));
         Assert.assertTrue(listId + " (List ID) Could not be deleted", deleteListResponse.getUpdate().getId().equals(listId));
         Assert.assertTrue(listName + " (List Name) Could not be deleted", deleteListResponse.getUpdate().getTitle().equals(listName));
       }
@@ -200,7 +200,7 @@ public class ListsDefinition extends ListHelper {
 
   @When("^I add (.*) available products with \"([^\"]*)\" each from the store to (.*) list \"([^\"]*)\"$")
   public void iAddAvailableProductsWithEachFromTheStoreToList(int prodQty, int listQty, String version, String listName) throws Throwable {
-    ApigeeV3SearchResponse searchResponse = sharedData.searchProductResponse;
+    SearchResponseV3 searchResponse = sharedData.searchProductResponse;
     List<String> stockCodes = new ArrayList<String>();
     for (int i = 0; i < searchResponse.getProducts().length; i++) {
       if (searchResponse.getProducts()[i].getIs().isRanged()) {
@@ -214,13 +214,13 @@ public class ListsDefinition extends ListHelper {
     }
 
     Assert.assertTrue("There are no products available in Store", stockCodes.size() != 0);
-    ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName)), version);
+    ListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName)), version);
     Assert.assertTrue("Error: Invalid number of items in the list", prodQty == listDetails.getCount());
   }
 
   @Then("^I verify that the items saved to \"([^\"]*)\" list \"([^\"]*)\" are unchecked$")
   public void iVerifyThatTheItemsSavedToListAreUnchecked(String version, String listName) throws Throwable {
-    ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName)), version);
+    ListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName)), version);
     Assert.assertTrue("Error:There are no products in the list", listDetails.getProducts().length >= 1);
     for (int i = 0; i < listDetails.getProducts().length; i++) {
 
@@ -231,7 +231,7 @@ public class ListsDefinition extends ListHelper {
 
   @Then("^I add items to cart after selecting \"([^\"]*)\" for every item from \"([^\"]*)\" list \"([^\"]*)\"$")
   public void iAddItemsToCartAfterSelectingForEveryItemFromList(int quantity, String version, String listName) throws Throwable {
-    ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName)), version);
+    ListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName)), version);
     TrolleyHelper trolleyHelper = new TrolleyHelper();
     List<String> stockCodes = new ArrayList<String>();
     for (int i = 0; i < listDetails.getProducts().length; i++) {
@@ -254,7 +254,7 @@ public class ListsDefinition extends ListHelper {
     //Initialize a list of stock codes.
     List<String> listStockCodes = new ArrayList<String>();
     List<String> trolleyStockCodes = new ArrayList<String>();
-    ApigeeListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName)), version);
+    ListDetailsResponse listDetails = getListDetails(String.valueOf(getListIdForTheUser(listName)), version);
 
     for (int i = 0; i < listDetails.getProducts().length; i++) {
       listStockCodes.add(String.valueOf(listDetails.getProducts()[i].getArticleId()));

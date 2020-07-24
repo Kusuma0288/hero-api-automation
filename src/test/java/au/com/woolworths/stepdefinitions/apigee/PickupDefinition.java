@@ -5,9 +5,9 @@ import java.util.logging.Logger;
 
 import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.apigee.AddressHelper;
-import au.com.woolworths.model.apigee.ApigeeStores;
-import au.com.woolworths.model.apigee.ApigeeV2AddressStores;
-import au.com.woolworths.model.apigee.AddressesV2ErrorResponse;
+import au.com.woolworths.model.apigee.Stores;
+import au.com.woolworths.model.apigee.AddressStoresV2;
+import au.com.woolworths.model.apigee.ErrorResponseV2;
 import au.com.woolworths.model.apigee.FulFilmentResponse;
 import cucumber.api.java.en.*;
 import org.testng.Assert;
@@ -22,7 +22,7 @@ public class PickupDefinition extends AddressHelper {
     postCode = Utilities.replaceMultipleandTrimSpaces(postCode);
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("postcode", postCode);
-    ApigeeV2AddressStores searchPostCodeResponse = getStore(queryParams);
+    AddressStoresV2 searchPostCodeResponse = getStore(queryParams);
     sharedData.searchPostCodeResponse = searchPostCodeResponse;
 
     if (searchPostCodeResponse.getStores().length > 0) {
@@ -35,7 +35,7 @@ public class PickupDefinition extends AddressHelper {
 
   @Then("^I set the fulfilmentMethod to (.*) for the (.*) store$")
   public void iSetTheFulfilmentMethodToForTheStore(String fulfilmentMethod, int order) throws Throwable {
-    ApigeeV2AddressStores searchStoresResponse = sharedData.searchPostCodeResponse;
+    AddressStoresV2 searchStoresResponse = sharedData.searchPostCodeResponse;
     String getFulFilmentMethod = searchStoresResponse.getStores()[order - 1].getFulfilmentMethod();
     if (getFulFilmentMethod.contains("Pickup")) {
       long storeAddressId = searchStoresResponse.getStores()[order - 1].getPickUpType()[0].getAddressId();
@@ -55,7 +55,7 @@ public class PickupDefinition extends AddressHelper {
   public void storesForStoreAddressID(String StoreID) throws Throwable {
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("storeAddressId", StoreID);
-    ApigeeV2AddressStores searchStoresResponse = getStore(queryParams);
+    AddressStoresV2 searchStoresResponse = getStore(queryParams);
     //Assert at least 1 store is returned
     Assert.assertTrue(searchStoresResponse.getStores().length > 0, "Stores not returned for the given address id");
     Assert.assertTrue(!searchStoresResponse.getStores()[0].getAddressText().isEmpty(), "Address text is empty");
@@ -67,7 +67,7 @@ public class PickupDefinition extends AddressHelper {
   public void storesForStoreID(String storeID) throws Throwable {
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("storeid", storeID);
-    ApigeeV2AddressStores searchStoresResponse = getStore(queryParams);
+    AddressStoresV2 searchStoresResponse = getStore(queryParams);
     //Assert at least 1 store is returned
     Assert.assertTrue(searchStoresResponse.getStores().length > 0, "Stores not returned for the given store id");
     Assert.assertTrue(!searchStoresResponse.getStores()[0].getAddressText().isEmpty(), "Address text is empty");
@@ -82,12 +82,12 @@ public class PickupDefinition extends AddressHelper {
     longitude = Utilities.replaceMultipleandTrimSpaces(longitude);
     queryParams.put("latitude", latitude);
     queryParams.put("longitude", longitude);
-    ApigeeV2AddressStores searchStoresResponse = getStore(queryParams);
+    AddressStoresV2 searchStoresResponse = getStore(queryParams);
 
     //Assert at least 1 store is returned
     Assert.assertTrue(searchStoresResponse.getStores().length > 0, "Stores not returned for the given lat & long");
 
-    ApigeeStores[] distanceArray = searchStoresResponse.getStores();
+    Stores[] distanceArray = searchStoresResponse.getStores();
     double[] stores = Arrays.stream(distanceArray).mapToDouble(x -> x.getDistance()).toArray();
 
     //Assert that the stores returned are sorted by distance
@@ -96,13 +96,13 @@ public class PickupDefinition extends AddressHelper {
 
   @When("^I search for the pick up stores with invalid Store AddressID (.*) and validate the response")
   public void storesForInvalidStoreAddressID(String invalidStoreAddressID) throws Throwable {
-    AddressesV2ErrorResponse v2AddressesErrorResponse = getStoresForInvalidParams("storeAddressId", invalidStoreAddressID);
+    ErrorResponseV2 v2AddressesErrorResponse = getStoresForInvalidParams("storeAddressId", invalidStoreAddressID);
     Assert.assertTrue(v2AddressesErrorResponse.getErrorMessage().equalsIgnoreCase("Not Found"));
   }
 
   @When("^I search for the pickup stores with invalid StoreID (.*) and validate the response")
   public void storesForInvalidStoreID(String invalidStoreID) throws Throwable {
-    AddressesV2ErrorResponse v2AddressesErrorResponse = getStoresForInvalidParams("storeid", invalidStoreID);
+    ErrorResponseV2 v2AddressesErrorResponse = getStoresForInvalidParams("storeid", invalidStoreID);
     Assert.assertTrue(v2AddressesErrorResponse.getErrorMessage().equalsIgnoreCase("Not Found"));
   }
 
@@ -124,7 +124,7 @@ public class PickupDefinition extends AddressHelper {
     postCode = Utilities.replaceMultipleandTrimSpaces(postCode);
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("postcode", postCode);
-    ApigeeV2AddressStores searchPostCodeResponse = getStore(queryParams);
+    AddressStoresV2 searchPostCodeResponse = getStore(queryParams);
     sharedData.searchPostCodeResponse = searchPostCodeResponse;
     Assert.assertNotNull(searchPostCodeResponse.getStores(), "Pick up stores response is not null");
 

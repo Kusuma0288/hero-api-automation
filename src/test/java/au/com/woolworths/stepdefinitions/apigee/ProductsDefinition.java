@@ -1,8 +1,8 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
 import au.com.woolworths.helpers.apigee.ProductsHelper;
-import au.com.woolworths.model.apigee.products.ApigeeProductCategoriesSpecial;
-import au.com.woolworths.model.apigee.products.ApigeeProductsSpecial;
+import au.com.woolworths.model.apigee.products.ProductCategoriesSpecial;
+import au.com.woolworths.model.apigee.products.ProductsSpecial;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
 
@@ -20,7 +20,7 @@ public class ProductsDefinition extends ProductsHelper {
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("store", sharedData.inStoreId);
     queryParams.put("type", "specials");
-    ApigeeProductCategoriesSpecial productCategoriesSpecial = iRetreiveProductCategories(queryParams);
+    ProductCategoriesSpecial productCategoriesSpecial = iRetreiveProductCategories(queryParams);
 
     //These assertions are to make sure there are no NULL FIELDS
     Assert.assertNotNull("There are no Aisles", productCategoriesSpecial.getAisles()[0]);
@@ -38,7 +38,7 @@ public class ProductsDefinition extends ProductsHelper {
     queryParams.put("aisle", sharedData.productAisle);
     queryParams.put("category", sharedData.productCategory);
     queryParams.put("type", "specials");
-    ApigeeProductsSpecial productsSpecial = iRetreiveProducts(queryParams);
+    ProductsSpecial productsSpecial = iRetreiveProducts(queryParams);
 
     //Asserting sort, tobacco, disclaimer attributes
     Assert.assertNotNull(productsSpecial.getProducts()[0]);
@@ -53,7 +53,7 @@ public class ProductsDefinition extends ProductsHelper {
   public void retrieveProductCategories() throws Throwable {
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("store", sharedData.inStoreId);
-    ApigeeProductCategoriesSpecial productCategoriesSpecial = iRetreiveProductCategories(queryParams);
+    ProductCategoriesSpecial productCategoriesSpecial = iRetreiveProductCategories(queryParams);
 
     //These assertions are to make sure there are no NULL FIELDS
     Assert.assertNotNull("There are no Aisles", productCategoriesSpecial.getAisles()[0]);
@@ -70,7 +70,7 @@ public class ProductsDefinition extends ProductsHelper {
     queryParams.put("store", sharedData.inStoreId);
     queryParams.put("aisle", sharedData.productAisle);
     queryParams.put("category", sharedData.productCategory);
-    ApigeeProductsSpecial productsSpecial = iRetreiveProducts(queryParams);
+    ProductsSpecial productsSpecial = iRetreiveProducts(queryParams);
 
     //Asserting sort, tobacco, disclaimer attributes
     Assert.assertNotNull(productsSpecial.getProducts()[0]);
@@ -88,7 +88,7 @@ public class ProductsDefinition extends ProductsHelper {
     queryParams.put("filter", specialsGroup);
     queryParams.put("type", "specials");
     queryParams.put("store", store);
-    ApigeeProductsSpecial productsSpecial = iRetreiveProducts(queryParams);
+    ProductsSpecial productsSpecial = iRetreiveProducts(queryParams);
 
     //Asserting that at least 1 product has been returned
     Assert.assertNotNull("No products returned", productsSpecial.getProducts());
@@ -108,7 +108,7 @@ public class ProductsDefinition extends ProductsHelper {
     queryParams.put("filter", specialsGroup);
     queryParams.put("type", "specials");
     queryParams.put("mode", mode);
-    ApigeeProductsSpecial productsSpecial = iRetreiveProducts(queryParams);
+    ProductsSpecial productsSpecial = iRetreiveProducts(queryParams);
 
     //Asserting that at least 1 product has been returned
     Assert.assertNotNull("No products returned", productsSpecial.getProducts());

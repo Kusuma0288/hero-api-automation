@@ -5,7 +5,7 @@ import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-@Data public class ApigeeLoginReponse {
+@Data public class LoginReponse {
   private String access_token;
   private String refresh_token;
   private String expires_in;

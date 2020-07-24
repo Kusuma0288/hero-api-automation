@@ -1,12 +1,12 @@
 package au.com.woolworths.model.apigee;
 
-import au.com.woolworths.model.apigee.products.ApigeeProductsInList;
+import au.com.woolworths.model.apigee.products.ProductsInList;
 import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-@Data public class ApigeeListDetailsResponse {
+@Data public class ListDetailsResponse {
   private String id;
   private String text;
   private double quantity;
@@ -18,6 +18,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
   private int count;
   private int page;
   private Object nextPage;
-  private ApigeeFreeTextItem[] freeTextItems;
-  private ApigeeProductsInList[] products;
+  private FreeTextItem[] freeTextItems;
+  private ProductsInList[] products;
 }

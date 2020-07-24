@@ -5,8 +5,9 @@ import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-@Data public class ApigeeGuestLoginRequest {
-  private String device_auth_token;
-  private String store;
-  private String postcode;
+@Data public class FreeTextItem {
+  private long id;
+  private String text;
+  private long timestamp;
+  private boolean checked;
 }

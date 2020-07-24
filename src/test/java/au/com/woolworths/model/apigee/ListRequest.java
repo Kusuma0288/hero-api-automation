@@ -2,7 +2,7 @@ package au.com.woolworths.model.apigee;
 
 import lombok.Data;
 
-@Data public class ApigeeListRequest {
+@Data public class ListRequest {
   private long id;
   private String title;
   private String text;

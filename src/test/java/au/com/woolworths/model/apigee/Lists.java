@@ -5,8 +5,10 @@ import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-@Data public class ApigeeShopperLoginRequest {
-  private String device_auth_token;
-  private String user_name;
-  private String password;
+@Data public class Lists {
+  private String id;
+  private String title;
+  private String timestamp;
+  private String url;
+  private int productCount;
 }

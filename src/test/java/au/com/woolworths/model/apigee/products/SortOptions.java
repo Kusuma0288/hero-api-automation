@@ -5,7 +5,7 @@ import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data public class ApigeeSortOptions {
+@Data public class SortOptions {
   private String description;
   private Object params;
 }

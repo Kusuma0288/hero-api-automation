@@ -5,9 +5,9 @@ import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data public class ApigeeAisles {
+@Data public class Aisles {
   private String title;
-  private ApigeeProductCategories[] categories;
+  private ProductCategories[] categories;
   private float number;
   private Object images;
   private Object color;

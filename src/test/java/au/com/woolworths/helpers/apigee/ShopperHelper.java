@@ -4,8 +4,8 @@ import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.TestProperties;
 import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
-import au.com.woolworths.model.apigee.ApigeeLoginReponse;
-import au.com.woolworths.model.apigee.ApigeeShopperLoginRequest;
+import au.com.woolworths.model.apigee.LoginReponse;
+import au.com.woolworths.model.apigee.ShopperLoginRequest;
 import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
 import io.restassured.http.Header;
 
@@ -22,14 +22,14 @@ public class ShopperHelper extends BaseHelper {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 
-  public ApigeeLoginReponse userToConnectApigeewithLoginAndPassword(String userName, String password, String deviceId) throws Throwable {
+  public LoginReponse userToConnectApigeewithLoginAndPassword(String userName, String password, String deviceId) throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
     String responseStr = null;
 
-    ApigeeShopperLoginRequest loginRequest = new ApigeeShopperLoginRequest();
-    ApigeeLoginReponse response;
+    ShopperLoginRequest loginRequest = new ShopperLoginRequest();
+    LoginReponse response;
 
     loginRequest.setDevice_auth_token(deviceId);
     loginRequest.setUser_name(userName);
@@ -44,20 +44,20 @@ public class ShopperHelper extends BaseHelper {
     headerList.add(new Header("user-agent", TestProperties.get("user-agent")));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
-    response = mapper.readValue(responseStr, ApigeeLoginReponse.class);
+    response = mapper.readValue(responseStr, LoginReponse.class);
     response.setStatusCode(mapWebserviceResponse.get("statusCode"));
     return response;
 
   }
 
-  public ApigeeLoginReponse userToConnectApigeewithLoginAndPasswordWithAPIKey(String userName, String password, String deviceId, String apiKey) throws Throwable {
+  public LoginReponse userToConnectApigeewithLoginAndPasswordWithAPIKey(String userName, String password, String deviceId, String apiKey) throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
     String responseStr = null;
 
-    ApigeeShopperLoginRequest loginRequest = new ApigeeShopperLoginRequest();
-    ApigeeLoginReponse response;
+    ShopperLoginRequest loginRequest = new ShopperLoginRequest();
+    LoginReponse response;
 
     loginRequest.setDevice_auth_token(deviceId);
     loginRequest.setUser_name(userName);
@@ -72,7 +72,7 @@ public class ShopperHelper extends BaseHelper {
     headerList.add(new Header("user-agent", TestProperties.get("user-agent")));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
-    response = mapper.readValue(responseStr, ApigeeLoginReponse.class);
+    response = mapper.readValue(responseStr, LoginReponse.class);
     response.setStatusCode(mapWebserviceResponse.get("statusCode"));
     return response;
 

@@ -16,13 +16,13 @@ public class ListHelper extends BaseHelper {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 
-  public ApigeeListResponse createList(String listName) throws Throwable {
+  public ListResponse createList(String listName) throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
     String responseStr = null;
 
-    ApigeeListRequest apigeeListRequest = new ApigeeListRequest();
+    ListRequest apigeeListRequest = new ListRequest();
 
     apigeeListRequest.setTitle(listName);
     apigeeListRequest.setTimestamp(convertToEpochTime());
@@ -34,12 +34,12 @@ public class ListHelper extends BaseHelper {
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
 
     responseStr = mapWebserviceResponse.get("response");
-    ApigeeListResponse response = mapper.readValue(responseStr, ApigeeListResponse.class);
+    ListResponse response = mapper.readValue(responseStr, ListResponse.class);
     return response;
 
   }
 
-  public ApigeeGetListResponse retrieveList() throws Throwable {
+  public GetListResponse retrieveList() throws Throwable {
     Map<String, String> mapWebserviceResponse;
     String responseStr = null;
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -47,7 +47,7 @@ public class ListHelper extends BaseHelper {
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
-    ApigeeGetListResponse response = mapper.readValue(responseStr, ApigeeGetListResponse.class);
+    GetListResponse response = mapper.readValue(responseStr, GetListResponse.class);
     return response;
 
   }
@@ -63,7 +63,7 @@ public class ListHelper extends BaseHelper {
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
-    ApigeeGetListResponse response = mapper.readValue(responseStr, ApigeeGetListResponse.class);
+    GetListResponse response = mapper.readValue(responseStr, GetListResponse.class);
 
     for (int i = 0; i < response.getLists().length; i++) {
       if (response.getLists()[i].getTitle().equalsIgnoreCase(listName)) {
@@ -86,7 +86,7 @@ public class ListHelper extends BaseHelper {
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
 
-    ApigeeListDetailsResponse response = mapper.readValue(responseStr, ApigeeListDetailsResponse.class);
+    ListDetailsResponse response = mapper.readValue(responseStr, ListDetailsResponse.class);
     if (response.getId().equals(String.valueOf(listId))) {
       for (int i = 0; i < response.getFreeTextItems().length; i++) {
         if (response.getFreeTextItems()[i].getText().equalsIgnoreCase(freeText)) {
@@ -98,7 +98,7 @@ public class ListHelper extends BaseHelper {
     return freeTextId;
   }
 
-  public ApigeeSwitchDefaultListResponse switchToDefaultList(String listName) throws Throwable {
+  public SwitchDefaultListResponse switchToDefaultList(String listName) throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
     String responseStr = null;
@@ -111,83 +111,83 @@ public class ListHelper extends BaseHelper {
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerList);
     responseStr = mapWebserviceResponse.get("response");
-    ApigeeSwitchDefaultListResponse response = mapper.readValue(responseStr, ApigeeSwitchDefaultListResponse.class);
+    SwitchDefaultListResponse response = mapper.readValue(responseStr, SwitchDefaultListResponse.class);
     return response;
 
   }
 
-  public ApigeeListResponse addFreeTextItemToTheList(String listId, String freeText) throws Throwable {
+  public ListResponse addFreeTextItemToTheList(String listId, String freeText) throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
     String responseStr = null;
 
-    ApigeeListRequest apigeeListRequest = new ApigeeListRequest();
-    ApigeeListResponse response;
-    apigeeListRequest.setText(freeText);
-    apigeeListRequest.setTimestamp(convertToEpochTime());
-    apigeeListRequest.setLastsynced(convertToEpochTime());
-    apigeeListRequest.setChecked(false);
+    ListRequest listRequest = new ListRequest();
+    ListResponse response;
+    listRequest.setText(freeText);
+    listRequest.setTimestamp(convertToEpochTime());
+    listRequest.setLastsynced(convertToEpochTime());
+    listRequest.setChecked(false);
 
     String endPoint = URLResources.APIGEE_V2_UPDATE_LIST_FREETEXT;
     endPoint = endPoint.replace("{list_id}", listId);
 
-    requestStr = mapper.writeValueAsString(apigeeListRequest);
+    requestStr = mapper.writeValueAsString(listRequest);
 
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
-    response = mapper.readValue(responseStr, ApigeeListResponse.class);
+    response = mapper.readValue(responseStr, ListResponse.class);
     return response;
 
   }
 
-  public ApigeeListResponse updateFreeTextItemInTheList(long listId, long freeTextId, String freeText, boolean checkItem) throws Throwable {
+  public ListResponse updateFreeTextItemInTheList(long listId, long freeTextId, String freeText, boolean checkItem) throws Throwable {
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
     String responseStr = null;
 
-    ApigeeListRequest apigeeListRequest = new ApigeeListRequest();
-    ApigeeListResponse response;
-    apigeeListRequest.setId(freeTextId);
-    apigeeListRequest.setText(freeText);
-    apigeeListRequest.setTimestamp(convertToEpochTime());
-    apigeeListRequest.setLastsynced(convertToEpochTime());
-    apigeeListRequest.setChecked(checkItem);
+    ListRequest listRequest = new ListRequest();
+    ListResponse response;
+    listRequest.setId(freeTextId);
+    listRequest.setText(freeText);
+    listRequest.setTimestamp(convertToEpochTime());
+    listRequest.setLastsynced(convertToEpochTime());
+    listRequest.setChecked(checkItem);
 
     String endPoint = URLResources.APIGEE_V2_UPDATE_LIST_FREETEXT;
     endPoint = endPoint.replace("{list_id}", Long.toString(listId));
 
-    requestStr = mapper.writeValueAsString(apigeeListRequest);
+    requestStr = mapper.writeValueAsString(listRequest);
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokePut(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
-    response = mapper.readValue(responseStr, ApigeeListResponse.class);
+    response = mapper.readValue(responseStr, ListResponse.class);
     return response;
 
   }
 
-  public ApigeeListResponse addFreeTextItemToTheList(String listId, String freeText, boolean checkItem) throws Throwable {
+  public ListResponse addFreeTextItemToTheList(String listId, String freeText, boolean checkItem) throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
     String responseStr = null;
 
-    ApigeeListRequest apigeeListRequest = new ApigeeListRequest();
-    apigeeListRequest.setText(freeText);
-    apigeeListRequest.setTimestamp(convertToEpochTime());
-    apigeeListRequest.setLastsynced(convertToEpochTime());
-    apigeeListRequest.setChecked(checkItem);
+    ListRequest listRequest = new ListRequest();
+    listRequest.setText(freeText);
+    listRequest.setTimestamp(convertToEpochTime());
+    listRequest.setLastsynced(convertToEpochTime());
+    listRequest.setChecked(checkItem);
 
     String endPoint = URLResources.APIGEE_V2_UPDATE_LIST_FREETEXT;
     endPoint = endPoint.replace("{list_id}", listId);
 
-    requestStr = mapper.writeValueAsString(apigeeListRequest);
+    requestStr = mapper.writeValueAsString(listRequest);
 
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
-    ApigeeListResponse response = mapper.readValue(responseStr, ApigeeListResponse.class);
+    ListResponse response = mapper.readValue(responseStr, ListResponse.class);
     return response;
 
   }
@@ -222,7 +222,7 @@ public class ListHelper extends BaseHelper {
 
   }
 
-  public ApigeeListDetailsResponse getListDetails(String listId, String version) throws Throwable {
+  public ListDetailsResponse getListDetails(String listId, String version) throws Throwable {
     Map<String, String> mapWebserviceResponse;
     String responseStr = null;
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -240,11 +240,11 @@ public class ListHelper extends BaseHelper {
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
-    ApigeeListDetailsResponse response = mapper.readValue(responseStr, ApigeeListDetailsResponse.class);
+    ListDetailsResponse response = mapper.readValue(responseStr, ListDetailsResponse.class);
     return response;
   }
 
-  public ApigeeListResponse deleteFreeTextFromList(String listId, String freeTextId) throws Throwable {
+  public ListResponse deleteFreeTextFromList(String listId, String freeTextId) throws Throwable {
     Map<String, String> mapWebserviceResponse;
     String responseStr = null;
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -257,43 +257,43 @@ public class ListHelper extends BaseHelper {
     mapWebserviceResponse = invocationUtil.invokeDelete(endPoint, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
 
-    ApigeeListResponse response = mapper.readValue(responseStr, ApigeeListResponse.class);
+    ListResponse response = mapper.readValue(responseStr, ListResponse.class);
     return response;
   }
 
-  public ApigeeListResponse deleteNewlyCreatedList(String listId, long timestamp) throws Throwable {
+  public ListResponse deleteNewlyCreatedList(String listId, long timestamp) throws Throwable {
     Map<String, String> mapWebserviceResponse;
     String responseStr = null;
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("timestamp", String.valueOf(convertToEpochTime()));
     queryParams.put("lastsynced", String.valueOf(convertToEpochTime()));
-    ApigeeListResponse response;
+    ListResponse response;
 
     String endPoint = URLResources.APIGEE_V2_GET_LIST_BY_ID;
     endPoint = endPoint.replace("{list_id}", listId);
     mapWebserviceResponse = invocationUtil.invokeDelete(endPoint, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
 
-    response = mapper.readValue(responseStr, ApigeeListResponse.class);
+    response = mapper.readValue(responseStr, ListResponse.class);
     return response;
 
   }
 
-  public ApigeeListResponse deleteTheList(long listId, long timeStamp) throws Throwable {
+  public ListResponse deleteTheList(long listId, long timeStamp) throws Throwable {
     Map<String, String> mapWebserviceResponse;
     String responseStr = null;
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("timestamp", String.valueOf(convertToEpochTime()));
     queryParams.put("lastsynced", String.valueOf(convertToEpochTime()));
 
-    ApigeeListResponse response;
+    ListResponse response;
 
     String endPoint = URLResources.APIGEE_V2_GET_LIST_BY_ID;
     endPoint = endPoint.replace("{list_id}", Long.toString(listId));
     mapWebserviceResponse = invocationUtil.invokeDelete(endPoint, queryParams, headerList);
     responseStr = mapWebserviceResponse.get("response");
 
-    response = mapper.readValue(responseStr, ApigeeListResponse.class);
+    response = mapper.readValue(responseStr, ListResponse.class);
     return response;
   }
 }

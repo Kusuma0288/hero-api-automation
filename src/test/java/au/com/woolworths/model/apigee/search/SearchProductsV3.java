@@ -1,31 +1,34 @@
-package au.com.woolworths.model.apigee.products;
+package au.com.woolworths.model.apigee.search;
 
-import au.com.woolworths.model.apigee.ApigeeIsProductFlag;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import au.com.woolworths.model.apigee.IsProductFlag;
+import au.com.woolworths.model.common.Promotions;
+import au.com.woolworths.model.apigee.products.ProductDisclaimer;
+import au.com.woolworths.model.apigee.products.InStorePrice;
 import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-@JsonIgnoreProperties(ignoreUnknown = true)
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data public class ApigeeProducts {
+@Data public class SearchProductsV3 {
+
   private String name;
   private String article;
   private String description;
   private Object images;
   private float size;
   private String measure;
-  private ApigeeIsProductFlag is;
+  private IsProductFlag is;
   private String timeslotrestriction;
   private String instorelocation;
-  private String instoreaisleid;
+  private int instoreaisleid;
   private String instoreaisleside;
   private String instoreaislebay;
-  private String ecfcategory1;
-  private String ecfcategory2;
-  private String ecfcategory3;
   private InStorePrice instoreprice;
   private Object offers;
   private Object promo;
+  private Object footer;
+  private Object footerNew;
+  Promotions promotions;
   private float stockqty;
   private float defaultqty;
   private float incrementalquantity;
@@ -33,10 +36,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
   private String details;
   private String badge;
   private Object productbadge;
-  private ApigeeProductDisclaimer disclaimer;
+  private ProductDisclaimer disclaimer;
+  private Object stock;
+  private Boolean hasBeenBoughtBefore;
   private String specialbadge;
   private String savingsamount;
-  private Object stock;
-  private String hasBeenBoughtBefore;
-  private Object footerNew;
 }
+
