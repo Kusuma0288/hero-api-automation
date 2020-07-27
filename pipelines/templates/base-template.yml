@@ -78,7 +78,6 @@ steps:
       $lobsterURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Lobsters.html"
       $vegemiteURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
       ##$nutellaURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
-      $count = 0
       function calculation {
        param ([string]$value)
 
@@ -96,7 +95,6 @@ steps:
        }
        catch{
          echo "No feature/scenario exists for the tag provided"
-         $count = 0
         }
        return $count
       }
@@ -107,6 +105,7 @@ steps:
       $vegemiteCount = calculation $vegemiteURL
       $nutellaCount = 0
 
+      echo "Vegemite count = " + $vegemiteCount
 
       $color = 'good';
       $slackMessage = @{
@@ -118,7 +117,8 @@ steps:
         fields = @(
             @{title = 'Source Branch'; value = '$(Build.SourceBranchName)' ; short = 'true'},
             @{title = 'Run Env'; value = '${{ parameters.RunEnv }}'; short = 'true'}
-            @{title = 'Failures'; short = 'false'}
+            @{title = 'Failures:'; short = 'false'}
+            @{title = ' '; short = 'false'}
             if($wolvesCount -ne 0){
             @{title = 'Wolves'; value = $wolvesCount; short = 'true'}
             }
