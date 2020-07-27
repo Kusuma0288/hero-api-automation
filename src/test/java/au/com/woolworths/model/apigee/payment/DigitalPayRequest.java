@@ -8,7 +8,7 @@ import lombok.Data;
 
   private Payments[] Payments;
 
-  @Data public static class Payments{
+  @Data public static class Payments {
     private String stepUpToken;
     private String PaymentInstrumentId;
     private String Amount;

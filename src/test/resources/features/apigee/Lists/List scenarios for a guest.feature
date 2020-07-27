@@ -1,4 +1,4 @@
-@REGRESSION @LIST @LION @SMOKE @VEGEMITE
+@REGRESSION @PROD @LIST @SMOKE @VEGEMITE
 Feature: Verify Apigee List scenarios for Guest
 
 

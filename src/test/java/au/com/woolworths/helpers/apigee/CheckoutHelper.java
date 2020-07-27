@@ -112,7 +112,7 @@ public class CheckoutHelper extends BaseHelper {
   public PayCardCaptureResponse getCardCapture() throws Throwable {
     String endPoint = URLResources.APIGEE_PAYMENT_CARDS;
 
-    PayCardCaptureRequest payCardCaptureRequest=new PayCardCaptureRequest();
+    PayCardCaptureRequest payCardCaptureRequest = new PayCardCaptureRequest();
     payCardCaptureRequest.setClientReference("VALID_REFERENCE");
     String payCardCaptureRequestStr = mapper.writeValueAsString(payCardCaptureRequest);
 
@@ -124,10 +124,11 @@ public class CheckoutHelper extends BaseHelper {
 
   public iFrameResponse postiFrameCardDetails(String sessionID) throws Throwable {
 
-    String iFrameRequeststr, responseStr, endPoint=null;
-    if(System.getProperty("env").equals("uat"))
-    { endPoint = URLResources.APIGEE_iFRAME_UAT;
-    }else { //endPoint = URLResources.APIGEE_iFRAME_TEST;
+    String iFrameRequeststr, responseStr, endPoint = null;
+    if (System.getProperty("env").equals("uat"))
+    {
+      endPoint = URLResources.APIGEE_iFRAME_UAT;
+    } else { //endPoint = URLResources.APIGEE_iFRAME_TEST;
       logger.info("There is an existing issue with Digipay in Test environment, will be updated once the issue is addressed"); }
 
     iFrameRequest iframeRequest = new iFrameRequest();
@@ -135,7 +136,7 @@ public class CheckoutHelper extends BaseHelper {
     iframeRequest.setAuthentication(authentication);
 
     Credentials[] credentials = new Credentials[1];
-    credentials[0]= new Credentials();
+    credentials[0] = new Credentials();
     credentials[0].setType("PERSON");
     credentials[0].setSessionID(sessionID);
     iframeRequest.getAuthentication().setCredentials(credentials);
@@ -143,20 +144,20 @@ public class CheckoutHelper extends BaseHelper {
     Item item = new Item();
     iframeRequest.setItem(item);
 
-    ItemFields[] itemFields=new ItemFields[4];
-    itemFields[0]= new ItemFields();
+    ItemFields[] itemFields = new ItemFields[4];
+    itemFields[0] = new ItemFields();
     itemFields[0].setData(TestProperties.get("CARD_NUMBER"));
     itemFields[0].setName("cardNumber");
 
-    itemFields[1]= new ItemFields();
+    itemFields[1] = new ItemFields();
     itemFields[1].setData(TestProperties.get("EXPIRY_MONTH"));
     itemFields[1].setName("expiryMonth");
 
-    itemFields[2]= new ItemFields();
+    itemFields[2] = new ItemFields();
     itemFields[2].setData(TestProperties.get("EXPIRY_YEAR"));
     itemFields[2].setName("expiryYear");
 
-    itemFields[3]= new ItemFields();
+    itemFields[3] = new ItemFields();
     itemFields[3].setData(TestProperties.get("CVV"));
     itemFields[3].setName("cvv");
 
@@ -172,11 +173,11 @@ public class CheckoutHelper extends BaseHelper {
 
   public DigitalPayResponse postDigitalPay(String instrumentId, String  amount) throws Throwable {
 
-    String digipayRequestStr, responseStr,endPoint;
+    String digipayRequestStr, responseStr, endPoint;
     endPoint = URLResources.APIGEE_PAYMENT_DIGITALPAY;
-    DigitalPayRequest digitalPayRequest=new DigitalPayRequest();
-    DigitalPayRequest.Payments[] Payments=new DigitalPayRequest.Payments[1];
-    Payments[0]= new DigitalPayRequest.Payments();
+    DigitalPayRequest digitalPayRequest = new DigitalPayRequest();
+    DigitalPayRequest.Payments[] Payments = new DigitalPayRequest.Payments[1];
+    Payments[0] = new DigitalPayRequest.Payments();
     Payments[0].setAmount(amount);
     Payments[0].setStepUpToken("tokenise-stepup-token");
     Payments[0].setPaymentInstrumentId(instrumentId);
