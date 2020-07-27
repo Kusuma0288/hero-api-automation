@@ -118,6 +118,7 @@ steps:
         fields = @(
             @{title = 'Source Branch'; value = '$(Build.SourceBranchName)' ; short = 'true'},
             @{title = 'Run Env'; value = '${{ parameters.RunEnv }}'; short = 'true'}
+            @{title = 'Failures'; short = 'false'}
             if($wolvesCount -ne 0){
             @{title = 'Wolves'; value = $wolvesCount; short = 'true'}
             }
