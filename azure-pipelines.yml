@@ -12,7 +12,7 @@ jobs:
         parameters:
           TestRunTitle: Apigee Automation Run Report
           #default: https://hooks.slack.com/services/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
-          default: https://hooks.slack.com/services/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
+          SlackWebhookUrl: https://hooks.slack.com/services/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
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: prod
           RunEnv: prod
@@ -27,7 +27,7 @@ jobs:
         parameters:
           TestRunTitle: Apigee Automation Run Report
           #default: https://hooks.slack.com/services/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
-          default: https://hooks.slack.com/services/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
+          SlackWebhookUrl: https://hooks.slack.com/services/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
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: regression
           RunEnv: uat
@@ -42,7 +42,7 @@ jobs:
         parameters:
           TestRunTitle: Apigee Automation Run Report
           #default: https://hooks.slack.com/services/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
-          default: https://hooks.slack.com/services/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
+          SlackWebhookUrl: https://hooks.slack.com/services/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
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: regression
           RunEnv: test
