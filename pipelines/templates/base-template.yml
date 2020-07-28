@@ -105,6 +105,10 @@ steps:
       $vegemiteCount = calculation $vegemiteURL
       $nutellaCount = 0
 
+      echo "wolves=" + $wolvesCount
+      echo "lion=" + $lionCount
+      echo "lobster=" + $lobsterCount
+      echo "vegemite=" + $vegemiteCount
 
       $color = 'good';
       $slackMessage = @{
