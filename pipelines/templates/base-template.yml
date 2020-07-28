@@ -95,7 +95,7 @@ steps:
        }
        catch{
          #"No feature/scenario exists for the tag provided"
-         echo 0
+         $count = 0
         }
        return $count
       }
