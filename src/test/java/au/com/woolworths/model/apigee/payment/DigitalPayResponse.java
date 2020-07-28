@@ -17,7 +17,7 @@ import lombok.Data;
   private String fulfilmentMethod;
   private String fulfilmentMethodLabel;
 
-  @Data public static class OrderPayments{
+  @Data public static class OrderPayments {
     private int wowRewards;
     private float creditCard;
     private int giftCard;

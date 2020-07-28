@@ -12,21 +12,21 @@ import lombok.Data;
   private boolean isGuest;
   private Item item;
 
-  @Data public static class Authentication{
+  @Data public static class Authentication {
     private Credentials[] credentials;
 
-    @Data public static class Credentials{
-       private String type;
-       private String sessionID;
+    @Data public static class Credentials {
+      private String type;
+      private String sessionID;
     }
   }
-   @Data public static class Item{
-     private String type;
-     private int priority;
-     private ItemFields[] itemFields;
-     @Data public static class ItemFields {
-       private String name;
-       private String data;
-     }
+  @Data public static class Item {
+    private String type;
+    private int priority;
+    private ItemFields[] itemFields;
+    @Data public static class ItemFields {
+      private String name;
+      private String data;
+    }
   }
 }

@@ -14,13 +14,13 @@ import java.util.List;
     private CreditCard creditCard;
     private Paypal payPal;
 
-
     @Data public static class CreditCard {
       private List<String> allowedNetworks;
       private List<String> allowedTransactionTypes;
       private String serviceStatus;
     }
-     @Data public static class Paypal {
+
+    @Data public static class Paypal {
       private String clientToken;
       private String serviceStatus;
     }

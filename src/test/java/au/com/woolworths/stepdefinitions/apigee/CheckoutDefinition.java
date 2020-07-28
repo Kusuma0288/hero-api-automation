@@ -156,15 +156,16 @@ public class CheckoutDefinition extends CheckoutHelper {
 
   @And("^I make a payment using (.*)$")
   public void iMakeAPaymentUsing(String paymentMode) throws Throwable {
-    PayIntrumentsRepsonse payIntrumentsRepsonse=getPayInstruments();
-    PayCardCaptureResponse payCardCaptureResponse=getCardCapture();
+    PayIntrumentsRepsonse payIntrumentsRepsonse = getPayInstruments();
+    PayCardCaptureResponse payCardCaptureResponse = getCardCapture();
     String sessionID;
-    if(System.getProperty("env").equals("uat"))
-    { sessionID=payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_UAT_URL"),"");
-      String instrumentId=postiFrameCardDetails(sessionID).getItem().getItemID();
-      float amount=sharedData.orderCheckoutPaymentTotalGST;
-      postDigitalPay(instrumentId,String.valueOf(amount));
-    }else {
+    if (System.getProperty("env").equals("uat"))
+    {
+      sessionID = payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_UAT_URL"), "");
+      String instrumentId = postiFrameCardDetails(sessionID).getItem().getItemID();
+      float amount = sharedData.orderCheckoutPaymentTotalGST;
+      postDigitalPay(instrumentId, String.valueOf(amount));
+    } else {
       logger.info("There is an existing issue with Digipay in Test environment, will be updated once the issue is addressed");
       //**There are digipay issues in TEST environment**//
       //sessionID=payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_TEST_URL"),"");
