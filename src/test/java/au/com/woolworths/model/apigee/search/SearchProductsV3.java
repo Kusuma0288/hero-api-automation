@@ -1,9 +1,8 @@
 package au.com.woolworths.model.apigee.search;
 
-import au.com.woolworths.model.apigee.IsProductFlag;
+import au.com.woolworths.model.apigee.products.IsProductFlag;
 import au.com.woolworths.model.common.Promotions;
 import au.com.woolworths.model.apigee.products.ProductDisclaimer;
-import au.com.woolworths.model.apigee.products.InStorePrice;
 import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;

@@ -1,6 +1,11 @@
 package au.com.woolworths.utils;
 
-import au.com.woolworths.model.apigee.*;
+import au.com.woolworths.model.apigee.address.AddressStoresV2;
+import au.com.woolworths.model.apigee.address.SearchAddresses;
+import au.com.woolworths.model.apigee.lists.ListResponse;
+import au.com.woolworths.model.apigee.response.LoginReponse;
+import au.com.woolworths.model.apigee.response.SpecialspageResponse;
+import au.com.woolworths.model.apigee.search.SearchInStore;
 import au.com.woolworths.model.apigee.trolley.TrolleyV2Response;
 import au.com.woolworths.model.apigee.trolley.TrolleyV3Response;
 import au.com.woolworths.model.apigee.search.SearchResponseV3;

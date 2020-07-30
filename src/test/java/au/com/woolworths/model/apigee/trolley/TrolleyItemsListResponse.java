@@ -1,6 +1,6 @@
 package au.com.woolworths.model.apigee.trolley;
 
-import au.com.woolworths.model.apigee.products.InStorePrice;
+import au.com.woolworths.model.apigee.search.InStorePrice;
 import au.com.woolworths.model.common.Promotions;
 import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;

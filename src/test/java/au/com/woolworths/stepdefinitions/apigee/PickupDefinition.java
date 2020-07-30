@@ -5,10 +5,10 @@ import java.util.logging.Logger;
 
 import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.apigee.AddressHelper;
-import au.com.woolworths.model.apigee.Stores;
-import au.com.woolworths.model.apigee.AddressStoresV2;
-import au.com.woolworths.model.apigee.ErrorResponseV2;
-import au.com.woolworths.model.apigee.FulFilmentResponse;
+import au.com.woolworths.model.apigee.store.Stores;
+import au.com.woolworths.model.apigee.address.AddressStoresV2;
+import au.com.woolworths.model.apigee.response.ErrorResponseV2;
+import au.com.woolworths.model.apigee.fulfilment.FulFilmentResponse;
 import cucumber.api.java.en.*;
 import org.testng.Assert;
 

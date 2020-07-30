@@ -1,8 +1,13 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
+import au.com.woolworths.model.apigee.address.AddressDetails;
+import au.com.woolworths.model.apigee.address.ApigeeAddress;
+import au.com.woolworths.model.apigee.address.SearchAddresses;
+import au.com.woolworths.model.apigee.delivery.DeliveryFulfilmentV3Response;
+import au.com.woolworths.model.apigee.fulfilment.Fulfilmentv3ErrorResponse;
+import au.com.woolworths.model.apigee.lists.ListAddresses;
 import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.apigee.AddressHelper;
-import au.com.woolworths.model.apigee.*;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;

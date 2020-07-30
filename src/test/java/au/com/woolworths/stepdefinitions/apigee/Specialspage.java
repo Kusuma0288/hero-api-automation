@@ -1,7 +1,7 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
 import au.com.woolworths.helpers.apigee.SpecialsHelper;
-import au.com.woolworths.model.apigee.SpecialspageResponse;
+import au.com.woolworths.model.apigee.response.SpecialspageResponse;
 import cucumber.api.java.en.Then;
 import junit.framework.Assert;
 

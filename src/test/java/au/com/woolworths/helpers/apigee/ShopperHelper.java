@@ -4,8 +4,8 @@ import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.TestProperties;
 import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
-import au.com.woolworths.model.apigee.LoginReponse;
-import au.com.woolworths.model.apigee.ShopperLoginRequest;
+import au.com.woolworths.model.apigee.response.LoginReponse;
+import au.com.woolworths.model.apigee.request.ShopperLoginRequest;
 import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
 import io.restassured.http.Header;
 
