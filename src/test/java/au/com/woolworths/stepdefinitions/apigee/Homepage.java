@@ -187,7 +187,7 @@ public class Homepage extends HomepageHelper {
       Assert.assertTrue("Rewards card component missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item -> item.getType().equals("AddRewardsCard")));
       HomepageComponents item = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("AddRewardsCard")).findFirst().get();
       Assert.assertEquals("Rewards title is mismatch", item.getData().getTitle(), "+ Add Rewards Card");
-      Assert.assertEquals("Rewards subtitle is mismatch", item.getData().getSubtitle(), "Get personalised specials, and track and earn bonus Rewards points");
+      Assert.assertEquals("Rewards subtitle is mismatch", "Collect points and boost your savings.", item.getData().getSubtitle());
     }
 
     //Assert Catalogue details
