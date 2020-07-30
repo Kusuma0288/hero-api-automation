@@ -44,7 +44,6 @@ jobs:
           Profile: regression
           RunEnv: test
 
- 
 schedules:
   - cron: "10 23 * * Mon-Fri"
     displayName: Morning build (starts at 9:10AM)
