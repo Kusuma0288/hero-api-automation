@@ -20,6 +20,6 @@ Feature: Verify Apigee v3 Search functionality
     When I search for the product <inValidSearchItem> in <mode> mode and should not see any matching results
     Examples:
       | inValidSearchItem | mode   |
-      | Ba$$EEE           | pickup |
-      | BayuEE            | online |
+      | Ba$$EEE0          | pickup |
+      | BayuEE            | online  |
 

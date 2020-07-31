@@ -8,7 +8,7 @@ Feature: Checkout API scenarios
     Given I set a pick up store using post code 2204
     And I clear the trolley
     When I search for the product Nivea in pickup mode and store response
-    And I add the 5 available products with 5 each from the store to the V3 trolley
+    And I add the 3 available products with 3 each from the store to the V3 trolley
     And I get the available windows for the logged in user with storeId or addressId
     Then I reserve the available window for the selected "<Mode>"
     Then I validate that user is able to select Reusable bags as packaging preference
