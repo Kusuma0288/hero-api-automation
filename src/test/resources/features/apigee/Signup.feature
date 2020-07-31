@@ -1,16 +1,17 @@
 @SIGNUPPAGE @LION @REGRESSION
-Feature: Verify that Customer is able to sign-up
+Feature: Sign up scenarios
 
 
-  Scenario Outline: Verify that user is able to sign-up for a customer with Date Of Birth > 18 and < 18
-
+  Scenario Outline: Verify that user is able to sign-up with dob <DateOfBirth> and t&c as <AgreeToTsandCs>  .
+  
     Given mobile user connect to apigee endpoint as guest
     When user successfully authenticate to apigee public api as guest
-    When Customer signup for woolworths online account with date of birth "<DateOfBirth>"
-    Then Customer is able to successfully create an account
+    When Customer signup for woolworths online account with date of birth "<DateOfBirth>" and t&c <AgreeToTsandCs>
+    Then Customer is notified of <Notification> 
 
     Examples:
 
-      | DateOfBirth |
-      | 01/01/1975  |
-      | 01/01/1993  |
+      | DateOfBirth | AgreeToTsandCs | Notification                    				   |
+      | 01/01/1975  | true           | successfull creation of account                 |
+      | 01/01/2009  | true			 | successfull creation of account                 |
+      | 01/01/2009  | false			 | couldnt create account as t&c were not accepted |
