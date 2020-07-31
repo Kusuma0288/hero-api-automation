@@ -39,8 +39,8 @@ public class Homepage extends HomepageHelper {
     //Assert Catalogue details
     Assert.assertTrue("Catalogue card component missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item -> item.getType().equals("CatalogueCard")));
     HomepageComponentsData item = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("CatalogueCard")).findFirst().get().getData();
-    Assert.assertEquals("Catalogue card title mismatch", item.getTitle(), "Catalogue");
-    Assert.assertEquals("Catalogue card subtitle mismatch", item.getSubtitle(), "View current specials");
+    Assert.assertEquals("Catalogue card title mismatch", "Catalogue", item.getTitle());
+    Assert.assertEquals("Catalogue card subtitle mismatch", "View current specials", item.getSubtitle());
 
     //Assert Horizontal list details - All Specials
     Assert.assertTrue("Horizontal list component missing " + Offer
