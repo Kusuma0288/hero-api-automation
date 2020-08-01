@@ -31,6 +31,7 @@ jobs:
       - script: |
           echo "Setting up delay for the job"
           sleep 10s
+          echo "parameters=="
           echo ${{ parameters.triggerEnv }}
       - template: pipelines/templates/base-template.yml
         parameters:
