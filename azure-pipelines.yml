@@ -30,7 +30,8 @@ jobs:
     steps:
       - script: |
           echo "Setting up delay for the job"
-          sleep 10m
+          sleep 10s
+          echo ${{ parameters.envName }}
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
@@ -39,6 +40,7 @@ jobs:
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: regression
           RunEnv: uat
+    condition: and(succeeded(), contains(${{ parameters.envName }}, 'test'))
 
   # - job: Test
   #   displayName: Test Automation Run
