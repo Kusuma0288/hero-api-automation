@@ -34,6 +34,11 @@ jobs:
           echo "parameters=="
           echo ${{ parameters.triggerEnv }}
           echo "variable="
+          $url = "https://dev.azure.com/{organization}/{project}/_apis/build/builds/{buildId}?api-version=5.1"
+          $buildPipeline= Invoke-RestMethod -Uri $url -Headers @{   
+          Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
+          } -Method Get
+          $starttime= $buildPipeline.startTime
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
