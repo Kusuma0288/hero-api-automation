@@ -39,6 +39,8 @@ jobs:
           Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
           } -Method Get
           $starttime= $buildPipeline.startTime
+          echo "start time --- "
+          echo $starttime
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
