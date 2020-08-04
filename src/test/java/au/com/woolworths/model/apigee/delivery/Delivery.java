@@ -1,5 +1,6 @@
 package au.com.woolworths.model.apigee.delivery;
 
+import au.com.woolworths.model.apigee.address.Address;
 import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -8,6 +9,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @Data public class Delivery {
 
-  private au.com.woolworths.model.apigee.address.Address Address;
+  private Address Address;
 
 }

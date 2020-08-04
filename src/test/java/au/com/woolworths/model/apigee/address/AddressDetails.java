@@ -16,7 +16,4 @@ import com.fasterxml.jackson.annotation.JsonInclude;
   private String suburbname;
   private boolean ispartner;
   private String partnerbranchid;
-  // Getter Methods
-
-  // Setter Methods
 }

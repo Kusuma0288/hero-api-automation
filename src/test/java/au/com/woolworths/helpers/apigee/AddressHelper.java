@@ -9,7 +9,7 @@ import au.com.woolworths.model.apigee.delivery.DeliveryFulfilmentV3Response;
 import au.com.woolworths.model.apigee.fulfilment.FulFilmentResponse;
 import au.com.woolworths.model.apigee.fulfilment.Fulfilmentv3ErrorResponse;
 import au.com.woolworths.model.apigee.lists.ListAddresses;
-import au.com.woolworths.model.apigee.response.ErrorResponseV2;
+import au.com.woolworths.model.apigee.authentication.ErrorResponseV2;
 import au.com.woolworths.model.apigee.store.StoreAddressRequest;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;

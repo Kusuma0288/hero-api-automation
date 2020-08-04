@@ -3,7 +3,7 @@ package au.com.woolworths.stepdefinitions.apigee;
 import au.com.woolworths.utils.TestProperties;
 import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.apigee.ShopperHelper;
-import au.com.woolworths.model.apigee.response.LoginReponse;
+import au.com.woolworths.model.apigee.authentication.LoginReponse;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;

@@ -1,6 +1,6 @@
 package au.com.woolworths.model.apigee.search;
 
-import au.com.woolworths.model.apigee.products.IsProductFlag;
+import au.com.woolworths.model.apigee.products.ProductFlag;
 import au.com.woolworths.model.common.Promotions;
 import au.com.woolworths.model.apigee.products.ProductDisclaimer;
 import lombok.Data;
@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
   private Object images;
   private float size;
   private String measure;
-  private IsProductFlag is;
+  private ProductFlag is;
   private String timeslotrestriction;
   private String instorelocation;
   private int instoreaisleid;

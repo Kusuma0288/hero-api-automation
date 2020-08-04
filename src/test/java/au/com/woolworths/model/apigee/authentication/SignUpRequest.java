@@ -1,4 +1,4 @@
-package au.com.woolworths.model.apigee.request;
+package au.com.woolworths.model.apigee.authentication;
 
 import lombok.Data;
 

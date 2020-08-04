@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @Data public class Store {
   private String Id;
   private double AddressId;
-  private String AddressText, Text;
+  private String AddressText;
+  private String Text;
   private String Name;
 }

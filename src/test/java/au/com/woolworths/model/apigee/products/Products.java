@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
   private Object images;
   private float size;
   private String measure;
-  private IsProductFlag is;
+  private ProductFlag is;
   private String timeslotrestriction;
   private String instorelocation;
   private String instoreaisleid;
