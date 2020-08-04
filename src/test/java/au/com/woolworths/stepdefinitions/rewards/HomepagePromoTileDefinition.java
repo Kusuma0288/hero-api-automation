@@ -1,4 +1,4 @@
-package au.com.woolworths.stepdefinitions.iris;
+package au.com.woolworths.stepdefinitions.rewards;
 
 import java.io.InputStream;
 import java.util.logging.Logger;
@@ -7,7 +7,7 @@ import cucumber.api.java.en.Then;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import au.com.woolworths.graphql.parser.GraphqlParser;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import au.com.woolworths.helpers.iris.HomepagePromoTileHelper;
+import au.com.woolworths.helpers.rewards.HomepagePromoTileHelper;
 
 public class HomepagePromoTileDefinition {
 

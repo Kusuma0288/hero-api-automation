@@ -1,4 +1,4 @@
-package au.com.woolworths.helpers.iris;
+package au.com.woolworths.helpers.rewards;
 
 import java.util.Map;
 import java.util.logging.Logger;
