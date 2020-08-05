@@ -94,7 +94,7 @@ public class ShopperHelper extends BaseHelper {
     List<Header> headerList = new LinkedList<>();
     headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerList.add(new Header("user-agent", TestProperties.get("user-agent")));
-    headerList.add(new Header("authorization_token", authorization_token));
+    headerList.add(new Header("Authorization", "Bearer " + authorization_token));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, LoginReponse.class);
