@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import io.restassured.http.Header;
 
 public class AddressHelper extends BaseHelper {
 
@@ -34,7 +33,7 @@ public class AddressHelper extends BaseHelper {
     return searchAddressResponse;
   }
 
-  public AddressDetails iGetTheAddressIdFromAmasId(String amasId, String authorization_token) throws Throwable {
+  public AddressDetails iGetTheAddressIdFromAmasId(String amasId) throws Throwable {
 
     AddressRequest addressRequest = new AddressRequest();
     String endPoint = URLResources.APIGEE_V2_ADDRESS;
@@ -44,7 +43,6 @@ public class AddressHelper extends BaseHelper {
 
     // invoke the service with the framed request
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    headerList.add(new Header("authorization_token", authorization_token));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, addressRequestStr, headerList);
 
     String responseStr = mapWebserviceResponse.get("response");
@@ -112,7 +110,7 @@ public class AddressHelper extends BaseHelper {
 
   }
 
-  public DeliveryFulfilmentV3Response setTheFulfilmentForAddress(String authorization_token) throws Throwable {
+  public DeliveryFulfilmentV3Response setTheFulfilmentForAddress() throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
@@ -126,7 +124,6 @@ public class AddressHelper extends BaseHelper {
     requestStr = mapper.writeValueAsString(deliveryAddressRequest);
 
     // invoke the service with the framed request
-    headerList.add(new Header("authorization_token", authorization_token));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
 
