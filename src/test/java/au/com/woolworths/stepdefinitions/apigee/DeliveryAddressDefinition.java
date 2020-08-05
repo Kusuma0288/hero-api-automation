@@ -19,7 +19,7 @@ public class DeliveryAddressDefinition extends AddressHelper {
   public void iPickALocationAtForDelivery(String address) throws Throwable {
     sharedData.fulfilment = "online";
     searchForTheAddresses(address);
-    iSelectTheAddressAsFulfilmentAddressFromMatchingAddresses(1);
+    iSelectTheAddressAsFulfilmentAddressFromMatchingAddresses(1, sharedData.accessToken);
   }
 
   public void searchForTheAddresses(String lookupAddress) throws Throwable {
@@ -34,11 +34,11 @@ public class DeliveryAddressDefinition extends AddressHelper {
     Assert.assertNotNull(searchAddressResponse.getAddresses()[0].getAmasID());
   }
 
-  public void iSelectTheAddressAsFulfilmentAddressFromMatchingAddresses(int position) throws Throwable {
+  public void iSelectTheAddressAsFulfilmentAddressFromMatchingAddresses(int position, String authorization_token) throws Throwable {
     SearchAddresses addressResponse = sharedData.searchAddressResponse;
     ApigeeAddress[] addressItem = addressResponse.getAddresses();
 
-    AddressDetails addressDetailResponse = iGetTheAddressIdFromAmasId(addressItem[position - 1].getAmasID());
+    AddressDetails addressDetailResponse = iGetTheAddressIdFromAmasId(addressItem[position - 1].getAmasID(), authorization_token);
 
     String addressId = addressDetailResponse.getId();
     Assert.assertNotNull(addressId);
@@ -72,7 +72,7 @@ public class DeliveryAddressDefinition extends AddressHelper {
   @Then("^I make a request to fulfilment api with primary address id to set the address as fulfilment address$")
   public void iMakeARequestToFulfilmentApiWithPrimaryAddressIdToSetTheAddressAsFulfilmentAddress() throws Throwable {
 
-    DeliveryFulfilmentV3Response deliveryFulfilmentV3Response = setTheFulfilmentForAddress();
+    DeliveryFulfilmentV3Response deliveryFulfilmentV3Response = setTheFulfilmentForAddress(sharedData.accessToken);
     Integer deliveryFulfilmentID = deliveryFulfilmentV3Response.getDelivery().getAddress().getId();
 
     sharedData.addressText = deliveryFulfilmentV3Response.getDelivery().getAddress().getText();
