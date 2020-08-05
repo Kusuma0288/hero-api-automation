@@ -12,7 +12,6 @@ public class SignUpPage extends SignupHelper {
 
   private final static Logger logger = Logger.getLogger("SignUpPage.class");
   private LoginReponse loginReponse;
-  boolean AgreeToTsAndCs;
   //private LoginErrorResponse loginErrorResponse;
 
 

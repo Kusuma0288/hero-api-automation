@@ -14,4 +14,4 @@ Feature: Sign up scenarios
       | DateOfBirth | AgreeToTsandCs | Notification                    				   |
       | 01/01/1975  | true           | successfull creation of account                 |
       | 01/01/2009  | true			 | successfull creation of account                 |
-      | 01/01/2009  | false			 | couldnt create account as t&c were not accepted |
+      | 01/01/2009  | false			 | couldn't create account as t&c were not accepted |
