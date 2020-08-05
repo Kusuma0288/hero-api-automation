@@ -12,8 +12,6 @@ public class SignUpPage extends SignupHelper {
 
   private final static Logger logger = Logger.getLogger("SignUpPage.class");
   private LoginReponse loginReponse;
-  //private LoginErrorResponse loginErrorResponse;
-
 
   @When("^Customer signup for woolworths online account with date of birth \"([^\"]*)\" and t&c (.*)$")
   public void customerSignupForWoolworthsOnlineAccountWithDateOfBirth(String Date_of_Birth, boolean AgreeToTsAndCs) throws Throwable {
