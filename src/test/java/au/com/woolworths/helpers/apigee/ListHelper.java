@@ -1,9 +1,11 @@
 package au.com.woolworths.helpers.apigee;
 
+import au.com.woolworths.model.apigee.products.AddProductsToListRequest;
+import au.com.woolworths.model.apigee.products.AddProductsToListResponse;
+import au.com.woolworths.model.apigee.lists.*;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
-import au.com.woolworths.model.apigee.*;
 import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
 import java.util.*;
 import java.util.logging.Logger;

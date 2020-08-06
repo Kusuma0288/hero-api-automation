@@ -3,9 +3,9 @@ package au.com.woolworths.helpers.apigee;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
-import au.com.woolworths.model.apigee.LoginErrorReponse;
-import au.com.woolworths.model.apigee.LoginReponse;
-import au.com.woolworths.model.apigee.SignUpRequest;
+import au.com.woolworths.model.apigee.authentication.LoginReponse;
+import au.com.woolworths.model.apigee.authentication.SignUpRequest;
+
 import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
 import au.com.woolworths.utils.Utilities;
 
