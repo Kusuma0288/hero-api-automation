@@ -3,6 +3,7 @@ package au.com.woolworths.helpers.apigee;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
+import au.com.woolworths.model.apigee.LoginErrorReponse;
 import au.com.woolworths.model.apigee.LoginReponse;
 import au.com.woolworths.model.apigee.SignUpRequest;
 import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
@@ -17,9 +18,10 @@ public class SignupHelper extends BaseHelper {
 
   public SignupHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
+    
   }
 
-  public LoginReponse iCompleteSignUPWithDOB(String DateOfBirth) throws Throwable {
+  public LoginReponse iCompleteSignUPWithDOB(String DateOfBirth, boolean AgreeToTsandCs) throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
@@ -28,6 +30,7 @@ public class SignupHelper extends BaseHelper {
     SignUpRequest signUpRequest = new SignUpRequest();
     signUpRequest.setEmailaddress(Utilities.getRandomEmailAddress());
     signUpRequest.setDateofbirth(DateOfBirth);
+    signUpRequest.setAgreetotsandcs(AgreeToTsandCs);
     String endPoint = URLResources.APIGEE_V2_SIGNUP;
     requestStr = mapper.writeValueAsString(signUpRequest);
 
@@ -37,6 +40,8 @@ public class SignupHelper extends BaseHelper {
     LoginReponse response = mapper.readValue(responseStr, LoginReponse.class);
     response.setStatusCode(mapWebserviceResponse.get("statusCode"));
     return response;
+    
+    
   }
 }
 
