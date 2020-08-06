@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class SignupHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
-  private final static Logger logger = Logger.getLogger("SignupPageHelper.class");
+  private final static Logger logger = Logger.getLogger("SignupHelper.class");
 
   public SignupHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
