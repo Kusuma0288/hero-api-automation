@@ -11,5 +11,5 @@ import lombok.Data;
   private String mobilephone = "0421000000";
   private String emailproductsandservices = "true";
   private String smsproductsservicesandpromotions = "true";
-  private boolean agreetotsandcs = true;
+  private boolean agreetotsandcs = false;
 }

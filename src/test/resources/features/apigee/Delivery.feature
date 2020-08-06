@@ -5,10 +5,11 @@ Feature: Verify Apigee Delivery scenarios
     Given user continue to connect to apigee with login username as "<username>"
     When connection from user to apigee endpoint happens
     And I pick a location at "<lookupAddress>" for delivery
+    Then I make a request to fulfilment api with primary address id to set the address as fulfilment address
      Then verify the address saved is set as primary address in MyAccount
     Examples:
-      | username          | lookupAddress | position |
-      | SHOPPER_USERNAME1 | Darcy Road    | 1        |
+      | username          | lookupAddress |
+      | SHOPPER_USERNAME1 | Darcy Road    |
 
 
 
