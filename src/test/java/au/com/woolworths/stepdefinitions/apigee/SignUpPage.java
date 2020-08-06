@@ -15,13 +15,13 @@ public class SignUpPage extends SignupHelper {
 
   @When("^Customer signup for woolworths online account with date of birth \"([^\"]*)\" and t&c (.*)$")
   public void customerSignupForWoolworthsOnlineAccountWithDateOfBirth(String Date_of_Birth, boolean AgreeToTsAndCs) throws Throwable {
+      /* 
+       * Parameters
+       * @AgreeToTsAndCs{TRUE, FALSE}
+       *   -TRUE successful sign up and skips IF condition
+       *   -FALSE failed sign up response. Flows through IF condition
+      */
     loginReponse = iCompleteSignUPWithDOB(Date_of_Birth, AgreeToTsAndCs); 
-    /* 
-     * Parameters
-     * @AgreeToTsAndCs{TRUE, FALSE}
-     *   -TRUE successful sign up and skips IF condition
-     *   -FALSE failed sign up response. Flows through IF condition
-    */
     if ((AgreeToTsAndCs == false) && ((loginReponse.getError().get(0).getMessage()).equals("To sign up you must accept the above terms")) && (loginReponse.getStatusCode()).equals("400")) {
       loginReponse.setShopperid("termsAndCondition");
     }
