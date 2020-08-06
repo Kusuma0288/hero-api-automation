@@ -21,7 +21,7 @@ public class BaseHelper {
 
   private final static Logger logger = Logger.getLogger("BaseHelper.class");
   protected SharedData sharedData;
-  protected List<Header> headerList;
+  protected static List<Header> headerList;
   protected ObjectMapper mapper = new ObjectMapper();
 
   public BaseHelper() {
@@ -34,6 +34,10 @@ public class BaseHelper {
     mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
   }
 
+  public void setHeaderList() {
+    headerList.remove(1);
+    headerList.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
+  }
 
   public long convertToEpochTime() {
     Date today = Calendar.getInstance().getTime();

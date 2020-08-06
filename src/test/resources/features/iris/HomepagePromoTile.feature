@@ -1,4 +1,4 @@
-@IN_PROGRESS
+
 Feature: Verify Homepage Promo Tile that calls productsByProductGroup graphql endpoint
 
   Scenario: Sample graphql call to demo graphql query parser

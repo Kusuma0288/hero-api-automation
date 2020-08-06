@@ -15,7 +15,6 @@ Feature: v3 Fulfilment API scenarios
       | lookupAddress | Username          |
       | Darcy Road    | SHOPPER_USERNAME8 |
 
-
   Scenario Outline:  To verify the fulfilment api response with invalid access token
     Given mobile user connect to apigee endpoint as guest
     When connection from user to apigee endpoint happens

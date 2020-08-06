@@ -99,6 +99,11 @@ public class ShopperHelper extends BaseHelper {
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, LoginReponse.class);
     response.setStatusCode(mapWebserviceResponse.get("statusCode"));
+
+    //Setting the Header list with Logged-in user accessToken
+    sharedData.accessToken = response.getAccess_token();
+    setHeaderList();
+
     return response;
   }
 }
