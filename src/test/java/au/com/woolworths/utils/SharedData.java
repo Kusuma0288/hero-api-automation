@@ -15,7 +15,6 @@ public class SharedData {
   public String responseStatusCode;
   public LoginReponse guestResponse;
   public String accessToken;
-  public String guestAccessToken;
   public LoginReponse shopperResponse;
   public SearchAddresses searchAddressResponse;
   public String addressId;
