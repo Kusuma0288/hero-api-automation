@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data public class PayIntrumentsRepsonse {
+@Data
+public class PayInstrumentsResponse {
   private String[] creditCards;
   private String[] giftCards;
-  private Object[] payPal;
+  private PayPal[] payPal;
   private String[] paymentAgreements;
   private String androidPay;
   private String googlePay;

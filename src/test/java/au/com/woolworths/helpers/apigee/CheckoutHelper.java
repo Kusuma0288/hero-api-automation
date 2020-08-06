@@ -9,6 +9,7 @@ import au.com.woolworths.model.apigee.checkout.CheckoutPaymentSummaryResponse;
 import au.com.woolworths.model.apigee.checkout.CheckoutRequest;
 import au.com.woolworths.model.apigee.checkout.CheckoutResponse;
 import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
+
 import static au.com.woolworths.model.apigee.payment.iFrameRequest.*;
 import static au.com.woolworths.model.apigee.payment.iFrameRequest.Authentication.*;
 import static au.com.woolworths.model.apigee.payment.iFrameRequest.Item.*;
@@ -100,12 +101,12 @@ public class CheckoutHelper extends BaseHelper {
 
   }
 
-  public PayIntrumentsRepsonse getPayInstruments() throws Throwable {
+  public PayInstrumentsResponse getPayInstruments() throws Throwable {
     String endPoint = URLResources.APIGEE_PAYMENT_INSTRUMENTS;
 
     Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerList);
     String responseStr = mapWebserviceResponse.get("response");
-    return mapper.readValue(responseStr, PayIntrumentsRepsonse.class);
+    return mapper.readValue(responseStr, PayInstrumentsResponse.class);
 
   }
 
@@ -125,11 +126,11 @@ public class CheckoutHelper extends BaseHelper {
   public iFrameResponse postiFrameCardDetails(String sessionID) throws Throwable {
 
     String iFrameRequeststr, responseStr, endPoint = null;
-    if (System.getProperty("env").equals("uat"))
-    {
+    if (System.getProperty("env").equals("uat")) {
       endPoint = URLResources.APIGEE_iFRAME_UAT;
     } else { //endPoint = URLResources.APIGEE_iFRAME_TEST;
-      logger.info("There is an existing issue with Digipay in Test environment, will be updated once the issue is addressed"); }
+      logger.info("There is an existing issue with Digipay in Test environment, will be updated once the issue is addressed");
+    }
 
     iFrameRequest iframeRequest = new iFrameRequest();
     Authentication authentication = new Authentication();
@@ -171,7 +172,7 @@ public class CheckoutHelper extends BaseHelper {
 
   }
 
-  public DigitalPayResponse postDigitalPay(String instrumentId, String  amount) throws Throwable {
+  public DigitalPayResponse postDigitalPay(String instrumentId, String amount) throws Throwable {
 
     String digipayRequestStr, responseStr, endPoint;
     endPoint = URLResources.APIGEE_PAYMENT_DIGITALPAY;
