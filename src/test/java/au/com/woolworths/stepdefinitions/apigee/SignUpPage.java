@@ -13,7 +13,7 @@ public class SignUpPage extends SignupHelper {
   private final static Logger logger = Logger.getLogger("SignUpPage.class");
   private LoginReponse loginReponse;
 
-  @When("^Customer signup for woolworths online account with date of birth \"([^\"]*)\" and t&c (.*)$")
+  @When("^Customer signup for woolworths online account with DOB \"([^\"]*)\" and T&C (.*)$")
   public void customerSignupForWoolworthsOnlineAccountWithDateOfBirth(String Date_of_Birth, boolean AgreeToTsAndCs) throws Throwable {
       /* 
        * Parameters
