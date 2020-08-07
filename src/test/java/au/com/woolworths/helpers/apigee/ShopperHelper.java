@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 public class ShopperHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
-  private final static Logger logger = Logger.getLogger("ApigeeShopperHelper.class");
+  private final static Logger logger = Logger.getLogger("ShopperHelper.class");
 
   public ShopperHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;

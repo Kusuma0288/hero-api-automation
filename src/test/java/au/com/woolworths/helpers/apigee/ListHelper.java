@@ -7,12 +7,14 @@ import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
+import au.com.woolworths.utils.Utilities;
+
 import java.util.*;
 import java.util.logging.Logger;
 
 public class ListHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
-  private final static Logger logger = Logger.getLogger("ApigeeListHelper.class");
+  private final static Logger logger = Logger.getLogger("ListHelper.class");
 
   public ListHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
@@ -27,7 +29,7 @@ public class ListHelper extends BaseHelper {
     ListRequest apigeeListRequest = new ListRequest();
 
     apigeeListRequest.setTitle(listName);
-    apigeeListRequest.setTimestamp(convertToEpochTime());
+    apigeeListRequest.setTimestamp(Utilities.convertToEpochTime());
 
     String endPoint = URLResources.APIGEE_V2_LISTS;
     requestStr = mapper.writeValueAsString(apigeeListRequest);
@@ -127,8 +129,8 @@ public class ListHelper extends BaseHelper {
     ListRequest listRequest = new ListRequest();
     ListResponse response;
     listRequest.setText(freeText);
-    listRequest.setTimestamp(convertToEpochTime());
-    listRequest.setLastsynced(convertToEpochTime());
+    listRequest.setTimestamp(Utilities.convertToEpochTime());
+    listRequest.setLastsynced(Utilities.convertToEpochTime());
     listRequest.setChecked(false);
 
     String endPoint = URLResources.APIGEE_V2_UPDATE_LIST_FREETEXT;
@@ -153,8 +155,8 @@ public class ListHelper extends BaseHelper {
     ListResponse response;
     listRequest.setId(freeTextId);
     listRequest.setText(freeText);
-    listRequest.setTimestamp(convertToEpochTime());
-    listRequest.setLastsynced(convertToEpochTime());
+    listRequest.setTimestamp(Utilities.convertToEpochTime());
+    listRequest.setLastsynced(Utilities.convertToEpochTime());
     listRequest.setChecked(checkItem);
 
     String endPoint = URLResources.APIGEE_V2_UPDATE_LIST_FREETEXT;
@@ -177,8 +179,8 @@ public class ListHelper extends BaseHelper {
 
     ListRequest listRequest = new ListRequest();
     listRequest.setText(freeText);
-    listRequest.setTimestamp(convertToEpochTime());
-    listRequest.setLastsynced(convertToEpochTime());
+    listRequest.setTimestamp(Utilities.convertToEpochTime());
+    listRequest.setLastsynced(Utilities.convertToEpochTime());
     listRequest.setChecked(checkItem);
 
     String endPoint = URLResources.APIGEE_V2_UPDATE_LIST_FREETEXT;
@@ -203,8 +205,8 @@ public class ListHelper extends BaseHelper {
     apigeeListRequest.setArticleId(articleId);
     apigeeListRequest.setQuantity(quantity);
     apigeeListRequest.setChecked(checkItem);
-    apigeeListRequest.setTimestamp(convertToEpochTime());
-    apigeeListRequest.setLastsynced(convertToEpochTime());
+    apigeeListRequest.setTimestamp(Utilities.convertToEpochTime());
+    apigeeListRequest.setLastsynced(Utilities.convertToEpochTime());
     String endPoint;
     if (version.equals("V2")) {
 
@@ -251,8 +253,8 @@ public class ListHelper extends BaseHelper {
     String responseStr = null;
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("id", freeTextId);
-    queryParams.put("timestamp", String.valueOf(convertToEpochTime()));
-    queryParams.put("lastsynced", String.valueOf(convertToEpochTime()));
+    queryParams.put("timestamp", String.valueOf(Utilities.convertToEpochTime()));
+    queryParams.put("lastsynced", String.valueOf(Utilities.convertToEpochTime()));
 
     String endPoint = URLResources.APIGEE_V2_LIST_ITEMS;
     endPoint = endPoint.replace("{list_id}", listId);
@@ -267,8 +269,8 @@ public class ListHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse;
     String responseStr = null;
     Map<String, String> queryParams = new HashMap<String, String>();
-    queryParams.put("timestamp", String.valueOf(convertToEpochTime()));
-    queryParams.put("lastsynced", String.valueOf(convertToEpochTime()));
+    queryParams.put("timestamp", String.valueOf(Utilities.convertToEpochTime()));
+    queryParams.put("lastsynced", String.valueOf(Utilities.convertToEpochTime()));
     ListResponse response;
 
     String endPoint = URLResources.APIGEE_V2_GET_LIST_BY_ID;
@@ -285,8 +287,8 @@ public class ListHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse;
     String responseStr = null;
     Map<String, String> queryParams = new HashMap<String, String>();
-    queryParams.put("timestamp", String.valueOf(convertToEpochTime()));
-    queryParams.put("lastsynced", String.valueOf(convertToEpochTime()));
+    queryParams.put("timestamp", String.valueOf(Utilities.convertToEpochTime()));
+    queryParams.put("lastsynced", String.valueOf(Utilities.convertToEpochTime()));
 
     ListResponse response;
 

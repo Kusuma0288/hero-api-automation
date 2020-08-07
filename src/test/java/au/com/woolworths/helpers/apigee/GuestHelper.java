@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class GuestHelper extends BaseHelper {
 
   RestInvocationUtil invocationUtil;
-  private final static Logger logger = Logger.getLogger("ApigeeGuestHelper.class");
+  private final static Logger logger = Logger.getLogger("GuestHelper.class");
 
   public GuestHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;

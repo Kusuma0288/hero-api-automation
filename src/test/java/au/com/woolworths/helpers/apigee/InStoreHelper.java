@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class InStoreHelper extends BaseHelper {
 
   RestInvocationUtil invocationUtil;
-  private final static Logger logger = Logger.getLogger("ApigeeInStoreHelper.class");
+  private final static Logger logger = Logger.getLogger("InStoreHelper.class");
 
   public InStoreHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;

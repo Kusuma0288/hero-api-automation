@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class SpecialsHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
-  private final static Logger logger = Logger.getLogger("SpeicalspageHelper.class");
+  private final static Logger logger = Logger.getLogger("SpecialsHelper.class");
 
   public SpecialsHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;

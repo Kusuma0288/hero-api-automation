@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class AddressHelper extends BaseHelper {
 
   RestInvocationUtil invocationUtil;
-  private final static Logger logger = Logger.getLogger("ApigeeAddressHelper.class");
+  private final static Logger logger = Logger.getLogger("AddressHelper.class");
 
   public AddressHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
