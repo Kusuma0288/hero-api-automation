@@ -71,13 +71,6 @@ jobs:
     condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
     
 schedules:
-  - cron: "* * * * *"
-    displayName: Morning build (starts at 9:10AM)
-    branches:
-      include:
-        - develop
-    always: true
-
   - cron: "10 23 * * Mon-Fri"
     displayName: Morning build (starts at 9:10AM)
     branches:
