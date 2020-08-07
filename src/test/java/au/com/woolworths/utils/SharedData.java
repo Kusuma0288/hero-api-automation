@@ -15,12 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SharedData {
-  public String deviceId;
+
   public String authToken;
   public String responseStatusCode;
   public LoginReponse guestResponse;
   public String accessToken;
-  public String guestAccessToken;
   public LoginReponse shopperResponse;
   public SearchAddresses searchAddressResponse;
   public String addressId;
