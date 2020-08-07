@@ -1,6 +1,6 @@
 package au.com.woolworths.model.apigee.trolley;
 
-import au.com.woolworths.model.apigee.ResultStatus;
+import au.com.woolworths.model.apigee.pickup.ResultStatus;
 import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
