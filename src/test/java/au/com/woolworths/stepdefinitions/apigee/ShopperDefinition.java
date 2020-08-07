@@ -83,7 +83,7 @@ public class ShopperDefinition extends ShopperHelper {
 
   @And("^user transitions from guest to logged in with username as \"([^\"]*)\"$")
   public void userTransitionsFromGuestToLoggedInWithUsernameAs(String username) throws Throwable {
-    LoginReponse response = userToConnectApigeewithLoginAndPasswordWithGuestAccessToken(TestProperties.get(username), TestProperties.get("SHOPPER_PASSWORD"), sharedData.accessToken);
+    LoginReponse response = userToConnectApigeewithLoginAndPasswordWithGuestAccessToken(TestProperties.get(username), TestProperties.get("SHOPPER_PASSWORD"));
 
     sharedData.responseStatusCode = response.getStatusCode();
     sharedData.shopperResponse = response;

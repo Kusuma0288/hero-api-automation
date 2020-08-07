@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.http.Header;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -29,8 +30,9 @@ public class BaseHelper {
     mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
   }
 
-  public void setHeaderList() {
-    headerList.remove(1);
+  public void resetHeaderList() {
+    headerList.clear();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerList.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
   }
 

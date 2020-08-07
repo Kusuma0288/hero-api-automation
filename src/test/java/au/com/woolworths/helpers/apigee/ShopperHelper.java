@@ -76,7 +76,7 @@ public class ShopperHelper extends BaseHelper {
 
   }
 
-  public LoginReponse userToConnectApigeewithLoginAndPasswordWithGuestAccessToken(String userName, String password, String authorization_token) throws Throwable {
+  public LoginReponse userToConnectApigeewithLoginAndPasswordWithGuestAccessToken(String userName, String password) throws Throwable {
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
     String responseStr = null;
@@ -94,7 +94,7 @@ public class ShopperHelper extends BaseHelper {
     List<Header> headerList = new LinkedList<>();
     headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerList.add(new Header("user-agent", TestProperties.get("user-agent")));
-    headerList.add(new Header("Authorization", "Bearer " + authorization_token));
+    headerList.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, LoginReponse.class);
@@ -102,8 +102,8 @@ public class ShopperHelper extends BaseHelper {
 
     //Setting the Header list with Logged-in user accessToken
     sharedData.accessToken = response.getAccess_token();
-    setHeaderList();
-
+    //setHeaderList("Authorization");
+    resetHeaderList();
     return response;
   }
 }
