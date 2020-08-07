@@ -56,6 +56,8 @@ jobs:
     displayName: Test Automation Run
     steps:
       - script: |
+          echo "parameters=="
+          echo ${{ parameters.triggerEnv }}
           echo "Setting up delay for the job"
           sleep 10m
       - template: pipelines/templates/base-template.yml
