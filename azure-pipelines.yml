@@ -12,7 +12,7 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
-  
+
 stages:
 - stage: Auto 
   jobs:
@@ -47,30 +47,30 @@ stages:
      condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
 
 
-   - job: Test
-     displayName: Test Automation Run
-     steps:
-      - script: |
-          echo "parameters=="
-          echo ${{ parameters.triggerEnv }}
-          echo "variable="
-          $url = "https://dev.azure.com/{organization}/{project}/_apis/build/builds/{buildId}?api-version=5.1"
-          $buildPipeline= Invoke-RestMethod -Uri $url -Headers @{   
-          Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
-          } -Method Get
-          echo $url
-          $starttime= $buildPipeline.startTime
-          echo "start time --- "
-          echo $starttime
-      - template: pipelines/templates/base-template.yml
-        parameters:
-          TestRunTitle: Apigee Automation Run Report
-          #SlackWebhookUrl: https://hooks.slack.com/services/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
-          SlackWebhookUrl: https://hooks.slack.com/services/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
-          ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
-          Profile: regression
-          RunEnv: test
-     condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
+  #  - job: Test
+  #    displayName: Test Automation Run
+  #    steps:
+  #     - script: |
+  #         echo "parameters=="
+  #         echo ${{ parameters.triggerEnv }}
+  #         echo "variable="
+  #         $url = "https://dev.azure.com/{organization}/{project}/_apis/build/builds/{buildId}?api-version=5.1"
+  #         $buildPipeline= Invoke-RestMethod -Uri $url -Headers @{   
+  #         Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
+  #         } -Method Get
+  #         echo $url
+  #         $starttime= $buildPipeline.startTime
+  #         echo "start time --- "
+  #         echo $starttime
+  #     - template: pipelines/templates/base-template.yml
+  #       parameters:
+  #         TestRunTitle: Apigee Automation Run Report
+  #         #SlackWebhookUrl: https://hooks.slack.com/services/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
+  #         SlackWebhookUrl: https://hooks.slack.com/services/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
+  #         ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
+  #         Profile: regression
+  #         RunEnv: test
+  #    condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
 
 - stage: Manual
   jobs:
