@@ -12,8 +12,10 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
-
-jobs:
+  
+stages:
+- stage: Auto 
+  jobs:
   # - job: Prod
   #   displayName: Prod Automation Run
   #   steps:
@@ -25,9 +27,9 @@ jobs:
   #         Profile: prod
   #         RunEnv: prod
 
-  - job: Uat
-    displayName: Uat Automation Run
-    steps:
+   - job: Uat
+     displayName: Uat Automation Run
+     steps:
       - script: |
           echo "Setting up delay for the job"
           sleep 10s
@@ -42,12 +44,12 @@ jobs:
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: regression
           RunEnv: uat
-    condition: and(succeededOrFailed(), ne('${{ parameters.triggerEnv }}', ''))
+     condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
 
 
-  - job: Test
-    displayName: Test Automation Run
-    steps:
+   - job: Test
+     displayName: Test Automation Run
+     steps:
       - script: |
           echo "parameters=="
           echo ${{ parameters.triggerEnv }}
@@ -68,8 +70,31 @@ jobs:
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: regression
           RunEnv: test
-    condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
-    
+     condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
+
+- stage: Manual
+  jobs:
+   - job: Manual
+     displayName: Manual Automation Run
+     steps:
+      - script: |
+          echo "Setting up delay for the job"
+          sleep 10s
+          echo "parameters=="
+          echo ${{ parameters.triggerEnv }}
+          echo "variable="
+      - template: pipelines/templates/base-template.yml
+        parameters:
+          TestRunTitle: Apigee Automation Run Report
+          #SlackWebhookUrl: https://hooks.slack.com/services/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
+          SlackWebhookUrl: https://hooks.slack.com/services/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
+          ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
+          Profile: regression
+          RunEnv: ${{ parameters.triggerEnv }}
+     condition: and(succeededOrFailed(), ne('${{ parameters.triggerEnv }}', ''))
+
+
+
 schedules:
   - cron: "10 23 * * Mon-Fri"
     displayName: Morning build (starts at 9:10AM)
