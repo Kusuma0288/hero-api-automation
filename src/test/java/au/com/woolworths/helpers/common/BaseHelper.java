@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.http.Header;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -16,7 +17,7 @@ public class BaseHelper {
 
   private final static Logger logger = Logger.getLogger("BaseHelper.class");
   protected SharedData sharedData;
-  protected List<Header> headerList;
+  protected static List<Header> headerList;
   protected ObjectMapper mapper = new ObjectMapper();
 
   public BaseHelper() {
@@ -28,4 +29,11 @@ public class BaseHelper {
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
     mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
   }
+
+  public void resetHeaderList() {
+    headerList.clear();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
+  }
+
 }

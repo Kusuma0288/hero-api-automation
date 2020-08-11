@@ -22,7 +22,7 @@ public class ShopperHelper extends BaseHelper {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 
-  public LoginReponse userToConnectApigeewithLoginAndPassword(String userName, String password, String deviceId) throws Throwable {
+  public LoginReponse userToConnectApigeewithLoginAndPassword(String userName, String password) throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
@@ -31,7 +31,6 @@ public class ShopperHelper extends BaseHelper {
     ShopperLoginRequest loginRequest = new ShopperLoginRequest();
     LoginReponse response;
 
-    loginRequest.setDevice_auth_token(deviceId);
     loginRequest.setUser_name(userName);
     loginRequest.setPassword(password);
 
@@ -50,7 +49,7 @@ public class ShopperHelper extends BaseHelper {
 
   }
 
-  public LoginReponse userToConnectApigeewithLoginAndPasswordWithAPIKey(String userName, String password, String deviceId, String apiKey) throws Throwable {
+  public LoginReponse userToConnectApigeewithLoginAndPasswordWithAPIKey(String userName, String password, String apiKey) throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
     String requestStr = null;
@@ -59,7 +58,6 @@ public class ShopperHelper extends BaseHelper {
     ShopperLoginRequest loginRequest = new ShopperLoginRequest();
     LoginReponse response;
 
-    loginRequest.setDevice_auth_token(deviceId);
     loginRequest.setUser_name(userName);
     loginRequest.setPassword(password);
 
@@ -76,5 +74,36 @@ public class ShopperHelper extends BaseHelper {
     response.setStatusCode(mapWebserviceResponse.get("statusCode"));
     return response;
 
+  }
+
+  public LoginReponse userToConnectApigeewithLoginAndPasswordWithGuestAccessToken(String userName, String password) throws Throwable {
+    Map<String, String> mapWebserviceResponse;
+    String requestStr = null;
+    String responseStr = null;
+
+    ShopperLoginRequest loginRequest = new ShopperLoginRequest();
+    LoginReponse response;
+
+    loginRequest.setUser_name(userName);
+    loginRequest.setPassword(password);
+
+    String endPoint = URLResources.APIGEE_V2_SHOPPER_LOGIN;
+    requestStr = mapper.writeValueAsString(loginRequest);
+
+    // invoke the service with the framed request
+    List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("x-api-key", TestProperties.get("x-api-key")));
+    headerList.add(new Header("user-agent", TestProperties.get("user-agent")));
+    headerList.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
+    responseStr = mapWebserviceResponse.get("response");
+    response = mapper.readValue(responseStr, LoginReponse.class);
+    response.setStatusCode(mapWebserviceResponse.get("statusCode"));
+
+    //Setting the Header list with Logged-in user accessToken
+    sharedData.accessToken = response.getAccess_token();
+    //setHeaderList("Authorization");
+    resetHeaderList();
+    return response;
   }
 }

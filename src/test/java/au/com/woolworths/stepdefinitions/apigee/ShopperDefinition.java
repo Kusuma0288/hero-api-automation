@@ -1,8 +1,8 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
 import au.com.woolworths.utils.TestProperties;
-import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.apigee.ShopperHelper;
+import cucumber.api.java.en.And;
 import au.com.woolworths.model.apigee.authentication.LoginReponse;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -18,7 +18,7 @@ public class ShopperDefinition extends ShopperHelper {
 
   @When("^user continue to connect to apigee with default login and password$")
   public void userContinueToConnectToApigeeWithDefaultLoginAndPassword() throws Throwable {
-    LoginReponse response = userToConnectApigeewithLoginAndPassword(TestProperties.get("SHOPPER_USERNAME"), TestProperties.get("SHOPPER_PASSWORD"), sharedData.deviceId);
+    LoginReponse response = userToConnectApigeewithLoginAndPassword(TestProperties.get("SHOPPER_USERNAME"), TestProperties.get("SHOPPER_PASSWORD"));
 
     sharedData.responseStatusCode = response.getStatusCode();
     sharedData.shopperResponse = response;
@@ -27,7 +27,7 @@ public class ShopperDefinition extends ShopperHelper {
 
   @When("^user continue to connect to apigee with login (.*) and password (.*)$")
   public void userContinueToConnectToApigeeWithLoginNouserAutomationComAndPassword(String userName, String password) throws Throwable {
-    LoginReponse response = userToConnectApigeewithLoginAndPassword(userName, password, sharedData.deviceId);
+    LoginReponse response = userToConnectApigeewithLoginAndPassword(userName, password);
     sharedData.responseStatusCode = response.getStatusCode();
     sharedData.shopperResponse = response;
   }
@@ -50,7 +50,7 @@ public class ShopperDefinition extends ShopperHelper {
 
   @Given("^user continue to connect to apigee with default login and password using apikey (.*)$")
   public void userContinueToConnectToApigeeWithDefaultLoginAndPasswordUsingAPIKey(String apiKey) throws Throwable {
-    LoginReponse response = userToConnectApigeewithLoginAndPasswordWithAPIKey(TestProperties.get("SHOPPER_USERNAME"), TestProperties.get("SHOPPER_PASSWORD"), Utilities.generateRandomUUIDString(), apiKey);
+    LoginReponse response = userToConnectApigeewithLoginAndPasswordWithAPIKey(TestProperties.get("SHOPPER_USERNAME"), TestProperties.get("SHOPPER_PASSWORD"), apiKey);
     sharedData.responseStatusCode = response.getStatusCode();
     sharedData.shopperResponse = response;
   }
@@ -65,7 +65,7 @@ public class ShopperDefinition extends ShopperHelper {
 
   @When("^user continue to connect to apigee with login containing (.*)$")
   public void userContinueToConnectToApigeeWithLoginContainingUsername(String userName) throws Throwable {
-    LoginReponse response = userToConnectApigeewithLoginAndPassword(userName + "@" + TestProperties.get("EMAIL_DOMAINNAME"), TestProperties.get("SHOPPER_PASSWORD"), sharedData.deviceId);
+    LoginReponse response = userToConnectApigeewithLoginAndPassword(userName + "@" + TestProperties.get("EMAIL_DOMAINNAME"), TestProperties.get("SHOPPER_PASSWORD"));
     sharedData.responseStatusCode = response.getStatusCode();
     sharedData.shopperResponse = response;
     sharedData.accessToken = response.getAccess_token();
@@ -74,11 +74,19 @@ public class ShopperDefinition extends ShopperHelper {
 
   @When("^user continue to connect to apigee with login username as \"([^\"]*)\"$")
   public void userContinueToConnectToApigeeWithSpecifiedUsername(String username) throws Throwable {
-    LoginReponse response = userToConnectApigeewithLoginAndPassword(TestProperties.get(username), TestProperties.get("SHOPPER_PASSWORD"), sharedData.deviceId);
+    LoginReponse response = userToConnectApigeewithLoginAndPassword(TestProperties.get(username), TestProperties.get("SHOPPER_PASSWORD"));
 
     sharedData.responseStatusCode = response.getStatusCode();
     sharedData.shopperResponse = response;
     sharedData.accessToken = response.getAccess_token();
   }
 
+  @And("^user transitions from guest to logged in with username as \"([^\"]*)\"$")
+  public void userTransitionsFromGuestToLoggedInWithUsernameAs(String username) throws Throwable {
+    LoginReponse response = userToConnectApigeewithLoginAndPasswordWithGuestAccessToken(TestProperties.get(username), TestProperties.get("SHOPPER_PASSWORD"));
+
+    sharedData.responseStatusCode = response.getStatusCode();
+    sharedData.shopperResponse = response;
+    sharedData.accessToken = response.getAccess_token();
+  }
 }

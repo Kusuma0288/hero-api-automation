@@ -22,7 +22,6 @@ public class GuestDefinition extends GuestHelper {
     String deviceId = Utilities.generateRandomUUIDString();
     response = mobileUserConnectToApigeeAPIEndpointAsGuestWithPossibleOptions(deviceId);
 
-    sharedData.deviceId = deviceId;
     sharedData.responseStatusCode = response.getStatusCode();
     sharedData.guestResponse = response;
     sharedData.accessToken = response.getAccess_token();

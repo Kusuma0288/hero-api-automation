@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SharedData {
-  public String deviceId;
+
   public String authToken;
   public String responseStatusCode;
   public LoginReponse guestResponse;
