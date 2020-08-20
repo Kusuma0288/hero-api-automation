@@ -16,26 +16,23 @@ pool:
 stages:
 - stage: Auto 
   jobs:
-  # - job: Prod
-  #   displayName: Prod Automation Run
-  #   steps:
-  #     - template: pipelines/templates/base-template.yml
-  #       parameters:
-  #         TestRunTitle: Apigee Automation Run Report
-  #         SlackWebhookUrl: https://hooks.slack.com/services/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
-  #         ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
-  #         Profile: prod
-  #         RunEnv: prod
+  - job: Prod
+    displayName: Prod Automation Run
+    steps:
+      - template: pipelines/templates/base-template.yml
+        parameters:
+          TestRunTitle: Apigee Automation Run Report
+          SlackWebhookUrl: https://hooks.slack.com/services/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
+          ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
+          Profile: prod
+          RunEnv: prod
 
-   - job: Uat
-     displayName: Uat Automation Run
-     steps:
+  - job: Uat
+    displayName: Uat Automation Run
+    steps:
       - script: |
           echo "Setting up delay for the job"
           sleep 10s
-          echo "parameters=="
-          echo ${{ parameters.triggerEnv }}
-          echo "variable="
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
@@ -44,24 +41,14 @@ stages:
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: regression
           RunEnv: uat
-     condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
+          condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
 
-
-   - job: Test
-     displayName: Test Automation Run
-     steps:
+  - job: Test
+    displayName: Test Automation Run
+    steps:
       - script: |
-          echo "parameters=="
-          echo ${{ parameters.triggerEnv }}
-          echo "variable="
-          $url = "https://dev.azure.com/{organization}/{project}/_apis/build/builds/{buildId}?api-version=5.1"
-          $buildPipeline= Invoke-RestMethod -Uri $url -Headers @{   
-          Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
-          } -Method Get
-          echo $url
-          $starttime= $buildPipeline.startTime
-          echo "start time --- "
-          echo $starttime
+          echo "Setting up delay for the job"
+          sleep 10s
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
@@ -70,7 +57,7 @@ stages:
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: regression
           RunEnv: test
-     condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
+          condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
 
 - stage: Manual
   jobs:
@@ -80,9 +67,6 @@ stages:
       - script: |
           echo "Setting up delay for the job"
           sleep 10s
-          echo "parameters=="
-          echo ${{ parameters.triggerEnv }}
-          echo "variable="
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
@@ -97,6 +81,13 @@ stages:
 
 schedules:
   - cron: "10 23 * * Mon-Fri"
+    displayName: Morning build (starts at 9:10AM)
+    branches:
+      include:
+        - develop
+    always: true
+
+  - cron: "* * * * *"
     displayName: Morning build (starts at 9:10AM)
     branches:
       include:
