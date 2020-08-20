@@ -24,7 +24,8 @@ public class AnalyticsDeserializer extends StdDeserializer<Analytics> {
     JsonNode node = jp.getCodec().readTree(jp);
 
     String visitorId = node.get("data").get("visitorId").asText();
+    String type = node.get("type").asText();
 
-    return new Analytics(visitorId);
+    return new Analytics(visitorId, type);
   }
 }

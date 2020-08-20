@@ -12,10 +12,12 @@ public class LoginResponse {
   private Auth auth;
   private RewardsCard rewardsCard;
   private Analytics rewardsAnalytics;
+  private String type;
 
-  public LoginResponse(Auth auth, RewardsCard rewardsCard, Analytics rewardsAnalytics) {
+  public LoginResponse(Auth auth, RewardsCard rewardsCard, Analytics rewardsAnalytics, String type) {
     this.auth = auth;
     this.rewardsCard = rewardsCard;
     this.rewardsAnalytics = rewardsAnalytics;
+    this.type = type;
   }
 }

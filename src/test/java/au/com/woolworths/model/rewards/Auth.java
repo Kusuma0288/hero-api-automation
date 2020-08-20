@@ -13,11 +13,13 @@ public class Auth {
   private Integer refreshTokenExpiresIn;
   private String accessToken;
   private Integer accessTokenExpiresIn;
+  private String type;
 
-  public Auth(String refreshToken, Integer refreshTokenExpiresIn, String accessToken, Integer accessTokenExpiresIn) {
+  public Auth(String refreshToken, Integer refreshTokenExpiresIn, String accessToken, Integer accessTokenExpiresIn, String type) {
     this.refreshToken = refreshToken;
     this.refreshTokenExpiresIn = refreshTokenExpiresIn;
     this.accessToken = accessToken;
     this.accessTokenExpiresIn = accessTokenExpiresIn;
+    this.type = type;
   }
 }

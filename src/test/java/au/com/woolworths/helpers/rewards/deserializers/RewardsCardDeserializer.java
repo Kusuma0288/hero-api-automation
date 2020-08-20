@@ -27,7 +27,8 @@ public class RewardsCardDeserializer extends StdDeserializer<RewardsCard> {
     String displayCardNumber = node.get("data").get("displayCardNumber").asText();
     String displayName = node.get("data").get("displayName").asText();
     String cardType = node.get("data").get("cardType").asText();
+    String type = node.get("type").asText();
 
-    return new RewardsCard(cardNumber, displayCardNumber, displayName, cardType);
+    return new RewardsCard(cardNumber, displayCardNumber, displayName, cardType, type);
   }
 }

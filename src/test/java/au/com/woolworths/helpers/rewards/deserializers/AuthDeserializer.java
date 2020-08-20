@@ -27,7 +27,8 @@ public class AuthDeserializer extends StdDeserializer<Auth> {
     Integer refreshTokenExpiresIn = node.get("data").get("refreshTokenExpiresIn").asInt();
     String accessToken = node.get("data").get("accessToken").asText();
     Integer accessTokenExpiresIn = node.get("data").get("accessTokenExpiresIn").asInt();
+    String type = node.get("type").asText();
 
-    return new Auth(refreshToken, refreshTokenExpiresIn, accessToken, accessTokenExpiresIn);
+    return new Auth(refreshToken, refreshTokenExpiresIn, accessToken, accessTokenExpiresIn, type);
   }
 }

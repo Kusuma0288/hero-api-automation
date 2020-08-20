@@ -10,8 +10,10 @@ import lombok.Data;
 @Data
 public class Analytics {
   private String visitorId;
+  private String type;
 
-  public Analytics(String visitorId) {
+  public Analytics(String visitorId, String type) {
     this.visitorId = visitorId;
+    this.type = type;
   }
 }

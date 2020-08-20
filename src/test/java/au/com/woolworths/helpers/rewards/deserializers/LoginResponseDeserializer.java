@@ -37,6 +37,8 @@ public class LoginResponseDeserializer extends StdDeserializer<LoginResponse> {
     String analyticsJson = node.get("data").get("analytics").toString();
     Analytics rewardsAnalytics = new ObjectMapper().readValue(analyticsJson, Analytics.class);
 
-    return new LoginResponse(auth, rewardsCard, rewardsAnalytics);
+    String type = node.get("type").asText();
+
+    return new LoginResponse(auth, rewardsCard, rewardsAnalytics, type);
   }
 }
