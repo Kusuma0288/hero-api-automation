@@ -27,6 +27,7 @@ stages:
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: prod
           RunEnv: prod
+    condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
 
   - job: Uat
     displayName: Uat Automation Run
@@ -42,7 +43,7 @@ stages:
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: regression
           RunEnv: uat
-          condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
+    condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
 
   - job: Test
     displayName: Test Automation Run
@@ -58,7 +59,7 @@ stages:
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: regression
           RunEnv: test
-          condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
+    condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
 
 - stage: Manual
   jobs:
