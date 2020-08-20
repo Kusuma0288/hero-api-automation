@@ -3,7 +3,7 @@ package au.com.woolworths.helpers.apigee;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
-import au.com.woolworths.model.apigee.SpecialspageResponse;
+import au.com.woolworths.model.apigee.products.SpecialspageResponse;
 import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
 
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class SpecialsHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
-  private final static Logger logger = Logger.getLogger("SpeicalspageHelper.class");
+  private final static Logger logger = Logger.getLogger("SpecialsHelper.class");
 
   public SpecialsHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;

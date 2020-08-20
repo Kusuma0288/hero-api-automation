@@ -100,15 +100,15 @@ public class RestInvocationUtil {
       RestAssured.baseURI = TestProperties.get("BASE_URI");
       Headers headers = new Headers(dynamicHeaderList);
       response = given()
-              // .proxy(TestProperties.get("LOCAL_PROXY"))
-              .header("Content-Type", "application/json")
-              .header("Accept", "application/json")
-              .headers(headers)
-              .params(params)
-              .when()
-              .get(endPoint)
-              .then()
-              .extract().response();
+          // .proxy(TestProperties.get("LOCAL_PROXY"))
+          .header("Content-Type", "application/json")
+          .header("Accept", "application/json")
+          .headers(headers)
+          .params(params)
+          .when()
+          .get(endPoint)
+          .then()
+          .extract().response();
     } catch (Exception e) {
       e.printStackTrace();
       StringWriter errors = new StringWriter();
@@ -124,15 +124,15 @@ public class RestInvocationUtil {
       RestAssured.baseURI = TestProperties.get("BASE_URI");
       Headers headers = new Headers(headerList);
       response = given()
-              // .proxy(TestProperties.get("LOCAL_PROXY"))
-              .header("Content-Type", "application/json")
-              .header("Accept", "application/json")
-              .headers(headers)
-              .body(requestPayload)
-              .when()
-              .put(endPoint)
-              .then()
-              .extract().response();
+          // .proxy(TestProperties.get("LOCAL_PROXY"))
+          .header("Content-Type", "application/json")
+          .header("Accept", "application/json")
+          .headers(headers)
+          .body(requestPayload)
+          .when()
+          .put(endPoint)
+          .then()
+          .extract().response();
     } catch (Exception e) {
       e.printStackTrace();
       Assert.fail("Endpoint::" + endPoint + "Request PayLoad::" + requestPayload + "Error::" + e.getMessage());
@@ -145,15 +145,15 @@ public class RestInvocationUtil {
       RestAssured.baseURI = TestProperties.get("BASE_URI");
       Headers headers = new Headers(dynamicHeaderList);
       response = given()
-              // .proxy(TestProperties.get("LOCAL_PROXY"))
-              .header("Content-Type", "application/json")
-              .header("Accept", "application/json")
-              .headers(headers)
-              .body(requestPayload)
-              .when()
-              .post(endPoint)
-              .then()
-              .extract().response();
+          // .proxy(TestProperties.get("LOCAL_PROXY"))
+          .header("Content-Type", "application/json")
+          .header("Accept", "application/json")
+          .headers(headers)
+          .body(requestPayload)
+          .when()
+          .post(endPoint)
+          .then()
+          .extract().response();
     } catch (Exception e) {
       e.printStackTrace();
       Assert.fail("Endpoint::" + endPoint + "Request PayLoad::" + requestPayload + "Error::" + e.getMessage());
@@ -166,14 +166,14 @@ public class RestInvocationUtil {
       RestAssured.baseURI = TestProperties.get("BASE_URI");
       Headers headers = new Headers(headerList);
       response = given()
-              //  .proxy(TestProperties.get("LOCAL_PROXY"))
-              .header("Content-Type", "application/json")
-              .header("Accept", "application/json")
-              .headers(headers)
-              .when()
-              .post(endPoint)
-              .then()
-              .extract().response();
+          //  .proxy(TestProperties.get("LOCAL_PROXY"))
+          .header("Content-Type", "application/json")
+          .header("Accept", "application/json")
+          .headers(headers)
+          .when()
+          .post(endPoint)
+          .then()
+          .extract().response();
     } catch (Exception e) {
       e.printStackTrace();
       StringWriter errors = new StringWriter();
@@ -190,15 +190,15 @@ public class RestInvocationUtil {
       RestAssured.baseURI = TestProperties.get("BASE_URI");
       Headers headers = new Headers(headerList);
       response = given()
-              //  .proxy(TestProperties.get("LOCAL_PROXY"))
-              .header("Content-Type", "application/json")
-              .header("Accept", "application/json")
-              .headers(headers)
-              .params(params)
-              .when()
-              .delete(endPoint)
-              .then()
-              .extract().response();
+          //  .proxy(TestProperties.get("LOCAL_PROXY"))
+          .header("Content-Type", "application/json")
+          .header("Accept", "application/json")
+          .headers(headers)
+          .params(params)
+          .when()
+          .delete(endPoint)
+          .then()
+          .extract().response();
     } catch (Exception e) {
       e.printStackTrace();
       StringWriter errors = new StringWriter();
@@ -213,14 +213,14 @@ public class RestInvocationUtil {
       RestAssured.baseURI = TestProperties.get("BASE_URI");
       Headers headers = new Headers(headerList);
       response = given()
-              // .proxy(TestProperties.get("LOCAL_PROXY"))
-              .header("Content-Type", "application/json")
-              .header("Accept", "application/json")
-              .headers(headers)
-              .when()
-              .get(endPoint)
-              .then()
-              .extract().response();
+          // .proxy(TestProperties.get("LOCAL_PROXY"))
+          .header("Content-Type", "application/json")
+          .header("Accept", "application/json")
+          .headers(headers)
+          .when()
+          .get(endPoint)
+          .then()
+          .extract().response();
     } catch (Exception e) {
       e.printStackTrace();
       StringWriter errors = new StringWriter();

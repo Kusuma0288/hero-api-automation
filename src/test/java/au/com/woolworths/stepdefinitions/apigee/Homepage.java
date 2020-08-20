@@ -32,31 +32,31 @@ public class Homepage extends HomepageHelper {
     if (EDRStatus.equals("NoEDR")) {
       Assert.assertTrue("Rewards card component missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item -> item.getType().equals("AddRewardsCard")));
       HomepageComponents item = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("AddRewardsCard")).findFirst().get();
-      Assert.assertEquals("Rewards title is mismatch", item.getData().getTitle(), "+ Add Rewards Card");
-      Assert.assertEquals("Rewards subtitle is mismatch", item.getData().getSubtitle(), "Get personalised specials, and track and earn bonus Rewards points");
+      Assert.assertEquals("Rewards title mismatch", "+ Add Rewards Card", item.getData().getTitle());
+      Assert.assertEquals("Rewards subtitle mismatch", "Collect points and boost your savings.", item.getData().getSubtitle());
     }
 
     //Assert Catalogue details
     Assert.assertTrue("Catalogue card component missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item -> item.getType().equals("CatalogueCard")));
     HomepageComponentsData item = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("CatalogueCard")).findFirst().get().getData();
-    Assert.assertEquals("Catalogue card title is mismatch", item.getTitle(), "Catalogue");
-    Assert.assertEquals("Catalogue card subtitle is mismatch", item.getSubtitle(), "View current specials");
+    Assert.assertEquals("Catalogue card title mismatch", "Catalogue", item.getTitle());
+    Assert.assertEquals("Catalogue card subtitle mismatch", "View current specials", item.getSubtitle());
 
     //Assert Horizontal list details - All Specials
     Assert.assertTrue("Horizontal list component missing " + Offer
         , Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item1 -> item1.getType().equals("HorizontalList")));
     HomepageComponentsData item1 = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("HorizontalList")).findFirst().get().getData();
-    Assert.assertEquals("All Specials title is mismatch", item1.getTitle(), "All Specials");
-    Assert.assertEquals("All Specials subtitle is mismatch", item1.getSubtitle(), "All the latest specials and offers");
-    Assert.assertEquals("All Specials action title is mismatch", item1.getActionTitle(), "See All");
+    Assert.assertEquals("All Specials title mismatch", "All Specials", item1.getTitle());
+    Assert.assertEquals("All Specials subtitle mismatch", "All the latest specials and offers", item1.getSubtitle());
+    Assert.assertEquals("All Specials action title mismatch", "See All", item1.getActionTitle());
     Assert.assertNotNull("All Specials action path is not present", item1.getActionPath());
     Assert.assertNotNull("No products under All Specials", item1.getItems());
 
     //Assert Recipe details
     Assert.assertTrue("Recipes card component missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item2 -> item2.getType().equals("RecipesCard")));
     HomepageComponentsData item2 = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("RecipesCard")).findFirst().get().getData();
-    Assert.assertEquals("Recipes card title is mismatch", item2.getTitle(), "Recipes");
-    Assert.assertEquals("Recipes card subtitle is mismatch", item2.getSubtitle(), "1000's of new recipes to inspire your cooking");
+    Assert.assertEquals("Recipes card title mismatch", "Recipes", item2.getTitle());
+    Assert.assertEquals("Recipes card subtitle mismatch", "1000's of new recipes to inspire your cooking", item2.getSubtitle());
     Assert.assertNotNull("Recipes image is not present", item2.getImage());
 
     //Assert Promo Tile not displayed
@@ -78,23 +78,23 @@ public class Homepage extends HomepageHelper {
     if (EDRStatus.equals("NoEDR")) {
       Assert.assertTrue("Rewards card component missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item -> item.getType().equals("AddRewardsCard")));
       HomepageComponents item = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("AddRewardsCard")).findFirst().get();
-      Assert.assertEquals("Rewards title is mismatch", item.getData().getTitle(), "+ Add Rewards Card");
-      Assert.assertEquals("Rewards subtitle is mismatch", item.getData().getSubtitle(), "Get personalised specials, and track and earn bonus Rewards points");
+      Assert.assertEquals("Rewards title mismatch", "+ Add Rewards Card", item.getData().getTitle());
+      Assert.assertEquals("Rewards subtitle mismatch", "Collect points and boost your savings.", item.getData().getSubtitle());
     }
 
     //Assert Catalogue details
     Assert.assertTrue("Catalogue card component missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item -> item.getType().equals("CatalogueCard")));
     HomepageComponentsData item = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("CatalogueCard")).findFirst().get().getData();
-    Assert.assertEquals("Catalogue card title is mismatch", item.getTitle(), "Catalogue");
-    Assert.assertEquals("Catalogue card subtitle is mismatch", item.getSubtitle(), "View current specials");
+    Assert.assertEquals("Catalogue card title mismatch", "Catalogue", item.getTitle());
+    Assert.assertEquals("Catalogue card subtitle mismatch", "View current specials", item.getSubtitle());
 
     //Assert Horizontal list details - Online Only Offers
     Assert.assertTrue("Horizontal list component missing " + Offer,
         Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item1 -> item1.getType().equals("HorizontalList")));
     HomepageComponentsData item1 = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("HorizontalList")).findFirst().get().getData();
-    Assert.assertEquals("All Specials title is mismatch", item1.getTitle(), "Online Only Offers");
-    Assert.assertEquals("All Specials subtitle is mismatch", item1.getSubtitle(), "Specials available exclusively online");
-    Assert.assertEquals("All Specials action title is mismatch", item1.getActionTitle(), "See All");
+    Assert.assertEquals("All Specials title mismatch", "Online Only Offers", item1.getTitle());
+    Assert.assertEquals("All Specials subtitle mismatch", "Specials available exclusively online", item1.getSubtitle());
+    Assert.assertEquals("All Specials action title mismatch", "See All", item1.getActionTitle());
     Assert.assertNotNull("All Specials action path is not present", item1.getActionPath());
     Assert.assertNotNull("No products under All Specials", item1.getItems());
 
@@ -104,8 +104,8 @@ public class Homepage extends HomepageHelper {
     //Assert Recipe details
     Assert.assertTrue("Recipes card component missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item2 -> item2.getType().equals("RecipesCard")));
     HomepageComponentsData item2 = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("RecipesCard")).findFirst().get().getData();
-    Assert.assertEquals("Recipes card title is mismatch", item2.getTitle(), "Recipes");
-    Assert.assertEquals("Recipes card subtitle is mismatch", item2.getSubtitle(), "1000's of new recipes to inspire your cooking");
+    Assert.assertEquals("Recipes card title mismatch", "Recipes", item2.getTitle());
+    Assert.assertEquals("Recipes card subtitle mismatch", "1000's of new recipes to inspire your cooking", item2.getSubtitle());
     Assert.assertNotNull("Recipes image is not present", item2.getImage());
 
     //Assert Promo card details
@@ -186,21 +186,20 @@ public class Homepage extends HomepageHelper {
     if (EDRStatus.equals("NoEDR")) {
       Assert.assertTrue("Rewards card component missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item -> item.getType().equals("AddRewardsCard")));
       HomepageComponents item = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("AddRewardsCard")).findFirst().get();
-      Assert.assertEquals("Rewards title is mismatch", item.getData().getTitle(), "+ Add Rewards Card");
-      Assert.assertEquals("Rewards subtitle is mismatch", item.getData().getSubtitle(), "Get personalised specials, and track and earn bonus Rewards points");
+      Assert.assertEquals("Rewards title mismatch", "+ Add Rewards Card", item.getData().getTitle());
+      Assert.assertEquals("Rewards subtitle mismatch", "Collect points and boost your savings.", item.getData().getSubtitle());
     }
 
     //Assert Catalogue details
     Assert.assertTrue("Catalogue card component missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item -> item.getType().equals("CatalogueCard")));
     HomepageComponentsData item = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("CatalogueCard")).findFirst().get().getData();
-    Assert.assertEquals("Catalogue card title is mismatch", item.getTitle(), "Catalogue");
-    Assert.assertEquals("Catalogue card subtitle is mismatch", item.getSubtitle(), "View current specials");
+    Assert.assertEquals("Catalogue card title mismatch", "Catalogue", item.getTitle());
+    Assert.assertEquals("Catalogue card subtitle mismatch", "View current specials", item.getSubtitle());
 
     //Assert Recipe details
     Assert.assertTrue("Recipes card component missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item2 -> item2.getType().equals("RecipesCard")));
     HomepageComponentsData item2 = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("RecipesCard")).findFirst().get().getData();
-    Assert.assertEquals("Recipes card title is mismatch", item2.getTitle(), "Recipes");
-    Assert.assertEquals("Recipes card subtitle is mismatch", item2.getSubtitle(), "1000's of new recipes to inspire your cooking");
+    Assert.assertEquals("Recipes card subtitle mismatch", "1000's of new recipes to inspire your cooking", item2.getSubtitle());
     Assert.assertNotNull("Recipes image is not present", item2.getImage());
 
     //Assert Promo card details
@@ -254,5 +253,4 @@ public class Homepage extends HomepageHelper {
     Assert.assertEquals("Trolley value of the product is not zero by default", "0", product.getInTrolley());
 
   }
-
 }

@@ -1,0 +1,14 @@
+query productsByProductGroup($groupId: String!) {
+    productsByProductGroup(groupId: $groupId) {
+        totalNumberOfProducts
+        cursor
+        products {
+            productId,
+            name,
+            inStoreDetails {
+                locationText,
+                locationType
+            }
+        }
+    }
+}
