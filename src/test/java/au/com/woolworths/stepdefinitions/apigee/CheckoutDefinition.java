@@ -156,7 +156,7 @@ public class CheckoutDefinition extends CheckoutHelper {
 
   @And("^I make a payment using (.*)$")
   public void iMakeAPaymentUsing(String paymentMode) throws Throwable {
-    PayIntrumentsRepsonse payIntrumentsRepsonse = getPayInstruments();
+    //PayInstrumentsResponse payIntrumentsRepsonse = getPayInstruments();
     PayCardCaptureResponse payCardCaptureResponse = getCardCapture();
     String sessionID;
     if (System.getProperty("env").equals("uat"))
