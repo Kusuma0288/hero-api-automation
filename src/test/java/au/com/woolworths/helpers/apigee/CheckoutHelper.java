@@ -97,14 +97,14 @@ public class CheckoutHelper extends BaseHelper {
 
   }
 
-  public PayInstrumentsResponse getPayInstruments() throws Throwable {
-    String endPoint = URLResources.APIGEE_PAYMENT_INSTRUMENTS;
-
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerList);
-    String responseStr = mapWebserviceResponse.get("response");
-    return mapper.readValue(responseStr, PayInstrumentsResponse.class);
-
-  }
+//  public PayInstrumentsResponse getPayInstruments() throws Throwable {
+//    String endPoint = URLResources.APIGEE_PAYMENT_INSTRUMENTS;
+//
+//    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerList);
+//    String responseStr = mapWebserviceResponse.get("response");
+//    return mapper.readValue(responseStr, PayInstrumentsResponse.class);
+//
+//  }
 
   public PayCardCaptureResponse getCardCapture() throws Throwable {
     String endPoint = URLResources.APIGEE_PAYMENT_CARDS;
