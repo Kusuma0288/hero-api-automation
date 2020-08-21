@@ -1,9 +1,6 @@
 package au.com.woolworths.model.apigee.authentication;
 
 import lombok.Data;
-
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
@@ -39,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
   private String teammember;
   private String trolleymergestatus;
   private String statusCode;
-  private List <LoginErrorReponse> error;
+  private String error;
   
   
 }

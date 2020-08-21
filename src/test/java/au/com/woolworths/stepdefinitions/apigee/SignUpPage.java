@@ -22,7 +22,7 @@ public class SignUpPage extends SignupHelper {
        *   -FALSE failed sign up response. Flows through IF condition
       */
     loginReponse = iCompleteSignUPWithDOB(Date_of_Birth, AgreeToTsAndCs); 
-    if ((AgreeToTsAndCs == false) && ((loginReponse.getError().get(0).getMessage()).equals("To sign up you must accept the above terms")) && (loginReponse.getStatusCode()).equals("400")) {
+    if ((AgreeToTsAndCs == false) && ((loginReponse.getError()).equals("To sign up you must accept the above terms")) && (loginReponse.getStatusCode()).equals("400")) {
       loginReponse.setShopperid("termsAndCondition");
     }
   }
