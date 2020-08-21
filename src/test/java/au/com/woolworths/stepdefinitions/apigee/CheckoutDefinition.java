@@ -162,7 +162,7 @@ public class CheckoutDefinition extends CheckoutHelper {
     if (System.getProperty("env").equals("uat"))
     {
       sessionID = payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_UAT_URL"), "");
-      String instrumentId = postiFrameCardDetails(sessionID).getItem().getItemID();
+      String instrumentId = postiFrameCardDetails(sessionID).getPaymentInstrument().getItemId();
       float amount = sharedData.orderCheckoutPaymentTotalGST;
       postDigitalPay(instrumentId, String.valueOf(amount));
     } else {

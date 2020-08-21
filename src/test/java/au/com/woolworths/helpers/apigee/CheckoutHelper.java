@@ -9,9 +9,6 @@ import au.com.woolworths.model.apigee.checkout.CheckoutPaymentSummaryResponse;
 import au.com.woolworths.model.apigee.checkout.CheckoutRequest;
 import au.com.woolworths.model.apigee.checkout.CheckoutResponse;
 import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
-import static au.com.woolworths.model.apigee.payment.iFrameRequest.*;
-import static au.com.woolworths.model.apigee.payment.iFrameRequest.Authentication.*;
-import static au.com.woolworths.model.apigee.payment.iFrameRequest.Item.*;
 
 import java.util.*;
 import java.util.logging.Logger;
@@ -100,12 +97,12 @@ public class CheckoutHelper extends BaseHelper {
 
   }
 
-  public PayIntrumentsRepsonse getPayInstruments() throws Throwable {
+  public PayInstrumentsResponse getPayInstruments() throws Throwable {
     String endPoint = URLResources.APIGEE_PAYMENT_INSTRUMENTS;
 
     Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerList);
     String responseStr = mapWebserviceResponse.get("response");
-    return mapper.readValue(responseStr, PayIntrumentsRepsonse.class);
+    return mapper.readValue(responseStr, PayInstrumentsResponse.class);
 
   }
 
@@ -125,53 +122,27 @@ public class CheckoutHelper extends BaseHelper {
   public iFrameResponse postiFrameCardDetails(String sessionID) throws Throwable {
 
     String iFrameRequeststr, responseStr, endPoint = null;
-    if (System.getProperty("env").equals("uat"))
-    {
+    if (System.getProperty("env").equals("uat")) {
       endPoint = URLResources.APIGEE_iFRAME_UAT;
     } else { //endPoint = URLResources.APIGEE_iFRAME_TEST;
-      logger.info("There is an existing issue with Digipay in Test environment, will be updated once the issue is addressed"); }
+      logger.info("There is an existing issue with Digipay in Test environment, will be updated once the issue is addressed");
+    }
 
     iFrameRequest iframeRequest = new iFrameRequest();
-    Authentication authentication = new Authentication();
-    iframeRequest.setAuthentication(authentication);
-
-    Credentials[] credentials = new Credentials[1];
-    credentials[0] = new Credentials();
-    credentials[0].setType("PERSON");
-    credentials[0].setSessionID(sessionID);
-    iframeRequest.getAuthentication().setCredentials(credentials);
-
-    Item item = new Item();
-    iframeRequest.setItem(item);
-
-    ItemFields[] itemFields = new ItemFields[4];
-    itemFields[0] = new ItemFields();
-    itemFields[0].setData(TestProperties.get("CARD_NUMBER"));
-    itemFields[0].setName("cardNumber");
-
-    itemFields[1] = new ItemFields();
-    itemFields[1].setData(TestProperties.get("EXPIRY_MONTH"));
-    itemFields[1].setName("expiryMonth");
-
-    itemFields[2] = new ItemFields();
-    itemFields[2].setData(TestProperties.get("EXPIRY_YEAR"));
-    itemFields[2].setName("expiryYear");
-
-    itemFields[3] = new ItemFields();
-    itemFields[3].setData(TestProperties.get("CVV"));
-    itemFields[3].setName("cvv");
-
-    iframeRequest.getItem().setItemFields(itemFields);
-
+    iframeRequest.setAa(TestProperties.get("CARD_NUMBER"));
+    iframeRequest.setBb(TestProperties.get("CVV"));
+    iframeRequest.setDd(TestProperties.get("EXPIRY_MONTH"));
+    iframeRequest.setEe(TestProperties.get("EXPIRY_YEAR"));
     iFrameRequeststr = mapper.writeValueAsString(iframeRequest);
     List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("Authorization", "Bearer " + sessionID));
     Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, iFrameRequeststr, headerList);
     responseStr = mapWebserviceResponse.get("response");
     return mapper.readValue(responseStr, iFrameResponse.class);
 
   }
 
-  public DigitalPayResponse postDigitalPay(String instrumentId, String  amount) throws Throwable {
+  public DigitalPayResponse postDigitalPay(String instrumentId, String amount) throws Throwable {
 
     String digipayRequestStr, responseStr, endPoint;
     endPoint = URLResources.APIGEE_PAYMENT_DIGITALPAY;

@@ -4,6 +4,7 @@ Feature: Checkout API scenarios
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME6"
     When connection from user to apigee endpoint happens
 
+   @IN_PROGRESS
   Scenario Outline: Verify getting and setting of v3/checkout windows and Packaging preference for Pick up mode
     Given I set a pick up store using post code 2204
     And I clear the trolley
