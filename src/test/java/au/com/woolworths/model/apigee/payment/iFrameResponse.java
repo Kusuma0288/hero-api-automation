@@ -9,6 +9,7 @@ import lombok.Data;
   public PaymentInstrument paymentInstrument;
   public String stepUpToken;
   public FraudResponse fraudResponse;
+  public String itemId;
 
   @Data public static class Status{
     public String responseText;

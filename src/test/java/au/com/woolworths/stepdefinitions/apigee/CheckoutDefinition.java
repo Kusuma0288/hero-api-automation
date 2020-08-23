@@ -4,6 +4,7 @@ import au.com.woolworths.helpers.apigee.CheckoutHelper;
 import au.com.woolworths.model.apigee.checkout.*;
 import au.com.woolworths.model.apigee.payment.PayCardCaptureResponse;
 import au.com.woolworths.model.apigee.payment.PayIntrumentsRepsonse;
+import au.com.woolworths.model.apigee.payment.iFrameResponse;
 import au.com.woolworths.utils.TestProperties;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
@@ -162,7 +163,12 @@ public class CheckoutDefinition extends CheckoutHelper {
     if (System.getProperty("env").equals("uat"))
     {
       sessionID = payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_UAT_URL"), "");
-      String instrumentId = postiFrameCardDetails(sessionID).getPaymentInstrument().getItemId();
+      iFrameResponse iframeResponse=postiFrameCardDetails(sessionID);
+      String instrumentId;
+      if(iframeResponse.itemId==null)
+        instrumentId = iframeResponse.getPaymentInstrument().getItemId();
+      else
+        instrumentId = iframeResponse.getItemId();
       float amount = sharedData.orderCheckoutPaymentTotalGST;
       postDigitalPay(instrumentId, String.valueOf(amount));
     } else {
