@@ -33,7 +33,7 @@ stages:
     steps:
       - script: |
           echo "Setting up delay for the job"
-          sleep 10s
+          sleep 10m
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
@@ -48,7 +48,7 @@ stages:
     steps:
       - script: |
           echo "Setting up delay for the job"
-          sleep 10s
+          sleep 10m
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
