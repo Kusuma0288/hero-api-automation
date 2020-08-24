@@ -164,20 +164,18 @@ public class CheckoutDefinition extends CheckoutHelper {
     if (System.getProperty("env").equals("uat"))
     {
       sessionID = payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_UAT_URL"), "");
-      iFrameResponse iframeResponse=postiFrameCardDetails(sessionID);
-      String instrumentId;
-      if(iframeResponse.itemId == null) {
-        instrumentId = iframeResponse.getPaymentInstrument().getItemId();
-      } else {
-        instrumentId = iframeResponse.getItemId();
-      }
-      float amount = sharedData.orderCheckoutPaymentTotalGST;
-      postDigitalPay(instrumentId, String.valueOf(amount));
     } else {
-      logger.info("There is an existing issue with Digipay in Test environment, will be updated once the issue is addressed");
-      //**There are digipay issues in TEST environment**//
-      //sessionID=payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_TEST_URL"),"");
+      sessionID=payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_TEST_URL"),"");
     }
+    iFrameResponse iframeResponse=postiFrameCardDetails(sessionID);
+    String instrumentId;
+    if(iframeResponse.itemId == null) {
+      instrumentId = iframeResponse.getPaymentInstrument().getItemId();
+    } else {
+      instrumentId = iframeResponse.getItemId();
+    }
+    float amount = sharedData.orderCheckoutPaymentTotalGST;
+    postDigitalPay(instrumentId, String.valueOf(amount));
   }
 
   @And("^I complete the payment via saved paypal account$")

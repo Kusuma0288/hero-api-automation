@@ -121,13 +121,10 @@ public class CheckoutHelper extends BaseHelper {
 
   public iFrameResponse postiFrameCardDetails(String sessionID) throws Throwable {
 
-    String iFrameRequeststr, responseStr, endPoint = null;
+    String iFrameRequeststr, responseStr, endPoint;
     if (System.getProperty("env").equals("uat"))
-    {
-      endPoint = URLResources.APIGEE_iFRAME_UAT;
-    } else { //endPoint = URLResources.APIGEE_iFRAME_TEST;
-      logger.info("There is an existing issue with Digipay in Test environment, will be updated once the issue is addressed");
-    }
+    { endPoint = URLResources.APIGEE_iFRAME_UAT;
+    } else { endPoint = URLResources.APIGEE_iFRAME_TEST; }
 
     iFrameRequest iframeRequest = new iFrameRequest();
     iframeRequest.setAa(TestProperties.get("CARD_NUMBER"));
