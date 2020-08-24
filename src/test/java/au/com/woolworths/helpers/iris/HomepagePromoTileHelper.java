@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
-import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
+import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import io.restassured.response.Response;
 
 public class HomepagePromoTileHelper extends BaseHelper {
@@ -22,7 +22,7 @@ public class HomepagePromoTileHelper extends BaseHelper {
   public void getProductsByProductGroup(String query) throws Throwable {
     String endPoint = URLResources.V1_GRAPHQL;
     Map<String, String> mapWebserviceResponse;
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, query, headerList);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, query, headerListApigee);
     String responseStr = mapWebserviceResponse.get("response");
     /**
      * TODO: Add pojo for response while automating actual graphql tests.

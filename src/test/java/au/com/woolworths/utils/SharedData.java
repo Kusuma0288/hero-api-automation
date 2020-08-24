@@ -10,9 +10,13 @@ import au.com.woolworths.model.apigee.trolley.TrolleyV2Response;
 import au.com.woolworths.model.apigee.trolley.TrolleyV3Response;
 import au.com.woolworths.model.apigee.search.SearchResponseV3;
 import au.com.woolworths.model.apigee.checkout.CheckoutPackagingPreferencesResponse;
+import au.com.woolworths.model.trader.*;
+import au.com.woolworths.model.trader.product.productGroup.ProductsByProductGroup;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SharedData {
 
@@ -21,7 +25,7 @@ public class SharedData {
   public LoginReponse guestResponse;
   public String accessToken;
   public LoginReponse shopperResponse;
-  public SearchAddresses searchAddressResponse;
+  public SearchAddresses searchAddresses;
   public String addressId;
   public String addressText;
   public String inStoreId;
@@ -62,4 +66,22 @@ public class SharedData {
   public boolean leaveUnattended;
   public String fulfilment;
 
+
+  public GuestLoginResponse guestLoginResponse;
+  public ShopperLoginResponseV2 shopperLoginResponseV2;
+  public SearchAddressResponse searchAddressResponse;
+  public PickupResponse[] pickupResponse;
+  public String deviceId;
+  public String signupResponseStatusCode;
+  public ShopperLoginResponseV2 signupLoginResponseV2;
+  public String signupAuthToken;
+  public int deliveryAddressId;
+  public GetProductItems searchProductItemsResult;
+  public TrolleyResponse trolleyResponse;
+  public ProductDetailsResponse productDetailsResponse;
+  public HashMap<String, String> checkoutDetails = new HashMap<>();
+  public HashMap<String, Integer> specialGroupCount = new HashMap<>();
+  public HashMap<String, String> deliveryNowDetails = new HashMap<>();
+  public ProductsByProductGroup productsByProductGroup;
+  public Map<String, String> recentCompleteResponse = new HashMap<>();    //this is generic to any response
 }

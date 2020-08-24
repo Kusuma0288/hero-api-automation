@@ -6,7 +6,7 @@ import au.com.woolworths.model.apigee.lists.*;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
-import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
+import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.Utilities;
 
 import java.util.*;
@@ -35,7 +35,7 @@ public class ListHelper extends BaseHelper {
     requestStr = mapper.writeValueAsString(apigeeListRequest);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListApigee);
 
     responseStr = mapWebserviceResponse.get("response");
     ListResponse response = mapper.readValue(responseStr, ListResponse.class);
@@ -49,7 +49,7 @@ public class ListHelper extends BaseHelper {
     Map<String, String> queryParams = new HashMap<String, String>();
     String endPoint = URLResources.APIGEE_V2_LISTS;
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
     responseStr = mapWebserviceResponse.get("response");
     GetListResponse response = mapper.readValue(responseStr, GetListResponse.class);
     return response;
@@ -65,7 +65,7 @@ public class ListHelper extends BaseHelper {
     String endPoint = URLResources.APIGEE_V2_LISTS;
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
     responseStr = mapWebserviceResponse.get("response");
     GetListResponse response = mapper.readValue(responseStr, GetListResponse.class);
 
@@ -87,7 +87,7 @@ public class ListHelper extends BaseHelper {
     endPoint = endPoint.replace("{list_id}", String.valueOf(listId));
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
     responseStr = mapWebserviceResponse.get("response");
 
     ListDetailsResponse response = mapper.readValue(responseStr, ListDetailsResponse.class);
@@ -113,7 +113,7 @@ public class ListHelper extends BaseHelper {
     String endPoint = URLResources.APIGEE_V2_LISTS + "/" + listId + "/default";
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerList);
+    mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerListApigee);
     responseStr = mapWebserviceResponse.get("response");
     SwitchDefaultListResponse response = mapper.readValue(responseStr, SwitchDefaultListResponse.class);
     return response;
@@ -139,7 +139,7 @@ public class ListHelper extends BaseHelper {
     requestStr = mapper.writeValueAsString(listRequest);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListApigee);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, ListResponse.class);
     return response;
@@ -164,7 +164,7 @@ public class ListHelper extends BaseHelper {
 
     requestStr = mapper.writeValueAsString(listRequest);
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePut(endPoint, requestStr, headerList);
+    mapWebserviceResponse = invocationUtil.invokePut(endPoint, requestStr, headerListApigee);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, ListResponse.class);
     return response;
@@ -189,7 +189,7 @@ public class ListHelper extends BaseHelper {
     requestStr = mapper.writeValueAsString(listRequest);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListApigee);
     responseStr = mapWebserviceResponse.get("response");
     ListResponse response = mapper.readValue(responseStr, ListResponse.class);
     return response;
@@ -219,7 +219,7 @@ public class ListHelper extends BaseHelper {
 
     requestStr = mapper.writeValueAsString(apigeeListRequest);
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListApigee);
     responseStr = mapWebserviceResponse.get("response");
     AddProductsToListResponse response = mapper.readValue(responseStr, AddProductsToListResponse.class);
     return response;
@@ -242,7 +242,7 @@ public class ListHelper extends BaseHelper {
     }
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
     responseStr = mapWebserviceResponse.get("response");
     ListDetailsResponse response = mapper.readValue(responseStr, ListDetailsResponse.class);
     return response;
@@ -258,7 +258,7 @@ public class ListHelper extends BaseHelper {
 
     String endPoint = URLResources.APIGEE_V2_LIST_ITEMS;
     endPoint = endPoint.replace("{list_id}", listId);
-    mapWebserviceResponse = invocationUtil.invokeDelete(endPoint, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeDelete(endPoint, queryParams, headerListApigee);
     responseStr = mapWebserviceResponse.get("response");
 
     ListResponse response = mapper.readValue(responseStr, ListResponse.class);
@@ -275,7 +275,7 @@ public class ListHelper extends BaseHelper {
 
     String endPoint = URLResources.APIGEE_V2_GET_LIST_BY_ID;
     endPoint = endPoint.replace("{list_id}", listId);
-    mapWebserviceResponse = invocationUtil.invokeDelete(endPoint, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeDelete(endPoint, queryParams, headerListApigee);
     responseStr = mapWebserviceResponse.get("response");
 
     response = mapper.readValue(responseStr, ListResponse.class);
@@ -294,7 +294,7 @@ public class ListHelper extends BaseHelper {
 
     String endPoint = URLResources.APIGEE_V2_GET_LIST_BY_ID;
     endPoint = endPoint.replace("{list_id}", Long.toString(listId));
-    mapWebserviceResponse = invocationUtil.invokeDelete(endPoint, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeDelete(endPoint, queryParams, headerListApigee);
     responseStr = mapWebserviceResponse.get("response");
 
     response = mapper.readValue(responseStr, ListResponse.class);

@@ -31,7 +31,7 @@ public class DeliveryAddressDefinition extends AddressHelper {
     lookupAddress = Utilities.replaceMultipleandTrimSpaces(lookupAddress);
 
     SearchAddresses searchAddressResponse = iSearchForTheAddress(lookupAddress);
-    sharedData.searchAddressResponse = searchAddressResponse;
+    sharedData.searchAddresses = searchAddressResponse;
 
     //These assertions are to make sure there are no NULL FIELDS
     Assert.assertNotNull(searchAddressResponse.getAddresses()[0].getPostCode());
@@ -40,7 +40,7 @@ public class DeliveryAddressDefinition extends AddressHelper {
   }
 
   public void iSelectTheAddressAsFulfilmentAddressFromMatchingAddresses(int position) throws Throwable {
-    SearchAddresses addressResponse = sharedData.searchAddressResponse;
+    SearchAddresses addressResponse = sharedData.searchAddresses;
     SearchAddressDetails[] addressItem = addressResponse.getAddresses();
 
     AddressDetails addressDetailResponse = iGetTheAddressIdFromAmasId(addressItem[position - 1].getAmasID());

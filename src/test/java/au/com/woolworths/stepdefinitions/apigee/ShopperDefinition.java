@@ -18,7 +18,7 @@ public class ShopperDefinition extends ShopperHelper {
 
   @When("^user continue to connect to apigee with default login and password$")
   public void userContinueToConnectToApigeeWithDefaultLoginAndPassword() throws Throwable {
-    LoginReponse response = userToConnectApigeewithLoginAndPassword(TestProperties.get("SHOPPER_USERNAME"), TestProperties.get("SHOPPER_PASSWORD"));
+    LoginReponse response = userToConnectApigeewithLoginAndPassword(TestProperties.get("SHOPPER_USERNAME1"), TestProperties.get("SHOPPER_PASSWORD"));
 
     sharedData.responseStatusCode = response.getStatusCode();
     sharedData.shopperResponse = response;
@@ -50,7 +50,7 @@ public class ShopperDefinition extends ShopperHelper {
 
   @Given("^user continue to connect to apigee with default login and password using apikey (.*)$")
   public void userContinueToConnectToApigeeWithDefaultLoginAndPasswordUsingAPIKey(String apiKey) throws Throwable {
-    LoginReponse response = userToConnectApigeewithLoginAndPasswordWithAPIKey(TestProperties.get("SHOPPER_USERNAME"), TestProperties.get("SHOPPER_PASSWORD"), apiKey);
+    LoginReponse response = userToConnectApigeewithLoginAndPasswordWithAPIKey(TestProperties.get("SHOPPER_USERNAME1"), TestProperties.get("SHOPPER_PASSWORD"), apiKey);
     sharedData.responseStatusCode = response.getStatusCode();
     sharedData.shopperResponse = response;
   }

@@ -4,7 +4,7 @@ import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.apigee.products.SpecialspageResponse;
-import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
+import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +21,7 @@ public class SpecialsHelper extends BaseHelper {
   public SpecialspageResponse iRetrieveSpecialspageWithOnlineMode(Map<String, String> queryParams) throws Throwable {
     String endPoint = URLResources.APIGEE_V2_SPECIALS;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
     String responseStr = mapWebserviceResponse.get("response");
     SpecialspageResponse response = mapper.readValue(responseStr, SpecialspageResponse.class);
     return response;

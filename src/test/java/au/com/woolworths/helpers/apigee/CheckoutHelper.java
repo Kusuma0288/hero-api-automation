@@ -8,7 +8,7 @@ import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.apigee.checkout.CheckoutPaymentSummaryResponse;
 import au.com.woolworths.model.apigee.checkout.CheckoutRequest;
 import au.com.woolworths.model.apigee.checkout.CheckoutResponse;
-import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
+import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 
 import static au.com.woolworths.model.apigee.payment.iFrameRequest.*;
 import static au.com.woolworths.model.apigee.payment.iFrameRequest.Authentication.*;
@@ -104,7 +104,7 @@ public class CheckoutHelper extends BaseHelper {
   public PayInstrumentsResponse getPayInstruments() throws Throwable {
     String endPoint = URLResources.APIGEE_PAYMENT_INSTRUMENTS;
 
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerList);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerListApigee);
     String responseStr = mapWebserviceResponse.get("response");
     return mapper.readValue(responseStr, PayInstrumentsResponse.class);
 
@@ -117,7 +117,7 @@ public class CheckoutHelper extends BaseHelper {
     payCardCaptureRequest.setClientReference("VALID_REFERENCE");
     String payCardCaptureRequestStr = mapper.writeValueAsString(payCardCaptureRequest);
 
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, payCardCaptureRequestStr, headerList);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, payCardCaptureRequestStr, headerListApigee);
     String responseStr = mapWebserviceResponse.get("response");
     return mapper.readValue(responseStr, PayCardCaptureResponse.class);
 
@@ -185,7 +185,7 @@ public class CheckoutHelper extends BaseHelper {
     digitalPayRequest.setPayments(Payments);
     mapper.setPropertyNamingStrategy(PropertyNamingStrategy.UPPER_CAMEL_CASE);
     digipayRequestStr = mapper.writeValueAsString(digitalPayRequest);
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, digipayRequestStr, headerList);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, digipayRequestStr, headerListApigee);
     responseStr = mapWebserviceResponse.get("response");
     return mapper.readValue(responseStr, DigitalPayResponse.class);
 

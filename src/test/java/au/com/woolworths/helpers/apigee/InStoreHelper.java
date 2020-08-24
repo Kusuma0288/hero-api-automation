@@ -4,7 +4,7 @@ import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.apigee.search.SearchInStore;
-import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
+import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -25,7 +25,7 @@ public class InStoreHelper extends BaseHelper {
     queryParams.put("q", postcode);
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
     String responseStr = mapWebserviceResponse.get("response");
     SearchInStore searchForInStore = mapper.readValue(responseStr, SearchInStore.class);
     return searchForInStore;

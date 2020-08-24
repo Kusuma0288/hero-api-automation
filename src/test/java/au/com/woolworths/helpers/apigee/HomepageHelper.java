@@ -5,7 +5,7 @@ import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.apigee.homepage.HomepageResponse;
 import au.com.woolworths.model.apigee.productgroups.ProductGroupResponse;
-import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
+import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +22,7 @@ public class HomepageHelper extends BaseHelper {
   public HomepageResponse iRetrieveHomepageWithInStore(Map<String, String> queryParams) throws Throwable {
     String endPoint = URLResources.HERMES_V1_HOMEPAGE;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
 
     String responseStr = mapWebserviceResponse.get("response");
 
@@ -36,7 +36,7 @@ public class HomepageHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("mode", shoppingMode);
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
 
     String responseStr = mapWebserviceResponse.get("response");
 
