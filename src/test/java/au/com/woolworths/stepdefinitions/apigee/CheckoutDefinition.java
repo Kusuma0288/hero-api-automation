@@ -3,7 +3,6 @@ package au.com.woolworths.stepdefinitions.apigee;
 import au.com.woolworths.helpers.apigee.CheckoutHelper;
 import au.com.woolworths.model.apigee.checkout.*;
 import au.com.woolworths.model.apigee.payment.PayCardCaptureResponse;
-import au.com.woolworths.model.apigee.payment.PayIntrumentsRepsonse;
 import au.com.woolworths.model.apigee.payment.iFrameResponse;
 import au.com.woolworths.utils.TestProperties;
 import cucumber.api.java.en.And;
@@ -165,10 +164,11 @@ public class CheckoutDefinition extends CheckoutHelper {
       sessionID = payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_UAT_URL"), "");
       iFrameResponse iframeResponse=postiFrameCardDetails(sessionID);
       String instrumentId;
-      if(iframeResponse.itemId==null)
+      if(iframeResponse.itemId == null) {
         instrumentId = iframeResponse.getPaymentInstrument().getItemId();
-      else
+      } else {
         instrumentId = iframeResponse.getItemId();
+      }
       float amount = sharedData.orderCheckoutPaymentTotalGST;
       postDigitalPay(instrumentId, String.valueOf(amount));
     } else {
