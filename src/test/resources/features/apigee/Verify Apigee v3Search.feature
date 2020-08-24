@@ -21,5 +21,5 @@ Feature: Verify Apigee v3 Search functionality
     Examples:
       | inValidSearchItem | mode   |
       | Ba$$EEE0          | pickup |
-      | BayuEE            | online  |
+      | 0BayuEE           | online |
 

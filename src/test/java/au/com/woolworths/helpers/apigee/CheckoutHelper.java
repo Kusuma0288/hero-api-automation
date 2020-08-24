@@ -97,14 +97,14 @@ public class CheckoutHelper extends BaseHelper {
 
   }
 
-//  public PayInstrumentsResponse getPayInstruments() throws Throwable {
-//    String endPoint = URLResources.APIGEE_PAYMENT_INSTRUMENTS;
-//
-//    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerList);
-//    String responseStr = mapWebserviceResponse.get("response");
-//    return mapper.readValue(responseStr, PayInstrumentsResponse.class);
-//
-//  }
+  public PayIntrumentsRepsonse getPayInstruments() throws Throwable {
+    String endPoint = URLResources.APIGEE_PAYMENT_INSTRUMENTS;
+
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerList);
+    String responseStr = mapWebserviceResponse.get("response");
+    return mapper.readValue(responseStr, PayIntrumentsRepsonse.class);
+
+  }
 
   public PayCardCaptureResponse getCardCapture() throws Throwable {
     String endPoint = URLResources.APIGEE_PAYMENT_CARDS;
@@ -122,7 +122,8 @@ public class CheckoutHelper extends BaseHelper {
   public iFrameResponse postiFrameCardDetails(String sessionID) throws Throwable {
 
     String iFrameRequeststr, responseStr, endPoint = null;
-    if (System.getProperty("env").equals("uat")) {
+    if (System.getProperty("env").equals("uat"))
+    {
       endPoint = URLResources.APIGEE_iFRAME_UAT;
     } else { //endPoint = URLResources.APIGEE_iFRAME_TEST;
       logger.info("There is an existing issue with Digipay in Test environment, will be updated once the issue is addressed");
@@ -135,7 +136,6 @@ public class CheckoutHelper extends BaseHelper {
     iframeRequest.setEe(TestProperties.get("EXPIRY_YEAR"));
     iFrameRequeststr = mapper.writeValueAsString(iframeRequest);
     List<Header> headerList = new LinkedList<>();
-    headerList.add(new Header("Authorization", "Bearer " + sessionID));
     Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, iFrameRequeststr, headerList);
     responseStr = mapWebserviceResponse.get("response");
     return mapper.readValue(responseStr, iFrameResponse.class);
