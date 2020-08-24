@@ -5,37 +5,37 @@ import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data public class iFrameResponse {
-  private Status status;
-  private Item item;
-  private Object fraudResponse;
+  public Status status;
+  public PaymentInstrument paymentInstrument;
+  public String stepUpToken;
+  public FraudResponse fraudResponse;
+  public String itemId;
 
-  @Data public static class Status {
-    private String responseText;
-    private String responseCode;
-    private String auditID;
-    private String messageId;
-    private String txnTime;
-    private String error;
-    private Object esResponse;
+  @Data public static class Status{
+    public String responseText;
+    public String responseCode;
+    public String auditID;
+    public long txnTime;
+    public Object error;
+    public Object esResponse;
   }
 
-  @Data public static class Item {
-    private String itemID;
-    private String paymentToken;
-    private String type;
-    private Object[] itemFields;
-    private String sequence;
-    private boolean primary;
-    private String createdOn;
-    private String lastUpdated;
-    private String lastUsed;
-    private String requiresCvv;
-    private String expired;
-    private String allowed;
-    private String status;
-    private String action;
-    private String updateUrl;
-    private String stepUpToken;
+  @Data public static class PaymentInstrument{
+    public String itemId;
+    public String paymentToken;
+    public String status;
+    public long created;
+    public String bin;
+    public String suffix;
+    public String expiryMonth;
+    public String expiryYear;
+    public String nickname;
+    public String scheme;
   }
 
+  @Data public static class FraudResponse{
+    public Object fraudClientId;
+    public Object fraudReasonCd;
+    public Object fraudDecision;
+  }
 }

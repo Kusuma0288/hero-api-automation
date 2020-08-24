@@ -3,6 +3,7 @@ package au.com.woolworths.stepdefinitions.apigee;
 import au.com.woolworths.helpers.apigee.CheckoutHelper;
 import au.com.woolworths.model.apigee.checkout.*;
 import au.com.woolworths.model.apigee.payment.PayCardCaptureResponse;
+import au.com.woolworths.model.apigee.payment.iFrameResponse;
 import au.com.woolworths.model.apigee.payment.PayInstrumentsResponse;
 import au.com.woolworths.model.apigee.payment.PayPal;
 import au.com.woolworths.utils.TestProperties;
@@ -157,12 +158,19 @@ public class CheckoutDefinition extends CheckoutHelper {
 
   @And("^I make a payment using (.*)$")
   public void iMakeAPaymentUsing(String paymentMode) throws Throwable {
-    PayInstrumentsResponse payInstrumentsResponse = getPayInstruments();
+    //PayInstrumentsResponse payIntrumentsRepsonse = getPayInstruments();
     PayCardCaptureResponse payCardCaptureResponse = getCardCapture();
     String sessionID;
-    if (System.getProperty("env").equals("uat")) {
+    if (System.getProperty("env").equals("uat"))
+    {
       sessionID = payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_UAT_URL"), "");
-      String instrumentId = postiFrameCardDetails(sessionID).getItem().getItemID();
+      iFrameResponse iframeResponse=postiFrameCardDetails(sessionID);
+      String instrumentId;
+      if(iframeResponse.itemId == null) {
+        instrumentId = iframeResponse.getPaymentInstrument().getItemId();
+      } else {
+        instrumentId = iframeResponse.getItemId();
+      }
       float amount = sharedData.orderCheckoutPaymentTotalGST;
       postDigitalPay(instrumentId, String.valueOf(amount));
     } else {
