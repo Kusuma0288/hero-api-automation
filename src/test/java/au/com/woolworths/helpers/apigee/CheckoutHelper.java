@@ -136,6 +136,7 @@ public class CheckoutHelper extends BaseHelper {
     iframeRequest.setEe(TestProperties.get("EXPIRY_YEAR"));
     iFrameRequeststr = mapper.writeValueAsString(iframeRequest);
     List<Header> headerList = new LinkedList<>();
+    headerList.add(new Header("Authorization", "Bearer " + sessionID));
     Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, iFrameRequeststr, headerList);
     responseStr = mapWebserviceResponse.get("response");
     return mapper.readValue(responseStr, iFrameResponse.class);
