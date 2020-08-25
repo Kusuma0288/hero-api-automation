@@ -205,10 +205,8 @@ public class CheckoutDefinition extends CheckoutHelper {
 
     //Validation of Order Confirmation responses
     if (collectionMode.equals("Delivery")) {
-      Assert.assertTrue(orderPlaced.getOrder().getDeliveryMethod().contains("Courier"));
       Assert.assertTrue(orderPlaced.getOrder().getFulfilmentMethod().contains("Courier"));
     } else if (collectionMode.equals("Pickup")) {
-      Assert.assertTrue(orderPlaced.getOrder().getDeliveryMethod().contains("Pickup"));
       Assert.assertTrue(orderPlaced.getOrder().getFulfilmentMethod().contains("Pickup"));
     }
     Assert.assertEquals("Window ID doesn't match", sharedData.orderCheckoutSummaryPaymentWindowId, sharedData.orderConfirmationWindowId);
