@@ -1,5 +1,6 @@
 package au.com.woolworths.helpers.apigee;
 
+import au.com.woolworths.model.apigee.checkout.OrderPlaced;
 import au.com.woolworths.model.apigee.payment.*;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.TestProperties;
@@ -122,8 +123,7 @@ public class CheckoutHelper extends BaseHelper {
   public iFrameResponse postiFrameCardDetails(String sessionID) throws Throwable {
 
     String iFrameRequeststr, responseStr, endPoint = null;
-    if (System.getProperty("env").equals("uat"))
-    {
+    if (System.getProperty("env").equals("uat")) {
       endPoint = URLResources.APIGEE_iFRAME_UAT;
     } else { //endPoint = URLResources.APIGEE_iFRAME_TEST;
       logger.info("There is an existing issue with Digipay in Test environment, will be updated once the issue is addressed");
@@ -159,6 +159,20 @@ public class CheckoutHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, digipayRequestStr, headerList);
     responseStr = mapWebserviceResponse.get("response");
     return mapper.readValue(responseStr, DigitalPayResponse.class);
+
+  }
+
+  public OrderPlaced getOrderDetails(int OrderId) throws Throwable {
+    Map<String, String> mapWebserviceResponse;
+    String endPoint, responseStr;
+    Map<String, String> queryParams = new HashMap<>();
+    endPoint = URLResources.APIGEE_V2_ORDER_CONFIRMATION;
+    endPoint = endPoint.concat("" + OrderId);
+
+    // invoke the service with the framed request
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
+    responseStr = mapWebserviceResponse.get("response");
+    return mapper.readValue(responseStr, OrderPlaced.class);
 
   }
 }
