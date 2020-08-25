@@ -170,7 +170,7 @@ public class CheckoutHelper extends BaseHelper {
     endPoint = endPoint.concat("" + OrderId);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
     responseStr = mapWebserviceResponse.get("response");
     return mapper.readValue(responseStr, OrderPlaced.class);
 
