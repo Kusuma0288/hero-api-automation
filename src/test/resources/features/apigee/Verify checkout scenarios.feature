@@ -18,6 +18,7 @@ Feature: Checkout API scenarios
     Then I validate the product subtotal and total GST
     And I validate the packaging fee and preference
     And I make a payment using CREDIT-CARD
+    And I verify the completed "<Mode>" order
 
     Examples:
       | Mode   |
@@ -38,6 +39,7 @@ Feature: Checkout API scenarios
     And I validate the packaging fee and preference
     And I validate the leave unattended flag to be enabled
     And I make a payment using CREDIT-CARD
+    And I verify the completed "<Mode>" order
 
     Examples:
       | Mode     | lookupAddress |

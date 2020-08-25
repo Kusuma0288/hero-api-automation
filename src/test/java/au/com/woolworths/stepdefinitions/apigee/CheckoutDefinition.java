@@ -170,7 +170,8 @@ public class CheckoutDefinition extends CheckoutHelper {
         instrumentId = iframeResponse.getItemId();
       }
       float amount = sharedData.orderCheckoutPaymentTotalGST;
-      postDigitalPay(instrumentId, String.valueOf(amount));
+      DigitalPayResponse digitalPayResponse = postDigitalPay(instrumentId, String.valueOf(amount));
+      sharedData.orderId = digitalPayResponse.getOrderId();
     } else {
       logger.info("There is an existing issue with Digipay in Test environment, will be updated once the issue is addressed");
       //**There are digipay issues in TEST environment**//
