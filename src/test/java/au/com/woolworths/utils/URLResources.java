@@ -73,4 +73,5 @@ public final class URLResources {
   public static final String V2_SPECIALS_GROUP = "api/v3/product/specials/groups";
   public static final String V2_SPECIALS_GROUP_DETAILS = "api/v3/product/specials";
   public static final String V3_PRODUCT_GROUP = "api/v3/product/productgroup";
+
 }
