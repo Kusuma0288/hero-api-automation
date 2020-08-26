@@ -26,7 +26,8 @@ public class LinkResponseDeserializer extends StdDeserializer<LinkResponse> {
     String loginFormURL = node.get("data").get("loginFormURL").asText();
     String callbackURLPattern = node.get("data").get("callbackURLPattern").asText();
     String sessionToken = node.get("data").get("sessionToken").asText();
+    String type = node.get("type").asText();
 
-    return new LinkResponse(loginFormURL, callbackURLPattern, sessionToken);
+    return new LinkResponse(loginFormURL, callbackURLPattern, sessionToken, type);
   }
 }

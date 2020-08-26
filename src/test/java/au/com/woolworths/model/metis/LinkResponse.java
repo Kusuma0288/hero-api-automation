@@ -12,10 +12,12 @@ public class LinkResponse {
   private String loginFormURL;
   private String callbackURLPattern;
   private String sessionToken;
+  private String type;
 
-  public LinkResponse(String loginFormURL, String callbackURLPattern, String sessionToken) {
+  public LinkResponse(String loginFormURL, String callbackURLPattern, String sessionToken, String type) {
     this.loginFormURL = loginFormURL;
     this.callbackURLPattern = callbackURLPattern;
     this.sessionToken = sessionToken;
+    this.type = type;
   }
 }
