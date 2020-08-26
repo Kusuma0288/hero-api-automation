@@ -1,5 +1,6 @@
 package au.com.woolworths.helpers.apigee;
 
+import au.com.woolworths.model.apigee.checkout.OrderPlaced;
 import au.com.woolworths.model.apigee.payment.*;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.TestProperties;
