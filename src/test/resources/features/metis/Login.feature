@@ -1,4 +1,4 @@
-@Metis_Regression @Login
+@REGRESSION @Login
 Feature: Log in to the app
 
   Scenario: Login using auth code
