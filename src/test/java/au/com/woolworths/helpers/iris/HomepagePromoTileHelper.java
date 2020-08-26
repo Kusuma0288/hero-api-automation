@@ -30,7 +30,7 @@ public class HomepagePromoTileHelper extends BaseHelper {
      *
      */
 
-    System.out.println(responseStr);
+    logger.info(responseStr);
 
     /** Also use mapper from BaseHelper when writing actual test
      * e.g. "response = mapper.readValue(responseStr, ProductsByProductGroupResponse.class);"
