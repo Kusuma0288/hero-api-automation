@@ -158,4 +158,18 @@ public class CheckoutHelper extends BaseHelper {
     return mapper.readValue(responseStr, DigitalPayResponse.class);
 
   }
+
+  public OrderPlaced getOrderDetails(int OrderId) throws Throwable {
+    Map<String, String> mapWebserviceResponse;
+    String endPoint, responseStr;
+    Map<String, String> queryParams = new HashMap<>();
+    endPoint = URLResources.APIGEE_V2_ORDER_CONFIRMATION;
+    endPoint = endPoint.concat("" + OrderId);
+
+    // invoke the service with the framed request
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
+    responseStr = mapWebserviceResponse.get("response");
+    return mapper.readValue(responseStr, OrderPlaced.class);
+
+  }
 }

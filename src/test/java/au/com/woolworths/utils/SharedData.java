@@ -51,6 +51,7 @@ public class SharedData {
   public Object orderCheckoutSummaryPaymentWindowTime;
   public String orderCheckoutPaymentAddress;
   public String orderCheckoutSelectedWindowDate;
+  public int orderCheckoutSummaryPaymentWindowId;
   public int orderCheckoutSubtotal;
   public float orderCheckoutTotalGST;
   public int orderCheckoutPackagingFee;
@@ -61,5 +62,12 @@ public class SharedData {
   public String orderCheckoutPaymentPackagingPreference;
   public boolean leaveUnattended;
   public String fulfilment;
+  public int orderId;
+  public int orderConfirmationSubtotal;
+  public float orderConfirmationOrderTotal;
+  public int orderConfirmationPackagingFee;
+  public String orderConfirmationPackagingFeeLabel;
+  public Object orderConfirmationDeliveryTime;
+  public int orderConfirmationWindowId;
 
 }
