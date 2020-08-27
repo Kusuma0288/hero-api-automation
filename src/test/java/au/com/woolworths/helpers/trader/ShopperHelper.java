@@ -49,7 +49,6 @@ public class ShopperHelper extends BaseHelper {
 
   public ShopperLoginResponseV2 apigeeToTraderPublicAPIEndpointwithLoginAndPassword(String userName, String password, String deviceId) throws Throwable {
 
-    Map<String, String> mapWebserviceResponse;
 
     ShopperLoginRequestV2 shopperLoginRequest = new ShopperLoginRequestV2(userName, password, deviceId);
     ShopperLoginResponseV2 response;
@@ -60,7 +59,7 @@ public class ShopperHelper extends BaseHelper {
     headerList.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
     headerList.add(new Header("cache-control", "no-cache"));
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     String responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, ShopperLoginResponseV2.class);
     response.setStatusCode(mapWebserviceResponse.get("statusCode"));
@@ -70,8 +69,6 @@ public class ShopperHelper extends BaseHelper {
 
   public ShopperLoginResponseV2 apigeeToTraderPublicAPIEndpointwithLoginAndPasswordUsingAPIkey(String userName, String password, String deviceId, String apiKey) throws Throwable {
 
-    Map<String, String> mapWebserviceResponse;
-
     ShopperLoginRequestV2 shopperLoginRequest = new ShopperLoginRequestV2(userName, password, deviceId);
     ShopperLoginResponseV2 response;
     String endPoint = URLResources.TRADER_V2_AUTH_SHOPPER;
@@ -79,7 +76,7 @@ public class ShopperHelper extends BaseHelper {
     String requestStr = mapper.writeValueAsString(shopperLoginRequest);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokeWithAPIKey(endPoint, requestStr, apiKey);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokeWithAPIKey(endPoint, requestStr, apiKey);
     String responseStr = mapWebserviceResponse.get("response");
     //logger.info("Response: " + responseStr);
     response = mapper.readValue(responseStr, ShopperLoginResponseV2.class);
@@ -90,8 +87,6 @@ public class ShopperHelper extends BaseHelper {
 
 
   public GuestLoginResponse apigeeConnectToTraderPublicAPIEndpointAsGuestWithPossibleOptions(int storeOrAddressId, boolean isStoreAddressId, boolean isFulfilmentStoreId, String deviceId) throws Throwable {
-
-    Map<String, String> mapWebserviceResponse;
 
     GuestLoginRequest guestLoginRequest = new GuestLoginRequest();
     GuestLoginResponse response;
@@ -112,7 +107,7 @@ public class ShopperHelper extends BaseHelper {
     headerList.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
     headerList.add(new Header("cache-control", "no-cache"));
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr,headerList);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr,headerList);
     String responseStr = mapWebserviceResponse.get("response");
     // logger.info("Response: " + responseStr);
     response = mapper.readValue(responseStr, GuestLoginResponse.class);
@@ -122,7 +117,6 @@ public class ShopperHelper extends BaseHelper {
 
   public GuestLoginResponse apigeeConnectToTraderPublicAPIEndpointAsGuestWithPossibleOptionsV2(int fulfilmentIdOrPostCode, boolean isFulfilmentStoreId, boolean isPostcode, String deviceId) throws Throwable {
 
-    Map<String, String> mapWebserviceResponse;
     GuestLoginRequest guestLoginRequest = new GuestLoginRequest();
     GuestLoginResponse response;
 
@@ -143,7 +137,7 @@ public class ShopperHelper extends BaseHelper {
     headerList.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
     headerList.add(new Header("cache-control", "no-cache"));
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr,headerList);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr,headerList);
     String responseStr = mapWebserviceResponse.get("response");
     // logger.info("Response: " + responseStr);
     response = mapper.readValue(responseStr, GuestLoginResponse.class);
@@ -153,8 +147,6 @@ public class ShopperHelper extends BaseHelper {
 
   public ShopperLoginResponseV2 signUpAsAShopperWithFollowingDetails(List<UserDetail> userDetails, String deviceId, boolean exactEmail) throws Throwable {
     Assert.assertNotNull(userDetails);
-    Map<String, String> mapWebserviceResponse;
-
     Register registerRequest = new Register();
     ShopperLoginResponseV2 signupResponse;
 
@@ -185,7 +177,7 @@ public class ShopperHelper extends BaseHelper {
     List<Header> headerList = new LinkedList<>();
     headerList.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
     headerList.add(new Header("cache-control", "no-cache"));
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr,headerList);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr,headerList);
     String responseStr = mapWebserviceResponse.get("response");
     //logger.info("Response: " + responseStr);
 
@@ -224,12 +216,12 @@ public class ShopperHelper extends BaseHelper {
   }
 
   public CheckoutAddressResponse iGETTheFulfilmentStoreId() throws Throwable {
-    Map<String, String> mapWebserviceResponse;
+
     Map<String, String> queryParams = new HashMap<String, String>();
     String endPoint = URLResources.TRADER_V3_CHECKOUT_ADDRESS;
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
     String responseStr = mapWebserviceResponse.get("response");
     CheckoutAddressResponse checkoutAddressResponse = mapper.readValue(responseStr, CheckoutAddressResponse.class);
     return checkoutAddressResponse;
@@ -238,11 +230,10 @@ public class ShopperHelper extends BaseHelper {
 
   public TrolleyResponse clearTheTrolleyForTheShopper() throws Throwable {
 
-    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     String endPoint = URLResources.TRADER_V2_CLEAR_TROLLEY;
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerListTrader);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerListTrader);
     String responseStr = mapWebserviceResponse.get("response");
     Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200", "Issues with clearing the trolley:" + responseStr);
     return mapper.readValue(responseStr, TrolleyResponse.class);
@@ -251,11 +242,10 @@ public class ShopperHelper extends BaseHelper {
 
   public TrolleyResponse iRetrieveTheShopperTrolley() throws Throwable {
 
-    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     String endPoint = URLResources.TRADER_V2_GET_TROLLEY;
     Map<String, String> queryParams = new HashMap<String, String>();
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
     String responseStr = mapWebserviceResponse.get("response");
     Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200", "Issues with clearing the trolley:" + responseStr);
 
@@ -327,9 +317,8 @@ public class ShopperHelper extends BaseHelper {
 
   public TrolleyResponse iDeleteProductFromTrolley(String stockCode) throws Throwable {
 
-    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     String endPoint = URLResources.TRADER_V2_ADD_UPDATE_TROLLEY + "/" + stockCode + "/clear";
-    mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerListTrader);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerListTrader);
     Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200", "Issue with the API endpoint:: " + endPoint);
     String responseStr = mapWebserviceResponse.get("response");
     //logger.info("The Response String is::"+responseStr);
@@ -340,9 +329,8 @@ public class ShopperHelper extends BaseHelper {
 
   public ShoppingAislesResponse iGetShoppingAisles() throws Throwable {
     String endPoint = URLResources.TRADER_V2_SHOPPING_AISLES;
-    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     Map<String, String> queryParams = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
     String responseStr = mapWebserviceResponse.get("response");
     ShoppingAislesResponse response = mapper.readValue(responseStr, ShoppingAislesResponse.class);
     return response;
