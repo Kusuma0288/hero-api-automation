@@ -16,7 +16,6 @@ public class AddressHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
 
   public AddressHelper() {
-    //this.invocationUtil = new RestInvocationUtil();
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 
@@ -117,7 +116,6 @@ public class AddressHelper extends BaseHelper {
   }
 
   public PickupResponse[] iGetThePickupStore(int StoreAddressId) throws Throwable {
-    PickupRequest pickupRequest = new PickupRequest();
     String endPoint = URLResources.TRADER_V2_PICKUP_STORES;
     Map<String, Integer> queryParams = new HashMap<String, Integer>();
     queryParams.put("StoreAddressId", StoreAddressId);

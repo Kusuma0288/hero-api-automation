@@ -15,24 +15,19 @@ public class PaymentHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
 
   public PaymentHelper() {
-    //this.invocationUtil = new RestInvocationUtil();
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 
   public PaywithPayPalResponse iMakePayPalPayment() throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
-    String responseStr = null;
     Map<String, String> queryParams = new HashMap<String, String>();
 
-    PaywithPayPalResponse response;
     String endPoint = URLResources.TRADER_V2_PAYMENT_PAYPAL;
-
-
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerListTrader);
-    responseStr = mapWebserviceResponse.get("response");
-    response = mapper.readValue(responseStr, PaywithPayPalResponse.class);
+    String responseStr = mapWebserviceResponse.get("response");
+    PaywithPayPalResponse response = mapper.readValue(responseStr, PaywithPayPalResponse.class);
     response.setStatusCode(mapWebserviceResponse.get("statusCode"));
     return response;
   }
@@ -40,34 +35,26 @@ public class PaymentHelper extends BaseHelper {
   public OrderResponse igetOrderDetails(String orderId) throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
-    String responseStr = null;
     Map<String, String> queryParams = new HashMap<String, String>();
-
-    OrderResponse response;
     String endPoint = URLResources.TRADER_V2_ORDER.replace("{orderId}", orderId);
-
 
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
-    responseStr = mapWebserviceResponse.get("response");
-    response = mapper.readValue(responseStr, OrderResponse.class);
+    String responseStr = mapWebserviceResponse.get("response");
+    OrderResponse response = mapper.readValue(responseStr, OrderResponse.class);
     return response;
   }
 
   public MyOrders igetV3OrderDetails() throws Throwable {
 
     Map<String, String> mapWebserviceResponse;
-    String responseStr = null;
     Map<String, String> queryParams = new HashMap<String, String>();
-
-    MyOrders myOrderresponse;
     String endPoint = URLResources.TRADER_V3_ORDER;
-
 
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
-    responseStr = mapWebserviceResponse.get("response");
-    myOrderresponse = mapper.readValue(responseStr, MyOrders.class);
+    String responseStr = mapWebserviceResponse.get("response");
+    MyOrders myOrderresponse = mapper.readValue(responseStr, MyOrders.class);
     return myOrderresponse;
   }
 

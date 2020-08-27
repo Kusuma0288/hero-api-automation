@@ -24,54 +24,37 @@ public class SearchHelper extends BaseHelper {
   }
 
   public GetProductItems getProductItems(String searchProduct) throws Throwable {
-
     Map<String, String> mapWebserviceResponse;
-    String responseStr;
     Map<String, String> queryParams = new HashMap<>();
     queryParams.put("query", searchProduct);
     queryParams.put("sortBy", "TraderRelevance");
-
-    GetProductItems response;
     String endPoint = URLResources.TRADER_V2_PRODUCTS_SEARCH;
-
 
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
-    responseStr = mapWebserviceResponse.get("response");
+    String responseStr = mapWebserviceResponse.get("response");
     //logger.info("The Response is::"+responseStr);
-    response = mapper.readValue(responseStr, GetProductItems.class);
-
+    GetProductItems response = mapper.readValue(responseStr, GetProductItems.class);
     return response;
-
   }
 
   public Suburbs getServicableSuburbs(String suburName) throws Throwable {
     Map<String, String> mapWebserviceResponse;
-    String responseStr;
     Map<String, String> queryParams = new HashMap<>();
     queryParams.put("search", suburName);
-
-    Suburbs response;
     String endPoint = URLResources.TRADER_V2_PICKUP_SUBURB;
-
-
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
-    responseStr = mapWebserviceResponse.get("response");
-    response = mapper.readValue(responseStr, Suburbs.class);
-
+    String responseStr = mapWebserviceResponse.get("response");
+    Suburbs response = mapper.readValue(responseStr, Suburbs.class);
     return response;
   }
 
   public PickupResponse[] getServicablePickupStoresFromPostCode(int postCode) throws Throwable {
     Map<String, String> mapWebserviceResponse;
-    String responseStr;
     Map<String, String> queryParams = new HashMap<>();
     queryParams.put("postcode", String.valueOf(postCode));
-
-    PickupResponse[] response;
     String endPoint = URLResources.TRADER_V2_PICKUP_SEARCH;
-
     ObjectMapper mapper = new ObjectMapper();
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
@@ -79,9 +62,8 @@ public class SearchHelper extends BaseHelper {
 
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
-    responseStr = mapWebserviceResponse.get("response");
-    response = mapper.readValue(responseStr, PickupResponse[].class);
-
+    String responseStr = mapWebserviceResponse.get("response");
+    PickupResponse[] response = mapper.readValue(responseStr, PickupResponse[].class);
     return response;
   }
 

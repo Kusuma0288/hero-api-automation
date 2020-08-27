@@ -45,10 +45,7 @@ public class ProductsHelper extends BaseHelper {
   }
 
   public ProductDetailsResponse iGetProductDetails(String stockcode) throws Throwable {
-    ProductDetailsResponse response;
     String endPoint = URLResources.TRADER_V2_PRODUCT_DETAIL.replace("{stockcode}", stockcode);
-
-
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("isMobile", "true");
@@ -56,32 +53,25 @@ public class ProductsHelper extends BaseHelper {
 
     String responseStr = mapWebserviceResponse.get("response");
 
-    response = mapper.readValue(responseStr, ProductDetailsResponse.class);
+    ProductDetailsResponse response = mapper.readValue(responseStr, ProductDetailsResponse.class);
     return response;
   }
 
   public SpecialsGroupResponse getSpecialsGroup() throws Throwable {
 
-    SpecialsGroupResponse response;
     String endPoint = URLResources.TRADER_V2_SPECIALS_GROUP;
-
-
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     Map<String, String> queryParams = new HashMap<String, String>();
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
-
     String responseStr = mapWebserviceResponse.get("response");
 
-    response = mapper.readValue(responseStr, SpecialsGroupResponse.class);
+    SpecialsGroupResponse response = mapper.readValue(responseStr, SpecialsGroupResponse.class);
     return response;
   }
 
   public SpecialsGroupDetailsResponse iGetSpecialsGroupDetails(String groupId, int page) throws Throwable {
 
-    SpecialsGroupDetailsResponse response;
     String endPoint = URLResources.TRADER_V2_SPECIALS_GROUP_DETAILS;
-
-
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("group", groupId);
@@ -89,18 +79,14 @@ public class ProductsHelper extends BaseHelper {
     queryParams.put("pageSize", "50");
     queryParams.put("sortBy", "TraderRelevance");
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
-
     String responseStr = mapWebserviceResponse.get("response");
 
-    response = mapper.readValue(responseStr, SpecialsGroupDetailsResponse.class);
+    SpecialsGroupDetailsResponse response = mapper.readValue(responseStr, SpecialsGroupDetailsResponse.class);
     return response;
   }
 
   public ProductsByProductGroup iGetProductsByProductsGroup(String productGroupId) throws IOException {
-    ProductsByProductGroup response;
     String endPoint = URLResources.TRADER_V3_PRODUCT_GROUP;
-
-
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("productGroupId", productGroupId);
@@ -110,7 +96,7 @@ public class ProductsHelper extends BaseHelper {
     sharedData.recentCompleteResponse = mapWebserviceResponse;
 
     String responseStr = mapWebserviceResponse.get("response");
-    response = mapper.readValue(responseStr, ProductsByProductGroup.class);
+    ProductsByProductGroup response = mapper.readValue(responseStr, ProductsByProductGroup.class);
     return response;
   }
 }
