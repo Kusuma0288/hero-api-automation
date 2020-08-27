@@ -1,6 +1,11 @@
 package au.com.woolworths.utils;
 
-import au.com.woolworths.model.apigee.*;
+import au.com.woolworths.model.apigee.address.AddressStoresV2;
+import au.com.woolworths.model.apigee.address.SearchAddresses;
+import au.com.woolworths.model.apigee.lists.ListResponse;
+import au.com.woolworths.model.apigee.authentication.LoginReponse;
+import au.com.woolworths.model.apigee.products.SpecialspageResponse;
+import au.com.woolworths.model.apigee.search.SearchInStore;
 import au.com.woolworths.model.apigee.trolley.TrolleyV2Response;
 import au.com.woolworths.model.apigee.trolley.TrolleyV3Response;
 import au.com.woolworths.model.apigee.search.SearchResponseV3;
@@ -10,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SharedData {
+
   public String deviceId;
   public String sessionToken;
   public String authToken;
@@ -47,6 +53,7 @@ public class SharedData {
   public Object orderCheckoutSummaryPaymentWindowTime;
   public String orderCheckoutPaymentAddress;
   public String orderCheckoutSelectedWindowDate;
+  public int orderCheckoutSummaryPaymentWindowId;
   public int orderCheckoutSubtotal;
   public float orderCheckoutTotalGST;
   public int orderCheckoutPackagingFee;
@@ -57,5 +64,12 @@ public class SharedData {
   public String orderCheckoutPaymentPackagingPreference;
   public boolean leaveUnattended;
   public String fulfilment;
+  public int orderId;
+  public int orderConfirmationSubtotal;
+  public float orderConfirmationOrderTotal;
+  public int orderConfirmationPackagingFee;
+  public String orderConfirmationPackagingFeeLabel;
+  public Object orderConfirmationDeliveryTime;
+  public int orderConfirmationWindowId;
 
 }

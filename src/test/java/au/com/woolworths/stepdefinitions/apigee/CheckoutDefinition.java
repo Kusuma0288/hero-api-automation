@@ -2,8 +2,7 @@ package au.com.woolworths.stepdefinitions.apigee;
 
 import au.com.woolworths.helpers.apigee.CheckoutHelper;
 import au.com.woolworths.model.apigee.checkout.*;
-import au.com.woolworths.model.apigee.payment.PayCardCaptureResponse;
-import au.com.woolworths.model.apigee.payment.PayIntrumentsRepsonse;
+import au.com.woolworths.model.apigee.payment.*;
 import au.com.woolworths.utils.TestProperties;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
@@ -156,20 +155,61 @@ public class CheckoutDefinition extends CheckoutHelper {
 
   @And("^I make a payment using (.*)$")
   public void iMakeAPaymentUsing(String paymentMode) throws Throwable {
-    PayIntrumentsRepsonse payIntrumentsRepsonse = getPayInstruments();
+    //PayInstrumentsResponse payIntrumentsRepsonse = getPayInstruments();
     PayCardCaptureResponse payCardCaptureResponse = getCardCapture();
     String sessionID;
-    if (System.getProperty("env").equals("uat"))
-    {
+    if (System.getProperty("env").equals("uat")) {
       sessionID = payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_UAT_URL"), "");
-      String instrumentId = postiFrameCardDetails(sessionID).getItem().getItemID();
-      float amount = sharedData.orderCheckoutPaymentTotalGST;
-      postDigitalPay(instrumentId, String.valueOf(amount));
     } else {
-      logger.info("There is an existing issue with Digipay in Test environment, will be updated once the issue is addressed");
-      //**There are digipay issues in TEST environment**//
-      //sessionID=payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_TEST_URL"),"");
+      sessionID=payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_TEST_URL"),"");
     }
+    iFrameResponse iframeResponse=postiFrameCardDetails(sessionID);
+    String instrumentId;
+    if(iframeResponse.itemId == null) {
+      instrumentId = iframeResponse.getPaymentInstrument().getItemId();
+    } else {
+      instrumentId = iframeResponse.getItemId();
+    }
+    float amount = sharedData.orderCheckoutPaymentTotalGST;
+    postDigitalPay(instrumentId, String.valueOf(amount));
+  }
+
+  @And("^I complete the payment via saved paypal account$")
+  public void iCompleteThePaymentViaSavedPaypalAccount() throws Throwable {
+    PayInstrumentsResponse payInstrumentsResponse = getPayInstruments();
+    PayPal[] savedPaypal = payInstrumentsResponse.getPayPal();
+    if (payInstrumentsResponse.getPayPal().length != 0) {
+      String savedInstrumentId = savedPaypal[0].getPaymentInstrumentId();
+      float amount = sharedData.orderCheckoutPaymentTotalGST;
+      DigitalPayResponse digitalPayResponse = postDigitalPay(savedInstrumentId, String.valueOf(amount));
+      sharedData.orderId = digitalPayResponse.getOrderId();
+    } else {
+      logger.info("There is no saved paypal account");
+    }
+  }
+
+  @And("^I verify the completed \"([^\"]*)\" order$")
+  public void iVerifyTheCompletedOrder(String collectionMode) throws Throwable {
+
+    OrderPlaced orderPlaced = getOrderDetails(sharedData.orderId);
+    sharedData.orderConfirmationDeliveryTime = orderPlaced.getOrder().getDeliveryTimeSpan();
+    sharedData.orderConfirmationWindowId = orderPlaced.getOrder().getDeliveryWindowID();
+    sharedData.orderConfirmationSubtotal = orderPlaced.getOrder().getSubtotal();
+    sharedData.orderConfirmationOrderTotal = orderPlaced.getOrder().getOrderTotal();
+    sharedData.orderConfirmationPackagingFee = orderPlaced.getOrder().getPackagingFee();
+    sharedData.orderConfirmationPackagingFeeLabel = orderPlaced.getOrder().getPackagingFeeLabel();
+
+    //Validation of Order Confirmation responses
+    if (collectionMode.equals("Delivery")) {
+      Assert.assertTrue(orderPlaced.getOrder().getFulfilmentMethod().contains("Courier"));
+    } else if (collectionMode.equals("Pickup")) {
+      Assert.assertTrue(orderPlaced.getOrder().getFulfilmentMethod().contains("Pickup"));
+    }
+    Assert.assertEquals("Window ID doesn't match", sharedData.orderCheckoutSummaryPaymentWindowId, sharedData.orderConfirmationWindowId);
+    Assert.assertEquals("Order subtotal is not matching", sharedData.orderCheckoutPaymentSubtotal, sharedData.orderConfirmationSubtotal);
+    Assert.assertEquals("Order Total is not matching", sharedData.orderCheckoutPaymentTotalGST, sharedData.orderConfirmationOrderTotal);
+    Assert.assertEquals("Packaging fee is not matching", sharedData.orderCheckoutPaymentPackagingFee, sharedData.orderConfirmationPackagingFee);
+    Assert.assertEquals("Packaging preference is not matching", sharedData.orderCheckoutPaymentPackagingPreference, sharedData.orderConfirmationPackagingFeeLabel);
   }
 }
 
