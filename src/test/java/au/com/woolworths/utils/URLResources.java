@@ -35,4 +35,13 @@ public final class URLResources {
   public static final String APIGEE_iFRAME_TEST = "https://iframe.sit.payments.woolworths.com.au/container-ws/tokens/creditcard";
   public static final String APIGEE_PAYMENT_DIGITALPAY = "/wow/v2/commerce/checkout/payment/digitalpay";
   public static final String V1_GRAPHQL = "/hermes/iris/v1/graphql";
+  public static final String METIS_REWARDS_LINK = "/zeus/metis/v1/rewards/link";
+  public static final String METIS_LOGIN = "/zeus/metis/v1/rewards/login";
+  public static final String METIS_REWARDS_ACTIVITY = "/zeus/metis/v1/rewards/activity";
+  public static final String METIS_REWARDS_SPECIALS = "/zeus/metis/v1/rewards/specials";
+  public static final String METIS_REWARDS_REDEMPTION_SETTINGS = "/zeus/metis/v1/rewards/redemption-settings";
+  public static final String METIS_REWARDS_GRAPHQL = "/zeus/metis/v1/rewards/graphql";
+  public static final String METIS_LOGOUT = "/zeus/metis/v1/rewards/logout";
+  public static final String METIS_REWARDS = "/zeus/metis/v1/rewards";
+  public static final String METIS_TOKEN = "/zeus/metis/v1/rewards/token";
 }
