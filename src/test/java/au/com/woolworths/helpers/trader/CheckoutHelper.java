@@ -24,7 +24,7 @@ public class CheckoutHelper extends BaseHelper {
     String responseStr;
     Map<String, String> queryParams = new HashMap<>();
     CheckoutV2Response response;
-    String endPoint = URLResources.V2_CHECKOUT;
+    String endPoint = URLResources.TRADER_V2_CHECKOUT;
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, CheckoutV2Response.class);
@@ -36,7 +36,7 @@ public class CheckoutHelper extends BaseHelper {
     String responseStr;
     Map<String, String> queryParams = new HashMap<>();
     CheckoutV3Response response;
-    String endPoint = URLResources.V3_CHECKOUT;
+    String endPoint = URLResources.TRADER_V3_CHECKOUT;
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, CheckoutV3Response.class);
@@ -45,7 +45,7 @@ public class CheckoutHelper extends BaseHelper {
 
   public LeaveUnattended updateCanLeaveUnattended(boolean canLeaveUnattended) throws Throwable {
     Map<String, String> mapWebserviceResponse;
-    String endPoint = URLResources.V3_CAN_LEAVE_UNATTENDED;
+    String endPoint = URLResources.TRADER_V3_CAN_LEAVE_UNATTENDED;
     LeaveUnattended leaveUnattended = new LeaveUnattended();
     leaveUnattended.setCanLeaveUnattended(canLeaveUnattended);
     String canLeaveUnattendedStr = mapper.writeValueAsString(leaveUnattended);
@@ -58,7 +58,7 @@ public class CheckoutHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse;
     String responseStr;
     Map<String, String> queryParams = new HashMap<>();
-    String endPoint = URLResources.V2_PACKAGING_PREFERENCE;
+    String endPoint = URLResources.TRADER_V2_PACKAGING_PREFERENCE;
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
     responseStr = mapWebserviceResponse.get("response");
     return mapper.readValue(responseStr, PackagingPreferences.class);
@@ -67,7 +67,7 @@ public class CheckoutHelper extends BaseHelper {
   public PackagingPreferences updateDeliveryPackagingPreference(int packagingPreferenceId) throws Throwable {
     Map<String, String> mapWebserviceResponse;
     String responseStr;
-    String endPoint = URLResources.V2_PACKAGING_PREFERENCE + "/" + packagingPreferenceId;
+    String endPoint = URLResources.TRADER_V2_PACKAGING_PREFERENCE + "/" + packagingPreferenceId;
     StockCode stockCode = new StockCode();
     stockCode.setStockcode("4");
     String stockCodeStr = mapper.writeValueAsString(stockCode);
@@ -82,7 +82,7 @@ public class CheckoutHelper extends BaseHelper {
     Map<String, String> queryParams = new HashMap<>();
     queryParams.put("addressid", deliveryAddressId.toString());
     CheckoutV2DeliveryWindowsResponse response;
-    String endPoint = URLResources.V2_CHECKOUTDELIVERYWINDOWS;
+    String endPoint = URLResources.TRADER_V2_CHECKOUTDELIVERYWINDOWS;
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, CheckoutV2DeliveryWindowsResponse.class);
@@ -93,7 +93,7 @@ public class CheckoutHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse;
     String responseStr;
     CheckoutV3DeliveryWindows[] response;
-    String endPoint = URLResources.V3_CHECKOUTDELIVERYWINDOWS;
+    String endPoint = URLResources.TRADER_V3_CHECKOUTDELIVERYWINDOWS;
     mapWebserviceResponse = invocationUtil.invokeGetWithoutParam(endPoint, headerListTrader);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, CheckoutV3DeliveryWindows[].class);
@@ -106,7 +106,7 @@ public class CheckoutHelper extends BaseHelper {
     Map<String, String> queryParams = new HashMap<>();
     queryParams.put("storeid", storeId.toString());
     CheckoutV2DeliveryWindowsResponse response;
-    String endPoint = URLResources.V2_CHECKOUTPICKUPWINDOWS;
+    String endPoint = URLResources.TRADER_V2_CHECKOUTPICKUPWINDOWS;
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, CheckoutV2DeliveryWindowsResponse.class);
@@ -121,7 +121,7 @@ public class CheckoutHelper extends BaseHelper {
     checkoutSetWindowsRequestV2.setWindowDate(windowDate);
     checkoutSetWindowsRequestV2.setWindowId(windowID);
     CheckoutSetWindowsResponseV2 responseV2;
-    String endPoint = URLResources.V2_CHECKOUTWINDOWS;
+    String endPoint = URLResources.TRADER_V2_CHECKOUTWINDOWS;
     requestStr = mapper.writeValueAsString(checkoutSetWindowsRequestV2);
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListTrader);
     responseStr = mapWebserviceResponse.get("response");
@@ -137,7 +137,7 @@ public class CheckoutHelper extends BaseHelper {
     checkoutSetWindowsRequestV2.setWindowDate(windowDate);
     checkoutSetWindowsRequestV2.setWindowId(windowID);
     CheckoutSetWindowsResponseV3 responseV3;
-    String endPoint = URLResources.V3_CHECKOUTWINDOWS;
+    String endPoint = URLResources.TRADER_V3_CHECKOUTWINDOWS;
     requestStr = mapper.writeValueAsString(checkoutSetWindowsRequestV2);
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListTrader);
     responseStr = mapWebserviceResponse.get("response");

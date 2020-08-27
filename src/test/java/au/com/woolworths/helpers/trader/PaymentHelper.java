@@ -26,7 +26,7 @@ public class PaymentHelper extends BaseHelper {
     Map<String, String> queryParams = new HashMap<String, String>();
 
     PaywithPayPalResponse response;
-    String endPoint = URLResources.V2_PAYMENT_PAYPAL;
+    String endPoint = URLResources.TRADER_V2_PAYMENT_PAYPAL;
 
 
     // invoke the service with the framed request
@@ -44,7 +44,7 @@ public class PaymentHelper extends BaseHelper {
     Map<String, String> queryParams = new HashMap<String, String>();
 
     OrderResponse response;
-    String endPoint = URLResources.V2_ORDER.replace("{orderId}", orderId);
+    String endPoint = URLResources.TRADER_V2_ORDER.replace("{orderId}", orderId);
 
 
     // invoke the service with the framed request
@@ -61,7 +61,7 @@ public class PaymentHelper extends BaseHelper {
     Map<String, String> queryParams = new HashMap<String, String>();
 
     MyOrders myOrderresponse;
-    String endPoint = URLResources.V3_ORDER;
+    String endPoint = URLResources.TRADER_V3_ORDER;
 
 
     // invoke the service with the framed request

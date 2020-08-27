@@ -32,7 +32,7 @@ public class SearchHelper extends BaseHelper {
     queryParams.put("sortBy", "TraderRelevance");
 
     GetProductItems response;
-    String endPoint = URLResources.V2_PRODUCTS_SEARCH;
+    String endPoint = URLResources.TRADER_V2_PRODUCTS_SEARCH;
 
 
     // invoke the service with the framed request
@@ -52,7 +52,7 @@ public class SearchHelper extends BaseHelper {
     queryParams.put("search", suburName);
 
     Suburbs response;
-    String endPoint = URLResources.V2_PICKUP_SUBURB;
+    String endPoint = URLResources.TRADER_V2_PICKUP_SUBURB;
 
 
     // invoke the service with the framed request
@@ -70,7 +70,7 @@ public class SearchHelper extends BaseHelper {
     queryParams.put("postcode", String.valueOf(postCode));
 
     PickupResponse[] response;
-    String endPoint = URLResources.V2_PICKUP_SEARCH;
+    String endPoint = URLResources.TRADER_V2_PICKUP_SEARCH;
 
     ObjectMapper mapper = new ObjectMapper();
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);

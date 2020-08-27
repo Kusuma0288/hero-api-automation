@@ -24,7 +24,6 @@ public class ShopperHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
 
   public ShopperHelper() {
-    //this.invocationUtil = new RestInvocationUtil();
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 
@@ -56,7 +55,7 @@ public class ShopperHelper extends BaseHelper {
 
     ShopperLoginRequestV2 shopperLoginRequest = new ShopperLoginRequestV2(userName, password, deviceId);
     ShopperLoginResponseV2 response;
-    String endPoint = URLResources.V2_AUTH_SHOPPER;
+    String endPoint = URLResources.TRADER_V2_AUTH_SHOPPER;
 
     requestStr = mapper.writeValueAsString(shopperLoginRequest);
     List<Header> headerList = new LinkedList<>();
@@ -79,7 +78,7 @@ public class ShopperHelper extends BaseHelper {
 
     ShopperLoginRequestV2 shopperLoginRequest = new ShopperLoginRequestV2(userName, password, deviceId);
     ShopperLoginResponseV2 response;
-    String endPoint = URLResources.V2_AUTH_SHOPPER;
+    String endPoint = URLResources.TRADER_V2_AUTH_SHOPPER;
 
     requestStr = mapper.writeValueAsString(shopperLoginRequest);
 
@@ -93,31 +92,6 @@ public class ShopperHelper extends BaseHelper {
 
   }
 
-//  public ShopperLoginResponseV2 apigeeToTraderPublicAPIEndpointwithLoginAndPasswordUsingAPIkey(String userName, String password, String apiKey) throws Throwable {
-//
-//    Map<String, String> mapWebserviceResponse;
-//    String requestStr = null;
-//    String responseStr = null;
-//
-//    ShopperLoginRequestV2 shopperLoginRequest = new ShopperLoginRequestV2(userName, password, apiKey);
-//    ShopperLoginResponseV2 response;
-//    String endPoint = URLResources.V2_AUTH_SHOPPER;
-//
-//    ObjectMapper mapper = new ObjectMapper();
-//    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-//    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-//    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-//    requestStr = mapper.writeValueAsString(shopperLoginRequest);
-//
-//    // invoke the service with the framed request
-//    mapWebserviceResponse = invocationUtil.invokeWithAPIKey(endPoint, requestStr, apiKey);
-//    responseStr = mapWebserviceResponse.get("response");
-//    //logger.info("Response: " + responseStr);
-//    response = mapper.readValue(responseStr, ShopperLoginResponseV2.class);
-//    response.setStatusCode(mapWebserviceResponse.get("statusCode"));
-//    return response;
-//
-//  }
 
   public GuestLoginResponse apigeeConnectToTraderPublicAPIEndpointAsGuestWithPossibleOptions(int storeOrAddressId, boolean isStoreAddressId, boolean isFulfilmentStoreId, String deviceId) throws Throwable {
 
@@ -136,7 +110,7 @@ public class ShopperHelper extends BaseHelper {
       guestLoginRequest.setFulfilmentStoreID(storeOrAddressId);
     }
 
-    String endPoint = URLResources.V3_GUEST;
+    String endPoint = URLResources.TRADER_V3_GUEST;
 
     requestStr = mapper.writeValueAsString(guestLoginRequest);
     //logger.info("Guest Login Request Body is: " + requestStr);
@@ -168,7 +142,7 @@ public class ShopperHelper extends BaseHelper {
       guestLoginRequest.setPostcode(fulfilmentIdOrPostCode);
     }
 
-    String endPoint = URLResources.V2_GUEST;
+    String endPoint = URLResources.TRADER_V2_GUEST;
 
 
     requestStr = mapper.writeValueAsString(guestLoginRequest);
@@ -217,7 +191,7 @@ public class ShopperHelper extends BaseHelper {
 
     requestStr = mapper.writeValueAsString(registerRequest);
     //logger.info("Shopper Login Request Body is: " + requestStr);
-    String endPoint = URLResources.V2_SHOPPER_SIGNUP;
+    String endPoint = URLResources.TRADER_V2_SHOPPER_SIGNUP;
     List<Header> headerList = new LinkedList<>();
     headerList.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
     headerList.add(new Header("cache-control", "no-cache"));
@@ -240,7 +214,7 @@ public class ShopperHelper extends BaseHelper {
 
   public CheckoutAddressResponse iSetTheFulfilmentStoreId(int fulfilmentStoreId) throws Throwable {
 
-    String endPoint = URLResources.V3_CHECKOUT_ADDRESS;
+    String endPoint = URLResources.TRADER_V3_CHECKOUT_ADDRESS;
     StoreIdRequest storeIdRequest = new StoreIdRequest();
     storeIdRequest.setFulfilmentStoreId(fulfilmentStoreId);
 
@@ -265,7 +239,7 @@ public class ShopperHelper extends BaseHelper {
     Map<String, String> queryParams = new HashMap<String, String>();
 
     CheckoutAddressResponse checkoutAddressResponse;
-    String endPoint = URLResources.V3_CHECKOUT_ADDRESS;
+    String endPoint = URLResources.TRADER_V3_CHECKOUT_ADDRESS;
 
 
     // invoke the service with the framed request
@@ -281,7 +255,7 @@ public class ShopperHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     String responseStr = null;
 
-    String endPoint = URLResources.V2_CLEAR_TROLLEY;
+    String endPoint = URLResources.TRADER_V2_CLEAR_TROLLEY;
 
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerListTrader);
@@ -297,7 +271,7 @@ public class ShopperHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     String responseStr = null;
 
-    String endPoint = URLResources.V2_GET_TROLLEY;
+    String endPoint = URLResources.TRADER_V2_GET_TROLLEY;
     Map<String, String> queryParams = new HashMap<String, String>();
     // invoke the service with the framed request
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
@@ -326,7 +300,7 @@ public class ShopperHelper extends BaseHelper {
 
     String requestStr = mapper.writeValueAsString(trolleyItem);
 
-    String endPoint = URLResources.V2_ADD_UPDATE_TROLLEY;
+    String endPoint = URLResources.TRADER_V2_ADD_UPDATE_TROLLEY;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListTrader);
     Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200", "Issue with the API endpoint:: " + endPoint);
@@ -354,7 +328,7 @@ public class ShopperHelper extends BaseHelper {
 
     String requestStr = mapper.writeValueAsString(trolleyItem);
 
-    String endPoint = URLResources.V2_ADD_UPDATE_TROLLEY;
+    String endPoint = URLResources.TRADER_V2_ADD_UPDATE_TROLLEY;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListTrader);
     Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200", "Issue with the API endpoint:: " + endPoint);
@@ -371,29 +345,12 @@ public class ShopperHelper extends BaseHelper {
     return iAddProductsToTrolleyWithNotes(quantity, stockCode, isUpdate, null);
   }
 
-//  public TrolleyResponse iverifyTrolleyItemNoteISAdded(String authToken) throws Throwable {
-//    ObjectMapper mapper = new ObjectMapper();
-//    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-//    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-//    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-//
-//    String endPoint = URLResources.V2_GET_TROLLEY;
-//    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-//    mapWebserviceResponse = invocationUtil.invoke(endPoint, authToken);
-//    Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200", "Issue with the API endpoint:: " + endPoint);
-//    String responseStr = mapWebserviceResponse.get("response");
-//    //logger.info("The Response String is::"+responseStr);
-//    TrolleyResponse trolleyResponse = new TrolleyResponse();
-//    trolleyResponse = mapper.readValue(responseStr, TrolleyResponse.class);
-//    trolleyResponse.setResponseStatus(mapWebserviceResponse.get("statusCode"));
-//    return trolleyResponse;
-//  }
 
   public TrolleyResponse iDeleteProductFromTrolley(String stockCode) throws Throwable {
 
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    String endPoint = URLResources.V2_ADD_UPDATE_TROLLEY + "/" + stockCode + "/clear";
+    String endPoint = URLResources.TRADER_V2_ADD_UPDATE_TROLLEY + "/" + stockCode + "/clear";
     mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerListTrader);
     Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200", "Issue with the API endpoint:: " + endPoint);
     String responseStr = mapWebserviceResponse.get("response");
@@ -406,12 +363,52 @@ public class ShopperHelper extends BaseHelper {
 
   public ShoppingAislesResponse iGetShoppingAisles() throws Throwable {
     ShoppingAislesResponse response;
-    String endPoint = URLResources.V2_SHOPPING_AISLES;
+    String endPoint = URLResources.TRADER_V2_SHOPPING_AISLES;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     Map<String, String> queryParams = new HashMap<String, String>();
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
     String responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, ShoppingAislesResponse.class);
     return response;
+  }
+
+  public List<String> getAvailableRestrictedStockCodesFromSearchProductItemsResult(GetProductItems searchProductItemsResult, int maxRestrictedItemInList) {
+
+    List<String> availableStockCodes = new ArrayList<>();
+    for (int i = 0; i <= searchProductItemsResult.getItems().length; i++) {
+      if (availableStockCodes.size() > maxRestrictedItemInList) {
+        break;
+      }
+      SearchProductItem productItem = searchProductItemsResult.getItems()[i];
+      if (productItem.getProductCount() >= 1) {
+        for (Products product : productItem.getProducts()) {
+          if (product.isAgeRestricted() && product.isIsAvailable()) {
+            availableStockCodes.add(product.getStockcode());
+          }
+        }
+      }
+
+    }
+    return availableStockCodes;
+  }
+
+  public List<String> getAvailableStockCodesFromSearchProductItemsResult(GetProductItems searchProductItemsResult, int maxRestrictedItemInList) {
+
+    List<String> availableStockCodes = new ArrayList<>();
+    for (int i = 0; i <= searchProductItemsResult.getItems().length; i++) {
+      if (availableStockCodes.size() > maxRestrictedItemInList) {
+        break;
+      }
+      SearchProductItem productItem = searchProductItemsResult.getItems()[i];
+      if (productItem.getProductCount() >= 0) {
+        for (Products product : productItem.getProducts()) {
+          if (product.isIsAvailable()) {
+            availableStockCodes.add(product.getStockcode());
+          }
+        }
+      }
+
+    }
+    return availableStockCodes;
   }
 }

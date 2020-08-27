@@ -25,7 +25,7 @@ public class ProductsHelper extends BaseHelper {
   }
 
   public WeeklyPicksResponse iGetProductsWeeklyPicks() throws Throwable {
-    String endPoint = URLResources.V3_PRODUCTS_WEEKLYPICKS;
+    String endPoint = URLResources.TRADER_V3_PRODUCTS_WEEKLYPICKS;
 
     ObjectMapper mapper = new ObjectMapper();
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
@@ -46,7 +46,7 @@ public class ProductsHelper extends BaseHelper {
 
   public ProductDetailsResponse iGetProductDetails(String stockcode) throws Throwable {
     ProductDetailsResponse response;
-    String endPoint = URLResources.V2_PRODUCT_DETAIL.replace("{stockcode}", stockcode);
+    String endPoint = URLResources.TRADER_V2_PRODUCT_DETAIL.replace("{stockcode}", stockcode);
 
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
@@ -63,7 +63,7 @@ public class ProductsHelper extends BaseHelper {
   public SpecialsGroupResponse getSpecialsGroup() throws Throwable {
 
     SpecialsGroupResponse response;
-    String endPoint = URLResources.V2_SPECIALS_GROUP;
+    String endPoint = URLResources.TRADER_V2_SPECIALS_GROUP;
 
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
@@ -79,7 +79,7 @@ public class ProductsHelper extends BaseHelper {
   public SpecialsGroupDetailsResponse iGetSpecialsGroupDetails(String groupId, int page) throws Throwable {
 
     SpecialsGroupDetailsResponse response;
-    String endPoint = URLResources.V2_SPECIALS_GROUP_DETAILS;
+    String endPoint = URLResources.TRADER_V2_SPECIALS_GROUP_DETAILS;
 
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
@@ -98,7 +98,7 @@ public class ProductsHelper extends BaseHelper {
 
   public ProductsByProductGroup iGetProductsByProductsGroup(String productGroupId) throws IOException {
     ProductsByProductGroup response;
-    String endPoint = URLResources.V3_PRODUCT_GROUP;
+    String endPoint = URLResources.TRADER_V3_PRODUCT_GROUP;
 
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();

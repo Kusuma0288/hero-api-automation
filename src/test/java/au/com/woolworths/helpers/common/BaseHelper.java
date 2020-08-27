@@ -44,44 +44,5 @@ public class BaseHelper {
     headerListApigee.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerListApigee.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
   }
-  public List<String> getAvailableRestrictedStockCodesFromSearchProductItemsResult(GetProductItems searchProductItemsResult, int maxRestrictedItemInList) {
-
-    List<String> availableStockCodes = new ArrayList<>();
-    for (int i = 0; i <= searchProductItemsResult.getItems().length; i++) {
-      if (availableStockCodes.size() > maxRestrictedItemInList) {
-        break;
-      }
-      SearchProductItem productItem = searchProductItemsResult.getItems()[i];
-      if (productItem.getProductCount() >= 1) {
-        for (Products product : productItem.getProducts()) {
-          if (product.isAgeRestricted() && product.isIsAvailable()) {
-            availableStockCodes.add(product.getStockcode());
-          }
-        }
-      }
-
-    }
-    return availableStockCodes;
-  }
-
-  public List<String> getAvailableStockCodesFromSearchProductItemsResult(GetProductItems searchProductItemsResult, int maxRestrictedItemInList) {
-
-    List<String> availableStockCodes = new ArrayList<>();
-    for (int i = 0; i <= searchProductItemsResult.getItems().length; i++) {
-      if (availableStockCodes.size() > maxRestrictedItemInList) {
-        break;
-      }
-      SearchProductItem productItem = searchProductItemsResult.getItems()[i];
-      if (productItem.getProductCount() >= 0) {
-        for (Products product : productItem.getProducts()) {
-          if (product.isIsAvailable()) {
-            availableStockCodes.add(product.getStockcode());
-          }
-        }
-      }
-
-    }
-    return availableStockCodes;
-  }
 
 }

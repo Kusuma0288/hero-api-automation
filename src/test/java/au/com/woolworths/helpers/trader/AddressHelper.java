@@ -22,7 +22,7 @@ public class AddressHelper extends BaseHelper {
 
   public SearchAddressResponse searchForTheAddress(String lookupAddress) throws Throwable {
 
-    String endPoint = URLResources.V2_SEARCH_ADDRESS;
+    String endPoint = URLResources.TRADER_V2_SEARCH_ADDRESS;
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("address", lookupAddress);
 
@@ -37,7 +37,7 @@ public class AddressHelper extends BaseHelper {
   public AddressDetails iGetTheAddressIdFromAmasId(String amasId) throws Throwable {
 
     AddressRequest addressRequest = new AddressRequest();
-    String endPoint = URLResources.V3_ADDRESS;
+    String endPoint = URLResources.TRADER_V3_ADDRESS;
     addressRequest.setAmasId(amasId);
     addressRequest.setIsForBilling(true);
 
@@ -57,7 +57,7 @@ public class AddressHelper extends BaseHelper {
 
   public CheckoutAddressResponse iSetTheAddressId(int addressId) throws Throwable {
 
-    String endPoint = URLResources.V3_CHECKOUT_ADDRESS;
+    String endPoint = URLResources.TRADER_V3_CHECKOUT_ADDRESS;
     CheckoutAddress checkoutAddressRequest = new CheckoutAddress();
     checkoutAddressRequest.setAddressId(addressId);
     String checkoutAddressRequestStr = mapper.writeValueAsString(checkoutAddressRequest);
@@ -74,7 +74,7 @@ public class AddressHelper extends BaseHelper {
 
   public MyAddresses iLoginToMyAccountToSeeTheAddresses() throws Throwable {
 
-    String endPoint = URLResources.V2_MYACCOUNT_ADDRESS;
+    String endPoint = URLResources.TRADER_V2_MYACCOUNT_ADDRESS;
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerListTrader);
@@ -86,7 +86,7 @@ public class AddressHelper extends BaseHelper {
 
   public Address[] searchTheAddressForTheGuestMode() throws Throwable {
 
-    String endPoint = URLResources.V3_ADDRESS_SEARCH;
+    String endPoint = URLResources.TRADER_V3_ADDRESS_SEARCH;
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerListTrader);
@@ -106,7 +106,7 @@ public class AddressHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     while (myAddressResponse.getAddresses().length > counter) {
 
-      endPoint = URLResources.V2_DELETE_ADDRESS + myAddressResponse.getAddresses()[counter].getAddressId() + "/delete";
+      endPoint = URLResources.TRADER_V2_DELETE_ADDRESS + myAddressResponse.getAddresses()[counter].getAddressId() + "/delete";
       mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerListTrader);
       String responseCode = mapWebserviceResponse.get("statusCode");
       Assert.assertEquals(responseCode, "200", "Unable to delete the delivery address");
@@ -118,7 +118,7 @@ public class AddressHelper extends BaseHelper {
 
   public PickupResponse[] iGetThePickupStore(int StoreAddressId) throws Throwable {
     PickupRequest pickupRequest = new PickupRequest();
-    String endPoint = URLResources.V2_PICKUP_STORES;
+    String endPoint = URLResources.TRADER_V2_PICKUP_STORES;
     Map<String, Integer> queryParams = new HashMap<String, Integer>();
     queryParams.put("StoreAddressId", StoreAddressId);
 
