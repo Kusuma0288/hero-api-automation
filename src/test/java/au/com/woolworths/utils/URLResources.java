@@ -34,7 +34,7 @@ public final class URLResources {
   public static final String APIGEE_iFRAME_UAT = "https://iframe.nonprod.payments.woolworths.com.au/tokenisation/creditcard";
   public static final String APIGEE_iFRAME_TEST = "https://iframe.sit.payments.woolworths.com.au/tokenisation/creditcard";
   public static final String APIGEE_PAYMENT_DIGITALPAY = "/wow/v2/commerce/checkout/payment/digitalpay";
-  public static final String V1_GRAPHQL = "/hermes/iris/v1/graphql";
+  public static final String HERMES_V1_GRAPHQL = "/hermes/iris/v1/graphql";
   public static final String APIGEE_V2_ORDER_CONFIRMATION = "/wow/v2/commerce/orders/";
 
   //Trader URL
