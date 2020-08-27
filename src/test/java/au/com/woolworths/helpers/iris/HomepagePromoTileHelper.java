@@ -20,7 +20,7 @@ public class HomepagePromoTileHelper extends BaseHelper {
   }
 
   public void getProductsByProductGroup(String query) throws Throwable {
-    String endPoint = URLResources.V1_GRAPHQL;
+    String endPoint = URLResources.HERMES_V1_GRAPHQL;
     Map<String, String> mapWebserviceResponse;
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, query, headerListApigee);
     String responseStr = mapWebserviceResponse.get("response");
