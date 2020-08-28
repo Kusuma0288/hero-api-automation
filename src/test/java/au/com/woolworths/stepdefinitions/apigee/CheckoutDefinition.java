@@ -120,10 +120,14 @@ public class CheckoutDefinition extends CheckoutHelper {
       sharedData.orderCheckoutSummaryPaymentAddress = checkoutPaymentResponse.getOrder().getPickup().getStore().getText();
       sharedData.orderCheckoutSummaryPaymentWindowDate = checkoutPaymentResponse.getOrder().getPickup().getWindow().getDisplayDate();
       sharedData.orderCheckoutSummaryPaymentWindowTime = checkoutPaymentResponse.getOrder().getPickup().getWindow().getDisplayTime();
+      sharedData.orderCheckoutSummaryPaymentWindowId = checkoutPaymentResponse.getOrder().getPickup().getWindow().getId();
+
     } else if (collectionMode.equals("Delivery")) {
       sharedData.orderCheckoutSummaryPaymentAddress = checkoutPaymentResponse.getOrder().getDelivery().getAddress().getText();
       sharedData.orderCheckoutSummaryPaymentWindowDate = checkoutPaymentResponse.getOrder().getDelivery().getWindow().getDisplayDate();
       sharedData.orderCheckoutSummaryPaymentWindowTime = checkoutPaymentResponse.getOrder().getDelivery().getWindow().getDisplayTime();
+      sharedData.orderCheckoutSummaryPaymentWindowId = checkoutPaymentResponse.getOrder().getDelivery().getWindow().getId();
+
     }
     sharedData.orderCheckoutPaymentSubtotal = checkoutPaymentResponse.getOrder().getSubtotal();
     sharedData.orderCheckoutPaymentTotalGST = checkoutPaymentResponse.getOrder().getTotalIncludingGst();
@@ -161,11 +165,11 @@ public class CheckoutDefinition extends CheckoutHelper {
     if (System.getProperty("env").equals("uat")) {
       sessionID = payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_UAT_URL"), "");
     } else {
-      sessionID=payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_TEST_URL"),"");
+      sessionID = payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_TEST_URL"), "");
     }
-    iFrameResponse iframeResponse=postiFrameCardDetails(sessionID);
+    iFrameResponse iframeResponse = postiFrameCardDetails(sessionID);
     String instrumentId;
-    if(iframeResponse.itemId == null) {
+    if (iframeResponse.itemId == null) {
       instrumentId = iframeResponse.getPaymentInstrument().getItemId();
     } else {
       instrumentId = iframeResponse.getItemId();

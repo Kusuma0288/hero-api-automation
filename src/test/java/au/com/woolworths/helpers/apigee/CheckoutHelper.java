@@ -123,9 +123,11 @@ public class CheckoutHelper extends BaseHelper {
   public iFrameResponse postiFrameCardDetails(String sessionID) throws Throwable {
 
     String iFrameRequeststr, responseStr, endPoint;
-    if (System.getProperty("env").equals("uat"))
-    { endPoint = URLResources.APIGEE_iFRAME_UAT;
-    } else { endPoint = URLResources.APIGEE_iFRAME_TEST; }
+    if (System.getProperty("env").equals("uat")) {
+      endPoint = URLResources.APIGEE_iFRAME_UAT;
+    } else {
+      endPoint = URLResources.APIGEE_iFRAME_TEST;
+    }
 
     iFrameRequest iframeRequest = new iFrameRequest();
     iframeRequest.setAa(TestProperties.get("CARD_NUMBER"));
