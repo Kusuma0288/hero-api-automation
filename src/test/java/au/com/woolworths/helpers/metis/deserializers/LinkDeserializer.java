@@ -8,13 +8,13 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import java.io.IOException;
 
-public class LinkResponseDeserializer extends StdDeserializer<LinkResponse> {
+public class LinkDeserializer extends StdDeserializer<LinkResponse> {
 
-  public LinkResponseDeserializer() {
+  public LinkDeserializer() {
     this(null);
   }
 
-  public LinkResponseDeserializer(Class<?> vc) {
+  public LinkDeserializer(Class<?> vc) {
     super(vc);
   }
 

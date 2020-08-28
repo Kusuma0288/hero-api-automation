@@ -12,13 +12,13 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import java.io.IOException;
 
-public class LoginResponseDeserializer extends StdDeserializer<LoginResponse> {
+public class LoginDeserializer extends StdDeserializer<LoginResponse> {
 
-  public LoginResponseDeserializer() {
+  public LoginDeserializer() {
     this(null);
   }
 
-  public LoginResponseDeserializer(Class<?> vc) {
+  public LoginDeserializer(Class<?> vc) {
     super(vc);
   }
 
