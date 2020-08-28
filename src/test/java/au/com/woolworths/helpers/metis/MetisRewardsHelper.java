@@ -1,9 +1,9 @@
 package au.com.woolworths.helpers.metis;
 
 import au.com.woolworths.helpers.common.BaseHelper;
-import au.com.woolworths.model.metis.LinkResponse;
-import au.com.woolworths.model.metis.LoginRequest;
-import au.com.woolworths.model.metis.LoginResponse;
+import au.com.woolworths.model.metis.authentication.LinkResponse;
+import au.com.woolworths.model.metis.authentication.LoginRequest;
+import au.com.woolworths.model.metis.authentication.LoginResponse;
 import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.TestProperties;

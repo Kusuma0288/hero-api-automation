@@ -2,8 +2,8 @@ package au.com.woolworths.stepdefinitions.metis;
 
 import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.metis.MetisRewardsHelper;
-import au.com.woolworths.model.metis.LinkResponse;
-import au.com.woolworths.model.metis.LoginResponse;
+import au.com.woolworths.model.metis.authentication.LinkResponse;
+import au.com.woolworths.model.metis.authentication.LoginResponse;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -32,9 +32,9 @@ public class RewardsLoginDefinition extends MetisRewardsHelper {
     sharedData.accessToken = loginResponse.getAuth().getAccessToken();
   }
 
-  @Then("^the user should be successfully logged to the Rewards App$")
-  public void shouldBeSuccessfullyLoggedIn() {
-    Assert.assertEquals("Login was unsuccessful", loginResponse.getType(), "RewardsLoginSuccess");
+  @Then("^the user should be logged into the Rewards App$")
+  public void shouldBeLoggedIn() {
+    Assert.assertEquals("Login was unsuccessful", "RewardsLoginSuccess", loginResponse.getType());
     Assert.assertEquals("Login response is missing a valid auth access token", 28, loginResponse.getAuth().getAccessToken().length());
     Assert.assertEquals("Login response doesn't include a successful auth object", "RewardsAccessTokenSuccess", loginResponse.getAuth().getType());
     Assert.assertEquals("Login response is missing a valid rewards card number", 13, loginResponse.getRewardsCard().getCardNumber().length());
