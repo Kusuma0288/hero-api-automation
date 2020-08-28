@@ -12,11 +12,11 @@ import au.com.woolworths.utils.URLResources;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class MetisRewardsHelper extends BaseHelper {
+public class LoginHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
   private final static Logger logger = Logger.getLogger("MetisRewardsHelper.class");
 
-  public MetisRewardsHelper() {
+  public LoginHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 
