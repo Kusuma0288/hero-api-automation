@@ -6,9 +6,9 @@ Feature: Checkout API scenarios
     When connection from user to apigee endpoint happens
 
   Scenario Outline: Verify getting and setting of v3/checkout windows and Packaging preference for Pick up mode
-    Given I set a pick up store using post code 2204
+    Given I set a pick up store using post code 2000
     And I clear the trolley
-    When I search for the product Nivea in pickup mode and store response
+    When I search for the product Apple in pickup mode and store response
     And I add the 3 available products with 3 each from the store to the V3 trolley
     And I get the available windows for the logged in user with storeId or addressId
     Then I reserve the available window for the selected "<Mode>"
@@ -58,7 +58,7 @@ Feature: Checkout API scenarios
       | 2 Court rd    |
 
   Scenario Outline: To verify that the user is able to complete a pick up order using Paypal payment
-    Given I set a pick up store using post code 2204
+    Given I set a pick up store using post code 2000
     And I clear the trolley
     When I search for the product Milk in pickup mode and store response
     And I add the 5 available products with 5 each from the store to the V3 trolley
