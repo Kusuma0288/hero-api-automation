@@ -1,6 +1,6 @@
 package au.com.woolworths.helpers.metis.deserializers;
 
-import au.com.woolworths.model.metis.Auth;
+import au.com.woolworths.model.metis.authentication.Auth;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;

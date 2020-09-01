@@ -116,14 +116,21 @@ public class CheckoutDefinition extends CheckoutHelper {
   @When("^I get the checkout summary details for the \"([^\"]*)\" order$")
   public void iGetTheCheckoutSummaryDetailsForThePickupOrder(String collectionMode) throws Throwable {
     CheckoutPaymentSummaryResponse checkoutPaymentResponse = getCheckoutPaymentResponse(sharedData.accessToken);
+    //To validate that the "proceed to payment" flag is true to proceed for the payment
+    Assert.assertTrue("Resolve the checkout errors before proceeding to payment", checkoutPaymentResponse.getOrder().isCanProceedToPayment());
+
     if (collectionMode.equals("Pickup")) {
       sharedData.orderCheckoutSummaryPaymentAddress = checkoutPaymentResponse.getOrder().getPickup().getStore().getText();
       sharedData.orderCheckoutSummaryPaymentWindowDate = checkoutPaymentResponse.getOrder().getPickup().getWindow().getDisplayDate();
       sharedData.orderCheckoutSummaryPaymentWindowTime = checkoutPaymentResponse.getOrder().getPickup().getWindow().getDisplayTime();
+      sharedData.orderCheckoutSummaryPaymentWindowId = checkoutPaymentResponse.getOrder().getPickup().getWindow().getId();
+
     } else if (collectionMode.equals("Delivery")) {
       sharedData.orderCheckoutSummaryPaymentAddress = checkoutPaymentResponse.getOrder().getDelivery().getAddress().getText();
       sharedData.orderCheckoutSummaryPaymentWindowDate = checkoutPaymentResponse.getOrder().getDelivery().getWindow().getDisplayDate();
       sharedData.orderCheckoutSummaryPaymentWindowTime = checkoutPaymentResponse.getOrder().getDelivery().getWindow().getDisplayTime();
+      sharedData.orderCheckoutSummaryPaymentWindowId = checkoutPaymentResponse.getOrder().getDelivery().getWindow().getId();
+
     }
     sharedData.orderCheckoutPaymentSubtotal = checkoutPaymentResponse.getOrder().getSubtotal();
     sharedData.orderCheckoutPaymentTotalGST = checkoutPaymentResponse.getOrder().getTotalIncludingGst();
@@ -171,7 +178,8 @@ public class CheckoutDefinition extends CheckoutHelper {
       instrumentId = iframeResponse.getItemId();
     }
     float amount = sharedData.orderCheckoutPaymentTotalGST;
-    postDigitalPay(instrumentId, String.valueOf(amount));
+    DigitalPayResponse digitalPayResponse = postDigitalPay(instrumentId, String.valueOf(amount));
+    sharedData.orderId = digitalPayResponse.getOrderId();
   }
 
   @And("^I complete the payment via saved paypal account$")

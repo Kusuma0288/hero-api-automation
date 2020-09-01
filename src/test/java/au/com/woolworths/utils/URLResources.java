@@ -37,6 +37,17 @@ public final class URLResources {
   public static final String HERMES_V1_GRAPHQL = "/hermes/iris/v1/graphql";
   public static final String APIGEE_V2_ORDER_CONFIRMATION = "/wow/v2/commerce/orders/";
 
+  public static final String METIS_REWARDS_LINK = "/zeus/metis/v1/rewards/link";
+  public static final String METIS_LOGIN = "/zeus/metis/v1/rewards/login";
+  public static final String METIS_REWARDS_ACTIVITY = "/zeus/metis/v1/rewards/activity";
+  public static final String METIS_REWARDS_SPECIALS = "/zeus/metis/v1/rewards/specials";
+  public static final String METIS_REWARDS_REDEMPTION_SETTINGS = "/zeus/metis/v1/rewards/redemption-settings";
+  public static final String METIS_REWARDS_GRAPHQL = "/zeus/metis/v1/rewards/graphql";
+  public static final String METIS_LOGOUT = "/zeus/metis/v1/rewards/logout";
+  public static final String METIS_REWARDS = "/zeus/metis/v1/rewards";
+  public static final String METIS_TOKEN = "/zeus/metis/v1/rewards/token";
+
+
   //Trader URL
   public static final String TRADER_V2_GUEST = "/Authenticate/LoginAsGuest";
   public static final String TRADER_V3_GUEST = "/api/v3/shoppers/guest";

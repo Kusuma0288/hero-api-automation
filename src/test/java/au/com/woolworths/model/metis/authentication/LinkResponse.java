@@ -1,21 +1,23 @@
-package au.com.woolworths.model.metis;
+package au.com.woolworths.model.metis.authentication;
 
-import au.com.woolworths.helpers.metis.deserializers.LinkResponseDeserializer;
+import au.com.woolworths.helpers.metis.deserializers.LinkDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonDeserialize(using = LinkResponseDeserializer.class)
+@JsonDeserialize(using = LinkDeserializer.class)
 @Data
 public class LinkResponse {
   private String loginFormURL;
   private String callbackURLPattern;
   private String sessionToken;
+  private String type;
 
-  public LinkResponse(String loginFormURL, String callbackURLPattern, String sessionToken) {
+  public LinkResponse(String loginFormURL, String callbackURLPattern, String sessionToken, String type) {
     this.loginFormURL = loginFormURL;
     this.callbackURLPattern = callbackURLPattern;
     this.sessionToken = sessionToken;
+    this.type = type;
   }
 }

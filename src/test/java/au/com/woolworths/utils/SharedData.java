@@ -20,6 +20,8 @@ import java.util.Map;
 
 public class SharedData {
 
+  public String deviceId;
+  public String sessionToken;
   public String authToken;
   public String responseStatusCode;
   public LoginReponse guestResponse;
