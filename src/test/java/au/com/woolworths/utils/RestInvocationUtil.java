@@ -236,6 +236,7 @@ public class RestInvocationUtil {
     }
     return response;
   }
+
   private Response postRestWithBodyAndAPIkey(String endPoint, String requestPayload, String apiKey) {
     try {
       RestAssured.baseURI = getBaseURL(endPoint);
@@ -264,7 +265,7 @@ public class RestInvocationUtil {
 
 
   private String getBaseURL(String endPoint) {
-    if(endPoint.startsWith("/api")||endPoint.startsWith("api")||endPoint.startsWith("/Auth"))
+    if (endPoint.startsWith("/api") || endPoint.startsWith("api") || endPoint.startsWith("/Auth"))
       return TestProperties.get("BASE_URI_TRADER");
     else
       return TestProperties.get("BASE_URI_APIGEE");

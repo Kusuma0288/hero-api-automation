@@ -6,7 +6,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
-@Data public class Window {
+@Data
+public class Window {
   private int Id;
   private String DisplayDate;
   private String DisplayTime;

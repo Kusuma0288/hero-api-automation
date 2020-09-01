@@ -5,7 +5,8 @@ import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data public class SearchAddresses {
+@Data
+public class SearchAddresses {
 
   private SearchAddressDetails[] addresses;
 }

@@ -6,7 +6,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
-@Data public class ResultStatus {
+@Data
+public class ResultStatus {
   private int httpStatusCode;
   private Object errorCode;
   private Object errorDetail;

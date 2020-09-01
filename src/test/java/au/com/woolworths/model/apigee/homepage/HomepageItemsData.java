@@ -6,7 +6,8 @@ import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data public class HomepageItemsData {
+@Data
+public class HomepageItemsData {
   private String productId;
   private String name;
   private String productImage;

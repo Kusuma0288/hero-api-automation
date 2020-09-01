@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data public class DigitalPayResponse {
+@Data
+public class DigitalPayResponse {
   private int orderId;
   private boolean placed;
   private float subtotal;
@@ -17,7 +18,8 @@ import lombok.Data;
   private String fulfilmentMethod;
   private String fulfilmentMethodLabel;
 
-  @Data public static class OrderPayments {
+  @Data
+  public static class OrderPayments {
     private int wowRewards;
     private float creditCard;
     private int giftCard;

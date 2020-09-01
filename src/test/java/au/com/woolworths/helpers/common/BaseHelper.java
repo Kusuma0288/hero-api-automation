@@ -31,7 +31,7 @@ public class BaseHelper {
     this.sharedData = ApplicationContext.getSharedData();
     headerListApigee.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerListApigee.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
-    headerListTrader.add(new Header("wowapi-key",TestProperties.get("wowapi-key")));
+    headerListTrader.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
     headerListTrader.add(new Header("wowapi-auth-token", sharedData.authToken));
     headerListTrader.add(new Header("cache-control", "no-cache"));
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);

@@ -18,7 +18,6 @@ public class SignupHelper extends BaseHelper {
 
   public SignupHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
-    
   }
 
   public LoginReponse iCompleteSignUPWithDOB(String DateOfBirth, boolean AgreeToTsandCs) throws Throwable {
@@ -40,8 +39,8 @@ public class SignupHelper extends BaseHelper {
     LoginReponse response = mapper.readValue(responseStr, LoginReponse.class);
     response.setStatusCode(mapWebserviceResponse.get("statusCode"));
     return response;
-    
-    
+
+
   }
 }
 

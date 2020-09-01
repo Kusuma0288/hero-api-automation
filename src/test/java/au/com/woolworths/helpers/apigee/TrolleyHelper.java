@@ -136,6 +136,7 @@ public class TrolleyHelper extends BaseHelper {
     TrolleyV2Response trolleyV2Response = mapper.readValue(responseStr, TrolleyV2Response.class);
     return trolleyV2Response;
   }
+
   public Map<String, Object> addItemsToTrolley(Map<String, Integer> productsToAdd, String mode, String version) throws Throwable {
 
     HashMap<String, Object> output = new HashMap<String, Object>();

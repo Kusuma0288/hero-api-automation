@@ -7,7 +7,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Data public class ProductGroupTrolleyData {
+@Data
+public class ProductGroupTrolleyData {
   private String minimum;
   private String maximum;
   private String increment;

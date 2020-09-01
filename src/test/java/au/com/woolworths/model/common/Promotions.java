@@ -7,7 +7,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Data public class Promotions {
+@Data
+public class Promotions {
   private double price;
   boolean isEDR;
   private String cupUom;

@@ -44,7 +44,7 @@ public class AdditionalAttributes {
   private Object productwidthmm;
   private Object productdepthmm;
   private Object wool_productpackaging;
-//  private Object woolProductpackaging;
+  //  private Object woolProductpackaging;
   private Object recyclableinformation;
   private Object importantinformation;
   private String allergencontains;

@@ -5,7 +5,8 @@ import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data public class Aisles {
+@Data
+public class Aisles {
   private String title;
   private ProductCategories[] categories;
   private float number;

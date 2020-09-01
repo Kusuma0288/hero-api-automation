@@ -107,7 +107,7 @@ public class ShopperHelper extends BaseHelper {
     headerList.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
     headerList.add(new Header("cache-control", "no-cache"));
     // invoke the service with the framed request
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr,headerList);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     String responseStr = mapWebserviceResponse.get("response");
     // logger.info("Response: " + responseStr);
     response = mapper.readValue(responseStr, GuestLoginResponse.class);
@@ -122,6 +122,12 @@ public class ShopperHelper extends BaseHelper {
 
     guestLoginRequest.setDeviceAuthToken(deviceId);
     if (isFulfilmentStoreId) {
+      //Todo
+      /*
+      Do you think we should bother getting the status code and asserting it?
+      For Metis we had a chat and agreed to not do it and instead verify the data in the response as that was what we are actually trying to test.
+      I think it would be great to review all of these assertions as you move them across. If you think there's better assertions to make we should do it as part of this PR.
+       */
       guestLoginRequest.setFulfilmentStoreID(fulfilmentIdOrPostCode);
     }
     if (isPostcode) {
@@ -137,7 +143,7 @@ public class ShopperHelper extends BaseHelper {
     headerList.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
     headerList.add(new Header("cache-control", "no-cache"));
     // invoke the service with the framed request
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr,headerList);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     String responseStr = mapWebserviceResponse.get("response");
     // logger.info("Response: " + responseStr);
     response = mapper.readValue(responseStr, GuestLoginResponse.class);
@@ -167,7 +173,7 @@ public class ShopperHelper extends BaseHelper {
       registerRequest.setCampaignName(userDetail.getCampaignName());
       registerRequest.setGuestTrolleyToken(deviceId);
       registerRequest.setAgreetotsandcs(userDetail.isAgreeToTsAndCs());
-      
+
     }
 
 
@@ -177,7 +183,7 @@ public class ShopperHelper extends BaseHelper {
     List<Header> headerList = new LinkedList<>();
     headerList.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
     headerList.add(new Header("cache-control", "no-cache"));
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr,headerList);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     String responseStr = mapWebserviceResponse.get("response");
     //logger.info("Response: " + responseStr);
 
@@ -282,7 +288,7 @@ public class ShopperHelper extends BaseHelper {
     return trolleyResponse;
   }
 
-  public TrolleyResponse i_add_the_following_products_to_the_trolley(int quantity, List<String> stockCodes, boolean isUpdate) throws Throwable {
+  public TrolleyResponse iAddFollowingProductsToTrolley(int quantity, List<String> stockCodes, boolean isUpdate) throws Throwable {
 
     TrolleyItem trolleyItem = new TrolleyItem();
     List<ProductItem> productItems = new ArrayList<ProductItem>();
@@ -309,7 +315,7 @@ public class ShopperHelper extends BaseHelper {
     return trolleyResponse;
   }
 
-  public TrolleyResponse i_add_or_update_the_following_products_to_the_trolley(int quantity, String stockCode, boolean isUpdate) throws Throwable {
+  public TrolleyResponse iAddOrUpdateTheFollowingProductsToTheTrolley(int quantity, String stockCode, boolean isUpdate) throws Throwable {
 
     return iAddProductsToTrolleyWithNotes(quantity, stockCode, isUpdate, null);
   }

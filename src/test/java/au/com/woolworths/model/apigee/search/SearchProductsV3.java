@@ -8,7 +8,8 @@ import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data public class SearchProductsV3 {
+@Data
+public class SearchProductsV3 {
 
   private String name;
   private String article;

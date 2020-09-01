@@ -7,7 +7,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
-@Data public class Delivery {
+@Data
+public class Delivery {
 
   private Address Address;
 

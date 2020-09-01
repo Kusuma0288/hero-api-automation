@@ -5,7 +5,8 @@ import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data public class ProductFlag {
+@Data
+public class ProductFlag {
   private boolean liquor;
   private boolean ranged;
   private boolean weighed;

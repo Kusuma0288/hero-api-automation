@@ -5,6 +5,7 @@ import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.apigee.search.SearchInStore;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;

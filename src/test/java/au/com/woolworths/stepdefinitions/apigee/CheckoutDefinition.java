@@ -161,11 +161,11 @@ public class CheckoutDefinition extends CheckoutHelper {
     if (System.getProperty("env").equals("uat")) {
       sessionID = payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_UAT_URL"), "");
     } else {
-      sessionID=payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_TEST_URL"),"");
+      sessionID = payCardCaptureResponse.getCardCaptureURL().replace(TestProperties.get("iFRAME_TEST_URL"), "");
     }
-    iFrameResponse iframeResponse=postiFrameCardDetails(sessionID);
+    iFrameResponse iframeResponse = postiFrameCardDetails(sessionID);
     String instrumentId;
-    if(iframeResponse.itemId == null) {
+    if (iframeResponse.itemId == null) {
       instrumentId = iframeResponse.getPaymentInstrument().getItemId();
     } else {
       instrumentId = iframeResponse.getItemId();
