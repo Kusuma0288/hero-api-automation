@@ -1,9 +1,9 @@
-package au.com.woolworths.helpers.rewards.deserializers;
+package au.com.woolworths.helpers.metis.deserializers;
 
-import au.com.woolworths.model.rewards.Analytics;
-import au.com.woolworths.model.rewards.Auth;
-import au.com.woolworths.model.rewards.LoginResponse;
-import au.com.woolworths.model.rewards.RewardsCard;
+import au.com.woolworths.model.metis.authentication.Analytics;
+import au.com.woolworths.model.metis.authentication.Auth;
+import au.com.woolworths.model.metis.authentication.LoginResponse;
+import au.com.woolworths.model.metis.authentication.RewardsCard;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -12,13 +12,13 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import java.io.IOException;
 
-public class LoginResponseDeserializer extends StdDeserializer<LoginResponse> {
+public class LoginDeserializer extends StdDeserializer<LoginResponse> {
 
-  public LoginResponseDeserializer() {
+  public LoginDeserializer() {
     this(null);
   }
 
-  public LoginResponseDeserializer(Class<?> vc) {
+  public LoginDeserializer(Class<?> vc) {
     super(vc);
   }
 

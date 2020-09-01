@@ -1,6 +1,6 @@
-package au.com.woolworths.model.rewards;
+package au.com.woolworths.model.metis.authentication;
 
-import au.com.woolworths.helpers.rewards.deserializers.RewardsCardDeserializer;
+import au.com.woolworths.helpers.metis.deserializers.RewardsCardDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
