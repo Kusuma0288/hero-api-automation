@@ -5,7 +5,8 @@ import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-@Data public class AddProdListDetailsResponse {
+@Data
+public class AddProdListDetailsResponse {
   private long id;
   private long articleId;
   private double quantity;

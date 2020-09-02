@@ -2,7 +2,8 @@ package au.com.woolworths.model.apigee.checkout;
 
 import lombok.Data;
 
-@Data public class CheckoutResultsErrorResponse {
+@Data
+public class CheckoutResultsErrorResponse {
   private int httpStatusCode;
   private int errorCode;
   private String errorMessage;

@@ -4,7 +4,8 @@ import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-@Data public class CheckoutWindowSlots {
+@Data
+public class CheckoutWindowSlots {
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private int Id;
   private String StartTime;

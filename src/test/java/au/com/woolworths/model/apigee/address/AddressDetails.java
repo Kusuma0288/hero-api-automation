@@ -5,7 +5,8 @@ import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data public class AddressDetails {
+@Data
+public class AddressDetails {
   private String id;
   private String text;
   private boolean isprimary;

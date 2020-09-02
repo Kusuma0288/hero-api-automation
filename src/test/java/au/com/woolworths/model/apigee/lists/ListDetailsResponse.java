@@ -6,7 +6,8 @@ import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-@Data public class ListDetailsResponse {
+@Data
+public class ListDetailsResponse {
   private String id;
   private String text;
   private double quantity;

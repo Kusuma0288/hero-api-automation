@@ -2,7 +2,8 @@ package au.com.woolworths.model.apigee.authentication;
 
 import lombok.Data;
 
-@Data public class SignUpRequest {
+@Data
+public class SignUpRequest {
   private String firstname = "John";
   private String lastname = "Doe";
   private String emailaddress;

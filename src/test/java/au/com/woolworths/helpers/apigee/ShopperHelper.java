@@ -6,7 +6,7 @@ import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.apigee.authentication.LoginReponse;
 import au.com.woolworths.model.apigee.authentication.ShopperLoginRequest;
-import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
+import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import io.restassured.http.Header;
 
 import java.util.LinkedList;

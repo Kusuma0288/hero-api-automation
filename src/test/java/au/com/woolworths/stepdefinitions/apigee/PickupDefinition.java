@@ -16,7 +16,6 @@ public class PickupDefinition extends AddressHelper {
   private final static Logger logger = Logger.getLogger("PickupDefinition.class");
 
 
-
   @When("^I search for the pickup stores in the postcode (.*)$")
   public void searchForThePostCode(String postCode) throws Throwable {
     postCode = Utilities.replaceMultipleandTrimSpaces(postCode);
@@ -134,6 +133,6 @@ public class PickupDefinition extends AddressHelper {
   public void setPickUpStoreUsingPostCode(String postCode) throws Throwable {
     sharedData.fulfilment = "pickup";
     searchForThePostCode(postCode);
-    iSetTheFulfilmentMethodToForTheStore( sharedData.fulfilment, 1);
+    iSetTheFulfilmentMethodToForTheStore(sharedData.fulfilment, 1);
   }
 }

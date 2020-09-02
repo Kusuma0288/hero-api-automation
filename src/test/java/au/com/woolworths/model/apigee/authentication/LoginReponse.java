@@ -4,7 +4,8 @@ import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-@Data public class LoginReponse {
+@Data
+public class LoginReponse {
   private String access_token;
   private String refresh_token;
   private String expires_in;
@@ -37,6 +38,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
   private String trolleymergestatus;
   private String statusCode;
   private String error;
-  
-  
+
+
 }

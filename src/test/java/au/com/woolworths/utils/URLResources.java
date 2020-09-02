@@ -34,7 +34,8 @@ public final class URLResources {
   public static final String APIGEE_iFRAME_UAT = "https://iframe.nonprod.payments.woolworths.com.au/tokenisation/creditcard";
   public static final String APIGEE_iFRAME_TEST = "https://iframe.sit.payments.woolworths.com.au/tokenisation/creditcard";
   public static final String APIGEE_PAYMENT_DIGITALPAY = "/wow/v2/commerce/checkout/payment/digitalpay";
-  public static final String V1_GRAPHQL = "/hermes/iris/v1/graphql";
+  public static final String HERMES_V1_GRAPHQL = "/hermes/iris/v1/graphql";
+  public static final String APIGEE_V2_ORDER_CONFIRMATION = "/wow/v2/commerce/orders/";
 
   public static final String METIS_REWARDS_LINK = "/zeus/metis/v1/rewards/link";
   public static final String METIS_LOGIN = "/zeus/metis/v1/rewards/login";
@@ -46,5 +47,42 @@ public final class URLResources {
   public static final String METIS_REWARDS = "/zeus/metis/v1/rewards";
   public static final String METIS_TOKEN = "/zeus/metis/v1/rewards/token";
 
-  public static final String APIGEE_V2_ORDER_CONFIRMATION = "/wow/v2/commerce/orders/";
+
+  //Trader URL
+  public static final String TRADER_V2_GUEST = "/Authenticate/LoginAsGuest";
+  public static final String TRADER_V3_GUEST = "/api/v3/shoppers/guest";
+  public static final String TRADER_V2_AUTH_SHOPPER = "/apis/v2/auth/shopper";
+  public static final String TRADER_V2_SEARCH_ADDRESS = "/apis/v2/search/addresses";
+  public static final String TRADER_V3_ADDRESS = "/api/v3/address";
+  public static final String TRADER_V3_CHECKOUT_ADDRESS = "api/v3/checkout/address/";
+  public static final String TRADER_V2_SHOPPER_SIGNUP = "apis/v2/shoppers/signup";
+  public static final String TRADER_V2_MYACCOUNT_ADDRESS = "apis/v2/myaccount/addresses/";
+  public static final String TRADER_V2_CLEAR_TROLLEY = "apis/v2/trolley/clear";
+  public static final String TRADER_V2_GET_TROLLEY = "apis/v2/trolley";
+  public static final String TRADER_V2_ADD_UPDATE_TROLLEY = "apis/v2/trolley/items";
+  public static final String TRADER_V3_ADDRESS_SEARCH = "api/v3/address/search";
+  public static final String TRADER_V2_DELETE_ADDRESS = "apis/v2/myaccount/addresses/";
+  public static final String TRADER_V2_PICKUP_STORES = "apis/v2/pickupstores";
+  public static final String TRADER_V2_CHECKOUT = "/apis/v2/checkout";
+  public static final String TRADER_V3_CHECKOUT = "/api/v3/checkout";
+  public static final String TRADER_V3_CAN_LEAVE_UNATTENDED = "/api/v3/checkout/canleaveunattended";
+  public static final String TRADER_V2_PICKUP_SUBURB = "apis/v2/pickupstores/suburbs";
+  public static final String TRADER_V2_PICKUP_SEARCH = "apis/v2/pickupstores/search";
+  public static final String TRADER_V2_PRODUCTS_SEARCH = "apis/v2/products/search";
+  public static final String TRADER_V2_PACKAGING_PREFERENCE = "/apis/v2/Delivery/PackagingPreferences";
+  public static final String TRADER_V2_CHECKOUTDELIVERYWINDOWS = "/apis/v2/deliverywindows/courier";
+  public static final String TRADER_V2_CHECKOUTPICKUPWINDOWS = "/apis/v2/deliverywindows/pickup";
+  public static final String TRADER_V2_CHECKOUTWINDOWS = "/apis/v2/checkout/windows";
+  public static final String TRADER_V3_CHECKOUTDELIVERYWINDOWS = "/api/v3/checkout/windows";
+  public static final String TRADER_V3_CHECKOUTWINDOWS = "/api/v3/checkout/window";
+  public static final String TRADER_V3_PRODUCTS_WEEKLYPICKS = "api/v3/product/myweeklypicks";
+  public static final String TRADER_V2_PRODUCT_DETAIL = "apis/v2/product/detail/{stockcode}";
+  public static final String TRADER_V2_PAYMENT_PAYPAL = "apis/v2/checkout/payment/paypal";
+  public static final String TRADER_V2_ORDER = "apis/v2/orders/{orderId}";
+  public static final String TRADER_V3_ORDER = "/api/v3/myorders";
+  public static final String TRADER_V2_SHOPPING_AISLES = "/apis/v2/vsaisles";
+  public static final String TRADER_V2_SPECIALS_GROUP = "api/v3/product/specials/groups";
+  public static final String TRADER_V2_SPECIALS_GROUP_DETAILS = "api/v3/product/specials";
+  public static final String TRADER_V3_PRODUCT_GROUP = "api/v3/product/productgroup";
+
 }

@@ -7,7 +7,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data public class TrolleyV2Response {
+@Data
+public class TrolleyV2Response {
   private double totaltrolleyprice;
   private int savingsontrolley;
   private int totalproducts;

@@ -2,7 +2,8 @@ package au.com.woolworths.model.apigee.checkout;
 
 import lombok.Data;
 
-@Data public class CheckoutPackagingPreferencesResponse {
+@Data
+public class CheckoutPackagingPreferencesResponse {
 
   private int Id;
   private String Code;

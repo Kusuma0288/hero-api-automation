@@ -1,4 +1,4 @@
-package au.com.woolworths.stepdefinitions.apigee;
+package au.com.woolworths.stepdefinitions.common;
 
 import au.com.woolworths.utils.RestInvocationUtil;
 import com.google.gson.Gson;

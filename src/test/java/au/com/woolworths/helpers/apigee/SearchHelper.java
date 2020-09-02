@@ -4,7 +4,7 @@ import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.apigee.search.SearchResponseV3;
-import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
+import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +31,7 @@ public class SearchHelper extends BaseHelper {
     String endPoint = URLResources.APIGEE_V3_SEARCH;
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListCommon);
     responseStr = mapWebserviceResponse.get("response");
 
     response = mapper.readValue(responseStr, SearchResponseV3.class);

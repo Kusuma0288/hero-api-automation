@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-@Data public class HomepageComponentsData {
+@Data
+public class HomepageComponentsData {
   private String title;
   private String subtitle;
   private String actionTitle;

@@ -48,6 +48,18 @@ public class RestInvocationUtil {
     return mapWebServiceResponse;
   }
 
+  public Map<String, String> invokeWithAPIKey(String endPoint, String requestPayload, String apiKey) {
+    response = postRestWithBodyAndAPIkey(endPoint, requestPayload, apiKey);
+    String strResponse = response.getBody().asString();
+    mapWebServiceResponse.put("response", strResponse);
+    mapWebServiceResponse.put("statusCode", Integer.toString(response.getStatusCode()));
+    mapWebServiceResponse.put("contentType", (response.contentType()));
+    endPoints.add(endPoint);
+    requests.add(requestPayload);
+    responses.add(response);
+    return mapWebServiceResponse;
+  }
+
   public Map<String, String> invokeGetWithoutParam(String endPoint, List<Header> headerList) {
     response = getResponseWithoutParam(endPoint, headerList);
     String strResponse = response.getBody().asString();
@@ -97,10 +109,10 @@ public class RestInvocationUtil {
 
   private Response getRestWithDynamicHeaders(String endPoint, Map<String, ?> params, List<Header> dynamicHeaderList) {
     try {
-      RestAssured.baseURI = TestProperties.get("BASE_URI");
+      RestAssured.baseURI = getBaseURL(endPoint);
+
       Headers headers = new Headers(dynamicHeaderList);
       response = given()
-          // .proxy(TestProperties.get("LOCAL_PROXY"))
           .header("Content-Type", "application/json")
           .header("Accept", "application/json")
           .headers(headers)
@@ -121,10 +133,9 @@ public class RestInvocationUtil {
 
   private Response putRestWithBody(String endPoint, String requestPayload, List<Header> headerList) {
     try {
-      RestAssured.baseURI = TestProperties.get("BASE_URI");
+      RestAssured.baseURI = getBaseURL(endPoint);
       Headers headers = new Headers(headerList);
       response = given()
-          // .proxy(TestProperties.get("LOCAL_PROXY"))
           .header("Content-Type", "application/json")
           .header("Accept", "application/json")
           .headers(headers)
@@ -142,10 +153,9 @@ public class RestInvocationUtil {
 
   private Response postRestWithBodyAndHeaders(String endPoint, String requestPayload, List<Header> dynamicHeaderList) {
     try {
-      RestAssured.baseURI = TestProperties.get("BASE_URI");
+      RestAssured.baseURI = getBaseURL(endPoint);
       Headers headers = new Headers(dynamicHeaderList);
       response = given()
-          // .proxy(TestProperties.get("LOCAL_PROXY"))
           .header("Content-Type", "application/json")
           .header("Accept", "application/json")
           .headers(headers)
@@ -163,10 +173,9 @@ public class RestInvocationUtil {
 
   private Response postRestWithoutBody(String endPoint, List<Header> headerList) {
     try {
-      RestAssured.baseURI = TestProperties.get("BASE_URI");
+      RestAssured.baseURI = getBaseURL(endPoint);
       Headers headers = new Headers(headerList);
       response = given()
-          //  .proxy(TestProperties.get("LOCAL_PROXY"))
           .header("Content-Type", "application/json")
           .header("Accept", "application/json")
           .headers(headers)
@@ -187,10 +196,9 @@ public class RestInvocationUtil {
 
   private Response getDeleteResponse(String endPoint, Map<String, ?> params, List<Header> headerList) {
     try {
-      RestAssured.baseURI = TestProperties.get("BASE_URI");
+      RestAssured.baseURI = getBaseURL(endPoint);
       Headers headers = new Headers(headerList);
       response = given()
-          //  .proxy(TestProperties.get("LOCAL_PROXY"))
           .header("Content-Type", "application/json")
           .header("Accept", "application/json")
           .headers(headers)
@@ -210,10 +218,9 @@ public class RestInvocationUtil {
 
   private Response getResponseWithoutParam(String endPoint, List<Header> headerList) {
     try {
-      RestAssured.baseURI = TestProperties.get("BASE_URI");
+      RestAssured.baseURI = getBaseURL(endPoint);
       Headers headers = new Headers(headerList);
       response = given()
-          // .proxy(TestProperties.get("LOCAL_PROXY"))
           .header("Content-Type", "application/json")
           .header("Accept", "application/json")
           .headers(headers)
@@ -229,4 +236,39 @@ public class RestInvocationUtil {
     }
     return response;
   }
+
+  private Response postRestWithBodyAndAPIkey(String endPoint, String requestPayload, String apiKey) {
+    try {
+      RestAssured.baseURI = getBaseURL(endPoint);
+      List<Header> headerList = new LinkedList<>();
+      headerList.add(new Header("wowapi-key", apiKey));
+      headerList.add(new Header("cache-control", "no-cache"));
+      Headers headers = new Headers(headerList);
+
+      response = given()
+          .header("Content-Type", "application/json")
+          .header("Accept", "application/json")
+          .headers(headers)
+          .body(requestPayload)
+          .when()
+          .post(endPoint).then()
+          .extract().response();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      StringWriter errors = new StringWriter();
+      e.printStackTrace(new PrintWriter(errors));
+      Assert.fail("Endpoint::" + endPoint + "Request PayLoad::" + requestPayload + "Error::" + e.getMessage() + "Stack Trace::" + errors.toString());
+    }
+    return response;
+  }
+
+
+  private String getBaseURL(String endPoint) {
+    if (endPoint.startsWith("/api") || endPoint.startsWith("api") || endPoint.startsWith("/Auth"))
+      return TestProperties.get("BASE_URI_TRADER");
+    else
+      return TestProperties.get("BASE_URI_APIGEE");
+  }
+
 }
