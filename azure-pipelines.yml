@@ -84,7 +84,7 @@ stages:
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: regression
           RunEnv: ${{ parameters.triggerEnv }}
-     condition: and(succeededOrFailed(), ne('${{ parameters.triggerEnv }}', ''))
+     condition: and(succeededOrFailed(), ne('${{ parameters.triggerEnv }}', 'all'))
 
 
 
