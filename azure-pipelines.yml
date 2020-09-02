@@ -1,11 +1,12 @@
 parameters:
   - name: triggerEnv
     type: string
-    default: test
+    default: all
     values:
       - uat
       - test
       - prod
+      - all
 
 trigger:
   none
@@ -26,7 +27,7 @@ stages:
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: prod
           RunEnv: prod
-    condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
+    condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
 
   - job: Uat
     displayName: Uat Automation Run
@@ -34,6 +35,7 @@ stages:
       - script: |
           echo "Setting up delay for the job"
           sleep 10m
+          echo ${{ parameters.triggerEnv }}
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
@@ -41,7 +43,7 @@ stages:
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: regression
           RunEnv: uat
-    condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
+    condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
 
   - job: Test
     displayName: Test Automation Run
@@ -49,6 +51,7 @@ stages:
       - script: |
           echo "Setting up delay for the job"
           sleep 10m
+          echo ${{ parameters.triggerEnv }}
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
@@ -56,7 +59,7 @@ stages:
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: regression
           RunEnv: test
-    condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
+    condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
 
 - stage: Manual
   jobs:
@@ -64,8 +67,7 @@ stages:
      displayName: Manual Automation Run
      steps:
       - script: |
-          echo "Setting up delay for the job"
-          sleep 10s
+          echo ${{ parameters.triggerEnv }}
       - template: pipelines/templates/base-template.yml
         parameters:
           TestRunTitle: Apigee Automation Run Report
@@ -73,7 +75,7 @@ stages:
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: regression
           RunEnv: ${{ parameters.triggerEnv }}
-     condition: and(succeededOrFailed(), ne('${{ parameters.triggerEnv }}', ''))
+     condition: and(succeededOrFailed(), ne('${{ parameters.triggerEnv }}', 'all'))
 
 
 
