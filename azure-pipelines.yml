@@ -82,7 +82,7 @@ stages:
 
 
 schedules:
-  - cron: "* * * * Mon-Fri"
+  - cron: "* * * * *"
     displayName: Morning build (starts at 9:10AM)
     branches:
       include:
