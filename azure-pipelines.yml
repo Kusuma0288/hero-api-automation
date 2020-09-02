@@ -1,6 +1,7 @@
 parameters:
   - name: triggerEnv
     type: string
+    default: auto
     values:
       - uat
       - test
@@ -26,7 +27,7 @@ stages:
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
           Profile: prod
           RunEnv: prod
-    condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', ''))
+    condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'auto'))
 
   - job: Uat
     displayName: Uat Automation Run
