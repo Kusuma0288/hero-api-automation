@@ -85,14 +85,6 @@ stages:
 
 
 schedules:
-  - cron: "* * * * *"
-    displayName: Morning build (starts at 9:10AM)
-    branches:
-      include:
-        - azure-pipelines
-        - develop
-    always: true
-
   - cron: "10 23 * * Mon-Fri"
     displayName: Morning build (starts at 9:10AM)
     branches:
