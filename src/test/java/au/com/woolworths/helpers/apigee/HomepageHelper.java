@@ -22,7 +22,7 @@ public class HomepageHelper extends BaseHelper {
   public HomepageResponse iRetrieveHomepageWithInStore(Map<String, String> queryParams) throws Throwable {
     String endPoint = URLResources.HERMES_V1_HOMEPAGE;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListCommon);
 
     String responseStr = mapWebserviceResponse.get("response");
 
@@ -36,7 +36,7 @@ public class HomepageHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("mode", shoppingMode);
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListCommon);
 
     String responseStr = mapWebserviceResponse.get("response");
 

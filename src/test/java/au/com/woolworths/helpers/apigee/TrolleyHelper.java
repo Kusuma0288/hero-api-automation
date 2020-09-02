@@ -44,7 +44,7 @@ public class TrolleyHelper extends BaseHelper {
     String endPoint = URLResources.APIGEE_V3_TROLLEY;
     requestStr = mapper.writeValueAsString(trolleyItemRequest);
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListCommon);
     responseStr = mapWebserviceResponse.get("response");
 
     TrolleyV3Response trolleyV3Response = mapper.readValue(responseStr, TrolleyV3Response.class);
@@ -72,7 +72,7 @@ public class TrolleyHelper extends BaseHelper {
     String endPoint = URLResources.APIGEE_V2_TROLLEY;
     requestStr = mapper.writeValueAsString(trolleyItemRequest);
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListCommon);
     responseStr = mapWebserviceResponse.get("response");
 
     TrolleyV2Response trolleyV2Response = mapper.readValue(responseStr, TrolleyV2Response.class);
@@ -83,7 +83,7 @@ public class TrolleyHelper extends BaseHelper {
     String endPoint = URLResources.APIGEE_V2_TROLLEY_CLEAR;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
 
     TrolleyV2Response trolleyResponse = mapper.readValue(responseStr, TrolleyV2Response.class);
@@ -94,7 +94,7 @@ public class TrolleyHelper extends BaseHelper {
     String endPoint = URLResources.APIGEE_V3_RETRIEVE_TROLLEY;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokeGetWithoutParam(endPoint, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokeGetWithoutParam(endPoint, headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
 
     TrolleyV3Response trolleyResponse = mapper.readValue(responseStr, TrolleyV3Response.class);
@@ -105,7 +105,7 @@ public class TrolleyHelper extends BaseHelper {
     String endPoint = URLResources.APIGEE_V2_RETRIEVE_TROLLEY;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokeGetWithoutParam(endPoint, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokeGetWithoutParam(endPoint, headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
 
     TrolleyV2Response trolleyResponse = mapper.readValue(responseStr, TrolleyV2Response.class);
@@ -118,7 +118,7 @@ public class TrolleyHelper extends BaseHelper {
     String endPoint = URLResources.APIGEE_V3_TROLLEY + stockCode + "/clear";
     // invoke the service with the framed request
 
-    mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerListCommon);
     responseStr = mapWebserviceResponse.get("response");
 
     TrolleyV3Response trolleyV3Response = mapper.readValue(responseStr, TrolleyV3Response.class);
@@ -130,7 +130,7 @@ public class TrolleyHelper extends BaseHelper {
     String responseStr = null;
     String endPoint = URLResources.APIGEE_V2_TROLLEY + stockCode + "/clear";
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerListCommon);
     responseStr = mapWebserviceResponse.get("response");
 
     TrolleyV2Response trolleyV2Response = mapper.readValue(responseStr, TrolleyV2Response.class);

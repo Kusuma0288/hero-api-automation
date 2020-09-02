@@ -31,7 +31,7 @@ public class SearchHelper extends BaseHelper {
     String endPoint = URLResources.APIGEE_V3_SEARCH;
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListCommon);
     responseStr = mapWebserviceResponse.get("response");
 
     response = mapper.readValue(responseStr, SearchResponseV3.class);

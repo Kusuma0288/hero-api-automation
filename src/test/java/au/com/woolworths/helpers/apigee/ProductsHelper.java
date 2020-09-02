@@ -25,7 +25,7 @@ public class ProductsHelper extends BaseHelper {
 
     String endPoint = URLResources.APIGEE_V3_CATEGORIES;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
 
     ProductCategoriesSpecial productCategoriesSpecial = mapper.readValue(responseStr, ProductCategoriesSpecial.class);
@@ -36,7 +36,7 @@ public class ProductsHelper extends BaseHelper {
 
     String endPoint = URLResources.APIGEE_V2_PRODUCTS;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
 
     ProductsSpecial productsSpecial = mapper.readValue(responseStr, ProductsSpecial.class);

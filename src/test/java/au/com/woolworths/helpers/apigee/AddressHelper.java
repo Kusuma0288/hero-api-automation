@@ -36,7 +36,7 @@ public class AddressHelper extends BaseHelper {
     queryParams.put("q", lookupAddress);
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
     SearchAddresses searchAddressResponse = mapper.readValue(responseStr, SearchAddresses.class);
     return searchAddressResponse;
@@ -52,7 +52,7 @@ public class AddressHelper extends BaseHelper {
 
     // invoke the service with the framed request
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, addressRequestStr, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, addressRequestStr, headerListCommon);
 
     String responseStr = mapWebserviceResponse.get("response");
 
@@ -65,7 +65,7 @@ public class AddressHelper extends BaseHelper {
     String endPoint = URLResources.APIGEE_V2_LIST_ADDRESSES;
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
 
     ListAddresses myAddressResponse = mapper.readValue(responseStr, ListAddresses.class);
@@ -76,7 +76,7 @@ public class AddressHelper extends BaseHelper {
   public AddressStoresV2 getStore(Map<String, String> queryParams) throws Throwable {
     String endPoint = URLResources.APIGEE_V2_SEARCH_ADDRESS_POSTCODE;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
 
     AddressStoresV2 searchPostCodeResponse = mapper.readValue(responseStr, AddressStoresV2.class);
@@ -90,7 +90,7 @@ public class AddressHelper extends BaseHelper {
     queryParams.put(type, param);
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
 
     ErrorResponseV2 errorResponseV2 = mapper.readValue(responseStr, ErrorResponseV2.class);
@@ -111,7 +111,7 @@ public class AddressHelper extends BaseHelper {
     requestStr = mapper.writeValueAsString(storeAddressRequest);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListCommon);
     responseStr = mapWebserviceResponse.get("response");
 
     FulFilmentResponse fulFilmentResponse = mapper.readValue(responseStr, FulFilmentResponse.class);
@@ -133,7 +133,7 @@ public class AddressHelper extends BaseHelper {
     requestStr = mapper.writeValueAsString(deliveryAddressRequest);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListCommon);
     responseStr = mapWebserviceResponse.get("response");
 
     DeliveryFulfilmentV3Response deliveryFulfilmentV3Response = mapper.readValue(responseStr, DeliveryFulfilmentV3Response.class);
@@ -155,7 +155,7 @@ public class AddressHelper extends BaseHelper {
     requestStr = mapper.writeValueAsString(deliveryAddressRequest);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListCommon);
     responseStr = mapWebserviceResponse.get("response");
 
     Fulfilmentv3ErrorResponse fulfilmentv3ErrorResponse = mapper.readValue(responseStr, Fulfilmentv3ErrorResponse.class);
@@ -169,7 +169,7 @@ public class AddressHelper extends BaseHelper {
     String endPoint = URLResources.APIGEE_V3_FULFILMENT;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     Map<String, String> queryParams = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListCommon);
     responseStr = mapWebserviceResponse.get("response");
 
     DeliveryFulfilmentV3Response deliveryFulfilmentV3Response = mapper.readValue(responseStr, DeliveryFulfilmentV3Response.class);

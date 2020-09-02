@@ -26,7 +26,7 @@ public class InStoreHelper extends BaseHelper {
     queryParams.put("q", postcode);
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
     SearchInStore searchForInStore = mapper.readValue(responseStr, SearchInStore.class);
     return searchForInStore;

@@ -81,7 +81,6 @@ public class SharedData {
   public ShopperLoginResponseV2 shopperLoginResponseV2;
   public SearchAddressResponse searchAddressResponse;
   public PickupResponse[] pickupResponse;
-  public String deviceId;
   public String signupResponseStatusCode;
   public ShopperLoginResponseV2 signupLoginResponseV2;
   public String signupAuthToken;

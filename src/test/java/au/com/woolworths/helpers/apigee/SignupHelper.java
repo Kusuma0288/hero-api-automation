@@ -34,7 +34,7 @@ public class SignupHelper extends BaseHelper {
     requestStr = mapper.writeValueAsString(signUpRequest);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListCommon);
     responseStr = mapWebserviceResponse.get("response");
     LoginReponse response = mapper.readValue(responseStr, LoginReponse.class);
     response.setStatusCode(mapWebserviceResponse.get("statusCode"));

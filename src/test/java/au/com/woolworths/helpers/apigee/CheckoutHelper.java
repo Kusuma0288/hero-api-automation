@@ -101,7 +101,7 @@ public class CheckoutHelper extends BaseHelper {
   public PayInstrumentsResponse getPayInstruments() throws Throwable {
     String endPoint = URLResources.APIGEE_PAYMENT_INSTRUMENTS;
 
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerListApigee);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
     return mapper.readValue(responseStr, PayInstrumentsResponse.class);
 
@@ -114,7 +114,7 @@ public class CheckoutHelper extends BaseHelper {
     payCardCaptureRequest.setClientReference("VALID_REFERENCE");
     String payCardCaptureRequestStr = mapper.writeValueAsString(payCardCaptureRequest);
 
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, payCardCaptureRequestStr, headerListApigee);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, payCardCaptureRequestStr, headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
     return mapper.readValue(responseStr, PayCardCaptureResponse.class);
 
@@ -156,7 +156,7 @@ public class CheckoutHelper extends BaseHelper {
     digitalPayRequest.setPayments(Payments);
     mapper.setPropertyNamingStrategy(PropertyNamingStrategy.UPPER_CAMEL_CASE);
     digipayRequestStr = mapper.writeValueAsString(digitalPayRequest);
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, digipayRequestStr, headerListApigee);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, digipayRequestStr, headerListCommon);
     responseStr = mapWebserviceResponse.get("response");
     return mapper.readValue(responseStr, DigitalPayResponse.class);
 
@@ -170,7 +170,7 @@ public class CheckoutHelper extends BaseHelper {
     endPoint = endPoint.concat("" + OrderId);
 
     // invoke the service with the framed request
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListCommon);
     responseStr = mapWebserviceResponse.get("response");
     return mapper.readValue(responseStr, OrderPlaced.class);
 

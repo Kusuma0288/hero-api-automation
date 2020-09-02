@@ -21,7 +21,7 @@ public class SpecialsHelper extends BaseHelper {
   public SpecialspageResponse iRetrieveSpecialspageWithOnlineMode(Map<String, String> queryParams) throws Throwable {
     String endPoint = URLResources.APIGEE_V2_SPECIALS;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListApigee);
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
     SpecialspageResponse response = mapper.readValue(responseStr, SpecialspageResponse.class);
     return response;

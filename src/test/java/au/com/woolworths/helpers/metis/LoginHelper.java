@@ -4,7 +4,7 @@ import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.metis.authentication.LinkResponse;
 import au.com.woolworths.model.metis.authentication.LoginRequest;
 import au.com.woolworths.model.metis.authentication.LoginResponse;
-import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
+import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.TestProperties;
 import au.com.woolworths.utils.URLResources;
@@ -24,7 +24,7 @@ public class LoginHelper extends BaseHelper {
     String endPoint = URLResources.METIS_REWARDS_LINK;
     Map<String, String> mapWebserviceResponse;
 
-    mapWebserviceResponse = invocationUtil.invokeGetWithoutParam(endPoint, headerList);
+    mapWebserviceResponse = invocationUtil.invokeGetWithoutParam(endPoint, headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
     LinkResponse response = mapper.readValue(responseStr, LinkResponse.class);
     logger.info("Link API Response: " + response);
@@ -42,7 +42,7 @@ public class LoginHelper extends BaseHelper {
     loginRequest.setDeviceId(DeviceID);
 
     String requestStr = mapper.writeValueAsString(loginRequest);
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
     LoginResponse response = mapper.readValue(responseStr, LoginResponse.class);
 
