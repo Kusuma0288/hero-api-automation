@@ -35,7 +35,6 @@ stages:
       - script: |
           echo "Setting up delay for the job"
           sleep 10m
-          echo "Trigger Env == "
           echo ${{ parameters.triggerEnv }}
       - template: pipelines/templates/base-template.yml
         parameters:
@@ -52,7 +51,6 @@ stages:
       - script: |
           echo "Setting up delay for the job"
           sleep 10m
-          echo "Trigger Env == "
           echo ${{ parameters.triggerEnv }}
       - template: pipelines/templates/base-template.yml
         parameters:
@@ -69,9 +67,6 @@ stages:
      displayName: Manual Automation Run
      steps:
       - script: |
-          echo "Setting up delay for the job"
-          sleep 10s
-          echo "Trigger Env == "
           echo ${{ parameters.triggerEnv }}
       - template: pipelines/templates/base-template.yml
         parameters:
