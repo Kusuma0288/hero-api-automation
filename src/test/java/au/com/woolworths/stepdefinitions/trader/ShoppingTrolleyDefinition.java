@@ -33,7 +33,7 @@ public class ShoppingTrolleyDefinition extends ShopperHelper {
     Products result = products.stream().filter(x -> stockCode.equals(x.getStockcode())).findAny().orElse(null);
     Assert.assertNotNull(result, "The Product Searched could not be found in the cart::" + stockCode);
     Assert.assertTrue(result.getQuantity() == quantity, "Quantity is not saved for the Product Stockcode:: " + stockCode);
-    //Adding to the Pico Container for any verification
+    //Adding to the sharedData for any verification
     sharedData.trolleyQuantity = quantity;
   }
 
@@ -59,7 +59,7 @@ public class ShoppingTrolleyDefinition extends ShopperHelper {
         Assert.assertNotNull(result, "The product was not found for this stockcode::" + cartItem.getStockCode());
         Assert.assertTrue(result.getQuantity() == cartItem.getQuantity(), "Quantity is not saved for the Product Stockcode:: " + cartItem.getStockCode());
         Assert.assertTrue(result.getName().contains(cartItem.getName()), "Shopping Cart Item name is not matching:: " + cartItem.getName());
-        //Adding to the Pico Container for any verification
+        //Adding to the sharedData for any verification
         sharedData.trolleyQuantity = sharedData.trolleyQuantity + cartItem.getQuantity();
       } else {
         Assert.assertTrue(trolleyResponse.getErrors().size() != 0, "Errors while adding items to the trolley");

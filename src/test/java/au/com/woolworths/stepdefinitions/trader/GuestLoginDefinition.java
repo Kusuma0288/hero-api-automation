@@ -76,11 +76,6 @@ public class GuestLoginDefinition extends ShopperHelper {
     sharedData.authToken = response.getAuthToken();
   }
 
-  @Given("^I save the device id for again logging in$")
-  public void i_save_the_device_id_for_again_logging_in() throws Throwable {
-   // sharedData.deviceId = sharedData.deviceId;
-  }
-
   @When("^apigee connect to trader public endpoint as guest with saved device id$")
   public void apigee_connect_to_trader_public_endpoint_as_guest_with_saved_device_id() throws Throwable {
     response = apigeeConnectToTraderPublicAPIEndpointAsGuestWithPossibleOptions(0, false, false, sharedData.deviceId);

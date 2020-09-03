@@ -46,7 +46,6 @@ Feature: Guest set store verification  check for set store
   Scenario: Test the Guest Login for V3 and verifying Primary Address for multiple login
     Given apigee connect to trader public api endpoint as guest with only device id
     And apigee successfully authenticate to trader public api endpoint as guest
-    And I save the device id for again logging in
     And I search for address "190 George St, PARRAMATTA  NSW  2150" without saving for future lookup
     And I select the "1" address as checkout address from matching addresses
     Then I should see the address as primary for guest user
