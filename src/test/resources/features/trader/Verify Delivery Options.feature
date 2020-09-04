@@ -1,4 +1,4 @@
-@DELIVERY @REGRESSION @Wolves
+@DELIVERY @REGRESSION_TRADER @Wolves
 Feature: Verify Delivery Options
   Test for the delivery options
 

@@ -1,7 +1,7 @@
-@WEEKLYPICKS  @REGRESSION @Lobsters
+@WEEKLYPICKS  @REGRESSION_TRADER @Lobsters
 Feature: Verify Products weekly picks Api
 
-  @SMOKE
+  @SMOKE_TRADER
   Scenario: Login as Shopper and verify the Products weekly picks api successful response with a list of products
     #WeeklyPick Api is a test data specific please do not reuse ,change data or remove rewards cards from this user.
     Given apigee continue to connect to trader public api endpoint with login test123456@lol.com and password 123456

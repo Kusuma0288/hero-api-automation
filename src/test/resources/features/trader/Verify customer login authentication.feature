@@ -1,4 +1,4 @@
-@REGRESSION @SHOPPER_LOGIN @GUEST_TO_SHOPPER @ProdRegression @LION @SMOKE
+@REGRESSION_TRADER @SHOPPER_LOGIN @GUEST_TO_SHOPPER @ProdRegression @LION @SMOKE_TRADER
 Feature: Verify Customer login authentication
   Test for the login feature if working in all possible modes
 

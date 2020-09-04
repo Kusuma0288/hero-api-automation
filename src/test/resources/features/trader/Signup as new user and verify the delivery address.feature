@@ -1,4 +1,4 @@
-@GUEST_ADDRESS @REGRESSION @SIGN_UP @LION
+@GUEST_ADDRESS @REGRESSION_TRADER @SIGN_UP @LION
 
 Feature: Signup as a new user and verify the deliver address from GUEST
 

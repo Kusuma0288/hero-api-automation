@@ -1,7 +1,7 @@
 @PRODUCT_GROUPS @Lobsters
 Feature: Verify Products by Product Group Api
 
-  @SMOKE
+  @SMOKE_TRADER
   Scenario Outline: Verify products by product group api as a logged in shopper
     Given apigee connect to trader public api endpoint with login containing <emailAddress> and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
@@ -11,7 +11,7 @@ Feature: Verify Products by Product Group Api
       | emailAddress | productGroupId |
       | shopapp+26   | 25             |
 
-  @SMOKE
+  @SMOKE_TRADER
   Scenario Outline: Verify products by product group api as a guest shopper
     Given apigee connect to trader public api endpoint as guest
     When apigee successfully authenticate to trader public api endpoint as guest
@@ -21,7 +21,7 @@ Feature: Verify Products by Product Group Api
       | productGroupId |
       | 25             |
 
-  @REGRESSION @ProdRegression
+  @REGRESSION_TRADER @ProdRegression
   Scenario Outline: Verify products by product group api for trolley updates as a logged in shopper
     Given apigee connect to trader public api endpoint with login containing <emailAddress> and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
@@ -35,7 +35,7 @@ Feature: Verify Products by Product Group Api
       | emailAddress | productGroupId | quantity | productCount |
       | shopapp+26   | 25             | 2        | 2            |
 
-  @REGRESSION @ProdRegression
+  @REGRESSION_TRADER @ProdRegression
   Scenario Outline: Verify products by product group api for trolley updates as a guest shopper
     Given apigee connect to trader public api endpoint as guest
     When apigee successfully authenticate to trader public api endpoint as guest

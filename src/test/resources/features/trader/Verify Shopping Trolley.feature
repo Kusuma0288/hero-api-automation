@@ -1,8 +1,8 @@
-@TROLLEY @REGRESSION @ProdRegression @LION
+@TROLLEY @REGRESSION_TRADER @ProdRegression @LION
 Feature: Verify Shopping Trolley
   Test for the Shopping Trolley working in all possible modes
 
-  @SMOKE
+  @SMOKE_TRADER
   Scenario: Login as Shopper and add items to the Trolley
     Given apigee connect to trader public api endpoint with default login and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details

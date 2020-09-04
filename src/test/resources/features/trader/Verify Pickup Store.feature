@@ -1,8 +1,8 @@
-@PICKUP_STORE @REGRESSION @Wolves
+@PICKUP_STORE @REGRESSION_TRADER @Wolves
 Feature: Verify the pickup store
   Test for the pickup store structure
 
-  @SMOKE @ProdRegression
+  @SMOKE_TRADER @ProdRegression
   Scenario: Login as Guest and check the pickup structure by suburb
     Given apigee connect to trader public api endpoint as guest
     And connection from apigee to trader public api endpoint happens

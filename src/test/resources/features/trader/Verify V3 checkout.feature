@@ -1,7 +1,7 @@
 @Wolves
 Feature: Verify V3 Checkout scenarios
 
-  @REGRESSION
+  @REGRESSION_TRADER
   Scenario Outline: Validate that customer as a guest
   set the 'delivery' mode and select a delivery address
   add the products to trolley as a guest
@@ -27,7 +27,7 @@ Feature: Verify V3 Checkout scenarios
       | 19 Rudd Street, Narellan, NSW 2567 | shopapp+57   |
       #|1 Darcy Rd, PORT KEMBLA 2505                   |  shopapp+57             |
 
-  @REGRESSION
+  @REGRESSION_TRADER
   Scenario Outline: Validate that customer as a guest
   set the 'pickup' mode and select a pickup store
   add the products to trolley as a guest

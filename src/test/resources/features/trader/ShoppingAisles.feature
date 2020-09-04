@@ -1,8 +1,8 @@
-@SHOPPING_AISLES @REGRESSION @ProdRegression @Lobsters
+@SHOPPING_AISLES @REGRESSION_TRADER @ProdRegression @Lobsters
 
 Feature: Verify Shopping Aisles Api
 
-  @SMOKE
+  @SMOKE_TRADER
   Scenario: Login as Shopper and verify the shopping aisles api responds with shopping aisles and its categories
 
     Given apigee connect to trader public api endpoint with default login and password

@@ -1,7 +1,7 @@
-@PRODUCT_DETAILS @REGRESSION @ProdRegression @Lobsters
+@PRODUCT_DETAILS @REGRESSION_TRADER @ProdRegression @Lobsters
 Feature: Verify Product details API
 
-  @SMOKE
+  @SMOKE_TRADER
   Scenario: Login as Shopper and verify the Products details api responds with product details for any stockcode/Product Id
     Given apigee connect to trader public api endpoint with default login and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details

@@ -1,7 +1,7 @@
-@REGRESSION @GUEST_STORE @ProdRegression @Wolves
+@REGRESSION_TRADER @GUEST_STORE @ProdRegression @Wolves
 Feature: Guest set store verification  check for set store
 
-  @SMOKE
+  @SMOKE_TRADER
   Scenario: Test the Guest Login for V3 and setting fulfilment store id
     Given apigee connect to trader public api endpoint as guest
     When connection from apigee to trader public api endpoint happens
@@ -12,7 +12,7 @@ Feature: Guest set store verification  check for set store
     When connection from apigee to trader public api endpoint happens
     Then apigee failed to authenticate to trader public api endpoint as guest
 
-  @SMOKE
+  @SMOKE_TRADER
   Scenario: Test the Guest Login for V3 using valid Store Id
     Given apigee connect to trader public api endpoint as guest in store 3900996
     When connection from apigee to trader public api endpoint happens
