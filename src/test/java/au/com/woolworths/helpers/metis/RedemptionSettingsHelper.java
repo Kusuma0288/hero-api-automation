@@ -11,8 +11,6 @@ import java.util.Map;
 
 public class RedemptionSettingsHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
-  private RedemptionSettingsResponse response;
-
 
   public RedemptionSettingsHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
@@ -24,8 +22,7 @@ public class RedemptionSettingsHelper extends BaseHelper {
 
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, query, headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
-    response = mapper.readValue(responseStr, RedemptionSettingsResponse.class);
-    return response;
+    return mapper.readValue(responseStr, RedemptionSettingsResponse.class);
   }
 
 }
