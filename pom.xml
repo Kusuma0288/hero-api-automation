@@ -132,6 +132,15 @@
                 </cucumber.options>
             </properties>
         </profile>
+
+        <profile>
+            <id>Prod_rewards</id>
+            <properties>
+                <cucumber.options>
+                    --tags @PROD_REWARDS
+                </cucumber.options>
+            </properties>
+        </profile>
     </profiles>
 
     <build>
