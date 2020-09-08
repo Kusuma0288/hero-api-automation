@@ -1,4 +1,4 @@
-@PRODUCT_DETAILS @REGRESSION_TRADER @ProdRegression @Lobsters
+@PRODUCT_DETAILS @REGRESSION_TRADER @PROD_TRADER @Lobsters
 Feature: Verify Product details API
 
   @SMOKE_TRADER

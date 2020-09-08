@@ -1,4 +1,4 @@
-@REGRESSION @LIST @SMOKE @VEGEMITE
+@REGRESSION_APIGEE @LIST @SMOKE @VEGEMITE
 Feature: Verify Apigee List scenarios for User
 
 
@@ -17,7 +17,7 @@ Feature: Verify Apigee List scenarios for User
       | Post Code | List Name 1 | List Name 2 |
       | 2204      | AutoList12  | AutoList23  |
 
-  @PROD
+  @PROD_APIGEE
   Scenario Outline: Create List and add free text item and Verify whether user is able to delete the item and list
     Given I pick a location at "<Address>" for delivery
     When I clear ALL the lists for the user

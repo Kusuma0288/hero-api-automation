@@ -60,19 +60,19 @@
         </profile>
 
         <profile>
-            <id>prod</id>
+            <id>prod_apigee</id>
             <properties>
                 <cucumber.options>
-                    --tags @PROD
+                    --tags @PROD_APIGEE
                 </cucumber.options>
             </properties>
         </profile>
 
         <profile>
-            <id>regression</id>
+            <id>regression_apigee</id>
             <properties>
                 <cucumber.options>
-                    --tags @REGRESSION
+                    --tags @REGRESSION_APIGEE
                 </cucumber.options>
             </properties>
             <activation>
@@ -81,10 +81,10 @@
         </profile>
 
         <profile>
-            <id>ProdRegression</id>
+            <id>Prod_trader</id>
             <properties>
                 <cucumber.options>
-                    --tags @ProdRegression
+                    --tags @PROD_TRADER
                 </cucumber.options>
             </properties>
         </profile>

@@ -1,4 +1,4 @@
-@REGRESSION @Wolves
+@REGRESSION_APIGEE @Wolves
 Feature: Checkout API scenarios
 
   Background:

@@ -1,4 +1,4 @@
-@REGRESSION_TRADER @DELETE_ADDRESS @ProdRegression @SMOKE_TRADER @Wolves
+@REGRESSION_TRADER @DELETE_ADDRESS @PROD_TRADER @SMOKE_TRADER @Wolves
 Feature: Delete address for logged in user
 
   Scenario: Delete the previous delivery addresses for a logged in user

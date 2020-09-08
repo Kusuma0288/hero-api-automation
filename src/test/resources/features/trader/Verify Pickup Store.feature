@@ -2,7 +2,7 @@
 Feature: Verify the pickup store
   Test for the pickup store structure
 
-  @SMOKE_TRADER @ProdRegression
+  @SMOKE_TRADER @PROD_TRADER
   Scenario: Login as Guest and check the pickup structure by suburb
     Given apigee connect to trader public api endpoint as guest
     And connection from apigee to trader public api endpoint happens
@@ -19,7 +19,7 @@ Feature: Verify the pickup store
       | StoreId | deliveryMethod |
       | 1111    | Pickup         |
 
-  @ProdRegression
+  @PROD_TRADER
   Scenario: Login as Guest and check the pickup structure by postcode
     Given apigee connect to trader public api endpoint as guest
     And connection from apigee to trader public api endpoint happens

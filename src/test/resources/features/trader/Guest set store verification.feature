@@ -1,4 +1,4 @@
-@REGRESSION_TRADER @GUEST_STORE @ProdRegression @Wolves
+@REGRESSION_TRADER @GUEST_STORE @PROD_TRADER @Wolves
 Feature: Guest set store verification  check for set store
 
   @SMOKE_TRADER

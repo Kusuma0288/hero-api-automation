@@ -1,4 +1,4 @@
-@SHOPPING_AISLES @REGRESSION_TRADER @ProdRegression @Lobsters
+@SHOPPING_AISLES @REGRESSION_TRADER @PROD_TRADER @Lobsters
 
 Feature: Verify Shopping Aisles Api
 

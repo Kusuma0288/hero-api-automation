@@ -8,7 +8,7 @@ Feature: Verify Product details Api
     When customer calls product details api for 571487 stockcode
     Then verify product details api responds with all the details of product for this stockcode
 
-  @ProdRegression
+  @PROD_TRADER
   Scenario Outline: Verify the product count and total record count of each special group against products API for logged in user
     Given apigee connect to trader public api endpoint with login containing <Email Address> and password
     And I get the list of specials groups and verify the product count and total record count of each group
@@ -18,7 +18,7 @@ Feature: Verify Product details Api
       | shopapp+29    |
       | shopapp+26    |
 
-  @ProdRegression
+  @PROD_TRADER
   Scenario: Verify the product count and total record count of each special group against products API for guest user
 
     Given apigee connect to trader public api endpoint as guest

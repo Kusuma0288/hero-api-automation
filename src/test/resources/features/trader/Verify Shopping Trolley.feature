@@ -1,4 +1,4 @@
-@TROLLEY @REGRESSION_TRADER @ProdRegression @LION
+@TROLLEY @REGRESSION_TRADER @PROD_TRADER @LION
 Feature: Verify Shopping Trolley
   Test for the Shopping Trolley working in all possible modes
 
