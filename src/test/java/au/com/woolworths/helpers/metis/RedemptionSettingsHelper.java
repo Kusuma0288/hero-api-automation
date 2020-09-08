@@ -1,7 +1,7 @@
 package au.com.woolworths.helpers.metis;
 
 import au.com.woolworths.helpers.common.BaseHelper;
-import au.com.woolworths.model.metis.redemptionSettings.RedemptionSettingsResponse;
+import au.com.woolworths.model.metis.redemptionsettings.RedemptionSettingsResponse;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;

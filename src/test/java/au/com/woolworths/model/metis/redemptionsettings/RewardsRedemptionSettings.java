@@ -1,4 +1,4 @@
-package au.com.woolworths.model.metis.redemptionSettings;
+package au.com.woolworths.model.metis.redemptionsettings;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
