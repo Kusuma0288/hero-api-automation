@@ -25,7 +25,7 @@ stages:
           TestRunTitle: Apigee Automation Run Report
           SlackWebhookUrl: https://hooks.slack.com/services/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
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
-          Profile: prod
+          Profile: prod_apigee
           RunEnv: prod
     condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
 
@@ -41,7 +41,7 @@ stages:
           TestRunTitle: Apigee Automation Run Report
           SlackWebhookUrl: https://hooks.slack.com/services/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
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
-          Profile: regression
+          Profile: regression_apigee
           RunEnv: uat
     condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
 
@@ -57,7 +57,7 @@ stages:
           TestRunTitle: Apigee Automation Run Report
           SlackWebhookUrl: https://hooks.slack.com/services/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
           ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
-          Profile: regression
+          Profile: regression_apigee
           RunEnv: test
     condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
 
