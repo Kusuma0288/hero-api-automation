@@ -33,7 +33,7 @@ public class PaymentDefinition extends PaymentHelper {
         } else {
           Assert.assertNotNull(payPalResponse);
           Assert.assertTrue(payPalResponse.isSuccess(), "Payment didn't process through.");
-          sharedData.orderIdTrader =payPalResponse.getPlacedOrderId().toString();
+          sharedData.orderIdTrader = payPalResponse.getPlacedOrderId().toString();
         }
         break;
 

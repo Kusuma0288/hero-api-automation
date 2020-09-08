@@ -62,7 +62,7 @@ public class ShopperLoginDefinition extends ShopperHelper {
   }
 
   @Given("^apigee connect to trader public api endpoint from guest to logged in user with username (.*) and password$")
-  public void LoginContainingAndPasswordFromGuest(String loginName) throws Throwable {
+  public void loginContainingAndPasswordFromGuest(String loginName) throws Throwable {
     response = apigeeToTraderPublicAPIEndpointwithLoginAndPassword(loginName + "@" + TestProperties.get("EMAIL_DOMAINNAME"), TestProperties.get("SHOPPER_PASSWORD"), sharedData.deviceId);
     Assert.assertNotNull(response.getAuthToken(), "User was not authenticated");
     sharedData.responseStatusCode = response.getStatusCode();
@@ -146,7 +146,7 @@ public class ShopperLoginDefinition extends ShopperHelper {
   }
 
   @When("^connection from apigee to trader public api shopper endpoint happens$")
-  public void connection_from_apigee_to_trader_public_api_endpoint_happens() throws Throwable {
+  public void connectionFromApigeeToTraderPublicApiEndpointHappens() throws Throwable {
     Assert.assertNotNull(sharedData.responseStatusCode, "Connection issue::" + sharedData.responseStatusCode);
   }
 
@@ -199,7 +199,7 @@ public class ShopperLoginDefinition extends ShopperHelper {
   }
 
   @When("^apigee set the fulfilment store id to \"([^\"]*)\"$")
-  public void apigee_set_the_fulfilment_store_id_to(int fulfilmentStoreId) throws Throwable {
+  public void apigeeSetTheFulfilmentStoreIdTo(int fulfilmentStoreId) throws Throwable {
     CheckoutAddressResponse checkoutAddressResponse = iSetTheFulfilmentStoreId(fulfilmentStoreId);
     Assert.assertTrue(checkoutAddressResponse.isIsSuccessful());
     sharedData.fulfilmentStoreId = fulfilmentStoreId;
@@ -207,12 +207,12 @@ public class ShopperLoginDefinition extends ShopperHelper {
   }
 
   @Then("^I verify the login to check the fulfilment store id is set$")
-  public void i_verify_the_login_to_check_the_fulfilment_store_id_is_set() throws Throwable {
+  public void iVerifyTheLoginToCheckTheFulfilmentStoreIdIsSet() throws Throwable {
     Assert.assertTrue(sharedData.shopperLoginResponseV2.getSession().getFulfilmentStoreID() == sharedData.fulfilmentStoreId, "Fulfilment Store Id found::" + sharedData.shopperLoginResponseV2.getSession().getFulfilmentStoreID() + " is not set correctly as expected::" + sharedData.fulfilmentStoreId);
   }
 
   @Then("^I check the delivery method to be \"(.*)\"$")
-  public void i_check_the_delivery_method_to_be(String deliveryMethod) throws Throwable {
+  public void iCheckTheDeliveryMethodToBe(String deliveryMethod) throws Throwable {
     Assert.assertTrue(sharedData.shopperLoginResponseV2.getSession().getDeliveryMethod().equals(deliveryMethod), "Delivery Method is not matching");
   }
 }

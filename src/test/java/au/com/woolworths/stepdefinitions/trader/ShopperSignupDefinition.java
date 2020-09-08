@@ -88,12 +88,12 @@ public class ShopperSignupDefinition extends ShopperHelper {
   }
 
   @When("^connection from apigee to trader public signup api endpoint happens$")
-  public void connection_from_apigee_to_trader_public_api_endpoint_happens() throws Throwable {
+  public void connectionFromApigeeToTraderPublicApiEndpointHappens() throws Throwable {
     Assert.assertNotNull(sharedData.signupResponseStatusCode, "Connection issue::" + sharedData.signupResponseStatusCode);
   }
 
   @Then("^I should see the following (.*) captured with status code as (.*) having (.*)$")
-  public void i_should_see_the_following_captured_with_status_code_as(String status, String statusCode, String expectedErrorFields) throws Throwable {
+  public void iShouldSeeTheFollowingCapturedWithStatusCodeAs(String status, String statusCode, String expectedErrorFields) throws Throwable {
     ShopperLoginResponseV2 shopperResponse = sharedData.signupLoginResponseV2;
     List<String> expectedErrorFieldsList = Arrays.asList(expectedErrorFields.split(";"));
     Assert.assertTrue(sharedData.signupResponseStatusCode.equals(statusCode), "Status Code::" + sharedData.signupResponseStatusCode + " is not matching with expected status code::" + statusCode);

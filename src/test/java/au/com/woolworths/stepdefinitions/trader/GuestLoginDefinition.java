@@ -77,7 +77,7 @@ public class GuestLoginDefinition extends ShopperHelper {
   }
 
   @When("^apigee connect to trader public endpoint as guest with saved device id$")
-  public void apigee_connect_to_trader_public_endpoint_as_guest_with_saved_device_id() throws Throwable {
+  public void apigeeConnectToTraderPublicEndpointAsGuestWithSavedDeviceId() throws Throwable {
     response = apigeeConnectToTraderPublicAPIEndpointAsGuestWithPossibleOptions(0, false, false, sharedData.deviceId);
 
     sharedData.deviceId = deviceId;
@@ -112,7 +112,7 @@ public class GuestLoginDefinition extends ShopperHelper {
   }
 
   @When("^connection from apigee to trader public api endpoint happens$")
-  public void connection_from_apigee_to_trader_public_api_endpoint_happens() throws Throwable {
+  public void connectionFromApigeeToTraderPublicApiEndpointHappens() throws Throwable {
     Assert.assertNotNull(sharedData.responseStatusCode, "Connection issue::" + sharedData.responseStatusCode);
   }
 

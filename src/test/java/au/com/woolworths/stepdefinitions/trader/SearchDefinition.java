@@ -34,7 +34,7 @@ public class SearchDefinition extends SearchHelper {
   }
 
   @When("^verify the pickup stores in the postcode (\\d+)$")
-  public void verify_the_pickup_stores_in_the_postcode(int postCode) throws Throwable {
+  public void verifyThePickupStoresInThePostcode(int postCode) throws Throwable {
     PickupResponse[] pickupResponses = getServicablePickupStoresFromPostCode(postCode);
     for (PickupResponse response : pickupResponses) {
       Assert.assertNotNull(response.getDeliveryMethod(), "Delivery Method cannot be NULL");

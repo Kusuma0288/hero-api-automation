@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class ShoppingTrolleyDefinition extends ShopperHelper {
 
   private final static Logger logger = Logger.getLogger("ShoppingTrolleyDefinition.class");
-  
+
   @Given("^I clear the trolley for the shopper$")
   public void iClearTheTrolleyForTheShopper() throws Throwable {
     TrolleyResponse trolleyResponse = clearTheTrolleyForTheShopper();
@@ -110,7 +110,7 @@ public class ShoppingTrolleyDefinition extends ShopperHelper {
   }
 
   @When("^I verify all (\\d+) items are available in the Trolley$")
-  public void i_verify_all_items_are_available_in_the_Trolley(int noOfItems) throws Throwable {
+  public void iVerifyAllItemsAreAvailableInTheTrolley(int noOfItems) throws Throwable {
     TrolleyResponse trolleyResponse = sharedData.trolleyResponse;
     Assert.assertTrue(trolleyResponse.getTotalProducts() == noOfItems, "Expected Total Count in Trolley " + noOfItems + " is missing");
     Assert.assertTrue(trolleyResponse.getProducts().size() == noOfItems, "Expected Product Count in Trolley " + noOfItems + " is missing");
@@ -138,10 +138,10 @@ public class ShoppingTrolleyDefinition extends ShopperHelper {
       }
     }
     //Making the list to null so it can be reused by following scripts
-    sharedData.stockCodes=null;
+    sharedData.stockCodes = null;
     trolleyResponse = iRetrieveTheShopperTrolley();
     Assert.assertTrue(trolleyResponse.getTotalProducts() != 0, "Trolley is not null");
-    sharedData.trolleyQuantity=trolleyResponse.getTotalProducts();
+    sharedData.trolleyQuantity = trolleyResponse.getTotalProducts();
   }
 
   @Given("^I add (.*) of the searched item to my trolley with note (.*)$")
@@ -152,7 +152,7 @@ public class ShoppingTrolleyDefinition extends ShopperHelper {
     List<String> availableStockCodes = getAvailableStockCodesFromSearchProductItemsResult(searchProductItemsResult, 1);
 
     String stockCode = availableStockCodes.get(0).replaceFirst("^0+(?!$)", "");
-    sharedData.stockCodeTrader =stockCode;
+    sharedData.stockCodeTrader = stockCode;
     TrolleyResponse trolleyResponse = iAddProductsToTrolleyWithNotes(quantity, stockCode, true, note);
     Assert.assertTrue(trolleyResponse.getResponseStatus().equals("200"), "Stock Code:: " + stockCode + " couldn't be added to the trolley");
     Assert.assertTrue(trolleyResponse.getProducts().stream().findFirst().get().getNote().equalsIgnoreCase(note), "Note is not added to trolley");
@@ -215,9 +215,9 @@ public class ShoppingTrolleyDefinition extends ShopperHelper {
             Assert.assertTrue(trolleyResponse.getResponseStatus().equals("200") , "Stock Code:: "+stockCode+ " couldn't be added to the trolley");
         }
         }*/
-    sharedData.stockCodes=setAvailableStockCodes;
+    sharedData.stockCodes = setAvailableStockCodes;
     trolleyResponse = iRetrieveTheShopperTrolley();
-    sharedData.trolleyQuantity=trolleyResponse.getTotalProducts();
+    sharedData.trolleyQuantity = trolleyResponse.getTotalProducts();
   }
 
   @Given("^I keep on adding (.*) items to my existing trolley from search list with (.*) quantity each$")
@@ -236,9 +236,9 @@ public class ShoppingTrolleyDefinition extends ShopperHelper {
     }
     trolleyResponse = iAddFollowingProductsToTrolley(quantity, setAvailableStockCodes, false);
     Assert.assertTrue(trolleyResponse.getResponseStatus().equals("200"), "Stock Codes::" + setAvailableStockCodes.toString() + " couldn't be added to the trolley");
-    sharedData.stockCodes=setAvailableStockCodes;
+    sharedData.stockCodes = setAvailableStockCodes;
     trolleyResponse = iRetrieveTheShopperTrolley();
-    sharedData.trolleyQuantity=trolleyResponse.getTotalProducts();
+    sharedData.trolleyQuantity = trolleyResponse.getTotalProducts();
   }
 
 }

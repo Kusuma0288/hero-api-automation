@@ -24,12 +24,12 @@ public class ProductsByProductGroupDefinition extends ProductsHelper {
   }
 
   @When("^shopper calls products by product group api with \"([^\"]*)\"$")
-  public void shopper_calls_products_by_product_group_api_with(String productGroupId) throws Throwable {
+  public void shopperCallsProductsByProductGroupApiWith(String productGroupId) throws Throwable {
     sharedData.productsByProductGroup = iGetProductsByProductsGroup(productGroupId);
   }
 
   @Then("^verify products by product group api responds with all products for this productGroupId$")
-  public void verify_products_by_product_group_api_responds_with_all_products_for_this_productGroupId() {
+  public void verifyProductsByProductGroupApiRespondsWithAllProductsForThisProductGroupId() {
 
     Assert.assertTrue(sharedData.recentCompleteResponse.get("statusCode").equals("200"),
         "Expected Status Code is 200 but found::" + sharedData.recentCompleteResponse.get("statusCode"));
@@ -54,7 +54,7 @@ public class ProductsByProductGroupDefinition extends ProductsHelper {
   }
 
   @Then("^shopper adds any (.*) products with (.*) to trolley that are available in product group$")
-  public void shopper_adds_some_products_to_trolley_that_are_available_in_product_group(int productCount, int quantityInTrolley) throws Throwable {
+  public void shopperAddsSomeProductsToTrolleyThatAreAvailableInProductGroup(int productCount, int quantityInTrolley) throws Throwable {
     List<String> stockCodes = new ArrayList<>();
 
     sharedData.productsByProductGroup.getProducts().stream()
@@ -69,7 +69,7 @@ public class ProductsByProductGroupDefinition extends ProductsHelper {
   }
 
   @Then("^trolley (.*) and other information is updated for the products added to the trolley$")
-  public void trolley_information_is_updated_for_the_products_added_to_the_trolley(int quantityInTrolley) {
+  public void trolleyInformationIsUpdatedForTheProductsAddedToTheTrolley(int quantityInTrolley) {
     ProductsByProductGroup response = sharedData.productsByProductGroup;
     TrolleyResponse trolleyResponse = sharedData.trolleyResponse;
 
