@@ -12,22 +12,22 @@ import java.io.IOException;
 
 public class RedemptionSettingsDeserializer extends StdDeserializer<RedemptionSettingsResponse> {
 
-    public RedemptionSettingsDeserializer() {
-        this(null);
-    }
+  public RedemptionSettingsDeserializer() {
+    this(null);
+  }
 
-    public RedemptionSettingsDeserializer(Class<?> vc) {
-        super(vc);
-    }
+  public RedemptionSettingsDeserializer(Class<?> vc) {
+    super(vc);
+  }
 
-    @Override
-    public RedemptionSettingsResponse deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
-        JsonNode node = jp.getCodec().readTree(jp);
-        ObjectMapper objectMapper = new ObjectMapper();
+  @Override
+  public RedemptionSettingsResponse deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
+    JsonNode node = jp.getCodec().readTree(jp);
+    ObjectMapper objectMapper = new ObjectMapper();
 
-        String RedemptionSettingsResponseJson = node.get("data").get("rewardsRedemptionSettings").toString();
-        RewardsRedemptionSettings rewardsRedemptionSettings = objectMapper.readValue(RedemptionSettingsResponseJson, RewardsRedemptionSettings.class);
+    String RedemptionSettingsResponseJson = node.get("data").get("rewardsRedemptionSettings").toString();
+    RewardsRedemptionSettings rewardsRedemptionSettings = objectMapper.readValue(RedemptionSettingsResponseJson, RewardsRedemptionSettings.class);
 
-        return new RedemptionSettingsResponse(rewardsRedemptionSettings);
-    }
+    return new RedemptionSettingsResponse(rewardsRedemptionSettings);
+  }
 }

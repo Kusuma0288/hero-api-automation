@@ -1,9 +1,10 @@
 package au.com.woolworths.model.metis.redemptionsettings;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class TwoFactorAuth {
-    private String stepUpUrl;
+  private String stepUpUrl;
 }
