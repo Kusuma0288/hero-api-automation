@@ -2,7 +2,7 @@ package au.com.woolworths.helpers.metis;
 
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.metis.redemptionSettings.RedemptionSettingsResponse;
-import au.com.woolworths.stepdefinitions.apigee.ServiceHooks;
+import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
 
@@ -22,7 +22,7 @@ public class RedemptionSettingsHelper extends BaseHelper {
     String endPoint = URLResources.METIS_REWARDS_GRAPHQL;
     Map<String, String> mapWebserviceResponse;
 
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, query, headerList);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, query, headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, RedemptionSettingsResponse.class);
     return response;
