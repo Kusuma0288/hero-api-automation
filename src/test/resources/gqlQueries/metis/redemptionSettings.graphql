@@ -1,0 +1,20 @@
+query rewardsRedemptionSettings {
+    rewardsRedemptionSettings{
+        items{
+            isSelected
+            icon
+            title
+            body
+            confirmationMessages{
+                title
+                message
+                buttonLabel
+                isDestructive
+            }
+        }
+        twoFactorAuth{
+            stepUpUrl
+        }
+    }
+
+}
