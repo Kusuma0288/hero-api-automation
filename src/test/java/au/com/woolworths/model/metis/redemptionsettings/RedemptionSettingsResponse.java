@@ -11,9 +11,9 @@ import lombok.Data;
 @Data
 public class RedemptionSettingsResponse {
 
-    private RewardsRedemptionSettings rewardsRedemptionSettings;
+  private RewardsRedemptionSettings rewardsRedemptionSettings;
 
-    public RedemptionSettingsResponse(RewardsRedemptionSettings rewardsRedemptionSettings) {
-        this.rewardsRedemptionSettings = rewardsRedemptionSettings;
-    }
+  public RedemptionSettingsResponse(RewardsRedemptionSettings rewardsRedemptionSettings) {
+    this.rewardsRedemptionSettings = rewardsRedemptionSettings;
+  }
 }
