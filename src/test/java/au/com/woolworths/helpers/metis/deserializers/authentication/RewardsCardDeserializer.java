@@ -1,4 +1,4 @@
-package au.com.woolworths.helpers.metis.deserializers;
+package au.com.woolworths.helpers.metis.deserializers.authentication;
 
 import au.com.woolworths.model.metis.authentication.RewardsCard;
 import com.fasterxml.jackson.core.JsonParser;

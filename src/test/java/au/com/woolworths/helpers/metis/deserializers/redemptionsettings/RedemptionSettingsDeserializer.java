@@ -1,7 +1,7 @@
-package au.com.woolworths.helpers.metis.deserializers;
+package au.com.woolworths.helpers.metis.deserializers.redemptionsettings;
 
-import au.com.woolworths.model.metis.redemptionSettings.RewardsRedemptionSettings;
-import au.com.woolworths.model.metis.redemptionSettings.RedemptionSettingsResponse;
+import au.com.woolworths.model.metis.redemptionsettings.RewardsRedemptionSettings;
+import au.com.woolworths.model.metis.redemptionsettings.RedemptionSettingsResponse;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;

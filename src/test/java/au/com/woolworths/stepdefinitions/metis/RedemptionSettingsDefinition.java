@@ -2,8 +2,7 @@ package au.com.woolworths.stepdefinitions.metis;
 
 import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.helpers.metis.RedemptionSettingsHelper;
-import au.com.woolworths.model.metis.redemptionSettings.RedemptionSettingsResponse;
-import cucumber.api.PendingException;
+import au.com.woolworths.model.metis.redemptionsettings.RedemptionSettingsResponse;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;

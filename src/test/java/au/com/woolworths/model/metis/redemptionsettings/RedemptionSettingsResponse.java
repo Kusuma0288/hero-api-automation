@@ -1,6 +1,6 @@
-package au.com.woolworths.model.metis.redemptionSettings;
+package au.com.woolworths.model.metis.redemptionsettings;
 
-import au.com.woolworths.helpers.metis.deserializers.RedemptionSettingsDeserializer;
+import au.com.woolworths.helpers.metis.deserializers.redemptionsettings.RedemptionSettingsDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
