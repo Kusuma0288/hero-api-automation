@@ -1,4 +1,4 @@
-@REGRESSION
+@REGRESSION @REDEMPTION_SETTINGS
 Feature: Redemption settings provides the option to choose how to be rewarded
 
   Scenario: User selects redemption settings
