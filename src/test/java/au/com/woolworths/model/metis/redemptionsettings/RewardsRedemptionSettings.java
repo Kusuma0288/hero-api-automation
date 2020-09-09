@@ -9,13 +9,4 @@ public class RewardsRedemptionSettings {
   public Items[] items;
   public TwoFactorAuth twoFactorAuth;
 
-  public RewardsRedemptionSettings() {
-    super();
-  }
-
-  public RewardsRedemptionSettings(Items[] items, TwoFactorAuth twoFactorAuth) {
-    this.items = items;
-    this.twoFactorAuth = twoFactorAuth;
-  }
-
 }
