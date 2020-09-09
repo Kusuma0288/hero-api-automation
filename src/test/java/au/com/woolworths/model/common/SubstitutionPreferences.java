@@ -1,4 +1,4 @@
-package au.com.woolworths.model.trader;
+package au.com.woolworths.model.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
