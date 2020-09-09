@@ -1,4 +1,4 @@
-@Wolves @REGRESSION
+@Wolves @REGRESSION_APIGEE
 Feature: v3 Fulfilment API scenarios
 
   Scenario Outline:  To verify that the guest user is able to set an address as fulfilment address and

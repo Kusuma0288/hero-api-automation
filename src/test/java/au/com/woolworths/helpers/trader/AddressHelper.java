@@ -1,13 +1,17 @@
 package au.com.woolworths.helpers.trader;
 
 import au.com.woolworths.utils.RestInvocationUtil;
+import au.com.woolworths.utils.TestProperties;
 import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.trader.*;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
+import io.restassured.http.Header;
 import org.testng.Assert;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -71,9 +75,13 @@ public class AddressHelper extends BaseHelper {
     return checkoutAddressResponse;
   }
 
-  public MyAddresses iLoginToMyAccountToSeeTheAddresses() throws Throwable {
+  public MyAddresses iLoginToMyAccountToSeeTheAddresses(String authToken) throws Throwable {
 
     String endPoint = URLResources.TRADER_V2_MYACCOUNT_ADDRESS;
+    List<Header> headerListTrader = new LinkedList<>();
+    headerListTrader.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
+    headerListTrader.add(new Header("wowapi-auth-token", sharedData.signupAuthToken));
+    headerListTrader.add(new Header("cache-control", "no-cache"));
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, new HashMap<String, String>(), headerListTrader);
@@ -98,7 +106,7 @@ public class AddressHelper extends BaseHelper {
 
   public void iDeleteThePreviousAddresses() throws Throwable {
 
-    MyAddresses myAddressResponse = iLoginToMyAccountToSeeTheAddresses();
+    MyAddresses myAddressResponse = iLoginToMyAccountToSeeTheAddresses(sharedData.authToken);
 
     int counter = 1;
     String endPoint;

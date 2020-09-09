@@ -44,5 +44,8 @@ public class Product {
   private Boolean isForDelivery;
   private Boolean isMeatStockLoss;
   private Object Restrictions;
-
+  //New fields introduced for CMO (Change my order) changes.
+  private String SmallImageFile;
+  private String MediumImageFile;
+  private String LargeImageFile;
 }

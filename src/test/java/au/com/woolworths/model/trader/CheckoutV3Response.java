@@ -20,4 +20,6 @@ public class CheckoutV3Response {
   private String FulfilmentMethod;
   private int MaximumExpressOrderQuantity;
   private boolean HasCarePackage;
+  private boolean ShowSubstitutionWarningMessage;
+  private String SubstitutionWarningMessage;
 }

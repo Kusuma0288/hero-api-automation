@@ -1,4 +1,4 @@
-@REGRESSION @Lobsters
+@REGRESSION_APIGEE @Lobsters
 Feature: Verify Apigee Guest and Login Authentication
   Test for the guest/login feature
 

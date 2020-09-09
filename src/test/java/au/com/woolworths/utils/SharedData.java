@@ -93,4 +93,28 @@ public class SharedData {
   public HashMap<String, String> deliveryNowDetails = new HashMap<>();
   public ProductsByProductGroup productsByProductGroup;
   public Map<String, String> recentCompleteResponse = new HashMap<>();    //this is generic to any response
+  public Address address;
+
+  public String shopperDeliveryAddress;
+  public int trolleyQuantity;
+  public int fulfilmentStoreId;
+  public int guestAddressId;
+  public int deliveryAddressIdContainer;
+  public String signedUpEmail;
+  public String fulfilmentMethod;
+  public String trolleyItemNote;
+  public String stockCodeTrader;
+  public List<String> stockCodes;
+  public HashMap<Integer, String> deliveryAddresses = new HashMap<Integer, String>();
+  public String orderIdTrader;
+
+  public void setDeliveryAddresses(int addressID, String addressText) {
+    deliveryAddresses.put(addressID, addressText);
+  }
+  public HashMap<Integer, String> getDeliveryAddresses() {
+    return deliveryAddresses;
+  }
+  public void removeAllItemsInDeliveryAddresses() {
+    deliveryAddresses.clear();
+  }
 }

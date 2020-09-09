@@ -1,4 +1,4 @@
-@REGRESSION @Login
+@REGRESSION_REWARDS @Login
 Feature: Log in to the app
 
   Scenario: Login using auth code

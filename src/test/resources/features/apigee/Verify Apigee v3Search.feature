@@ -1,4 +1,4 @@
-@REGRESSION @PROD @Wolves
+@REGRESSION_APIGEE @PROD_APIGEE @Wolves
 Feature: Verify Apigee v3 Search functionality
 
   Scenario Outline: Verify that user is able to search an item and matching products are returned

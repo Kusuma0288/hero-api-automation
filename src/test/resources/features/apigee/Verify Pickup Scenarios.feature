@@ -1,10 +1,10 @@
-@REGRESSION @DELIVERY @PROD @Wolves
+@REGRESSION_APIGEE @DELIVERY @PROD_APIGEE @Wolves
 Feature: APIGEE : Pickup - Verify Apigee Pickup scenarios
 
   Scenario Outline: Verify whether user is able to search for a  pickup store by postcode
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME4"
     When connection from user to apigee endpoint happens
-    Then I search for the pickup stores in the postcode <PostCode>
+    Then I search for the pickup stores in Apigee for the postcode <PostCode>
     Then I validate that the fulfilmentMethod match to <FulfilmentMethod>
 
     Examples:
