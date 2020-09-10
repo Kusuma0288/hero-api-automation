@@ -1,0 +1,99 @@
+parameters:
+  - name: triggerEnv
+    type: string
+    default: all
+    values:
+      - uat
+      - test
+      - prod
+      - all
+
+trigger:
+  none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: Auto 
+  jobs:
+  - job: Prod
+    displayName: Prod Automation Run
+    steps:
+      - template: pipelines/templates/base-template.yml
+        parameters:
+          TestRunTitle: Apigee Automation Run Report
+          SlackWebhookUrl: https://hooks.slack.com/services/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
+          ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
+          Profile: prod_apigee
+          RunEnv: prod
+    condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
+
+  - job: Uat
+    displayName: Uat Automation Run
+    steps:
+      - script: |
+          echo "Setting up delay for the job"
+          sleep 10m
+          echo ${{ parameters.triggerEnv }}
+      - template: pipelines/templates/base-template.yml
+        parameters:
+          TestRunTitle: Apigee Automation Run Report
+          SlackWebhookUrl: https://hooks.slack.com/services/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
+          ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
+          Profile: regression_apigee
+          RunEnv: uat
+    condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
+
+  - job: Test
+    displayName: Test Automation Run
+    steps:
+      - script: |
+          echo "Setting up delay for the job"
+          sleep 10m
+          echo ${{ parameters.triggerEnv }}
+      - template: pipelines/templates/base-template.yml
+        parameters:
+          TestRunTitle: Apigee Automation Run Report
+          SlackWebhookUrl: https://hooks.slack.com/services/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
+          ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
+          Profile: regression_apigee
+          RunEnv: test
+    condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
+
+- stage: Manual
+  jobs:
+   - job: Manual
+     displayName: Manual Automation Run
+     steps:
+      - script: |
+          echo ${{ parameters.triggerEnv }}
+      - template: pipelines/templates/base-template.yml
+        parameters:
+          TestRunTitle: Apigee Automation Run Report
+          SlackWebhookUrl: https://hooks.slack.com/services/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
+          ClusterURL: https://wowuatmobileautoreports.z8.web.core.windows.net
+          Profile: regression
+          RunEnv: ${{ parameters.triggerEnv }}
+     condition: and(succeededOrFailed(), ne('${{ parameters.triggerEnv }}', 'all'))
+
+
+
+schedules:
+  - cron: "10 23 * * Mon-Fri"
+    displayName: Morning build (starts at 9:10AM)
+    branches:
+      include:
+        - develop
+    always: true
+
+  - cron: "10 04 * * Mon-Fri"
+    displayName: Afternoon build (starts at 2:10PM)
+    branches:
+      include:
+        - develop
+    always: true
+
+
+
+

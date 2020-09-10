@@ -1,0 +1,155 @@
+parameters:
+  - name: SlackWebHookUrl
+    type: string
+    default: https://hooks.slack.com/services/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
+
+  - name: TestRunTitle
+    type: string
+    default: Apigee Automation Run Report
+
+  - name: Profile
+    type: string
+
+  - name: ClusterUrl
+    type: string
+    default: https://wowuatmobileautoreports.z8.web.core.windows.net
+
+  - name: RunEnv
+    type: string
+    default: uat
+
+steps:
+  - task: DockerCompose@0
+    displayName: 'Run Apigee Automation'
+    inputs:
+      dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
+      dockerComposeCommand: 'run --entrypoint="mvn clean verify test -P${{ parameters.Profile }} -Denv=${{ parameters.RunEnv }} -DsaveRequestResponse=yes" tests'
+    continueOnError: true
+
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results'
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/junitreports/TEST-*.xml'
+      searchFolder: '$(Build.SourcesDirectory)'
+      mergeTestResults: true
+    continueOnError: true
+    condition: always()
+
+  - script: |
+      echo "--Giving permissions to update target directory--"
+      cd $(Build.SourcesDirectory)
+      ls
+      sudo chmod -R 0777 target/
+      echo "--Installing python dependencies--"
+      cd /usr/lib
+      pip install jsonpath-rw-ext
+      pip install matplotlib
+      sudo apt-get install python-tk
+
+    displayName: 'Install dependencies for Python'
+    continueOnError: true
+    condition: always()
+
+  - task: PythonScript@0
+    inputs:
+      scriptSource: 'filePath'
+      scriptPath: '$(Build.SourcesDirectory)/src/test/resources/slack_reporting.py'
+    displayName: 'Execute Python script'
+    continueOnError: true
+    condition: always()
+
+  - powershell: |
+      az storage blob upload-batch `
+       --account-key 'qzySpscvrIRAlI1W/WBKEDLG7mdFh4l1thcKewSfcJmoff0A+fNpvvAB6eASFBJYWRMCi7hw+arzJyKUmWWI+Q==' `
+       --account-name wowuatmobileautoreports `
+       --destination '$web/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)' `
+       --source '$(Build.SourcesDirectory)/target/cucumber-reports/'
+
+    displayName: 'Post test results to Azure blob storage'
+    continueOnError: true
+    condition: always()
+
+  - powershell: |
+      $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/index.html"
+      $imageURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/advanced-reports/test.png"
+      $wolvesURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Wolves.html"
+      $lionURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_LION.html"
+      $lobsterURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Lobsters.html"
+      $vegemiteURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
+      ##$nutellaURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
+      function calculation {
+       param ([string]$value)
+
+       $pattern='<li .*class=\s*"list-group-item"[^>]*>(?:.|\n)+?</li>'
+       $pattern11='<i[^>]*>(?:.|\n)+?</i>'
+       try
+       {
+         $webclient = New-Object System.Net.WebClient
+         $html = $webclient.DownloadString($value)
+         $Regex = [Regex]::Matches($html, $pattern)
+         $newVal = $Regex.value
+         $pattern11='<i[^>]*>(?:.|\n)+?</i>'
+         $Regex1 = [Regex]::Matches($newVal, $pattern11)
+         $count = $Regex1.value.split('title="passed"></i>')[1].Trim().Substring(0,2)
+       }
+       catch{
+         #"No feature/scenario exists for the tag provided"
+         $count = 0
+        }
+       return $count
+      }
+
+      $wolvesCount = calculation $wolvesURL
+      $lionCount = calculation $lionURL
+      $lobsterCount = calculation $lobsterURL
+      $vegemiteCount = calculation $vegemiteURL
+      $nutellaCount = 0
+
+      $color = 'good';
+      $slackMessage = @{
+      attachments = @(
+      @{
+        title = '${{ parameters.TestRunTitle }}'
+        color = $color
+        title_link = $testResultDetailsUrl
+        fields = @(
+            @{title = 'Source Branch'; value = '$(Build.SourceBranchName)' ; short = 'true'},
+            @{title = 'Run Env'; value = '${{ parameters.RunEnv }}'; short = 'true'}
+            @{title = 'Failures:'; short = 'false'}
+            @{title = ' '; short = 'false'}
+            if($wolvesCount -ne 0){
+            @{title = 'Wolves'; value = $wolvesCount; short = 'true'}
+            }
+            if($lionCount -ne 0){
+            @{title = 'Lion'; value = $lionCount; short = 'true'}
+            }
+            if($lobsterCount -ne 0){
+            @{title = 'Lobsters'; value = $lobsterCount; short = 'true'}
+            }
+            if($vegemiteCount -ne 0){
+            @{title = 'Vegemite'; value = $vegemiteCount; short = 'true'}
+            }
+            if($nutellaCount -ne 0){
+            @{title = 'Nutella'; value = $nutellaCount; short = 'true'}
+            }
+          )
+         image_url = $imageURL
+       }
+
+      )
+      } | ConvertTo-Json -Depth 5
+
+      Invoke-RestMethod -Uri '${{ parameters.SlackWebhookUrl }}' `
+       -Method Post `
+       -Body $slackMessage `
+       -UseBasicParsing `
+       -ContentType 'application/json'
+
+    displayName: 'Post test results to Slack'
+    continueOnError: true
+    condition: and(succeeded(), ne('${{ parameters.SlackWebhookUrl }}', ''))
+
+
+
+
