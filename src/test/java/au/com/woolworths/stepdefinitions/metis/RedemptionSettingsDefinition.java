@@ -32,51 +32,30 @@ public class RedemptionSettingsDefinition extends RedemptionSettingsHelper {
     Assert.assertTrue("RedemptionSettings doesn't include a step up url", redemptionSettingsResponse.getRewardsRedemptionSettings().getTwoFactorAuth().getStepUpUrl().contains("step-up"));
   }
 
-  @And("^item \"([^\"]*)\" returns the title \"([^\"]*)\"$")
-  public void itemShouldReturnTheTitle(int itemNumber, String title) {
-    int itemIndex = itemNumber - 1;
-    Assert.assertEquals("Incorrect title for item " + itemNumber, title, redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[itemIndex].getTitle());
-  }
+  @And("^the user should be able to see his redemption options$")
+  public void theUserShouldBeAbleToSeeHisRedemptionOptionsForItem1() {
+    Assert.assertEquals("Incorrect title for item 1", "Automatic savings", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[0].getTitle());
+    Assert.assertEquals("Incorrect body for item 1", "Get $10 off your next shop, whenever you reach 2000 points", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[0].getBody());
+    Assert.assertEquals("Incorrect icon for item 1", "dollars_off", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[0].getIcon());
+    Assert.assertEquals("Incorrect confirmation message title for item 1", "Switch to Woolworths Dollars?", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[0].getConfirmationMessages()[0].getTitle());
+    Assert.assertEquals("Incorrect confirmation button label for item 1", "Switch", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[0].getConfirmationMessages()[0].getButtonLabel());
+    Assert.assertFalse("Switching to item 1 should not be destructive", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[0].getConfirmationMessages()[0].getIsDestructive());
 
-  @And("^item \"([^\"]*)\" should return the body \"([^\"]*)\"$")
-  public void itemShouldReturnTheBody(int itemNumber, String bodyText) {
-    int itemIndex = itemNumber - 1;
-    Assert.assertEquals("Incorrect body for item " + itemNumber, bodyText, redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[itemIndex].getBody());
-  }
+    Assert.assertEquals("Incorrect title for item 2", "Save for Christmas", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[1].getTitle());
+    Assert.assertEquals("Incorrect body for item 2", "Get all your money off at Christmas, available from 01/12/20", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[1].getBody());
+    Assert.assertEquals("Incorrect icon for item 2", "xmas_stocking", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[1].getIcon());
+    Assert.assertEquals("Incorrect confirmation message title for item 2", "Switch to Bank for Christmas?", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[1].getConfirmationMessages()[0].getTitle());
+    Assert.assertEquals("Incorrect confirmation button label for item 2", "Switch", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[1].getConfirmationMessages()[0].getButtonLabel());
+    Assert.assertFalse("Switching to item  should be destructive for item 2", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[1].getConfirmationMessages()[0].getIsDestructive());
 
-  @And("^item \"([^\"]*)\" should return the icon \"([^\"]*)\"$")
-  public void itemShouldReturnTheIcon(int itemNumber, String icon) {
-    int itemIndex = itemNumber - 1;
-    Assert.assertEquals("Incorrect icon for item " + itemNumber, icon, redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[itemIndex].getIcon());
-  }
-
-  @And("^item \"([^\"]*)\" should return title \"([^\"]*)\" for confirmation message \"([^\"]*)\"$")
-  public void itemShouldReturnTitleForConfirmationMessageTitle(int itemNumber, String confirmationMessage, int confirmationMessageNumber) {
-    int itemIndex = itemNumber - 1;
-    int confirmationMessageIndex = confirmationMessageNumber - 1;
-    Assert.assertEquals("Incorrect confirmation message title for item " + itemNumber, confirmationMessage, redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[itemIndex].getConfirmationMessages()[confirmationMessageIndex].getTitle());
-  }
-
-  @And("^item \"([^\"]*)\" should return button label \"([^\"]*)\" for confirmation message \"([^\"]*)\"$")
-  public void itemShouldReturnButtonLabelForConfirmationMessageTitle(int itemNumber, String confirmationMessage, int confirmationMessageNumber) {
-    int itemIndex = itemNumber - 1;
-    int confirmationMessageIndex = confirmationMessageNumber - 1;
-    Assert.assertEquals("Incorrect confirmation button label for item " + itemNumber, confirmationMessage, redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[itemIndex].getConfirmationMessages()[confirmationMessageIndex].getButtonLabel());
-  }
-
-  @And("^item \"([^\"]*)\" should not be destructive for confirmation message \"([^\"]*)\" title$")
-  public void itemShouldNotBeDestructiveForConfirmationMessageTitle(int itemNumber, int confirmationMessageNumber) {
-    int itemIndex = itemNumber - 1;
-    int confirmationMessageIndex = confirmationMessageNumber - 1;
-    Assert.assertFalse("Switching to item " + itemNumber + " should not be destructive", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[itemIndex].getConfirmationMessages()[confirmationMessageIndex].getIsDestructive());
+    Assert.assertEquals("Incorrect title for item 3", "Qantas Points", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[2].getTitle());
+    Assert.assertEquals("Incorrect body for item 3", "Converting to Qantas Points. 2000 Woolworths Points = 1000 Qantas Points", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[2].getBody());
+    Assert.assertEquals("Incorrect icon for item 3", "airplane", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[2].getIcon());
+    Assert.assertEquals("Incorrect confirmation message title for item 3", "Switch to Qantas Points", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[2].getConfirmationMessages()[0].getTitle());
+    Assert.assertEquals("Incorrect confirmation button label for item 3", "Switch", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[2].getConfirmationMessages()[0].getButtonLabel());
+    Assert.assertTrue("Switching to item 3 be destructive", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[2].getConfirmationMessages()[0].getIsDestructive());
 
   }
 
-  @And("^item \"([^\"]*)\" should be destructive for confirmation message \"([^\"]*)\" title$")
-  public void itemShouldBeDestructiveForConfirmationMessageTitle(int itemNumber, int confirmationMessageNumber) {
-    int itemIndex = itemNumber - 1;
-    int confirmationMessageIndex = confirmationMessageNumber - 1;
-    Assert.assertTrue("Switching to item " + itemNumber + " should be destructive", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[itemIndex].getConfirmationMessages()[confirmationMessageIndex].getIsDestructive());
 
-  }
 }
