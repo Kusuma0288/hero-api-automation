@@ -1,6 +1,6 @@
 package au.com.woolworths.model.metis.authentication;
 
-import au.com.woolworths.helpers.metis.deserializers.LoginDeserializer;
+import au.com.woolworths.helpers.metis.deserializers.authentication.LoginDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
