@@ -2,6 +2,7 @@ package au.com.woolworths.model.trader;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
+import au.com.woolworths.model.common.SubstitutionPreferences;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
@@ -21,7 +22,6 @@ public class CheckoutV2Response {
   private String FulfilmentMethod;
   private int MaximumExpressOrderQuantity;
   private boolean HasCarePackage;
-  private boolean ShowSubstitutionWarningMessage;
-  private String SubstitutionWarningMessage;
+  private SubstitutionPreferences SubstitutionPreferences;
 
 }
