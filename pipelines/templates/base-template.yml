@@ -5,7 +5,7 @@ parameters:
 
   - name: TestRunTitle
     type: string
-    default: Apigee Automation Run Report
+    default: Automation Run Report
 
   - name: Profile
     type: string
@@ -20,7 +20,7 @@ parameters:
 
 steps:
   - task: DockerCompose@0
-    displayName: 'Run Apigee Automation'
+    displayName: 'Execute Tests'
     inputs:
       dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
       dockerComposeCommand: 'run --entrypoint="mvn clean verify test -P${{ parameters.Profile }} -Denv=${{ parameters.RunEnv }} -DsaveRequestResponse=yes" tests'
@@ -63,7 +63,7 @@ steps:
       az storage blob upload-batch `
        --account-key 'qzySpscvrIRAlI1W/WBKEDLG7mdFh4l1thcKewSfcJmoff0A+fNpvvAB6eASFBJYWRMCi7hw+arzJyKUmWWI+Q==' `
        --account-name wowuatmobileautoreports `
-       --destination '$web/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)' `
+       --destination '$web/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)' `
        --source '$(Build.SourcesDirectory)/target/cucumber-reports/'
 
     displayName: 'Post test results to Azure blob storage'
@@ -71,13 +71,13 @@ steps:
     condition: always()
 
   - powershell: |
-      $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/index.html"
-      $imageURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/advanced-reports/test.png"
-      $wolvesURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Wolves.html"
-      $lionURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_LION.html"
-      $lobsterURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Lobsters.html"
-      $vegemiteURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
-      ##$nutellaURL = "${{ parameters.ClusterUrl }}/apigee_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
+      $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/index.html"
+      $imageURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/advanced-reports/test.png"
+      $wolvesURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Wolves.html"
+      $lionURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_LION.html"
+      $lobsterURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Lobsters.html"
+      $vegemiteURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
+      ##$nutellaURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
       function calculation {
        param ([string]$value)
 
@@ -149,7 +149,3 @@ steps:
     displayName: 'Post test results to Slack'
     continueOnError: true
     condition: and(succeeded(), ne('${{ parameters.SlackWebhookUrl }}', ''))
-
-
-
-
