@@ -32,8 +32,14 @@ for filepath in glob.glob(os.path.join(os.path.expanduser(path), '*.json')):
     with open(filepath) as json_file:
         json_data = json.load(json_file)
 
-        individual_scenarios = jp.match1("$.[*].elements", json_data)
-        total_no_of_scenarios += len(individual_scenarios)
+        # Filter out all values in the "elements" array that are not tests
+        for element in json_data[0]["elements"]:
+            if ("before" not in element):
+                print("This is a Background step; not a Test")
+            elif (element["before"]):
+                individual_scenarios += 1
+
+        total_no_of_scenarios = individual_scenarios
         total_scenarios_failed += len(jp.match("$.[*].elements[?(steps[*].result.status~'.*failed.*')]", json_data))
 
 # print "\n\nThe Total Number of Scenarios::",total_no_of_scenarios
