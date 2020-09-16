@@ -26,6 +26,7 @@ path = workspace + '/target/cucumber-reports/advanced-reports/'
 
 total_no_of_scenarios = 0
 total_scenarios_failed = 0
+individual_scenarios = 0
 
 for filepath in glob.glob(os.path.join(os.path.expanduser(path), '*.json')):
     # print("The Feature file Path is::"+filepath)
