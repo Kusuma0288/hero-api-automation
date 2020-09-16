@@ -32,7 +32,7 @@ stages:
           - script: |
               echo "Setting up delay for the job"
               sleep 10m
-              echo ${{ parameters.triggerEnv }}
+
           - template: pipelines/templates/base-template.yml
             parameters:
               TestRunTitle: Uat_Apigee Automation Run Report
@@ -45,7 +45,7 @@ stages:
           - script: |
               echo "Setting up delay for the job"
               sleep 10m
-              echo ${{ parameters.triggerEnv }}
+
           - template: pipelines/templates/base-template.yml
             parameters:
               TestRunTitle: Test_Apigee Automation Run Report
