@@ -1,7 +1,7 @@
 parameters:
   - name: SlackWebHookUrl
     type: string
-    default: https://hooks.slack.com/services/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
+    default: https://hooks.slack.com/services/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
 
   - name: TestRunTitle
     type: string
