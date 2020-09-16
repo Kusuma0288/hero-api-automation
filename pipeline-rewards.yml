@@ -5,7 +5,6 @@ parameters:
     values:
       - uat
       - test
-      - prod
       - all
 
 trigger:
@@ -18,16 +17,7 @@ stages:
   - stage: Auto
     # Jobs schedules are managed --> https://wowonline.visualstudio.com/Mobile/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=1604&view=Tab_Triggers
     jobs:
-      - job: Prod_rewards
-        steps:
-          - template: pipelines/templates/base-template.yml
-            parameters:
-              TestRunTitle: Prod_rewards Automation Run Report
-              Profile: Prod_rewards
-              RunEnv: prod
-        condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
-
-      - job: Uat_Metis
+      - job: Uat_Rewards
         steps:
           - script: |
               echo "Setting up delay for the job"
@@ -57,19 +47,12 @@ stages:
     jobs:
       - job: Manual
         displayName: Manual Automation Run
-        variables:
-          ${{ if eq(parameters.triggerEnv, 'prod') }}:
-            TriggeredProfile: Prod_rewards
-          ${{ if eq(parameters.triggerEnv, 'uat') }}:
-            TriggeredProfile: regression_rewards
-          ${{ if eq(parameters.triggerEnv, 'test') }}:
-            TriggeredProfile: regression_rewards
         steps:
           - script: |
               echo ${{ parameters.triggerEnv }}
           - template: pipelines/templates/base-template.yml
             parameters:
               TestRunTitle: Rewards Automation Run Report
-              Profile: ${{variables.TriggeredProfile}}
+              Profile: regression_rewards
               RunEnv: ${{ parameters.triggerEnv }}
         condition: and(succeededOrFailed(), ne('${{ parameters.triggerEnv }}', 'all'))
