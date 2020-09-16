@@ -1,0 +1,58 @@
+parameters:
+  - name: triggerEnv
+    type: string
+    default: all
+    values:
+      - uat
+      - test
+      - all
+
+trigger:
+  none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+  - stage: Auto
+    # Jobs schedules are managed --> https://wowonline.visualstudio.com/Mobile/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=1604&view=Tab_Triggers
+    jobs:
+      - job: Uat_Rewards
+        steps:
+          - script: |
+              echo "Setting up delay for the job"
+              sleep 10m
+              echo ${{ parameters.triggerEnv }}
+          - template: pipelines/templates/base-template.yml
+            parameters:
+              TestRunTitle: Uat_Rewards Automation Run Report
+              Profile: regression_rewards
+              RunEnv: uat
+        condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
+
+      - job: Test_Rewards
+        steps:
+          - script: |
+              echo "Setting up delay for the job"
+              sleep 10m
+              echo ${{ parameters.triggerEnv }}
+          - template: pipelines/templates/base-template.yml
+            parameters:
+              TestRunTitle: Test_Rewards Automation Run Report
+              Profile: regression_rewards
+              RunEnv: test
+        condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
+
+  - stage: Manual
+    jobs:
+      - job: Manual
+        displayName: Manual Automation Run
+        steps:
+          - script: |
+              echo ${{ parameters.triggerEnv }}
+          - template: pipelines/templates/base-template.yml
+            parameters:
+              TestRunTitle: Rewards Automation Run Report
+              Profile: regression_rewards
+              RunEnv: ${{ parameters.triggerEnv }}
+        condition: and(succeededOrFailed(), ne('${{ parameters.triggerEnv }}', 'all'))

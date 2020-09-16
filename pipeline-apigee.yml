@@ -1,0 +1,75 @@
+parameters:
+  - name: triggerEnv
+    type: string
+    default: all
+    values:
+      - uat
+      - test
+      - prod
+      - all
+
+trigger:
+  none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+  - stage: Auto
+    # Job schedules are managed --> https://wowonline.visualstudio.com/Mobile/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=1602&view=Tab_Triggers
+    jobs:
+      - job: Prod_Apigee
+        steps:
+          - template: pipelines/templates/base-template.yml
+            parameters:
+              TestRunTitle: Prod_Apigee Automation Run Report
+              Profile: prod_apigee
+              RunEnv: prod
+        condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
+
+      - job: Uat_Apigee
+        steps:
+          - script: |
+              echo "Setting up delay for the job"
+              sleep 10m
+
+          - template: pipelines/templates/base-template.yml
+            parameters:
+              TestRunTitle: Uat_Apigee Automation Run Report
+              Profile: regression_apigee
+              RunEnv: uat
+        condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
+
+      - job: Test_Apigee
+        steps:
+          - script: |
+              echo "Setting up delay for the job"
+              sleep 10m
+
+          - template: pipelines/templates/base-template.yml
+            parameters:
+              TestRunTitle: Test_Apigee Automation Run Report
+              Profile: regression_apigee
+              RunEnv: test
+        condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
+
+  - stage: Manual
+    jobs:
+      - job: Manual
+        displayName: Manual Automation Run
+        variables:
+          ${{ if eq(parameters.triggerEnv, 'prod') }}:
+            TriggeredProfile: prod_apigee
+          ${{ if eq(parameters.triggerEnv, 'uat') }}:
+            TriggeredProfile: regression_apigee
+          ${{ if eq(parameters.triggerEnv, 'test') }}:
+            TriggeredProfile: regression_apigee
+        steps:
+          - script: |
+              echo ${{ parameters.triggerEnv }}
+          - template: pipelines/templates/base-template.yml
+            parameters:
+              TestRunTitle: Apigee Automation Run Report
+              Profile: ${{variables.TriggeredProfile}}
+              RunEnv: ${{ parameters.triggerEnv }}
+        condition: and(succeededOrFailed(), ne('${{ parameters.triggerEnv }}', 'all'))
