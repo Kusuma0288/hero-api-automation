@@ -1,7 +1,8 @@
 parameters:
   - name: SlackWebHookUrl
     type: string
-    default: https://hooks.slack.com/services/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
+    #default: https://hooks.slack.com/services/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
+    default: https://hooks.slack.com/services/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
 
   - name: TestRunTitle
     type: string
@@ -17,6 +18,9 @@ parameters:
   - name: RunEnv
     type: string
     default: uat
+
+  - name: Service
+    type: string
 
 steps:
   - task: DockerCompose@0
@@ -63,7 +67,7 @@ steps:
       az storage blob upload-batch `
        --account-key 'qzySpscvrIRAlI1W/WBKEDLG7mdFh4l1thcKewSfcJmoff0A+fNpvvAB6eASFBJYWRMCi7hw+arzJyKUmWWI+Q==' `
        --account-name wowuatmobileautoreports `
-       --destination '$web/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)' `
+       --destination '$web/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)' `
        --source '$(Build.SourcesDirectory)/target/cucumber-reports/'
 
     displayName: 'Post test results to Azure blob storage'
@@ -71,13 +75,13 @@ steps:
     condition: always()
 
   - powershell: |
-      $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/index.html"
-      $imageURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/advanced-reports/test.png"
-      $wolvesURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Wolves.html"
-      $lionURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_LION.html"
-      $lobsterURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Lobsters.html"
-      $vegemiteURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
-      ##$nutellaURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
+      $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/index.html"
+      $imageURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/advanced-reports/test.png"
+      $wolvesURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Wolves.html"
+      $lionURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_LION.html"
+      $lobsterURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Lobsters.html"
+      $vegemiteURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
+      ##$nutellaURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
       function calculation {
        param ([string]$value)
 
