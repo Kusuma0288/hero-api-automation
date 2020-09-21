@@ -25,6 +25,7 @@ stages:
               TestRunTitle: Prod_Trader Automation Run Report
               Profile: Prod_trader
               RunEnv: prod
+              Service: trader
         condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
 
       - job: Uat_Trader
@@ -38,6 +39,7 @@ stages:
               TestRunTitle: Uat_Trader Automation Run Report
               Profile: regression_trader
               RunEnv: uat
+              Service: trader
         condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
 
       - job: Test_Trader
@@ -51,6 +53,7 @@ stages:
               TestRunTitle: Test_Trader Automation Run Report
               Profile: regression_trader
               RunEnv: test
+              Service: trader
         condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
 
   - stage: Manual
@@ -73,4 +76,5 @@ stages:
               TestRunTitle: Trader Automation Run Report
               Profile: ${{variables.TriggeredProfile}}
               RunEnv: ${{ parameters.triggerEnv }}
+              Service: trader
         condition: and(succeededOrFailed(), ne('${{ parameters.triggerEnv }}', 'all'))

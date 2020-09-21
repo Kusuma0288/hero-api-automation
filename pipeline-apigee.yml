@@ -25,6 +25,7 @@ stages:
               TestRunTitle: Prod_Apigee Automation Run Report
               Profile: prod_apigee
               RunEnv: prod
+              Service: apigee
         condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
 
       - job: Uat_Apigee
@@ -38,6 +39,7 @@ stages:
               TestRunTitle: Uat_Apigee Automation Run Report
               Profile: regression_apigee
               RunEnv: uat
+              Service: apigee
         condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
 
       - job: Test_Apigee
@@ -51,6 +53,7 @@ stages:
               TestRunTitle: Test_Apigee Automation Run Report
               Profile: regression_apigee
               RunEnv: test
+              Service: apigee
         condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
 
   - stage: Manual
@@ -72,4 +75,5 @@ stages:
               TestRunTitle: Apigee Automation Run Report
               Profile: ${{variables.TriggeredProfile}}
               RunEnv: ${{ parameters.triggerEnv }}
+              Service: apigee
         condition: and(succeededOrFailed(), ne('${{ parameters.triggerEnv }}', 'all'))
