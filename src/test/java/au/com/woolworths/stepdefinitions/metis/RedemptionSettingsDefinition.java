@@ -35,21 +35,18 @@ public class RedemptionSettingsDefinition extends RedemptionSettingsHelper {
   @And("^the user should be able to see his redemption options$")
   public void theUserShouldBeAbleToSeeHisRedemptionOptionsForItem1() {
     Assert.assertEquals("Incorrect title for item 1", "Automatic savings", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[0].getTitle());
-    Assert.assertEquals("Incorrect body for item 1", "Get $10 off your next shop, whenever you reach 2000 points", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[0].getBody());
     Assert.assertEquals("Incorrect icon for item 1", "dollars_off", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[0].getIcon());
     Assert.assertEquals("Incorrect confirmation message title for item 1", "Switch to Woolworths Dollars?", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[0].getConfirmationMessages()[0].getTitle());
     Assert.assertEquals("Incorrect confirmation button label for item 1", "Switch", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[0].getConfirmationMessages()[0].getButtonLabel());
     Assert.assertFalse("Switching to item 1 should not be destructive", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[0].getConfirmationMessages()[0].getIsDestructive());
 
-    Assert.assertEquals("Incorrect title for item 2", "Save for Christmas", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[1].getTitle());
-    Assert.assertEquals("Incorrect body for item 2", "Get all your money off at Christmas, available from 01/12/20", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[1].getBody());
+    Assert.assertEquals("Incorrect title for item 2", "Bank for Christmas", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[1].getTitle());
     Assert.assertEquals("Incorrect icon for item 2", "xmas_stocking", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[1].getIcon());
     Assert.assertEquals("Incorrect confirmation message title for item 2", "Switch to Bank for Christmas?", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[1].getConfirmationMessages()[0].getTitle());
     Assert.assertEquals("Incorrect confirmation button label for item 2", "Switch", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[1].getConfirmationMessages()[0].getButtonLabel());
     Assert.assertFalse("Switching to item  should be destructive for item 2", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[1].getConfirmationMessages()[0].getIsDestructive());
 
     Assert.assertEquals("Incorrect title for item 3", "Qantas Points", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[2].getTitle());
-    Assert.assertEquals("Incorrect body for item 3", "Converting to Qantas Points. 2000 Woolworths Points = 1000 Qantas Points", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[2].getBody());
     Assert.assertEquals("Incorrect icon for item 3", "airplane", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[2].getIcon());
     Assert.assertEquals("Incorrect confirmation message title for item 3", "Switch to Qantas Points", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[2].getConfirmationMessages()[0].getTitle());
     Assert.assertEquals("Incorrect confirmation button label for item 3", "Switch", redemptionSettingsResponse.getRewardsRedemptionSettings().getItems()[2].getConfirmationMessages()[0].getButtonLabel());

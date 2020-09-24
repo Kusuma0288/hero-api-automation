@@ -16,20 +16,27 @@ import java.util.logging.Logger;
 public class BaseHelper {
 
   private final static Logger logger = Logger.getLogger("BaseHelper.class");
-  protected SharedData sharedData;
   protected static List<Header> headerListCommon;
   protected static List<Header> headerListTrader;
+  protected static List<Header> headerListRewards;
+  protected SharedData sharedData;
   protected ObjectMapper mapper = new ObjectMapper();
 
   public BaseHelper() {
     this.headerListCommon = new LinkedList<>();
     this.headerListTrader = new LinkedList<>();
+    this.headerListRewards = new LinkedList<>();
     this.sharedData = ApplicationContext.getSharedData();
     headerListCommon.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerListCommon.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
+
     headerListTrader.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
     headerListTrader.add(new Header("wowapi-auth-token", sharedData.authToken));
     headerListTrader.add(new Header("cache-control", "no-cache"));
+
+    headerListRewards.add(new Header("x-api-key", TestProperties.get("rewards-x-api-key")));
+    headerListRewards.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
+
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
     mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);

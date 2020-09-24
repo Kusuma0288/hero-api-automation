@@ -1,5 +1,7 @@
 package au.com.woolworths.stepdefinitions.metis;
 
+import au.com.woolworths.model.helios.login.AuthCode;
+import au.com.woolworths.utils.TestProperties;
 import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.metis.LoginHelper;
 import au.com.woolworths.model.metis.authentication.LinkResponse;
@@ -20,16 +22,28 @@ public class RewardsLoginDefinition extends LoginHelper {
   public void hasLinkSessionToken() throws Throwable {
     LinkResponse linkResponse = getLinkSession();
     sharedData.sessionToken = linkResponse.getSessionToken();
-    logger.info("Showing the Session Token Response: " + sharedData.sessionToken);
+    Assert.assertEquals("Status code for Link unsuccessful", "200",  sharedData.responseStatusCode);
+    logger.info("Showing the Session Token: " + sharedData.sessionToken);
+  }
+
+  @Given("^I get the authcode of card number \"([^\"]*)\" of an \"([^\"]*)\" user$")
+  public void getTheAuthcodeOfCardNumberOfAnUser(String rewardUser, String clientOS) throws Throwable {
+    AuthCode authCode = getAuthCode(rewardUser, clientOS);
+    Assert.assertNotNull("AuthCode is not returned", authCode);
+    Assert.assertEquals("Status code for AuthCode unsuccessful", "200",  sharedData.responseStatusCode);
+    sharedData.authCode = authCode.getData().getAuthCode();
+    logger.info("Showing the AuthCode: " + sharedData.authCode);
+
   }
 
   @When("^the user logs in with their authcode$")
   public void logsInWithAuthcode() throws Throwable {
-    String deviceId = Utilities.generateRandomUUIDString();
-    sharedData.deviceId = deviceId;
-    String sessionToken = sharedData.sessionToken;
-    loginResponse = postLoginUsingAuthCode(deviceId, sessionToken);
+    sharedData.deviceId = Utilities.generateRandomUUIDString();
+    loginResponse = postLoginUsingAuthCode(sharedData.deviceId, sharedData.sessionToken);
+    Assert.assertEquals("Status code for Login unsuccessful", "200",  sharedData.responseStatusCode);
     sharedData.accessToken = loginResponse.getAuth().getAccessToken();
+    logger.info("Showing the Access Token: " + sharedData.accessToken);
+
   }
 
   @Then("^the user should be logged into the Rewards App$")
@@ -44,4 +58,14 @@ public class RewardsLoginDefinition extends LoginHelper {
     Assert.assertEquals("Login response doesn't include a successful rewards card object", "PrimaryRewardsCard", loginResponse.getRewardsCard().getType());
     Assert.assertEquals("Login response doesn't include a successful analytics object", "AnalyticsData", loginResponse.getRewardsAnalytics().getType());
   }
+
+
+  @Given("^a user logs in the rewards app with card number \"([^\"]*)\"$")
+  public void aUserLogsInTheRewardsWithCardNumber(String rewardUser) throws Throwable {
+    hasLinkSessionToken();
+    getTheAuthcodeOfCardNumberOfAnUser(TestProperties.get(rewardUser), "iOS");
+    logsInWithAuthcode();
+    shouldBeLoggedIn();
+  }
+
 }

@@ -21,6 +21,7 @@ import java.util.Map;
 public class SharedData {
 
   public String deviceId;
+  public String authCode;
   public String sessionToken;
   public String authToken;
   public String responseStatusCode;

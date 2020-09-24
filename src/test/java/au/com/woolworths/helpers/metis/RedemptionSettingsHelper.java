@@ -20,7 +20,7 @@ public class RedemptionSettingsHelper extends BaseHelper {
     String endPoint = URLResources.METIS_REWARDS_GRAPHQL;
     Map<String, String> mapWebserviceResponse;
 
-    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, query, headerListCommon);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, query, headerListRewards);
     String responseStr = mapWebserviceResponse.get("response");
     return mapper.readValue(responseStr, RedemptionSettingsResponse.class);
   }

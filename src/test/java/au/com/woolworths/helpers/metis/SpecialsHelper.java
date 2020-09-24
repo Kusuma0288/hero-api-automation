@@ -22,7 +22,7 @@ public class SpecialsHelper extends BaseHelper {
     String endPoint = URLResources.METIS_REWARDS_SPECIALS;
     Map<String, String> mapWebserviceResponse;
 
-    mapWebserviceResponse = invocationUtil.invokeGetWithoutParam(endPoint, headerListCommon);
+    mapWebserviceResponse = invocationUtil.invokeGetWithoutParam(endPoint, headerListRewards);
 
     String responseStr = mapWebserviceResponse.get("response");
     String statusCodeStr = mapWebserviceResponse.get("statusCode");

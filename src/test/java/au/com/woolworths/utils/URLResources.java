@@ -46,7 +46,7 @@ public final class URLResources {
   public static final String METIS_LOGOUT = "/zeus/metis/v1/rewards/logout";
   public static final String METIS_REWARDS = "/zeus/metis/v1/rewards";
   public static final String METIS_TOKEN = "/zeus/metis/v1/rewards/token";
-
+  public static final String HELIOS_LOGIN = "/helios/v1/api/login";
 
   //Trader URL
   public static final String TRADER_V2_GUEST = "/Authenticate/LoginAsGuest";
