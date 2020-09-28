@@ -11,7 +11,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 user = os.environ['USER']
-
+print(user)
 workspace = '~/Woolworths/woolworths-mobile-api-automation'
 channel_name = '#testing_python_slack'
 
