@@ -23,7 +23,7 @@ elif user == 'vsts':
     channel_name = '#azureautomation'
 
 path = workspace + '/target/cucumber-reports/advanced-reports/'
-
+print("\n\nThe Path::",path)
 total_no_of_scenarios = 0
 total_scenarios_failed = 0
 individual_scenarios = 0
