@@ -21,6 +21,10 @@ if user == 'jenkins':
 elif user == 'vsts':
     workspace = '/home/vsts/work/1/s'
     channel_name = '#azureautomation'
+elif user == 'AzDevOps':
+    workspace = '/home/vsts/work/1/s'
+    channel_name = '#azureautomation'
+
 
 path = workspace + '/target/cucumber-reports/advanced-reports/'
 print("\n\nThe Path::",path)
