@@ -11,7 +11,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 user = os.environ['USER']
-print(user)
+
 workspace = '~/Woolworths/woolworths-mobile-api-automation'
 channel_name = '#testing_python_slack'
 
@@ -20,14 +20,14 @@ if user == 'jenkins':
     channel_name = '#shopapp-auto-reports'
 elif user == 'vsts':
     workspace = '/home/vsts/work/1/s'
-    channel_name = '#azureautomation'
+    channel_name = '#shopapp-auto-reports'
 elif user == 'AzDevOps':
     workspace = '/agent/_work/1/s'
-    channel_name = '#azureautomation'
+    channel_name = '#shopapp-auto-reports'
 
 
 path = workspace + '/target/cucumber-reports/advanced-reports/'
-print("\n\nThe Path::",path)
+
 total_no_of_scenarios = 0
 total_scenarios_failed = 0
 individual_scenarios = 0
