@@ -22,7 +22,7 @@ elif user == 'vsts':
     workspace = '/home/vsts/work/1/s'
     channel_name = '#azureautomation'
 elif user == 'AzDevOps':
-    workspace = '/home/AzDevOps/_work/1/s'
+    workspace = '/agent/_work/1/s'
     channel_name = '#azureautomation'
 
 
