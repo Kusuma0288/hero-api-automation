@@ -5,6 +5,5 @@ import lombok.Data;
 @Data
 public class RewardsHomePage {
 
-  private String __typename;
   private Balance balance;
 }
