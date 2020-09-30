@@ -77,7 +77,7 @@ steps:
       $lionURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_LION.html"
       $lobsterURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Lobsters.html"
       $vegemiteURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
-      ##$nutellaURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
+      $nutellaURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_NUTELLA.html"
       function calculation {
        param ([string]$value)
 
@@ -104,7 +104,7 @@ steps:
       $lionCount = calculation $lionURL
       $lobsterCount = calculation $lobsterURL
       $vegemiteCount = calculation $vegemiteURL
-      $nutellaCount = 0
+      $nutellaCount = calculation $nutellaURL
 
       $color = 'good';
       $slackMessage = @{
