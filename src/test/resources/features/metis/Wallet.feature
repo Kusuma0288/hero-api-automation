@@ -1,4 +1,4 @@
-@REGRESSION_REWARDS @Nutella @Wallet @IN_PROGRESS
+@REGRESSION_REWARDS @NUTELLA @WALLET @IN_PROGRESS
 Feature: Checkout safely and securely using your preferred payment method
 
   Scenario: User selects specials
