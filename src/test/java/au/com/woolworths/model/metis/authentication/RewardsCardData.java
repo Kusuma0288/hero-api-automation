@@ -5,7 +5,10 @@ import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class RewardsCard {
-  private RewardsCardData data;
-  private String type;
+
+public class RewardsCardData {
+  private String cardNumber;
+  private String cardType;
+  private String displayCardNumber;
+  private String displayName;
 }
