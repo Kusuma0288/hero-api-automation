@@ -1,0 +1,6 @@
+query FetchAddSchemeCardURL {
+    addSchemeCard {
+        url
+        transactionReference
+    }
+}
