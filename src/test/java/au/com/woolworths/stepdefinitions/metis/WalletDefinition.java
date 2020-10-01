@@ -23,12 +23,7 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
 
   @Then("^the user should see the wallet is empty$")
   public void shouldSeeEmptyWallet() {
-    Assert.assertEquals("Login was unsuccessful", "Add a bank card and redeem Everyday Rewards in one easy tap", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getContent());
-    Assert.assertEquals("Login was unsuccessful", "ADD_CARD", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction());
-  }
-
-  @Then("^the user should be able to add a new card$")
-  public void canAddNewCard() {
-    // In progress
+    Assert.assertEquals("Wallet home page message is not as expected", "Add a bank card and redeem Everyday Rewards in one easy tap", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getContent());
+    Assert.assertEquals("Wallet state is not as expected", "ADD_CARD", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction());
   }
 }
