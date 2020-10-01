@@ -1,4 +1,4 @@
-@REGRESSION_REWARDS @NUTELLA @WALLET @IN_PROGRESS
+@REGRESSION_REWARDS @NUTELLA @WALLET
 Feature: Checkout safely and securely using your preferred payment method
 
   Scenario: Add a new scheme card
