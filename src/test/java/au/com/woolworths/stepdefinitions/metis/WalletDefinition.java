@@ -50,8 +50,8 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
   }
 
   private void getAddCardURL() throws IOException {
-    InputStream iStreamFetchAddSchemeCardURL = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/fetchAddSchemeCardURL.graphql");
-    String graphqlQuery = GraphqlParser.parseGraphql(iStreamFetchAddSchemeCardURL, null);
+    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/fetchAddSchemeCardURL.graphql");
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
 
     // Get the add card url
     FetchAddSchemeCardURLResponse fetchAddSchemeCardURLResponse = iRetrieveAddSchemeCardURL(graphqlQuery);
@@ -78,11 +78,11 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
   }
 
   private void verifyInstrument() throws IOException {
-    InputStream iStreamFetchPaymentInstruments = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/fetchPaymentInstruments.graphql");
-    String fetchPaymentInstrumentsGraphqlQuery = GraphqlParser.parseGraphql(iStreamFetchPaymentInstruments, null);
+    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/fetchPaymentInstruments.graphql");
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
 
     // Get the instruments so we can verify
-    FetchPaymentInstrumentsResponse fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(fetchPaymentInstrumentsGraphqlQuery);
+    FetchPaymentInstrumentsResponse fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQuery);
 
     int instrumentCardNumberLength = fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().length();
 
