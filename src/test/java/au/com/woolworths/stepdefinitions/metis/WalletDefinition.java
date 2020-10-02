@@ -18,7 +18,7 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
 
   private RewardsCardHomePageWithWalletResponse rewardsCardHomePageWithWalletResponse;
   final int cardNumberLength = TestProperties.get("CARD_NUMBER").length();
-  private String url;
+  private String fetchAddSchemeCardURL;
 
   @When("^the user goes to the card screen$")
   public void goesToCardScreen() throws Throwable {
@@ -55,11 +55,11 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
 
     FetchAddSchemeCardURLResponse fetchAddSchemeCardURLResponse = iRetrieveAddSchemeCardURL(graphqlQuery);
 
-    url = fetchAddSchemeCardURLResponse.getData().getAddSchemeCard().getUrl();
+    fetchAddSchemeCardURL = fetchAddSchemeCardURLResponse.getData().getAddSchemeCard().getUrl();
   }
 
   private void submitCard() throws Throwable {
-    String sessionID = url.substring(url.lastIndexOf("/") + 1);
+    String sessionID = fetchAddSchemeCardURL.substring(fetchAddSchemeCardURL.lastIndexOf("/") + 1);
 
     // TODO - Handle different environments when we start using them
     System.setProperty("useDev1", "true");
