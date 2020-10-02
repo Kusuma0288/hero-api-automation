@@ -11,11 +11,14 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 public class WalletDefinition extends RewardsCardWithWalletHelper {
 
   private RewardsCardHomePageWithWalletResponse rewardsCardHomePageWithWalletResponse;
+  final int cardNumberLength = TestProperties.get("CARD_NUMBER").length();
+  private String url;
 
   @When("^the user goes to the card screen$")
   public void goesToCardScreen() throws Throwable {
@@ -31,17 +34,32 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     Assert.assertEquals("Wallet state is not as expected", "ADD_CARD", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction());
   }
 
+  @Then("^the user should see the wallet has a card$")
+  public void shouldSeeWalletHasCard() {
+    Assert.assertEquals("Wallet title is not as expected", "Scan to Everyday Pay", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getTitle());
+    Assert.assertEquals("Wallet state is not as expected", "SCAN", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction());
+  }
+
   @Then("^the user should be able to add a new card$")
   public void canAddNewCard() throws Throwable {
-    int cardNumberLength = TestProperties.get("CARD_NUMBER").length();
+    getAddCardURL();
+    submitCard();
+    goesToCardScreen();
+    shouldSeeWalletHasCard();
+    verifyInstrument();
+  }
 
+  private void getAddCardURL() throws IOException {
     InputStream iStreamFetchAddSchemeCardURL = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/fetchAddSchemeCardURL.graphql");
     String graphqlQuery = GraphqlParser.parseGraphql(iStreamFetchAddSchemeCardURL, null);
 
     // Get the add card url
     FetchAddSchemeCardURLResponse fetchAddSchemeCardURLResponse = iRetrieveAddSchemeCardURL(graphqlQuery);
 
-    String url = fetchAddSchemeCardURLResponse.getData().getAddSchemeCard().getUrl();
+    url = fetchAddSchemeCardURLResponse.getData().getAddSchemeCard().getUrl();
+  }
+
+  private void submitCard() throws Throwable {
     String sessionID = url.substring(url.lastIndexOf("/") + 1);
 
     // TODO - Handle different environments when we start using them
@@ -57,7 +75,9 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     Assert.assertEquals("Card iFrame payment instrument suffix is not as expected", TestProperties.get("CARD_NUMBER").substring(cardNumberLength - 4), iframeResponse.getPaymentInstrument().getSuffix());
     Assert.assertEquals("Card iFrame payment instrument expiry month is not as expected", TestProperties.get("EXPIRY_MONTH"), iframeResponse.getPaymentInstrument().getExpiryMonth());
     Assert.assertEquals("Card iFrame payment instrument expiry year is not as expected", TestProperties.get("EXPIRY_YEAR"), iframeResponse.getPaymentInstrument().getExpiryYear());
+  }
 
+  private void verifyInstrument() throws IOException {
     InputStream iStreamFetchPaymentInstruments = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/fetchPaymentInstruments.graphql");
     String fetchPaymentInstrumentsGraphqlQuery = GraphqlParser.parseGraphql(iStreamFetchPaymentInstruments, null);
 
