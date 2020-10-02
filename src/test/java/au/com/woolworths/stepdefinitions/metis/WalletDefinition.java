@@ -53,7 +53,6 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/fetchAddSchemeCardURL.graphql");
     String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
 
-    // Get the add card url
     FetchAddSchemeCardURLResponse fetchAddSchemeCardURLResponse = iRetrieveAddSchemeCardURL(graphqlQuery);
 
     url = fetchAddSchemeCardURLResponse.getData().getAddSchemeCard().getUrl();
@@ -65,7 +64,6 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     // TODO - Handle different environments when we start using them
     System.setProperty("useDev1", "true");
 
-    // Submit the card
     iFrameResponse iframeResponse = postiFrameCardDetails(sessionID);
 
     Assert.assertEquals("Card iFrame status response message is not as expected", "ACCEPTED", iframeResponse.getStatus().getResponseText());
@@ -81,7 +79,6 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/fetchPaymentInstruments.graphql");
     String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
 
-    // Get the instruments so we can verify
     FetchPaymentInstrumentsResponse fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQuery);
 
     int instrumentCardNumberLength = fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().length();
