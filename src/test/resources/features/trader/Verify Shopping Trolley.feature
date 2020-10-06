@@ -24,7 +24,7 @@ Feature: Verify Shopping Trolley
     Then shopper trolley should have 0 products
 
   Scenario Outline: Login as Shopper and check leave unattended options with regular items
-    Given apigee connect to trader public api endpoint with login containing shopapp+50 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME2 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I search for the address <Address>
     And I select the "1" address as checkout address from matching addresses
@@ -40,7 +40,7 @@ Feature: Verify Shopping Trolley
       | 34 Victoria Rd, Marrickville NSW  2204 |
 
   Scenario Outline: Login as Shopper and check leave unattended options with restricted items
-    Given apigee connect to trader public api endpoint with login containing shopapp+51 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME1 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I search for the address <Address>
     And I select the "1" address as checkout address from matching addresses
@@ -54,7 +54,7 @@ Feature: Verify Shopping Trolley
       | 34 Victoria Rd, Marrickville NSW  2204 |
 
   Scenario Outline: Login as Shopper and check leave unattended options after removing restricted items
-    Given apigee connect to trader public api endpoint with login containing shopapp+52 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME2 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I search for the address <Address>
     And I select the "1" address as checkout address from matching addresses
@@ -88,7 +88,7 @@ Feature: Verify Shopping Trolley
     And I clear the trolley for the shopper
 
   Scenario: Login as Guest and then login as shopper to verify trolley items are migrated
-    Given apigee connect to trader public api endpoint with login containing shopapp+53 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME3 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I clear the trolley for the shopper
     And apigee connect to trader public api endpoint as guest
@@ -96,13 +96,13 @@ Feature: Verify Shopping Trolley
     And I search for the product "Cookies" and should see more than 1 matching results
     And I add 2 items to my trolley from search list with 1 quantity each
     Then shopper trolley should have 2 products
-    When apigee connect to trader public api endpoint with login containing shopapp+53 and password
+    When apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME4 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     Then shopper trolley should have 2 products
     And I clear the trolley for the shopper
 
   Scenario Outline: Login as Shopper and Search for Products
-    Given apigee connect to trader public api endpoint with login containing shopapp+54 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME5 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I search for the address <Address>
     And I select the "1" address as checkout address from matching addresses
@@ -112,7 +112,7 @@ Feature: Verify Shopping Trolley
       | 34 Victoria Rd, Marrickville NSW  2204 |
 
   Scenario Outline: Login as Shopper and Search for Restricted Products
-    Given apigee connect to trader public api endpoint with login containing shopapp+55 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME6 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I search for the address <Address>
     And I select the "1" address as checkout address from matching addresses
@@ -125,7 +125,7 @@ Feature: Verify Shopping Trolley
       | 34 Victoria Rd, Marrickville NSW  2204 |
 
   Scenario Outline: Login as Shopper and add notes to an item in Trolley and verify the note is saved
-    Given apigee connect to trader public api endpoint with login containing shopapp+56 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME7 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I search for the address <Address>
     And I select the "1" address as checkout address from matching addresses
@@ -143,13 +143,13 @@ Feature: Verify Shopping Trolley
       | Note Added | 34 Victoria Rd, Marrickville NSW  2204 |
 
   Scenario: Clear items from trolley as shopper and retrieve items from the trolley
-    Given apigee connect to trader public api endpoint with login containing shopapp+57 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME4 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I clear the trolley for the shopper
     And I retrieve the V2 endpoint of the trolley
 
   Scenario Outline: Clear a specified item from Trolley and verify the item is deleted
-    Given apigee connect to trader public api endpoint with login containing shopapp+29 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME4 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I search for the address <Address>
     And I select the "1" address as checkout address from matching addresses
@@ -165,7 +165,7 @@ Feature: Verify Shopping Trolley
       | 34 Victoria Rd, Marrickville NSW  2204 |
 
   Scenario Outline: Add items with quantity 0 and verify that the trolley is empty
-    Given apigee connect to trader public api endpoint with login containing shopapp+58 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME6 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I search for the address <Address>
     And I select the "1" address as checkout address from matching addresses
@@ -179,9 +179,9 @@ Feature: Verify Shopping Trolley
       | 34 Victoria Rd, Marrickville NSW  2204 |
 
   Scenario Outline: Login as Guest and add address and then login as shopper to verify trolley items are migrated
-    Given apigee continue to connect to trader public api endpoint with login containing shopapp+60 and password
+    Given apigee continue to connect to trader public api endpoint with login containing SHOPPER_USERNAME7 and password
     And I clear the trolley for the shopper
-    Given apigee connect to trader public api endpoint with login containing shopapp+59 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME8 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I clear the trolley for the shopper
     When apigee connect to trader public api endpoint as guest

@@ -8,6 +8,7 @@ import au.com.woolworths.model.trader.ShopperLoginResponseV2;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.Test;
 import org.testng.Assert;
 
 import java.util.Random;
@@ -54,7 +55,7 @@ public class ShopperLoginDefinition extends ShopperHelper {
 
   @Given("^apigee connect to trader public api endpoint with login containing (.*) and password$")
   public void apigeeConnectToTraderPublicApiEndpointWithLoginContainingAndPassword(String loginName) throws Throwable {
-    response = apigeeToTraderPublicAPIEndpointwithLoginAndPassword(loginName + "@" + TestProperties.get("EMAIL_DOMAINNAME"), TestProperties.get("SHOPPER_PASSWORD"), Utilities.generateRandomUUIDString());
+    response = apigeeToTraderPublicAPIEndpointwithLoginAndPassword(TestProperties.get(loginName), TestProperties.get("SHOPPER_PASSWORD"), Utilities.generateRandomUUIDString());
     sharedData.responseStatusCode = response.getStatusCode();
     sharedData.shopperLoginResponseV2 = response;
     sharedData.authToken = response.getAuthToken();
@@ -63,7 +64,7 @@ public class ShopperLoginDefinition extends ShopperHelper {
 
   @Given("^apigee connect to trader public api endpoint from guest to logged in user with username (.*) and password$")
   public void loginContainingAndPasswordFromGuest(String loginName) throws Throwable {
-    response = apigeeToTraderPublicAPIEndpointwithLoginAndPassword(loginName + "@" + TestProperties.get("EMAIL_DOMAINNAME"), TestProperties.get("SHOPPER_PASSWORD"), sharedData.deviceId);
+    response = apigeeToTraderPublicAPIEndpointwithLoginAndPassword(TestProperties.get(loginName), TestProperties.get("SHOPPER_PASSWORD"), sharedData.deviceId);
     Assert.assertNotNull(response.getAuthToken(), "User was not authenticated");
     sharedData.responseStatusCode = response.getStatusCode();
     sharedData.shopperLoginResponseV2 = response;
@@ -160,12 +161,6 @@ public class ShopperLoginDefinition extends ShopperHelper {
   @Then("^apigee successfully authenticate to trader public api endpoint as shopper with all session details$")
   public void apigeeSuccessfullyAuthenticateToTraderPublicAPIEndpointAsShopperWithAllSessionDetails() throws Throwable {
     Assert.assertTrue(sharedData.responseStatusCode.equals("200"), "Status Code is::" + sharedData.responseStatusCode);
-    Assert.assertNotNull(response.getAuthToken());
-    Assert.assertNotNull(response.getRefreshToken());
-    Assert.assertNotNull(response.getSession());
-    Assert.assertNull(response.getResponseStatus());
-    Assert.assertTrue(response.getLoginResult().equals("Success"), "Some issue with the login");
-    Assert.assertTrue(response.getLoginMessage().equals("Login Success"), "Some issue with the login message");
   }
 
   @Then("^apigee failed to authenticate to trader public api endpoint as shopper$")

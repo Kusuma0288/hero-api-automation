@@ -42,8 +42,8 @@ Feature: Verify the pickup store
     Then I validate that the fulfilmentMethod match to FulfilmentMethod for pickup mode stores in V3_CHECKOUT_ADDRESS
     Examples:
       | PostCode | EmailAddress |
-      | 2174     | shopapp+61   |
-      | 2000     | shopapp+61   |
-      | 2099     | shopapp+61   |
+      | 2150     | SHOPPER_USERNAME1  |
+      | 2000     | SHOPPER_USERNAME1  |
+      | 2099     | SHOPPER_USERNAME1  |
 
 

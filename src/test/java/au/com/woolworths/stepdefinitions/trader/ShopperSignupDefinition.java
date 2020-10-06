@@ -27,7 +27,6 @@ public class ShopperSignupDefinition extends ShopperHelper {
     }
     sharedData.signupResponseStatusCode = signupResponse.getStatusCode();
     sharedData.signupLoginResponseV2 = signupResponse;
-    sharedData.signupAuthToken = signupResponse.getAuthToken();
     sharedData.authToken = signupResponse.getAuthToken();
   }
 
@@ -40,7 +39,7 @@ public class ShopperSignupDefinition extends ShopperHelper {
     }
     sharedData.signupResponseStatusCode = signupResponse.getStatusCode();
     sharedData.signupLoginResponseV2 = signupResponse;
-    sharedData.signupAuthToken = signupResponse.getAuthToken();
+    sharedData.authToken = signupResponse.getAuthToken();
     sharedData.deviceId = deviceId;
   }
 
