@@ -5,7 +5,6 @@ import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-
 public class Analytics {
   private AnalyticsData data;
   private String type;

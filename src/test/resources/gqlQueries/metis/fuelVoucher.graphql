@@ -1,0 +1,23 @@
+query FuelVoucher{
+    fuelVoucherList{
+        title
+        items{
+            centsOff
+            displayExpiry
+        }
+        instructions
+        instructionsButton{
+            title
+            url
+        }
+        message{
+            icon
+            title
+            message
+            button{
+                title
+                url
+            }
+        }
+    }
+}
