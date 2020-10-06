@@ -1,0 +1,95 @@
+query productDetails($productId: String, $barcode: String, $storeId: String) {
+    productDetails(productId: $productId, barcode: $barcode, storeId: $storeId) {
+        feed {
+            ...on FormattedBanner {
+                hasIcon
+                content
+                style
+            }
+            ...on ImageContent {
+                url
+                text
+                altText
+            }
+            ...on ProductCard {
+                productId
+                name
+                productImage
+                isAvailable
+                purchaseRestriction
+                isNew
+                price
+                unitPriceDescription
+                badgeImage
+                promotionValue
+                promotionType
+                wasPrice
+                purchaseWarning
+                list {
+                    minimum
+                    maximum
+                    increment
+                    default
+                    unit
+                }
+                trolley {
+                    minimum
+                    maximum
+                    increment
+                    default
+                    inTrolley
+                    unit
+                    buttonState
+                    buttonLabel
+                    buttonQuantity
+                }
+                inStoreDetails {
+                    locationText
+                    locationType
+                }
+                multiBuyPrice
+                multiBuyUnitPrice
+                inlineLabels {
+                    type
+                    label
+                    priority
+                }
+            }
+            ...on FormattedContent {
+                title
+                content
+                framedContent
+                isCollapsable
+            }
+            ...on ProductDisclaimer {
+                content
+            }
+            ...on ProductOriginAndHealthInfo {
+                countryOfOrigin {
+                    url
+                    text
+                    altText
+                }
+                healthStarRating {
+                    url
+                    text
+                    altText
+                }
+            }
+            ...on ProductNutritionInfo {
+                title
+                servingsPerPack
+                servingSize
+                bottomCaption
+                tableHeaderRow
+                tableRows
+            }
+        }
+        imageList {
+            smallUrl
+            mediumUrl
+            largeUrl
+            altText
+        }
+    }
+}
