@@ -33,7 +33,12 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
   }
 
   @Then("^the user should see the wallet is empty$")
-  public void shouldSeeEmptyWallet() {
+  public void shouldSeeEmptyWallet() throws IOException {
+    // Ensure the user has an exiting card so we can remove it
+    if (rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction().equals("SCAN")) {
+      canRemoveCard();
+    }
+
     Assert.assertEquals("Wallet home page message is not as expected", "Add a bank card and redeem Everyday Rewards in one easy tap", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getContent());
     Assert.assertEquals("Wallet state is not as expected", "ADD_CARD", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction());
   }
