@@ -3,13 +3,9 @@ package au.com.woolworths.model.iris.graphql.productList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@ToString
-@Setter
-@Getter
+@Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Filter {
   private String headerKey;
