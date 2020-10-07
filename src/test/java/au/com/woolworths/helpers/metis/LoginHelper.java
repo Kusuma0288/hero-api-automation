@@ -6,6 +6,7 @@ import au.com.woolworths.model.helios.login.AuthCodeRequest;
 import au.com.woolworths.model.metis.authentication.LinkResponse;
 import au.com.woolworths.model.metis.authentication.LoginRequest;
 import au.com.woolworths.model.metis.authentication.LoginResponse;
+import au.com.woolworths.model.metis.authentication.TokenRequest;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
@@ -64,6 +65,22 @@ public class LoginHelper extends BaseHelper {
     loginRequest.setDeviceId(DeviceID);
 
     String requestStr = mapper.writeValueAsString(loginRequest);
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListRewards);
+    String responseStr = mapWebserviceResponse.get("response");
+
+    sharedData.responseStatusCode = mapWebserviceResponse.get("statusCode");
+    return mapper.readValue(responseStr, LoginResponse.class);
+  }
+
+  public LoginResponse postToken(String refreshToken) throws Throwable {
+    String endPoint = URLResources.METIS_TOKEN;
+    Map<String, String> mapWebserviceResponse;
+
+    TokenRequest tokenRequest = new TokenRequest();
+
+    tokenRequest.setRefreshToken(refreshToken);
+    String requestStr = mapper.writeValueAsString(tokenRequest);
+
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListRewards);
     String responseStr = mapWebserviceResponse.get("response");
 

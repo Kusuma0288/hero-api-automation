@@ -68,4 +68,30 @@ public class RewardsLoginDefinition extends LoginHelper {
     shouldBeLoggedIn();
   }
 
+  @When("^the user reopens the app$")
+  public void theUserReopensTheApp() throws Throwable {
+    sharedData.deviceId = Utilities.generateRandomUUIDString();
+    postToken(loginResponse.getData().getAuth().getData().getRefreshToken());
+    sharedData.refreshToken = loginResponse.getData().getAuth().getData().getRefreshToken();
+    logger.info("Showing the updated refresh token: " + sharedData.refreshToken);
+
+  }
+
+  @Then("^the user should be able to enter the app$")
+  public void theUserShouldBeAbleToEnterTheApp() {
+    Assert.assertEquals("Status code for Login unsuccessful", "200", sharedData.responseStatusCode);
+  }
+
+  @When("^an unauthorised user opens the app$")
+  public void anUnauthorisedUserOpensTheApp() throws Throwable {
+    sharedData.deviceId = Utilities.generateRandomUUIDString();
+    postToken(Utilities.generateRandomUUIDString());
+    sharedData.refreshToken = loginResponse.getData().getAuth().getData().getRefreshToken();
+    logger.info("Showing the updated refresh token: " + sharedData.refreshToken);
+  }
+
+  @Then("^the user should not be able to enter the app$")
+  public void theUserShouldNotBeAbleToEnterTheApp() {
+    Assert.assertEquals("Status code for Login unsuccessful", "401", sharedData.responseStatusCode);
+  }
 }
