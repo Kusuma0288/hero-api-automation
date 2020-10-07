@@ -1,4 +1,4 @@
-query fetchAddSchemeCardURL {
+query fetchPaymentInstruments {
     paymentInstruments {
         ...schemeCard
         ...addInstrument
