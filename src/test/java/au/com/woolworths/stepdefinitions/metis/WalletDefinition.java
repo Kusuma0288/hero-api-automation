@@ -45,7 +45,7 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
 
   @Then("^the user should see the wallet has a card$")
   public void shouldSeeWalletHasCard() throws Throwable {
-    // Ensure the user has an exiting card so we can remove it
+    // Ensure the user has an existing card so we can remove it
     if (rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction().equals("ADD_CARD")) {
       canAddNewCard();
     }
