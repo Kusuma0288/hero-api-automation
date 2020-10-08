@@ -26,7 +26,7 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
 
   @When("^the user goes to the card screen$")
   public void goesToCardScreen() throws Throwable {
-    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/rewardsCardHomePageWithWallet.graphql");
+    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/rewardsCardHomePageWithWallet.graphql");
     String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
 
     rewardsCardHomePageWithWalletResponse = iRetrieveMyRewardsCardWithWallet(graphqlQuery);
@@ -67,14 +67,14 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
 
   @Then("^the user should be able to remove a card$")
   public void canRemoveCard() throws IOException {
-    InputStream iStreamInstruments = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/fetchPaymentInstruments.graphql");
+    InputStream iStreamInstruments = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchPaymentInstruments.graphql");
     String graphqlQueryInstruments = GraphqlParser.parseGraphql(iStreamInstruments, null);
     fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQueryInstruments);
     String cardToDelete = fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getId();
 
     ObjectNode variables = new ObjectMapper().createObjectNode();
     variables.put("id", cardToDelete);
-    InputStream iStreamDelete = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/mutations/deleteSchemeCard.graphql");
+    InputStream iStreamDelete = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/mutations/wallet/deleteSchemeCard.graphql");
     String graphqlQueryDelete = GraphqlParser.parseGraphql(iStreamDelete, variables);
 
     DeleteSchemeCardResponse deleteSchemeCardResponse = iRemoveSchemeCard(graphqlQueryDelete);
@@ -85,7 +85,7 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
 
   @Then("^the user should be able to view the card details$")
   public void canViewCardDetails() throws IOException {
-    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/fetchPaymentInstruments.graphql");
+    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchPaymentInstruments.graphql");
     String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
 
     fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQuery);
@@ -101,7 +101,7 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
   }
 
   private void getAddCardURL() throws IOException {
-    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/fetchAddSchemeCardURL.graphql");
+    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchAddSchemeCardURL.graphql");
     String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
 
     FetchAddSchemeCardURLResponse fetchAddSchemeCardURLResponse = iRetrieveAddSchemeCardURL(graphqlQuery);
@@ -128,7 +128,7 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
   }
 
   private void verifyInstrument() throws IOException {
-    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/fetchPaymentInstruments.graphql");
+    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchPaymentInstruments.graphql");
     String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
 
     fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQuery);
