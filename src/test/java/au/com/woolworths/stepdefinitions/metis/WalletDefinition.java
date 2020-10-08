@@ -3,10 +3,13 @@ package au.com.woolworths.stepdefinitions.metis;
 import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.helpers.metis.RewardsCardWithWalletHelper;
 import au.com.woolworths.model.apigee.payment.iFrameResponse;
+import au.com.woolworths.model.metis.card.DeleteSchemeCardResponse;
 import au.com.woolworths.model.metis.card.FetchAddSchemeCardURLResponse;
 import au.com.woolworths.model.metis.card.FetchPaymentInstrumentsResponse;
 import au.com.woolworths.model.metis.card.RewardsCardHomePageWithWalletResponse;
 import au.com.woolworths.utils.TestProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
@@ -17,6 +20,7 @@ import java.io.InputStream;
 public class WalletDefinition extends RewardsCardWithWalletHelper {
 
   private RewardsCardHomePageWithWalletResponse rewardsCardHomePageWithWalletResponse;
+  private FetchPaymentInstrumentsResponse fetchPaymentInstrumentsResponse;
   final int cardNumberLength = TestProperties.get("CARD_NUMBER").length();
   private String fetchAddSchemeCardURL;
 
@@ -29,13 +33,23 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
   }
 
   @Then("^the user should see the wallet is empty$")
-  public void shouldSeeEmptyWallet() {
+  public void shouldSeeEmptyWallet() throws IOException {
+    // Ensure the user has an exiting card so we can remove it
+    if (rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction().equals("SCAN")) {
+      canRemoveCard();
+    }
+
     Assert.assertEquals("Wallet home page message is not as expected", "Add a bank card and redeem Everyday Rewards in one easy tap", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getContent());
     Assert.assertEquals("Wallet state is not as expected", "ADD_CARD", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction());
   }
 
   @Then("^the user should see the wallet has a card$")
-  public void shouldSeeWalletHasCard() {
+  public void shouldSeeWalletHasCard() throws Throwable {
+    // Ensure the user has an existing card so we can remove it
+    if (rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction().equals("ADD_CARD")) {
+      canAddNewCard();
+    }
+
     Assert.assertEquals("Wallet title is not as expected", "Scan to Everyday Pay", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getTitle());
     Assert.assertEquals("Wallet state is not as expected", "SCAN", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction());
   }
@@ -47,6 +61,24 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     goesToCardScreen();
     shouldSeeWalletHasCard();
     verifyInstrument();
+  }
+
+  @Then("^the user should be able to remove a card$")
+  public void canRemoveCard() throws IOException {
+    InputStream iStreamInstruments = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/fetchPaymentInstruments.graphql");
+    String graphqlQueryInstruments = GraphqlParser.parseGraphql(iStreamInstruments, null);
+    fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQueryInstruments);
+    String cardToDelete = fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getId();
+
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    variables.put("id", cardToDelete);
+    InputStream iStreamDelete = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/deleteSchemeCard.graphql");
+    String graphqlQueryDelete = GraphqlParser.parseGraphql(iStreamDelete, variables);
+
+    DeleteSchemeCardResponse deleteSchemeCardResponse = iRemoveSchemeCard(graphqlQueryDelete);
+
+    Assert.assertTrue("Delete scheme card was not successful", deleteSchemeCardResponse.getData().getDeleteSchemeCard().getSuccess());
+    Assert.assertEquals("Delete scheme card response message is not as expected", "PaymentInstrument " + cardToDelete + " has been successfully deleted.", deleteSchemeCardResponse.getData().getDeleteSchemeCard().getMessage());
   }
 
   private void getAddCardURL() throws IOException {
@@ -79,7 +111,7 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/fetchPaymentInstruments.graphql");
     String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
 
-    FetchPaymentInstrumentsResponse fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQuery);
+    fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQuery);
 
     int instrumentCardNumberLength = fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().length();
 

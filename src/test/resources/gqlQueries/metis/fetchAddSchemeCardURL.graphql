@@ -1,4 +1,4 @@
-query FetchAddSchemeCardURL {
+query fetchAddSchemeCardURL {
     addSchemeCard {
         url
         transactionReference
