@@ -47,10 +47,10 @@ public class ShopperHelper extends BaseHelper {
     return map;
   }
 
-  public ShopperLoginResponseV2 apigeeToTraderPublicAPIEndpointwithLoginAndPassword(String userName, String password, String deviceId) throws Throwable {
+  public ShopperLoginResponseV2 apigeeToTraderPublicAPIEndpointwithLoginAndPassword(String email, String password, String deviceId) throws Throwable {
 
 
-    ShopperLoginRequestV2 shopperLoginRequest = new ShopperLoginRequestV2(userName, password, deviceId);
+    ShopperLoginRequestV2 shopperLoginRequest = new ShopperLoginRequestV2(email, password, deviceId);
     ShopperLoginResponseV2 response;
     String endPoint = URLResources.TRADER_V2_AUTH_SHOPPER;
 
@@ -67,9 +67,9 @@ public class ShopperHelper extends BaseHelper {
 
   }
 
-  public ShopperLoginResponseV2 apigeeToTraderPublicAPIEndpointwithLoginAndPasswordUsingAPIkey(String userName, String password, String deviceId, String apiKey) throws Throwable {
+  public ShopperLoginResponseV2 apigeeToTraderPublicAPIEndpointwithLoginAndPasswordUsingAPIkey(String email, String password, String deviceId, String apiKey) throws Throwable {
 
-    ShopperLoginRequestV2 shopperLoginRequest = new ShopperLoginRequestV2(userName, password, deviceId);
+    ShopperLoginRequestV2 shopperLoginRequest = new ShopperLoginRequestV2(email,password, deviceId );
     ShopperLoginResponseV2 response;
     String endPoint = URLResources.TRADER_V2_AUTH_SHOPPER;
 
