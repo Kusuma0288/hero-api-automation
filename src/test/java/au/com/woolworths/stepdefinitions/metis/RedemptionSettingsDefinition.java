@@ -16,7 +16,7 @@ public class RedemptionSettingsDefinition extends RedemptionSettingsHelper {
 
   @When("^the user makes a request for the redemption settings$")
   public void theUserMakesARequestForTheRedemptionSettings() throws Throwable {
-    InputStream iStream = RedemptionSettingsDefinition.class.getResourceAsStream("/gqlQueries/metis/redemptionSettings.graphql");
+    InputStream iStream = RedemptionSettingsDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/redemptionSettings.graphql");
     String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
     rewardsRedemptionResponse = iRetrieveMyRedemptionSettings(graphqlQuery);
   }

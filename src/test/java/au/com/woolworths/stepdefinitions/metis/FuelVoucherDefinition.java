@@ -17,7 +17,7 @@ public class FuelVoucherDefinition extends FuelVoucherHelper {
 
   @When("^the user selects fuel vouchers$")
   public void theUserSelectsFuelVouchers() throws IOException {
-    InputStream iStream = FuelVoucherDefinition.class.getResourceAsStream("/gqlQueries/metis/fuelVoucher.graphql");
+    InputStream iStream = FuelVoucherDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/fuelVoucher.graphql");
     String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
     fuelVoucherResponse = iRetrieveFuelVoucher(graphqlQuery);
   }
