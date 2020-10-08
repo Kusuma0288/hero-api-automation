@@ -33,10 +33,11 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
   }
 
   @Then("^the user should see the wallet is empty$")
-  public void shouldSeeEmptyWallet() throws IOException {
-    // Ensure the user has an exiting card so we can remove it
+  public void shouldSeeEmptyWallet() throws Throwable {
+    // Ensure the user does not have an existing card before we attempt to add a new one
     if (rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction().equals("SCAN")) {
       canRemoveCard();
+      goesToCardScreen();
     }
 
     Assert.assertEquals("Wallet home page message is not as expected", "Add a bank card and redeem Everyday Rewards in one easy tap", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getContent());
@@ -120,6 +121,6 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     Assert.assertTrue("The payment instrument card number is not obfuscated", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().contains("••••"));
     Assert.assertEquals("The payment instrument card number last 4 digits do not match", TestProperties.get("CARD_NUMBER").substring(cardNumberLength - 4), fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().substring(instrumentCardNumberLength - 4));
     Assert.assertEquals("The payment instrument does not have a valid status", "VALID", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getStatus());
-    Assert.assertNull("The payment instrument does not have a null lastUsed value", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getLastUsed());
+    Assert.assertNull("The payment instrument does not have a null last used value", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getLastUsed());
   }
 }
