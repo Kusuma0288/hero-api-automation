@@ -34,7 +34,8 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
 
   @Then("^the user should see the wallet is empty$")
   public void shouldSeeEmptyWallet() throws Throwable {
-    // Ensure the user has an exiting card so we can remove it
+    // Ensure the user does not have an existing card before we attempt to add a new one
+
     if (rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction().equals("SCAN")) {
       canRemoveCard();
       goesToCardScreen();
@@ -124,5 +125,21 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     Assert.assertEquals("Card iFrame payment instrument suffix is not as expected", TestProperties.get("CARD_NUMBER").substring(cardNumberLength - 4), iframeResponse.getPaymentInstrument().getSuffix());
     Assert.assertEquals("Card iFrame payment instrument expiry month is not as expected", TestProperties.get("EXPIRY_MONTH"), iframeResponse.getPaymentInstrument().getExpiryMonth());
     Assert.assertEquals("Card iFrame payment instrument expiry year is not as expected", TestProperties.get("EXPIRY_YEAR"), iframeResponse.getPaymentInstrument().getExpiryYear());
+  }
+
+  private void verifyInstrument() throws IOException {
+    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/fetchPaymentInstruments.graphql");
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
+
+    fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQuery);
+
+    int instrumentCardNumberLength = fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().length();
+
+    // TODO - When we start allowing more than 1 instrument this will need to be updated
+    Assert.assertEquals("The number of payment instruments is not equal to 1", 1, fetchPaymentInstrumentsResponse.getData().getPaymentInstruments().length);
+    Assert.assertTrue("The payment instrument card number is not obfuscated", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().contains("••••"));
+    Assert.assertEquals("The payment instrument card number last 4 digits do not match", TestProperties.get("CARD_NUMBER").substring(cardNumberLength - 4), fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().substring(instrumentCardNumberLength - 4));
+    Assert.assertEquals("The payment instrument does not have a valid status", "VALID", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getStatus());
+    Assert.assertNull("The payment instrument does not have a null last used value", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getLastUsed());
   }
 }
