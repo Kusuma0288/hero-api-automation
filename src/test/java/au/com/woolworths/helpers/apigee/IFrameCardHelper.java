@@ -16,8 +16,7 @@ import java.util.Map;
 public class IFrameCardHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
 
-  String iFrameRequeststr, responseStr, endPoint;
-  String bearer;
+  String iFrameRequest, response, endPoint, bearer;
 
   public IFrameCardHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
@@ -35,7 +34,7 @@ public class IFrameCardHelper extends BaseHelper {
     return postRequest();
   }
 
-  public iFrameResponse postiFrameCardDetails(String sessionID, String hostname) throws Throwable {
+  public iFrameResponse postiFrameCardDetails(String sessionID, String hostname) throws IOException {
     bearer = sessionID;
     endPoint = hostname + URLResources.IFRAME_CREDITCARD;
 
@@ -51,12 +50,12 @@ public class IFrameCardHelper extends BaseHelper {
     iframeRequest.setPrimary(true);
     iframeRequest.setSave(true);
     iframeRequest.setVerify(true);
-    iFrameRequeststr = mapper.writeValueAsString(iframeRequest);
+    iFrameRequest = mapper.writeValueAsString(iframeRequest);
     List<Header> headerList = new LinkedList<>();
     headerList.add(new Header("Authorization", "Bearer " + bearer));
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, iFrameRequeststr, headerList);
-    responseStr = mapWebserviceResponse.get("response");
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, iFrameRequest, headerList);
+    response = mapWebserviceResponse.get("response");
 
-    return mapper.readValue(responseStr, iFrameResponse.class);
+    return mapper.readValue(response, iFrameResponse.class);
   }
 }
