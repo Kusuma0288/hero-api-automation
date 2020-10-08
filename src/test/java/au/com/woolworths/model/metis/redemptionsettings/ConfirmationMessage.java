@@ -1,16 +1,15 @@
 
 package au.com.woolworths.model.metis.redemptionsettings;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class RewardsRedemptionSettings {
+public class ConfirmationMessage {
 
-  private List<Item> items;
-  private TwoFactorAuth twoFactorAuth;
-
+  private String buttonLabel;
+  private Boolean isDestructive;
+  private String message;
+  private String title;
 }

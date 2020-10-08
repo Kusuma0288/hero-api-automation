@@ -2,6 +2,7 @@ query rewardsRedemptionSettings {
     rewardsRedemptionSettings{
         items{
             isSelected
+            isChangeEnabled
             icon
             title
             body
