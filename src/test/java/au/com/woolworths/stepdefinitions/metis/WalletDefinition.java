@@ -83,6 +83,11 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     Assert.assertEquals("Delete scheme card response message is not as expected", "PaymentInstrument " + cardToDelete + " has been successfully deleted.", deleteSchemeCardResponse.getData().getDeleteSchemeCard().getMessage());
   }
 
+  @Then("^the user should be able to update a card$")
+  public void canUpdateCard() throws IOException {
+
+  }
+
   @Then("^the user should be able to view the card details$")
   public void canViewCardDetails() throws IOException {
     InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchPaymentInstruments.graphql");
