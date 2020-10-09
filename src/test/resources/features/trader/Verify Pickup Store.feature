@@ -39,11 +39,9 @@ Feature: Verify the pickup store
     Then I search for the pickup stores in the postcode <PostCode>
     And I select the "1" pickup store as checkout pickup store from matching stores for the logged in user
     And I add wait for 5000 msecs to make sure the sync is successful
-    Then I validate that the fulfilmentMethod match to FulfilmentMethod for pickup mode stores in V3_CHECKOUT_ADDRESS
+    Then I validate fulfilmentMethod match to FulfilmentMethod for pickup mode stores
     Examples:
       | PostCode | EmailAddress |
       | 2150     | SHOPPER_USERNAME1  |
-      | 2000     | SHOPPER_USERNAME1  |
-      | 2099     | SHOPPER_USERNAME1  |
 
 

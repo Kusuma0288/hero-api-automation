@@ -97,7 +97,7 @@ public class ShopperLoginDefinition extends ShopperHelper {
 
   @When("^apigee continue to connect to trader public api endpoint with login containing (.*) and password$")
   public void apigeeContinueToConnectToTraderPublicApiEndpointWithLoginContainingAndPassword(String loginName) throws Throwable {
-    response = apigeeToTraderPublicAPIEndpointwithLoginAndPassword(loginName + "@" + TestProperties.get("EMAIL_DOMAINNAME"), TestProperties.get("SHOPPER_PASSWORD"), sharedData.deviceId);
+    response = apigeeToTraderPublicAPIEndpointwithLoginAndPassword(TestProperties.get(loginName), TestProperties.get("SHOPPER_PASSWORD"), sharedData.deviceId);
     sharedData.responseStatusCode = response.getStatusCode();
     sharedData.shopperLoginResponseV2 = response;
     sharedData.authToken = response.getAuthToken();

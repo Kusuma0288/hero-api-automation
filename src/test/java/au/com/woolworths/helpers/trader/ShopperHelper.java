@@ -69,7 +69,7 @@ public class ShopperHelper extends BaseHelper {
 
   public ShopperLoginResponseV2 apigeeToTraderPublicAPIEndpointwithLoginAndPasswordUsingAPIkey(String email, String password, String deviceId, String apiKey) throws Throwable {
 
-    ShopperLoginRequestV2 shopperLoginRequest = new ShopperLoginRequestV2(email,password, deviceId );
+    ShopperLoginRequestV2 shopperLoginRequest = new ShopperLoginRequestV2(email, password, deviceId);
     ShopperLoginResponseV2 response;
     String endPoint = URLResources.TRADER_V2_AUTH_SHOPPER;
 
@@ -200,16 +200,16 @@ public class ShopperHelper extends BaseHelper {
     return signUpAsAShopperWithFollowingDetails(userDetails, deviceId, false);
   }
 
-  public CheckoutAddressResponse iSetTheFulfilmentStoreId(int fulfilmentStoreId) throws Throwable {
+  public CheckoutAddressResponse iSetTheFulfilmentStoreId(int storeAddressId) throws Throwable {
 
     String endPoint = URLResources.TRADER_V3_CHECKOUT_ADDRESS;
-    StoreIdRequest storeIdRequest = new StoreIdRequest();
-    storeIdRequest.setFulfilmentStoreId(fulfilmentStoreId);
+    StoreAddressIdRequest storeAddressIdRequest = new StoreAddressIdRequest();
+    storeAddressIdRequest.setStoreAddressId(storeAddressId);
 
     ObjectMapper mapper = new ObjectMapper();
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-    String storeRequestStr = mapper.writeValueAsString(storeIdRequest);
+    String storeRequestStr = mapper.writeValueAsString(storeAddressIdRequest);
 
     // invoke the service with the framed request
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();

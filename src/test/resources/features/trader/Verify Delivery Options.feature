@@ -18,7 +18,7 @@ Feature: Verify Delivery Options
     #Then I do a V2 checkout and should see crate to bench packaging unavailable
     Examples:
       | Address                                |
-      | 34 Victoria Rd, Marrickville NSW  2204 |
+      | 107 20 Kendall street |
 
   Scenario Outline: Login as Shopper and check the Crate to Bench packaging option in V3 Checkout
     Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME2 and password

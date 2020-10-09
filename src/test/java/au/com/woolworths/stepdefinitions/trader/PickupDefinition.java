@@ -38,14 +38,15 @@ public class PickupDefinition extends AddressHelper {
   @And("^I select the \"1\" pickup store as checkout pickup store from matching stores for the logged in user$")
   public void iSelectPickupStore() throws Throwable {
     PickupResponse[] pickupResponses = sharedData.pickupResponse;
+    sharedData.fulfilmentStoreAddressId = pickupResponses[0].getAddressId();
     sharedData.fulfilmentStoreId = Integer.parseInt(pickupResponses[0].getStoreNumber());
-    CheckoutAddressResponse checkoutAddressResponse = shopperHelper.iSetTheFulfilmentStoreId(sharedData.fulfilmentStoreId);
+    CheckoutAddressResponse checkoutAddressResponse = shopperHelper.iSetTheFulfilmentStoreId(sharedData.fulfilmentStoreAddressId);
     sharedData.fulfilmentMethod = checkoutAddressResponse.getFulfilmentMethod();
     Assert.assertNotNull(checkoutAddressResponse);
     Assert.assertTrue(checkoutAddressResponse.isIsSuccessful());
   }
 
-  @Then("^I validate that the fulfilmentMethod match to FulfilmentMethod for pickup mode stores in V3_CHECKOUT_ADDRESS$")
+  @Then("^I validate fulfilmentMethod match to FulfilmentMethod for pickup mode stores$")
   public void iValidateFulfilmentForPickup() throws Throwable {
     //Validate fulfilment method matches for Pickup (Driveup and Instore)
     CheckoutAddressResponse checkoutAddressResponse = shopperHelper.iGETTheFulfilmentStoreId();

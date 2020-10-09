@@ -179,9 +179,9 @@ Feature: Verify Shopping Trolley
       | 34 Victoria Rd, Marrickville NSW  2204 |
 
   Scenario Outline: Login as Guest and add address and then login as shopper to verify trolley items are migrated
-    Given apigee continue to connect to trader public api endpoint with login containing SHOPPER_USERNAME7 and password
+    Given apigee continue to connect to trader public api endpoint with login containing SHOPPER_USERNAME1 and password
     And I clear the trolley for the shopper
-    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME8 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME2 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I clear the trolley for the shopper
     When apigee connect to trader public api endpoint as guest
@@ -200,7 +200,7 @@ Feature: Verify Shopping Trolley
     And I keep on adding 3 items to my existing trolley from search list with 1 quantity each
     Then shopper trolley should have 11 products
 
-    When apigee continue to connect to trader public api endpoint with login containing shopapp+60 and password
+    When apigee continue to connect to trader public api endpoint with login containing SHOPPER_USERNAME1 and password
     And I check the delivery method to be "Courier"
     And I retrieve the trolley for the shopper to check for 11 products
     Then I verify all 11 items are available in the Trolley

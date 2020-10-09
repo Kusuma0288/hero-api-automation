@@ -98,6 +98,7 @@ public class SharedData {
 
   public String shopperDeliveryAddress;
   public int trolleyQuantity;
+  public int fulfilmentStoreAddressId;
   public int fulfilmentStoreId;
   public int guestAddressId;
   public int deliveryAddressIdContainer;
@@ -112,9 +113,11 @@ public class SharedData {
   public void setDeliveryAddresses(int addressID, String addressText) {
     deliveryAddresses.put(addressID, addressText);
   }
+
   public HashMap<Integer, String> getDeliveryAddresses() {
     return deliveryAddresses;
   }
+
   public void removeAllItemsInDeliveryAddresses() {
     deliveryAddresses.clear();
   }

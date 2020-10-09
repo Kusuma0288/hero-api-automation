@@ -3,7 +3,7 @@ Feature: Delete address for logged in user
 
   Scenario: Delete the previous delivery addresses for a logged in user
 
-    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME1  and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME1 and password
     And I search for the address 1 Darcy Road, PORT KEMBLA NSW 2505
     And I select the "1" address as checkout address from matching addresses
     And I search for the address 1 Cornellia Road, TOONGABBIE NSW 2146
