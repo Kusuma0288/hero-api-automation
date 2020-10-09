@@ -8,6 +8,7 @@ import au.com.woolworths.utils.TestProperties;
 import au.com.woolworths.utils.URLResources;
 import io.restassured.http.Header;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -15,25 +16,32 @@ import java.util.Map;
 public class IFrameCardHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
 
+  String iFrameRequest, response, endPoint, bearer;
+
   public IFrameCardHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 
   public iFrameResponse postiFrameCardDetails(String sessionID) throws Throwable {
+    bearer = sessionID;
 
-    String iFrameRequeststr, responseStr, endPoint;
     if (System.getProperty("env").equals("uat")) {
       endPoint = URLResources.APIGEE_iFRAME_UAT;
     } else {
-      // The TEST version of rewards app uses dev1, whereas the shop app uses test ¯\_(ツ)_/¯
-      if (System.getProperty("useDev1").equals("true")) {
-        endPoint = URLResources.APIGEE_iFRAME_DEV1;
-      }
-      else {
-        endPoint = URLResources.APIGEE_iFRAME_TEST;
-      }
+      endPoint = URLResources.APIGEE_iFRAME_TEST;
     }
 
+    return postRequest();
+  }
+
+  public iFrameResponse postiFrameCardDetails(String sessionID, String hostname) throws IOException {
+    bearer = sessionID;
+    endPoint = hostname + URLResources.IFRAME_CREDITCARD;
+
+    return postRequest();
+  }
+
+  private iFrameResponse postRequest() throws IOException {
     iFrameRequest iframeRequest = new iFrameRequest();
     iframeRequest.setAa(TestProperties.get("CARD_NUMBER"));
     iframeRequest.setBb(TestProperties.get("CVV"));
@@ -42,12 +50,12 @@ public class IFrameCardHelper extends BaseHelper {
     iframeRequest.setPrimary(true);
     iframeRequest.setSave(true);
     iframeRequest.setVerify(true);
-    iFrameRequeststr = mapper.writeValueAsString(iframeRequest);
+    iFrameRequest = mapper.writeValueAsString(iframeRequest);
     List<Header> headerList = new LinkedList<>();
-    headerList.add(new Header("Authorization", "Bearer " + sessionID));
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, iFrameRequeststr, headerList);
-    responseStr = mapWebserviceResponse.get("response");
+    headerList.add(new Header("Authorization", "Bearer " + bearer));
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, iFrameRequest, headerList);
+    response = mapWebserviceResponse.get("response");
 
-    return mapper.readValue(responseStr, iFrameResponse.class);
+    return mapper.readValue(response, iFrameResponse.class);
   }
 }
