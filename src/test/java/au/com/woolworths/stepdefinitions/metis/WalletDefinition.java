@@ -85,6 +85,17 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
 
   @Then("^the user should be able to update a card$")
   public void canUpdateCard() throws IOException {
+    InputStream iStreamInstruments = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchPaymentInstruments.graphql");
+    String graphqlQueryInstruments = GraphqlParser.parseGraphql(iStreamInstruments, null);
+    fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQueryInstruments);
+    String cardToUpdate = fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getId();
+
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    variables.put("id", cardToUpdate);
+    InputStream iStreamUpdate = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchUpdateSchemeCardURL.graphql");
+    String graphqlQueryUpdate = GraphqlParser.parseGraphql(iStreamUpdate, variables);
+
+    // TODO Move the above to something reusable?
 
   }
 
