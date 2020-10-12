@@ -10,6 +10,7 @@ import au.com.woolworths.model.apigee.trolley.TrolleyV2Response;
 import au.com.woolworths.model.apigee.trolley.TrolleyV3Response;
 import au.com.woolworths.model.apigee.search.SearchResponseV3;
 import au.com.woolworths.model.apigee.checkout.CheckoutPackagingPreferencesResponse;
+import au.com.woolworths.model.iris.graphql.productList.Product;
 import au.com.woolworths.model.trader.*;
 import au.com.woolworths.model.trader.product.productGroup.ProductsByProductGroup;
 
@@ -96,6 +97,9 @@ public class SharedData {
   public ProductsByProductGroup productsByProductGroup;
   public Map<String, String> recentCompleteResponse = new HashMap<>();    //this is generic to any response
   public Address address;
+  public List<Product> availableProducts;
+  public Product availableProduct;
+  public String availableProductId;
 
   public String shopperDeliveryAddress;
   public int trolleyQuantity;
@@ -113,9 +117,11 @@ public class SharedData {
   public void setDeliveryAddresses(int addressID, String addressText) {
     deliveryAddresses.put(addressID, addressText);
   }
+
   public HashMap<Integer, String> getDeliveryAddresses() {
     return deliveryAddresses;
   }
+
   public void removeAllItemsInDeliveryAddresses() {
     deliveryAddresses.clear();
   }
