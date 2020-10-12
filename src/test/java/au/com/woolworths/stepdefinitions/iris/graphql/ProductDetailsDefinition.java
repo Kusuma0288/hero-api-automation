@@ -47,7 +47,7 @@ public class ProductDetailsDefinition {
     Optional<Feed> productCard = productDetailsResponse.getData().getProductDetails()
         .getFeed()
         .stream()
-        .filter(feed -> feed.getProductId() != null).findFirst();
+        .filter(feed -> feed.getTypename() != "ProductCard").findFirst();
     Assert.assertNotNull(productCard.get().getPromotionValue());
     Assert.assertNotNull(productCard.get().getName());
     Assert.assertNotNull(productCard.get().getPrice());
