@@ -27,6 +27,7 @@ stages:
               TestRunTitle: Uat_Rewards Automation Run Report
               Profile: regression_rewards
               RunEnv: uat
+              Service: rewards
         condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
 
       - job: Test_Rewards
@@ -40,6 +41,7 @@ stages:
               TestRunTitle: Test_Rewards Automation Run Report
               Profile: regression_rewards
               RunEnv: test
+              Service: rewards
         condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
 
   - stage: Manual
@@ -54,4 +56,5 @@ stages:
               TestRunTitle: Rewards Automation Run Report
               Profile: regression_rewards
               RunEnv: ${{ parameters.triggerEnv }}
+              Service: rewards
         condition: and(succeededOrFailed(), ne('${{ parameters.triggerEnv }}', 'all'))

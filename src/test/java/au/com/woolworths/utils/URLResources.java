@@ -86,5 +86,5 @@ public final class URLResources {
   public static final String TRADER_V2_SPECIALS_GROUP = "api/v3/product/specials/groups";
   public static final String TRADER_V2_SPECIALS_GROUP_DETAILS = "api/v3/product/specials";
   public static final String TRADER_V3_PRODUCT_GROUP = "api/v3/product/productgroup";
-
+  public static final String V3_SEARCH = "api/v3/product/search";
 }

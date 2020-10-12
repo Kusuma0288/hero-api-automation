@@ -67,4 +67,32 @@ public class SearchHelper extends BaseHelper {
     return response;
   }
 
+  public SearchResponse searchProducts(String authToken, String term, int pageNumber, int pageSize, String sortOption) throws Throwable {
+    Map<String, String> mapWebserviceResponse;
+    String requestStr;
+    String responseStr;
+
+    SearchRequest searchRequest = new SearchRequest();
+    SearchResponse searchResponse;
+
+    searchRequest.setTerm(term);
+    searchRequest.setPageNumber(pageNumber);
+    searchRequest.setPageSize(pageSize);
+    searchRequest.setSortOption(sortOption);
+
+    ObjectMapper mapper = new ObjectMapper();
+    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+
+    requestStr = mapper.writeValueAsString(searchRequest);
+    String endPoint = URLResources.V3_SEARCH;
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListTrader);
+    responseStr = mapWebserviceResponse.get("response");
+
+    searchResponse = mapper.readValue(responseStr, SearchResponse.class);
+    return searchResponse;
+
+  }
+
 }

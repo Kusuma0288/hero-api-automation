@@ -3,6 +3,7 @@ parameters:
     type: string
     default: https://hooks.slack.com/services/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
     
+
   - name: TestRunTitle
     type: string
     default: Automation Run Report
@@ -17,6 +18,9 @@ parameters:
   - name: RunEnv
     type: string
     default: uat
+
+  - name: Service
+    type: string
 
 steps:
   - task: DockerCompose@0
@@ -63,7 +67,7 @@ steps:
       az storage blob upload-batch `
        --account-key 'qzySpscvrIRAlI1W/WBKEDLG7mdFh4l1thcKewSfcJmoff0A+fNpvvAB6eASFBJYWRMCi7hw+arzJyKUmWWI+Q==' `
        --account-name wowuatmobileautoreports `
-       --destination '$web/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)' `
+       --destination '$web/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)' `
        --source '$(Build.SourcesDirectory)/target/cucumber-reports/'
 
     displayName: 'Post test results to Azure blob storage'
@@ -80,6 +84,7 @@ steps:
       $nutellaURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_NUTELLA.html"
 
       $cloverURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_CLOVER.html"
+
       function calculation {
        param ([string]$value)
 

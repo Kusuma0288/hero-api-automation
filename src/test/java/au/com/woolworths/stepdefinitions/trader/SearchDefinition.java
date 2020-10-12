@@ -1,10 +1,7 @@
 package au.com.woolworths.stepdefinitions.trader;
 
 import au.com.woolworths.helpers.trader.SearchHelper;
-import au.com.woolworths.model.trader.GetProductItems;
-import au.com.woolworths.model.trader.PickupResponse;
-import au.com.woolworths.model.trader.SuburbDetails;
-import au.com.woolworths.model.trader.Suburbs;
+import au.com.woolworths.model.trader.*;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -52,6 +49,12 @@ public class SearchDefinition extends SearchHelper {
   public void iSearchPickupStoreInPostCode(int postCode) throws Throwable {
     PickupResponse[] pickupResponses = getServicablePickupStoresFromPostCode(postCode);
     sharedData.pickupResponse = pickupResponses;
+  }
+
+  @Then("^I search for the product \"([^\"]*)\" with the new search endpoint$")
+  public void iSearchForTheProductWithTheNewSearchEndpoint(String productName) throws Throwable {
+    SearchResponse searchResponse = searchProducts(sharedData.authToken, productName, 1, 20, "TraderRelevance");
+    Assert.assertTrue(searchResponse.getTotalCount() >= 1, "There were no results for the searched term");
   }
 
 }
