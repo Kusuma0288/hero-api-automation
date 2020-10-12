@@ -22,7 +22,6 @@ public class GraphqlQueryHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse;
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, query, headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
-    logger.info(responseStr);
     return responseStr;
   }
 

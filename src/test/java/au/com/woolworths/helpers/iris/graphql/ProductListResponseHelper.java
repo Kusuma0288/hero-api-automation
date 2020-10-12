@@ -14,7 +14,7 @@ public class ProductListResponseHelper extends BaseHelper {
 
   public static List<Product> getAvailableProducts(List<Product> productList) {
     return productList.stream()
-        .filter(product -> product.getIsAvailable() == true
+        .filter(product -> product.getIsAvailable()
             && product.getWasPrice() != null
             && product.getName() != null
             && product.getPromotionValue() != null)

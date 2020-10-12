@@ -98,6 +98,7 @@ public class SharedData {
   public Map<String, String> recentCompleteResponse = new HashMap<>();    //this is generic to any response
   public Address address;
   public List<Product> availableProducts;
+  public Product availableProduct;
   public String availableProductId;
 
   public String shopperDeliveryAddress;

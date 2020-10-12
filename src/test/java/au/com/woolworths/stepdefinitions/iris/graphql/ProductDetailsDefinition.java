@@ -28,6 +28,7 @@ public class ProductDetailsDefinition {
   @And("user selects a \"([^\"]*)\" product to get online product details$")
   public void selectProductToGetOnlineProductDetails(ProductIdSource productIdSource) throws Throwable {
     if (productIdSource == ProductIdSource.RANDOM) {
+      sharedData.availableProduct = sharedData.availableProducts.get(0);
       sharedData.availableProductId = sharedData.availableProducts.get(0).getProductId();
     } else {
       sharedData.availableProductId = TestProperties.get("ONLINE_PRODUCT_ID");
@@ -41,7 +42,6 @@ public class ProductDetailsDefinition {
     variables.put("productId", sharedData.availableProductId);
     String productDetailsQuery = GraphqlParser.parseGraphql(iStream, variables);
     String productDetailsResponseString = queryHelper.postGraphqlQuery(productDetailsQuery);
-    System.out.println(productDetailsResponseString);
     ProductDetailsResponse productDetailsResponse = mapper.readValue(productDetailsResponseString, ProductDetailsResponse.class);
 
     Optional<Feed> productCard = productDetailsResponse.getData().getProductDetails()
