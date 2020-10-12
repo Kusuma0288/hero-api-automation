@@ -11,4 +11,3 @@ public class Credentials {
   public String type;
   public String sessionID;
 }
-

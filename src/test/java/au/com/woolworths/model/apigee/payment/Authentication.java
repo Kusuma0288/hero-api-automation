@@ -10,4 +10,3 @@ import lombok.Data;
 public class Authentication {
   public Credentials[] credentials;
 }
-
