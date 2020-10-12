@@ -5,8 +5,8 @@ import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class StoreIdRequest {
+public class StoreAddressIdRequest {
 
-  private int FulfilmentStoreId;
+  private int StoreAddressId;
 
 }

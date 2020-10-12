@@ -48,4 +48,11 @@ public class BaseHelper {
     headerListCommon.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
   }
 
+  public void resetTraderHeaderList() {
+    headerListTrader.clear();
+    headerListTrader.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
+    headerListTrader.add(new Header("wowapi-auth-token", sharedData.authToken));
+    headerListTrader.add(new Header("cache-control", "no-cache"));
+  }
+
 }

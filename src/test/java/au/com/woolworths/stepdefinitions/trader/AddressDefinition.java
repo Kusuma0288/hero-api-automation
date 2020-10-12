@@ -109,7 +109,7 @@ public class AddressDefinition extends AddressHelper {
 
   @Then("^I login to signed up account to see the addresses$")
   public void iLoginToSignedUpAccountToSeeTheAddresses() throws Throwable {
-    MyAddresses myAddressResponse = iLoginToMyAccountToSeeTheAddresses(sharedData.signupAuthToken);
+    MyAddresses myAddressResponse = iLoginToMyAccountToSeeTheAddresses(sharedData.authToken);
     Address allAddress = myAddressResponse.getAddresses()[0];
 
     Assert.assertTrue(allAddress.getAddressText().toLowerCase().contains(sharedData.shopperDeliveryAddress.toLowerCase()), "Guest Address text is not matching with::" + sharedData.shopperDeliveryAddress.toLowerCase() + ":: as expected::" + allAddress.getAddressText().toLowerCase());
@@ -120,7 +120,7 @@ public class AddressDefinition extends AddressHelper {
 
   @Then("^I login to signed up account to see the address information match$")
   public void iLoginToSignedUpAccountToSeeTheAddressInformationMatch() throws Throwable {
-    MyAddresses myAddressResponse = iLoginToMyAccountToSeeTheAddresses(sharedData.signupAuthToken);
+    MyAddresses myAddressResponse = iLoginToMyAccountToSeeTheAddresses(sharedData.authToken);
     Address allAddress = myAddressResponse.getAddresses()[0];
 
     Assert.assertNotNull(allAddress.getAddressText());

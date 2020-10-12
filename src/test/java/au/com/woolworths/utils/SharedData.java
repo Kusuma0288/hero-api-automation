@@ -103,6 +103,7 @@ public class SharedData {
 
   public String shopperDeliveryAddress;
   public int trolleyQuantity;
+  public int fulfilmentStoreAddressId;
   public int fulfilmentStoreId;
   public int guestAddressId;
   public int deliveryAddressIdContainer;

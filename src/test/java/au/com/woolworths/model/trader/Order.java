@@ -56,4 +56,6 @@ public class Order {
   private boolean DisableLeaveUnattended;
   private boolean CanLeaveUnattended;
   private LeaveUnattendedMessage OnLeaveUnattendedMessage;
+  //New field introduced for Project Shore
+  private Object RewardsCredits;
 }

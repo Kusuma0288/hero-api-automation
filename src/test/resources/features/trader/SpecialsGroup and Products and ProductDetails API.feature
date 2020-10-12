@@ -15,8 +15,8 @@ Feature: Verify Product details Api
 
     Examples:
       | Email Address |
-      | shopapp+29    |
-      | shopapp+26    |
+      | SHOPPER_USERNAME4    |
+      | SHOPPER_USERNAME5    |
 
   @PROD_TRADER
   Scenario: Verify the product count and total record count of each special group against products API for guest user

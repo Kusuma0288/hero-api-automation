@@ -80,7 +80,7 @@ public class AddressHelper extends BaseHelper {
     String endPoint = URLResources.TRADER_V2_MYACCOUNT_ADDRESS;
     List<Header> headerListTrader = new LinkedList<>();
     headerListTrader.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
-    headerListTrader.add(new Header("wowapi-auth-token", sharedData.signupAuthToken));
+    headerListTrader.add(new Header("wowapi-auth-token", sharedData.authToken));
     headerListTrader.add(new Header("cache-control", "no-cache"));
 
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
