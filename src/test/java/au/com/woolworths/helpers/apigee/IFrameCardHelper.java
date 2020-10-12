@@ -58,4 +58,19 @@ public class IFrameCardHelper extends BaseHelper {
 
     return mapper.readValue(response, iFrameResponse.class);
   }
+
+  public iFrameResponse postUpdateCardRequest(String itemID, String sessionID, String hostname) throws IOException {
+    endPoint = hostname + URLResources.IFRAME_CVVANDEXPIRY;
+
+    Credentials[] credentials = new Credentials[1];
+    credentials[0] = new Credentials("PERSON", sessionID);
+    Authentication authentication = new Authentication(credentials);
+    iFrameUpdateCardRequest iframeRequest = new iFrameUpdateCardRequest(authentication, TestProperties.get("CVV"), TestProperties.get("EXPIRY_MONTH"), TestProperties.get("EXPIRY_YEAR"), itemID, TestProperties.get("SCHEME"));
+
+    iFrameRequest = mapper.writeValueAsString(iframeRequest);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, iFrameRequest, headerListRewards);
+    response = mapWebserviceResponse.get("response");
+
+    return mapper.readValue(response, iFrameResponse.class);
+  }
 }
