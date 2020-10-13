@@ -1,0 +1,5 @@
+query fetchUpdateSchemeCardURL($id: String) {
+    updateSchemeCard(id: $id) {
+        url
+    }
+}

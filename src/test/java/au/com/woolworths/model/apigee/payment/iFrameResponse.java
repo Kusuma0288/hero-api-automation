@@ -20,6 +20,7 @@ public class iFrameResponse {
     public long txnTime;
     public Object error;
     public Object esResponse;
+    public String messageId;
   }
 
   @Data
