@@ -1,0 +1,22 @@
+query rewardsCardHomePageWithWallet {
+    rewardsHomePage {
+        balance {
+            redemptionSettings {
+                icon
+                label
+                value
+            }
+            fuelVouchers {
+                label
+                numberOfVouchers
+            }
+            displayName
+        }
+    }
+    walletHomePage {
+        title
+        content
+        action
+        showBadge
+    }
+}

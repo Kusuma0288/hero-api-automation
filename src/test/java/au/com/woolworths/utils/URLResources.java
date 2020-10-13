@@ -33,6 +33,8 @@ public final class URLResources {
   public static final String APIGEE_PAYMENT_CARDS = "/wow/v1/pay/cards/initcapture";
   public static final String APIGEE_iFRAME_UAT = "https://iframe.nonprod.payments.woolworths.com.au/tokenisation/creditcard";
   public static final String APIGEE_iFRAME_TEST = "https://iframe.sit.payments.woolworths.com.au/tokenisation/creditcard";
+  public static final String APIGEE_iFRAME_DEV1 = "https://iframe.dev1.payments.woolworths.com.au/tokenisation/creditcard";
+  public static final String IFRAME_CREDITCARD = "/tokenisation/creditcard";
   public static final String APIGEE_PAYMENT_DIGITALPAY = "/wow/v2/commerce/checkout/payment/digitalpay";
   public static final String HERMES_V1_GRAPHQL = "/hermes/iris/v1/graphql";
   public static final String APIGEE_V2_ORDER_CONFIRMATION = "/wow/v2/commerce/orders/";
@@ -46,7 +48,7 @@ public final class URLResources {
   public static final String METIS_LOGOUT = "/zeus/metis/v1/rewards/logout";
   public static final String METIS_REWARDS = "/zeus/metis/v1/rewards";
   public static final String METIS_TOKEN = "/zeus/metis/v1/rewards/token";
-
+  public static final String HELIOS_LOGIN = "/helios/v1/api/login";
 
   //Trader URL
   public static final String TRADER_V2_GUEST = "/Authenticate/LoginAsGuest";

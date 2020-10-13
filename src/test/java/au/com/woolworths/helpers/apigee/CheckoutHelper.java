@@ -5,7 +5,6 @@ import au.com.woolworths.model.apigee.payment.*;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.TestProperties;
 import au.com.woolworths.utils.URLResources;
-import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.apigee.checkout.CheckoutPaymentSummaryResponse;
 import au.com.woolworths.model.apigee.checkout.CheckoutRequest;
 import au.com.woolworths.model.apigee.checkout.CheckoutResponse;
@@ -17,7 +16,7 @@ import java.util.logging.Logger;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import io.restassured.http.Header;
 
-public class CheckoutHelper extends BaseHelper {
+public class CheckoutHelper extends IFrameCardHelper {
   RestInvocationUtil invocationUtil;
   private final static Logger logger = Logger.getLogger("CheckoutHelper.class");
 
@@ -117,29 +116,6 @@ public class CheckoutHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, payCardCaptureRequestStr, headerListCommon);
     String responseStr = mapWebserviceResponse.get("response");
     return mapper.readValue(responseStr, PayCardCaptureResponse.class);
-
-  }
-
-  public iFrameResponse postiFrameCardDetails(String sessionID) throws Throwable {
-
-    String iFrameRequeststr, responseStr, endPoint;
-    if (System.getProperty("env").equals("uat")) {
-      endPoint = URLResources.APIGEE_iFRAME_UAT;
-    } else {
-      endPoint = URLResources.APIGEE_iFRAME_TEST;
-    }
-
-    iFrameRequest iframeRequest = new iFrameRequest();
-    iframeRequest.setAa(TestProperties.get("CARD_NUMBER"));
-    iframeRequest.setBb(TestProperties.get("CVV"));
-    iframeRequest.setDd(TestProperties.get("EXPIRY_MONTH"));
-    iframeRequest.setEe(TestProperties.get("EXPIRY_YEAR"));
-    iFrameRequeststr = mapper.writeValueAsString(iframeRequest);
-    List<Header> headerList = new LinkedList<>();
-    headerList.add(new Header("Authorization", "Bearer " + sessionID));
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, iFrameRequeststr, headerList);
-    responseStr = mapWebserviceResponse.get("response");
-    return mapper.readValue(responseStr, iFrameResponse.class);
 
   }
 

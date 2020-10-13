@@ -267,7 +267,9 @@ public class RestInvocationUtil {
   private String getBaseURL(String endPoint) {
     if (endPoint.startsWith("/api") || endPoint.startsWith("api") || endPoint.startsWith("/Auth"))
       return TestProperties.get("BASE_URI_TRADER");
-    else
+    else if (endPoint.contains("helios")) {
+      return TestProperties.get("BASE_URI_HELIOS");
+    } else
       return TestProperties.get("BASE_URI_APIGEE");
   }
 

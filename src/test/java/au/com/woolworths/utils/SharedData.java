@@ -10,6 +10,7 @@ import au.com.woolworths.model.apigee.trolley.TrolleyV2Response;
 import au.com.woolworths.model.apigee.trolley.TrolleyV3Response;
 import au.com.woolworths.model.apigee.search.SearchResponseV3;
 import au.com.woolworths.model.apigee.checkout.CheckoutPackagingPreferencesResponse;
+import au.com.woolworths.model.iris.graphql.productList.Product;
 import au.com.woolworths.model.trader.*;
 import au.com.woolworths.model.trader.product.productGroup.ProductsByProductGroup;
 
@@ -21,8 +22,10 @@ import java.util.Map;
 public class SharedData {
 
   public String deviceId;
+  public String authCode;
   public String sessionToken;
   public String authToken;
+  public String refreshToken;
   public String responseStatusCode;
   public LoginReponse guestResponse;
   public String accessToken;
@@ -94,9 +97,13 @@ public class SharedData {
   public ProductsByProductGroup productsByProductGroup;
   public Map<String, String> recentCompleteResponse = new HashMap<>();    //this is generic to any response
   public Address address;
+  public List<Product> availableProducts;
+  public Product availableProduct;
+  public String availableProductId;
 
   public String shopperDeliveryAddress;
   public int trolleyQuantity;
+  public int fulfilmentStoreAddressId;
   public int fulfilmentStoreId;
   public int guestAddressId;
   public int deliveryAddressIdContainer;
@@ -111,9 +118,11 @@ public class SharedData {
   public void setDeliveryAddresses(int addressID, String addressText) {
     deliveryAddresses.put(addressID, addressText);
   }
+
   public HashMap<Integer, String> getDeliveryAddresses() {
     return deliveryAddresses;
   }
+
   public void removeAllItemsInDeliveryAddresses() {
     deliveryAddresses.clear();
   }

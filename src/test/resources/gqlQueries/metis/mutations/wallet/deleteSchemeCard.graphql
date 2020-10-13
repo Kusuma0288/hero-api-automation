@@ -1,0 +1,6 @@
+mutation deleteSchemeCard($id: String) {
+    deleteSchemeCard(id: $id) {
+        success
+        message
+    }
+}

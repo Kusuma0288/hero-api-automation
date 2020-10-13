@@ -27,8 +27,8 @@ public class ShopperSignupDefinition extends ShopperHelper {
     }
     sharedData.signupResponseStatusCode = signupResponse.getStatusCode();
     sharedData.signupLoginResponseV2 = signupResponse;
-    sharedData.signupAuthToken = signupResponse.getAuthToken();
     sharedData.authToken = signupResponse.getAuthToken();
+    resetTraderHeaderList();
   }
 
   @Then("^I use the following details for signing up as a new user$")
@@ -40,8 +40,9 @@ public class ShopperSignupDefinition extends ShopperHelper {
     }
     sharedData.signupResponseStatusCode = signupResponse.getStatusCode();
     sharedData.signupLoginResponseV2 = signupResponse;
-    sharedData.signupAuthToken = signupResponse.getAuthToken();
+    sharedData.authToken = signupResponse.getAuthToken();
     sharedData.deviceId = deviceId;
+    resetTraderHeaderList();
   }
 
   @When("^connection from apigee to trader public api signup endpoint happens$")

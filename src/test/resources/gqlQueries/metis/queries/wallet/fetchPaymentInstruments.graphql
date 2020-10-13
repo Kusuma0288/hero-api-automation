@@ -1,0 +1,20 @@
+query fetchPaymentInstruments {
+    paymentInstruments {
+        ...schemeCard
+        ...addInstrument
+    }
+}
+
+fragment schemeCard on SchemeCard {
+    id
+    title
+    cardNumber
+    logoURL
+    status
+    lastUsed
+}
+
+fragment addInstrument on AddInstrument {
+    title
+    enabled
+}

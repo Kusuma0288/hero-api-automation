@@ -51,6 +51,9 @@ public class Products {
   private String SmallImageFile;
   private String MediumImageFile;
   private String LargeImageFile;
+  //New fields introduced for Project Shore
+  private boolean IsPurchasableWithRewardsCredits;
+  private Object RewardsCreditPrice;
 
 
 }

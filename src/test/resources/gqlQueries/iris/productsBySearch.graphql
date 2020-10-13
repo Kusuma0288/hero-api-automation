@@ -1,0 +1,64 @@
+query productsBySearch($searchTerm: String!, $mode: Mode, $storeId: String, $pageSize: Int, $pageNumber: Int) {
+    productsBySearch(searchTerm: $searchTerm, mode: $mode, storeId: $storeId, pageSize: $pageSize, pageNumber: $pageNumber) {
+        totalNumberOfProducts
+        nextPage
+        filters {
+            headerKey
+            headerTitle
+            filterItems {
+                key
+                title
+                isApplied
+            }
+        }
+        sortOptions {
+            key
+            title
+            subtitle
+            isApplied
+        }
+        products {
+            productId
+            name
+            productImage
+            isAvailable
+            purchaseRestriction
+            isNew
+            price
+            unitPriceDescription
+            badgeImage
+            promotionValue
+            wasPrice
+            purchaseWarning
+            list {
+                minimum
+                maximum
+                increment
+                default
+                unit
+            }
+            trolley {
+                minimum
+                maximum
+                increment
+                default
+                inTrolley
+                unit
+                buttonState
+                buttonLabel
+                buttonQuantity
+            }
+            inStoreDetails {
+                locationText
+                locationType
+            }
+            multiBuyPrice
+            multiBuyUnitPrice
+            inlineLabels {
+                type
+                label
+                priority
+            }
+        }
+    }
+}

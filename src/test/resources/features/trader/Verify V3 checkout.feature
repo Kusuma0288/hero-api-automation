@@ -24,8 +24,8 @@ Feature: Verify V3 Checkout scenarios
     Then I clear the checkout details
     Examples:
       | DeliveryAddress                    | EmailAddress |
-      | 19 Rudd Street, Narellan, NSW 2567 | shopapp+57   |
-      #|1 Darcy Rd, PORT KEMBLA 2505                   |  shopapp+57             |
+      | 1 Darcy Rd, PORT KEMBLA 2505       | SHOPPER_USERNAME1 |
+
 
   @REGRESSION_TRADER
   Scenario Outline: Validate that customer as a guest
@@ -49,10 +49,10 @@ Feature: Verify V3 Checkout scenarios
     Then I clear the checkout details
     Examples:
       | PostCode | EmailAddress |
-      | 2000     | shopapp+57   |
+      | 2000     | SHOPPER_USERNAME1  |
 
   Scenario: Validate the E2E scenario with Paypal Payment
-    Given apigee connect to trader public api endpoint with login containing shopapp+61 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME8 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I search for the address 19 Rudd Street Narellan
     And I select the "1" address as checkout address from matching addresses
@@ -69,7 +69,7 @@ Feature: Verify V3 Checkout scenarios
     Then I clear the checkout details
 
   Scenario Outline: Login as Shopper and verify for the delivery now and leave unattended
-    Given apigee connect to trader public api endpoint with login containing shopapp+27 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME1 and password
     When apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I search for address "<Address>" without saving for future lookup
     And I select the "1" address as checkout address from matching addresses

@@ -1,10 +1,8 @@
-@REGRESSION
+@REGRESSION_REWARDS @CLOVER
 Feature: Redemption settings provides the option to choose how a user is rewarded
 
   Scenario: User selects redemption settings
-    Given a user has a Link session token
-    And the user logs in with their authcode
-    And the user should be logged into the Rewards App
+    Given a user logs in the rewards app with card number "REWARDS_USER_DEFAULT"
     When the user makes a request for the redemption settings
     Then the redemption setting should return "3" reward options
     And  the step up url should be returned
