@@ -1,7 +1,8 @@
 parameters:
   - name: triggerEnv
+    displayName: Run Environment
     type: string
-    default: all
+    default: test
     values:
       - uat
       - test
@@ -16,6 +17,21 @@ stages:
   - stage: Auto
     # Jobs schedules are managed --> https://wowonline.visualstudio.com/Mobile/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=1604&view=Tab_Triggers
     jobs:
+      - job: Prod_Rewards
+        steps:
+            - script: |
+                echo "Setting up delay for the job"
+                sleep 10m
+                echo ${{ parameters.triggerEnv }}
+            - template: pipelines/templates/base-template.yml
+              parameters:
+                TestRunTitle: Prod_Rewards Automation Run Report
+                Profile: regression_rewards
+                RunEnv: prod
+                Service: rewards
+        condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
+
+
       - job: Uat_Rewards
         steps:
           - script: |
@@ -42,7 +58,8 @@ stages:
               Profile: regression_rewards
               RunEnv: test
               Service: rewards
-        condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
+        condition: and(succeededOrFailed(), eq(variables['Build.Reason'], 'Schedule'))
+
 
   - stage: Manual
     jobs:
@@ -57,4 +74,4 @@ stages:
               Profile: regression_rewards
               RunEnv: ${{ parameters.triggerEnv }}
               Service: rewards
-        condition: and(succeededOrFailed(), ne('${{ parameters.triggerEnv }}', 'all'))
+        condition: and(succeededOrFailed(), in(variables['Build.Reason'], 'Manual','IndividualCI','PullRequest'))
