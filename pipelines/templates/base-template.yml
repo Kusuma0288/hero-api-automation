@@ -2,7 +2,7 @@ parameters:
   - name: SlackWebHookUrl
     type: string
     default: https://hooks.slack.com/services/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
-    
+
 
   - name: TestRunTitle
     type: string
@@ -75,15 +75,14 @@ steps:
     condition: always()
 
   - powershell: |
-      $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/index.html"
-      $imageURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/advanced-reports/test.png"
-      $wolvesURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Wolves.html"
-      $lionURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_LION.html"
-      $lobsterURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Lobsters.html"
-      $vegemiteURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
-      $nutellaURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_NUTELLA.html"
-
-      $cloverURL = "${{ parameters.ClusterUrl }}/api_tests_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_CLOVER.html"
+      $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/index.html"
+      $imageURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/advanced-reports/test.png"
+      $wolvesURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Wolves.html"
+      $lionURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_LION.html"
+      $lobsterURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Lobsters.html"
+      $vegemiteURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
+      $nutellaURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_NUTELLA.html"
+      $cloverURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_CLOVER.html"
 
       function calculation {
        param ([string]$value)
@@ -113,6 +112,9 @@ steps:
       $vegemiteCount = calculation $vegemiteURL
       $cloverCount = calculation $cloverURL
       $nutellaCount = calculation $nutellaURL
+
+      echo "wolvesCount"
+      echo $wolvesCount
 
       $color = 'good';
       $slackMessage = @{
