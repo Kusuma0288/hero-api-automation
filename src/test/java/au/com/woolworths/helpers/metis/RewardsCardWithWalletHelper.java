@@ -1,10 +1,7 @@
 package au.com.woolworths.helpers.metis;
 
 import au.com.woolworths.helpers.apigee.IFrameCardHelper;
-import au.com.woolworths.model.metis.card.DeleteSchemeCardResponse;
-import au.com.woolworths.model.metis.card.FetchAddSchemeCardURLResponse;
-import au.com.woolworths.model.metis.card.FetchPaymentInstrumentsResponse;
-import au.com.woolworths.model.metis.card.RewardsCardHomePageWithWalletResponse;
+import au.com.woolworths.model.metis.card.*;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
@@ -25,6 +22,10 @@ public class RewardsCardWithWalletHelper extends IFrameCardHelper {
 
   public FetchAddSchemeCardURLResponse iRetrieveAddSchemeCardURL(String query) throws IOException {
     return mapper.readValue(postQuery(query), FetchAddSchemeCardURLResponse.class);
+  }
+
+  public FetchUpdateSchemeCardURLResponse iRetrieveUpdateSchemeCardURL(String query) throws IOException {
+    return mapper.readValue(postQuery(query), FetchUpdateSchemeCardURLResponse.class);
   }
 
   public FetchPaymentInstrumentsResponse iRetrievePaymentInstruments(String query) throws IOException {
