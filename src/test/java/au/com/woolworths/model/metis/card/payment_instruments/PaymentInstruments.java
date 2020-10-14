@@ -1,4 +1,4 @@
-package au.com.woolworths.model.metis.card;
+package au.com.woolworths.model.metis.card.payment_instruments;
 
 import lombok.Data;
 
