@@ -31,19 +31,19 @@ steps:
     displayName: 'Run maven checkstyle'
     continueOnError: true
 
-    - powershell: |
-        $XMLfile = '$(Build.SourcesDirectory)/target/checkstyle-result.xml'
-        [XML]$errorDetails = Get-Content $XMLfile
+  - powershell: |
+      $XMLfile = '$(Build.SourcesDirectory)/target/checkstyle-result.xml'
+      [XML]$errorDetails = Get-Content $XMLfile
 
-        $rows = $errorDetails.checkstyle.file.error
-        if($rows.count -gt 0){
+      $rows = $errorDetails.checkstyle.file.error
+      if($rows.count -gt 0){
            echo $rows
            throw "Build failed. Please check the lint errors."
-        }
+      }
 
-      displayName: 'Analysing Code linting results'
-      continueOnError: false
-      condition: always()
+    displayName: 'Analysing Code linting results'
+    continueOnError: false
+    condition: always()
 
   - task: DockerCompose@0
     displayName: 'Execute Tests'
