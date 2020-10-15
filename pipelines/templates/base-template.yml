@@ -38,7 +38,7 @@ steps:
       $rows = $errorDetails.checkstyle.file.error
       if($rows.count -gt 0){
            echo $rows
-           throw "Build failed. Please check the lint errors : " $rows
+           throw "Build failed. Please check the lint errors : $rows"
       }
 
     displayName: 'Analysing Code linting results'
