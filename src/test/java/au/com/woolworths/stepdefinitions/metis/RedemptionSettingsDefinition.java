@@ -63,5 +63,4 @@ public class RedemptionSettingsDefinition extends RedemptionSettingsHelper {
 
   }
 
-
 }
