@@ -36,7 +36,6 @@ steps:
         [XML]$errorDetails = Get-Content $XMLfile
 
         $rows = $errorDetails.checkstyle.file.error
-        echo $rows.count
         if($rows.count -gt 0){
            throw "Build failed. Please check the lint errors."
         }
