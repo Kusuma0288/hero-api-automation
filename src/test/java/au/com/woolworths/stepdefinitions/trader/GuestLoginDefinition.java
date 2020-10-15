@@ -153,7 +153,7 @@ public class GuestLoginDefinition extends ShopperHelper {
 
   @Then("^apigee failed to authenticate to trader public api V2 endpoint$")
   public void apigeeFailedToAuthenticateToTraderPublicAPIV2Endpoint() throws Throwable {
-    Assert.assertTrue(sharedData.responseStatusCode.equals("400"), "Status Code expected is 400 but found::" + sharedData.responseStatusCode);
+    Assert.assertTrue(sharedData.responseStatusCode.equals("500"), "Status Code expected is 500 but found::" + sharedData.responseStatusCode);
     Assert.assertTrue(response.getMessage().contains("WowApi Error"), "Error Message is::" + response.getMessage());
   }
 
