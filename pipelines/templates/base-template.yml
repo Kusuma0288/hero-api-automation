@@ -33,9 +33,9 @@ steps:
 
     - powershell: |
         $XMLfile = '$(Build.SourcesDirectory)/target/checkstyle-result.xml'
-        [XML]$empDetails = Get-Content $XMLfile
+        [XML]$errorDetails = Get-Content $XMLfile
 
-        $rows = $empDetails.checkstyle.file.error
+        $rows = $errorDetails.checkstyle.file.error
         echo $rows.count
         if($rows.count -gt 0){
            throw "Build failed. Please check the lint errors."
