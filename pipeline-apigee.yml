@@ -12,22 +12,35 @@ parameters:
 trigger:
   none
 
+
 pool:
   vmImage: 'ubuntu-latest'
+
+variables:
+- group: MobileAuto-UAT
+- name: apigee-uat-lastFailCount
+  value: $[variables.Apigee_UAT_LastFailCount]
+
+
 
 stages:
   - stage: Auto
     # Job schedules are managed --> https://wowonline.visualstudio.com/Mobile/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=1602&view=Tab_Triggers
+
     jobs:
       - job: Prod_Apigee
         steps:
+          - script: |
+              echo ${{ parameters.triggerEnv }}
+              echo "build --"
+              echo $(Build.Reason)
           - template: pipelines/templates/base-template.yml
             parameters:
-              TestRunTitle: Prod_Apigee Automation Run Report
+              TestRunTitle: Prod Apigee Automation Run Report
               Profile: prod_apigee
               RunEnv: prod
               Service: apigee
-        condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
+        condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'), eq(variables['Build.Reason'], 'Schedule'))
 
       - job: Uat_Apigee
         steps:
@@ -37,11 +50,11 @@ stages:
 
           - template: pipelines/templates/base-template.yml
             parameters:
-              TestRunTitle: Uat_Apigee Automation Run Report
+              TestRunTitle: Uat Apigee Automation Run Report
               Profile: regression_apigee
               RunEnv: uat
               Service: apigee
-        condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
+        condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'), eq(variables['Build.Reason'], 'Schedule'))
 
       - job: Test_Apigee
         steps:
@@ -51,11 +64,11 @@ stages:
 
           - template: pipelines/templates/base-template.yml
             parameters:
-              TestRunTitle: Test_Apigee Automation Run Report
+              TestRunTitle: Test Apigee Automation Run Report
               Profile: regression_apigee
               RunEnv: test
               Service: apigee
-        condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
+        condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'), eq(variables['Build.Reason'], 'Schedule'))
 
   - stage: Manual
     jobs:
@@ -64,17 +77,28 @@ stages:
         variables:
           ${{ if eq(parameters.triggerEnv, 'prod') }}:
             TriggeredProfile: prod_apigee
+            TriggeredEnv: ${{ parameters.triggerEnv }}
           ${{ if eq(parameters.triggerEnv, 'uat') }}:
             TriggeredProfile: regression_apigee
+            TriggeredEnv: ${{ parameters.triggerEnv }}
           ${{ if eq(parameters.triggerEnv, 'test') }}:
             TriggeredProfile: regression_apigee
+            TriggeredEnv: ${{ parameters.triggerEnv }}
+          ${{ if eq(variables['Build.Reason'], 'IndividualCI') }}:
+            TriggeredProfile: regression_apigee
+            TriggeredEnv: uat
+          ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
+            TriggeredProfile: regression_apigee
+            TriggeredEnv: uat
         steps:
           - script: |
-              echo ${{ parameters.triggerEnv }}
+              echo $(Build.Reason)
+              echo ${{variables.TriggeredEnv}}
           - template: pipelines/templates/base-template.yml
             parameters:
               TestRunTitle: Apigee Automation Run Report
               Profile: ${{variables.TriggeredProfile}}
-              RunEnv: ${{ parameters.triggerEnv }}
+              RunEnv: ${{variables.TriggeredEnv}}
               Service: apigee
-        condition: and(succeededOrFailed(), ne('${{ parameters.triggerEnv }}', 'all'))
+        condition: and(succeededOrFailed(), in(variables['Build.Reason'], 'Manual','IndividualCI','PullRequest'))
+
