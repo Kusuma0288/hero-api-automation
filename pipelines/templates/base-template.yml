@@ -24,12 +24,12 @@ parameters:
 
 steps:
   - task: Maven@3
-        inputs:
-          mavenPomFile: 'pom.xml'
-          checkStyleRunAnalysis: true
-          goals: 'checkstyle:checkstyle'
-        displayName: 'Run maven checkstyle'
-        continueOnError: true
+    inputs:
+      mavenPomFile: 'pom.xml'
+      checkStyleRunAnalysis: true
+      goals: 'checkstyle:checkstyle'
+    displayName: 'Run maven checkstyle'
+    continueOnError: true
 
     - powershell: |
         $XMLfile = '$(Build.SourcesDirectory)/target/checkstyle-result.xml'
