@@ -1,0 +1,37 @@
+query {
+    rewardsActivityPage {
+          pointsBalance {
+                    pointsBalance
+                    redemptionPercentage
+                    displayMessage
+                    statusMarkUrl
+                    showStatusMark
+          }
+          list {
+                groups {
+                    title
+                    items {
+                    displayDate
+                    description
+                    message
+                    displayValue
+                    iconUrl
+                    receipt {
+                        receiptId
+                    }
+                    transactionType
+                }
+          }
+                message {
+                    icon
+                    title
+                    message
+                }
+           }
+          message {
+            icon
+            title
+            message
+          }
+    }
+}

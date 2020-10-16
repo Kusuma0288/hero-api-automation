@@ -10,3 +10,5 @@ public class Auth {
   private AuthData data;
   private String type;
 }
+
+

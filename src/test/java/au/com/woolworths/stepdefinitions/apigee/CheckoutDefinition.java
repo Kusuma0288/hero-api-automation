@@ -30,9 +30,9 @@ public class CheckoutDefinition extends CheckoutHelper {
     try {
       sharedData.orderCheckoutSelectedWindowDate = checkoutFulfilmentWindows[0].getDate();
       if (Arrays.stream(checkoutFulfilmentWindows[0].getAfternoon().getSlots()).anyMatch(CheckoutWindowSlots::isIsAvailable)) {
-        checkoutWindowSlots[0] = Arrays.stream(checkoutFulfilmentWindows[0].getAfternoon().getSlots()).filter(CheckoutWindowSlots::isIsAvailable).findFirst().orElse(null);
-        assert checkoutWindowSlots[0] != null;
-        sharedData.windowId = checkoutWindowSlots[0].getId();
+          checkoutWindowSlots[0] = Arrays.stream(checkoutFulfilmentWindows[0].getAfternoon().getSlots()).filter(CheckoutWindowSlots::isIsAvailable).findFirst().orElse(null);
+          assert checkoutWindowSlots[0] != null;
+          sharedData.windowId = checkoutWindowSlots[0].getId();
         sharedData.orderCheckoutPaymentWindowTime = checkoutWindowSlots[0].getStartTime();
       } else {
         checkoutWindowItems = checkoutFulfilmentWindows[0].getEvening();

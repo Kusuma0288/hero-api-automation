@@ -63,7 +63,7 @@ public class ProductsByProductGroupDefinition extends ProductsHelper {
     sharedData.stockCodes = stockCodes;
 
     TrolleyResponse trolleyResponse = shopperHelper.iAddFollowingProductsToTrolley(
-        quantityInTrolley, stockCodes,  false);
+        quantityInTrolley, stockCodes, false);
 
     sharedData.trolleyResponse = trolleyResponse;
   }

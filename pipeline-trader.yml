@@ -1,5 +1,6 @@
 parameters:
   - name: triggerEnv
+    displayName: Run Environment
     type: string
     default: all
     values:

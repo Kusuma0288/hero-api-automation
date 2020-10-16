@@ -3,7 +3,6 @@ parameters:
     type: string
     default: https://hooks.slack.com/services/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
 
-
   - name: TestRunTitle
     type: string
     default: Automation Run Report
@@ -23,12 +22,35 @@ parameters:
     type: string
 
 steps:
+  - task: Maven@3
+    inputs:
+      mavenPomFile: 'pom.xml'
+      checkStyleRunAnalysis: true
+      goals: 'checkstyle:checkstyle'
+    displayName: 'Run maven checkstyle'
+    continueOnError: true
+
+  - powershell: |
+      $XMLfile = '$(Build.SourcesDirectory)/target/checkstyle-result.xml'
+      [XML]$errorDetails = Get-Content $XMLfile
+
+      $rows = $errorDetails.checkstyle.file.error
+      if($rows.count -gt 0){
+           echo $rows
+           throw "Build failed. Please check the lint errors."
+      }
+
+    displayName: 'Analysing Code linting results'
+    continueOnError: false
+    condition: always()
+
   - task: DockerCompose@0
     displayName: 'Execute Tests'
     inputs:
       dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
       dockerComposeCommand: 'run --entrypoint="mvn clean verify test -P${{ parameters.Profile }} -Denv=${{ parameters.RunEnv }} -DsaveRequestResponse=yes" tests'
     continueOnError: true
+    condition: succeeded()
 
   - task: PublishTestResults@2
     displayName: 'Publish Test Results'
@@ -38,7 +60,7 @@ steps:
       searchFolder: '$(Build.SourcesDirectory)'
       mergeTestResults: true
     continueOnError: true
-    condition: always()
+    condition: succeeded()
 
   - script: |
       echo "--Giving permissions to update target directory--"
@@ -53,7 +75,7 @@ steps:
 
     displayName: 'Install dependencies for Python'
     continueOnError: true
-    condition: always()
+    condition: succeeded()
 
   - task: PythonScript@0
     inputs:
@@ -61,7 +83,7 @@ steps:
       scriptPath: '$(Build.SourcesDirectory)/src/test/resources/slack_reporting.py'
     displayName: 'Execute Python script'
     continueOnError: true
-    condition: always()
+    condition: succeeded()
 
   - powershell: |
       az storage blob upload-batch `
@@ -72,7 +94,7 @@ steps:
 
     displayName: 'Post test results to Azure blob storage'
     continueOnError: true
-    condition: always()
+    condition: succeeded()
 
   - powershell: |
       $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/index.html"
