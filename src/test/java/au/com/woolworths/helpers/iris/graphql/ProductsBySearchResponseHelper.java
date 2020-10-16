@@ -2,23 +2,38 @@
 package au.com.woolworths.helpers.iris.graphql;
 
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.iris.graphql.productList.Product;
 
-public class ProductListResponseHelper extends BaseHelper {
-
-  private final static Logger logger = Logger.getLogger("ProductListResponseHelper.class");
+public class ProductsBySearchResponseHelper extends BaseHelper {
 
   public static List<Product> getAvailableProducts(List<Product> productList) {
     return productList.stream()
         .filter(product -> product.getIsAvailable()
-            && product.getWasPrice() != null
-            && product.getName() != null
-            && product.getPromotionValue() != null)
+            && product.getName() != null)
         .collect(Collectors.toList());
+  }
+
+  public enum ProductsBySearchArgs {
+
+    SEARCH_TERM("searchTerm"),
+    MODE("mode"),
+    STORE_ID("storeId"),
+    PAGE_SIZE("pageSize"),
+    PAGE_NUMBER("pageNumber"),
+    SORT_OPTION("sortOption");
+
+    private String arg;
+
+    ProductsBySearchArgs(String arg) {
+      this.arg = arg;
+    }
+
+    public String get() {
+      return arg;
+    }
   }
 
   public enum ProductIdSource {
