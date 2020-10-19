@@ -39,5 +39,6 @@ public class TrolleyItemsListResponse {
   private String updated;
   private Object disclaimer;
   private String loyaltypoints;
+  private boolean IsCreditsAvailable;
 
 }
