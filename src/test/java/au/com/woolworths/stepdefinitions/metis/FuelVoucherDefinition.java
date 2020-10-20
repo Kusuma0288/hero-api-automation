@@ -25,8 +25,8 @@ public class FuelVoucherDefinition extends FuelVoucherHelper {
   @Then("^the user should see the terms and conditions link for fuel vouchers$")
   public void theUserShouldSeeAllHisFuelVouchersEarned() {
     Assert.assertEquals("Incorrect instructions", "To redeem, simply scan your Rewards card at participating fuel outlets", fuelVoucherResponse.getData().getFuelVoucherList().getInstructions());
-    Assert.assertEquals("Terms and Conditions is not returned", "Terms & Conditions", fuelVoucherResponse.getData().getFuelVoucherList().getInstructionsButton().getTitle());
-    Assert.assertNotNull(fuelVoucherResponse.getData().getFuelVoucherList().getInstructionsButton().getTitle());
+    Assert.assertEquals("Terms and Conditions title is not returned", "Terms & Conditions", fuelVoucherResponse.getData().getFuelVoucherList().getMessage().getButton().getTitle());
+    Assert.assertTrue("Terms and Conditions url not returned", fuelVoucherResponse.getData().getFuelVoucherList().getMessage().getButton().getUrl().contains("4c-per-litre"));
   }
 
   @And("^the user does not have a fuel voucher$")
