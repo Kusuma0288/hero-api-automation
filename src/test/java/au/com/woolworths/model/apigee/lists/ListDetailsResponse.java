@@ -21,4 +21,5 @@ public class ListDetailsResponse {
   private Object nextPage;
   private FreeTextItem[] freeTextItems;
   private ProductsInList[] products;
+  private String color;
 }
