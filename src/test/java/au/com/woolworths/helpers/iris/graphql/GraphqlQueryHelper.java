@@ -30,14 +30,35 @@ public class GraphqlQueryHelper extends BaseHelper {
    * Todo: Remove this enum and its uses when it is deprecated
    */
   public enum Mode {
-    ONLINE,
-    PICKUP,
-    INSTORE
+    ONLINE("ONLINE"),
+    PICKUP("PICKUP"),
+    INSTORE("INSTORE");
+
+    private String mode;
+
+    Mode(String mode) {
+      this.mode = mode;
+    }
+
+    public String get() {
+      return mode;
+    }
   }
 
-  public int productListPageSize = 20;
-  public int productsByProductGroupListPageSize = 200;
-  public int defaultProductListPageSize = 100;
+  public enum ProductListPageSize {
+    PRODUCT_LIST_PAGE_SIZE(20),
+    PRODUCTS_BY_PRODUCT_GROUP_PAGE_SIZE(200),
+    DEFAULT_PRODUCT_LIST_PAGE_SIZE(100);
 
+    private int pagesize;
+
+    ProductListPageSize(int pagesize) {
+      this.pagesize = pagesize;
+    }
+
+    public int get() {
+      return pagesize;
+    }
+  }
 
 }
