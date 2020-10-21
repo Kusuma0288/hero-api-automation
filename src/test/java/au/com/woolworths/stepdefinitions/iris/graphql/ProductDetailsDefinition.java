@@ -24,7 +24,7 @@ public class ProductDetailsDefinition extends GraphqlBaseDefinition {
     }
   }
 
-  @Then("online product details for the available product are satisfactory for user display$")
+  @Then("online product details are available$")
   public void verifyOnlineProductDetailsResponse() throws Throwable {
     variables.put(ProductDetailsArgs.PRODUCT_ID.get(), sharedData.availableProductId);
     String productDetailsQuery = GraphqlParser.parseGraphql(iStream, variables);
@@ -33,7 +33,7 @@ public class ProductDetailsDefinition extends GraphqlBaseDefinition {
     assertProductDetails(productDetailsResponse);
   }
 
-  @Then("instore product details for the available product are satisfactory for user display$")
+  @Then("instore product details are available$")
   public void verifyInStoreProductDetailsResponse() throws Throwable {
     variables.put(ProductDetailsArgs.PRODUCT_ID.get(), sharedData.availableProductId);
     variables.put(ProductDetailsArgs.STORE_ID.get(), sharedData.inStoreId);
