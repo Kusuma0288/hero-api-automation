@@ -52,4 +52,6 @@ public class OrderConfirmation {
   private int ExpressEtaInMinutes;
   private boolean IsCrowdSourced;
   private String FulfilmentMethodLabel;
+  private Object RewardsCredits;
+  private Object RewardsInfo;
 }
