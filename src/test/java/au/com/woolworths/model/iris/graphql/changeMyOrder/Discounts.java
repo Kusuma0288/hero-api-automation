@@ -7,7 +7,7 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class Discounts {
-    private String title;
-    private String amount;
-    private String icon;
+  private String title;
+  private String amount;
+  private String icon;
 }

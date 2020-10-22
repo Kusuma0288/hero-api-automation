@@ -14,5 +14,5 @@ import lombok.experimental.Accessors;
 @lombok.Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ChangeMyOrderResponse {
-    private Data data;
+  private Data data;
 }

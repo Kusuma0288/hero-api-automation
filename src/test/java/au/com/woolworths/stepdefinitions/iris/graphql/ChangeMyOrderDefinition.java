@@ -8,18 +8,14 @@ import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.helpers.iris.graphql.GraphqlQueryHelper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
-import static au.com.woolworths.helpers.iris.graphql.GraphqlQueryHelper.*;
-
 import java.io.InputStream;
-import java.util.List;
 import java.util.logging.Logger;
 public class ChangeMyOrderDefinition {
 
-    private final static Logger logger = Logger.getLogger("ProductDetailsDefinition.class");
-    private GraphqlQueryHelper queryHelper = new GraphqlQueryHelper();
-    protected SharedData sharedData = ApplicationContext.getSharedData();
-    protected ObjectMapper mapper = new ObjectMapper();
+  private final static Logger logger = Logger.getLogger("ProductDetailsDefinition.class");
+  private GraphqlQueryHelper queryHelper = new GraphqlQueryHelper();
+  protected SharedData sharedData = ApplicationContext.getSharedData();
+  protected ObjectMapper mapper = new ObjectMapper();
 
   @Then("^I check my order details in order summary page$")
   public void verifyCMOGraphQL() throws Throwable {
