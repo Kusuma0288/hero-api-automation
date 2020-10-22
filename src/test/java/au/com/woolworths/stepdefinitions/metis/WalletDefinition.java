@@ -8,6 +8,7 @@ import au.com.woolworths.model.metis.card.delete_scheme_card.DeleteSchemeCardRes
 import au.com.woolworths.model.metis.card.home_page_with_wallet.RewardsCardHomePageWithWalletResponse;
 import au.com.woolworths.model.metis.card.payment_instruments.FetchPaymentInstrumentsResponse;
 import au.com.woolworths.model.metis.card.update_scheme_card.FetchUpdateSchemeCardURLResponse;
+import au.com.woolworths.model.metis.card.view_user_preference.FetchUserPreferencesResponse;
 import au.com.woolworths.utils.TestProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -22,6 +23,8 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
 
   private RewardsCardHomePageWithWalletResponse rewardsCardHomePageWithWalletResponse;
   private FetchPaymentInstrumentsResponse fetchPaymentInstrumentsResponse;
+  private FetchUserPreferencesResponse fetchUserPreferencesResponse;
+ // private RewardsAccountPageWithWalletUserPreferenceResponse rewardsAccountPageWithWalletUserPreferenceResponse;
   final int cardNumberLength = TestProperties.get("CARD_NUMBER").length();
   private String fetchAddSchemeCardURL;
   private String fetchUpdateSchemeCardURL;
@@ -110,6 +113,23 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     Assert.assertEquals("The payment instrument card number last 4 digits do not match", TestProperties.get("CARD_NUMBER").substring(cardNumberLength - 4), fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().substring(instrumentCardNumberLength - 4));
     Assert.assertEquals("The payment instrument does not have a valid status", "VALID", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getStatus());
     Assert.assertNull("The payment instrument does not have a null lastUsed value", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getLastUsed());
+  }
+
+  @When("^the user goes to the account screen$")
+  public void goesToAccountScreen() throws IOException {
+    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchUserPreferences.graphql");
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
+    fetchUserPreferencesResponse = iRetrieveViewWallet(graphqlQuery);
+  }
+
+  @Then("^the user should see a badge for new user$")
+    public void hasViewedWalletBadge()  {
+    if (fetchUserPreferencesResponse.getData().getUserPreferences().isHasViewedWallet()) {
+
+    }
+
+    Assert.assertFalse("View User Preferences is set", fetchUserPreferencesResponse.getData().getUserPreferences().isHasViewedWallet());
+
   }
 
   private void getAddCardURL() throws IOException {
