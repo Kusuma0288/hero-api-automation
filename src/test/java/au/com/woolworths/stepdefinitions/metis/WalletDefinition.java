@@ -24,7 +24,6 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
   private RewardsCardHomePageWithWalletResponse rewardsCardHomePageWithWalletResponse;
   private FetchPaymentInstrumentsResponse fetchPaymentInstrumentsResponse;
   private FetchUserPreferencesResponse fetchUserPreferencesResponse;
- // private RewardsAccountPageWithWalletUserPreferenceResponse rewardsAccountPageWithWalletUserPreferenceResponse;
   final int cardNumberLength = TestProperties.get("CARD_NUMBER").length();
   private String fetchAddSchemeCardURL;
   private String fetchUpdateSchemeCardURL;
@@ -125,7 +124,7 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
   @Then("^the user should see a badge for new user$")
     public void hasViewedWalletBadge()  {
     if (fetchUserPreferencesResponse.getData().getUserPreferences().isHasViewedWallet()) {
-
+    // To action when data is not mocked
     }
 
     Assert.assertFalse("View User Preferences is set", fetchUserPreferencesResponse.getData().getUserPreferences().isHasViewedWallet());
