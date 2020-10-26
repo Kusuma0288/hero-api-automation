@@ -6,6 +6,7 @@ import au.com.woolworths.model.metis.card.delete_scheme_card.DeleteSchemeCardRes
 import au.com.woolworths.model.metis.card.home_page_with_wallet.RewardsCardHomePageWithWalletResponse;
 import au.com.woolworths.model.metis.card.payment_instruments.FetchPaymentInstrumentsResponse;
 import au.com.woolworths.model.metis.card.update_scheme_card.FetchUpdateSchemeCardURLResponse;
+import au.com.woolworths.model.metis.card.view_user_preference.FetchUserPreferencesResponse;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
@@ -39,6 +40,12 @@ public class RewardsCardWithWalletHelper extends IFrameCardHelper {
   public DeleteSchemeCardResponse iRemoveSchemeCard(String query) throws IOException {
     return mapper.readValue(postQuery(query), DeleteSchemeCardResponse.class);
   }
+
+  public FetchUserPreferencesResponse iRetrieveViewWallet(String query) throws IOException {
+    return mapper.readValue(postQuery(query), FetchUserPreferencesResponse.class);
+
+  }
+
 
   private String postQuery(String query) {
     String endPoint = URLResources.METIS_REWARDS_GRAPHQL;
