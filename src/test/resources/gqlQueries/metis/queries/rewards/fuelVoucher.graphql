@@ -11,8 +11,8 @@ query FuelVoucher{
             url
         }
         message{
-            icon
             title
+            iconUrl
             message
             button{
                 title

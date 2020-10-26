@@ -36,6 +36,6 @@ public class FuelVoucherDefinition extends FuelVoucherHelper {
 
   @And("^the user should see a fuel icon$")
   public void theUserShouldSeeAFuelIcon() {
-    Assert.assertEquals("Fuel pump icon is not returned", "fuel_pump", fuelVoucherResponse.getData().getFuelVoucherList().getMessage().getIcon());
+    Assert.assertTrue("Fuel pump icon is not returned", fuelVoucherResponse.getData().getFuelVoucherList().getMessage().getIconUrl().contains("fuel_icon.png"));
   }
 }
