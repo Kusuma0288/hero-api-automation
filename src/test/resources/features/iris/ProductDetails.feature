@@ -1,4 +1,4 @@
-@REGRESSION_APIGEE @PRODUCT_DETAILS @Lobster
+@REGRESSION_APIGEE @PRODUCT_DETAILS @Lobsters
 Feature: Product details graphql
 
   Scenario: Guest user queries online products details for an available product
