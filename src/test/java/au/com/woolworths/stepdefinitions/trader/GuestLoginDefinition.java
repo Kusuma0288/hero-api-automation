@@ -39,20 +39,11 @@ public class GuestLoginDefinition extends ShopperHelper {
     sharedData.responseStatusCode = response.getStatusCode();
     sharedData.guestLoginResponse = response;
     sharedData.authToken = response.getAuthToken();
-
-        /*
-         * if (response.getStatusCode().equals("200")) {
-         * Assert.assertTrue(response.getSession().getDeliveryAddressID() ==
-         * Integer.parseInt(TestProperties.get("STORE_ID")),
-         * "Store Address ID is not matching with expected::" +
-         * TestProperties.get("STORE_ID")); }
-         */
     Assert.assertTrue(response.getStatusCode().equals("200"));
   }
 
   @Given("^apigee connect to trader public api endpoint as guest with fulfilment store id (\\d+)$")
-  public void apigeeConnectToTraderPublicAPIEndpointAsGuestWithFulfilmentStoreId(int expectedFulfilmentStoreId)
-        throws Throwable {
+  public void apigeeConnectToTraderPublicAPIEndpointAsGuestWithFulfilmentStoreId(int expectedFulfilmentStoreId)throws Throwable {
     deviceId = Utilities.generateRandomUUIDString();
     response = apigeeConnectToTraderPublicAPIEndpointAsGuestWithPossibleOptions(deviceId);
 
@@ -61,14 +52,6 @@ public class GuestLoginDefinition extends ShopperHelper {
     sharedData.guestLoginResponse = response;
     sharedData.authToken = response.getAuthToken();
     sharedData.deliveryAddressId = response.getSession().getDeliveryAddressID();
-
-        /*
-         * if (response.getStatusCode().equals("200")) {
-         * Assert.assertTrue(response.getSession().getFulfilmentStoreID() ==
-         * expectedFulfilmentStoreId,
-         * "Fulfilment Store Id is not matching with expected:: " +
-         * expectedFulfilmentStoreId); }
-         */
     Assert.assertTrue(response.getStatusCode().equals("200"));
   }
 
@@ -104,8 +87,7 @@ public class GuestLoginDefinition extends ShopperHelper {
     sharedData.authToken = response.getAuthToken();
 
     if (response.getStatusCode().equals("200")) {
-      Assert.assertTrue(response.getSession().getFulfilmentStoreID() == expectedFulfilmentStoreId,
-                "Fulfilment Store Id is not matching with expected in V2 endpoint:: " + expectedFulfilmentStoreId);
+      Assert.assertTrue(response.getSession().getFulfilmentStoreID() == expectedFulfilmentStoreId, "Fulfilment Store Id is not matching with expected in V2 endpoint:: " + expectedFulfilmentStoreId);
     }
   }
 
@@ -127,8 +109,7 @@ public class GuestLoginDefinition extends ShopperHelper {
 
   @Then("^apigee successfully authenticate to trader public api endpoint as guest$")
   public void apigeeSuccessfullyAuthenticateToTraderPublicAPIEndpointAsGuest() throws Throwable {
-    Assert.assertTrue(sharedData.responseStatusCode.equals("200"),
-            "Expected Status Code is 200 but found::" + sharedData.responseStatusCode);
+    Assert.assertTrue(sharedData.responseStatusCode.equals("200"), "Expected Status Code is 200 but found::" + sharedData.responseStatusCode);
     Assert.assertNotNull(response.getAuthToken());
     Assert.assertTrue(response.getLoginResult().equals("Success"), "Some issue with the login");
     Assert.assertTrue(response.getLoginMessage().equals("Login Success"), "Some issue with the login message");
@@ -141,8 +122,7 @@ public class GuestLoginDefinition extends ShopperHelper {
 
   @Then("^apigee successfully authenticate to trader public api endpoint as guest with all session fields$")
   public void apigeeSuccessfullyAuthenticateToTraderPublicAPIEndpointAsGuestWithAllSessionFields() throws Throwable {
-    Assert.assertTrue(sharedData.responseStatusCode.equals("200"),
-            "Expected Status Code is 200 but found::" + sharedData.responseStatusCode);
+    Assert.assertTrue(sharedData.responseStatusCode.equals("200"), "Expected Status Code is 200 but found::" + sharedData.responseStatusCode);
     Assert.assertNotNull(response.getAuthToken());
     Assert.assertNotNull(response.getSession());
     Assert.assertNotNull(response.getSession().getFulfilmentStoreID());
@@ -157,11 +137,9 @@ public class GuestLoginDefinition extends ShopperHelper {
 
   @Then("^apigee failed to authenticate to trader public api endpoint as guest$")
   public void apigeeFailedToAuthenticateToTraderPublicAPIEndpointAsGuest() throws Throwable {
-    Assert.assertTrue(sharedData.responseStatusCode.equals("404"),
-            "Status Code expected is 404 but found::" + sharedData.responseStatusCode);
+    Assert.assertTrue(sharedData.responseStatusCode.equals("404"), "Status Code expected is 404 but found::" + sharedData.responseStatusCode);
     Assert.assertTrue(response.getCode().equals("STORE_NOT_FOUND"), "Error Code is::" + response.getCode());
-    Assert.assertTrue(response.getMessage().contains("Store with address"),
-            "Error Message is::" + response.getMessage());
+    Assert.assertTrue(response.getMessage().contains("Store with address"), "Error Message is::" + response.getMessage());
   }
 
   @Then("^apigee failed to authenticate to trader public api V2 endpoint$")

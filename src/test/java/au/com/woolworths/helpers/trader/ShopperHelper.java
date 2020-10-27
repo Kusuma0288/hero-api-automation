@@ -40,14 +40,10 @@ public class ShopperHelper extends BaseHelper {
 
   private static HashMap<String, String> validationMap() {
     HashMap<String, String> map = new HashMap<>();
-    map.put("Invalid",
-            "The email address & password combination you have entered is incorrect.  Please try again or click the forgotten password link below to reset your password.");
-    map.put("RedirectPasswordRemainder",
-            "The email address & password combination you have entered is incorrect.  Please try again or click the forgotten password link below to reset your password.");
-    map.put("LockedOut",
-            "The password you entered was incorrect, and your account has been locked (for security reasons). Please contact our Customer Service Team on 1800 000 610 to unlock your account.");
-    map.put("LoginIsLocked",
-            "Your account has been locked. Please contact our Customer Service Team on 1800 000 610 to unlock your account.");
+    map.put("Invalid", "The email address & password combination you have entered is incorrect.  Please try again or click the forgotten password link below to reset your password.");
+    map.put("RedirectPasswordRemainder", "The email address & password combination you have entered is incorrect.  Please try again or click the forgotten password link below to reset your password.");
+    map.put("LockedOut", "The password you entered was incorrect, and your account has been locked (for security reasons). Please contact our Customer Service Team on 1800 000 610 to unlock your account.");
+    map.put("LoginIsLocked", "Your account has been locked. Please contact our Customer Service Team on 1800 000 610 to unlock your account.");
     return map;
   }
 
@@ -82,7 +78,6 @@ public class ShopperHelper extends BaseHelper {
     // invoke the service with the framed request
     Map<String, String> mapWebserviceResponse = invocationUtil.invokeWithAPIKey(endPoint, requestStr, apiKey);
     String responseStr = mapWebserviceResponse.get("response");
-    // logger.info("Response: " + responseStr);
     response = mapper.readValue(responseStr, ShopperLoginResponseV2.class);
     response.setStatusCode(mapWebserviceResponse.get("statusCode"));
     return response;
@@ -90,24 +85,14 @@ public class ShopperHelper extends BaseHelper {
   }
 
   public GuestLoginResponse apigeeConnectToTraderPublicAPIEndpointAsGuestWithPossibleOptions(String deviceId)throws Throwable {
-        //int storeOrAddressId, boolean isStoreAddressId, boolean isFulfilmentStoreId,
     GuestLoginRequest guestLoginRequest = new GuestLoginRequest();
     GuestLoginResponse response;
 
     guestLoginRequest.setDeviceAuthToken(deviceId);
-        /*
-         * if (isStoreAddressId) {
-         * guestLoginRequest.setStoreAddressId(storeOrAddressId); }
-         */
-        /*
-         * if (isFulfilmentStoreId) {
-         * guestLoginRequest.setFulfilmentStoreID(storeOrAddressId); }
-         */
-
+       
     String endPoint = URLResources.TRADER_V3_GUEST;
 
     String requestStr = mapper.writeValueAsString(guestLoginRequest);
-    // logger.info("Guest Login Request Body is: " + requestStr);
     List<Header> headerList = new LinkedList<>();
     headerList.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
     headerList.add(new Header("cache-control", "no-cache"));
@@ -115,32 +100,16 @@ public class ShopperHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr,
             headerList);
     String responseStr = mapWebserviceResponse.get("response");
-    // logger.info("Response: " + responseStr);
     response = mapper.readValue(responseStr, GuestLoginResponse.class);
     response.setStatusCode(mapWebserviceResponse.get("statusCode"));
     return response;
   }
 
   public GuestLoginResponse apigeeConnectToTraderPublicAPIEndpointAsGuestWithPossibleOptionsV2(String deviceId)throws Throwable {
-        // int fulfilmentIdOrPostCode, boolean isFulfilmentStoreId, boolean isPostcode,
     GuestLoginRequest guestLoginRequest = new GuestLoginRequest();
     GuestLoginResponse response;
 
     guestLoginRequest.setDeviceAuthToken(deviceId);
-        /*
-         * if (isFulfilmentStoreId) { //Todo
-         * 
-         * Do you think we should bother getting the status code and asserting it? For
-         * Metis we had a chat and agreed to not do it and instead verify the data in
-         * the response as that was what we are actually trying to test. I think it
-         * would be great to review all of these assertions as you move them across. If
-         * you think there's better assertions to make we should do it as part of this
-         * PR.
-         * 
-         * guestLoginRequest.setFulfilmentStoreID(fulfilmentIdOrPostCode); } if
-         * (isPostcode) { guestLoginRequest.setPostcode(fulfilmentIdOrPostCode); }
-         */
-
     String endPoint = URLResources.TRADER_V2_GUEST;
 
     String requestStr = mapper.writeValueAsString(guestLoginRequest);
@@ -152,14 +121,12 @@ public class ShopperHelper extends BaseHelper {
     Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr,
             headerList);
     String responseStr = mapWebserviceResponse.get("response");
-    // logger.info("Response: " + responseStr);
     response = mapper.readValue(responseStr, GuestLoginResponse.class);
     response.setStatusCode(mapWebserviceResponse.get("statusCode"));
     return response;
   }
 
-  public ShopperLoginResponseV2 signUpAsAShopperWithFollowingDetails(List<UserDetail> userDetails, String deviceId,
-        boolean exactEmail) throws Throwable {
+  public ShopperLoginResponseV2 signUpAsAShopperWithFollowingDetails(List<UserDetail> userDetails, String deviceId, boolean exactEmail) throws Throwable {
     Assert.assertNotNull(userDetails);
     Register registerRequest = new Register();
     ShopperLoginResponseV2 signupResponse;
@@ -226,8 +193,7 @@ public class ShopperHelper extends BaseHelper {
     String responseStr = mapWebserviceResponse.get("response");
     
     CheckoutAddressResponse checkoutAddressResponse = mapper.readValue(responseStr, CheckoutAddressResponse.class);
-    Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200",
-            "There is some issue with the save fulfilment store id: " + checkoutAddressResponse.toString());
+    Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200", "There is some issue with the save fulfilment store id: " + checkoutAddressResponse.toString());
     return checkoutAddressResponse;
   }
 
@@ -252,8 +218,7 @@ public class ShopperHelper extends BaseHelper {
     // invoke the service with the framed request
     Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerListTrader);
     String responseStr = mapWebserviceResponse.get("response");
-    Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200",
-            "Issues with clearing the trolley:" + responseStr);
+    Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200", "Issues with clearing the trolley:" + responseStr);
     return mapper.readValue(responseStr, TrolleyResponse.class);
 
   }
@@ -263,11 +228,9 @@ public class ShopperHelper extends BaseHelper {
     String endPoint = URLResources.TRADER_V2_GET_TROLLEY;
     Map<String, String> queryParams = new HashMap<String, String>();
     // invoke the service with the framed request
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams,
-            headerListTrader);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
     String responseStr = mapWebserviceResponse.get("response");
-    Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200",
-            "Issues with clearing the trolley:" + responseStr);
+    Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200", "Issues with clearing the trolley:" + responseStr);
 
     return mapper.readValue(responseStr, TrolleyResponse.class);
 
@@ -294,10 +257,8 @@ public class ShopperHelper extends BaseHelper {
     String endPoint = URLResources.TRADER_V2_ADD_UPDATE_TROLLEY;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListTrader);
-    Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200",
-            "Issue with the API endpoint:: " + endPoint);
+    Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200", "Issue with the API endpoint:: " + endPoint);
     String responseStr = mapWebserviceResponse.get("response");
-    // logger.info("The Response String is::"+responseStr);
     TrolleyResponse trolleyResponse = mapper.readValue(responseStr, TrolleyResponse.class);
     trolleyResponse.setResponseStatus(mapWebserviceResponse.get("statusCode"));
     return trolleyResponse;
@@ -322,17 +283,14 @@ public class ShopperHelper extends BaseHelper {
     String endPoint = URLResources.TRADER_V2_ADD_UPDATE_TROLLEY;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListTrader);
-    Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200",
-            "Issue with the API endpoint:: " + endPoint);
+    Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200", "Issue with the API endpoint:: " + endPoint);
     String responseStr = mapWebserviceResponse.get("response");
-    // logger.info("The Response String is::"+responseStr);
     TrolleyResponse trolleyResponse = mapper.readValue(responseStr, TrolleyResponse.class);
     trolleyResponse.setResponseStatus(mapWebserviceResponse.get("statusCode"));
     return trolleyResponse;
   }
 
-  public TrolleyResponse iAddOrUpdateTheFollowingProductsToTheTrolley(int quantity, String stockCode,
-            boolean isUpdate) throws Throwable {
+  public TrolleyResponse iAddOrUpdateTheFollowingProductsToTheTrolley(int quantity, String stockCode, boolean isUpdate) throws Throwable {
 
     return iAddProductsToTrolleyWithNotes(quantity, stockCode, isUpdate, null);
   }
@@ -341,10 +299,8 @@ public class ShopperHelper extends BaseHelper {
 
     String endPoint = URLResources.TRADER_V2_ADD_UPDATE_TROLLEY + "/" + stockCode + "/clear";
     Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithoutBody(endPoint, headerListTrader);
-    Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200",
-            "Issue with the API endpoint:: " + endPoint);
+    Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200", "Issue with the API endpoint:: " + endPoint);
     String responseStr = mapWebserviceResponse.get("response");
-    // logger.info("The Response String is::"+responseStr);
     TrolleyResponse trolleyResponse = mapper.readValue(responseStr, TrolleyResponse.class);
     trolleyResponse.setResponseStatus(mapWebserviceResponse.get("statusCode"));
     return trolleyResponse;
@@ -353,15 +309,13 @@ public class ShopperHelper extends BaseHelper {
   public ShoppingAislesResponse iGetShoppingAisles() throws Throwable {
     String endPoint = URLResources.TRADER_V2_SHOPPING_AISLES;
     Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams,
-            headerListTrader);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
     String responseStr = mapWebserviceResponse.get("response");
     ShoppingAislesResponse response = mapper.readValue(responseStr, ShoppingAislesResponse.class);
     return response;
   }
 
-  public List<String> getAvailableRestrictedStockCodesFromSearchProductItemsResult(
-        GetProductItems searchProductItemsResult, int maxRestrictedItemInList) {
+  public List<String> getAvailableRestrictedStockCodesFromSearchProductItemsResult(GetProductItems searchProductItemsResult, int maxRestrictedItemInList) {
 
     List<String> availableStockCodes = new ArrayList<>();
     for (int i = 0; i <= searchProductItemsResult.getItems().length; i++) {
@@ -381,8 +335,7 @@ public class ShopperHelper extends BaseHelper {
     return availableStockCodes;
   }
 
-  public List<String> getAvailableStockCodesFromSearchProductItemsResult(GetProductItems searchProductItemsResult,
-            int maxRestrictedItemInList) {
+  public List<String> getAvailableStockCodesFromSearchProductItemsResult(GetProductItems searchProductItemsResult, int maxRestrictedItemInList) {
 
     List<String> availableStockCodes = new ArrayList<>();
     for (int i = 0; i <= searchProductItemsResult.getItems().length; i++) {
