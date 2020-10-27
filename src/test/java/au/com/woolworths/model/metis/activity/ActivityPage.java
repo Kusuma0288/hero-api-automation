@@ -8,4 +8,5 @@ import lombok.Data;
 
 public class ActivityPage {
   private ActivityData data;
+  private String message;
 }

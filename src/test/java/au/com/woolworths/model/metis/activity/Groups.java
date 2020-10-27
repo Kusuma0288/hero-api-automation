@@ -11,4 +11,5 @@ import lombok.Data;
 public class Groups {
   private String title;
   private List<Items> items;
+  private Message message;
 }

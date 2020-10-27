@@ -13,9 +13,7 @@ public class Utilities {
   public static boolean isNumeric(String strNum) {
     try {
       double d = Double.parseDouble(strNum);
-    } catch (NumberFormatException nfe) {
-      return false;
-    } catch (NullPointerException npe) {
+    } catch (NumberFormatException | NullPointerException nfe) {
       return false;
     }
     return true;
