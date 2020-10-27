@@ -58,8 +58,7 @@ public class ShopperHelper extends BaseHelper {
     headerList.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
     headerList.add(new Header("cache-control", "no-cache"));
     // invoke the service with the framed request
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr,
-            headerList);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     String responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, ShopperLoginResponseV2.class);
     response.setStatusCode(mapWebserviceResponse.get("statusCode"));
@@ -72,7 +71,6 @@ public class ShopperHelper extends BaseHelper {
     ShopperLoginRequestV2 shopperLoginRequest = new ShopperLoginRequestV2(email, password, deviceId);
     ShopperLoginResponseV2 response;
     String endPoint = URLResources.TRADER_V2_AUTH_SHOPPER;
-
     String requestStr = mapper.writeValueAsString(shopperLoginRequest);
 
     // invoke the service with the framed request
@@ -97,8 +95,7 @@ public class ShopperHelper extends BaseHelper {
     headerList.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
     headerList.add(new Header("cache-control", "no-cache"));
     // invoke the service with the framed request
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr,
-            headerList);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     String responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, GuestLoginResponse.class);
     response.setStatusCode(mapWebserviceResponse.get("statusCode"));
@@ -118,8 +115,7 @@ public class ShopperHelper extends BaseHelper {
     headerList.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
     headerList.add(new Header("cache-control", "no-cache"));
     // invoke the service with the framed request
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr,
-            headerList);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     String responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, GuestLoginResponse.class);
     response.setStatusCode(mapWebserviceResponse.get("statusCode"));
@@ -137,8 +133,7 @@ public class ShopperHelper extends BaseHelper {
       if (exactEmail) {
         registerRequest.setEmailAddress(userDetail.getEmailAddress());
       } else {
-        registerRequest
-                .setEmailAddress(userDetail.getEmailAddress().replace("@", Utilities.getSaltString() + "@"));
+        registerRequest.setEmailAddress(userDetail.getEmailAddress().replace("@", Utilities.getSaltString() + "@"));
       }
       registerRequest.setPassword(userDetail.getPassword());
       registerRequest.setMobilePhone(userDetail.getMobilePhone());
@@ -158,8 +153,7 @@ public class ShopperHelper extends BaseHelper {
     List<Header> headerList = new LinkedList<>();
     headerList.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
     headerList.add(new Header("cache-control", "no-cache"));
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr,
-            headerList);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
     String responseStr = mapWebserviceResponse.get("response");
     // logger.info("Response: " + responseStr);
 
@@ -203,8 +197,7 @@ public class ShopperHelper extends BaseHelper {
     String endPoint = URLResources.TRADER_V3_CHECKOUT_ADDRESS;
 
     // invoke the service with the framed request
-    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams,
-            headerListTrader);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
     String responseStr = mapWebserviceResponse.get("response");
     CheckoutAddressResponse checkoutAddressResponse = mapper.readValue(responseStr, CheckoutAddressResponse.class);
     return checkoutAddressResponse;
