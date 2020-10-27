@@ -55,7 +55,7 @@ Feature: Checkout API scenarios
 
     Examples:
       | lookupAddress |
-      | 2 Court rd    |
+      | 407 Elizabeth Street    |
 
   Scenario Outline: To verify that the user is able to complete a pick up order using Paypal payment
     Given I set a pick up store using post code 2000

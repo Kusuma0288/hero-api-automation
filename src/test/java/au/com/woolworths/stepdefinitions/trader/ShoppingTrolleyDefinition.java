@@ -194,13 +194,14 @@ public class ShoppingTrolleyDefinition extends ShopperHelper {
   public void iAddFewItemsToMyTrolleyFromSearchListWithSpecifiedQuantity(int itemsToBeAdded, int quantity) throws Throwable {
     GetProductItems searchProductItemsResult = sharedData.searchProductItemsResult;
     Assert.assertTrue(searchProductItemsResult.getTotalItemCount() >= 1, "There are no product items available. Please make sure product is searched correctly");
+
     List<String> availableStockCodes = getAvailableStockCodesFromSearchProductItemsResult(searchProductItemsResult, itemsToBeAdded - 1);
 
     List<String> setAvailableStockCodes = new ArrayList<>();
     TrolleyResponse trolleyResponse;
     String stockCode;
     //Replacing the trolley while adding the first stockCode since trolley clear does not work
-    for (int i = 0; i < itemsToBeAdded; i++) {
+    for (int i = 0; i < availableStockCodes.size(); i++) {
       stockCode = availableStockCodes.get(i).replaceFirst("^0+(?!$)", "");
       setAvailableStockCodes.add(stockCode);
     }

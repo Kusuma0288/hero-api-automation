@@ -10,8 +10,10 @@ import cucumber.api.java.en.When;
 import junit.framework.Assert;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class CheckoutDefinition extends CheckoutHelper {
   private final static Logger logger = Logger.getLogger("DeliveryAddressDefinition.class");
@@ -21,32 +23,39 @@ public class CheckoutDefinition extends CheckoutHelper {
   public void iGetAvailableWindow() throws Throwable {
     CheckoutResponse checkoutResponse = getCheckoutResponse(sharedData.accessToken);
     CheckoutFulfilmentWindows[] checkoutFulfilmentWindows = checkoutResponse.getFulfilmentWindows();
-    checkoutFulfilmentWindows[0] = Arrays.stream(checkoutResponse.getFulfilmentWindows()).filter(i -> i.getIsAvailable().equals(true))
-        .findFirst().orElse(null);
-    //Get Afternoon or Evening Slot
-    assert checkoutFulfilmentWindows[0] != null;
-    CheckoutWindowItems checkoutWindowItems = checkoutFulfilmentWindows[0].getAfternoon();
-    CheckoutWindowSlots[] checkoutWindowSlots = checkoutWindowItems.getSlots();
-    try {
+    List<CheckoutFulfilmentWindows> checkoutWindows = Arrays.stream(checkoutFulfilmentWindows).filter(i -> i.getIsAvailable().equals(true))
+        .collect(Collectors.toList());
+    //Assert if all windows available
+    Assert.assertNotNull("Checkout Windows not available", checkoutWindows);
+
+    for (int i = 0; i < checkoutWindows.size() && i < 5; i++) {
+
+      checkoutFulfilmentWindows[0] = checkoutWindows.get(i);
       sharedData.orderCheckoutSelectedWindowDate = checkoutFulfilmentWindows[0].getDate();
-      if (Arrays.stream(checkoutFulfilmentWindows[0].getAfternoon().getSlots()).anyMatch(CheckoutWindowSlots::isIsAvailable)) {
-        checkoutWindowSlots[0] = Arrays.stream(checkoutFulfilmentWindows[0].getAfternoon().getSlots()).filter(CheckoutWindowSlots::isIsAvailable).findFirst().orElse(null);
-        assert checkoutWindowSlots[0] != null;
-        sharedData.windowId = checkoutWindowSlots[0].getId();
-        sharedData.orderCheckoutPaymentWindowTime = checkoutWindowSlots[0].getStartTime();
-      } else {
-        checkoutWindowItems = checkoutFulfilmentWindows[0].getEvening();
-        checkoutWindowSlots = checkoutWindowItems.getSlots();
-        if (checkoutWindowSlots[0] != null) {
-          sharedData.windowId = checkoutWindowSlots[0].getId();
-          sharedData.orderCheckoutPaymentWindowTime = checkoutWindowSlots[0].getStartTime();
-        }
+
+      //Get Afternoon Slot
+      CheckoutWindowItems checkoutWindowAfternoonItems = checkoutFulfilmentWindows[0].getAfternoon();
+      CheckoutWindowSlots[] checkoutWindowAfternoonSlots = checkoutWindowAfternoonItems.getSlots();
+      checkoutWindowAfternoonSlots[0] = Arrays.stream(checkoutWindowAfternoonItems.getSlots()).filter(j -> j.getStatus().equals("Available"))
+          .findFirst().orElse(null);
+
+      //Get Evening Slot
+      CheckoutWindowItems checkoutWindowEveningItems = checkoutFulfilmentWindows[0].getEvening();
+      CheckoutWindowSlots[] checkoutWindowEveningSlots = checkoutWindowEveningItems.getSlots();
+      checkoutWindowEveningSlots[0] = Arrays.stream(checkoutWindowEveningItems.getSlots()).filter(j -> j.getStatus().equals("Available"))
+          .findFirst().orElse(null);
+
+      if (checkoutWindowAfternoonSlots[0] != null) {
+        sharedData.windowId = checkoutWindowAfternoonSlots[0].getId();
+        sharedData.orderCheckoutPaymentWindowTime = checkoutWindowAfternoonSlots[0].getStartTime();
+      } else if (checkoutWindowEveningSlots[0] != null) {
+        sharedData.windowId = checkoutWindowEveningSlots[0].getId();
+        sharedData.orderCheckoutPaymentWindowTime = checkoutWindowEveningSlots[0].getStartTime();
       }
-    } catch (Exception ex) {
-      logger.info("No available checkout window available.");
     }
 
   }
+
 
   @Then("^I reserve the available window for the selected \"([^\"]*)\"$")
   public void iReserveTheAvailableWindowForTheSelected(String collectionMode) throws Throwable {

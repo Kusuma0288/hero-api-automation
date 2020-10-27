@@ -365,19 +365,14 @@ public class ShopperHelper extends BaseHelper {
   public List<String> getAvailableStockCodesFromSearchProductItemsResult(GetProductItems searchProductItemsResult, int maxRestrictedItemInList) {
 
     List<String> availableStockCodes = new ArrayList<>();
-    for (int i = 0; i <= searchProductItemsResult.getItems().length; i++) {
+    for (int i = 0; i < searchProductItemsResult.getItems().length; i++) {
+      SearchProductItem productItem = searchProductItemsResult.getItems()[i];
+      if (productItem.getProducts()[0].isIsAvailable()) {
+        availableStockCodes.add(productItem.getProducts()[0].getStockcode());
+      }
       if (availableStockCodes.size() > maxRestrictedItemInList) {
         break;
       }
-      SearchProductItem productItem = searchProductItemsResult.getItems()[i];
-      if (productItem.getProductCount() >= 0) {
-        for (Products product : productItem.getProducts()) {
-          if (product.isIsAvailable()) {
-            availableStockCodes.add(product.getStockcode());
-          }
-        }
-      }
-
     }
     return availableStockCodes;
   }

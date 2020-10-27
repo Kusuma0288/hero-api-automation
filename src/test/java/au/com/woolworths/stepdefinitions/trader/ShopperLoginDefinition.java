@@ -69,6 +69,7 @@ public class ShopperLoginDefinition extends ShopperHelper {
     sharedData.responseStatusCode = response.getStatusCode();
     sharedData.shopperLoginResponseV2 = response;
     sharedData.authToken = response.getAuthToken();
+    resetTraderHeaderList();
     if (response.getAuthToken() != null) {
       sharedData.deliveryAddressIdContainer = response.getSession().getDeliveryAddressID();
     }
