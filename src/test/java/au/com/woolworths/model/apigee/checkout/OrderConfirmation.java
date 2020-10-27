@@ -54,4 +54,5 @@ public class OrderConfirmation {
   private String FulfilmentMethodLabel;
   private Object RewardsCredits;
   private Object RewardsInfo;
+  private Object RewardsCreditsUsed;
 }
