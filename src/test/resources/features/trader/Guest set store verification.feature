@@ -1,45 +1,9 @@
 @REGRESSION_TRADER @GUEST_STORE @PROD_TRADER @Wolves
 Feature: Guest set store verification  check for set store
 
-  @SMOKE_TRADER
-  Scenario: Test the Guest Login for V3 and setting fulfilment store id
-    Given apigee connect to trader public api endpoint as guest
-    When connection from apigee to trader public api endpoint happens
-    Then apigee successfully authenticate to trader public api endpoint as guest
-
-  Scenario: Test the Guest Login for V3 using Invalid Store Id
-    Given apigee connect to trader public api endpoint as guest in store 123433
-    When connection from apigee to trader public api endpoint happens
-    Then apigee failed to authenticate to trader public api endpoint as guest
-
-  @SMOKE_TRADER
-  Scenario: Test the Guest Login for V3 using valid Store Id
-    Given apigee connect to trader public api endpoint as guest in store 3900996
-    When connection from apigee to trader public api endpoint happens
-    Then apigee successfully authenticate to trader public api endpoint as guest
-
-  Scenario: Test the Guest Login for V3 with Fulfilment Store Id
-    Given apigee connect to trader public api endpoint as guest with fulfilment store id 1338
-    When connection from apigee to trader public api endpoint happens
-    Then apigee successfully authenticate to trader public api endpoint as guest with all session fields
-
+ 
   Scenario: Test the Guest Login for V3 with only Device Id
     Given apigee connect to trader public api endpoint as guest with only device id
-    When connection from apigee to trader public api endpoint happens
-    Then apigee successfully authenticate to trader public api endpoint as guest with all session fields
-
-  Scenario: Test using the Guest Login for V2 using fulfilment Store ID
-    Given apigee connect to the trader public V2 endpoint as guest with fulfilment store id 1338
-    When connection from apigee to trader public api endpoint happens
-    Then apigee successfully authenticate to trader public api endpoint as guest with all session fields
-
-  Scenario: Test using the Guest Login for V2 using Invalid fulfilment Store Id
-    Given apigee connect to the trader public V2 endpoint as guest with fulfilment store id 9999
-    When connection from apigee to trader public api endpoint happens
-    Then apigee failed to authenticate to trader public api V2 endpoint
-
-  Scenario: Test using the Guest Login for V2 using Postcode
-    Given apigee connect to the trader public V2 endpoint as guest with postcode 2145
     When connection from apigee to trader public api endpoint happens
     Then apigee successfully authenticate to trader public api endpoint as guest with all session fields
 
