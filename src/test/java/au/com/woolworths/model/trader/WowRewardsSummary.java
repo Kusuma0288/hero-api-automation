@@ -12,5 +12,6 @@ public class WowRewardsSummary {
   private boolean IsErrorInGettingWowRewardsBalance;
   private boolean HasValidWowRewardsCard;
   private Object RewardsCredits;
+  private boolean RedeemRewardsCredits;
 
 }
