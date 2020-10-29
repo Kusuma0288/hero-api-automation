@@ -27,6 +27,7 @@ public class SharedData {
   public String authToken;
   public String refreshToken;
   public String responseStatusCode;
+  public String rewardsCard;
   public LoginReponse guestResponse;
   public String accessToken;
   public LoginReponse shopperResponse;

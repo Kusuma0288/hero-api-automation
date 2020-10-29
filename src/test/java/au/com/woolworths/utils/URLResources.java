@@ -48,7 +48,12 @@ public final class URLResources {
   public static final String METIS_LOGOUT = "/zeus/metis/v1/rewards/logout";
   public static final String METIS_REWARDS = "/zeus/metis/v1/rewards";
   public static final String METIS_TOKEN = "/zeus/metis/v1/rewards/token";
+  public static final String METIS_QRID = "/zeus/metis/v1/api/digipay/instore/customer/payment/session/qr/:qrId";
+  public static final String METIS_PAYMENT_SESSION = "/zeus/metis/v1/api/digipay/instore/customer/payment/session/:paymentSessionId";
+  public static final String METIS_TRANSACTIONS = "/zeus/metis/v1/api/digipay/instore/customer/transactions";
   public static final String HELIOS_LOGIN = "/helios/v1/api/login";
+  public static final String DIGIPAY_IN_STORE_PAYMENT_SESSION = "https://uat.mobile-api.woolworths.com.au/wow/v1/pay/instore/merchant/payment/session";
+  public static final String DIGIPAY_IN_STORE_PAYMENTS = "https://uat.mobile-api.woolworths.com.au/wow/v1/pay/instore/merchant/payments";
 
   //Trader URL
   public static final String TRADER_V2_GUEST = "/Authenticate/LoginAsGuest";
