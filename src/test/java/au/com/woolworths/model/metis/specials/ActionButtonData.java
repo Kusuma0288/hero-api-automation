@@ -5,7 +5,8 @@ import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class PromotionValue {
-  private PromotionValueData data;
+public class ActionButtonData {
+  private String title;
+  private String url;
   private String type;
 }

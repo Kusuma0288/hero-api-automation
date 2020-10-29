@@ -5,7 +5,8 @@ import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class PromotionValue {
-  private PromotionValueData data;
-  private String type;
+public class OptionsData {
+  private String dataPath;
+  private String displayName;
+  private Boolean isSelected;
 }

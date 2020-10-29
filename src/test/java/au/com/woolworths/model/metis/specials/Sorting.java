@@ -5,7 +5,7 @@ import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class PromotionValue {
-  private PromotionValueData data;
+public class Sorting {
+  private SortingData data;
   private String type;
 }
