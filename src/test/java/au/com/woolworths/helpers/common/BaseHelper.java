@@ -20,7 +20,7 @@ public class BaseHelper {
   protected static List<Header> headerListTrader;
   protected static List<Header> headerListRewards;
   protected static List<Header> headerListDigipay;
-  protected SharedData sharedData;
+  protected static SharedData sharedData;
   protected ObjectMapper mapper = new ObjectMapper();
 
   public BaseHelper() {

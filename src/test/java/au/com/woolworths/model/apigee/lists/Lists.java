@@ -12,4 +12,5 @@ public class Lists {
   private String timestamp;
   private String url;
   private int productCount;
+  private String color;
 }

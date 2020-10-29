@@ -23,8 +23,8 @@ Feature: Verify V3 Checkout scenarios
     Then I validate that the fulfilmentMethod and DeliveryMethod match to Courier for delivery mode in V3Checkout response
     Then I clear the checkout details
     Examples:
-      | DeliveryAddress                    | EmailAddress |
-      | 1 Darcy Rd, PORT KEMBLA 2505       | SHOPPER_USERNAME1 |
+      | DeliveryAddress              | EmailAddress      |
+      | 1 Darcy Rd, PORT KEMBLA 2505 | SHOPPER_USERNAME1 |
 
 
   @REGRESSION_TRADER
@@ -48,8 +48,8 @@ Feature: Verify V3 Checkout scenarios
     Then I validate that the V3Checkout returns the selected window for the logged in user
     Then I clear the checkout details
     Examples:
-      | PostCode | EmailAddress |
-      | 2000     | SHOPPER_USERNAME1  |
+      | PostCode | EmailAddress      |
+      | 2000     | SHOPPER_USERNAME1 |
 
   Scenario: Validate the E2E scenario with Paypal Payment
     Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME8 and password

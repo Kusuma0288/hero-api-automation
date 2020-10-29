@@ -10,5 +10,5 @@ public class Message {
   private Button button;
   private String message;
   private String title;
-  private String icon;
+  private String iconUrl;
 }

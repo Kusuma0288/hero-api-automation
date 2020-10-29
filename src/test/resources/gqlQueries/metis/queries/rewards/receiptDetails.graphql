@@ -1,0 +1,114 @@
+query receiptDetails($receiptId: String!){
+    receiptDetails(receiptId: $receiptId) {
+        download{
+            url
+            filename
+        }
+        details{
+            ...on ReceiptDetailsHeader {
+                iconUrl
+                title
+                content
+                storeNo
+                division
+            }
+
+            ...on ReceiptDetailsTotal {
+                total
+            }
+
+            ...on ReceiptDetailsItems{
+                header{
+                    prefixChar
+                    description
+                    amount
+                }
+                items{
+                    prefixChar
+                    description
+                    amount
+                }
+            }
+
+            ...on ReceiptDetailsSummary{
+                discounts{
+                    prefixChar
+                    description
+                    amount
+                }
+                summaryItems{
+                    prefixChar
+                    description
+                    amount
+                }
+                gst{
+                    prefixChar
+                    description
+                    amount
+                }
+                receiptTotal{
+                    prefixChar
+                    description
+                    amount
+                }
+            }
+
+            ...on ReceiptDetailsPayments{
+                payments{
+                    details{
+                        text
+                    }
+                    amount
+                    description
+                    iconUrl
+                    altText
+
+                }
+            }
+
+            ...on ReceiptDetailsSavings {
+                savings
+            }
+
+            ...on ReceiptDetailsCoupon{
+                headerImageUrl
+                sections{
+                    sectionTitle
+                    details
+                }
+                footer
+                barcode{
+                    value
+                    type
+                }
+            }
+
+
+
+            ...on ReceiptDetailsFooter{
+                barcode{
+                    value
+                    type
+                }
+                transactionDetails
+                abnAndStore
+            }
+
+            ...on ReceiptDetailsInfo{
+                header{
+                    prefixChar
+                    description
+                    amount
+                }
+                info{
+                    prefixChar
+                    description
+                    amount
+                }
+            }
+
+
+        }
+    }
+
+}

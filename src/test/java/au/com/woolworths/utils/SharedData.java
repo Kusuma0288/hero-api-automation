@@ -1,5 +1,6 @@
 package au.com.woolworths.utils;
 
+import au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.*;
 import au.com.woolworths.model.apigee.address.AddressStoresV2;
 import au.com.woolworths.model.apigee.address.SearchAddresses;
 import au.com.woolworths.model.apigee.lists.ListResponse;
@@ -101,6 +102,7 @@ public class SharedData {
   public List<Product> availableProducts;
   public Product availableProduct;
   public String availableProductId;
+  public ProductIdSource productIdSource;
 
   public String shopperDeliveryAddress;
   public int trolleyQuantity;

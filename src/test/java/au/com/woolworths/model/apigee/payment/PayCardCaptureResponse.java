@@ -8,4 +8,5 @@ import lombok.Data;
 public class PayCardCaptureResponse {
   private String cardCaptureURL;
   private String transactionRef;
+  private String sessionId;
 }

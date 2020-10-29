@@ -1,40 +1,55 @@
 package au.com.woolworths.stepdefinitions.iris.graphql;
 
-import au.com.woolworths.context.ApplicationContext;
-import au.com.woolworths.helpers.iris.graphql.ProductListResponseHelper;
 import au.com.woolworths.model.iris.graphql.productList.Product;
 import au.com.woolworths.model.iris.graphql.productList.ProductsBySearchResponse;
-import au.com.woolworths.utils.SharedData;
 import cucumber.api.java.en.When;
 import au.com.woolworths.graphql.parser.GraphqlParser;
-import au.com.woolworths.helpers.iris.graphql.GraphqlQueryHelper;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import static au.com.woolworths.helpers.iris.graphql.GraphqlQueryHelper.*;
+import static au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.*;
 
-import java.io.InputStream;
 import java.util.List;
-import java.util.logging.Logger;
 
-public class ProductsBySearchDefinition {
-  private final static Logger logger = Logger.getLogger("ProductsBySearchDefinition.class");
-  private GraphqlQueryHelper queryHelper = new GraphqlQueryHelper();
-  protected SharedData sharedData = ApplicationContext.getSharedData();
-  protected ObjectMapper mapper = new ObjectMapper();
+public class ProductsBySearchDefinition extends GraphqlBaseDefinition {
+
+  public ProductsBySearchDefinition() {
+    super("productsBySearch.graphql");
+  }
 
   @When("user requests for online \"([^\"]*)\" products by search$")
   public void getAvailableProductsFromOnlineProductsBySearch(String searchTerm) throws Throwable {
-    InputStream iStream = ProductsBySearchDefinition.class.getResourceAsStream("/gqlQueries/iris/productsBySearch.graphql");
-    ObjectNode variables = new ObjectMapper().createObjectNode();
-    variables.put("searchTerm", searchTerm);
-    variables.put("mode", String.valueOf((Mode.ONLINE)));
-    variables.put("pageSize", queryHelper.defaultProductListPageSize);
+    variables.put(ProductsBySearchArgs.SEARCH_TERM.get(), searchTerm);
+    variables.put(ProductsBySearchArgs.MODE.get(), Mode.ONLINE.get());
+    variables.put(ProductsBySearchArgs.PAGE_SIZE.get(), ProductListPageSize.DEFAULT_PRODUCT_LIST_PAGE_SIZE.get());
     String productsBySearchQuery = GraphqlParser.parseGraphql(iStream, variables);
     String productsBySearchResponseString = queryHelper.postGraphqlQuery(productsBySearchQuery);
     ProductsBySearchResponse productsBySearchResponse = mapper.readValue(productsBySearchResponseString, ProductsBySearchResponse.class);
     List<Product> productList = productsBySearchResponse.getData().getProductsBySearch().getProducts();
-    sharedData.availableProducts = ProductListResponseHelper.getAvailableProducts(productList);
+    if (productList.size() == 0) {
+      sharedData.productIdSource = ProductIdSource.STORED;
+    } else {
+      sharedData.productIdSource = ProductIdSource.RANDOM;
+      sharedData.availableProducts = getAvailableProducts(productList);
+    }
+  }
+
+  @When("user requests for instore \"([^\"]*)\" products by search for store \"([^\"]*)\"$")
+  public void getAvailableProductsFromInstoreProductsBySearch(String searchTerm, String storeId) throws Throwable {
+    variables.put(ProductsBySearchArgs.SEARCH_TERM.get(), searchTerm);
+    variables.put(ProductsBySearchArgs.STORE_ID.get(), storeId);
+    variables.put(ProductsBySearchArgs.MODE.get(), Mode.INSTORE.get());
+    variables.put(ProductsBySearchArgs.PAGE_SIZE.get(), ProductListPageSize.DEFAULT_PRODUCT_LIST_PAGE_SIZE.get());
+    String productsBySearchQuery = GraphqlParser.parseGraphql(iStream, variables);
+    String productsBySearchResponseString = queryHelper.postGraphqlQuery(productsBySearchQuery);
+    ProductsBySearchResponse productsBySearchResponse = mapper.readValue(productsBySearchResponseString, ProductsBySearchResponse.class);
+    List<Product> productList = productsBySearchResponse.getData().getProductsBySearch().getProducts();
+    if (productList.isEmpty()) {
+      sharedData.productIdSource = ProductIdSource.STORED;
+    } else {
+      sharedData.productIdSource = ProductIdSource.RANDOM;
+      sharedData.availableProducts = getAvailableProducts(productList);
+    }
+    sharedData.inStoreId = storeId;
   }
 
 }

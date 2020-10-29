@@ -48,7 +48,7 @@ public class IFrameCardHelper extends BaseHelper {
     iframeRequest.setDd(TestProperties.get("EXPIRY_MONTH"));
     iframeRequest.setEe(TestProperties.get("EXPIRY_YEAR"));
     iframeRequest.setPrimary(true);
-    iframeRequest.setSave(true);
+    iframeRequest.setSave(false);
     iframeRequest.setVerify(true);
     iFrameRequest = mapper.writeValueAsString(iframeRequest);
     List<Header> headerList = new LinkedList<>();
