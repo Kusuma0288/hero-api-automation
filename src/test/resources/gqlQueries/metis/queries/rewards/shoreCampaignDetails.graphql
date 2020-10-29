@@ -1,29 +1,31 @@
 query ShoreCampaignDetails {
-    rewardsShoreCampaignDetails{
-        header{
+    rewardsShoreCampaignDetails {
+        header {
             imageUrl
             imageAlt
-            title
-            credits
-            body
-            expiry
+            content {
+                credits
+                heading
+                body
+                expiry
+            }
         }
-        products{
+        products {
             imageUrl
             imageAlt
             description
-            redemptionStatus{
+            redemptionStatus {
                 status
                 colour
             }
             price
         }
-        footer{
+        footer {
             imageUrl
             imageAlt
             title
             termsAndConditions
-            button{
+            button {
                 label
                 url
             }
