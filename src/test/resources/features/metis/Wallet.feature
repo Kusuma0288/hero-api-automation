@@ -24,3 +24,9 @@ Feature: Checkout safely and securely using your preferred payment method
     When the user goes to the card screen
     Then the user should see the wallet has a card
     And the user should be able to view the card details
+
+  Scenario: Scan a QR code to pay for items
+    Given the user logs in the rewards app with card number "REWARDS_USER_PLZ_DO_NOT_DELETE_CARD_2"
+    And the user has finished scanning items at the self-checkout service
+    When the user scans the QR code
+    Then the user should be able to pay for the items using the stored card
