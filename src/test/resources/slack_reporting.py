@@ -3,6 +3,7 @@ import io
 import glob
 import json
 import jsonpath_rw_ext as jp
+import argparse
 
 # from slackclient import SlackClient
 import matplotlib
@@ -11,6 +12,11 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 user = os.environ['USER']
+
+parser = argparse.ArgumentParser()
+parser.add_argument('workspace', help='path of workspace')
+args = parser.parse_args()
+print("Echo:", args.workspace)
 
 workspace = '~/Woolworths/woolworths-mobile-api-automation'
 channel_name = '#testing_python_slack'
@@ -22,7 +28,7 @@ elif user == 'vsts':
     workspace = '/home/vsts/work/1/s'
     channel_name = '#shopapp-auto-reports'
 elif user == 'AzDevOps':
-    workspace = '/agent/_work/1/s'
+    workspace = args.workspace
     channel_name = '#shopapp-auto-reports'
 
 

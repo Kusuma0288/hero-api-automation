@@ -81,6 +81,7 @@ steps:
     inputs:
       scriptSource: 'filePath'
       scriptPath: '$(Build.SourcesDirectory)/src/test/resources/slack_reporting.py'
+      arguments: '$(Build.SourcesDirectory)'
     displayName: 'Execute Python script'
     continueOnError: true
     condition: succeeded()
