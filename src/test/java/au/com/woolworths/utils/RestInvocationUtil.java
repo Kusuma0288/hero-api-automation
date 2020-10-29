@@ -269,7 +269,11 @@ public class RestInvocationUtil {
       return TestProperties.get("BASE_URI_TRADER");
     else if (endPoint.contains("helios")) {
       return TestProperties.get("BASE_URI_HELIOS");
-    } else
+    }
+    else if (endPoint.contains("merchant")) {
+      return TestProperties.get("BASE_URI_DIGIPAY");
+    }
+    else
       return TestProperties.get("BASE_URI_APIGEE");
   }
 
