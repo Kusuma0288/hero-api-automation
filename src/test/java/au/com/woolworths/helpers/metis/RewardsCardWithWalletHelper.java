@@ -1,5 +1,6 @@
 package au.com.woolworths.helpers.metis;
 
+import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.helpers.apigee.IFrameCardHelper;
 import au.com.woolworths.model.metis.card.add_scheme_card.FetchAddSchemeCardURLResponse;
 import au.com.woolworths.model.metis.card.delete_scheme_card.DeleteSchemeCardResponse;
@@ -13,6 +14,7 @@ import au.com.woolworths.model.metis.scan_qr_code.QRIDResponse;
 import au.com.woolworths.model.metis.transactions.TransactionsResponse;
 import au.com.woolworths.model.metis.card.view_user_preference.FetchUserPreferencesResponse;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
+import au.com.woolworths.stepdefinitions.metis.WalletDefinition;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.TestProperties;
 import au.com.woolworths.utils.URLResources;
@@ -21,6 +23,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,9 +56,7 @@ public class RewardsCardWithWalletHelper extends IFrameCardHelper {
 
   public FetchUserPreferencesResponse iRetrieveViewWallet(String query) throws IOException {
     return mapper.readValue(postQuery(query), FetchUserPreferencesResponse.class);
-
   }
-
 
   private String postQuery(String query) {
     String endPoint = URLResources.METIS_REWARDS_GRAPHQL;
@@ -146,5 +147,14 @@ public class RewardsCardWithWalletHelper extends IFrameCardHelper {
     String responseStr = mapWebserviceResponse.get("response");
 
     return mapper.readValue(responseStr, TransactionsResponse.class);
+  }
+
+  public String getInstrument() throws IOException {
+    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchPaymentInstruments.graphql");
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
+
+    FetchPaymentInstrumentsResponse fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQuery);
+
+    return fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getId();
   }
 }

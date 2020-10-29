@@ -1,8 +1,6 @@
 package au.com.woolworths.stepdefinitions.metis;
 
-import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.helpers.metis.RewardsCardWithWalletHelper;
-import au.com.woolworths.model.metis.card.payment_instruments.FetchPaymentInstrumentsResponse;
 import au.com.woolworths.model.metis.digipay_payment.PaymentSessionResponse;
 import au.com.woolworths.model.metis.scan_qr_code.QRIDResponse;
 import au.com.woolworths.model.metis.transactions.TransactionsResponse;
@@ -13,7 +11,6 @@ import cucumber.api.java.en.When;
 import junit.framework.Assert;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 public class InStorePaymentDefinition extends RewardsCardWithWalletHelper {
 
@@ -57,15 +54,6 @@ public class InStorePaymentDefinition extends RewardsCardWithWalletHelper {
     paymentRequestId = postPaymentRequest().getData().getPaymentRequestId();
     addPaymentRequestToSession(paymentRequestId, paymentSessionID);
     getTransactionDetails();
-  }
-
-  private String getInstrument() throws IOException {
-    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchPaymentInstruments.graphql");
-    String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
-
-    FetchPaymentInstrumentsResponse fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQuery);
-
-    return fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getId();
   }
 
   private void getTransactionDetails() throws IOException {
