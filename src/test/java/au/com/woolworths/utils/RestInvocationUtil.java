@@ -262,15 +262,16 @@ public class RestInvocationUtil {
     }
     return response;
   }
-
-
+  
   private String getBaseURL(String endPoint) {
     if (endPoint.startsWith("/api") || endPoint.startsWith("api") || endPoint.startsWith("/Auth"))
       return TestProperties.get("BASE_URI_TRADER");
     else if (endPoint.contains("helios")) {
       return TestProperties.get("BASE_URI_HELIOS");
+    }
+    else if (endPoint.contains("merchant")) {
+      return TestProperties.get("BASE_URI_DIGIPAY");
     } else
       return TestProperties.get("BASE_URI_APIGEE");
   }
-
 }

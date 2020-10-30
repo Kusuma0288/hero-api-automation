@@ -19,6 +19,7 @@ public class BaseHelper {
   protected static List<Header> headerListCommon;
   protected static List<Header> headerListTrader;
   protected static List<Header> headerListRewards;
+  protected static List<Header> headerListDigipay;
   protected static SharedData sharedData;
   protected ObjectMapper mapper = new ObjectMapper();
 
@@ -26,6 +27,8 @@ public class BaseHelper {
     this.headerListCommon = new LinkedList<>();
     this.headerListTrader = new LinkedList<>();
     this.headerListRewards = new LinkedList<>();
+    this.headerListDigipay = new LinkedList<>();
+
     this.sharedData = ApplicationContext.getSharedData();
     headerListCommon.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerListCommon.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
@@ -36,6 +39,8 @@ public class BaseHelper {
 
     headerListRewards.add(new Header("x-api-key", TestProperties.get("rewards-x-api-key")));
     headerListRewards.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
+
+    headerListDigipay.add(new Header("x-api-key", TestProperties.get("digipay-x-api-key")));
 
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
