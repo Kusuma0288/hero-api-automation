@@ -262,8 +262,7 @@ public class RestInvocationUtil {
     }
     return response;
   }
-
-
+  
   private String getBaseURL(String endPoint) {
     if (endPoint.startsWith("/api") || endPoint.startsWith("api") || endPoint.startsWith("/Auth"))
       return TestProperties.get("BASE_URI_TRADER");
@@ -275,5 +274,4 @@ public class RestInvocationUtil {
     } else
       return TestProperties.get("BASE_URI_APIGEE");
   }
-
 }
