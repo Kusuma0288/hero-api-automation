@@ -14,19 +14,16 @@ public class OffersDefinition extends OffersHelper {
 
   private OffersResponse offersResponse;
 
-  @When("^the user selects fuel vouchers$")
-  public void theUserSelectsOffers() throws IOException {
+  @When("^the user lands on the booster screen$")
+  public void theUserLandsOnTheBoosterScreen() throws IOException {
     InputStream iStream = OffersDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/rewards/offers.graphql");
     String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
     offersResponse = iRetrieveOffers(graphqlQuery);
   }
 
-  @When("^the user lands on the booster screen$")
-  public void theUserLandsOnTheBoosterScreen() {
-  }
-
   @Then("^the user should see offers in the correct filter$")
   public void theUserShouldSeeOffersInTheCorrectFilter() {
+
   }
 
   @And("^the offers should contain relevant information$")

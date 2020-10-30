@@ -6,5 +6,5 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class OffersResponse {
-  private OffersData offersData;
+  private OffersData data;
 }
