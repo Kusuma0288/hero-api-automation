@@ -1,4 +1,4 @@
-@REGRESSION_APIGEE @Lion
+@REGRESSION_APIGEE @LION
 Feature: Checkout API scenarios
 
   Background:
