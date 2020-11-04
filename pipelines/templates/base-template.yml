@@ -98,90 +98,66 @@ steps:
     condition: succeeded()
 
   - powershell: |
-      $testResultDetailsUrl = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/index.html"
-      $imageURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/advanced-reports/test.png"
-      $wolvesURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Wolves.html"
-      $lionURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_LION.html"
-      $lobsterURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_Lobsters.html"
-      $vegemiteURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_VEGEMITE.html"
-      $nutellaURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_NUTELLA.html"
-      $cloverURL = "${{ parameters.ClusterUrl }}/${{ parameters.Service }}_${{ parameters.RunEnv }}_$(Build.BuildNumber)/pages/tag-scenarios/tag_CLOVER.html"
+       $returnValues = &'$(Build.SourcesDirectory)/postResultToSlack.ps1' -ClusterUrl '${{ parameters.ClusterUrl }}' `
+                -Service '${{ parameters.Service }}' -RunEnv '${{ parameters.RunEnv }}' -BuildNumber '$(Build.BuildNumber)' `
+                -TestRunTitle '${{ parameters.TestRunTitle }}' -SlackWebhookUrl '${{ parameters.SlackWebHookUrl }}' `
+                -SourceBranchName '$(Build.SourceBranchName)'
 
-      function calculation {
-       param ([string]$value)
+       $total_failures = $returnValues.currentFailures
 
-       $pattern='<li .*class=\s*"list-group-item"[^>]*>(?:.|\n)+?</li>'
-       $pattern11='<i[^>]*>(?:.|\n)+?</i>'
-       try
-       {
-         $webclient = New-Object System.Net.WebClient
-         $html = $webclient.DownloadString($value)
-         $Regex = [Regex]::Matches($html, $pattern)
-         $newVal = $Regex.value
-         $pattern11='<i[^>]*>(?:.|\n)+?</i>'
-         $Regex1 = [Regex]::Matches($newVal, $pattern11)
-         $count = $Regex1.value.split('title="passed"></i>')[1].Trim().Substring(0,2)
+       $PROJECT= "Mobile"
+       $ORGANIZATION_URL="https://dev.azure.com/wowonline/"
+       ##functions: Start
+       function updateVariableGroup {
+        param ([string]$VarName)
+        az pipelines variable-group variable update --org $ORGANIZATION_URL -p $PROJECT --group-id 717 --name $VarName --value $total_failures --output yaml
+
        }
-       catch{
-         #"No feature/scenario exists for the tag provided"
-         $count = 0
-        }
-       return $count
-      }
+       ##functions: End
+       ##Code to validate the failure count
 
-      $wolvesCount = calculation $wolvesURL
-      $lionCount = calculation $lionURL
-      $lobsterCount = calculation $lobsterURL
-      $vegemiteCount = calculation $vegemiteURL
-      $cloverCount = calculation $cloverURL
-      $nutellaCount = calculation $nutellaURL
+       echo $(System.AccessToken) | az devops login --org $ORGANIZATION_URL
 
-      echo "wolvesCount"
-      echo $wolvesCount
+       if('${{ parameters.Service }}' -eq 'apigee' -And '${{ parameters.RunEnv }}' -eq 'uat'){
+           if($total_failures -gt $(Apigee_UAT_LastFailCount)){
+               Write-Host "##vso[task.setvariable variable=buildStatus;]FAIL"
+               echo "Apigee build failed. Details below: "
+               echo "Current failures: " $returnValues.currentFailures
+               echo "Last failures count: " $(Apigee_UAT_LastFailCount)
+               echo "Report URL: " $returnValues.reportURL
+           }
+           else{
+               Write-Host "##vso[task.setvariable variable=buildStatus;]PASS"
+               updateVariableGroup -VarName 'Apigee_UAT_LastFailCount' -ORGANIZATION_URL $ORGANIZATION_URL -PROJECT $PROJECT
+           }
 
-      $color = 'good';
-      $slackMessage = @{
-      attachments = @(
-      @{
-        title = '${{ parameters.TestRunTitle }}'
-        color = $color
-        title_link = $testResultDetailsUrl
-        fields = @(
-            @{title = 'Source Branch'; value = '$(Build.SourceBranchName)' ; short = 'true'},
-            @{title = 'Run Env'; value = '${{ parameters.RunEnv }}'; short = 'true'}
-            @{title = 'Failures:'; short = 'false'}
-            @{title = ' '; short = 'false'}
-            if($wolvesCount -ne 0){
-            @{title = 'Wolves'; value = $wolvesCount; short = 'true'}
-            }
-            if($lionCount -ne 0){
-            @{title = 'Lion'; value = $lionCount; short = 'true'}
-            }
-            if($lobsterCount -ne 0){
-            @{title = 'Lobsters'; value = $lobsterCount; short = 'true'}
-            }
-            if($vegemiteCount -ne 0){
-            @{title = 'Vegemite'; value = $vegemiteCount; short = 'true'}
-            }
-            if($nutellaCount -ne 0){
-            @{title = 'Nutella'; value = $nutellaCount; short = 'true'}
-            }
-            if($cloverCount -ne 0){
-            @{title = 'Clover'; value = $cloverCount; short = 'true'}
-            }
-          )
-         image_url = $imageURL
        }
+       elseif('${{ parameters.Service }}' -eq 'trader' -And '${{ parameters.RunEnv }}' -eq 'uat'){
+           if($total_failures -gt $(Trader_UAT_LastFailCount)){
+               Write-Host "##vso[task.setvariable variable=buildStatus;]FAIL"
+               echo "Trader build failed. Details below: "
+               echo "Current failures: " $returnValues.currentFailures
+               echo "Last failures count: " $(Trader_UAT_LastFailCount)
+               echo "Report URL: " $returnValues.reportURL
+           }
+           else{
+               Write-Host "##vso[task.setvariable variable=buildStatus;]PASS"
+               updateVariableGroup -VarName 'Trader_UAT_LastFailCount' -ORGANIZATION_URL $ORGANIZATION_URL -PROJECT $PROJECT
+           }
 
-      )
-      } | ConvertTo-Json -Depth 5
-
-      Invoke-RestMethod -Uri '${{ parameters.SlackWebhookUrl }}' `
-       -Method Post `
-       -Body $slackMessage `
-       -UseBasicParsing `
-       -ContentType 'application/json'
+       }
+       az devops logout
 
     displayName: 'Post test results to Slack'
     continueOnError: true
     condition: and(succeeded(), ne('${{ parameters.SlackWebhookUrl }}', ''))
+
+  - powershell: |
+      echo $(buildStatus)
+      if('$(buildStatus)' -eq 'FAIL' -And '$(Build.Reason)' -eq 'PullRequest'){
+        throw "Build failed. Please check the new failures."
+      }
+
+    displayName: 'Check the run results'
+    continueOnError: false
+    condition: always()
