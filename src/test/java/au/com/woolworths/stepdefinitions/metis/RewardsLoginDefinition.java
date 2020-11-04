@@ -33,7 +33,6 @@ public class RewardsLoginDefinition extends LoginHelper {
     Assert.assertEquals("Status code for AuthCode unsuccessful", "200", sharedData.responseStatusCode);
     sharedData.authCode = authCode.getData().getAuthCode();
     logger.info("Showing the AuthCode: " + sharedData.authCode);
-
   }
 
   @When("^the user logs in with their authcode$")
@@ -49,7 +48,7 @@ public class RewardsLoginDefinition extends LoginHelper {
   @Then("^the user should be logged into the Rewards App$")
   public void shouldBeLoggedIn() {
     Assert.assertEquals("Login was unsuccessful", "RewardsLoginSuccess", loginResponse.getType());
-    Assert.assertEquals("Login response is missing a valid auth access token", 28, loginResponse.getData().getAuth().getData().getAccessToken().length());
+    Assert.assertEquals("Login response is missing a valid auth access token", 272, loginResponse.getData().getAuth().getData().getAccessToken().length());
     Assert.assertEquals("Login response doesn't include a successful auth object", "RewardsAccessTokenSuccess", loginResponse.getData().getAuth().getType());
     Assert.assertEquals("Login response doesn't include a valid auth access token expiry value", "1199", loginResponse.getData().getAuth().getData().getAccessTokenExpiresIn().toString());
     Assert.assertEquals("Login response doesn't include a valid auth refresh token expiry value", "31535999", loginResponse.getData().getAuth().getData().getRefreshTokenExpiresIn().toString());
