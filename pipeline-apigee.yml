@@ -17,11 +17,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-- group: MobileAuto-UAT
-- name: apigee-uat-lastFailCount
-  value: $[variables.Apigee_UAT_LastFailCount]
-
-
+  - group: MobileAuto-UAT
+  - name: apigee-uat-lastFailCount
+    value: $[variables.Apigee_UAT_LastFailCount]
 
 stages:
   - stage: Auto
