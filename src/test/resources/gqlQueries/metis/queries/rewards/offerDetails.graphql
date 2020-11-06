@@ -1,0 +1,38 @@
+	 query rewardsOffer($offerId: String!) {
+	     rewardsOffer(offerId: $offerId) {
+	             offerId
+	             image
+	             title
+	             subtitle
+	             summary
+	             body
+	             termsAndConditions
+	             displayExpiry
+	             displayStatus
+	             offerStatus
+	             mechanics {
+	                         displayLastUpdated
+	                         separator
+	                         selectedIndex
+	                         items {
+	                         icon
+	                         caption
+	                         title
+	                         }
+	             }
+	             statusIcons {
+	                         icon
+	                         }
+	             offerAnalytics {
+	                         commId
+	                         uoid
+	                         campaignCode
+	                         campaignStream
+	                         channel
+	                         status
+	                         }
+	             displayAnimation
+	             brandLogoUrl
+	     }
+	 }
+
