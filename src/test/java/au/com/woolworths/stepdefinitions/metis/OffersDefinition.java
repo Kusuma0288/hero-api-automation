@@ -29,16 +29,37 @@ public class OffersDefinition extends OffersHelper {
 
   @Then("^the user should see offers in the correct filter$")
   public void theUserShouldSeeOffersInTheCorrectFilter() {
-    Assert.assertEquals("Offers", offersResponse.getData().getRewardsHomePage().getOffers().getTitle());
     countOffersInFilter();
-    isOfferFilterTrue(availableCount, 0);
-    isOfferFilterTrue(readyForShopCount, 1);
-    isOfferFilterTrue(endedCount, 2);
+    isOffersCountEqualToFilter(availableCount, 0);
+    isOffersCountEqualToFilter(readyForShopCount, 1);
+    isOffersCountEqualToFilter(endedCount, 2);
   }
 
   @And("^the offers should contain relevant information$")
   public void theOffersShouldContainRelevantInformation() {
+    List<Item> items = offersResponse.getData().getRewardsHomePage().getOffers().getItems();
 
+    Assert.assertNotNull("Offer title not returned", offersResponse.getData().getRewardsHomePage().getOffers().getTitle());
+    for (Item item : items) {
+      Assert.assertEquals("Offer id should not be more than expected characters", 36, item.getOfferId().length());
+      Assert.assertTrue("Image is missing from offer with Id " + item.getOfferId(), item.getImage().matches(".*(png|jpg)"));
+      Assert.assertNotNull("Rewards title not returned", item.getTitle());
+      Assert.assertEquals("Subtitle should be empty string", "", item.getSubtitle());
+      Assert.assertNotNull("Rewards summary not returned for offer", item.getSummary());
+      Assert.assertNull("Rewards body not returned for offer", item.getBody());
+      Assert.assertNull("Rewards body not returned for offer", item.getTermsAndConditions());
+      Assert.assertNotNull("Rewards expiry not returned for offer", item.getDisplayExpiry());
+      Assert.assertNotNull("Rewards display status not returned for offer", item.getDisplayStatus());
+      Assert.assertNotNull("Rewards offer status not returned", item.getOfferStatus());
+      Assert.assertNotNull("Rewards offer icon not returned", item.getStatusIcons());
+      Assert.assertEquals("CommId should not be more than expected characters", 36, item.getOfferAnalytics().getCommId().length());
+      Assert.assertEquals("Uoid should not be more than expected characters", 36, item.getOfferAnalytics().getUoid().length());
+      Assert.assertNotNull("Rewards offer campaign code not returned", item.getOfferAnalytics().getCampaignCode());
+      Assert.assertNotNull("Rewards offer campaign stream not returned", item.getOfferAnalytics().getCampaignStream());
+      Assert.assertTrue("Non app channel cannot be send to app", item.getOfferAnalytics().getChannel().contains("app"));
+      Assert.assertNotNull("Rewards offer analytics status not returned", item.getOfferAnalytics().getStatus());
+      Assert.assertTrue("Leaf logo is missing from mnemosyne " + item.getBrandLogoUrl(), item.getBrandLogoUrl().matches(".*(logo).*(png)"));
+    }
   }
 
   public void countOffersInFilter() {
@@ -61,10 +82,10 @@ public class OffersDefinition extends OffersHelper {
     }
   }
 
-  public void isOfferFilterTrue(int count1, int filterNumber) {
-    String count = Integer.toString(count1);
-    String label = offersResponse.getData().getRewardsHomePage().getOffers().getFilters().get(filterNumber).getLabel();
-    Assert.assertTrue("Filter offer number does not equal: " + label, label.contains(count));
+  public void isOffersCountEqualToFilter(int count, int index) {
+    String strCount = Integer.toString(count);
+    String label = offersResponse.getData().getRewardsHomePage().getOffers().getFilters().get(index).getLabel();
+    Assert.assertTrue("Filter offer number does not equal: " + label, label.contains(strCount));
   }
 
 }
