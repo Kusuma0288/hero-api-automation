@@ -55,7 +55,7 @@ public class ShoreCampaignDetailsDefinition extends ShoreCampaignHelper {
 
     Footer footer = rewardsShoreCampaignDetailsResponse.getData().getRewardsShoreCampaignDetails().getFooter();
     Assert.assertTrue("Shore footer button is not returned", footer.getButton().getLabel().equalsIgnoreCase("Shop now"));
-    Assert.assertEquals("Shore Footer url is not returned", footer.getButton().getUrl(), "https://www.woolworths.com.au");
+    Assert.assertEquals("Shore Footer url is not returned", footer.getButton().getUrl(), "https://www.woolworths.com.au/glasscontainers");
     Assert.assertNotNull("Shore footer alternative image text not returned", footer.getImageAlt());
     Assert.assertTrue("Shore footer image not returned ", footer.getImageUrl().contains("shore"));
     Assert.assertNotNull("Footer text is not returned ", footer.getTermsAndConditions());
