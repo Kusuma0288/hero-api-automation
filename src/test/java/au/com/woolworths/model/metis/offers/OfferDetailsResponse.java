@@ -1,4 +1,4 @@
-package au.com.woolworths.model.metis.offerdetails;
+package au.com.woolworths.model.metis.offers;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;

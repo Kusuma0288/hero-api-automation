@@ -5,8 +5,6 @@ import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class Message {
-  private String icon;
-  private String title;
-  private String message;
+public class OfferDetailsData {
+  private RewardsOffer rewardsOffer;
 }
