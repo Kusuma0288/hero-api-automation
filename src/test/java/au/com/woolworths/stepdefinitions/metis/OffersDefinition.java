@@ -2,6 +2,7 @@ package au.com.woolworths.stepdefinitions.metis;
 
 import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.helpers.metis.OffersHelper;
+import au.com.woolworths.model.metis.offers.Filter;
 import au.com.woolworths.model.metis.offers.Item;
 import au.com.woolworths.model.metis.offers.OffersResponse;
 import cucumber.api.java.en.And;
@@ -12,8 +13,10 @@ import junit.framework.Assert;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class OffersDefinition extends OffersHelper {
+  private final static Logger logger = Logger.getLogger("OffersDefinition.class");
 
   private OffersResponse offersResponse;
   private int availableCount;
@@ -25,6 +28,7 @@ public class OffersDefinition extends OffersHelper {
     InputStream iStream = OffersDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/rewards/offers.graphql");
     String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
     offersResponse = iRetrieveOffers(graphqlQuery);
+    logger.info("Requesting offers information");
   }
 
   @Then("^the user should see offers in the correct filter$")
@@ -33,6 +37,24 @@ public class OffersDefinition extends OffersHelper {
     isOffersCountEqualToFilter(availableCount, 0);
     isOffersCountEqualToFilter(readyForShopCount, 1);
     isOffersCountEqualToFilter(endedCount, 2);
+  }
+
+  @And("^the user does not have any offers$")
+  public void theUserDoesNotHaveAnyOffers() {
+    countOffersInFilter();
+    Assert.assertEquals("Available count should be zero", 0, availableCount);
+    Assert.assertEquals("Ready for shop count should be zero", 0, readyForShopCount);
+    Assert.assertEquals("Ended count should be zero", 0, endedCount);
+  }
+
+  @Then("^the user should see the empty state messages$")
+  public void theUserShouldSeeTheEmptyStateMessages() {
+    List<Filter> filters = offersResponse.getData().getRewardsHomePage().getOffers().getFilters();
+    for (Filter filter : filters) {
+      Assert.assertEquals("Icon is not returned", filter.getMessage().getIcon(), "ribbon");
+      Assert.assertNotNull("Title is not returned", filter.getMessage().getTitle());
+      Assert.assertNotNull("Message is not returned", filter.getMessage().getMessage());
+    }
   }
 
   @And("^the offers should contain relevant information$")

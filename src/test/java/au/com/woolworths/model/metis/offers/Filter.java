@@ -9,6 +9,6 @@ import java.util.List;
 @Data
 public class Filter {
   private String label;
-  private Object message;
+  private Message message;
   private List<String> offerIds;
 }
