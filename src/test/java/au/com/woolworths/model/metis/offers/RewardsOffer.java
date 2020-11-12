@@ -1,4 +1,4 @@
-package au.com.woolworths.model.metis.offerdetails;
+package au.com.woolworths.model.metis.offers;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
@@ -7,7 +7,7 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class RewardsOfferResponse {
+public class RewardsOffer {
   private String offerId;
   private String image;
   private String title;
@@ -20,7 +20,7 @@ public class RewardsOfferResponse {
   private String offerStatus;
   private String mechanics;
   private List statusIcons;
-  private OfferAnalyticsResponse offerAnalytics;
+  private OfferAnalytics offerAnalytics;
   private Object displayAnimation;
   private String brandLogoUrl;
 }

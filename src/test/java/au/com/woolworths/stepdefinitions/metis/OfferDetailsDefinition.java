@@ -3,8 +3,8 @@ package au.com.woolworths.stepdefinitions.metis;
 
 import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.helpers.metis.OfferDetailsHelper;
-import au.com.woolworths.model.metis.offerdetails.OfferDetailsResponse;
-import au.com.woolworths.model.metis.offerdetails.RewardsOfferResponse;
+import au.com.woolworths.model.metis.offers.OfferDetailsResponse;
+import au.com.woolworths.model.metis.offers.RewardsOffer;
 import au.com.woolworths.utils.TestProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -32,7 +32,7 @@ public class OfferDetailsDefinition extends OfferDetailsHelper {
 
   @Then("^the user should be able to see the offer details for \"([^\"]*)\"$")
   public void offerDetailsAreDisplayed(String offerId) {
-    RewardsOfferResponse rewardsOffer = OfferDetailsResponse.getData().getRewardsOffer();
+    RewardsOffer rewardsOffer = OfferDetailsResponse.getData().getRewardsOffer();
     Assert.assertEquals("Offer id in response was different to request", TestProperties.get(offerId), rewardsOffer.getOfferId());
     Assert.assertEquals("Offer id should not be more than expected characters", 36, rewardsOffer.getOfferId().length());
     Assert.assertTrue("Image is missing from offer details", rewardsOffer.getImage().contains("jpg"));

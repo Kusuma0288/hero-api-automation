@@ -1,35 +1,28 @@
 package au.com.woolworths.helpers.metis;
 
 import au.com.woolworths.helpers.common.BaseHelper;
+import au.com.woolworths.model.metis.offers.OffersResponse;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import au.com.woolworths.model.metis.offers.OfferDetailsResponse;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.logging.Logger;
 
-public class OfferDetailsHelper extends BaseHelper {
-  private final static Logger logger = Logger.getLogger("OfferDetailsHelper.class");
+public class OffersHelper extends BaseHelper {
   RestInvocationUtil invocationUtil;
 
-  public OfferDetailsHelper() {
+  public OffersHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 
-  public OfferDetailsResponse iRetrieveMyOfferDetails(String query) throws IOException {
-
-
-    ObjectMapper mapper = new ObjectMapper();
-    Map<String, String> mapWebserviceResponse;
-
+  public OffersResponse iRetrieveOffers(String query) throws IOException {
     String endPoint = URLResources.METIS_REWARDS_GRAPHQL;
+    Map<String, String> mapWebserviceResponse;
 
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, query, headerListRewards);
     String responseStr = mapWebserviceResponse.get("response");
-    return mapper.readValue(responseStr, OfferDetailsResponse.class);
+    return mapper.readValue(responseStr, OffersResponse.class);
   }
 
 }

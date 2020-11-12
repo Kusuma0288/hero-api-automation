@@ -1,4 +1,3 @@
-
 package au.com.woolworths.model.metis.redemptionsettings;
 
 import com.fasterxml.jackson.annotation.JsonInclude;

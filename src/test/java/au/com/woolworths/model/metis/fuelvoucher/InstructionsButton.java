@@ -1,4 +1,3 @@
-
 package au.com.woolworths.model.metis.fuelvoucher;
 
 import com.fasterxml.jackson.annotation.JsonInclude;

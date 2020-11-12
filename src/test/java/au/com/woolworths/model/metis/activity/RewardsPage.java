@@ -1,5 +1,6 @@
 package au.com.woolworths.model.metis.activity;
 
+import au.com.woolworths.model.metis.message.Message;
 import au.com.woolworths.model.metis.pointsbalance.PointsBalance;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;

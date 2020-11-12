@@ -1,10 +1,10 @@
-package au.com.woolworths.model.metis.fuelvoucher;
+package au.com.woolworths.model.metis.offers;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class FuelVoucherResponse {
-  private FuelVoucherData data;
+public class OfferDetailsResponse {
+  private OfferDetailsData data;
 }
