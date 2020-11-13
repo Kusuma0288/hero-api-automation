@@ -136,7 +136,6 @@ Feature: Verify Shopping Trolley
     And I clear the trolley for the shopper
     And I want to add 2 of the same item again to trolley
     Then verify no note is added when we add the same product again with no note
-    #TODO: Adding item with note has some cache issue, need to have a look into this
 
     Examples:
       | note       | Address                                |

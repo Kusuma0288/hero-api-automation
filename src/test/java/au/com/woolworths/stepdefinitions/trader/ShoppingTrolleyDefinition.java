@@ -162,7 +162,6 @@ public class ShoppingTrolleyDefinition extends ShopperHelper {
   @Then("^verify the note (.*) is added to item in trolley$")
   public void verifyShopperTrolleyItemNote(String note) throws Throwable {
     //TODO: Need to remove wait after observation. Add wait since there is some cache issue with Trolley
-
     TrolleyResponse trolleyResponse = iRetrieveTheShopperTrolley();
     String noteAdded = trolleyResponse.getProducts().stream().findFirst().get().getNote();
     //Assert.assertTrue(note.equals(noteAdded), "Note added to trolley does not match" + note + " added in cart");
@@ -177,16 +176,22 @@ public class ShoppingTrolleyDefinition extends ShopperHelper {
 
   }
 
+  public String getNoteAdded() throws Throwable {
+    TrolleyResponse trolleyResponse = iRetrieveTheShopperTrolley();
+    return trolleyResponse.getProducts().stream().findFirst().get().getNote();
+  }
+
   @Then("^verify no note is added when we add the same product again with no note$")
   public void verifyNoNoteAddedToTheSameItem() throws Throwable {
-    //TODO: Need to remove wait after observation. Add wait since there is some cache issue with Trolley
-    try {
-      Thread.sleep(3000);
-    } catch (Exception e) {
-
+    int count = 0;
+    String noteAdded = getNoteAdded();
+    while ((!noteAdded.equals("")) && count < 10) {
+      iClearTheTrolleyForTheShopper();
+      iAddTheSameItemAgainToTrolley(2);
+      noteAdded = getNoteAdded();
+      count++;
     }
-    TrolleyResponse trolleyResponse = iRetrieveTheShopperTrolley();
-    String noteAdded = trolleyResponse.getProducts().stream().findFirst().get().getNote();
+
     Assert.assertTrue(noteAdded.equals(""), "Note is retained in the item but should be null");
 
   }
