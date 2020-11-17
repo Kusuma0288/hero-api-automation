@@ -124,10 +124,10 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
   @Then("^the user should see a badge for new user$")
     public void hasViewedWalletBadge()  {
     if (fetchUserPreferencesResponse.getData().getUserPreferences().isHasViewedWallet()) {
-    // To action when data is not mocked
+
     }
 
-    Assert.assertFalse("View User Preferences is set", fetchUserPreferencesResponse.getData().getUserPreferences().isHasViewedWallet());
+    Assert.assertTrue("View User Preferences is set", fetchUserPreferencesResponse.getData().getUserPreferences().isHasViewedWallet());
 
   }
 
