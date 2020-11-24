@@ -48,7 +48,7 @@ public class RewardsLoginDefinition extends LoginHelper {
   @Then("^the user should be logged into the Rewards App$")
   public void shouldBeLoggedIn() {
     Assert.assertEquals("Login was unsuccessful", "RewardsLoginSuccess", loginResponse.getType());
-    Assert.assertEquals("Login response is missing a valid auth access token", 272, loginResponse.getData().getAuth().getData().getAccessToken().length());
+    Assert.assertNotNull("Login response is missing a valid auth access token", loginResponse.getData().getAuth().getData().getAccessToken());
     Assert.assertEquals("Login response doesn't include a successful auth object", "RewardsAccessTokenSuccess", loginResponse.getData().getAuth().getType());
     Assert.assertEquals("Login response doesn't include a valid auth access token expiry value", "1199", loginResponse.getData().getAuth().getData().getAccessTokenExpiresIn().toString());
     Assert.assertEquals("Login response doesn't include a valid auth refresh token expiry value", "31535999", loginResponse.getData().getAuth().getData().getRefreshTokenExpiresIn().toString());
