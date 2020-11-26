@@ -41,13 +41,11 @@ public final class URLResources {
 
   public static final String METIS_REWARDS_LINK = "/zeus/metis/v1/rewards/link";
   public static final String METIS_LOGIN = "/zeus/metis/v1/rewards/login";
-  public static final String METIS_REWARDS_ACTIVITY = "/zeus/metis/v1/rewards/activity";
   public static final String METIS_REWARDS_SPECIALS = "/zeus/metis/v1/rewards/specials";
-  public static final String METIS_REWARDS_REDEMPTION_SETTINGS = "/zeus/metis/v1/rewards/redemption-settings";
   public static final String METIS_REWARDS_GRAPHQL = "/zeus/metis/v1/rewards/graphql";
   public static final String METIS_LOGOUT = "/zeus/metis/v1/rewards/logout";
-  public static final String METIS_REWARDS = "/zeus/metis/v1/rewards";
   public static final String METIS_TOKEN = "/zeus/metis/v1/rewards/token";
+  public static final String METIS_CONFIG = "/zeus/metis/v1/rewards/config";
   public static final String METIS_QRID = "/zeus/metis/v1/api/digipay/instore/customer/payment/session/qr/:qrId";
   public static final String METIS_PAYMENT_SESSION = "/zeus/metis/v1/api/digipay/instore/customer/payment/session/:paymentSessionId";
   public static final String METIS_TRANSACTIONS = "/zeus/metis/v1/api/digipay/instore/customer/transactions";

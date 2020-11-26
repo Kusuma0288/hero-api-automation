@@ -7,8 +7,6 @@ import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.MapperFeature;
-import org.codehaus.jackson.map.DeserializationConfig;
 
 import java.io.IOException;
 import java.util.Map;
@@ -26,7 +24,7 @@ public class ActivityHelper extends BaseHelper {
 
 
     ObjectMapper mapper = new ObjectMapper();
-    Map<String, String> mapWebserviceResponse;
+    Map <String, String> mapWebserviceResponse;
 
     /*
     The string returned by Message icon is an emoji which is utf8
