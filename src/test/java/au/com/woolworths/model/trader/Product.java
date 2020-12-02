@@ -43,6 +43,9 @@ public class Product {
   private Boolean isForCollection;
   private Boolean isForDelivery;
   private Boolean isMeatStockLoss;
+  private Boolean IsPurchasableWithRewardsCredits;
+  private Double RewardsCreditPrice;
+  private String Disclaimer;
   private Object Restrictions;
   //New fields introduced for CMO (Change my order) changes.
   private String SmallImageFile;
