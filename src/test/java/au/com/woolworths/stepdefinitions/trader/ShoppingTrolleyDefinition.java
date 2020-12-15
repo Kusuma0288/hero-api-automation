@@ -74,6 +74,7 @@ public class ShoppingTrolleyDefinition extends ShopperHelper {
 
   @Then("^shopper trolley should have (\\d+) products$")
   public void shopperTrolleyShouldHaveProducts(int quantity) throws Throwable {
+
     Assert.assertTrue(sharedData.trolleyQuantity == quantity, "There is mismatch in the number of expected quantities::" + quantity + " added in cart");
   }
 
@@ -107,12 +108,13 @@ public class ShoppingTrolleyDefinition extends ShopperHelper {
   public void iRetrieveTheTrolleyForTheShopper(int count) throws Throwable {
     TrolleyResponse trolleyResponse = iRetrieveTheShopperTrolley();
     sharedData.trolleyResponse = trolleyResponse;
+
     Assert.assertTrue(trolleyResponse.getTotalProducts() == count, "The Count is not matching as we have " + trolleyResponse.getTotalProducts() + " in trolley");
   }
 
   @When("^I verify all (\\d+) items are available in the Trolley$")
   public void iVerifyAllItemsAreAvailableInTheTrolley(int noOfItems) throws Throwable {
-    TrolleyResponse trolleyResponse = sharedData.trolleyResponse;
+    TrolleyResponse trolleyResponse = iRetrieveTheShopperTrolley();
     Assert.assertTrue(trolleyResponse.getTotalProducts() == noOfItems, "Expected Total Count in Trolley " + noOfItems + " is missing");
     Assert.assertTrue(trolleyResponse.getProducts().size() == noOfItems, "Expected Product Count in Trolley " + noOfItems + " is missing");
 
