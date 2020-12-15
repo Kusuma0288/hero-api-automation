@@ -79,8 +79,8 @@ Feature: Verify Shopping Trolley
     And I add 5 items to my trolley from search list with 1 quantity each
     Then shopper trolley should have 5 products
     And I use the following details for signing up as a new user in same device
-      | firstName | lastName | emailAddress        | password | mobilePhone | dateOfBirth | isBusinessShopper | emailProductsAndServices | smsProductsServicesAndPromotions | campaignName |agreeToTsAndCs|
-      | anish     | pillai   | traderAPI@gmail.com | 123456   | 0435876458  | 01/01/1940  | false             | false                    | false                            | WBT          |true          |
+      | firstName | lastName | emailAddress        | password | mobilePhone | dateOfBirth | isBusinessShopper | emailProductsAndServices | smsProductsServicesAndPromotions | campaignName | agreeToTsAndCs |
+      | anish     | pillai   | traderAPI@gmail.com | 123456   | 0435876458  | 01/01/1940  | false             | false                    | false                            | WBT          | true           |
     And apigee successfully authenticate to trader public api endpoint with signedup user session details
     When apigee connect to trader public api endpoint with newly created login and password "123456"
     And connection from apigee to trader public api shopper endpoint happens
@@ -142,13 +142,13 @@ Feature: Verify Shopping Trolley
       | Note Added | 34 Victoria Rd, Marrickville NSW  2204 |
 
   Scenario: Clear items from trolley as shopper and retrieve items from the trolley
-    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME4 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME3 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I clear the trolley for the shopper
     And I retrieve the V2 endpoint of the trolley
 
   Scenario Outline: Clear a specified item from Trolley and verify the item is deleted
-    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME4 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME3 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I search for the address <Address>
     And I select the "1" address as checkout address from matching addresses
