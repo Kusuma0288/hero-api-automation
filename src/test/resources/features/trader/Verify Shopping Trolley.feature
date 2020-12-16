@@ -198,10 +198,9 @@ Feature: Verify Shopping Trolley
     And I search for the product "Oil" and should see more than 1 matching results
     And I keep on adding 3 items to my existing trolley from search list with 1 quantity each
     Then shopper trolley should have 11 products
-
-    When apigee continue to connect to trader public api endpoint with login containing SHOPPER_USERNAME1 and password
+    When apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME1 and password
+    And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I check the delivery method to be "Courier"
-    And I retrieve the trolley for the shopper to check for 11 products
     Then I verify all 11 items are available in the Trolley
     And I clear the trolley for the shopper
 
