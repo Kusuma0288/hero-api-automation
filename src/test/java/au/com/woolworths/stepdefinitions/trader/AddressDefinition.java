@@ -3,6 +3,7 @@ package au.com.woolworths.stepdefinitions.trader;
 import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.trader.AddressHelper;
 import au.com.woolworths.model.trader.*;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
@@ -258,6 +259,11 @@ public class AddressDefinition extends AddressHelper {
   public void removeAllItemsInDeliveryAddresses() {
     sharedData.removeAllItemsInDeliveryAddresses();
 
+  }
+
+  @And("^I get the addresses for my account$")
+  public void iGetTheAddressesForMyAccount() throws Throwable {
+    MyAddresses addresses = iLoginToMyAccountToSeeTheAddresses(sharedData.authToken);
   }
 
 }

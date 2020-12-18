@@ -104,7 +104,7 @@ public class CheckoutDefinition extends CheckoutHelper {
     window = Arrays.stream(checkoutWindows).filter(CheckoutDeliveryWindowItems::isAvailable)
         .findFirst().orElseThrow(() -> new Exception("Window Is Not Available"));
     checkoutWindowSlots = window.getSlots();
-    slot = Arrays.stream(checkoutWindowSlots).filter(CheckoutWindowSlots::isIsAvailable)
+    slot = Arrays.stream(checkoutWindowSlots).filter(i -> i.getStatus().equals("available"))
         .findFirst().orElseThrow(() -> new Exception("Slot Is Not Available"));
     sharedData.checkoutDetails.put("selectedDate", window.getDate());
     sharedData.checkoutDetails.put("selectedSlotId", slot.getId().toString());
