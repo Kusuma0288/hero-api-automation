@@ -263,7 +263,9 @@ public class AddressDefinition extends AddressHelper {
 
   @And("^I get the addresses for my account$")
   public void iGetTheAddressesForMyAccount() throws Throwable {
-    MyAddresses addresses = iLoginToMyAccountToSeeTheAddresses(sharedData.authToken);
+    MyAddresses adressesInMyAccount = iLoginToMyAccountToSeeTheAddresses(sharedData.authToken);
+    Address[] addressItem = adressesInMyAccount.getAddresses();
+    sharedData.deliveryAddressId = addressItem[0].getAddressId();
   }
 
 }

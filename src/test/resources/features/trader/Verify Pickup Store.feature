@@ -32,6 +32,6 @@ Feature: Verify the pickup store
     Then I validate fulfilmentMethod match to FulfilmentMethod for pickup mode stores
     Examples:
       | PostCode | EmailAddress     |
-      | 2150     | SHOPPER_WOLVES1  |
+      | 2150     | SHOPPER_WOLVES3  |
 
 
