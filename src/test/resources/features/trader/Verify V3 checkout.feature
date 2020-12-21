@@ -17,7 +17,6 @@ Feature: Verify V3 Checkout scenarios
     And I add 8 items to my trolley from search list with 8 quantity each
     When apigee connect to trader public api endpoint from guest to logged in user with username <EmailAddress> and password
     When connection from apigee to trader public api shopper endpoint happens
-    And I get the addresses for my account
     And I get the available delivery windows for the logged in user with storeId or addressId
     And I set the selected available delivery window for the logged in user
     Then I validate that the V3Checkout returns the selected window for the logged in user
@@ -25,7 +24,7 @@ Feature: Verify V3 Checkout scenarios
     Then I clear the checkout details
     Examples:
       | DeliveryAddress              | EmailAddress      |
-      | 1 Darcy Rd, PORT KEMBLA 2505 | SHOPPER_USERNAME1 |
+      | 1 Darcy Rd, PORT KEMBLA 2505 | SHOPPER_WOLVES1   |
 
 
   @REGRESSION_TRADER
@@ -50,7 +49,7 @@ Feature: Verify V3 Checkout scenarios
     Then I clear the checkout details
     Examples:
       | PostCode | EmailAddress      |
-      | 2000     | SHOPPER_USERNAME1 |
+      | 2000     | SHOPPER_WOLVES2   |
 
   Scenario: Validate the E2E scenario with Paypal Payment
     Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME8 and password
