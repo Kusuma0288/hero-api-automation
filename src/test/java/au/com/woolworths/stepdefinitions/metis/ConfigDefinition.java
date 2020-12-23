@@ -12,14 +12,14 @@ public class ConfigDefinition extends ConfigHelper {
   private final static Logger logger = Logger.getLogger("ConfigDefinition.class");
   private ConfigResponse configResponse;
 
-  @Given("^the user launches the App with \"([^\"]*)\" and osversion \"([^\"]*)\"$")
-  public void theUserLaunchesApp(String appVersion, String osVersion) throws Throwable {
-    configResponse = getconfig(appVersion, osVersion);
-    logger.info("User queried with appVersion " + appVersion + " and osVersion " + osVersion);
+  @Given("^the user launches the App with \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\"$")
+  public void theUserLaunchesApp(String appVersion, String osVersion, String clientOS) throws Throwable {
+    configResponse = getConfig(appVersion, osVersion, clientOS);
+    logger.info("User queried with appVersion " + appVersion + " and osVersion " + osVersion + " and clientOS " + clientOS);
   }
 
   @Then("^the user should be able to see the on-boarding screen$")
-  public void theUserShouldBeAbleToSeeTheOnboardingScreen() {
+  public void theUserShouldBeAbleToSeeTheOnBoardingScreen() {
     Assert.assertEquals("Incorrect os version supported", "SUPPORTED", configResponse.getData().getStatus());
     Assert.assertEquals("Status code for config NOT successful", "200", configResponse.getStatusCode());
     Assert.assertEquals("Incorrect Rewards App config returned", "RewardsAppConfig", configResponse.getType());

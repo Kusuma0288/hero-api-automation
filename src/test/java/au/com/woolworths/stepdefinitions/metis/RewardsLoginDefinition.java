@@ -1,11 +1,11 @@
 package au.com.woolworths.stepdefinitions.metis;
 
-import au.com.woolworths.model.helios.login.AuthCode;
-import au.com.woolworths.utils.TestProperties;
-import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.metis.LoginHelper;
+import au.com.woolworths.model.helios.login.AuthCode;
 import au.com.woolworths.model.metis.authentication.LinkResponse;
 import au.com.woolworths.model.metis.authentication.LoginResponse;
+import au.com.woolworths.utils.TestProperties;
+import au.com.woolworths.utils.Utilities;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -19,14 +19,14 @@ public class RewardsLoginDefinition extends LoginHelper {
   private LoginResponse loginResponse;
 
   @Given("^a user has a Link session token$")
-  public void hasLinkSessionToken() throws Throwable {
-    LinkResponse linkResponse = getLinkSession();
+  public void hasLinkSessionToken(String clientOS) throws Throwable {
+    sharedData.clientOS = clientOS;
+    LinkResponse linkResponse = getLinkSession(clientOS);
     sharedData.sessionToken = linkResponse.getSessionToken();
     Assert.assertEquals("Status code for Link unsuccessful", "200", sharedData.responseStatusCode);
     logger.info("Showing the Session Token: " + sharedData.sessionToken);
   }
 
-  @Given("^I get the authcode of card number \"([^\"]*)\" of an \"([^\"]*)\" user$")
   public void getTheAuthcodeOfCardNumberOfAnUser(String rewardUser, String clientOS) throws Throwable {
     AuthCode authCode = getAuthCode(rewardUser, clientOS);
     Assert.assertNotNull("AuthCode is not returned", authCode);
@@ -59,13 +59,14 @@ public class RewardsLoginDefinition extends LoginHelper {
   }
 
 
-  @Given("^(?:a|the) user logs in the rewards app with card number \"([^\"]*)\"$")
-  public void aUserLogsInTheRewardsWithCardNumber(String rewardUser) throws Throwable {
+  @Given("^(?:a|the) user logs in the rewards app as an \"([^\"]*)\" user with card number \"([^\"]*)\"$")
+  public void userLogsInWithCardNumber(String clientOS, String rewardUser) throws Throwable {
     sharedData.rewardsCard = TestProperties.get(rewardUser);
-    hasLinkSessionToken();
-    getTheAuthcodeOfCardNumberOfAnUser(sharedData.rewardsCard, "iOS");
+    hasLinkSessionToken(clientOS);
+    getTheAuthcodeOfCardNumberOfAnUser(sharedData.rewardsCard, clientOS);
     logsInWithAuthcode();
     shouldBeLoggedIn();
+
   }
 
   @When("^the user reopens the app$")
