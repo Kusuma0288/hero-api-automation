@@ -1,0 +1,38 @@
+query preferenceDetails($key: String!){
+    preferenceDetails(key: $key) {
+        title
+        details {
+            ...on PreferenceDetailsHeader {
+                title
+                subtitle
+                body
+                imageUrl
+            }
+            ...on PreferenceDetailsToggleGroup {
+                groupTitle
+                description
+                toggles {
+                    title
+                    subtitle
+                    value
+                    id
+                    analytics {
+                        label
+                    }
+                    altText
+                }
+            }
+            ...on PreferenceDetailsFooter {
+                body
+                button {
+                    label
+                    url
+                }
+            }
+            ...on PreferenceDetailsText {
+                body
+                altText
+            }
+        }
+    }
+}
