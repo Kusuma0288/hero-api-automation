@@ -12,4 +12,5 @@ public class ProductsData {
   private String productImage;
   private PromotionValue promotionValue;
   private String unitPriceDescription;
+  private PricePointOfferSaving pricePointOfferSaving;
 }

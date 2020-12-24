@@ -1,0 +1,40 @@
+query {
+    rewardsPerks {
+        banner {
+            ...on RewardsShoreBanner {
+                bannerImageUrl
+                content {
+                    credits
+                    heading
+                    body
+                }
+                link {
+                    action
+                    url
+                }
+            }
+        }
+        title
+        perks {
+            partnerName
+            title
+            description
+            termsAndConditions {
+                title
+                termsAndConditions
+            }
+            cardImageUrl
+            headerImageUrl
+            button {
+                title
+                url
+                internalUrl
+            }
+            brand {
+                logoUrl
+                bgColour
+                textColour
+            }
+        }
+    }
+}

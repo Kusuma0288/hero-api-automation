@@ -33,7 +33,7 @@ public class ShoreCampaignDetailsDefinition extends ShoreCampaignHelper {
   public void theUserShouldSeeTheAllTheCollectionContainersDetails() {
     Header header = rewardsShoreCampaignDetailsResponse.getData().getRewardsShoreCampaignDetails().getHeader();
     Assert.assertNotNull("shore header is not returned ", header.getContent().getHeading());
-    Assert.assertTrue("shore image is not returned ", header.getImageUrl().contains("shore"));
+    Assert.assertTrue("shore image is not returned ", header.getImageUrl().contains("extra_banner_no_credits_after_xmas_v2.jpg"));
     Assert.assertNotNull("shore alternate text not shown ", header.getImageAlt());
     Assert.assertTrue("shore body text is not correct ", header.getContent().getBody().contains("Container Credit"));
     Assert.assertTrue("shore credit field is not numeric ", Utilities.isNumeric(header.getContent().getCredits()));

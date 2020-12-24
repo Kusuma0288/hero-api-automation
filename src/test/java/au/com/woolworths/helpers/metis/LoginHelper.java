@@ -23,10 +23,11 @@ public class LoginHelper extends BaseHelper {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 
-  public LinkResponse getLinkSession() throws Throwable {
+  public LinkResponse getLinkSession(String clientOS) throws Throwable {
     String endPoint = URLResources.METIS_REWARDS_LINK;
-    Map<String, String> mapWebserviceResponse;
+    Map <String, String> mapWebserviceResponse;
 
+    addApiKeyBasedOnClientOs(clientOS);
     mapWebserviceResponse = invocationUtil.invokeGetWithoutParam(endPoint, headerListRewards);
     String responseStr = mapWebserviceResponse.get("response");
     LinkResponse response = mapper.readValue(responseStr, LinkResponse.class);
@@ -39,7 +40,7 @@ public class LoginHelper extends BaseHelper {
   public AuthCode getAuthCode(String rewardsUser, String clientOS) throws IOException {
 
     String endPoint = URLResources.HELIOS_LOGIN;
-    Map<String, String> mapWebserviceResponse;
+    Map <String, String> mapWebserviceResponse;
 
     AuthCodeRequest authCodeRequest = new AuthCodeRequest();
     authCodeRequest.setEmailOrCardNumber(rewardsUser);
@@ -57,7 +58,7 @@ public class LoginHelper extends BaseHelper {
 
   public LoginResponse postLoginUsingAuthCode(String DeviceID, String sessionToken) throws Throwable {
     String endPoint = URLResources.METIS_LOGIN;
-    Map<String, String> mapWebserviceResponse;
+    Map <String, String> mapWebserviceResponse;
 
     LoginRequest loginRequest = new LoginRequest();
     loginRequest.setAuthCode(sharedData.authCode);
@@ -74,7 +75,7 @@ public class LoginHelper extends BaseHelper {
 
   public LoginResponse postToken(String refreshToken) throws Throwable {
     String endPoint = URLResources.METIS_TOKEN;
-    Map<String, String> mapWebserviceResponse;
+    Map <String, String> mapWebserviceResponse;
 
     TokenRequest tokenRequest = new TokenRequest();
 

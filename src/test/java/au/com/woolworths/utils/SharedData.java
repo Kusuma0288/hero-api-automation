@@ -31,6 +31,7 @@ public class SharedData {
   public String rewardsCard;
   public LoginReponse guestResponse;
   public String accessToken;
+  public String clientOS = null;
   public LoginReponse shopperResponse;
   public SearchAddresses searchAddresses;
   public String addressId;
@@ -80,7 +81,6 @@ public class SharedData {
   public String orderConfirmationPackagingFeeLabel;
   public Object orderConfirmationDeliveryTime;
   public int orderConfirmationWindowId;
-
 
   public GuestLoginResponse guestLoginResponse;
   public ShopperLoginResponseV2 shopperLoginResponseV2;

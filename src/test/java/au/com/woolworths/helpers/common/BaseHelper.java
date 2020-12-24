@@ -1,8 +1,8 @@
 package au.com.woolworths.helpers.common;
 
-import au.com.woolworths.utils.TestProperties;
 import au.com.woolworths.context.ApplicationContext;
 import au.com.woolworths.utils.SharedData;
+import au.com.woolworths.utils.TestProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
@@ -37,8 +37,7 @@ public class BaseHelper {
     headerListTrader.add(new Header("wowapi-auth-token", sharedData.authToken));
     headerListTrader.add(new Header("cache-control", "no-cache"));
 
-    headerListRewards.add(new Header("x-api-key", TestProperties.get("rewards-x-api-key")));
-    headerListRewards.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
+    addApiKeyBasedOnClientOs(sharedData.clientOS);
 
     headerListDigipay.add(new Header("x-api-key", TestProperties.get("digipay-x-api-key")));
 
@@ -58,6 +57,18 @@ public class BaseHelper {
     headerListTrader.add(new Header("wowapi-key", TestProperties.get("wowapi-key")));
     headerListTrader.add(new Header("wowapi-auth-token", sharedData.authToken));
     headerListTrader.add(new Header("cache-control", "no-cache"));
+  }
+
+  public void addApiKeyBasedOnClientOs(String clientOS) {
+    headerListRewards.clear();
+    headerListRewards.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
+
+    //todo make me better
+    if (clientOS != null && clientOS.equalsIgnoreCase("iOS")) {
+      headerListRewards.add(new Header("x-api-key", TestProperties.get("rewards-iOS-x-api-key")));
+    } else if (clientOS != null && clientOS.equalsIgnoreCase("Android")) {
+      headerListRewards.add(new Header("x-api-key", TestProperties.get("rewards-android-x-api-key")));
+    }
   }
 
 }
