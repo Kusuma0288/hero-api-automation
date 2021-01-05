@@ -130,6 +130,7 @@ steps:
                Write-Host "##vso[task.setvariable variable=buildStatus;]PASS"
 
            }
+           echo "Total Failures:" $total_failures
            updateVariableGroup -VarName 'Apigee_UAT_LastFailCount' -ORGANIZATION_URL $ORGANIZATION_URL -PROJECT $PROJECT
 
        }
