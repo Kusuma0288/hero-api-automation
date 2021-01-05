@@ -131,6 +131,7 @@ steps:
 
            }
            echo "Total Failures:" $total_failures
+           echo "Source Branch:" $(Build.SourceBranchName)
            updateVariableGroup -VarName 'Apigee_UAT_LastFailCount' -ORGANIZATION_URL $ORGANIZATION_URL -PROJECT $PROJECT
 
        }
