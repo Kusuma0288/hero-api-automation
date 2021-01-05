@@ -9,16 +9,6 @@ Feature: Verify the pickup store
     When apigee successfully authenticate to trader public api endpoint as guest
     And verify the pickup stores in the "CENTRAL" suburb
 
-  Scenario Outline: Verify setting and verification for DeliveryMethod of store with apis/v2/pickupstores for Guest Login for V3 with Fulfilment Store Id
-    Given apigee connect to trader public api endpoint as guest with fulfilment store id <StoreId>
-    When connection from apigee to trader public api endpoint happens
-    When apigee calls get pickup stores for the fulfilment store id <StoreId>
-    Then apigee successfully authenticate to trader public api endpoint as guest shopper with selected pickup store and <deliveryMethod>
-
-    Examples:
-      | StoreId | deliveryMethod |
-      | 1111    | Pickup         |
-
   @PROD_TRADER
   Scenario: Login as Guest and check the pickup structure by postcode
     Given apigee connect to trader public api endpoint as guest
@@ -41,7 +31,7 @@ Feature: Verify the pickup store
     And I add wait for 5000 msecs to make sure the sync is successful
     Then I validate fulfilmentMethod match to FulfilmentMethod for pickup mode stores
     Examples:
-      | PostCode | EmailAddress |
-      | 2150     | SHOPPER_USERNAME1  |
+      | PostCode | EmailAddress     |
+      | 2150     | SHOPPER_WOLVES3  |
 
 

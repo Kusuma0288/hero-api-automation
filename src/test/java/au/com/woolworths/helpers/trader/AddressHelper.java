@@ -42,7 +42,7 @@ public class AddressHelper extends BaseHelper {
     AddressRequest addressRequest = new AddressRequest();
     String endPoint = URLResources.TRADER_V3_ADDRESS;
     addressRequest.setAmasId(amasId);
-    addressRequest.setIsForBilling(true);
+    addressRequest.setIsForBilling(false);
 
 
     String addressRequestStr = mapper.writeValueAsString(addressRequest);
