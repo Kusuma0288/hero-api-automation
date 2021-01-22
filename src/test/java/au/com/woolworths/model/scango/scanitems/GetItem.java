@@ -26,8 +26,8 @@ public class GetItem {
     private String tareCode;
     private Double listprice;
     private Double saleprice;
-    private String interventionReason;
-    private Integer promotionPrice;
+    private String intervention_reason = null;
+    private Integer promotion_price;
     private Integer discountamount;
     private List<Object> matchedpromotions = null;
     private List<Object> missedpromotions = null;
@@ -37,5 +37,6 @@ public class GetItem {
     private Instoreprice instoreprice;
     private Object interventiondetails;
     private Images images;
-    private Boolean skipBagCheck;
+    private Boolean skip_bag_check;
+    private String hierarchy_value = null;
 }

@@ -90,4 +90,17 @@ public final class URLResources {
   public static final String TRADER_V2_SPECIALS_GROUP_DETAILS = "api/v3/product/specials";
   public static final String TRADER_V3_PRODUCT_GROUP = "api/v3/product/productgroup";
   public static final String V3_SEARCH = "api/v3/product/search";
+
+  public static final String SCANGO_PRE_AUTH = "scango/partner/login/rewards/preauth";
+  public static final String SCANGO_LOGIN = "scan/go/v1/login/wow/online";
+  public static final String SCANGO_START_SHOP= "scan/go/tapon";
+  public static final String SCANGO_ADD_ITEM  = "scan/go/cart/items";
+  public static final String SCANGO_CHECKOUT = "scan/go/checkout";
+  public static final String SCANGO_LIST_INSTRUMENTS = "wow/v1/pay/instruments";
+  public static final String SCANGO_PAYMENT = "scan/go/payment";
+  public static final String SCANGO_REWARDS_TOKEN = "/wx/v1/rewardspartner/secure/code2login/token";
+  public static final String SCANGO_LOAD_CART = "scan/go/cart";
+  public static final String SCANGO_VERIFY_CART = "scango/store/kiosk/cart/verify";
+  public static final String SCANGO_TRANSACTION_HISTORY = "scan/go/transaction/history";
+  public static final String SCANGO_VEIW_RECEIPT = "scan/go/receipt/view";
 }

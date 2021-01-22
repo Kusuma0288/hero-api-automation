@@ -21,5 +21,5 @@ public class LineItem {
     private Integer unitprice;
     private Integer originalunitprice;
     private String uom;
-    private List<Offer> offers = null;
+    private List<Object> offers = null;
 }

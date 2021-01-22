@@ -24,13 +24,12 @@ public class LoadCartResponse {
     private Integer intervtnprice;
     private Integer intervtnquantity;
     private Integer totalsavings;
+    private String checkouttitle;
+    private String checkoutmessage;
+    private String appId;
     private List<GetItem> items = null;
     private List<Object> notifications = null;
     private List<Object> coupons = null;
     private List<Object> offers = null;
-    private List<Object> pendingpromotions = null;
-    private Discounts discounts;
-    private List<Object> totaldiscounts = null;
     private String statusCode;
-
 }

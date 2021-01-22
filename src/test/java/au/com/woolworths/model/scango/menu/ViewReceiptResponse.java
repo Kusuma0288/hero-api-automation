@@ -31,7 +31,7 @@ public class ViewReceiptResponse {
     private List<Object> totaldiscounts = null;
     private List<PaymentInfo> paymentInfo = null;
     private List<Object> voucherInfo = null;
-    private List<Offer> offers = null;
+    private List<Object> offers = null;
     private String receiptMessage;
     private String statusCode;
 }

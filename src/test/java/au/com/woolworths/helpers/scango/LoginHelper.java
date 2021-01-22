@@ -31,28 +31,6 @@ public class LoginHelper extends BaseHelper {
         this.invocationUtil = ServiceHooks.restInvocationUtil;
 
     }
-    public PreAuthResponse iCallPreAuthAPI() throws IOException {
-
-        Map<String, String> mapWebserviceResponse;
-        String requestStr = null;
-        String responseStr = null;
-
-        Map<String, String> queryParams = new HashMap<>();
-
-        String endPoint = URLResources.SCANGO_PRE_AUTH;
-
-        PreAuthResponse response;
-
-        List<Header> headerList = new LinkedList<>();
-        headerList.add(new Header("x-api-key", TestProperties.get("SCANGO_PRE_AUTH_API_KEY")));
-        headerList.add(new Header("deviceid", TestProperties.get("DEVICE_ID")));
-        mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerList);
-        responseStr = mapWebserviceResponse.get("response");
-        response = mapper.readValue(responseStr, PreAuthResponse.class);
-        //response.setStatusCode(mapWebserviceResponse.get("statusCode"));
-        System.out.println("response" +response.toString());
-        return response;
-    }
 
     public String iLoginWithValidRewardsCredentials() {
         // TODO: run the browser in the background

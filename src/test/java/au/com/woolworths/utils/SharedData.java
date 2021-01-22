@@ -12,6 +12,9 @@ import au.com.woolworths.model.apigee.trolley.TrolleyV3Response;
 import au.com.woolworths.model.apigee.search.SearchResponseV3;
 import au.com.woolworths.model.apigee.checkout.CheckoutPackagingPreferencesResponse;
 import au.com.woolworths.model.iris.graphql.productList.Product;
+import au.com.woolworths.model.scango.checkout.CheckoutResponse;
+import au.com.woolworths.model.scango.login.ScanGoLoginResponse;
+import au.com.woolworths.model.scango.payment.ListInstrumentsResponse;
 import au.com.woolworths.model.trader.*;
 import au.com.woolworths.model.trader.product.productGroup.ProductsByProductGroup;
 
@@ -129,4 +132,13 @@ public class SharedData {
   public void removeAllItemsInDeliveryAddresses() {
     deliveryAddresses.clear();
   }
+
+  public ScanGoLoginResponse scanGoLoginResponse;
+  public ListInstrumentsResponse listInstrumentsResponse;
+  public CheckoutResponse checkoutResponse = null;
+  public String rewardsUrl;
+  public String storeID;
+  public String rewardsAuthCode;
+
+
 }

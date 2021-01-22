@@ -18,7 +18,6 @@ public class ProductTypesDefinition extends ProductTypesHelper {
 
     @Given("^I add a \"([^\"]*)\" into cart$")
     public void i_add_a_into_cart(String type) throws Throwable {
-        System.out.println("type  def " +type);
         String productType = type;
 
         AddItemResponse addItemResponse = iClickOnScanItem(productType);
