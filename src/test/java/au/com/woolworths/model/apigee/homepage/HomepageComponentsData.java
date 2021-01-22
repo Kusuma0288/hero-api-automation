@@ -25,6 +25,9 @@ public class HomepageComponentsData {
   private String altText;
   private String height;
   private HomepageQueryParameters queryParameters;
+  private String deliveryNowStatus;
+  private String status;
+  private String isEligible;
 
 }
 

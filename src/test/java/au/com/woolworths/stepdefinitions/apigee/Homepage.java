@@ -7,6 +7,8 @@ import au.com.woolworths.model.apigee.homepage.HomepageResponse;
 import au.com.woolworths.model.apigee.productgroups.ProductGroupComponents;
 import au.com.woolworths.model.apigee.productgroups.ProductGroupResponse;
 import au.com.woolworths.model.apigee.productgroups.ProductGroupTrolleyData;
+import cucumber.api.PendingException;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
 
@@ -44,7 +46,7 @@ public class Homepage extends HomepageHelper {
 
     //Assert Horizontal list details - All Specials
     Assert.assertTrue("Horizontal list component missing " + Offer
-        , Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item1 -> item1.getType().equals("HorizontalList")));
+            , Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item1 -> item1.getType().equals("HorizontalList")));
     HomepageComponentsData item1 = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("HorizontalList")).findFirst().get().getData();
     Assert.assertEquals("All Specials title mismatch", "All Specials", item1.getTitle());
     Assert.assertEquals("All Specials subtitle mismatch", "All the latest specials and offers", item1.getSubtitle());
@@ -90,7 +92,7 @@ public class Homepage extends HomepageHelper {
 
     //Assert Horizontal list details - Online Only Offers
     Assert.assertTrue("Horizontal list component missing " + Offer,
-        Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item1 -> item1.getType().equals("HorizontalList")));
+            Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item1 -> item1.getType().equals("HorizontalList")));
     HomepageComponentsData item1 = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("HorizontalList")).findFirst().get().getData();
     Assert.assertEquals("All Specials title mismatch", "Online Only Offers", item1.getTitle());
     Assert.assertEquals("All Specials subtitle mismatch", "Specials available exclusively online", item1.getSubtitle());
@@ -99,7 +101,7 @@ public class Homepage extends HomepageHelper {
     Assert.assertNotNull("No products under All Specials", item1.getItems());
 
     sharedData.stockCode.add(Arrays.stream(item1.getItems()).filter(item7 -> item7.getData().getIsAvailable().equals("true")).
-        findFirst().get().getData().getProductId().replaceFirst("^0+(?!$)", ""));
+            findFirst().get().getData().getProductId().replaceFirst("^0+(?!$)", ""));
 
     //Assert Recipe details
     Assert.assertTrue("Recipes card component missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item2 -> item2.getType().equals("RecipesCard")));
@@ -125,7 +127,7 @@ public class Homepage extends HomepageHelper {
     ProductGroupResponse productGroupResponse = iRetrieveProductGroup(mode, sharedData.promoTileDataPath);
 
     ProductGroupComponents product = Arrays.stream(productGroupResponse.getData().getItems())
-        .filter(item -> item.getData().getIsAvailable().equals("true")).findFirst().get();
+            .filter(item -> item.getData().getIsAvailable().equals("true")).findFirst().get();
     //Assert ProductGroup returns at least 1 product
     Assert.assertNotNull("Product Group has at least 1 item", product);
 
@@ -145,8 +147,8 @@ public class Homepage extends HomepageHelper {
     Assert.assertNotNull("Product Group has at least 1 item", productGroupResponse.getData().getItems()[0]);
 
     ProductGroupTrolleyData product = Arrays.stream(productGroupResponse.getData().getItems()).
-        filter(item -> item.getData().getProductId().contains(sharedData.stockCode.get(0))).
-        findFirst().get().getData().getTrolley().getData();
+            filter(item -> item.getData().getProductId().contains(sharedData.stockCode.get(0))).
+            findFirst().get().getData().getTrolley().getData();
 
     //Assert the quantity of the product in PromoTile
     Assert.assertEquals("The button quantity of the product does not match with trolley", quantity, product.getButtonQuantity());
@@ -163,8 +165,8 @@ public class Homepage extends HomepageHelper {
     Assert.assertNotNull("Product Group has at least 1 item", productGroupResponse.getData().getItems()[0]);
 
     ProductGroupTrolleyData product = Arrays.stream(productGroupResponse.getData().getItems()).
-        filter(item -> item.getData().getProductId().contains(sharedData.stockCode.get(0))).
-        findFirst().get().getData().getTrolley().getData();
+            filter(item -> item.getData().getProductId().contains(sharedData.stockCode.get(0))).
+            findFirst().get().getData().getTrolley().getData();
 
     //Assert the button label is ADD when the product is not added to trolley
     Assert.assertEquals("Button label of the product is not Add", "Add", product.getButtonLabel());
@@ -224,7 +226,7 @@ public class Homepage extends HomepageHelper {
 
     HomepageComponentsData productList = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("HorizontalList")).findFirst().get().getData();
     ProductGroupTrolleyData product = Arrays.stream(productList.getItems()).filter(item -> item.getData().getProductId().contains(sharedData.stockCode.get(0))).
-        findFirst().get().getData().getTrolley().getData();
+            findFirst().get().getData().getTrolley().getData();
 
     //Assert the quantity of the product in PromoTile
     Assert.assertEquals("The button quantity of the product does not match with trolley", quantity, product.getButtonQuantity());
@@ -245,12 +247,87 @@ public class Homepage extends HomepageHelper {
 
     HomepageComponentsData productList = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("HorizontalList")).findFirst().get().getData();
     ProductGroupTrolleyData product = Arrays.stream(productList.getItems()).filter(item -> item.getData().getProductId().contains(sharedData.stockCode.get(0))).
-        findFirst().get().getData().getTrolley().getData();
+            findFirst().get().getData().getTrolley().getData();
 
     //Assert the button label is ADD when the product is not added to trolley
     Assert.assertEquals("Button label of the product is not Add", "Add", product.getButtonLabel());
     Assert.assertEquals("Button state of the product is not ADD", "ADD", product.getButtonState());
     Assert.assertEquals("Trolley value of the product is not zero by default", "0", product.getInTrolley());
+
+  }
+
+  @Then("^I make a request to Homepage in Delivery mode and verify the DeliveryNowCard for \"([^\"]*)\" address$")
+  public void iMakeARequestToHomepageInDeliveryModeAndVerifyTheDeliveryNowCardForAddress(String eligibility) throws Throwable {
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("mode", "online");
+    HomepageResponse homepageResponse = iRetrieveHomepageWithInStore(queryParams);
+
+    //Assert Response is not Null
+    Assert.assertNotNull(homepageResponse.getData());
+
+    //Assert Delivery Now Card details
+    Assert.assertTrue("Delivery Now Card missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item2 -> item2.getType().equals("DeliveryNowCard")));
+    HomepageComponentsData deliveryNowData = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("DeliveryNowCard")).findFirst().get().getData();
+    if (eligibility.equalsIgnoreCase("Eligible")) {
+      Assert.assertEquals("Delivery Now Card deliveryNowStatus field validation", "Open", deliveryNowData.getDeliveryNowStatus());
+      Assert.assertEquals("Delivery Now Card status field validation", "ClosingSoon", deliveryNowData.getStatus());
+      Assert.assertEquals("Delivery Now Card status field validation", "true", deliveryNowData.getIsEligible());
+    }
+    else {
+      Assert.assertEquals("Delivery Now Card deliveryNowStatus field validation", "Ineligible", deliveryNowData.getDeliveryNowStatus());
+      Assert.assertEquals("Delivery Now Card status field validation", "Ineligible", deliveryNowData.getStatus());
+      Assert.assertEquals("Delivery Now Card status field validation", "false", deliveryNowData.getIsEligible());
+    }
+
+  }
+
+  @Then("^I make a request to Homepage in IN-STORE mode with store id \"([^\"]*)\" and verify the DeliveryNowCard for \"([^\"]*)\" address$")
+  public void iMakeARequestToHomepageInINSTOREModeWithStoreIdWithAndVerifyTheDeliveryNowCardForAddress(String storeId, String eligibility) throws Throwable {
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("store", storeId);
+    HomepageResponse homepageResponse = iRetrieveHomepageWithInStore(queryParams);
+
+    //Assert Response is not Null
+    Assert.assertNotNull(homepageResponse.getData());
+
+    //Assert Delivery Now Card details
+    Assert.assertTrue("Delivery Now Card missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item2 -> item2.getType().equals("DeliveryNowCard")));
+    HomepageComponentsData deliveryNowData = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("DeliveryNowCard")).findFirst().get().getData();
+    if (eligibility.equalsIgnoreCase("Eligible")) {
+      Assert.assertEquals("Delivery Now Card deliveryNowStatus field validation", "Open", deliveryNowData.getDeliveryNowStatus());
+      Assert.assertEquals("Delivery Now Card status field validation", "ClosingSoon", deliveryNowData.getStatus());
+      Assert.assertEquals("Delivery Now Card status field validation", "true", deliveryNowData.getIsEligible());
+    }
+    else {
+      Assert.assertEquals("Delivery Now Card deliveryNowStatus field validation", "Ineligible", deliveryNowData.getDeliveryNowStatus());
+      Assert.assertEquals("Delivery Now Card status field validation", "Ineligible", deliveryNowData.getStatus());
+      Assert.assertEquals("Delivery Now Card status field validation", "false", deliveryNowData.getIsEligible());
+    }
+
+
+  }
+
+  @Then("^I make a request to Homepage in \"([^\"]*)\" and verify the DeliveryNowCard for \"([^\"]*)\" address$")
+  public void iMakeARequestToHomepageInAndVerifyTheDeliveryNowCardForAddress(String shoppingMode, String eligibility) throws Throwable {
+    Map<String, String> queryParams = new HashMap<String, String>();
+    queryParams.put("mode", shoppingMode);
+    HomepageResponse homepageResponse = iRetrieveHomepageWithInStore(queryParams);
+    //Assert Response is not Null
+    Assert.assertNotNull(homepageResponse.getData());
+
+    //Assert Delivery Now Card details
+    Assert.assertTrue("Delivery Now Card missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item2 -> item2.getType().equals("DeliveryNowCard")));
+    HomepageComponentsData deliveryNowData = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("DeliveryNowCard")).findFirst().get().getData();
+    if (eligibility.equalsIgnoreCase("Eligible")) {
+      Assert.assertEquals("Delivery Now Card deliveryNowStatus field validation", "Open", deliveryNowData.getDeliveryNowStatus());
+      Assert.assertEquals("Delivery Now Card status field validation", "ClosingSoon", deliveryNowData.getStatus());
+      Assert.assertEquals("Delivery Now Card status field validation", "true", deliveryNowData.getIsEligible());
+    }
+    else {
+      Assert.assertEquals("Delivery Now Card deliveryNowStatus field validation", "Ineligible", deliveryNowData.getDeliveryNowStatus());
+      Assert.assertEquals("Delivery Now Card status field validation", "Ineligible", deliveryNowData.getStatus());
+      Assert.assertEquals("Delivery Now Card status field validation", "false", deliveryNowData.getIsEligible());
+    }
 
   }
 }

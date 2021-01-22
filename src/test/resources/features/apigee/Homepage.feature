@@ -58,3 +58,57 @@ Feature: Verify the HomePage components in different Shopping modes for guest/lo
     Then I verify the stockcode is set to "3" when I make a request to PromoTile
     And I clear the trolley
     Then I verify the stockcode is not added to trolley when I make a request to PromoTile
+
+
+  @Falcon
+  Scenario: Verify the DeliveryNow Card in HomePage response for logged-in user in Delivery mode (DN Eligible address)
+    Given user continue to connect to apigee with login username as "SHOPPER_USERNAME"
+    When connection from user to apigee endpoint happens
+    And I pick a location at "407-419 Elizabeth St, SURRY HILLS NSW 2010" for delivery
+    Then I make a request to fulfilment api with primary address id to set the address as fulfilment address
+    Then I make a request to Homepage in Delivery mode and verify the DeliveryNowCard for "Eligible" address
+
+  @Falcon
+  Scenario: Verify the HDeliveryNow Card in HomePage response for logged-in user Delivery mode (DN InEligible address)
+    Given user continue to connect to apigee with login username as "SHOPPER_USERNAME"
+    When connection from user to apigee endpoint happens
+    And I pick a location at "31 Dean St, NORTH TAMWORTH NSW 2340" for delivery
+    Then I make a request to fulfilment api with primary address id to set the address as fulfilment address
+    Then I make a request to Homepage in Delivery mode and verify the DeliveryNowCard for "Ineligible" address
+
+  @Falcon
+  Scenario: Verify the DeliveryNow Card in HomePage response for logged-in user in In-Store mode (DN Eligible address)
+    Given user continue to connect to apigee with login username as "SHOPPER_USERNAME"
+    When connection from user to apigee endpoint happens
+    And I pick a location at "407-419 Elizabeth St, SURRY HILLS NSW 2010" for delivery
+    Then I make a request to fulfilment api with primary address id to set the address as fulfilment address
+    And I select an IN-STORE shop in postcode "2000"
+    Then I make a request to Homepage in IN-STORE mode with store id "1248" and verify the DeliveryNowCard for "Eligible" address
+
+  @Falcon
+  Scenario: Verify the HDeliveryNow Card in HomePage response for logged-in user in In-Store mode (DN InEligible address)
+    Given user continue to connect to apigee with login username as "SHOPPER_USERNAME"
+    When connection from user to apigee endpoint happens
+    And I pick a location at "31 Dean St, NORTH TAMWORTH NSW 2340" for delivery
+    Then I make a request to fulfilment api with primary address id to set the address as fulfilment address
+    And I select an IN-STORE shop in postcode "2000"
+    Then I make a request to Homepage in IN-STORE mode with store id "1248" and verify the DeliveryNowCard for "Ineligible" address
+
+  @Falcon
+  Scenario: Verify the DeliveryNow Card in HomePage response for logged-in user in PickUp mode (DN Eligible address)
+    Given user continue to connect to apigee with login username as "SHOPPER_USERNAME"
+    When connection from user to apigee endpoint happens
+    And I pick a location at "407-419 Elizabeth St, SURRY HILLS NSW 2010" for delivery
+    Then I make a request to fulfilment api with primary address id to set the address as fulfilment address
+    And I set a pick up store using post code 2204
+    Then I make a request to Homepage in "pickup" and verify the DeliveryNowCard for "Eligible" address
+
+  @Falcon
+  Scenario: Verify the HDeliveryNow Card in HomePage response for logged-in user in PickUp mode (DN InEligible address)
+    Given user continue to connect to apigee with login username as "SHOPPER_USERNAME"
+    When connection from user to apigee endpoint happens
+    And I pick a location at "31 Dean St, NORTH TAMWORTH NSW 2340" for delivery
+    Then I make a request to fulfilment api with primary address id to set the address as fulfilment address
+    And I set a pick up store using post code 2204
+    Then I make a request to Homepage in "pickup" and verify the DeliveryNowCard for "Ineligible" address
+
