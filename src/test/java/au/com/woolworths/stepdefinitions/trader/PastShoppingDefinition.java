@@ -13,15 +13,15 @@ public class PastShoppingDefinition extends PastShopHelper {
 
   private final static Logger logger = Logger.getLogger("PastShoppingDefinition.class");
   private PastShoppingListResponse pastShoppingListResponse;
-  private String noOfPage, pageSize;
+  private String pageNumber, pageSize;
 
 
   @When("^customer calls past shopping list api with number of pages as (.*) and pagesize as (.*)$")
-  public void customerCallsShoppingAislesApi(String noOfPage, String pageSize) throws Throwable {
-    this.noOfPage=noOfPage;
+  public void customerCallsShoppingAislesApi(String pageNumber, String pageSize) throws Throwable {
+    this.pageNumber =pageNumber;
     this.pageSize=pageSize;
-    pastShoppingListResponse = iGetShoppingAisles( noOfPage,  pageSize);
-    System.out.println(noOfPage+ "  "+ pageSize);
+    pastShoppingListResponse = iGetShoppingAisles( pageNumber,  pageSize);
+    System.out.println(pageNumber+ "  "+ pageSize);
 
   }
 
@@ -30,7 +30,7 @@ public class PastShoppingDefinition extends PastShopHelper {
     Assert.assertTrue(sharedData.responseStatusCode.equals("200"), "Expected Status Code is 200 but found::" + sharedData.responseStatusCode);
     Assert.assertTrue(pastShoppingListResponse.getItems().size() > 0, "List of past shops is empty");
     Assert.assertEquals(Integer.parseInt(pastShoppingListResponse.getTotalItemCount()) , pastShoppingListResponse.getItems().size() , "count of returned list and total item count field should be same");
-    Assert.assertEquals(pastShoppingListResponse.getPage(), noOfPage,"Page should be 1");
+    Assert.assertEquals(pastShoppingListResponse.getPage(), pageNumber,"Page should be 1");
     Assert.assertEquals(pastShoppingListResponse.getPageSize(), pageSize,"Page size should be 10");
     Assert.assertNull(pastShoppingListResponse.getMessage(), "Message should be NULL");
  }
