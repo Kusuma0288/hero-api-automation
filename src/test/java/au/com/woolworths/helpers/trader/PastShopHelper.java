@@ -26,11 +26,11 @@ public class PastShopHelper extends BaseHelper {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 
-  public PastShoppingListResponse iGetShoppingAisles() throws Throwable {
+  public PastShoppingListResponse iGetShoppingAisles(String noOfPage, String pageSize) throws Throwable {
     String endPoint = URLResources.TRADER_V2_PAST_SHOPPING_LIST;
     Map<String, String> queryParams = new HashMap<String, String>();
-    queryParams.put("page", "1");
-    queryParams.put("pagesize", "25");
+    queryParams.put("page",noOfPage );
+    queryParams.put("pagesize", pageSize);
     Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
     String responseStr = mapWebserviceResponse.get("response");
     PastShoppingListResponse response = mapper.readValue(responseStr, PastShoppingListResponse.class);
