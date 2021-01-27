@@ -7,9 +7,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.restassured.http.Header;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -86,8 +88,10 @@ public class BaseHelper {
 
   public WebDriver initiateWebdriver() {
 
-    System.setProperty("webdriver.chrome.driver","/Users/xprn6/Downloads/chromedriver"); //TODO: make it dynamic
-    WebDriver driver = new ChromeDriver();
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--headless");
+    WebDriverManager.chromedriver().setup();
+    WebDriver driver = new ChromeDriver(options);
     return driver;
   }
 
