@@ -14,6 +14,5 @@ public class KioskVerifyCartDefinition extends KioskVerifyCartHelper {
         sharedData.responseStatusCode = verifyCartResponse.getStatusCode();
 
         Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-        System.out.println("verifyCartResponse  file " + verifyCartResponse.toString());
     }
 }

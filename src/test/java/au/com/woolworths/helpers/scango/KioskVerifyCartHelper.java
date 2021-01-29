@@ -3,11 +3,8 @@ package au.com.woolworths.helpers.scango;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.scango.kiosk.VerifyCartRequest;
 import au.com.woolworths.model.scango.kiosk.VerifyCartResponse;
-import au.com.woolworths.model.scango.scanitems.AddItemRequest;
-import au.com.woolworths.model.scango.scanitems.AddItemResponse;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
-import au.com.woolworths.utils.TestProperties;
 import au.com.woolworths.utils.URLResources;
 
 import java.io.IOException;

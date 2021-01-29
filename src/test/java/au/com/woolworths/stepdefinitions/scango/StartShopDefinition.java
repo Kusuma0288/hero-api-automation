@@ -4,9 +4,6 @@ import au.com.woolworths.helpers.scango.StartShopHelper;
 
 
 import au.com.woolworths.model.scango.startshop.StartShopResponse;
-import cucumber.api.PendingException;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
 
@@ -15,9 +12,7 @@ public class StartShopDefinition extends StartShopHelper {
     @When("^user calls the Start Shop API$")
     public void user_calls_the_Start_Shop_API() throws Throwable {
         StartShopResponse startShopResponse = iClickOnStartShopAPI();
-
         sharedData.storeID = startShopResponse.getStoreid();
-
-        System.out.println("StartShopDefinition  file " +startShopResponse.toString());
+        Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
     }
 }

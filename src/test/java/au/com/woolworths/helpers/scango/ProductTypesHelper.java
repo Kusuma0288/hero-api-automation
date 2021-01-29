@@ -23,7 +23,6 @@ public class ProductTypesHelper extends BaseHelper {
     }
 
     public AddItemResponse iClickOnScanItem(String product) throws IOException {
-        System.out.println("helper  file " +product);
         String productType = product;
         String ean="";
         Map<String, String> mapWebserviceResponse;

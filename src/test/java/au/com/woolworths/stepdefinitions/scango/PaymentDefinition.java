@@ -1,7 +1,6 @@
 package au.com.woolworths.stepdefinitions.scango;
 
 import au.com.woolworths.helpers.scango.PaymentHelper;
-import au.com.woolworths.model.scango.checkout.CheckoutResponse;
 import au.com.woolworths.model.scango.payment.ListInstrumentsResponse;
 import au.com.woolworths.model.scango.payment.PaymentResponse;
 import cucumber.api.java.en.Then;
@@ -17,8 +16,6 @@ public class PaymentDefinition extends PaymentHelper {
 
         sharedData.responseStatusCode = listInstrumentsResponse.getStatusCode();
         Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-
-        System.out.println("ListInstrumentsResponse  file " + listInstrumentsResponse.toString());
     }
 
     @Then("^I verify payment is successfully completed through In-App Payment API$")
@@ -29,8 +26,6 @@ public class PaymentDefinition extends PaymentHelper {
 
         sharedData.responseStatusCode = paymentResponse.getStatusCode();
         Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-
-        System.out.println("PaymentResponse  file " + paymentResponse.toString());
     }
 
 }

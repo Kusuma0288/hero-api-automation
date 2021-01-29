@@ -91,7 +91,6 @@ public final class URLResources {
   public static final String TRADER_V3_PRODUCT_GROUP = "api/v3/product/productgroup";
   public static final String V3_SEARCH = "api/v3/product/search";
 
-  public static final String SCANGO_PRE_AUTH = "scango/partner/login/rewards/preauth";
   public static final String SCANGO_LOGIN = "scan/go/v1/login/wow/online";
   public static final String SCANGO_START_SHOP= "scan/go/tapon";
   public static final String SCANGO_ADD_ITEM  = "scan/go/cart/items";
