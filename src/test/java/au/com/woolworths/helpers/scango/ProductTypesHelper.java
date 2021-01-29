@@ -23,7 +23,6 @@ public class ProductTypesHelper extends BaseHelper {
     }
 
     public AddItemResponse iClickOnScanItem(String product) throws IOException {
-        System.out.println("helper  file " +product);
         String productType = product;
         String ean="";
         Map<String, String> mapWebserviceResponse;
@@ -37,6 +36,10 @@ public class ProductTypesHelper extends BaseHelper {
         switch (productType) {
                 case "Simple item": ean = TestProperties.get("SIMPLE_ITEM"); break;
                 case "Tun item":  ean = TestProperties.get("TUN_ITEM"); break;
+                case "Price embedded item":  ean = TestProperties.get("PRICE_EMBEDDED"); break;
+                case "Tiliter Weight item":  ean = TestProperties.get("TILITER_WEIGHT_ITEM"); break;
+                case "Tiliter Quantity item":  ean = TestProperties.get("TILITER_QTY_ITEM"); break;
+                case "Weight required item":  ean = TestProperties.get("WEIGHT_REQUIRED_ITEM"); break;
         }
 
         addItemRequest.setEan(ean);

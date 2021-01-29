@@ -8,24 +8,11 @@ import org.testng.Assert;
 
 public class CheckoutDefinition extends CheckoutHelper {
 
-//
-//    @Then("^verify user can proceed to checkout$")
-//    public void verify_user_can_proceed_to_checkout() throws Throwable {
-//        CheckoutResponse checkoutResponse = iClickOnCheckout();
-//
-//        sharedData.checkoutResponse = checkoutResponse;
-//
-//        System.out.println("CheckoutResponse  file " + checkoutResponse.toString());
-//    }
-
-    @When("^I call Checkout API$")
+@When("^I call Checkout API$")
     public void i_call_Checkout_API() throws Throwable {
         CheckoutResponse checkoutResponse = iClickOnCheckout();
 
         sharedData.checkoutResponse = checkoutResponse;
-
-
-
         sharedData.responseStatusCode = checkoutResponse.getStatusCode();
 
         Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);

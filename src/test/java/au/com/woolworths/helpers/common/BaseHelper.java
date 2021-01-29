@@ -87,7 +87,6 @@ public class BaseHelper {
   }
 
   public WebDriver initiateWebdriver() {
-
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--headless");
     WebDriverManager.chromedriver().setup();

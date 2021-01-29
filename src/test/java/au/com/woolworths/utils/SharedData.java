@@ -136,9 +136,9 @@ public class SharedData {
   public ScanGoLoginResponse scanGoLoginResponse;
   public ListInstrumentsResponse listInstrumentsResponse;
   public CheckoutResponse checkoutResponse = null;
-  public String rewardsUrl;
   public String storeID;
   public String rewardsAuthCode;
+  public String lineNumber;
 
 
 }

@@ -132,6 +132,9 @@ public class RestInvocationUtil {
   }
 
   private Response putRestWithBody(String endPoint, String requestPayload, List<Header> headerList) {
+
+    System.out.println("endPoint" +endPoint);
+    System.out.println("requestPayload" +requestPayload);
     try {
       RestAssured.baseURI = getBaseURL(endPoint);
       Headers headers = new Headers(headerList);

@@ -33,8 +33,6 @@ public class LoginHelper extends BaseHelper {
     }
 
     public String iLoginWithValidRewardsCredentials() {
-        // TODO: run the browser in the background
-        // TODO: Get the chromedriver using manage driver
                 WebDriver driver = initiateWebdriver();
                 driver.get( TestProperties.get("REWARDS_URL"));
                 driver.findElement(By.id("emailCardNumber")).sendKeys( TestProperties.get("USER_EMAIL_ID"));

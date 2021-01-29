@@ -2,7 +2,6 @@ package au.com.woolworths.helpers.scango;
 
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.scango.menu.TransactionHistoryResponse;
-import au.com.woolworths.model.scango.scanitems.LoadCartResponse;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;

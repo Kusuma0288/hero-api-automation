@@ -1,0 +1,35 @@
+package au.com.woolworths.stepdefinitions.scango;
+
+import au.com.woolworths.helpers.scango.UpdateItemHelper;
+import au.com.woolworths.model.scango.scanitems.UpdateItemResponse;
+
+import cucumber.api.java.en.When;
+import org.testng.Assert;
+
+import java.io.IOException;
+
+public class UpdateItemDefinition extends UpdateItemHelper {
+
+
+    @When("^I call Update Weight API$")
+    public void i_call_Update_Weight_API() throws IOException {
+        UpdateItemResponse updateItemResponse = iCallUpdateWeightAPI();
+
+        sharedData.responseStatusCode = updateItemResponse.getStatusCode();
+
+        Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
+
+        System.out.println("updateItemResponse  file " +updateItemResponse.toString());
+    }
+
+    @When("^I call Update Quantity API$")
+    public void i_call_Update_Quantity_API() throws IOException {
+        UpdateItemResponse updateItemResponse = iCallUpdateQuantityAPI();
+
+        sharedData.responseStatusCode = updateItemResponse.getStatusCode();
+
+        Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
+
+        System.out.println("updateItemResponse  file " +updateItemResponse.toString());
+    }
+}

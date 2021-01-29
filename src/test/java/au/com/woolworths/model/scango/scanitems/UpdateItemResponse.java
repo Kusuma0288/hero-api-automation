@@ -6,10 +6,10 @@ import lombok.Data;
 
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true) //TODO fix it
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-public class AddItemResponse {
+public class UpdateItemResponse {
     private String cartid;
     private String lastupdated;
     private String status;
