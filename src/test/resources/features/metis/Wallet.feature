@@ -36,3 +36,9 @@ Feature: Checkout safely and securely using your preferred payment method
     And the user has finished scanning items at the self-checkout service
     When the user scans the QR code
     Then the user should be able to pay for the items using the stored card
+  @IN_PROGRESS
+  Scenario: Add a new gift card
+    Given a user logs in the rewards app as an "iOS" user with card number "REWARDS_USER_NO_CARD"
+    When the user goes to the card screen
+    Then the user should see the wallet is not empty
+    And the user should be able to add a new gift card
