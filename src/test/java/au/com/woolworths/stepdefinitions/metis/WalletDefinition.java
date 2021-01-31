@@ -70,7 +70,7 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
 
         Assert.assertTrue("Gift Card Addition should be successful", addGiftCardResponse.getData().getAddGiftCard().getSuccess());
         Assert.assertNull("Message should be null", addGiftCardResponse.getData().getAddGiftCard().getMessage());
-        Assert.assertNull("Message should be null", addGiftCardResponse.getData().getAddGiftCard().getReason());
+        Assert.assertNull("Reason should be null", addGiftCardResponse.getData().getAddGiftCard().getReason());
     }
 
     @Then("^the user should see the wallet has a card$")
