@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 public class VerifySchemeCard {
-    private String message;
-    private Boolean success;
+  private String message;
+  private Boolean success;
 }

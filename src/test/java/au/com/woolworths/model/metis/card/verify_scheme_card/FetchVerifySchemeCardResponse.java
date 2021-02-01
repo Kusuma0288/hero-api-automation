@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class FetchVerifySchemeCardResponse {
-    private FetchVerifySchemeCardData data;
+  private FetchVerifySchemeCardData data;
 }
