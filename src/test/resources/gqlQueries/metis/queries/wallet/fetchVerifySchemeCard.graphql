@@ -1,0 +1,6 @@
+mutation {
+    verifySchemeCard(id: "193899", stepUpToken: "tokenise-stepup-token") {
+        success
+        message
+    }
+}

@@ -7,12 +7,15 @@ import au.com.woolworths.model.metis.card.delete_scheme_card.DeleteSchemeCardRes
 import au.com.woolworths.model.metis.card.home_page_with_wallet.RewardsCardHomePageWithWalletResponse;
 import au.com.woolworths.model.metis.card.payment_instruments.FetchPaymentInstrumentsResponse;
 import au.com.woolworths.model.metis.card.update_scheme_card.FetchUpdateSchemeCardURLResponse;
+import au.com.woolworths.model.metis.card.verify_scheme_card.FetchVerifySchemeCardResponse;
+import au.com.woolworths.model.metis.card.view_user_preference.FetchUserPreferencesResponse;
 import au.com.woolworths.model.metis.digipay_payment.*;
 import au.com.woolworths.model.metis.digipay_payment.pos.PosPayload;
-import au.com.woolworths.model.metis.payment_session.*;
+import au.com.woolworths.model.metis.payment_session.SessionData;
+import au.com.woolworths.model.metis.payment_session.SessionMeta;
+import au.com.woolworths.model.metis.payment_session.SessionRequest;
 import au.com.woolworths.model.metis.scan_qr_code.QRIDResponse;
 import au.com.woolworths.model.metis.transactions.TransactionsResponse;
-import au.com.woolworths.model.metis.card.view_user_preference.FetchUserPreferencesResponse;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.stepdefinitions.metis.WalletDefinition;
 import au.com.woolworths.utils.RestInvocationUtil;
@@ -56,6 +59,10 @@ public class RewardsCardWithWalletHelper extends IFrameCardHelper {
 
   public FetchUserPreferencesResponse iRetrieveViewWallet(String query) throws IOException {
     return mapper.readValue(postQuery(query), FetchUserPreferencesResponse.class);
+  }
+
+  public FetchVerifySchemeCardResponse iRetreieveVerifyCard(String query) throws IOException {
+    return mapper.readValue(postQuery(query), FetchVerifySchemeCardResponse.class);
   }
 
   private String postQuery(String query) {
