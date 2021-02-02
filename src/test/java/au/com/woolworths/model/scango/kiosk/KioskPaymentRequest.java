@@ -7,5 +7,5 @@ import lombok.Data;
 @Data
 public class KioskPaymentRequest {
     private String cartbarcode;
-    private Paymentinfo paymentinfo;
+    private KioskPaymentinfo kioskPaymentinfo;
 }

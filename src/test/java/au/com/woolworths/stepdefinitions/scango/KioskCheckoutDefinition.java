@@ -1,0 +1,21 @@
+package au.com.woolworths.stepdefinitions.scango;
+
+import au.com.woolworths.helpers.scango.CheckoutHelper;
+import au.com.woolworths.model.scango.checkout.CheckoutResponse;
+import au.com.woolworths.model.scango.kiosk.KioskCheckoutResponse;
+import cucumber.api.java.en.When;
+import org.testng.Assert;
+
+public class KioskCheckoutDefinition extends CheckoutHelper {
+
+@When("^I call Kiosk Checkout API$")
+    public void i_call_Kiosk_Checkout_API() throws Throwable {
+        KioskCheckoutResponse kioskCheckoutResponse = iClickOnKioskCheckout();
+
+        sharedData.kioskCheckoutResponse = kioskCheckoutResponse;
+        sharedData.responseStatusCode = kioskCheckoutResponse.getStatusCode();
+
+        Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
+        System.out.println("KioskCheckoutResponse  file " + kioskCheckoutResponse.toString());
+    }
+}

@@ -13,6 +13,7 @@ import au.com.woolworths.model.apigee.search.SearchResponseV3;
 import au.com.woolworths.model.apigee.checkout.CheckoutPackagingPreferencesResponse;
 import au.com.woolworths.model.iris.graphql.productList.Product;
 import au.com.woolworths.model.scango.checkout.CheckoutResponse;
+import au.com.woolworths.model.scango.kiosk.KioskCheckoutResponse;
 import au.com.woolworths.model.scango.login.ScanGoLoginResponse;
 import au.com.woolworths.model.scango.payment.ListInstrumentsResponse;
 import au.com.woolworths.model.trader.*;
@@ -136,6 +137,7 @@ public class SharedData {
   public ScanGoLoginResponse scanGoLoginResponse;
   public ListInstrumentsResponse listInstrumentsResponse;
   public CheckoutResponse checkoutResponse = null;
+  public KioskCheckoutResponse kioskCheckoutResponse = null;
   public String storeID;
   public String rewardsAuthCode;
   public String lineNumber;

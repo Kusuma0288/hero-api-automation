@@ -1,7 +1,6 @@
 package au.com.woolworths.stepdefinitions.scango;
 
 import au.com.woolworths.helpers.scango.LoadCartHelper;
-import au.com.woolworths.model.scango.checkout.CheckoutResponse;
 import au.com.woolworths.model.scango.scanitems.LoadCartResponse;
 import cucumber.api.java.en.When;
 import org.testng.Assert;

@@ -2,7 +2,6 @@ package au.com.woolworths.stepdefinitions.scango;
 
 import au.com.woolworths.helpers.scango.CheckoutHelper;
 import au.com.woolworths.model.scango.checkout.CheckoutResponse;
-import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
 

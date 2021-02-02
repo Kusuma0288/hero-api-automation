@@ -3,8 +3,6 @@ package au.com.woolworths.stepdefinitions.scango;
 import au.com.woolworths.helpers.scango.ProductTypesHelper;
 import au.com.woolworths.model.scango.scanitems.AddItemResponse;
 import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 
 public class AddItemDefinition extends ProductTypesHelper {
 
