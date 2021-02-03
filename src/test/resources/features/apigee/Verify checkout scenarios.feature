@@ -58,7 +58,7 @@ Feature: Checkout API scenarios
 
     Examples:
       | lookupAddress |
-      | 407 Elizabeth Street    |
+      | 407-419 Elizabeth St, SURRY HILLS NSW 2010 |
 
   @Falcon
   Scenario Outline: To verify that the user is able to complete a pick up order using Paypal payment

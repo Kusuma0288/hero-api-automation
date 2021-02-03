@@ -141,6 +141,15 @@
                 </cucumber.options>
             </properties>
         </profile>
+
+        <profile>
+            <id>Falcon</id>
+            <properties>
+                <cucumber.options>
+                    --tags @Falcon
+                </cucumber.options>
+            </properties>
+        </profile>
     </profiles>
 
     <build>
