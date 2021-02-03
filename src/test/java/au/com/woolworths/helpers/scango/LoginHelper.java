@@ -1,9 +1,12 @@
 package au.com.woolworths.helpers.scango;
 
 import au.com.woolworths.helpers.common.BaseHelper;
+import au.com.woolworths.model.scango.kiosk.KioskLoginRequest;
+import au.com.woolworths.model.scango.kiosk.KioskLoginResponse;
 import au.com.woolworths.model.scango.login.*;
 import au.com.woolworths.model.scango.payment.ListInstrumentsResponse;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
+import au.com.woolworths.stepdefinitions.scango.KioskLoginDefinition;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.TestProperties;
 import au.com.woolworths.utils.URLResources;
@@ -97,6 +100,27 @@ public class LoginHelper extends BaseHelper {
         mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerList);
         responseStr = mapWebserviceResponse.get("response");
         response = mapper.readValue(responseStr, ScanGoLoginResponse.class);
+        response.setStatusCode(mapWebserviceResponse.get("statusCode"));
+        return response;
+
+    }
+
+    public KioskLoginResponse iCallKioskLoginAPI() throws IOException {
+        Map<String, String> mapWebserviceResponse;
+        String requestStr = null;
+        String responseStr = null;
+
+        KioskLoginRequest kioskLoginRequest = new KioskLoginRequest();
+        KioskLoginResponse response;
+
+        kioskLoginRequest.setBarcode(TestProperties.get("TEAM_MEMBER_BARCODE"));
+
+        String endPoint = URLResources.SCANGO_KIOSK_LOGIN;
+        requestStr = mapper.writeValueAsString(kioskLoginRequest);
+
+        mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListScanGoKiosk);
+        responseStr = mapWebserviceResponse.get("response");
+        response = mapper.readValue(responseStr, KioskLoginResponse.class);
         response.setStatusCode(mapWebserviceResponse.get("statusCode"));
         return response;
 

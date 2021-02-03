@@ -7,7 +7,7 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class KioskPaymentinfo {
-    private Integer amountpurchase;
+    private Double amountpurchase;
     private String responsecode;
     private String responsetext;
     private String authcode;

@@ -2,6 +2,7 @@ package au.com.woolworths.helpers.scango;
 
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.scango.kiosk.KioskPaymentRequest;
+import au.com.woolworths.model.scango.kiosk.KioskPaymentResponse;
 import au.com.woolworths.model.scango.kiosk.KioskPaymentinfo;
 import au.com.woolworths.model.scango.payment.*;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
@@ -76,60 +77,50 @@ public class PaymentHelper extends BaseHelper {
     }
 
 
-    public PaymentResponse iCallKioskPaymentAPI(Double balanceDue) throws IOException {
+    public KioskPaymentResponse iCallKioskPaymentAPI(Double balanceDue) throws IOException {
         Map<String, String> mapWebserviceResponse;
         String responseStr = null;
         String requestStr = null;
         Map<String, String> queryParams = new HashMap<>();
 
         String cartID = sharedData.checkoutResponse.getCartid();
+        Double purchaseAmt = sharedData.kioskCheckoutResponse.getBalancedue();
 
         KioskPaymentinfo kioskPaymentinfo = new KioskPaymentinfo();
-        kioskPaymentinfo.setAmountpurchase(TestProperties.get(""));
-        kioskPaymentinfo.setAuthcode(TestProperties.get(""));
-        kioskPaymentinfo.setBin();
-        kioskPaymentinfo.setCardSuffix();
-        kioskPaymentinfo.setCardType();
-        kioskPaymentinfo.setInstrumentType();
-        kioskPaymentinfo.setMerchantid();
-        kioskPaymentinfo.setProviderCode();
-        kioskPaymentinfo.setResponsecode();
-        kioskPaymentinfo.setResponsetext();
-        kioskPaymentinfo.setRrn();
-        kioskPaymentinfo.setScheme();
-        kioskPaymentinfo.setStan();
-        kioskPaymentinfo.setTerminalId();
-        kioskPaymentinfo.setTokenizedpan();
-        kioskPaymentinfo.setTxnpaidtime();
-        kioskPaymentinfo.setTxnreference();
-        kioskPaymentinfo.setTxnType();
+        kioskPaymentinfo.setAmountpurchase(purchaseAmt);
+        kioskPaymentinfo.setAuthcode(TestProperties.get("AUTH_CODE"));
+        kioskPaymentinfo.setBin(TestProperties.get("BIN"));
+        kioskPaymentinfo.setCardSuffix(TestProperties.get("CARD_SUFFIX"));
+        kioskPaymentinfo.setCardType(TestProperties.get("CARD_TYPE"));
+        kioskPaymentinfo.setInstrumentType(TestProperties.get("INSTRUMENT_TYPE"));
+        kioskPaymentinfo.setMerchantid(TestProperties.get("MERCHANT_ID"));
+        kioskPaymentinfo.setProviderCode(TestProperties.get("PROVIDER_C0DE"));
+        kioskPaymentinfo.setResponsecode(TestProperties.get("RESPONSE_CODE"));
+        kioskPaymentinfo.setResponsetext(TestProperties.get("RESPONSE_TEXT"));
+        kioskPaymentinfo.setRrn(TestProperties.get("RRN"));
+        kioskPaymentinfo.setScheme(TestProperties.get("SCHEME"));
+        kioskPaymentinfo.setStan(TestProperties.get("STAN"));
+        kioskPaymentinfo.setTerminalId(TestProperties.get("TERMINAL_ID"));
+        kioskPaymentinfo.setTokenizedpan(TestProperties.get("TOKENIZED_PAN"));
+        kioskPaymentinfo.setTxnpaidtime(TestProperties.get(""));
+        kioskPaymentinfo.setTxnreference(TestProperties.get("TXN_REFERENCE"));
+        kioskPaymentinfo.setTxnType(TestProperties.get("TXN_TYPE"));
 
 
         KioskPaymentRequest kioskPaymentRequest = new KioskPaymentRequest();
         kioskPaymentRequest.setCartbarcode(cartID);
-        kioskPaymentRequest.setKioskPaymentinfo();
+        kioskPaymentRequest.setKioskPaymentinfo(kioskPaymentinfo);
 
-        Payment payment = new Payment();
-        payment.setPaymentInstrumentId(instrumentsID);
-        payment.setAmount(balanceDue);
-        payment.setCardSuffix(TestProperties.get("PAYMENT_CARD_SUFFIX"));
-        payment.setCardType(TestProperties.get("PAYMENT_CART_TYPE"));
+        KioskPaymentResponse response;
 
 
-        h.add(payment);
-        PaymentRequest paymentRequest = new PaymentRequest();
-        PaymentResponse response;
+        String endPoint = URLResources.SCANGO_KIOSK_PAYMENT;
 
-        paymentRequest.setClientReference(TestProperties.get("PAYMENT_CLIENT_REFERENCE"));
-        paymentRequest.setPayment(h);
+        requestStr = mapper.writeValueAsString(kioskPaymentRequest);
 
-        String endPoint = URLResources.SCANGO_PAYMENT;
-
-        requestStr = mapper.writeValueAsString(paymentRequest);
-
-        mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListScanGo);
+        mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListScanGoKiosk);
         responseStr = mapWebserviceResponse.get("response");
-        response = mapper.readValue(responseStr, PaymentResponse.class);
+        response = mapper.readValue(responseStr, KioskPaymentResponse.class);
         response.setStatusCode(mapWebserviceResponse.get("statusCode"));
 
         return response;

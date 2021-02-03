@@ -1,3 +1,4 @@
+@SMOKE_SCANGO
 Feature: Kiosk payment
 
   Background:
@@ -41,7 +42,7 @@ Feature: Kiosk payment
       And I call Checkout API
       And I call Verify Cart API
       And I call Team member barcode API to get team member access token
-      And I call Kiosk Load cart API
+      And I call Kiosk Load Cart API
       Then I verify Intervention items are removed through Kiosk Remove Intervention API
       And I call Kiosk Checkout API
       And I verify payment is successfully completed through Kiosk Payment API
@@ -55,8 +56,8 @@ Feature: Kiosk payment
       And I call Checkout API
       And I call Verify Cart API
       And I call Team member barcode API to get team member access token
-      And I call Kiosk Load cart API
-      Then I verify Intervention item is removed through Kiosk Remove Intervention API
+      And I call Kiosk Load Cart API
+      Then I verify Intervention items are removed through Kiosk Remove Intervention API
       And I call Reason code API to get valid reason
       And I verify transaction is voided through Kiosk Void Transaction API
 
@@ -67,7 +68,7 @@ Feature: Kiosk payment
       And I call Payment API with invalid Instruments ID twice
       And I call Verify Cart API
       And I call Team member barcode API to get team member access token
-      And I call Kiosk Load cart API
+      And I call Kiosk Load Cart API
       And I call Kiosk Checkout API
       And I verify payment is successfully completed through Kiosk Payment API
       And I verify transaction is available in the Transaction History API

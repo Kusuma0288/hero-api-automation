@@ -1,8 +1,8 @@
 package au.com.woolworths.helpers.scango;
 
 import au.com.woolworths.helpers.common.BaseHelper;
+import au.com.woolworths.model.scango.kiosk.KioskDeleteCartResponse;
 import au.com.woolworths.model.scango.scanitems.DeleteCartResponse;
-import au.com.woolworths.model.scango.scanitems.RemoveItemResponse;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
@@ -33,6 +33,21 @@ public class DeleteCartHelper extends BaseHelper {
         mapWebserviceResponse = invocationUtil.invokeDelete(endPoint,queryParams,headerListScanGo);
         responseStr = mapWebserviceResponse.get("response");
         response = mapper.readValue(responseStr, DeleteCartResponse.class);
+        response.setStatusCode(mapWebserviceResponse.get("statusCode"));
+        return response;
+    }
+
+    public KioskDeleteCartResponse iClickOnKioskDeleteCartAPI() throws IOException {
+        Map<String, String> mapWebserviceResponse;
+        String responseStr = null;
+        Map<String, ?> queryParams = new HashMap<>();
+
+        KioskDeleteCartResponse response;
+
+        String endPoint = URLResources.SCANGO_KIOSK_DELETE_CART;
+        mapWebserviceResponse = invocationUtil.invokeDelete(endPoint,queryParams,headerListScanGoKiosk);
+        responseStr = mapWebserviceResponse.get("response");
+        response = mapper.readValue(responseStr, KioskDeleteCartResponse.class);
         response.setStatusCode(mapWebserviceResponse.get("statusCode"));
         return response;
     }

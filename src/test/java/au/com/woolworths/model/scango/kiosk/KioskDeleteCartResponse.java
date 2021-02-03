@@ -1,8 +1,5 @@
 package au.com.woolworths.model.scango.kiosk;
 
-import au.com.woolworths.model.scango.menu.Offer;
-import au.com.woolworths.model.scango.payment.PaymentInfo;
-import au.com.woolworths.model.scango.scanitems.Item;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
@@ -10,9 +7,7 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class KioskPaymentResponse {
-    private String cartid;
-    private String lastupdated;
+public class KioskDeleteCartResponse {
     private String status;
     private String reason;
     private String storeid;
@@ -26,14 +21,12 @@ public class KioskPaymentResponse {
     private Integer rewardsaccrued;
     private Integer intervtnprice;
     private Integer intervtnquantity;
-    private Integer totalsavings;
+    private Object totalsavings;
+    private String appId;
     private String checkouttitle;
     private String checkoutmessage;
-    private List<Item> items = null;
+    private List<Object> items = null;
     private List<Object> notifications = null;
     private List<Object> coupons = null;
-    private List<Offer> offers = null;
-    private KioskIs is;
-    private List<PaymentInfo> paymentInfo = null;
     private String statusCode;
 }

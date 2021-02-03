@@ -11,4 +11,5 @@ public class KioskRemoveInterventionResponse {
     private String cartid;
     private String status;
     private KioskIs is;
+    private String statusCode;
 }

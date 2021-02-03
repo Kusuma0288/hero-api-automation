@@ -111,4 +111,5 @@ public final class URLResources {
   public static final String SCANGO_KIOSK_REMOVE_INTERVENTION = "/scango/store/kiosk/item/intervention/remove/";
   public static final String SCANGO_KIOSK_CONFIG = "/scango/store/kiosk/config";
   public static final String SCANGO_KIOSK_LOGIN ="scango/store/kiosk/team/login";
+  public static final String SCANGO_KIOSK_DELETE_CART ="scango/store/kiosk/cart/void";
 }

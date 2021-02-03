@@ -9,13 +9,6 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
 
-// TODO: below are latest cucumber api's and framework were using old apis
-//import io.cucumber.java.en.Given;
-//import io.cucumber.java.en.Then;
-//import io.cucumber.java.en.When;
-//import org.testng.Assert;
-
-
 import java.util.logging.Logger;
 
 public class LoginDefinition extends LoginHelper{

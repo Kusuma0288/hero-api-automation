@@ -13,4 +13,5 @@ public class KioskLoginResponse {
     private String displayname;
     private String worklocation;
     private Integer storeid;
+    private String statusCode;
 }
