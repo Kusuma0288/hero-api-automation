@@ -5,7 +5,7 @@ Feature: Checkout API scenarios
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME6"
     When connection from user to apigee endpoint happens
 
-  @Wolves
+  @LION
   Scenario Outline: Verify getting and setting of v3/checkout windows and Packaging preference for Pick up mode
     Given I set a pick up store using post code 2000
     And I clear the trolley
@@ -25,7 +25,7 @@ Feature: Checkout API scenarios
       | Mode   |
       | Pickup |
 
-  @Wolves
+  @LION
   Scenario Outline:  Verify getting and setting of v3/checkout windows and Packaging preference for Delivery mode
     Given I pick a location at "<lookupAddress>" for delivery
     And I make a request to fulfilment api with primary address id to set the address as fulfilment address
