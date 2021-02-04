@@ -31,7 +31,7 @@ public class ProductsDefinition extends ProductsHelper {
 
       int productTotal = 0;
 
-      for (int j = 0; j < (productCount / 50) + 1; j++) {
+      for (int j = 0; j < (productCount / 36) + 1; j++) {
         specialsGroupDetailsResponse = iGetSpecialsGroupDetails(id, j + 1);
         productTotal = specialsGroupDetailsResponse.getBundles().length + productTotal;
 
