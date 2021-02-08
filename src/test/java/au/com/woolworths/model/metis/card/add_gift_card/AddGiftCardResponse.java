@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class AddGiftCardResponse {
-    private AddGiftCardData data;
+  private AddGiftCardData data;
 }

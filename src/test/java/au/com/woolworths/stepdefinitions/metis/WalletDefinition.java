@@ -24,201 +24,201 @@ import java.io.InputStream;
 
 public class WalletDefinition extends RewardsCardWithWalletHelper {
 
-    final int cardNumberLength = TestProperties.get("CARD_NUMBER").length();
-    private RewardsCardHomePageWithWalletResponse rewardsCardHomePageWithWalletResponse;
-    private FetchPaymentInstrumentsResponse fetchPaymentInstrumentsResponse;
-    private FetchUserPreferencesResponse fetchUserPreferencesResponse;
-    private AddGiftCardResponse addGiftCardResponse;
-    private FetchVerifySchemeCardResponse fetchVerifyCardResponse;
-    private String fetchAddSchemeCardURL;
-    private String fetchUpdateSchemeCardURL;
-    private String cardToUpdate;
+  final int cardNumberLength = TestProperties.get("CARD_NUMBER").length();
+  private RewardsCardHomePageWithWalletResponse rewardsCardHomePageWithWalletResponse;
+  private FetchPaymentInstrumentsResponse fetchPaymentInstrumentsResponse;
+  private FetchUserPreferencesResponse fetchUserPreferencesResponse;
+  private AddGiftCardResponse addGiftCardResponse;
+  private FetchVerifySchemeCardResponse fetchVerifyCardResponse;
+  private String fetchAddSchemeCardURL;
+  private String fetchUpdateSchemeCardURL;
+  private String cardToUpdate;
 
-    @When("^the user goes to the card screen$")
-    public void goesToCardScreen() throws IOException {
-        InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/rewardsCardHomePageWithWallet.graphql");
-        String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
+  @When("^the user goes to the card screen$")
+  public void goesToCardScreen() throws IOException {
+    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/rewardsCardHomePageWithWallet.graphql");
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
 
-        rewardsCardHomePageWithWalletResponse = iRetrieveMyRewardsCardWithWallet(graphqlQuery);
+    rewardsCardHomePageWithWalletResponse = iRetrieveMyRewardsCardWithWallet(graphqlQuery);
+  }
+
+  @Then("^the user should see the wallet is empty$")
+  public void shouldSeeEmptyWallet() throws IOException {
+    // Ensure the user does not have an existing card before we attempt to add a new one
+
+    if (rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction().equals("SCAN")) {
+      canRemoveCard();
+      goesToCardScreen();
     }
 
-    @Then("^the user should see the wallet is empty$")
-    public void shouldSeeEmptyWallet() throws IOException {
-        // Ensure the user does not have an existing card before we attempt to add a new one
+    Assert.assertEquals("Wallet home page message is not as expected", "Add a bank card and redeem Everyday Rewards in one easy tap", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getContent());
+    Assert.assertEquals("Wallet state is not as expected", "ADD_CARD", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction());
+  }
 
-        if (rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction().equals("SCAN")) {
-            canRemoveCard();
-            goesToCardScreen();
-        }
+  @Then("^the user should see the wallet is not empty$")
+  public void shouldNotSeeEmptyWallet() throws IOException {
+    // Ensure the user has an existing scheme card before we attempt to add a new gift card
+    if (rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction().equals("ADD_CARD")) {
+      Assert.fail("A Scheme Card must have been added prior to adding a Gift Card");
+    }
+  }
 
-        Assert.assertEquals("Wallet home page message is not as expected", "Add a bank card and redeem Everyday Rewards in one easy tap", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getContent());
-        Assert.assertEquals("Wallet state is not as expected", "ADD_CARD", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction());
+  @And("^the user should be able to add a new gift card$")
+  public void theUserShouldBeAbleToAddANewGiftCard() throws IOException {
+    addGiftCardResponse = submitGiftCard();
+
+    Assert.assertTrue("Gift Card Addition should be successful", addGiftCardResponse.getData().getAddGiftCard().getSuccess());
+    Assert.assertNull("Message should be null", addGiftCardResponse.getData().getAddGiftCard().getMessage());
+    Assert.assertNull("Reason should be null", addGiftCardResponse.getData().getAddGiftCard().getReason());
+  }
+
+  @Then("^the user should see the wallet has a card$")
+  public void shouldSeeWalletHasCard() throws IOException {
+    // Ensure the user has an existing card so we can remove it
+    if (rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction().equals("ADD_CARD")) {
+      canAddNewCard();
     }
 
-    @Then("^the user should see the wallet is not empty$")
-    public void shouldNotSeeEmptyWallet() throws IOException {
-        // Ensure the user has an existing scheme card before we attempt to add a new gift card
-        if (rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction().equals("ADD_CARD")) {
-            Assert.fail("A Scheme Card must have been added prior to adding a Gift Card");
-        }
-    }
+    Assert.assertEquals("Wallet title is not as expected", "Scan to Everyday Pay", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getTitle());
+    Assert.assertEquals("Wallet state is not as expected", "SCAN", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction());
+  }
 
-    @And("^the user should be able to add a new gift card$")
-    public void theUserShouldBeAbleToAddANewGiftCard() throws IOException {
-        addGiftCardResponse = submitGiftCard();
+  @Then("^the user should be able to add a new card$")
+  public void canAddNewCard() throws IOException {
+    getAddCardURL();
+    submitCard();
+    goesToCardScreen();
+    shouldSeeWalletHasCard();
+    canViewCardDetails();
+  }
 
-        Assert.assertTrue("Gift Card Addition should be successful", addGiftCardResponse.getData().getAddGiftCard().getSuccess());
-        Assert.assertNull("Message should be null", addGiftCardResponse.getData().getAddGiftCard().getMessage());
-        Assert.assertNull("Reason should be null", addGiftCardResponse.getData().getAddGiftCard().getReason());
-    }
+  @Then("^the user should be able to remove a card$")
+  public void canRemoveCard() throws IOException {
+    String cardToDelete = getCardID();
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    variables.put("id", cardToDelete);
+    InputStream iStreamDelete = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/mutations/wallet/deleteSchemeCard.graphql");
+    String graphqlQueryDelete = GraphqlParser.parseGraphql(iStreamDelete, variables);
 
-    @Then("^the user should see the wallet has a card$")
-    public void shouldSeeWalletHasCard() throws IOException {
-        // Ensure the user has an existing card so we can remove it
-        if (rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction().equals("ADD_CARD")) {
-            canAddNewCard();
-        }
+    DeleteSchemeCardResponse deleteSchemeCardResponse = iRemoveSchemeCard(graphqlQueryDelete);
 
-        Assert.assertEquals("Wallet title is not as expected", "Scan to Everyday Pay", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getTitle());
-        Assert.assertEquals("Wallet state is not as expected", "SCAN", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction());
-    }
+    Assert.assertTrue("Delete scheme card was not successful", deleteSchemeCardResponse.getData().getDeleteSchemeCard().getSuccess());
+    Assert.assertEquals("Delete scheme card response message is not as expected", "PaymentInstrument " + cardToDelete + " has been successfully deleted.", deleteSchemeCardResponse.getData().getDeleteSchemeCard().getMessage());
+  }
 
-    @Then("^the user should be able to add a new card$")
-    public void canAddNewCard() throws IOException {
-        getAddCardURL();
-        submitCard();
-        goesToCardScreen();
-        shouldSeeWalletHasCard();
-        canViewCardDetails();
-    }
+  @Then("^the user should be able to update a card$")
+  public void canUpdateCard() throws IOException {
+    cardToUpdate = getCardID();
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    variables.put("id", cardToUpdate);
+    InputStream iStreamUpdate = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchUpdateSchemeCardURL.graphql");
+    String graphqlQueryUpdateCard = GraphqlParser.parseGraphql(iStreamUpdate, variables);
 
-    @Then("^the user should be able to remove a card$")
-    public void canRemoveCard() throws IOException {
-        String cardToDelete = getCardID();
-        ObjectNode variables = new ObjectMapper().createObjectNode();
-        variables.put("id", cardToDelete);
-        InputStream iStreamDelete = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/mutations/wallet/deleteSchemeCard.graphql");
-        String graphqlQueryDelete = GraphqlParser.parseGraphql(iStreamDelete, variables);
+    FetchUpdateSchemeCardURLResponse fetchUpdateSchemeCardURLResponse = iRetrieveUpdateSchemeCardURL(graphqlQueryUpdateCard);
+    fetchUpdateSchemeCardURL = fetchUpdateSchemeCardURLResponse.getData().getUpdateSchemeCard().getUrl();
+    submitUpdateCard();
+  }
 
-        DeleteSchemeCardResponse deleteSchemeCardResponse = iRemoveSchemeCard(graphqlQueryDelete);
+  @Then("^the user should be able to view the card details$")
+  public void canViewCardDetails() throws IOException {
+    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchPaymentInstruments.graphql");
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
 
-        Assert.assertTrue("Delete scheme card was not successful", deleteSchemeCardResponse.getData().getDeleteSchemeCard().getSuccess());
-        Assert.assertEquals("Delete scheme card response message is not as expected", "PaymentInstrument " + cardToDelete + " has been successfully deleted.", deleteSchemeCardResponse.getData().getDeleteSchemeCard().getMessage());
-    }
+    fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQuery);
 
-    @Then("^the user should be able to update a card$")
-    public void canUpdateCard() throws IOException {
-        cardToUpdate = getCardID();
-        ObjectNode variables = new ObjectMapper().createObjectNode();
-        variables.put("id", cardToUpdate);
-        InputStream iStreamUpdate = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchUpdateSchemeCardURL.graphql");
-        String graphqlQueryUpdateCard = GraphqlParser.parseGraphql(iStreamUpdate, variables);
+    int instrumentCardNumberLength = fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().length();
 
-        FetchUpdateSchemeCardURLResponse fetchUpdateSchemeCardURLResponse = iRetrieveUpdateSchemeCardURL(graphqlQueryUpdateCard);
-        fetchUpdateSchemeCardURL = fetchUpdateSchemeCardURLResponse.getData().getUpdateSchemeCard().getUrl();
-        submitUpdateCard();
-    }
+    // TODO - When we start allowing more than 1 instrument this will need to be updated
+    Assert.assertEquals("The number of payment instruments is not equal to 1", 1, fetchPaymentInstrumentsResponse.getData().getPaymentInstruments().length);
+    Assert.assertTrue("The payment instrument card number is not obfuscated", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().contains("••••"));
+    Assert.assertEquals("The payment instrument card number last 4 digits do not match", TestProperties.get("CARD_NUMBER").substring(cardNumberLength - 4), fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().substring(instrumentCardNumberLength - 4));
+    Assert.assertEquals("The payment instrument does not have a valid status", "VALID", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getStatus());
+    Assert.assertNull("The payment instrument does not have a null lastUsed value", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getLastUsed());
+  }
 
-    @Then("^the user should be able to view the card details$")
-    public void canViewCardDetails() throws IOException {
-        InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchPaymentInstruments.graphql");
-        String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
+  @When("^the user goes to the account screen$")
+  public void goesToAccountScreen() throws IOException {
+    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchUserPreferences.graphql");
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
+    fetchUserPreferencesResponse = iRetrieveViewWallet(graphqlQuery);
+  }
 
-        fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQuery);
-
-        int instrumentCardNumberLength = fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().length();
-
-        // TODO - When we start allowing more than 1 instrument this will need to be updated
-        Assert.assertEquals("The number of payment instruments is not equal to 1", 1, fetchPaymentInstrumentsResponse.getData().getPaymentInstruments().length);
-        Assert.assertTrue("The payment instrument card number is not obfuscated", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().contains("••••"));
-        Assert.assertEquals("The payment instrument card number last 4 digits do not match", TestProperties.get("CARD_NUMBER").substring(cardNumberLength - 4), fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().substring(instrumentCardNumberLength - 4));
-        Assert.assertEquals("The payment instrument does not have a valid status", "VALID", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getStatus());
-        Assert.assertNull("The payment instrument does not have a null lastUsed value", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getLastUsed());
-    }
-
-    @When("^the user goes to the account screen$")
-    public void goesToAccountScreen() throws IOException {
-        InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchUserPreferences.graphql");
-        String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
-        fetchUserPreferencesResponse = iRetrieveViewWallet(graphqlQuery);
-    }
-
-    @Then("^the user should see a badge for new user$")
-    public void hasViewedWalletBadge() {
-        if (fetchUserPreferencesResponse.getData().getUserPreferences().isHasViewedWallet()) {
-
-        }
-
-        Assert.assertTrue("View User Preferences is set", fetchUserPreferencesResponse.getData().getUserPreferences().isHasViewedWallet());
+  @Then("^the user should see a badge for new user$")
+  public void hasViewedWalletBadge() {
+    if (fetchUserPreferencesResponse.getData().getUserPreferences().isHasViewedWallet()) {
 
     }
 
-    private void getAddCardURL() throws IOException {
-        InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchAddSchemeCardURL.graphql");
-        String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
+    Assert.assertTrue("View User Preferences is set", fetchUserPreferencesResponse.getData().getUserPreferences().isHasViewedWallet());
 
-        FetchAddSchemeCardURLResponse fetchAddSchemeCardURLResponse = iRetrieveAddSchemeCardURL(graphqlQuery);
+  }
 
-        fetchAddSchemeCardURL = fetchAddSchemeCardURLResponse.getData().getAddSchemeCard().getUrl();
-    }
+  private void getAddCardURL() throws IOException {
+    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchAddSchemeCardURL.graphql");
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
 
-    private void submitCard() throws IOException {
-        String host = fetchAddSchemeCardURL.substring(0, fetchAddSchemeCardURL.indexOf("/container"));
-        String sessionID = fetchAddSchemeCardURL.substring(fetchAddSchemeCardURL.lastIndexOf("/") + 1);
+    FetchAddSchemeCardURLResponse fetchAddSchemeCardURLResponse = iRetrieveAddSchemeCardURL(graphqlQuery);
 
-        iFrameResponse iframeResponse = postiFrameCardDetails(sessionID, host);
+    fetchAddSchemeCardURL = fetchAddSchemeCardURLResponse.getData().getAddSchemeCard().getUrl();
+  }
 
-        Assert.assertEquals("Card iFrame status response message is not as expected", "ACCEPTED", iframeResponse.getStatus().getResponseText());
-        Assert.assertEquals("Card iFrame status response code is not as expected", "00", iframeResponse.getStatus().getResponseCode());
-        Assert.assertNull("Card iFrame status has an error - " + iframeResponse.getStatus().getError(), iframeResponse.getStatus().getError());
-        Assert.assertEquals("Card iFrame payment instrument status is not as expected", "UNVERIFIED_PERSISTENT", iframeResponse.getPaymentInstrument().getStatus());
-        Assert.assertEquals("Card iFrame payment instrument suffix is not as expected", TestProperties.get("CARD_NUMBER").substring(cardNumberLength - 4), iframeResponse.getPaymentInstrument().getSuffix());
-        Assert.assertEquals("Card iFrame payment instrument expiry month is not as expected", TestProperties.get("EXPIRY_MONTH"), iframeResponse.getPaymentInstrument().getExpiryMonth());
-        Assert.assertEquals("Card iFrame payment instrument expiry year is not as expected", TestProperties.get("EXPIRY_YEAR"), iframeResponse.getPaymentInstrument().getExpiryYear());
-    }
+  private void submitCard() throws IOException {
+    String host = fetchAddSchemeCardURL.substring(0, fetchAddSchemeCardURL.indexOf("/container"));
+    String sessionID = fetchAddSchemeCardURL.substring(fetchAddSchemeCardURL.lastIndexOf("/") + 1);
 
-    private void submitUpdateCard() throws IOException {
-        String host = fetchUpdateSchemeCardURL.substring(0, fetchUpdateSchemeCardURL.indexOf("/container"));
-        String sessionID = fetchUpdateSchemeCardURL.substring(fetchUpdateSchemeCardURL.lastIndexOf("cvvExpiry/") + 10, fetchUpdateSchemeCardURL.lastIndexOf("/"));
+    iFrameResponse iframeResponse = postiFrameCardDetails(sessionID, host);
 
-        iFrameResponse iframeResponse = postUpdateCardRequest(cardToUpdate, sessionID, host);
+    Assert.assertEquals("Card iFrame status response message is not as expected", "ACCEPTED", iframeResponse.getStatus().getResponseText());
+    Assert.assertEquals("Card iFrame status response code is not as expected", "00", iframeResponse.getStatus().getResponseCode());
+    Assert.assertNull("Card iFrame status has an error - " + iframeResponse.getStatus().getError(), iframeResponse.getStatus().getError());
+    Assert.assertEquals("Card iFrame payment instrument status is not as expected", "UNVERIFIED_PERSISTENT", iframeResponse.getPaymentInstrument().getStatus());
+    Assert.assertEquals("Card iFrame payment instrument suffix is not as expected", TestProperties.get("CARD_NUMBER").substring(cardNumberLength - 4), iframeResponse.getPaymentInstrument().getSuffix());
+    Assert.assertEquals("Card iFrame payment instrument expiry month is not as expected", TestProperties.get("EXPIRY_MONTH"), iframeResponse.getPaymentInstrument().getExpiryMonth());
+    Assert.assertEquals("Card iFrame payment instrument expiry year is not as expected", TestProperties.get("EXPIRY_YEAR"), iframeResponse.getPaymentInstrument().getExpiryYear());
+  }
 
-        Assert.assertEquals("Card iFrame status response message is not as expected", "ACCEPTED", iframeResponse.getStatus().getResponseText());
-        Assert.assertEquals("Card iFrame status response code is not as expected", "00", iframeResponse.getStatus().getResponseCode());
-        Assert.assertNull("Card iFrame status has an error - " + iframeResponse.getStatus().getError(), iframeResponse.getStatus().getError());
-        Assert.assertEquals("Card iFrame item ID is not as expected", cardToUpdate, iframeResponse.getItemId());
-        Assert.assertNull("Card iFrame status has an error - " + iframeResponse.getStatus().getError(), iframeResponse.getStatus().getError());
-        Assert.assertNull("Card iFrame fraud response client ID is not null - " + iframeResponse.getFraudResponse().getFraudClientId(), iframeResponse.getFraudResponse().getFraudClientId());
-        Assert.assertNull("Card iFrame fraud response reason code is not null - " + iframeResponse.getFraudResponse().getFraudReasonCd(), iframeResponse.getFraudResponse().getFraudReasonCd());
-        Assert.assertNull("Card iFrame fraud response decision is not null - " + iframeResponse.getFraudResponse().getFraudDecision(), iframeResponse.getFraudResponse().getFraudDecision());
-    }
+  private void submitUpdateCard() throws IOException {
+    String host = fetchUpdateSchemeCardURL.substring(0, fetchUpdateSchemeCardURL.indexOf("/container"));
+    String sessionID = fetchUpdateSchemeCardURL.substring(fetchUpdateSchemeCardURL.lastIndexOf("cvvExpiry/") + 10, fetchUpdateSchemeCardURL.lastIndexOf("/"));
 
-    private String getCardID() throws IOException {
-        InputStream iStreamInstruments = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchPaymentInstruments.graphql");
-        String graphqlQueryInstruments = GraphqlParser.parseGraphql(iStreamInstruments, null);
-        fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQueryInstruments);
-        return fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getId();
-    }
+    iFrameResponse iframeResponse = postUpdateCardRequest(cardToUpdate, sessionID, host);
 
-    private AddGiftCardResponse submitGiftCard() throws IOException {
-        String giftCardNo = TestProperties.get("REWARDS_ADD_GIFT_CARD");
-        String giftCardPinCode = TestProperties.get("ADD_GIFT_CARD_PIN_CODE");
-        ObjectNode variables = new ObjectMapper().createObjectNode();
-        variables.put("cardNumber", giftCardNo);
-        variables.put("pinCode", giftCardPinCode);
-        InputStream iAddGiftCardStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/mutations/wallet/addGiftCard.graphql");
-        String graphqlQuery = GraphqlParser.parseGraphql(iAddGiftCardStream, variables);
-        return iAddGiftCard(graphqlQuery);
-    }
+    Assert.assertEquals("Card iFrame status response message is not as expected", "ACCEPTED", iframeResponse.getStatus().getResponseText());
+    Assert.assertEquals("Card iFrame status response code is not as expected", "00", iframeResponse.getStatus().getResponseCode());
+    Assert.assertNull("Card iFrame status has an error - " + iframeResponse.getStatus().getError(), iframeResponse.getStatus().getError());
+    Assert.assertEquals("Card iFrame item ID is not as expected", cardToUpdate, iframeResponse.getItemId());
+    Assert.assertNull("Card iFrame status has an error - " + iframeResponse.getStatus().getError(), iframeResponse.getStatus().getError());
+    Assert.assertNull("Card iFrame fraud response client ID is not null - " + iframeResponse.getFraudResponse().getFraudClientId(), iframeResponse.getFraudResponse().getFraudClientId());
+    Assert.assertNull("Card iFrame fraud response reason code is not null - " + iframeResponse.getFraudResponse().getFraudReasonCd(), iframeResponse.getFraudResponse().getFraudReasonCd());
+    Assert.assertNull("Card iFrame fraud response decision is not null - " + iframeResponse.getFraudResponse().getFraudDecision(), iframeResponse.getFraudResponse().getFraudDecision());
+  }
 
-    private void verifySchemeCard() throws IOException {
-        InputStream verifySchemeCardStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchVerifySchemeCard.graphql");
-        ObjectNode variables = new ObjectMapper().createObjectNode();
-        String id = "193899";
-        String stepUpToken = "tokenise-stepup-token";
-        variables.put("id", id);
-        variables.put("$stepUpToken", stepUpToken);
-        String verifySchemeCardStreamGraphqlQuery = GraphqlParser.parseGraphql(verifySchemeCardStream, variables);
-        FetchVerifySchemeCardResponse fetchVerifySchemeCardResponse = iRetreieveVerifyCard(verifySchemeCardStreamGraphqlQuery);
-    }
+  private String getCardID() throws IOException {
+    InputStream iStreamInstruments = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchPaymentInstruments.graphql");
+    String graphqlQueryInstruments = GraphqlParser.parseGraphql(iStreamInstruments, null);
+    fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQueryInstruments);
+    return fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getId();
+  }
+
+  private AddGiftCardResponse submitGiftCard() throws IOException {
+    String giftCardNo = TestProperties.get("REWARDS_ADD_GIFT_CARD");
+    String giftCardPinCode = TestProperties.get("ADD_GIFT_CARD_PIN_CODE");
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    variables.put("cardNumber", giftCardNo);
+    variables.put("pinCode", giftCardPinCode);
+    InputStream iAddGiftCardStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/mutations/wallet/addGiftCard.graphql");
+    String graphqlQuery = GraphqlParser.parseGraphql(iAddGiftCardStream, variables);
+    return iAddGiftCard(graphqlQuery);
+  }
+
+  private void verifySchemeCard() throws IOException {
+    InputStream verifySchemeCardStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchVerifySchemeCard.graphql");
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    String id = "193899";
+    String stepUpToken = "tokenise-stepup-token";
+    variables.put("id", id);
+    variables.put("$stepUpToken", stepUpToken);
+    String verifySchemeCardStreamGraphqlQuery = GraphqlParser.parseGraphql(verifySchemeCardStream, variables);
+    FetchVerifySchemeCardResponse fetchVerifySchemeCardResponse = iRetreieveVerifyCard(verifySchemeCardStreamGraphqlQuery);
+  }
 }
