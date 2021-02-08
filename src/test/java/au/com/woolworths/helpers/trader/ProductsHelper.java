@@ -76,7 +76,7 @@ public class ProductsHelper extends BaseHelper {
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("group", groupId);
     queryParams.put("pageNumber", String.valueOf(page));
-    queryParams.put("pageSize", "50");
+    queryParams.put("pageSize", "36");
     queryParams.put("sortBy", "TraderRelevance");
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
     String responseStr = mapWebserviceResponse.get("response");
