@@ -46,6 +46,7 @@ public final class URLResources {
   public static final String METIS_LOGOUT = "/zeus/metis/v1/rewards/logout";
   public static final String METIS_TOKEN = "/zeus/metis/v1/rewards/token";
   public static final String METIS_CONFIG = "/zeus/metis/v1/rewards/config";
+  public static final String METIS_PARTNER_DETAILS = "/zeus/metis/v1/rewards/partner";
   public static final String METIS_QRID = "/zeus/metis/v1/api/digipay/instore/customer/payment/session/qr/:qrId";
   public static final String METIS_PAYMENT_SESSION = "/zeus/metis/v1/api/digipay/instore/customer/payment/session/:paymentSessionId";
   public static final String METIS_TRANSACTIONS = "/zeus/metis/v1/api/digipay/instore/customer/transactions";
@@ -86,6 +87,7 @@ public final class URLResources {
   public static final String TRADER_V2_ORDER = "apis/v2/orders/{orderId}";
   public static final String TRADER_V3_ORDER = "/api/v3/myorders";
   public static final String TRADER_V2_SHOPPING_AISLES = "/apis/v2/vsaisles";
+  public static final String TRADER_V2_PAST_SHOPPING_LIST = "/apis/v2/lists/pastshops";
   public static final String TRADER_V2_SPECIALS_GROUP = "api/v3/product/specials/groups";
   public static final String TRADER_V2_SPECIALS_GROUP_DETAILS = "api/v3/product/specials";
   public static final String TRADER_V3_PRODUCT_GROUP = "api/v3/product/productgroup";
