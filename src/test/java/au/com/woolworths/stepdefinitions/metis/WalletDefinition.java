@@ -9,6 +9,7 @@ import au.com.woolworths.model.metis.card.delete_scheme_card.DeleteSchemeCardRes
 import au.com.woolworths.model.metis.card.home_page_with_wallet.RewardsCardHomePageWithWalletResponse;
 import au.com.woolworths.model.metis.card.payment_instruments.FetchPaymentInstrumentsResponse;
 import au.com.woolworths.model.metis.card.update_scheme_card.FetchUpdateSchemeCardURLResponse;
+import au.com.woolworths.model.metis.card.verify_scheme_card.FetchVerifySchemeCardResponse;
 import au.com.woolworths.model.metis.card.view_user_preference.FetchUserPreferencesResponse;
 import au.com.woolworths.utils.TestProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,6 +29,7 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     private FetchPaymentInstrumentsResponse fetchPaymentInstrumentsResponse;
     private FetchUserPreferencesResponse fetchUserPreferencesResponse;
     private AddGiftCardResponse addGiftCardResponse;
+    private FetchVerifySchemeCardResponse fetchVerifyCardResponse;
     private String fetchAddSchemeCardURL;
     private String fetchUpdateSchemeCardURL;
     private String cardToUpdate;
@@ -59,9 +61,6 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
         if (rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction().equals("ADD_CARD")) {
             Assert.fail("A Scheme Card must have been added prior to adding a Gift Card");
         }
-
-        Assert.assertEquals("Wallet home page message is as expected", "Scan to Everyday Pay", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getTitle());
-        Assert.assertEquals("Wallet action is as expected", "SCAN", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction());
     }
 
     @And("^the user should be able to add a new gift card$")
@@ -212,4 +211,14 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
         return iAddGiftCard(graphqlQuery);
     }
 
+    private void verifySchemeCard() throws IOException {
+        InputStream verifySchemeCardStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchVerifySchemeCard.graphql");
+        ObjectNode variables = new ObjectMapper().createObjectNode();
+        String id = "193899";
+        String stepUpToken = "tokenise-stepup-token";
+        variables.put("id", id);
+        variables.put("$stepUpToken", stepUpToken);
+        String verifySchemeCardStreamGraphqlQuery = GraphqlParser.parseGraphql(verifySchemeCardStream, variables);
+        FetchVerifySchemeCardResponse fetchVerifySchemeCardResponse = iRetreieveVerifyCard(verifySchemeCardStreamGraphqlQuery);
+    }
 }

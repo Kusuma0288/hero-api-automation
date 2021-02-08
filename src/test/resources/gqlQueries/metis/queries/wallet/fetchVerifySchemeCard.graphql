@@ -1,0 +1,6 @@
+mutation {
+    verifySchemeCard(id: $id, stepUpToken: $stepUpToken) {
+        success
+        message
+    }
+}

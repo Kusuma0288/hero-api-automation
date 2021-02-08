@@ -128,8 +128,11 @@ steps:
            }
            else{
                Write-Host "##vso[task.setvariable variable=buildStatus;]PASS"
-               updateVariableGroup -VarName 'Apigee_UAT_LastFailCount' -ORGANIZATION_URL $ORGANIZATION_URL -PROJECT $PROJECT
+
            }
+           echo "Total Failures:" $total_failures
+           echo "Source Branch:" $(Build.SourceBranchName)
+           updateVariableGroup -VarName 'Apigee_UAT_LastFailCount' -ORGANIZATION_URL $ORGANIZATION_URL -PROJECT $PROJECT
 
        }
        elseif('${{ parameters.Service }}' -eq 'trader' -And '${{ parameters.RunEnv }}' -eq 'uat'){
