@@ -13,8 +13,8 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 public class ActivityHelper extends BaseHelper {
-  RestInvocationUtil invocationUtil;
   private final static Logger logger = Logger.getLogger("ActivityHelper.class");
+  RestInvocationUtil invocationUtil;
 
   public ActivityHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
@@ -24,7 +24,7 @@ public class ActivityHelper extends BaseHelper {
 
 
     ObjectMapper mapper = new ObjectMapper();
-    Map <String, String> mapWebserviceResponse;
+    Map<String, String> mapWebserviceResponse;
 
     /*
     The string returned by Message icon is an emoji which is utf8

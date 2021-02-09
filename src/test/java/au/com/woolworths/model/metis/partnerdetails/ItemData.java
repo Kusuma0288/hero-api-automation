@@ -9,8 +9,8 @@ import java.util.List;
 @Data
 public class ItemData {
   private String title;
-  private List <PartnerTradingHoursItem> items = null;
+  private List<PartnerTradingHoursItem> items = null;
   private String phoneNumber;
   private String displayAddress;
-  private List <Facility> facilities = null;
+  private List<Facility> facilities = null;
 }

@@ -1,5 +1,5 @@
 mutation {
-    verifySchemeCard(id: "193899", stepUpToken: "tokenise-stepup-token") {
+    verifySchemeCard(id: $id, stepUpToken: $stepUpToken) {
         success
         message
     }
