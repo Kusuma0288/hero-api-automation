@@ -19,7 +19,6 @@ public class ProductsBySearchResponseHelper extends BaseHelper {
   public enum ProductsBySearchArgs {
 
     SEARCH_TERM("searchTerm"),
-    MODE("mode"),
     STORE_ID("storeId"),
     PAGE_SIZE("pageSize"),
     PAGE_NUMBER("pageNumber"),

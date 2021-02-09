@@ -19,7 +19,6 @@ public class ProductsBySearchDefinition extends GraphqlBaseDefinition {
   @When("user requests for online \"([^\"]*)\" products by search$")
   public void getAvailableProductsFromOnlineProductsBySearch(String searchTerm) throws Throwable {
     variables.put(ProductsBySearchArgs.SEARCH_TERM.get(), searchTerm);
-    variables.put(ProductsBySearchArgs.MODE.get(), Mode.ONLINE.get());
     variables.put(ProductsBySearchArgs.PAGE_SIZE.get(), ProductListPageSize.DEFAULT_PRODUCT_LIST_PAGE_SIZE.get());
     String productsBySearchQuery = GraphqlParser.parseGraphql(iStream, variables);
     String productsBySearchResponseString = queryHelper.postGraphqlQuery(productsBySearchQuery);
@@ -37,7 +36,6 @@ public class ProductsBySearchDefinition extends GraphqlBaseDefinition {
   public void getAvailableProductsFromInstoreProductsBySearch(String searchTerm, String storeId) throws Throwable {
     variables.put(ProductsBySearchArgs.SEARCH_TERM.get(), searchTerm);
     variables.put(ProductsBySearchArgs.STORE_ID.get(), storeId);
-    variables.put(ProductsBySearchArgs.MODE.get(), Mode.INSTORE.get());
     variables.put(ProductsBySearchArgs.PAGE_SIZE.get(), ProductListPageSize.DEFAULT_PRODUCT_LIST_PAGE_SIZE.get());
     String productsBySearchQuery = GraphqlParser.parseGraphql(iStream, variables);
     String productsBySearchResponseString = queryHelper.postGraphqlQuery(productsBySearchQuery);

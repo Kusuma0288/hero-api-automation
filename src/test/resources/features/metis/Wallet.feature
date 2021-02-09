@@ -2,7 +2,6 @@
 
 Feature: Checkout safely and securely using your preferred payment method
 
-  @IN_PROGRESS
   Scenario: Add a new scheme card
     Given a user logs in the rewards app as an "iOS" user with card number "REWARDS_USER_NO_CARD"
     When the user goes to the card screen
