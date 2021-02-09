@@ -21,8 +21,8 @@ public class ConfigHelper extends BaseHelper {
   public ConfigResponse getConfig(String appVersion, String osVersion, String clientOS) throws IOException {
     String endPoint = URLResources.METIS_CONFIG;
 
-    Map <String, String> mapWebserviceResponse = new HashMap <String, String>();
-    Map <String, String> queryParams = new HashMap <String, String>();
+    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
+    Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("appVersion", appVersion);
     queryParams.put("osVersion", osVersion);
 
