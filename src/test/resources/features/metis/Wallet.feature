@@ -8,6 +8,11 @@ Feature: Checkout safely and securely using your preferred payment method
     Then the user should see the wallet is empty
     And the user should be able to add a new card
 
+  Scenario: Verify tooltip appearance
+    Given a user logs in the rewards app as an "iOS" user with card number "REWARDS_USER_NO_CARD"
+    When the user goes to the card screen
+    Then the user should be able to see the tooltip message
+
   Scenario: Update a scheme card
     Given a user logs in the rewards app as an "iOS" user with card number "REWARDS_USER_PLZ_DO_NOT_DELETE_CARD_3"
     When the user goes to the card screen
@@ -42,3 +47,4 @@ Feature: Checkout safely and securely using your preferred payment method
     When the user goes to the card screen
     Then the user should see the wallet is not empty
     And the user should be able to add a new gift card
+

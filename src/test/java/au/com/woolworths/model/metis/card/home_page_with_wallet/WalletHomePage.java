@@ -8,5 +8,6 @@ public class WalletHomePage {
   private String title;
   private String content;
   private String action;
+  private String tooltip;
   private boolean showBadge;
 }
