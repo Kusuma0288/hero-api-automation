@@ -1,5 +1,5 @@
-query productsBySearch($searchTerm: String!, $mode: Mode, $storeId: String, $pageSize: Int, $pageNumber: Int) {
-    productsBySearch(searchTerm: $searchTerm, mode: $mode, storeId: $storeId, pageSize: $pageSize, pageNumber: $pageNumber) {
+query productsBySearch($searchTerm: String!, $storeId: String, $pageSize: Int, $pageNumber: Int) {
+    productsBySearch(searchTerm: $searchTerm, storeId: $storeId, pageSize: $pageSize, pageNumber: $pageNumber) {
         totalNumberOfProducts
         nextPage
         filters {
