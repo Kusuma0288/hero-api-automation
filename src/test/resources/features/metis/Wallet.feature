@@ -2,13 +2,11 @@
 
 Feature: Checkout safely and securely using your preferred payment method
 
-  @IN_PROGRESS
   Scenario: Add a new scheme card
     Given a user logs in the rewards app as an "iOS" user with card number "REWARDS_USER_NO_CARD"
     When the user goes to the card screen
     Then the user should see the wallet is empty
     And the user should be able to add a new card
-
 
   Scenario: Update a scheme card
     Given a user logs in the rewards app as an "iOS" user with card number "REWARDS_USER_PLZ_DO_NOT_DELETE_CARD_3"
@@ -33,9 +31,20 @@ Feature: Checkout safely and securely using your preferred payment method
     When the user scans the QR code
     Then the user should be able to pay for the items using the stored card
 
-
   Scenario: Remove a scheme card
     Given a user logs in the rewards app as an "iOS" user with card number "REWARDS_USER_PLZ_DO_NOT_DELETE_CARD_1"
     When the user goes to the card screen
     Then the user should see the wallet has a card
     And the user should be able to remove a card
+
+  Scenario: Add a new gift card
+    Given a user logs in the rewards app as an "iOS" user with card number "REWARDS_USER_NO_CARD"
+    When the user goes to the card screen
+    Then the user should see the wallet is not empty
+    And the user should be able to add a new gift card
+  @IN_PROGRESS
+  Scenario: View gift card
+    Given a user logs in the rewards app as an "iOS" user with card number "REWARDS_USER_NO_CARD"
+    When the user goes to the card screen
+    Then the user should see the wallet is not empty
+    And the user should be able to view gift card

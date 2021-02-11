@@ -3,16 +3,19 @@ package au.com.woolworths.stepdefinitions.metis;
 import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.helpers.metis.RewardsCardWithWalletHelper;
 import au.com.woolworths.model.apigee.payment.iFrameResponse;
+import au.com.woolworths.model.metis.card.add_gift_card.AddGiftCardResponse;
 import au.com.woolworths.model.metis.card.add_scheme_card.FetchAddSchemeCardURLResponse;
 import au.com.woolworths.model.metis.card.delete_scheme_card.DeleteSchemeCardResponse;
 import au.com.woolworths.model.metis.card.home_page_with_wallet.RewardsCardHomePageWithWalletResponse;
 import au.com.woolworths.model.metis.card.payment_instruments.FetchPaymentInstrumentsResponse;
 import au.com.woolworths.model.metis.card.update_scheme_card.FetchUpdateSchemeCardURLResponse;
 import au.com.woolworths.model.metis.card.verify_scheme_card.FetchVerifySchemeCardResponse;
+import au.com.woolworths.model.metis.card.view_gift_card.ViewGiftCardResponse;
 import au.com.woolworths.model.metis.card.view_user_preference.FetchUserPreferencesResponse;
 import au.com.woolworths.utils.TestProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
@@ -22,11 +25,13 @@ import java.io.InputStream;
 
 public class WalletDefinition extends RewardsCardWithWalletHelper {
 
+  final int cardNumberLength = TestProperties.get("CARD_NUMBER").length();
   private RewardsCardHomePageWithWalletResponse rewardsCardHomePageWithWalletResponse;
   private FetchPaymentInstrumentsResponse fetchPaymentInstrumentsResponse;
   private FetchUserPreferencesResponse fetchUserPreferencesResponse;
+  private AddGiftCardResponse addGiftCardResponse;
   private FetchVerifySchemeCardResponse fetchVerifyCardResponse;
-  final int cardNumberLength = TestProperties.get("CARD_NUMBER").length();
+  private ViewGiftCardResponse viewGiftCardResponse;
   private String fetchAddSchemeCardURL;
   private String fetchUpdateSchemeCardURL;
   private String cardToUpdate;
@@ -50,6 +55,23 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
 
     Assert.assertEquals("Wallet home page message is not as expected", "Add a bank card and redeem Everyday Rewards in one easy tap", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getContent());
     Assert.assertEquals("Wallet state is not as expected", "ADD_CARD", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction());
+  }
+
+  @Then("^the user should see the wallet is not empty$")
+  public void shouldNotSeeEmptyWallet() throws IOException {
+    // Ensure the user has an existing scheme card before we attempt to add a new gift card
+    if (rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction().equals("ADD_CARD")) {
+      Assert.fail("A Scheme Card must have been added prior to adding a Gift Card");
+    }
+  }
+
+  @And("^the user should be able to add a new gift card$")
+  public void theUserShouldBeAbleToAddANewGiftCard() throws IOException {
+    addGiftCardResponse = submitGiftCard();
+
+    Assert.assertTrue("Gift Card Addition should be successful", addGiftCardResponse.getData().getAddGiftCard().getSuccess());
+    Assert.assertNull("Message should be null", addGiftCardResponse.getData().getAddGiftCard().getMessage());
+    Assert.assertNull("Reason should be null", addGiftCardResponse.getData().getAddGiftCard().getReason());
   }
 
   @Then("^the user should see the wallet has a card$")
@@ -109,11 +131,11 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     int instrumentCardNumberLength = fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().length();
 
     // TODO - When we start allowing more than 1 instrument this will need to be updated
-    // Assert.assertEquals("The number of payment instruments is not equal to 1", 1, fetchPaymentInstrumentsResponse.getData().getPaymentInstruments().length);
+    Assert.assertEquals("The number of payment instruments is not equal to 1", 1, fetchPaymentInstrumentsResponse.getData().getPaymentInstruments().length);
     Assert.assertTrue("The payment instrument card number is not obfuscated", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().contains("••••"));
     Assert.assertEquals("The payment instrument card number last 4 digits do not match", TestProperties.get("CARD_NUMBER").substring(cardNumberLength - 4), fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getCardNumber().substring(instrumentCardNumberLength - 4));
     Assert.assertEquals("The payment instrument does not have a valid status", "VALID", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getStatus());
-   // Assert.assertNull("The payment instrument does not have a null lastUsed value", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getLastUsed());
+    Assert.assertNull("The payment instrument does not have a null lastUsed value", fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getLastUsed());
   }
 
   @When("^the user goes to the account screen$")
@@ -124,7 +146,7 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
   }
 
   @Then("^the user should see a badge for new user$")
-    public void hasViewedWalletBadge()  {
+  public void hasViewedWalletBadge() {
     if (fetchUserPreferencesResponse.getData().getUserPreferences().isHasViewedWallet()) {
 
     }
@@ -148,12 +170,9 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
 
     iFrameResponse iframeResponse = postiFrameCardDetails(sessionID, host);
 
-    // Verify Scheme Card
-    verifySchemeCard();
-
     Assert.assertEquals("Card iFrame status response message is not as expected", "ACCEPTED", iframeResponse.getStatus().getResponseText());
     Assert.assertEquals("Card iFrame status response code is not as expected", "00", iframeResponse.getStatus().getResponseCode());
-    Assert.assertNull("Card iFrame status has an error - ", iframeResponse.getStatus().getError());
+    Assert.assertNull("Card iFrame status has an error - " + iframeResponse.getStatus().getError(), iframeResponse.getStatus().getError());
     Assert.assertEquals("Card iFrame payment instrument status is not as expected", "UNVERIFIED_PERSISTENT", iframeResponse.getPaymentInstrument().getStatus());
     Assert.assertEquals("Card iFrame payment instrument suffix is not as expected", TestProperties.get("CARD_NUMBER").substring(cardNumberLength - 4), iframeResponse.getPaymentInstrument().getSuffix());
     Assert.assertEquals("Card iFrame payment instrument expiry month is not as expected", TestProperties.get("EXPIRY_MONTH"), iframeResponse.getPaymentInstrument().getExpiryMonth());
@@ -183,9 +202,40 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     return fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getId();
   }
 
+  private AddGiftCardResponse submitGiftCard() throws IOException {
+    String giftCardNo = TestProperties.get("REWARDS_ADD_GIFT_CARD");
+    String giftCardPinCode = TestProperties.get("ADD_GIFT_CARD_PIN_CODE");
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    variables.put("cardNumber", giftCardNo);
+    variables.put("pinCode", giftCardPinCode);
+    InputStream iAddGiftCardStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/mutations/wallet/addGiftCard.graphql");
+    String graphqlQuery = GraphqlParser.parseGraphql(iAddGiftCardStream, variables);
+    return iAddGiftCard(graphqlQuery);
+  }
+
   private void verifySchemeCard() throws IOException {
-    InputStream jStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchVerifySchemeCard.graphql");
-    String graphqlQuery1 = GraphqlParser.parseGraphql(jStream, null);
-    FetchVerifySchemeCardResponse fetchVerifySchemeCardResponse = iRetreieveVerifyCard(graphqlQuery1);
+    InputStream verifySchemeCardStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchVerifySchemeCard.graphql");
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    String id = "193899";
+    String stepUpToken = "tokenise-stepup-token";
+    variables.put("id", id);
+    variables.put("$stepUpToken", stepUpToken);
+    String verifySchemeCardStreamGraphqlQuery = GraphqlParser.parseGraphql(verifySchemeCardStream, variables);
+    FetchVerifySchemeCardResponse fetchVerifySchemeCardResponse = iRetreieveVerifyCard(verifySchemeCardStreamGraphqlQuery);
+  }
+
+  @And("^the user should be able to view gift card$")
+  public void theUserShouldBeAbleToViewGiftCard() throws IOException {
+    InputStream iStreamInstruments = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchViewGiftCard.graphql");
+    String graphqlQueryInstruments = GraphqlParser.parseGraphql(iStreamInstruments, null);
+    viewGiftCardResponse = iRetrieveViewGiftCardResponse(graphqlQueryInstruments);
+
+    // Assertions
+    Assert.assertEquals("Helper Text shows the correct message/text", "Your Gift Cards will be used first when paying, before using your preferred bank card.",viewGiftCardResponse.getData().getGiftCards().getHelperText());
+    Assert.assertTrue("Within GiftCard, items has the name field",viewGiftCardResponse.getData().getGiftCards().getItems().toString().contains("name"));
+    Assert.assertTrue("Within GiftCard, items has the amount field",viewGiftCardResponse.getData().getGiftCards().getItems().toString().contains("amount"));
+    Assert.assertTrue("Within GiftCard, items has $",viewGiftCardResponse.getData().getGiftCards().getItems().toString().contains("$"));
+    Assert.assertTrue("Within GiftCard, items has the subtitle field",viewGiftCardResponse.getData().getGiftCards().getItems().toString().contains("subtitle"));
+    Assert.assertTrue("Within GiftCard, items has the logoURL field",viewGiftCardResponse.getData().getGiftCards().getItems().toString().contains("name"));
   }
 }
