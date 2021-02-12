@@ -85,6 +85,19 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     Assert.assertEquals("Wallet state is not as expected", "SCAN", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction());
   }
 
+  @Then("^the user should be able to see the tooltip message$")
+  public void shouldSeeTooltip() throws IOException {
+    // Ensure the user has an no scheme card in wallet
+    if (rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getAction().equals("SCAN")) {
+      canRemoveCard();
+
+    }
+
+    Assert.assertEquals("Wallet tooltip is as expected", "Add a bank card to start\n" +
+        "using Everyday Pay", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getTooltip());
+
+  }
+
   @Then("^the user should be able to add a new card$")
   public void canAddNewCard() throws IOException {
     getAddCardURL();
