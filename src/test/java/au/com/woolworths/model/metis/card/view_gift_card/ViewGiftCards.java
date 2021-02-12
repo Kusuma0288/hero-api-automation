@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class ViewGiftCards {
-    private Object items;
-    private String helperText;
+private Object items;
+private String helperText;
 }
