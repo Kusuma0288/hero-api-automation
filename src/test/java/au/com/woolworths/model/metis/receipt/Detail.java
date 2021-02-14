@@ -28,4 +28,5 @@ public class Detail {
   private List<Payments> payments;
   private List<SummaryItems> summaryItems;
   private List<Items> items;
+  private Object info;
 }

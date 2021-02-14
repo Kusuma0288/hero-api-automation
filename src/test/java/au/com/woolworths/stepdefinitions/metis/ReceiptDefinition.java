@@ -46,7 +46,7 @@ public class ReceiptDefinition extends ReceiptHelper {
 
     Assert.assertNotNull("No BWS coupon was returned", BWSDetails);
     Assert.assertTrue("Section 1st title is missing for BWS ", BWSDetails.getSections().get(0).getSectionTitle().contains("BWS"));
-    Assert.assertTrue("Section 2nd title is missing for BWS ", BWSDetails.getSections().get(1).getSectionTitle().contains("BWS"));
+    Assert.assertTrue("Section 2nd title is missing for BWS ", BWSDetails.getSections().get(1).getSectionTitle().contains("AND/OR"));
     Assert.assertTrue("Footer is missing for BWS Coupon ", BWSDetails.getFooter().contains("BWS"));
     Assert.assertTrue("Footer is missing over 18 text", BWSDetails.getFooter().contains("Over 18's"));
     Assert.assertTrue("Barcode for BWS is not numeric", Utilities.isNumeric(BWSDetails.getBarcode().getValue()));

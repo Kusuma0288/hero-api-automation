@@ -31,8 +31,7 @@ public class PerksDefinition extends PerksHelper {
   @Then("^the user should be able to see his perks$")
   public void theUserShouldBeAbleToSeeHisPerks() {
     Banner banner = response.getData().getRewardsPerks().getBanner();
-    Assert.assertTrue("The shore banner is not returned", banner.getBannerImageUrl().contains("extra_banner_no_credits_after_xmas.jpg"));
-    Assert.assertNull("There should be no shore content", banner.getContent());
+    Assert.assertTrue("The shore banner is not returned", banner.getBannerImageUrl().contains(".jpg"));
     Assert.assertEquals("No deeplink found", "DEEP_LINK", banner.getLink().getAction());
     Assert.assertTrue("The shore banner is not returned", banner.getLink().getUrl().contains("shoreCampaign"));
 
