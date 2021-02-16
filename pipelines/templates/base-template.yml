@@ -98,58 +98,58 @@ steps:
     condition: succeeded()
 
   - powershell: |
-       $returnValues = &'$(Build.SourcesDirectory)/postResultToSlack.ps1' -ClusterUrl '${{ parameters.ClusterUrl }}' `
-                -Service '${{ parameters.Service }}' -RunEnv '${{ parameters.RunEnv }}' -BuildNumber '$(Build.BuildNumber)' `
-                -TestRunTitle '${{ parameters.TestRunTitle }}' -SlackWebhookUrl '${{ parameters.SlackWebHookUrl }}' `
-                -SourceBranchName '$(Build.SourceBranchName)'
+      $returnValues = &'$(Build.SourcesDirectory)/postResultToSlack.ps1' -ClusterUrl '${{ parameters.ClusterUrl }}' `
+               -Service '${{ parameters.Service }}' -RunEnv '${{ parameters.RunEnv }}' -BuildNumber '$(Build.BuildNumber)' `
+               -TestRunTitle '${{ parameters.TestRunTitle }}' -SlackWebhookUrl '${{ parameters.SlackWebHookUrl }}' `
+               -SourceBranchName '$(Build.SourceBranchName)'
 
-       $total_failures = $returnValues.currentFailures
+      $total_failures = $returnValues.currentFailures
 
-       $PROJECT= "Mobile"
-       $ORGANIZATION_URL="https://dev.azure.com/wowonline/"
-       ##functions: Start
-       function updateVariableGroup {
-        param ([string]$VarName)
-        az pipelines variable-group variable update --org $ORGANIZATION_URL -p $PROJECT --group-id 717 --name $VarName --value $total_failures --output yaml
+      $PROJECT= "Mobile"
+      $ORGANIZATION_URL="https://dev.azure.com/wowonline/"
+      ##functions: Start
+      function updateVariableGroup {
+       param ([string]$VarName)
+       az pipelines variable-group variable update --org $ORGANIZATION_URL -p $PROJECT --group-id 717 --name $VarName --value $total_failures --output yaml
 
-       }
-       ##functions: End
-       ##Code to validate the failure count
+      }
+      ##functions: End
+      ##Code to validate the failure count
 
-       echo $(System.AccessToken) | az devops login --org $ORGANIZATION_URL
+      echo $(System.AccessToken) | az devops login --org $ORGANIZATION_URL
 
-       if('${{ parameters.Service }}' -eq 'apigee' -And '${{ parameters.RunEnv }}' -eq 'uat'){
-           if($total_failures -gt $(Apigee_UAT_LastFailCount)){
-               Write-Host "##vso[task.setvariable variable=buildStatus;]FAIL"
-               echo "Apigee build failed. Details below: "
-               echo "Current failures: " $returnValues.currentFailures
-               echo "Last failures count: " $(Apigee_UAT_LastFailCount)
-               echo "Report URL: " $returnValues.reportURL
-           }
-           else{
-               Write-Host "##vso[task.setvariable variable=buildStatus;]PASS"
+      if('${{ parameters.Service }}' -eq 'apigee' -And '${{ parameters.RunEnv }}' -eq 'uat'){
+          if($total_failures -gt $(Apigee_UAT_LastFailCount)){
+              Write-Host "##vso[task.setvariable variable=buildStatus;]FAIL"
+              echo "Apigee build failed. Details below: "
+              echo "Current failures: " $returnValues.currentFailures
+              echo "Last failures count: " $(Apigee_UAT_LastFailCount)
+              echo "Report URL: " $returnValues.reportURL
+          }
+          else{
+              Write-Host "##vso[task.setvariable variable=buildStatus;]PASS"
 
-           }
-           echo "Total Failures:" $total_failures
-           echo "Source Branch:" $(Build.SourceBranchName)
-           updateVariableGroup -VarName 'Apigee_UAT_LastFailCount' -ORGANIZATION_URL $ORGANIZATION_URL -PROJECT $PROJECT
+          }
+          echo "Total Failures:" $total_failures
+          echo "Source Branch:" $(Build.SourceBranchName)
+          updateVariableGroup -VarName 'Apigee_UAT_LastFailCount' -ORGANIZATION_URL $ORGANIZATION_URL -PROJECT $PROJECT
 
-       }
-       elseif('${{ parameters.Service }}' -eq 'trader' -And '${{ parameters.RunEnv }}' -eq 'uat'){
-           if($total_failures -gt $(Trader_UAT_LastFailCount)){
-               Write-Host "##vso[task.setvariable variable=buildStatus;]FAIL"
-               echo "Trader build failed. Details below: "
-               echo "Current failures: " $returnValues.currentFailures
-               echo "Last failures count: " $(Trader_UAT_LastFailCount)
-               echo "Report URL: " $returnValues.reportURL
-           }
-           else{
-               Write-Host "##vso[task.setvariable variable=buildStatus;]PASS"
-               updateVariableGroup -VarName 'Trader_UAT_LastFailCount' -ORGANIZATION_URL $ORGANIZATION_URL -PROJECT $PROJECT
-           }
+      }
+      elseif('${{ parameters.Service }}' -eq 'trader' -And '${{ parameters.RunEnv }}' -eq 'uat'){
+          if($total_failures -gt $(Trader_UAT_LastFailCount)){
+              Write-Host "##vso[task.setvariable variable=buildStatus;]FAIL"
+              echo "Trader build failed. Details below: "
+              echo "Current failures: " $returnValues.currentFailures
+              echo "Last failures count: " $(Trader_UAT_LastFailCount)
+              echo "Report URL: " $returnValues.reportURL
+          }
+          else{
+              Write-Host "##vso[task.setvariable variable=buildStatus;]PASS"
+              updateVariableGroup -VarName 'Trader_UAT_LastFailCount' -ORGANIZATION_URL $ORGANIZATION_URL -PROJECT $PROJECT
+          }
 
-       }
-       az devops logout
+      }
+      az devops logout
 
     displayName: 'Post test results to Slack'
     continueOnError: true
