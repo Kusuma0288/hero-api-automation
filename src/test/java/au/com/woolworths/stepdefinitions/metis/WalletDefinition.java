@@ -239,16 +239,24 @@ private void verifySchemeCard() throws IOException {
 
 @And("^the user should be able to view gift card$")
 public void theUserShouldBeAbleToViewGiftCard() throws IOException {
+	viewGiftCardResponse = fetchViewGiftCardResponse();
+	viewGiftCardAssertions(viewGiftCardResponse);
+}
+
+private ViewGiftCardResponse fetchViewGiftCardResponse() throws IOException {
 	InputStream iStreamInstruments = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchViewGiftCard.graphql");
 	String graphqlQueryInstruments = GraphqlParser.parseGraphql(iStreamInstruments, null);
-	viewGiftCardResponse = iRetrieveViewGiftCardResponse(graphqlQueryInstruments);
-	
-	// Assertions
-	Assert.assertEquals("Helper Text shows the correct message/text", "Your Gift Cards will be used first when paying, before using your preferred bank card.", viewGiftCardResponse.getData().getGiftCards().getHelperText());
-	Assert.assertTrue("Within GiftCard, items has the name field", viewGiftCardResponse.getData().getGiftCards().getItems().toString().contains("name"));
-	Assert.assertTrue("Within GiftCard, items has the amount field", viewGiftCardResponse.getData().getGiftCards().getItems().toString().contains("amount"));
-	Assert.assertTrue("Within GiftCard, items has $", viewGiftCardResponse.getData().getGiftCards().getItems().toString().contains("$"));
-	Assert.assertTrue("Within GiftCard, items has the subtitle field", viewGiftCardResponse.getData().getGiftCards().getItems().toString().contains("subtitle"));
-	Assert.assertTrue("Within GiftCard, items has the logoURL field", viewGiftCardResponse.getData().getGiftCards().getItems().toString().contains("name"));
+	return iRetrieveViewGiftCardResponse(graphqlQueryInstruments);
+}
+
+private void viewGiftCardAssertions(ViewGiftCardResponse response) {
+	String gcResponse = response.getData().getGiftCards().getItems().get(0).toString();
+	String helperTextResponse = response.getData().getGiftCards().getHelperText();
+	Assert.assertEquals("Helper Text shows the correct message/text", "Your Gift Cards will be used first when paying, before using your preferred bank card.", helperTextResponse);
+	Assert.assertTrue("Within GiftCard, items has the name field", gcResponse.contains("name"));
+	Assert.assertTrue("Within GiftCard, items has the amount field", gcResponse.contains("amount"));
+	Assert.assertTrue("Within GiftCard, items has $", gcResponse.contains("$"));
+	Assert.assertTrue("Within GiftCard, items has the subtitle field", gcResponse.contains("subtitle"));
+	Assert.assertTrue("Within GiftCard, items has the logoURL field", gcResponse.contains("name"));
 }
 }
