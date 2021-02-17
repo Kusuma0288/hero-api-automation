@@ -256,11 +256,11 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     String helperTextResponse = response.getData().getGiftCards().getHelperText();
 
     Assert.assertEquals("Helper Text shows the correct message/text", "Your Gift Cards will be used first when paying, before using your preferred bank card.", helperTextResponse);
-    Assert.assertTrue("Within GiftCard, items has the id field", !items.get(0).getId().isEmpty());
-    Assert.assertTrue("Within GiftCard, items has the name field", !items.get(0).getName().isEmpty());
-    Assert.assertTrue("Within GiftCard, items has the amount field", !items.get(0).getAmount().isEmpty());
+    Assert.assertNotNull("Within GiftCard, items has the id field", items.get(0).getId());
+    Assert.assertNotNull("Within GiftCard, items has the name field", items.get(0).getName());
+    Assert.assertNotNull("Within GiftCard, items has the amount field", items.get(0).getAmount());
     Assert.assertTrue("Within GiftCard, items has $", items.get(0).getAmount().contains("$"));
-    Assert.assertTrue("Within GiftCard, items has the subtitle field", !items.get(0).getSubtitle().isEmpty());
-    Assert.assertTrue("Within GiftCard, items has the logoURL field", !items.get(0).getLogoURL().isEmpty());
+    Assert.assertNotNull("Within GiftCard, items has the subtitle field", items.get(0).getSubtitle());
+    Assert.assertNotNull("Within GiftCard, items has the logoURL field", items.get(0).getLogoURL());
   }
 }
