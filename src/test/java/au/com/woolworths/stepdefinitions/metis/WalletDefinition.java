@@ -251,7 +251,6 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
   }
 
   private void viewGiftCardAssertions(ViewGiftCardResponse response) {
-
     List<Item> items = response.getData().getGiftCards().getItems();
     String helperTextResponse = response.getData().getGiftCards().getHelperText();
 
