@@ -6,6 +6,6 @@ import java.util.List;
 
 @Data
 public class ViewGiftCards {
-private List<Object> items;
-private String helperText;
+  private List<Item> items;
+  private String helperText;
 }

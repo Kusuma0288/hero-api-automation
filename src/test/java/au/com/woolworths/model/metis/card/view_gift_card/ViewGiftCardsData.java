@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class ViewGiftCardsData {
-private ViewGiftCards giftCards;
+  private ViewGiftCards giftCards;
 }

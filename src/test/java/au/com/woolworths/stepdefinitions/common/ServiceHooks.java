@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class ServiceHooks {
 
-  private static Logger logger = Logger.getLogger("ServiceHooks.class");
+  private static final Logger logger = Logger.getLogger("ServiceHooks.class");
   public static RestInvocationUtil restInvocationUtil;
   public String saveRequestResponse = "No";
 

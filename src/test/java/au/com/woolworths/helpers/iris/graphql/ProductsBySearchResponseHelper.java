@@ -24,7 +24,7 @@ public class ProductsBySearchResponseHelper extends BaseHelper {
     PAGE_NUMBER("pageNumber"),
     SORT_OPTION("sortOption");
 
-    private String arg;
+    private final String arg;
 
     ProductsBySearchArgs(String arg) {
       this.arg = arg;

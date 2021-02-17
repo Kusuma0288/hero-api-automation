@@ -12,7 +12,7 @@ import au.com.woolworths.helpers.iris.graphql.GraphqlQueryHelper;
 public class HomepagePromoTileDefinition {
 
   private final static Logger logger = Logger.getLogger("HomepagePromoTileDefinition.class");
-  private GraphqlQueryHelper graphqlQueryHelper = new GraphqlQueryHelper();
+  private final GraphqlQueryHelper graphqlQueryHelper = new GraphqlQueryHelper();
 
   @Then("^I search for the ProductGroup with id \"([^\"]*)\" and validate the response$")
   public void verifyProductGroupGraphQL(String groupId) throws Throwable {

@@ -30,7 +30,7 @@ public class GraphqlQueryHelper extends BaseHelper {
     PRODUCTS_BY_PRODUCT_GROUP_PAGE_SIZE(200),
     DEFAULT_PRODUCT_LIST_PAGE_SIZE(100);
 
-    private int pagesize;
+    private final int pagesize;
 
     ProductListPageSize(int pagesize) {
       this.pagesize = pagesize;

@@ -33,145 +33,145 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RewardsCardWithWalletHelper extends IFrameCardHelper {
-RestInvocationUtil invocationUtil;
+  RestInvocationUtil invocationUtil;
 
-public RewardsCardWithWalletHelper() {
-	this.invocationUtil = ServiceHooks.restInvocationUtil;
-}
+  public RewardsCardWithWalletHelper() {
+    this.invocationUtil = ServiceHooks.restInvocationUtil;
+  }
 
-public RewardsCardHomePageWithWalletResponse iRetrieveMyRewardsCardWithWallet(String query) throws IOException {
-	return mapper.readValue(postQuery(query), RewardsCardHomePageWithWalletResponse.class);
-}
+  public RewardsCardHomePageWithWalletResponse iRetrieveMyRewardsCardWithWallet(String query) throws IOException {
+    return mapper.readValue(postQuery(query), RewardsCardHomePageWithWalletResponse.class);
+  }
 
-public FetchAddSchemeCardURLResponse iRetrieveAddSchemeCardURL(String query) throws IOException {
-	return mapper.readValue(postQuery(query), FetchAddSchemeCardURLResponse.class);
-}
+  public FetchAddSchemeCardURLResponse iRetrieveAddSchemeCardURL(String query) throws IOException {
+    return mapper.readValue(postQuery(query), FetchAddSchemeCardURLResponse.class);
+  }
 
-public FetchUpdateSchemeCardURLResponse iRetrieveUpdateSchemeCardURL(String query) throws IOException {
-	return mapper.readValue(postQuery(query), FetchUpdateSchemeCardURLResponse.class);
-}
+  public FetchUpdateSchemeCardURLResponse iRetrieveUpdateSchemeCardURL(String query) throws IOException {
+    return mapper.readValue(postQuery(query), FetchUpdateSchemeCardURLResponse.class);
+  }
 
-public FetchPaymentInstrumentsResponse iRetrievePaymentInstruments(String query) throws IOException {
-	return mapper.readValue(postQuery(query), FetchPaymentInstrumentsResponse.class);
-}
+  public FetchPaymentInstrumentsResponse iRetrievePaymentInstruments(String query) throws IOException {
+    return mapper.readValue(postQuery(query), FetchPaymentInstrumentsResponse.class);
+  }
 
-public DeleteSchemeCardResponse iRemoveSchemeCard(String query) throws IOException {
-	return mapper.readValue(postQuery(query), DeleteSchemeCardResponse.class);
-}
+  public DeleteSchemeCardResponse iRemoveSchemeCard(String query) throws IOException {
+    return mapper.readValue(postQuery(query), DeleteSchemeCardResponse.class);
+  }
 
-public FetchUserPreferencesResponse iRetrieveViewWallet(String query) throws IOException {
-	return mapper.readValue(postQuery(query), FetchUserPreferencesResponse.class);
-}
+  public FetchUserPreferencesResponse iRetrieveViewWallet(String query) throws IOException {
+    return mapper.readValue(postQuery(query), FetchUserPreferencesResponse.class);
+  }
 
-public AddGiftCardResponse iAddGiftCard(String query) throws IOException {
-	return mapper.readValue(postQuery(query), AddGiftCardResponse.class);
-}
+  public AddGiftCardResponse iAddGiftCard(String query) throws IOException {
+    return mapper.readValue(postQuery(query), AddGiftCardResponse.class);
+  }
 
-public FetchVerifySchemeCardResponse iRetreieveVerifyCard(String query) throws IOException {
-	return mapper.readValue(postQuery(query), FetchVerifySchemeCardResponse.class);
-}
+  public FetchVerifySchemeCardResponse iRetreieveVerifyCard(String query) throws IOException {
+    return mapper.readValue(postQuery(query), FetchVerifySchemeCardResponse.class);
+  }
 
-public ViewGiftCardResponse iRetrieveViewGiftCardResponse(String query) throws IOException {
-	return mapper.readValue(postQuery(query), ViewGiftCardResponse.class);
-}
+  public ViewGiftCardResponse iRetrieveViewGiftCardResponse(String query) throws IOException {
+    return mapper.readValue(postQuery(query), ViewGiftCardResponse.class);
+  }
 
-private String postQuery(String query) {
-	String endPoint = URLResources.METIS_REWARDS_GRAPHQL;
-	Map<String, String> mapWebserviceResponse;
-	
-	mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, query, headerListRewards);
-	return mapWebserviceResponse.get("response");
-}
+  private String postQuery(String query) {
+    String endPoint = URLResources.METIS_REWARDS_GRAPHQL;
+    Map<String, String> mapWebserviceResponse;
 
-public PaymentSessionResponse createPaymentSession() throws IOException {
-	String endPoint = URLResources.DIGIPAY_IN_STORE_PAYMENT_SESSION;
-	
-	Payload payload = new Payload(TestProperties.get("DIGIPAY_STORE_ID"), TestProperties.get("DIGIPAY_LANE_ID"));
-	MerchantInfo merchantInfo = new MerchantInfo(TestProperties.get("DIGIPAY_MERCHANT_SCHEMA_ID"), payload);
-	PaymentSessionData paymentSessionData = new PaymentSessionData(TestProperties.get("DIGIPAY_STORE_LOCATION"), merchantInfo, true, 60, 300);
-	Meta meta = new Meta();
-	PaymentSessionRequest paymentSessionRequest = new PaymentSessionRequest(paymentSessionData, meta);
-	
-	// Need this as we are passing an empty Meta object
-	mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-	String requestStr = mapper.writeValueAsString(paymentSessionRequest);
-	
-	Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListDigipay);
-	String response = mapWebserviceResponse.get("response");
-	
-	return mapper.readValue(response, PaymentSessionResponse.class);
-}
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, query, headerListRewards);
+    return mapWebserviceResponse.get("response");
+  }
 
-public QRIDResponse scanQRCode(String qrID) throws IOException {
-	String endPoint = URLResources.METIS_QRID;
-	endPoint = endPoint.replace(":qrId", qrID);
-	
-	Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithoutParam(endPoint, headerListRewards);
-	String response = mapWebserviceResponse.get("response");
-	
-	return mapper.readValue(response, QRIDResponse.class);
-}
+  public PaymentSessionResponse createPaymentSession() throws IOException {
+    String endPoint = URLResources.DIGIPAY_IN_STORE_PAYMENT_SESSION;
 
-public void putPreAuthPaymentSession(String paymentSessionID, String instrument) throws JsonProcessingException {
-	String endPoint = URLResources.METIS_PAYMENT_SESSION;
-	endPoint = endPoint.replace(":paymentSessionId", paymentSessionID);
-	String[] emptyArray = new String[0];
-	
-	SessionData paymentSessionData = new SessionData(instrument, emptyArray, Utilities.generateRandomUUIDString());
-	SessionMeta meta = new SessionMeta();
-	SessionRequest sessionRequest = new SessionRequest(paymentSessionData, meta);
-	String requestStr = mapper.writeValueAsString(sessionRequest);
-	
-	invocationUtil.invokePut(endPoint, requestStr, headerListRewards);
-}
+    Payload payload = new Payload(TestProperties.get("DIGIPAY_STORE_ID"), TestProperties.get("DIGIPAY_LANE_ID"));
+    MerchantInfo merchantInfo = new MerchantInfo(TestProperties.get("DIGIPAY_MERCHANT_SCHEMA_ID"), payload);
+    PaymentSessionData paymentSessionData = new PaymentSessionData(TestProperties.get("DIGIPAY_STORE_LOCATION"), merchantInfo, true, 60, 300);
+    Meta meta = new Meta();
+    PaymentSessionRequest paymentSessionRequest = new PaymentSessionRequest(paymentSessionData, meta);
 
-public PaymentResponse postPaymentRequest() throws IOException {
-	String endPoint = URLResources.DIGIPAY_IN_STORE_PAYMENTS;
-	
-	au.com.woolworths.model.metis.digipay_payment.pos.Payload payload = new au.com.woolworths.model.metis.digipay_payment.pos.Payload(TestProperties.get("DIGIPAY_STORE_ID"), "Test Lane", TestProperties.get("DIGIPAY_RNN"), 1598310169964L);
-	PosPayload posPayload = new PosPayload(TestProperties.get("DIGIPAY_POS_SCHEMA_ID"), payload);
-	PaymentRequestData paymentRequestData = new PaymentRequestData(Utilities.generateRandomUUIDString(), Integer.parseInt(TestProperties.get("DIGIPAY_TRANSACTION_AMOUNT")), false, 3, 300, 60, "", posPayload);
-	Meta meta = new Meta();
-	PaymentRequest paymentRequest = new PaymentRequest(paymentRequestData, meta);
-	
-	String requestStr = mapper.writeValueAsString(paymentRequest);
-	Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListDigipay);
-	String response = mapWebserviceResponse.get("response");
-	
-	return mapper.readValue(response, PaymentResponse.class);
-}
+    // Need this as we are passing an empty Meta object
+    mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+    String requestStr = mapper.writeValueAsString(paymentSessionRequest);
 
-public void addPaymentRequestToSession(String requestID, String sessionID) throws JsonProcessingException {
-	String endPoint = URLResources.DIGIPAY_IN_STORE_PAYMENT_SESSION + "/" + requestID;
-	
-	Payload payload = new Payload(TestProperties.get("DIGIPAY_STORE_ID"), TestProperties.get("DIGIPAY_LANE_ID"));
-	MerchantInfo merchantInfo = new MerchantInfo(TestProperties.get("DIGIPAY_MERCHANT_SCHEMA_ID"), payload);
-	AddPaymentRequestData addPaymentRequestData = new AddPaymentRequestData(sessionID, TestProperties.get("DIGIPAY_STORE_LOCATION"), merchantInfo, requestID);
-	Meta meta = new Meta();
-	AddPaymentRequest addPaymentRequest = new AddPaymentRequest(addPaymentRequestData, meta);
-	
-	String requestStr = mapper.writeValueAsString(addPaymentRequest);
-	invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListDigipay);
-}
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListDigipay);
+    String response = mapWebserviceResponse.get("response");
 
-public TransactionsResponse getTransactionDetails(String requestID) throws IOException {
-	String endPoint = URLResources.METIS_TRANSACTIONS;
-	
-	Map<String, String> queryParams = new HashMap<>();
-	queryParams.put("paymentRequestId", requestID);
-	
-	Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListRewards);
-	String responseStr = mapWebserviceResponse.get("response");
-	
-	return mapper.readValue(responseStr, TransactionsResponse.class);
-}
+    return mapper.readValue(response, PaymentSessionResponse.class);
+  }
 
-public String getInstrument() throws IOException {
-	InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchPaymentInstruments.graphql");
-	String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
-	
-	FetchPaymentInstrumentsResponse fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQuery);
-	
-	return fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getId();
-}
+  public QRIDResponse scanQRCode(String qrID) throws IOException {
+    String endPoint = URLResources.METIS_QRID;
+    endPoint = endPoint.replace(":qrId", qrID);
+
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithoutParam(endPoint, headerListRewards);
+    String response = mapWebserviceResponse.get("response");
+
+    return mapper.readValue(response, QRIDResponse.class);
+  }
+
+  public void putPreAuthPaymentSession(String paymentSessionID, String instrument) throws JsonProcessingException {
+    String endPoint = URLResources.METIS_PAYMENT_SESSION;
+    endPoint = endPoint.replace(":paymentSessionId", paymentSessionID);
+    String[] emptyArray = new String[0];
+
+    SessionData paymentSessionData = new SessionData(instrument, emptyArray, Utilities.generateRandomUUIDString());
+    SessionMeta meta = new SessionMeta();
+    SessionRequest sessionRequest = new SessionRequest(paymentSessionData, meta);
+    String requestStr = mapper.writeValueAsString(sessionRequest);
+
+    invocationUtil.invokePut(endPoint, requestStr, headerListRewards);
+  }
+
+  public PaymentResponse postPaymentRequest() throws IOException {
+    String endPoint = URLResources.DIGIPAY_IN_STORE_PAYMENTS;
+
+    au.com.woolworths.model.metis.digipay_payment.pos.Payload payload = new au.com.woolworths.model.metis.digipay_payment.pos.Payload(TestProperties.get("DIGIPAY_STORE_ID"), "Test Lane", TestProperties.get("DIGIPAY_RNN"), 1598310169964L);
+    PosPayload posPayload = new PosPayload(TestProperties.get("DIGIPAY_POS_SCHEMA_ID"), payload);
+    PaymentRequestData paymentRequestData = new PaymentRequestData(Utilities.generateRandomUUIDString(), Integer.parseInt(TestProperties.get("DIGIPAY_TRANSACTION_AMOUNT")), false, 3, 300, 60, "", posPayload);
+    Meta meta = new Meta();
+    PaymentRequest paymentRequest = new PaymentRequest(paymentRequestData, meta);
+
+    String requestStr = mapper.writeValueAsString(paymentRequest);
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListDigipay);
+    String response = mapWebserviceResponse.get("response");
+
+    return mapper.readValue(response, PaymentResponse.class);
+  }
+
+  public void addPaymentRequestToSession(String requestID, String sessionID) throws JsonProcessingException {
+    String endPoint = URLResources.DIGIPAY_IN_STORE_PAYMENT_SESSION + "/" + requestID;
+
+    Payload payload = new Payload(TestProperties.get("DIGIPAY_STORE_ID"), TestProperties.get("DIGIPAY_LANE_ID"));
+    MerchantInfo merchantInfo = new MerchantInfo(TestProperties.get("DIGIPAY_MERCHANT_SCHEMA_ID"), payload);
+    AddPaymentRequestData addPaymentRequestData = new AddPaymentRequestData(sessionID, TestProperties.get("DIGIPAY_STORE_LOCATION"), merchantInfo, requestID);
+    Meta meta = new Meta();
+    AddPaymentRequest addPaymentRequest = new AddPaymentRequest(addPaymentRequestData, meta);
+
+    String requestStr = mapper.writeValueAsString(addPaymentRequest);
+    invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListDigipay);
+  }
+
+  public TransactionsResponse getTransactionDetails(String requestID) throws IOException {
+    String endPoint = URLResources.METIS_TRANSACTIONS;
+
+    Map<String, String> queryParams = new HashMap<>();
+    queryParams.put("paymentRequestId", requestID);
+
+    Map<String, String> mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListRewards);
+    String responseStr = mapWebserviceResponse.get("response");
+
+    return mapper.readValue(responseStr, TransactionsResponse.class);
+  }
+
+  public String getInstrument() throws IOException {
+    InputStream iStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchPaymentInstruments.graphql");
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, null);
+
+    FetchPaymentInstrumentsResponse fetchPaymentInstrumentsResponse = iRetrievePaymentInstruments(graphqlQuery);
+
+    return fetchPaymentInstrumentsResponse.getData().getPaymentInstruments()[0].getId();
+  }
 }

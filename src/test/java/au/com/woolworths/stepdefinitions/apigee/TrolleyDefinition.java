@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 public class TrolleyDefinition extends TrolleyHelper {
   private final static Logger logger = Logger.getLogger("TrolleyDefinition.class");
-  private SearchHelper searchHelper = new SearchHelper();
+  private final SearchHelper searchHelper = new SearchHelper();
   private double expectedTotalPrice = 0;
   private List<String> productNames = new ArrayList();
 

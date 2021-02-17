@@ -22,7 +22,7 @@ public class ProductDetailsResponseHelper extends BaseHelper {
     FORMATTED_BANNER("FormattedBanner"),
     PRODUCT_DISCLAIMER("ProductDisclaimer");
 
-    private String typename;
+    private final String typename;
 
     Typename(String typename) {
       this.typename = typename;
@@ -38,7 +38,7 @@ public class ProductDetailsResponseHelper extends BaseHelper {
     BARCODE("barcode"),
     STORE_ID("storeId");
 
-    private String arg;
+    private final String arg;
 
     ProductDetailsArgs(String arg) {
       this.arg = arg;
