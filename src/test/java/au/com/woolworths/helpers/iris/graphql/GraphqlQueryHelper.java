@@ -25,26 +25,6 @@ public class GraphqlQueryHelper extends BaseHelper {
     return responseStr;
   }
 
-  /**
-   * Mode is getting deprecated soon from all woolies graphql queries
-   * Todo: Remove this enum and its uses when it is deprecated
-   */
-  public enum Mode {
-    ONLINE("ONLINE"),
-    PICKUP("PICKUP"),
-    INSTORE("INSTORE");
-
-    private String mode;
-
-    Mode(String mode) {
-      this.mode = mode;
-    }
-
-    public String get() {
-      return mode;
-    }
-  }
-
   public enum ProductListPageSize {
     PRODUCT_LIST_PAGE_SIZE(20),
     PRODUCTS_BY_PRODUCT_GROUP_PAGE_SIZE(200),

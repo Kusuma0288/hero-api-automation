@@ -1,0 +1,19 @@
+query {
+    giftCards {
+        ... on NoGiftCards {
+            imageURL
+            title
+            content
+        }
+        ... on GiftCards {
+            helperText
+            items {
+                id
+                name
+                amount
+                subtitle
+                logoURL
+            }
+        }
+    }
+}
