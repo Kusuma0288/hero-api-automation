@@ -10,6 +10,8 @@ import au.com.woolworths.model.metis.card.home_page_with_wallet.RewardsCardHomeP
 import au.com.woolworths.model.metis.card.payment_instruments.FetchPaymentInstrumentsResponse;
 import au.com.woolworths.model.metis.card.update_scheme_card.FetchUpdateSchemeCardURLResponse;
 import au.com.woolworths.model.metis.card.verify_scheme_card.FetchVerifySchemeCardResponse;
+import au.com.woolworths.model.metis.card.view_gift_card.Item;
+import au.com.woolworths.model.metis.card.view_gift_card.ViewGiftCardResponse;
 import au.com.woolworths.model.metis.card.view_user_preference.FetchUserPreferencesResponse;
 import au.com.woolworths.utils.TestProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,6 +23,7 @@ import junit.framework.Assert;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class WalletDefinition extends RewardsCardWithWalletHelper {
 
@@ -30,6 +33,7 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
   private FetchUserPreferencesResponse fetchUserPreferencesResponse;
   private AddGiftCardResponse addGiftCardResponse;
   private FetchVerifySchemeCardResponse fetchVerifyCardResponse;
+  private ViewGiftCardResponse viewGiftCardResponse;
   private String fetchAddSchemeCardURL;
   private String fetchUpdateSchemeCardURL;
   private String cardToUpdate;
@@ -91,8 +95,7 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
 
     }
 
-    Assert.assertEquals("Wallet tooltip is as expected", "Add a bank card to start\n" +
-        "using Everyday Pay", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getTooltip());
+    Assert.assertEquals("Wallet tooltip is as expected", "Add a bank card to start\n" + "using Everyday Pay", rewardsCardHomePageWithWalletResponse.getData().getWalletHomePage().getTooltip());
 
   }
 
@@ -233,5 +236,30 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     variables.put("$stepUpToken", stepUpToken);
     String verifySchemeCardStreamGraphqlQuery = GraphqlParser.parseGraphql(verifySchemeCardStream, variables);
     FetchVerifySchemeCardResponse fetchVerifySchemeCardResponse = iRetreieveVerifyCard(verifySchemeCardStreamGraphqlQuery);
+  }
+
+  @And("^the user should be able to view gift card$")
+  public void theUserShouldBeAbleToViewGiftCard() throws IOException {
+    viewGiftCardResponse = fetchViewGiftCardResponse();
+    viewGiftCardAssertions(viewGiftCardResponse);
+  }
+
+  private ViewGiftCardResponse fetchViewGiftCardResponse() throws IOException {
+    InputStream iStreamInstruments = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchViewGiftCard.graphql");
+    String graphqlQueryInstruments = GraphqlParser.parseGraphql(iStreamInstruments, null);
+    return iRetrieveViewGiftCardResponse(graphqlQueryInstruments);
+  }
+
+  private void viewGiftCardAssertions(ViewGiftCardResponse response) {
+    List<Item> items = response.getData().getGiftCards().getItems();
+    String helperTextResponse = response.getData().getGiftCards().getHelperText();
+
+    Assert.assertEquals("Helper Text shows the correct message/text", "Your Gift Cards will be used first when paying, before using your preferred bank card.", helperTextResponse);
+    Assert.assertNotNull("Within GiftCard, items has the id field", items.get(0).getId());
+    Assert.assertNotNull("Within GiftCard, items has the name field", items.get(0).getName());
+    Assert.assertNotNull("Within GiftCard, items has the amount field", items.get(0).getAmount());
+    Assert.assertTrue("Within GiftCard, items has $", items.get(0).getAmount().contains("$"));
+    Assert.assertNotNull("Within GiftCard, items has the subtitle field", items.get(0).getSubtitle());
+    Assert.assertNotNull("Within GiftCard, items has the logoURL field", items.get(0).getLogoURL());
   }
 }
