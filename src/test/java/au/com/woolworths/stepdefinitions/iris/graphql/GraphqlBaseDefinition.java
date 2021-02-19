@@ -18,7 +18,7 @@ public class GraphqlBaseDefinition {
 
   public GraphqlBaseDefinition(String queryAsset) {
     this.queryHelper = new GraphqlQueryHelper();
-    sharedData = ApplicationContext.getSharedData();
+    this.sharedData = ApplicationContext.getSharedData();
     this.mapper = new ObjectMapper();
     this.iStream = ProductDetailsDefinition.class.getResourceAsStream("/gqlQueries/iris/" + queryAsset);
     this.variables = new ObjectMapper().createObjectNode();

@@ -24,12 +24,12 @@ public class BaseHelper {
   protected ObjectMapper mapper = new ObjectMapper();
 
   public BaseHelper() {
-    headerListCommon = new LinkedList<>();
-    headerListTrader = new LinkedList<>();
-    headerListRewards = new LinkedList<>();
-    headerListDigipay = new LinkedList<>();
+    this.headerListCommon = new LinkedList<>();
+    this.headerListTrader = new LinkedList<>();
+    this.headerListRewards = new LinkedList<>();
+    this.headerListDigipay = new LinkedList<>();
 
-    sharedData = ApplicationContext.getSharedData();
+    this.sharedData = ApplicationContext.getSharedData();
     headerListCommon.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerListCommon.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
 

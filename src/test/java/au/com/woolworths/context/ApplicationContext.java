@@ -11,7 +11,7 @@ public class ApplicationContext {
 
     INSTANCE;
 
-    private final SharedData sharedData;
+    private SharedData sharedData;
 
     Singleton() {
       sharedData = new SharedData();

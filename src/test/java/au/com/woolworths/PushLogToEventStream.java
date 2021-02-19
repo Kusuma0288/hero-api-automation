@@ -7,7 +7,6 @@ import org.json.simple.parser.ParseException;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.logging.Logger;
@@ -15,7 +14,7 @@ import java.util.logging.Logger;
 public class PushLogToEventStream {
   private final static Logger logger = Logger.getLogger("PushLogToEventStream.class");
 
-  public static void main(String[] arg) throws IOException, EventHubException, ParseException {
+  public static void main(String arg[]) throws IOException, EventHubException, ParseException {
 /*            final String  namespaceName = "wowdevanalyticsplatformeventstream";
             final String eventHubName = "eventstream";
             final String sasKeyName = "eventstream_publisher";
@@ -51,7 +50,7 @@ public class PushLogToEventStream {
         JSONArray json = (JSONArray) obj;
         JSONObject elem = (JSONObject)json.get(0);*/
 
-    byte[] cucumberReport = jsonNodes[0].toString().getBytes(StandardCharsets.UTF_8);
+    byte[] cucumberReport = jsonNodes[0].toString().getBytes("utf-8");
     EventData sendEvent = EventData.create(cucumberReport);
     ehClient.sendSync(sendEvent);
     ehClient.closeSync();

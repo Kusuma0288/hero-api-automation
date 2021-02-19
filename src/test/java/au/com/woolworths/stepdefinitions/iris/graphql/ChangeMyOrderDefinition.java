@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 public class ChangeMyOrderDefinition {
 
   private final static Logger logger = Logger.getLogger("ProductDetailsDefinition.class");
-  private final GraphqlQueryHelper queryHelper = new GraphqlQueryHelper();
+  private GraphqlQueryHelper queryHelper = new GraphqlQueryHelper();
   protected SharedData sharedData = ApplicationContext.getSharedData();
   protected ObjectMapper mapper = new ObjectMapper();
 
