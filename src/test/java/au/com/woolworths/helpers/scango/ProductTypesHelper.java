@@ -40,6 +40,10 @@ public class ProductTypesHelper extends BaseHelper {
                 case "Tiliter Weight item":  ean = TestProperties.get("TILITER_WEIGHT_ITEM"); break;
                 case "Tiliter Quantity item":  ean = TestProperties.get("TILITER_QTY_ITEM"); break;
                 case "Weight required item":  ean = TestProperties.get("WEIGHT_REQUIRED_ITEM"); break;
+                case "Shelf Label item":  ean = TestProperties.get("SHELF_LABEL_ITEM"); break;
+                case "GS1 item":  ean = TestProperties.get("GS1_ITEM"); break;
+                case "Age restricted item":  ean = TestProperties.get("AGE_RESTRICTED_ITEM"); break;
+                case "Sale restricted item":  ean = TestProperties.get("SALE_RESTRICTED_ITEM");
         }
 
         addItemRequest.setEan(ean);

@@ -1,7 +1,9 @@
 package au.com.woolworths.helpers.scango;
 
 import au.com.woolworths.helpers.common.BaseHelper;
+import au.com.woolworths.model.scango.kiosk.KioskLoadCartRequest;
 import au.com.woolworths.model.scango.kiosk.KioskLoadCartResponse;
+import au.com.woolworths.model.scango.kiosk.VerifyCartRequest;
 import au.com.woolworths.model.scango.scanitems.LoadCartResponse;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;

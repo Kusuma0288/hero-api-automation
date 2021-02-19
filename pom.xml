@@ -223,7 +223,7 @@
                 <version>3.0.0-M3</version>
 
                 <configuration>
-                    <forkCount>3</forkCount>
+                    <forkCount>0</forkCount>
                     <reuseForks>false</reuseForks>
                     <systemPropertyVariables>
                         <cucumber.options>${cucumber.options}</cucumber.options>

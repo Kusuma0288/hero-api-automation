@@ -141,6 +141,7 @@ public class SharedData {
   public String storeID;
   public String rewardsAuthCode;
   public String lineNumber;
-
+  public String cartID;
+  public String kioskAccessToken;
 
 }

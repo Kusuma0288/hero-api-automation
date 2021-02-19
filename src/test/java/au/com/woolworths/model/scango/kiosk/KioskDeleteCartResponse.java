@@ -28,5 +28,6 @@ public class KioskDeleteCartResponse {
     private List<Object> items = null;
     private List<Object> notifications = null;
     private List<Object> coupons = null;
+    private List<Object> offers = null;
     private String statusCode;
 }

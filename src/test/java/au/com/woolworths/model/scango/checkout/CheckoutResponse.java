@@ -25,6 +25,7 @@ public class CheckoutResponse {
     private Integer intervtnprice;
     private Integer intervtnquantity;
     private Integer totalsavings;
+    private Boolean is_sdc;
     private Double balancedue;
     private Is is;
     private Discounts discounts;

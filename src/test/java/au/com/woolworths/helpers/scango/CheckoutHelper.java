@@ -2,9 +2,8 @@ package au.com.woolworths.helpers.scango;
 
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.scango.checkout.CheckoutResponse;
+import au.com.woolworths.model.scango.kiosk.KioskCheckoutRequest;
 import au.com.woolworths.model.scango.kiosk.KioskCheckoutResponse;
-import au.com.woolworths.model.scango.scanitems.AddItemRequest;
-import au.com.woolworths.model.scango.scanitems.AddItemResponse;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
@@ -42,14 +41,19 @@ public class CheckoutHelper extends BaseHelper {
 
     public KioskCheckoutResponse iClickOnKioskCheckout() throws IOException {
         Map<String, String> mapWebserviceResponse;
+        String requestStr = null;
         String responseStr = null;
-        Map<String, String> queryParams = new HashMap<>();
+        String cartID = sharedData.checkoutResponse.getCartid();
+
+        KioskCheckoutRequest kioskCheckoutRequest = new KioskCheckoutRequest();
+        kioskCheckoutRequest.setCartbarcode(cartID);
 
         KioskCheckoutResponse response;
 
         String endPoint = URLResources.SCANGO_KIOSK_CHECKOUT;
+        requestStr = mapper.writeValueAsString(kioskCheckoutRequest);
 
-        mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListScanGoKiosk);
+        mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListScanGoKiosk);
         responseStr = mapWebserviceResponse.get("response");
         response = mapper.readValue(responseStr, KioskCheckoutResponse.class);
         response.setStatusCode(mapWebserviceResponse.get("statusCode"));

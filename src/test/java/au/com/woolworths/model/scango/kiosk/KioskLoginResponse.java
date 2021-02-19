@@ -6,8 +6,8 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class KioskLoginResponse {
-    private String accessToken;
-    private String expiresIn;
+    private String access_token;
+    private String expires_in;
     private String firstname;
     private String fullname;
     private String displayname;

@@ -55,6 +55,8 @@ public class BaseHelper {
     headerListScanGoKiosk.add(new Header("x-api-key", TestProperties.get("KIOSK_API_KEY")));
     headerListScanGoKiosk.add(new Header("deviceid", "SCANNER_KIOSK_" + sharedData.storeID));
     headerListScanGoKiosk.add(new Header("storeid", sharedData.storeID));
+    headerListScanGoKiosk.add(new Header("cartbarcode", sharedData.cartID));
+    headerListScanGoKiosk.add(new Header("Authorization", "Bearer " + sharedData.kioskAccessToken));
 
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);

@@ -19,6 +19,6 @@ public class KioskLoginDefinition extends LoginHelper{
     @And("^I call Team member barcode API to get team member access token$")
     public void i_Call_Team_Member_Barcode_API_To_Get_Team_Member_Access_Token() throws IOException {
         KioskLoginResponse response = iCallKioskLoginAPI();
-        sharedData.accessToken = response.getAccessToken();
+        sharedData.kioskAccessToken = response.getAccess_token();
     }
 }

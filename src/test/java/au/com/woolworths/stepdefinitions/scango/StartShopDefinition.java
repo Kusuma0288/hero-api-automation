@@ -17,6 +17,7 @@ public class StartShopDefinition extends StartShopHelper {
         StartShopResponse startShopResponse = iClickOnStartShopAPI();
 
         sharedData.storeID = startShopResponse.getStoreid();
+        sharedData.cartID  = startShopResponse.getCartid();
 
         System.out.println("StartShopDefinition  file " +startShopResponse.toString());
     }

@@ -36,8 +36,8 @@ Feature: Kiosk payment
       And I verify the View receipt API for the transaction
 
     Scenario: Verify user is able to complete payment through Kiosk when a cart has an Intervention item
-      Given I add a "<Simple item>" into cart
-      And I add a "<Age restricted item>" into cart
+      Given I add a "Simple item" into cart
+      And I add a "Age restricted item" into cart
       When I call Load cart API
       And I call Checkout API
       And I call Verify Cart API
@@ -51,7 +51,7 @@ Feature: Kiosk payment
 
     Scenario: Verify Team member is able to void the transaction at Kiosk when a cart has an Intervention item
       Given I add a "Simple item" into cart
-      And I add a "Sale restricted item" into cart
+      And I add a "Age restricted item" into cart
       When I call Load cart API
       And I call Checkout API
       And I call Verify Cart API

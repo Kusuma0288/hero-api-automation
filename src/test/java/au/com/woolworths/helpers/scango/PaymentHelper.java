@@ -46,7 +46,6 @@ public class PaymentHelper extends BaseHelper {
         Map<String, String> mapWebserviceResponse;
         String responseStr = null;
         String requestStr = null;
-        Map<String, String> queryParams = new HashMap<>();
 
         List<Payment> h = new ArrayList<Payment>();
 
@@ -84,10 +83,10 @@ public class PaymentHelper extends BaseHelper {
         Map<String, String> queryParams = new HashMap<>();
 
         String cartID = sharedData.checkoutResponse.getCartid();
-        Double purchaseAmt = sharedData.kioskCheckoutResponse.getBalancedue();
+   //     Double purchaseAmt = sharedData.kioskCheckoutResponse.getBalancedue();
 
         KioskPaymentinfo kioskPaymentinfo = new KioskPaymentinfo();
-        kioskPaymentinfo.setAmountpurchase(purchaseAmt);
+        kioskPaymentinfo.setAmountpurchase(balanceDue);
         kioskPaymentinfo.setAuthcode(TestProperties.get("AUTH_CODE"));
         kioskPaymentinfo.setBin(TestProperties.get("BIN"));
         kioskPaymentinfo.setCardSuffix(TestProperties.get("CARD_SUFFIX"));
@@ -102,14 +101,14 @@ public class PaymentHelper extends BaseHelper {
         kioskPaymentinfo.setStan(TestProperties.get("STAN"));
         kioskPaymentinfo.setTerminalId(TestProperties.get("TERMINAL_ID"));
         kioskPaymentinfo.setTokenizedpan(TestProperties.get("TOKENIZED_PAN"));
-        kioskPaymentinfo.setTxnpaidtime(TestProperties.get(""));
+        kioskPaymentinfo.setTxnpaidtime(TestProperties.get("TXN_PAID_TIME"));
         kioskPaymentinfo.setTxnreference(TestProperties.get("TXN_REFERENCE"));
         kioskPaymentinfo.setTxnType(TestProperties.get("TXN_TYPE"));
 
 
         KioskPaymentRequest kioskPaymentRequest = new KioskPaymentRequest();
         kioskPaymentRequest.setCartbarcode(cartID);
-        kioskPaymentRequest.setKioskPaymentinfo(kioskPaymentinfo);
+        kioskPaymentRequest.setPaymentinfo(kioskPaymentinfo);
 
         KioskPaymentResponse response;
 
@@ -117,11 +116,47 @@ public class PaymentHelper extends BaseHelper {
         String endPoint = URLResources.SCANGO_KIOSK_PAYMENT;
 
         requestStr = mapper.writeValueAsString(kioskPaymentRequest);
+        System.out.println("PaymentRequest  file " + requestStr);
 
         mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListScanGoKiosk);
         responseStr = mapWebserviceResponse.get("response");
         response = mapper.readValue(responseStr, KioskPaymentResponse.class);
         response.setStatusCode(mapWebserviceResponse.get("statusCode"));
+
+
+
+        return response;
+    }
+
+    public PaymentErrorResponse iCallInvalidListPaymentAPI(String instrumentsID, Double balanceDue) throws IOException {
+        Map<String, String> mapWebserviceResponse;
+        String responseStr = null;
+        String requestStr = null;
+
+        List<Payment> h = new ArrayList<Payment>();
+
+        Payment payment = new Payment();
+        payment.setPaymentInstrumentId(instrumentsID);
+        payment.setAmount(balanceDue);
+        payment.setCardSuffix(TestProperties.get("PAYMENT_CARD_SUFFIX"));
+        payment.setCardType(TestProperties.get("PAYMENT_CART_TYPE"));
+
+
+        h.add(payment);
+        PaymentRequest paymentRequest = new PaymentRequest();
+        PaymentErrorResponse response;
+
+        paymentRequest.setClientReference(TestProperties.get("PAYMENT_CLIENT_REFERENCE"));
+        paymentRequest.setPayment(h);
+
+        String endPoint = URLResources.SCANGO_PAYMENT;
+
+        requestStr = mapper.writeValueAsString(paymentRequest);
+
+        mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListScanGo);
+        responseStr = mapWebserviceResponse.get("response");
+        response = mapper.readValue(responseStr, PaymentErrorResponse.class);
+     // response.setStatusCode(mapWebserviceResponse.get("statusCode"));
 
         return response;
     }

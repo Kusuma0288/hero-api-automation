@@ -18,7 +18,6 @@ Feature: In-App payment
     And I verify transaction is available in the Transaction History API
     And I verify the View receipt API for the transaction
 
-
   Scenario: Verify user is able to Add and Update Tiliter Quantity Item
     Given I add a "Tun item" into cart
     And I add a "Tiliter Quantity item" into cart
