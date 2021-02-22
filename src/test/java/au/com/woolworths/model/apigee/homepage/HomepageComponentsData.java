@@ -25,9 +25,15 @@ public class HomepageComponentsData {
   private String altText;
   private String height;
   private HomepageQueryParameters queryParameters;
+  private String id;
   private String deliveryNowStatus;
   private String status;
   private String isEligible;
+  private String isAvailable;
+  private String isSelected;
+  private String deliveryFee;
+  private String eta;
+  private String etaInMinutes;
 
 }
 
