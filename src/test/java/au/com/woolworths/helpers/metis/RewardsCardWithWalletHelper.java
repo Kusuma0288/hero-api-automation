@@ -9,6 +9,7 @@ import au.com.woolworths.model.metis.card.home_page_with_wallet.RewardsCardHomeP
 import au.com.woolworths.model.metis.card.payment_instruments.FetchPaymentInstrumentsResponse;
 import au.com.woolworths.model.metis.card.update_scheme_card.FetchUpdateSchemeCardURLResponse;
 import au.com.woolworths.model.metis.card.verify_scheme_card.FetchVerifySchemeCardResponse;
+import au.com.woolworths.model.metis.card.view_gift_card.ViewGiftCardResponse;
 import au.com.woolworths.model.metis.card.view_user_preference.FetchUserPreferencesResponse;
 import au.com.woolworths.model.metis.digipay_payment.*;
 import au.com.woolworths.model.metis.digipay_payment.pos.PosPayload;
@@ -68,6 +69,10 @@ public class RewardsCardWithWalletHelper extends IFrameCardHelper {
 
   public FetchVerifySchemeCardResponse iRetreieveVerifyCard(String query) throws IOException {
     return mapper.readValue(postQuery(query), FetchVerifySchemeCardResponse.class);
+  }
+
+  public ViewGiftCardResponse iRetrieveViewGiftCardResponse(String query) throws IOException {
+    return mapper.readValue(postQuery(query), ViewGiftCardResponse.class);
   }
 
   private String postQuery(String query) {
