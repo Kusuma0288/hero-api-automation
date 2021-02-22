@@ -17,6 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.iterable;
+
 public class Homepage extends HomepageHelper {
 
   private final static Logger logger = Logger.getLogger("Homepage.class");
@@ -263,20 +266,31 @@ public class Homepage extends HomepageHelper {
     HomepageResponse homepageResponse = iRetrieveHomepageWithInStore(queryParams);
 
     //Assert Response is not Null
-    Assert.assertNotNull(homepageResponse.getData());
+    //Assert.assertNotNull(homepageResponse.getData());
+    assertThat(homepageResponse.getData()).isNotNull();
 
     //Assert Delivery Now Card details
-    Assert.assertTrue("Delivery Now Card missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item2 -> item2.getType().equals("DeliveryNowCard")));
-    HomepageComponentsData deliveryNowData = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("DeliveryNowCard")).findFirst().get().getData();
+  //  Assert.assertTrue("Delivery Now Card missing", Arrays.stream(homepageResponse.getData().getItems()).anyMatch(item2 -> item2.getType().equals("DeliveryNowCard")));
+    assertThat(homepageResponse.getData().getItems()).extracting(HomepageComponents::getType).contains("DeliveryNowCard");
+
+ //   HomepageComponentsData deliveryNowData = Arrays.stream(homepageResponse.getData().getItems()).filter(x -> x.getType().equals("DeliveryNowCard")).findFirst().get().getData();
+ //   assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("status").first().isEqualTo("Open");
+
     if (eligibility.equalsIgnoreCase("Eligible")) {
-      Assert.assertEquals("Delivery Now Card deliveryNowStatus field validation", "Open", deliveryNowData.getDeliveryNowStatus());
-      Assert.assertEquals("Delivery Now Card status field validation", "ClosingSoon", deliveryNowData.getStatus());
-      Assert.assertEquals("Delivery Now Card status field validation", "true", deliveryNowData.getIsEligible());
+      assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("deliveryNowStatus").first().isEqualTo("Open");
+      assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("status").first().isEqualTo("ClosingSoon");
+      assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("isEligible").first().isEqualTo("true");
+//      Assert.assertEquals("Delivery Now Card deliveryNowStatus field validation", "Open", deliveryNowData.getDeliveryNowStatus());
+//      Assert.assertEquals("Delivery Now Card status field validation", "ClosingSoon", deliveryNowData.getStatus());
+//      Assert.assertEquals("Delivery Now Card status field validation", "true", deliveryNowData.getIsEligible());
     }
     else {
-      Assert.assertEquals("Delivery Now Card deliveryNowStatus field validation", "Ineligible", deliveryNowData.getDeliveryNowStatus());
-      Assert.assertEquals("Delivery Now Card status field validation", "Ineligible", deliveryNowData.getStatus());
-      Assert.assertEquals("Delivery Now Card status field validation", "false", deliveryNowData.getIsEligible());
+      assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("deliveryNowStatus").first().isEqualTo("Ineligible");
+      assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("status").first().isEqualTo("Ineligible");
+      assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("isEligible").first().isEqualTo("false");
+//      Assert.assertEquals("Delivery Now Card deliveryNowStatus field validation", "Ineligible", deliveryNowData.getDeliveryNowStatus());
+//      Assert.assertEquals("Delivery Now Card status field validation", "Ineligible", deliveryNowData.getStatus());
+//      Assert.assertEquals("Delivery Now Card status field validation", "false", deliveryNowData.getIsEligible());
     }
 
   }

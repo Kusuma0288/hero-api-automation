@@ -9,5 +9,5 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class HomepageQueryParameters {
 
   private String groupId;
-
+  private String storeId;
 }

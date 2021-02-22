@@ -48,7 +48,7 @@ public class DeliveryAddressDefinition extends AddressHelper {
     String addressId = addressDetailResponse.getId();
     Assert.assertNotNull(addressId);
     sharedData.addressId = addressId;
-
+    sharedData.deliveryAddressIdContainer = Integer.parseInt(addressId);
   }
 
   @When("^verify the address saved is set as primary address in MyAccount$")
