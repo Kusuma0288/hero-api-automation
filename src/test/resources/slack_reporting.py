@@ -26,10 +26,10 @@ if user == 'jenkins':
     channel_name = '#shopapp-auto-reports'
 elif user == 'vsts':
     workspace = '/home/vsts/work/1/s'
-    channel_name = '#shopapp-auto-reports'
+    channel_name = '#rewardsapp-auto-reports'
 elif user == 'AzDevOps':
     workspace = args.workspace
-    channel_name = '#shopapp-auto-reports'
+    channel_name = '#rewardsapp-auto-reports'
 
 
 path = workspace + '/target/cucumber-reports/advanced-reports/'
