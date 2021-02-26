@@ -19,18 +19,13 @@ args = parser.parse_args()
 print("Echo:", args.workspace)
 
 workspace = '~/Woolworths/woolworths-mobile-api-automation'
-channel_name = '#testing_python_slack'
 
 if user == 'jenkins':
     workspace = os.environ['WORKSPACE']
-    channel_name = '#shopapp-auto-reports'
 elif user == 'vsts':
     workspace = '/home/vsts/work/1/s'
-    channel_name = '#rewardsapp-auto-reports'
 elif user == 'AzDevOps':
     workspace = args.workspace
-    channel_name = '#rewardsapp-auto-reports'
-
 
 path = workspace + '/target/cucumber-reports/advanced-reports/'
 
@@ -53,8 +48,8 @@ for filepath in glob.glob(os.path.join(os.path.expanduser(path), '*.json')):
         total_no_of_scenarios = individual_scenarios
         total_scenarios_failed += len(jp.match("$.[*].elements[?(steps[*].result.status~'.*failed.*')]", json_data))
 
-print "\n\nThe Total Number of Scenarios::",total_no_of_scenarios
-print "\n\nFailed Scenarios::",total_scenarios_failed
+#print "\n\nThe Total Number of Scenarios::",total_no_of_scenarios
+#print "\n\nFailed Scenarios::",total_scenarios_failed
 
 sizes = [total_no_of_scenarios - total_scenarios_failed, total_scenarios_failed]
 
