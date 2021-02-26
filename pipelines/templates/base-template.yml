@@ -166,7 +166,6 @@ steps:
     condition: and(succeeded(), ne('${{ parameters.SlackWebhookUrl }}', ''))
 
   - powershell: |
-      echo $(buildStatus)
       if('$(buildStatus)' -eq 'FAIL' -And '$(Build.Reason)' -eq 'PullRequest'){
         throw "Build failed. Please check the new failures."
       }
