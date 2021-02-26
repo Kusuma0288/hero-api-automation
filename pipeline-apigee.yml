@@ -94,6 +94,7 @@ stages:
               echo ${{variables.TriggeredEnv}}
           - template: pipelines/templates/base-template.yml
             parameters:
+              SlackWebHookUrl: https://hooks.slack.com/services/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
               TestRunTitle: Apigee Automation Run Report
               Profile: ${{variables.TriggeredProfile}}
               RunEnv: ${{variables.TriggeredEnv}}
