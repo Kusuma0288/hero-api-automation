@@ -105,7 +105,7 @@ steps:
 
       $total_failures = $returnValues.currentFailures.Trim()
       echo "total_failures=" $total_failures
-      echo "Last failures count=" $(Apigee_UAT_LastFailCount).Trim()
+      echo "Last failures count=" $(Apigee_UAT_LastFailCount.Trim())
 
       $PROJECT= "Mobile"
       $ORGANIZATION_URL="https://dev.azure.com/wowonline/"
