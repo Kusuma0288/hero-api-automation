@@ -70,6 +70,7 @@ stages:
               echo ${{ parameters.triggerEnv }}
           - template: pipelines/templates/base-template.yml
             parameters:
+              SlackWebHookUrl: https://hooks.slack.com/services/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
               TestRunTitle: Rewards Automation Run Report
               Profile: regression_rewards
               RunEnv: ${{ parameters.triggerEnv }}
