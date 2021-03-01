@@ -105,8 +105,8 @@ steps:
 
       $total_failures = $returnValues.currentFailures.Trim()
       echo "total_failures=" $total_failures
-      $lastFailCount = $(Apigee_UAT_LastFailCount)
-      echo "Last failures count=" $lastFailCount.toString().Trim()
+      $lastApigeeFailCount = $(Apigee_UAT_LastFailCount)
+      $lastApigeeFailCount = $lastApigeeFailCount.toString().Trim()
 
       $PROJECT= "Mobile"
       $ORGANIZATION_URL="https://dev.azure.com/wowonline/"
@@ -122,7 +122,7 @@ steps:
       echo $(System.AccessToken) | az devops login --org $ORGANIZATION_URL
 
       if('${{ parameters.Service }}' -eq 'apigee' -And '${{ parameters.RunEnv }}' -eq 'uat'){
-          if($total_failures -gt $(Apigee_UAT_LastFailCount)){
+          if($total_failures -gt $lastApigeeFailCount){
               Write-Host "##vso[task.setvariable variable=buildStatus;]FAIL"
               echo "Apigee build failed. Details below: "
               echo "Current failures: " $returnValues.currentFailures
