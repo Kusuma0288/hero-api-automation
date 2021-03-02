@@ -105,14 +105,11 @@ steps:
 
       $total_failures = $returnValues.currentFailures.Trim()
       echo "total_failures=" $total_failures
-      $total_failures=[int]$total_failures
-      $total_failures.GetType()
 
       $lastApigeeFailCount = $(Apigee_UAT_LastFailCount)
       $lastApigeeFailCount = $lastApigeeFailCount.toString().Trim()
       echo "lastApigeeFailCount=" $lastApigeeFailCount
-      $lastApigeeFailCount=[int]$lastApigeeFailCount
-      $lastApigeeFailCount.GetType()
+
 
       $PROJECT= "Mobile"
       $ORGANIZATION_URL="https://dev.azure.com/wowonline/"
