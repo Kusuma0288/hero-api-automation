@@ -122,7 +122,7 @@ steps:
       echo $(System.AccessToken) | az devops login --org $ORGANIZATION_URL
 
       if('${{ parameters.Service }}' -eq 'apigee' -And '${{ parameters.RunEnv }}' -eq 'uat'){
-          if($total_failures -gt $lastApigeeFailCount){
+          if([int]$total_failures -gt [int]$lastApigeeFailCount){
               Write-Host "##vso[task.setvariable variable=buildStatus;]FAIL"
               echo "Apigee build failed. Details below: "
               echo "Current failures: " $returnValues.currentFailures
