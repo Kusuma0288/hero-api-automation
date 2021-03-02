@@ -11,8 +11,10 @@ $lobsterURL = $baseUrl + "/pages/tag-scenarios/tag_Lobsters.html"
 $vegemiteURL = $baseUrl + "/pages/tag-scenarios/tag_VEGEMITE.html"
 $nutellaURL = $baseUrl + "/pages/tag-scenarios/tag_NUTELLA.html"
 $cloverURL = $baseUrl + "/pages/tag-scenarios/tag_CLOVER.html"
+$falconURL = $baseUrl + "/pages/tag-scenarios/tag_Falcon.html"
 $totalURL = $baseUrl + "/pages/tag-scenarios/tag_REGRESSION_APIGEE.html"
 $SlackWebhookUrl = "https://hooks.slack.com/services/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"
+
 ##functions
 function calculation {
  param ([string]$value)
@@ -42,6 +44,7 @@ $lobsterCount = calculation $lobsterURL
 $vegemiteCount = calculation $vegemiteURL
 $cloverCount = calculation $cloverURL
 $nutellaCount = calculation $nutellaURL
+$falconCount = calculation $falconURL
 $total_failures = calculation $totalURL
 
 if($SourceBranchName -ne 'merge')
@@ -75,6 +78,9 @@ if($SourceBranchName -ne 'merge')
           }
           if($cloverCount -ne 0){
                 @{title = 'Clover'; value = $cloverCount; short = 'true'}
+          }
+          if($falconCount -ne 0){
+                @{title = 'Falcon'; value = $falconCount; short = 'true'}
           }
         )
      image_url = $imageURL
