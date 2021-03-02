@@ -5,7 +5,7 @@ import au.com.woolworths.model.iris.graphql.productList.ProductsBySearchResponse
 import cucumber.api.java.en.When;
 import au.com.woolworths.graphql.parser.GraphqlParser;
 
-import static au.com.woolworths.helpers.iris.graphql.GraphqlQueryHelper.*;
+import static au.com.woolworths.helpers.iris.graphql.GraphqlHelper.*;
 import static au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.*;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class ProductsBySearchDefinition extends GraphqlBaseDefinition {
     variables.put(ProductsBySearchArgs.SEARCH_TERM.get(), searchTerm);
     variables.put(ProductsBySearchArgs.PAGE_SIZE.get(), ProductListPageSize.DEFAULT_PRODUCT_LIST_PAGE_SIZE.get());
     String productsBySearchQuery = GraphqlParser.parseGraphql(iStream, variables);
-    String productsBySearchResponseString = queryHelper.postGraphqlQuery(productsBySearchQuery);
+    String productsBySearchResponseString = graphqlHelper.postGraphqlQuery(productsBySearchQuery);
     ProductsBySearchResponse productsBySearchResponse = mapper.readValue(productsBySearchResponseString, ProductsBySearchResponse.class);
     List<Product> productList = productsBySearchResponse.getData().getProductsBySearch().getProducts();
     if (productList.size() == 0) {
@@ -38,7 +38,7 @@ public class ProductsBySearchDefinition extends GraphqlBaseDefinition {
     variables.put(ProductsBySearchArgs.STORE_ID.get(), storeId);
     variables.put(ProductsBySearchArgs.PAGE_SIZE.get(), ProductListPageSize.DEFAULT_PRODUCT_LIST_PAGE_SIZE.get());
     String productsBySearchQuery = GraphqlParser.parseGraphql(iStream, variables);
-    String productsBySearchResponseString = queryHelper.postGraphqlQuery(productsBySearchQuery);
+    String productsBySearchResponseString = graphqlHelper.postGraphqlQuery(productsBySearchQuery);
     ProductsBySearchResponse productsBySearchResponse = mapper.readValue(productsBySearchResponseString, ProductsBySearchResponse.class);
     List<Product> productList = productsBySearchResponse.getData().getProductsBySearch().getProducts();
     if (productList.isEmpty()) {

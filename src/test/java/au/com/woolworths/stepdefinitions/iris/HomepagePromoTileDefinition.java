@@ -7,12 +7,12 @@ import cucumber.api.java.en.Then;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import au.com.woolworths.graphql.parser.GraphqlParser;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import au.com.woolworths.helpers.iris.graphql.GraphqlQueryHelper;
+import au.com.woolworths.helpers.iris.graphql.GraphqlHelper;
 
 public class HomepagePromoTileDefinition {
 
   private final static Logger logger = Logger.getLogger("HomepagePromoTileDefinition.class");
-  private GraphqlQueryHelper graphqlQueryHelper = new GraphqlQueryHelper();
+  private GraphqlHelper graphqlHelper = new GraphqlHelper();
 
   @Then("^I search for the ProductGroup with id \"([^\"]*)\" and validate the response$")
   public void verifyProductGroupGraphQL(String groupId) throws Throwable {
@@ -20,7 +20,7 @@ public class HomepagePromoTileDefinition {
     ObjectNode variables = new ObjectMapper().createObjectNode();
     variables.put("groupId", groupId);
     String graphqlQuery = GraphqlParser.parseGraphql(iStream, variables);
-    graphqlQueryHelper.postGraphqlQuery(graphqlQuery);
+    graphqlHelper.postGraphqlQuery(graphqlQuery);
     //Todo: Return ProductsByProductGroupResponse as java object and add assertions when automating actual tests
   }
 

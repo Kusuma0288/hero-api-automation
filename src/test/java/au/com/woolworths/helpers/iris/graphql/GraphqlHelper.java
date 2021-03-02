@@ -8,12 +8,12 @@ import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 
-public class GraphqlQueryHelper extends BaseHelper {
+public class GraphqlHelper extends BaseHelper {
 
   RestInvocationUtil invocationUtil;
-  private final static Logger logger = Logger.getLogger("GraphqlQueryHelper.class");
+  private final static Logger logger = Logger.getLogger("GraphqlHelper.class");
 
-  public GraphqlQueryHelper() {
+  public GraphqlHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
   }
 

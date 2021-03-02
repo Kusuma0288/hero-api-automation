@@ -28,7 +28,7 @@ public class ProductDetailsDefinition extends GraphqlBaseDefinition {
   public void verifyOnlineProductDetailsResponse() throws Throwable {
     variables.put(ProductDetailsArgs.PRODUCT_ID.get(), sharedData.availableProductId);
     String productDetailsQuery = GraphqlParser.parseGraphql(iStream, variables);
-    String productDetailsResponseString = queryHelper.postGraphqlQuery(productDetailsQuery);
+    String productDetailsResponseString = graphqlHelper.postGraphqlQuery(productDetailsQuery);
     ProductDetailsResponse productDetailsResponse = mapper.readValue(productDetailsResponseString, ProductDetailsResponse.class);
     assertProductDetails(productDetailsResponse);
   }
@@ -38,7 +38,7 @@ public class ProductDetailsDefinition extends GraphqlBaseDefinition {
     variables.put(ProductDetailsArgs.PRODUCT_ID.get(), sharedData.availableProductId);
     variables.put(ProductDetailsArgs.STORE_ID.get(), sharedData.inStoreId);
     String productDetailsQuery = GraphqlParser.parseGraphql(iStream, variables);
-    String productDetailsResponseString = queryHelper.postGraphqlQuery(productDetailsQuery);
+    String productDetailsResponseString = graphqlHelper.postGraphqlQuery(productDetailsQuery);
     ProductDetailsResponse productDetailsResponse = mapper.readValue(productDetailsResponseString, ProductDetailsResponse.class);
     assertProductDetails(productDetailsResponse);
   }
