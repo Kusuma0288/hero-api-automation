@@ -105,9 +105,13 @@ steps:
 
       $total_failures = $returnValues.currentFailures.Trim()
       echo "total_failures=" $total_failures
+      $total_failures.GetType()
+
       $lastApigeeFailCount = $(Apigee_UAT_LastFailCount)
       $lastApigeeFailCount = $lastApigeeFailCount.toString().Trim()
-
+      echo "lastApigeeFailCount=" $lastApigeeFailCount
+      $lastApigeeFailCount.GetType()
+      
       $PROJECT= "Mobile"
       $ORGANIZATION_URL="https://dev.azure.com/wowonline/"
       ##functions: Start
@@ -126,7 +130,7 @@ steps:
               Write-Host "##vso[task.setvariable variable=buildStatus;]FAIL"
               echo "Apigee build failed. Details below: "
               echo "Current failures: " $returnValues.currentFailures
-              echo "Last failures count: " $(Apigee_UAT_LastFailCount)
+              echo "Last failures count: " $lastApigeeFailCount
               echo "Report URL: " $returnValues.reportURL
           }
           else{
