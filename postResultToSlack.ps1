@@ -13,7 +13,6 @@ $nutellaURL = $baseUrl + "/pages/tag-scenarios/tag_NUTELLA.html"
 $cloverURL = $baseUrl + "/pages/tag-scenarios/tag_CLOVER.html"
 $falconURL = $baseUrl + "/pages/tag-scenarios/tag_Falcon.html"
 $totalURL = $baseUrl + "/pages/tag-scenarios/tag_REGRESSION_APIGEE.html"
-$SlackWebhookUrl = "https://hooks.slack.com/services/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"
 
 ##functions
 function calculation {
