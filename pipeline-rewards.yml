@@ -25,6 +25,7 @@ stages:
                 echo ${{ parameters.triggerEnv }}
             - template: pipelines/templates/base-template.yml
               parameters:
+                SlackWebHookUrl: https://hooks.slack.com/services/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
                 TestRunTitle: Prod_Rewards Automation Run Report
                 Profile: regression_rewards
                 RunEnv: prod
@@ -40,6 +41,7 @@ stages:
               echo ${{ parameters.triggerEnv }}
           - template: pipelines/templates/base-template.yml
             parameters:
+              SlackWebHookUrl: https://hooks.slack.com/services/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
               TestRunTitle: Uat_Rewards Automation Run Report
               Profile: regression_rewards
               RunEnv: uat
@@ -54,6 +56,7 @@ stages:
               echo ${{ parameters.triggerEnv }}
           - template: pipelines/templates/base-template.yml
             parameters:
+              SlackWebHookUrl: https://hooks.slack.com/services/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
               TestRunTitle: Test_Rewards Automation Run Report
               Profile: regression_rewards
               RunEnv: test
