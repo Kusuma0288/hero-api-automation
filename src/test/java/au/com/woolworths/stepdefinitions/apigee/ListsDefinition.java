@@ -1,6 +1,9 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
+import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.helpers.apigee.TrolleyHelper;
+import au.com.woolworths.helpers.iris.graphql.GraphqlHelper;
+import au.com.woolworths.model.iris.graphql.list.CreateListResponse;
 import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.apigee.ListHelper;
 import au.com.woolworths.model.apigee.lists.GetListResponse;
@@ -10,18 +13,26 @@ import au.com.woolworths.model.apigee.lists.SwitchDefaultListResponse;
 import au.com.woolworths.model.apigee.search.SearchResponseV3;
 import au.com.woolworths.model.apigee.trolley.TrolleyV2Response;
 import au.com.woolworths.model.apigee.trolley.TrolleyV3Response;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Logger;
+
+import static au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.getAvailableProducts;
 
 public class ListsDefinition extends ListHelper {
 
   private final static Logger logger = Logger.getLogger("ListsDefinition.class");
+  protected GraphqlHelper queryHelper = new GraphqlHelper();
 
 
   @When("^I create a list with exact list name as \"([^\"]*)\"$")
@@ -278,5 +289,39 @@ public class ListsDefinition extends ListHelper {
     }
     Assert.assertTrue("Error:Item not found: Items present in the cart doesn't exsist in list", trolleyStockCodes.containsAll(listStockCodes));
 
+  }
+
+
+  @And("^I create a list with list name \"([^\"]*)\" and color \"([^\"]*)\" and added FreeText \"([^\"]*)\" and Product \"([^\"]*)\" \"([^\"]*)\"$")
+  public void iCreateAListWithListNameAndFromGraphqlAndAddedFreeTextAndProduct(String listName, String color, String freeText, long product, int quantity) throws IOException {
+    listName = listName + Utilities.getSaltString();
+    Random rand = new Random();
+    InputStream iStream = ListsDefinition.class.getResourceAsStream("/gqlQueries/iris/createList.graphql");
+
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    variables.put("title", listName);
+    variables.put("color", color);
+    variables.put("referenceId", rand.nextInt());
+    variables.put("text", freeText);
+    variables.put("productId", product);
+    variables.put("quantity", quantity);
+    variables.put("checked", false);
+    sharedData.listName = listName;
+    sharedData.currentFreeTextId = freeText;
+    sharedData.productId = product;
+    sharedData.quantity = quantity;
+
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, variables);
+    String getListResponse = queryHelper.postGraphqlQuery(graphqlQuery);
+    CreateListResponse changeMyOrderResponse = mapper.readValue(getListResponse, CreateListResponse.class);
+    sharedData.listResponse = changeMyOrderResponse;
+  }
+
+  @Then("^I verify list is created with correct details$")
+  public void iVerifyListIsCreatedWithCorrectDetails() {
+    Assert.assertEquals("ListName is not matching", sharedData.listResponse.getData().getCreateList().getTitle(), sharedData.listName);
+    Assert.assertEquals("freeText in list is not matching", sharedData.listResponse.getData().getCreateList().getFreeTextItems()[0].getText(), sharedData.currentFreeTextId);
+    Assert.assertEquals("productId is not matching", sharedData.listResponse.getData().getCreateList().getProductItems()[0].getProductId(), sharedData.productId);
+    Assert.assertEquals("productId is not matching", sharedData.listResponse.getData().getCreateList().getProductItems()[0].getQuantity(), sharedData.quantity);
   }
 }

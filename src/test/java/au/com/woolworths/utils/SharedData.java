@@ -11,6 +11,7 @@ import au.com.woolworths.model.apigee.trolley.TrolleyV2Response;
 import au.com.woolworths.model.apigee.trolley.TrolleyV3Response;
 import au.com.woolworths.model.apigee.search.SearchResponseV3;
 import au.com.woolworths.model.apigee.checkout.CheckoutPackagingPreferencesResponse;
+import au.com.woolworths.model.iris.graphql.list.CreateListResponse;
 import au.com.woolworths.model.iris.graphql.productList.Product;
 import au.com.woolworths.model.trader.*;
 import au.com.woolworths.model.trader.product.productGroup.ProductsByProductGroup;
@@ -117,6 +118,10 @@ public class SharedData {
   public List<String> stockCodes;
   public HashMap<Integer, String> deliveryAddresses = new HashMap<Integer, String>();
   public String orderIdTrader;
+  public CreateListResponse listResponse;
+  public String listName;
+  public long productId;
+  public int quantity;
 
   public void setDeliveryAddresses(int addressID, String addressText) {
     deliveryAddresses.put(addressID, addressText);
