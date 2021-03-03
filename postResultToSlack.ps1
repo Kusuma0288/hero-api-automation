@@ -72,13 +72,13 @@ if($SourceBranchName -ne 'merge')
           if([int]$vegemiteCount -ne 0){
                 @{title = 'Vegemite'; value = $vegemiteCount; short = 'true'}
           }
-          if($nutellaCount -ne 0){
+          if([int]$nutellaCount -ne 0){
                 @{title = 'Nutella'; value = $nutellaCount; short = 'true'}
           }
-          if($cloverCount -ne 0){
+          if([int]$cloverCount -ne 0){
                 @{title = 'Clover'; value = $cloverCount; short = 'true'}
           }
-          if($falconCount -ne 0){
+          if([int]$falconCount -ne 0){
                 @{title = 'Falcon'; value = $falconCount; short = 'true'}
           }
         )
