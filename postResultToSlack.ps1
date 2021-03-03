@@ -60,16 +60,16 @@ if($SourceBranchName -ne 'merge')
           @{title = 'Run Env'; value = $RunEnv; short = 'true'}
           @{title = 'Failures:'; short = 'false'}
           @{title = ' '; short = 'false'}
-          if($wolvesCount -ne 0){
+          if([int]$wolvesCount -ne 0){
             @{title = 'Wolves'; value = $wolvesCount; short = 'true'}
           }
-          if($lionCount -ne 0){
+          if([int]$lionCount -ne 0){
             @{title = 'Lion'; value = $lionCount; short = 'true'}
           }
-          if($lobsterCount -ne 0){
+          if([int]$lobsterCount -ne 0){
             @{title = 'Lobsters'; value = $lobsterCount; short = 'true'}
           }
-          if($vegemiteCount -ne 0){
+          if([int]$vegemiteCount -ne 0){
                 @{title = 'Vegemite'; value = $vegemiteCount; short = 'true'}
           }
           if($nutellaCount -ne 0){
