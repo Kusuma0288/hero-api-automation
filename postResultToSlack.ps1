@@ -11,6 +11,7 @@ $lobsterURL = $baseUrl + "/pages/tag-scenarios/tag_Lobsters.html"
 $vegemiteURL = $baseUrl + "/pages/tag-scenarios/tag_VEGEMITE.html"
 $nutellaURL = $baseUrl + "/pages/tag-scenarios/tag_NUTELLA.html"
 $cloverURL = $baseUrl + "/pages/tag-scenarios/tag_CLOVER.html"
+$falconURL = $baseUrl + "/pages/tag-scenarios/tag_Falcon.html"
 $totalURL = $baseUrl + "/pages/tag-scenarios/tag_REGRESSION_APIGEE.html"
 
 ##functions
@@ -42,6 +43,7 @@ $lobsterCount = calculation $lobsterURL
 $vegemiteCount = calculation $vegemiteURL
 $cloverCount = calculation $cloverURL
 $nutellaCount = calculation $nutellaURL
+$falconCount = calculation $falconURL
 $total_failures = calculation $totalURL
 
 if($SourceBranchName -ne 'merge')
@@ -58,23 +60,26 @@ if($SourceBranchName -ne 'merge')
           @{title = 'Run Env'; value = $RunEnv; short = 'true'}
           @{title = 'Failures:'; short = 'false'}
           @{title = ' '; short = 'false'}
-          if($wolvesCount -ne 0){
+          if([int]$wolvesCount -ne 0){
             @{title = 'Wolves'; value = $wolvesCount; short = 'true'}
           }
-          if($lionCount -ne 0){
+          if([int]$lionCount -ne 0){
             @{title = 'Lion'; value = $lionCount; short = 'true'}
           }
-          if($lobsterCount -ne 0){
+          if([int]$lobsterCount -ne 0){
             @{title = 'Lobsters'; value = $lobsterCount; short = 'true'}
           }
-          if($vegemiteCount -ne 0){
+          if([int]$vegemiteCount -ne 0){
                 @{title = 'Vegemite'; value = $vegemiteCount; short = 'true'}
           }
-          if($nutellaCount -ne 0){
+          if([int]$nutellaCount -ne 0){
                 @{title = 'Nutella'; value = $nutellaCount; short = 'true'}
           }
-          if($cloverCount -ne 0){
+          if([int]$cloverCount -ne 0){
                 @{title = 'Clover'; value = $cloverCount; short = 'true'}
+          }
+          if([int]$falconCount -ne 0){
+                @{title = 'Falcon'; value = $falconCount; short = 'true'}
           }
         )
      image_url = $imageURL

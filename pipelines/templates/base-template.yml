@@ -103,7 +103,13 @@ steps:
                -TestRunTitle '${{ parameters.TestRunTitle }}' -SlackWebhookUrl '${{ parameters.SlackWebHookUrl }}' `
                -SourceBranchName '$(Build.SourceBranchName)'
 
-      $total_failures = $returnValues.currentFailures
+      $total_failures = $returnValues.currentFailures.Trim()
+      echo "total_failures=" $total_failures
+
+      $lastApigeeFailCount = $(Apigee_UAT_LastFailCount)
+      $lastApigeeFailCount = $lastApigeeFailCount.toString().Trim()
+      echo "lastApigeeFailCount=" $lastApigeeFailCount
+
 
       $PROJECT= "Mobile"
       $ORGANIZATION_URL="https://dev.azure.com/wowonline/"
@@ -119,11 +125,11 @@ steps:
       echo $(System.AccessToken) | az devops login --org $ORGANIZATION_URL
 
       if('${{ parameters.Service }}' -eq 'apigee' -And '${{ parameters.RunEnv }}' -eq 'uat'){
-          if($total_failures -gt $(Apigee_UAT_LastFailCount)){
+          if([int]$total_failures -gt [int]$lastApigeeFailCount){
               Write-Host "##vso[task.setvariable variable=buildStatus;]FAIL"
               echo "Apigee build failed. Details below: "
               echo "Current failures: " $returnValues.currentFailures
-              echo "Last failures count: " $(Apigee_UAT_LastFailCount)
+              echo "Last failures count: " $lastApigeeFailCount
               echo "Report URL: " $returnValues.reportURL
           }
           else{
