@@ -8,10 +8,10 @@ import org.testng.Assert;
 public class TransactionHistoryDefinition extends TransactionHistoryHelper {
 
 
-    @Then("^I verify transaction is available in the Transaction History API$")
-    public void i_verify_transaction_is_available_in_the_Transaction_History_API() throws Throwable {
-        TransactionHistoryResponse transactionHistoryResponse = iCallTransactionHistory();
-        sharedData.responseStatusCode = transactionHistoryResponse.getStatusCode();
-        Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-    }
+  @Then("^I verify transaction is available in the Transaction History API$")
+  public void verifyTransactionAvailableInTransactionHistoryAPI() throws Throwable {
+    TransactionHistoryResponse transactionHistoryResponse = iCallTransactionHistory();
+    sharedData.responseStatusCode = transactionHistoryResponse.getStatusCode();
+    Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
+  }
 }

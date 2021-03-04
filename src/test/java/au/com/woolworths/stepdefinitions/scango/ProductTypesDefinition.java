@@ -6,11 +6,11 @@ import cucumber.api.java.en.Given;
 import org.testng.Assert;
 
 public class ProductTypesDefinition extends ProductTypesHelper {
-@Given("^I add a \"([^\"]*)\" into cart$")
-    public void i_add_a_into_cart(String type) throws Throwable {
-        String productType = type;
-        AddItemResponse addItemResponse = iClickOnScanItem(productType);
+  @Given("^I add a \"([^\"]*)\" into cart$")
+  public void iAddItemIntoCart(String type) throws Throwable {
+    String productType = type;
+    AddItemResponse addItemResponse = iClickOnScanItem(productType);
 
-        Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-    }
+    Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
+  }
 }

@@ -7,11 +7,11 @@ import org.testng.Assert;
 
 public class ViewReceiptDefinition extends ViewReceiptHelper {
 
-    @Then("^I verify the View receipt API for the transaction$")
-    public void i_verify_the_View_receipt_API_for_the_transaction() throws Throwable {
-        ViewReceiptResponse viewReceiptResponse = iCallViewReceiptAPI();
-        sharedData.responseStatusCode = viewReceiptResponse.getStatusCode();
+  @Then("^I verify the View receipt API for the transaction$")
+  public void verifyViewReceiptAPI() throws Throwable {
+    ViewReceiptResponse viewReceiptResponse = iCallViewReceiptAPI();
+    sharedData.responseStatusCode = viewReceiptResponse.getStatusCode();
 
-        Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-    }
+    Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
+  }
 }
