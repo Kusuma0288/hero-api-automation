@@ -3,13 +3,12 @@ package au.com.woolworths.stepdefinitions.iris;
 import java.io.InputStream;
 import java.util.logging.Logger;
 
-import cucumber.api.java.en.Then;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import au.com.woolworths.graphql.parser.GraphqlParser;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.helpers.iris.graphql.GraphqlHelper;
+import cucumber.api.java.en.Then;
+import au.com.woolworths.graphql.parser.GraphqlParser;
 
-public class HomepagePromoTileDefinition {
+public class HomepagePromoTileDefinition extends BaseHelper {
 
   private final static Logger logger = Logger.getLogger("HomepagePromoTileDefinition.class");
   private GraphqlHelper graphqlHelper = new GraphqlHelper();
@@ -17,7 +16,6 @@ public class HomepagePromoTileDefinition {
   @Then("^I search for the ProductGroup with id \"([^\"]*)\" and validate the response$")
   public void verifyProductGroupGraphQL(String groupId) throws Throwable {
     InputStream iStream = HomepagePromoTileDefinition.class.getResourceAsStream("/gqlQueries/iris/productsByProductGroup.graphql");
-    ObjectNode variables = new ObjectMapper().createObjectNode();
     variables.put("groupId", groupId);
     String graphqlQuery = GraphqlParser.parseGraphql(iStream, variables);
     graphqlHelper.postGraphqlQuery(graphqlQuery);

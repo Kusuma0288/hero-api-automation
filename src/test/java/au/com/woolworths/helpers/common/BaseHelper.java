@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.restassured.http.Header;
 
 import java.util.LinkedList;
@@ -22,13 +23,14 @@ public class BaseHelper {
   protected static List<Header> headerListDigipay;
   protected static SharedData sharedData;
   protected ObjectMapper mapper = new ObjectMapper();
+  protected ObjectNode variables;
 
   public BaseHelper() {
     this.headerListCommon = new LinkedList<>();
     this.headerListTrader = new LinkedList<>();
     this.headerListRewards = new LinkedList<>();
     this.headerListDigipay = new LinkedList<>();
-
+    this.variables = new ObjectMapper().createObjectNode();
     this.sharedData = ApplicationContext.getSharedData();
     headerListCommon.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerListCommon.add(new Header("Authorization", "Bearer " + sharedData.accessToken));

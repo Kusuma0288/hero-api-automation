@@ -1,20 +1,23 @@
 package au.com.woolworths.stepdefinitions.iris.graphql;
 
+import au.com.woolworths.helpers.common.BaseHelper;
+import au.com.woolworths.helpers.iris.graphql.GraphqlHelper;
 import au.com.woolworths.model.iris.graphql.productList.Product;
 import au.com.woolworths.model.iris.graphql.productList.ProductsBySearchResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import cucumber.api.java.en.When;
 import au.com.woolworths.graphql.parser.GraphqlParser;
 
 import static au.com.woolworths.helpers.iris.graphql.GraphqlHelper.*;
 import static au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.*;
 
+import java.io.InputStream;
 import java.util.List;
 
-public class ProductsBySearchDefinition extends GraphqlBaseDefinition {
-
-  public ProductsBySearchDefinition() {
-    super("productsBySearch.graphql");
-  }
+public class ProductsBySearchDefinition extends BaseHelper {
+  InputStream iStream = ChangeMyOrderDefinition.class.getResourceAsStream("/gqlQueries/iris/productsBySearch.graphql");
+  ObjectMapper mapper = new ObjectMapper();
+  public GraphqlHelper graphqlHelper = new GraphqlHelper();
 
   @When("user requests for online \"([^\"]*)\" products by search$")
   public void getAvailableProductsFromOnlineProductsBySearch(String searchTerm) throws Throwable {

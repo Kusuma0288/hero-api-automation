@@ -1,0 +1,16 @@
+mutation editList($listId: ID!, $title: String!, $color: String!, $timestamp: Float!, $lastSynced: Float!) {
+    editList(
+        editListInput: {
+            title: $title,
+            color: $color,
+            timestamp: $timestamp,
+            lastSynced: $lastSynced
+        },
+        listId: $listId
+    ) {
+        id,
+        title,
+        color,
+        timestamp,
+    }
+}

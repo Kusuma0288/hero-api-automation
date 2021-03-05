@@ -119,6 +119,7 @@ public class SharedData {
   public HashMap<Integer, String> deliveryAddresses = new HashMap<Integer, String>();
   public String orderIdTrader;
   public CreateListResponse listResponse;
+  public CreateListResponse listResponseEdited;
   public String listName;
   public long productId;
   public int quantity;
