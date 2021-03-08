@@ -10,8 +10,12 @@ import au.com.woolworths.model.metis.card.home_page_with_wallet.RewardsCardHomeP
 import au.com.woolworths.model.metis.card.payment_instruments.FetchPaymentInstrumentsResponse;
 import au.com.woolworths.model.metis.card.update_scheme_card.FetchUpdateSchemeCardURLResponse;
 import au.com.woolworths.model.metis.card.verify_scheme_card.FetchVerifySchemeCardResponse;
+import au.com.woolworths.model.metis.card.view_gc_payment_preferences.GCItem;
 import au.com.woolworths.model.metis.card.view_gift_card.Item;
 import au.com.woolworths.model.metis.card.view_gift_card.ViewGiftCardResponse;
+import au.com.woolworths.model.metis.card.view_gc_payment_preferences.ViewGCPaymentPreferencesResponse;
+import au.com.woolworths.model.metis.card.view_sc_payment_preferences.SCItem;
+import au.com.woolworths.model.metis.card.view_sc_payment_preferences.ViewSCPaymentPreferencesResponse;
 import au.com.woolworths.model.metis.card.view_user_preference.FetchUserPreferencesResponse;
 import au.com.woolworths.utils.TestProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,6 +38,8 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
   private AddGiftCardResponse addGiftCardResponse;
   private FetchVerifySchemeCardResponse fetchVerifyCardResponse;
   private ViewGiftCardResponse viewGiftCardResponse;
+  private ViewGCPaymentPreferencesResponse viewGCPaymentPreferencesResponse;
+  private ViewSCPaymentPreferencesResponse viewSCPaymentPreferencesResponse;
   private String fetchAddSchemeCardURL;
   private String fetchUpdateSchemeCardURL;
   private String cardToUpdate;
@@ -262,4 +268,55 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     Assert.assertNotNull("Within GiftCard, items has the subtitle field", items.get(0).getSubtitle());
     Assert.assertNotNull("Within GiftCard, items has the logoURL field", items.get(0).getLogoURL());
   }
+
+  @And("^the user should be able to view payments setting details$")
+  public void theUserShouldBeAbleToViewPaymentsSettingDetails() throws IOException {
+    // Gift Card Assertions
+    viewGCPaymentPreferencesResponse = fetchGCPaymentPreferencesResponse();
+    gcPaymentSettingsAssertions(viewGCPaymentPreferencesResponse);
+
+    // Scheme Card Assertions
+    viewSCPaymentPreferencesResponse = fetchSCPaymentPreferencesResponse();
+    scPaymentSettingsAssertions(viewSCPaymentPreferencesResponse);
+  }
+
+  private ViewSCPaymentPreferencesResponse fetchSCPaymentPreferencesResponse() throws IOException {
+    InputStream scPaymentSettingStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchSCViewPaymentSettings.graphql");
+    String scPaymentSettingQueryInstruments = GraphqlParser.parseGraphql(scPaymentSettingStream, null);
+    viewSCPaymentPreferencesResponse =  iRetrieveViewSCPaymentPreferencesResponse(scPaymentSettingQueryInstruments);
+    return viewSCPaymentPreferencesResponse;
+  }
+
+  private ViewGCPaymentPreferencesResponse fetchGCPaymentPreferencesResponse() throws IOException {
+    InputStream gcPaymentSettingStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchGCViewPaymentSettings.graphql");
+    String gcPaymentSettingQueryInstruments = GraphqlParser.parseGraphql(gcPaymentSettingStream, null);
+    viewGCPaymentPreferencesResponse =  iRetrieveViewGCPaymentPreferencesResponse(gcPaymentSettingQueryInstruments);
+    return viewGCPaymentPreferencesResponse;
+  }
+
+  private void gcPaymentSettingsAssertions(ViewGCPaymentPreferencesResponse response) {
+    List<GCItem> items = response.getData().getPaymentSettings().getItems();
+    String description = response.getData().getPaymentSettings().getDescription();
+
+    Assert.assertEquals("Verify value for description field", "Your default payment methods for fast and easy checkouts.", description);
+    Assert.assertEquals("Verify value for name field", "Use Gift Cards first", items.get(0).getName());
+    Assert.assertNotNull("Within Payment Settings, there is canAddSchemeCard field", response.getData().getPaymentSettings().getCanAddSchemeCard());
+    Assert.assertNotNull("Within items, there is logoURL field", items.get(0).getLogoURL());
+    Assert.assertNotNull("Within items, there is useFirst field", items.get(0).getUseFirst());
+    Assert.assertNotNull("Within items, there is disabled field", items.get(0).getDisabled());
+  }
+
+  private void scPaymentSettingsAssertions(ViewSCPaymentPreferencesResponse response) {
+    List<SCItem> items = response.getData().getPaymentSettings().getItems();
+    String description = response.getData().getPaymentSettings().getDescription();
+
+    Assert.assertEquals("Verify value for description field", "Your default payment methods for fast and easy checkouts.", description);
+    Assert.assertNotNull("Within items, there is id field", items.get(0).getId());
+    Assert.assertNotNull("Within items, there is logoURL field", items.get(0).getLogoURL());
+    Assert.assertNotNull("Within items, there is title field", items.get(0).getTitle());
+    Assert.assertNotNull("Within items, there is cardNumber field", items.get(0).getCardNumber());
+    Assert.assertNotNull("Within items, there is status field", items.get(0).getStatus());
+    Assert.assertNotNull("Within items, there is isPrimary field", items.get(0).getIsPrimary());
+  }
+
 }

@@ -53,3 +53,9 @@ Feature: Checkout safely and securely using your preferred payment method
     When the user goes to the card screen
     Then the user should see the wallet is not empty
     And the user should be able to view gift card
+
+  Scenario: View Payment Settings/Payment Preferences for Scheme Card and Gift Card
+    Given a user logs in the rewards app as an "iOS" user with card number "REWARDS_USER_NO_CARD"
+    When the user goes to the card screen
+    Then the user should see the wallet is not empty
+    And the user should be able to view payments setting details
