@@ -269,13 +269,14 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     Assert.assertNotNull("Within GiftCard, items has the logoURL field", items.get(0).getLogoURL());
   }
 
-  @And("^the user should be able to view payments setting details$")
-  public void theUserShouldBeAbleToViewPaymentsSettingDetails() throws IOException {
-    // Gift Card Assertions
+  @And("^the user should be able to view payments setting details for Gift Card$")
+  public void theUserShouldBeAbleToViewPaymentsSettingDetailsForGiftCard() throws IOException {
     viewGCPaymentPreferencesResponse = fetchGCPaymentPreferencesResponse();
     gcPaymentSettingsAssertions(viewGCPaymentPreferencesResponse);
+  }
 
-    // Scheme Card Assertions
+  @And("^the user should be able to view payments setting details for Scheme Card$")
+  public void theUserShouldBeAbleToViewPaymentsSettingDetailsForSchemeCard() throws IOException {
     viewSCPaymentPreferencesResponse = fetchSCPaymentPreferencesResponse();
     scPaymentSettingsAssertions(viewSCPaymentPreferencesResponse);
   }
@@ -283,14 +284,14 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
   private ViewSCPaymentPreferencesResponse fetchSCPaymentPreferencesResponse() throws IOException {
     InputStream scPaymentSettingStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchSCViewPaymentSettings.graphql");
     String scPaymentSettingQueryInstruments = GraphqlParser.parseGraphql(scPaymentSettingStream, null);
-    viewSCPaymentPreferencesResponse =  iRetrieveViewSCPaymentPreferencesResponse(scPaymentSettingQueryInstruments);
+    viewSCPaymentPreferencesResponse = iRetrieveViewSCPaymentPreferencesResponse(scPaymentSettingQueryInstruments);
     return viewSCPaymentPreferencesResponse;
   }
 
   private ViewGCPaymentPreferencesResponse fetchGCPaymentPreferencesResponse() throws IOException {
     InputStream gcPaymentSettingStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/queries/wallet/fetchGCViewPaymentSettings.graphql");
     String gcPaymentSettingQueryInstruments = GraphqlParser.parseGraphql(gcPaymentSettingStream, null);
-    viewGCPaymentPreferencesResponse =  iRetrieveViewGCPaymentPreferencesResponse(gcPaymentSettingQueryInstruments);
+    viewGCPaymentPreferencesResponse = iRetrieveViewGCPaymentPreferencesResponse(gcPaymentSettingQueryInstruments);
     return viewGCPaymentPreferencesResponse;
   }
 
@@ -298,25 +299,24 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     List<GCItem> items = response.getData().getPaymentSettings().getItems();
     String description = response.getData().getPaymentSettings().getDescription();
 
-    Assert.assertEquals("Verify value for description field", "Your default payment methods for fast and easy checkouts.", description);
-    Assert.assertEquals("Verify value for name field", "Use Gift Cards first", items.get(0).getName());
-    Assert.assertNotNull("Within Payment Settings, there is canAddSchemeCard field", response.getData().getPaymentSettings().getCanAddSchemeCard());
-    Assert.assertNotNull("Within items, there is logoURL field", items.get(0).getLogoURL());
-    Assert.assertNotNull("Within items, there is useFirst field", items.get(0).getUseFirst());
-    Assert.assertNotNull("Within items, there is disabled field", items.get(0).getDisabled());
+    Assert.assertEquals("Verify value for description field is not missing", "Your default payment methods for fast and easy checkouts.", description);
+    Assert.assertEquals("Verify value for name field is to missing", "Use Gift Cards first", items.get(0).getName());
+    Assert.assertNotNull("Within Payment Settings, canAddSchemeCard field should not be missing", response.getData().getPaymentSettings().getCanAddSchemeCard());
+    Assert.assertNotNull("Within items, logoURL field should not be missing", items.get(0).getLogoURL());
+    Assert.assertNotNull("Within items, useFirst field should not be missing", items.get(0).getUseFirst());
+    Assert.assertNotNull("Within items, disabled field should not be missing", items.get(0).getDisabled());
   }
 
   private void scPaymentSettingsAssertions(ViewSCPaymentPreferencesResponse response) {
     List<SCItem> items = response.getData().getPaymentSettings().getItems();
     String description = response.getData().getPaymentSettings().getDescription();
 
-    Assert.assertEquals("Verify value for description field", "Your default payment methods for fast and easy checkouts.", description);
-    Assert.assertNotNull("Within items, there is id field", items.get(0).getId());
-    Assert.assertNotNull("Within items, there is logoURL field", items.get(0).getLogoURL());
-    Assert.assertNotNull("Within items, there is title field", items.get(0).getTitle());
-    Assert.assertNotNull("Within items, there is cardNumber field", items.get(0).getCardNumber());
-    Assert.assertNotNull("Within items, there is status field", items.get(0).getStatus());
-    Assert.assertNotNull("Within items, there is isPrimary field", items.get(0).getIsPrimary());
+    Assert.assertEquals("Verify value for description field is not missing", "Your default payment methods for fast and easy checkouts.", description);
+    Assert.assertNotNull("Within items, id field should not be missing", items.get(0).getId());
+    Assert.assertNotNull("Within items, logoURL field should not be missing", items.get(0).getLogoURL());
+    Assert.assertNotNull("Within items, title field should not be missing", items.get(0).getTitle());
+    Assert.assertNotNull("Within items, cardNumber field should not be missing", items.get(0).getCardNumber());
+    Assert.assertNotNull("Within items, status field should not be missing", items.get(0).getStatus());
+    Assert.assertNotNull("Within items, isPrimary field should not be missing", items.get(0).getIsPrimary());
   }
-
 }
