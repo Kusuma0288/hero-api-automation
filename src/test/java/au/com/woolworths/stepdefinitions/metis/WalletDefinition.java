@@ -322,8 +322,8 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     Assert.assertNotNull("Within items, isPrimary field should not be missing", items.get(0).getIsPrimary());
   }
 
-  @And("^the user should be able to set and change the default payment settings$")
-  public void theUserShouldBeAbleToSetAndChangeTheDefaultPaymentSettings() throws IOException {
+  @And("^the user should be able to set scheme card as the default payment settings$")
+  public void theUserShouldBeAbleToSetSchemeCardAsTheDefaultPaymentSettings() throws IOException {
     SetPrimarySchemeCardResponse response = setDefaultPaymentSettingsForSC();
     scPaymentSettingsAssertions(response);
   }

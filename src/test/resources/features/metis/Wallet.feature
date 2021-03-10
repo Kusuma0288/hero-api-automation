@@ -61,8 +61,8 @@ Feature: Checkout safely and securely using your preferred payment method
     And the user should be able to view payments setting details for Gift Card
     And the user should be able to view payments setting details for Scheme Card
 
-  Scenario: Set/Change Default Payment Settings
+  Scenario: Set Scheme Card as the default payment option
     Given a user logs in the rewards app as an "iOS" user with card number "REWARDS_USER_NO_CARD"
     When the user goes to the card screen
     Then the user should see the wallet is not empty
-    And the user should be able to set and change the default payment settings
+    And the user should be able to set scheme card as the default payment settings
