@@ -12,6 +12,7 @@ public class KioskRemoveInterventionItemDefinition extends RemoveItemHelper {
   @Then("^I verify Intervention items are removed through Kiosk Remove Intervention API$")
   public void iCallRemoveInterventionItemAPI() throws IOException {
     KioskRemoveInterventionResponse kioskRemoveInterventionResponse = iClickOnKioskRemoveInterventionAPI();
+    sharedData.responseStatusCode = kioskRemoveInterventionResponse.getStatusCode();
 
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
   }

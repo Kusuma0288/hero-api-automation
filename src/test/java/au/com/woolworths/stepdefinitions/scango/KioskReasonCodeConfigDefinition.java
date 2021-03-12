@@ -10,8 +10,8 @@ public class KioskReasonCodeConfigDefinition extends ReasonCodeConfigHelper {
   @Then("^I call Reason code API to get valid reason$")
   public void iCallReasonCodeApiToGetValidReason() throws Throwable {
     KioskReasonCodeConfigResponse kioskReasonCodeConfigResponse = iCallKioskReasonCodeConfigAPI();
-    sharedData.kioskReasonCodeConfigResponse = kioskReasonCodeConfigResponse;
     sharedData.responseStatusCode = kioskReasonCodeConfigResponse.getStatusCode();
+    sharedData.voidTransactionReasonCode = kioskReasonCodeConfigResponse.getVoidtransaction().get(0);
 
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
   }

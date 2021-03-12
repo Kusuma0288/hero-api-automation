@@ -132,6 +132,7 @@ public class SharedData {
   public String lineNumber;
   public String cartID;
   public String kioskAccessToken;
+  public String voidTransactionReasonCode;
 
   public void setDeliveryAddresses(int addressID, String addressText) {
     deliveryAddresses.put(addressID, addressText);

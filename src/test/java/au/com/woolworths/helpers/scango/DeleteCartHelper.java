@@ -44,11 +44,11 @@ public class DeleteCartHelper extends BaseHelper {
     String responseStr = null;
 
     String cartID = sharedData.checkoutResponse.getCartid();
-    String reasonCode = "";
+    String reasonCode = sharedData.voidTransactionReasonCode;
 
     KioskDeleteCartRequest kioskDeleteCartRequest = new KioskDeleteCartRequest();
     kioskDeleteCartRequest.setCartbarcode(cartID);
-    kioskDeleteCartRequest.setReason("Technical error");
+    kioskDeleteCartRequest.setReason(reasonCode);
 
     KioskDeleteCartResponse response;
 

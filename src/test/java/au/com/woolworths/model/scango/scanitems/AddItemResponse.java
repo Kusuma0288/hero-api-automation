@@ -26,6 +26,7 @@ public class AddItemResponse {
   private Integer intervtnprice;
   private Integer intervtnquantity;
   private Integer totalsavings;
+  private Boolean is_sdc;
   private List<Item> items = null;
   private List<Object> notifications = null;
   private List<Object> coupons = null;

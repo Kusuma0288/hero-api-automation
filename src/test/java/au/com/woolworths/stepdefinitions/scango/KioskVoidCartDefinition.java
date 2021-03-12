@@ -13,6 +13,7 @@ public class KioskVoidCartDefinition extends DeleteCartHelper {
   public void verifyKioskVoidTransactionApi() throws IOException {
 
     KioskDeleteCartResponse kioskDeleteCartResponse = iClickOnKioskDeleteCartAPI();
+    sharedData.responseStatusCode = kioskDeleteCartResponse.getStatusCode();
 
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
   }
