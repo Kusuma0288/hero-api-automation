@@ -8,6 +8,6 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class PaymentRequest {
-    private String clientReference;
-    private List<Payment> payment = null;
+  private String clientReference;
+  private List<Payment> payment = null;
 }

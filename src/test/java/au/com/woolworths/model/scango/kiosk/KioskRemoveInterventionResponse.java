@@ -8,8 +8,8 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class KioskRemoveInterventionResponse {
-    private String cartid;
-    private String status;
-    private KioskIs is;
-    private String statusCode;
+  private String cartid;
+  private String status;
+  private KioskIs is;
+  private String statusCode;
 }

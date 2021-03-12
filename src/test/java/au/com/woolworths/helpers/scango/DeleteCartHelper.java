@@ -15,51 +15,52 @@ import java.util.logging.Logger;
 
 public class DeleteCartHelper extends BaseHelper {
 
-    RestInvocationUtil invocationUtil;
-    private final static Logger logger = Logger.getLogger("DeleteCartHelper.class");
+  private final static Logger logger = Logger.getLogger("DeleteCartHelper.class");
+  RestInvocationUtil invocationUtil;
 
-    public DeleteCartHelper() {
-        this.invocationUtil = ServiceHooks.restInvocationUtil;
+  public DeleteCartHelper() {
+    this.invocationUtil = ServiceHooks.restInvocationUtil;
 
-    }
+  }
 
-    public DeleteCartResponse iClickOnDeleteCartAPI() throws IOException {
-        Map<String, String> mapWebserviceResponse;
-        String responseStr = null;
-        Map<String, ?> queryParams = new HashMap<>();
+  public DeleteCartResponse iClickOnDeleteCartAPI() throws IOException {
+    Map<String, String> mapWebserviceResponse;
+    String responseStr = null;
+    Map<String, ?> queryParams = new HashMap<>();
 
-        DeleteCartResponse response;
+    DeleteCartResponse response;
 
-        String endPoint = URLResources.SCANGO_LOAD_OR_DELETE_CART;
-        mapWebserviceResponse = invocationUtil.invokeDelete(endPoint,queryParams,headerListScanGo);
-        responseStr = mapWebserviceResponse.get("response");
-        response = mapper.readValue(responseStr, DeleteCartResponse.class);
-        response.setStatusCode(mapWebserviceResponse.get("statusCode"));
-        return response;
-    }
+    String endPoint = URLResources.SCANGO_LOAD_OR_DELETE_CART;
+    mapWebserviceResponse = invocationUtil.invokeDelete(endPoint, queryParams, headerListScanGo);
+    responseStr = mapWebserviceResponse.get("response");
+    response = mapper.readValue(responseStr, DeleteCartResponse.class);
+    response.setStatusCode(mapWebserviceResponse.get("statusCode"));
+    return response;
+  }
 
-    public KioskDeleteCartResponse iClickOnKioskDeleteCartAPI() throws IOException {
-        Map<String, String> mapWebserviceResponse;
-        String requestStr = null;
-        String responseStr = null;
+  public KioskDeleteCartResponse iClickOnKioskDeleteCartAPI() throws IOException {
+    Map<String, String> mapWebserviceResponse;
+    String requestStr = null;
+    String responseStr = null;
 
-        String cartID = sharedData.checkoutResponse.getCartid();
+    String cartID = sharedData.checkoutResponse.getCartid();
+    String reasonCode = "";
 
-        KioskDeleteCartRequest kioskDeleteCartRequest = new KioskDeleteCartRequest();
-        kioskDeleteCartRequest.setCartbarcode(cartID);
-        kioskDeleteCartRequest.setReason("Technical error");
+    KioskDeleteCartRequest kioskDeleteCartRequest = new KioskDeleteCartRequest();
+    kioskDeleteCartRequest.setCartbarcode(cartID);
+    kioskDeleteCartRequest.setReason("Technical error");
 
-        KioskDeleteCartResponse response;
+    KioskDeleteCartResponse response;
 
-        String endPoint = URLResources.SCANGO_KIOSK_DELETE_CART;
-        requestStr = mapper.writeValueAsString(kioskDeleteCartRequest);
+    String endPoint = URLResources.SCANGO_KIOSK_DELETE_CART;
+    requestStr = mapper.writeValueAsString(kioskDeleteCartRequest);
 
-        mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint,requestStr,headerListScanGoKiosk);
-        responseStr = mapWebserviceResponse.get("response");
-        response = mapper.readValue(responseStr, KioskDeleteCartResponse.class);
-        response.setStatusCode(mapWebserviceResponse.get("statusCode"));
-        return response;
-    }
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListScanGoKiosk);
+    responseStr = mapWebserviceResponse.get("response");
+    response = mapper.readValue(responseStr, KioskDeleteCartResponse.class);
+    response.setStatusCode(mapWebserviceResponse.get("statusCode"));
+    return response;
+  }
 
 }
 

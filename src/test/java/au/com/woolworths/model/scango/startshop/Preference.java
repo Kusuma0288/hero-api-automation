@@ -6,5 +6,5 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class Preference {
-    private Boolean isemailinvoiceopted;
+  private Boolean isemailinvoiceopted;
 }

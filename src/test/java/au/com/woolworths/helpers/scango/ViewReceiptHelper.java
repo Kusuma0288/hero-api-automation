@@ -13,34 +13,34 @@ import java.util.logging.Logger;
 
 public class ViewReceiptHelper extends BaseHelper {
 
-    RestInvocationUtil invocationUtil;
-    private final static Logger logger = Logger.getLogger("ViewReceiptHelper.class");
+  private final static Logger logger = Logger.getLogger("ViewReceiptHelper.class");
+  RestInvocationUtil invocationUtil;
 
-    public ViewReceiptHelper() {
-        this.invocationUtil = ServiceHooks.restInvocationUtil;
+  public ViewReceiptHelper() {
+    this.invocationUtil = ServiceHooks.restInvocationUtil;
 
-    }
+  }
 
-    public ViewReceiptResponse iCallViewReceiptAPI() throws IOException {
+  public ViewReceiptResponse iCallViewReceiptAPI() throws IOException {
 
-        Map<String, String> mapWebserviceResponse;
-        String requestStr = null;
-        String responseStr = null;
-        String cartID = sharedData.checkoutResponse.getCartid();
+    Map<String, String> mapWebserviceResponse;
+    String requestStr = null;
+    String responseStr = null;
+    String cartID = sharedData.checkoutResponse.getCartid();
 
-        ViewReceiptRequest viewReceiptRequest = new ViewReceiptRequest();
-        viewReceiptRequest.setCartid(cartID);
+    ViewReceiptRequest viewReceiptRequest = new ViewReceiptRequest();
+    viewReceiptRequest.setCartid(cartID);
 
-        ViewReceiptResponse response;
+    ViewReceiptResponse response;
 
-        String endPoint = URLResources.SCANGO_VEIW_RECEIPT;
-        requestStr = mapper.writeValueAsString(viewReceiptRequest);
+    String endPoint = URLResources.SCANGO_VEIW_RECEIPT;
+    requestStr = mapper.writeValueAsString(viewReceiptRequest);
 
-        mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListScanGo);
-        responseStr = mapWebserviceResponse.get("response");
-        response = mapper.readValue(responseStr, ViewReceiptResponse.class);
-        response.setStatusCode(mapWebserviceResponse.get("statusCode"));
-        return response;
-    }
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListScanGo);
+    responseStr = mapWebserviceResponse.get("response");
+    response = mapper.readValue(responseStr, ViewReceiptResponse.class);
+    response.setStatusCode(mapWebserviceResponse.get("statusCode"));
+    return response;
+  }
 }
 

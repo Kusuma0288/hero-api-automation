@@ -6,5 +6,5 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class KioskLoginRequest {
-    private String barcode;
+  private String barcode;
 }

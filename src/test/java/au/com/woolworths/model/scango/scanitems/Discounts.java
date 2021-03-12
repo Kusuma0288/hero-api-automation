@@ -1,8 +1,8 @@
 package au.com.woolworths.model.scango.scanitems;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 

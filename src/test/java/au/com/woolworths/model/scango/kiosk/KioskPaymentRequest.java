@@ -8,6 +8,6 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class KioskPaymentRequest {
-    private String cartbarcode;
-    private KioskPaymentinfo paymentinfo;
+  private String cartbarcode;
+  private KioskPaymentinfo paymentinfo;
 }

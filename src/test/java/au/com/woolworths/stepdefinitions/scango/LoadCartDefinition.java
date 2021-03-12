@@ -7,13 +7,13 @@ import org.testng.Assert;
 
 public class LoadCartDefinition extends LoadCartHelper {
 
-    @When("^I call Load cart API$")
-    public void i_call_Load_cart_API() throws Throwable {
-        LoadCartResponse loadCartResponse = iCallLoadCart();
+  @When("^I call Load cart API$")
+  public void iCallLoadCartAPI() throws Throwable {
+    LoadCartResponse loadCartResponse = iCallLoadCart();
 
-        sharedData.responseStatusCode = loadCartResponse.getStatusCode();
-        Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
+    sharedData.responseStatusCode = loadCartResponse.getStatusCode();
+    Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
 
-        System.out.println("LoadCartDefinition  file " + loadCartResponse.toString());
-    }
+    System.out.println("LoadCartDefinition  file " + loadCartResponse.toString());
+  }
 }

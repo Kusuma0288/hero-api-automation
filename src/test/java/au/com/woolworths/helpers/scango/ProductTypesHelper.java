@@ -14,47 +14,66 @@ import java.util.logging.Logger;
 
 public class ProductTypesHelper extends BaseHelper {
 
-    RestInvocationUtil invocationUtil;
-    private final static Logger logger = Logger.getLogger("ProductTypesHelper.class");
+  private final static Logger logger = Logger.getLogger("ProductTypesHelper.class");
+  RestInvocationUtil invocationUtil;
 
-    public ProductTypesHelper() {
-        this.invocationUtil = ServiceHooks.restInvocationUtil;
+  public ProductTypesHelper() {
+    this.invocationUtil = ServiceHooks.restInvocationUtil;
 
+  }
+
+  public AddItemResponse iClickOnScanItem(String product) throws IOException {
+    String productType = product;
+    String ean = "";
+    Map<String, String> mapWebserviceResponse;
+    String requestStr = null;
+    String responseStr = null;
+
+    AddItemRequest addItemRequest = new AddItemRequest();
+    AddItemResponse response;
+
+
+    switch (productType) {
+      case "Simple item":
+        ean = TestProperties.get("SIMPLE_ITEM");
+        break;
+      case "Tun item":
+        ean = TestProperties.get("TUN_ITEM");
+        break;
+      case "Price embedded item":
+        ean = TestProperties.get("PRICE_EMBEDDED");
+        break;
+      case "Tiliter Weight item":
+        ean = TestProperties.get("TILITER_WEIGHT_ITEM");
+        break;
+      case "Tiliter Quantity item":
+        ean = TestProperties.get("TILITER_QTY_ITEM");
+        break;
+      case "Weight required item":
+        ean = TestProperties.get("WEIGHT_REQUIRED_ITEM");
+        break;
+      case "Shelf Label item":
+        ean = TestProperties.get("SHELF_LABEL_ITEM");
+        break;
+      case "GS1 item":
+        ean = TestProperties.get("GS1_ITEM");
+        break;
+      case "Age restricted item":
+        ean = TestProperties.get("AGE_RESTRICTED_ITEM");
+        break;
+      case "Sale restricted item":
+        ean = TestProperties.get("SALE_RESTRICTED_ITEM");
     }
 
-    public AddItemResponse iClickOnScanItem(String product) throws IOException {
-        String productType = product;
-        String ean="";
-        Map<String, String> mapWebserviceResponse;
-        String requestStr = null;
-        String responseStr = null;
+    addItemRequest.setEan(ean);
 
-        AddItemRequest addItemRequest = new AddItemRequest();
-        AddItemResponse response;
+    String endPoint = URLResources.SCANGO_ADD_ITEM;
+    requestStr = mapper.writeValueAsString(addItemRequest);
 
-
-        switch (productType) {
-                case "Simple item": ean = TestProperties.get("SIMPLE_ITEM"); break;
-                case "Tun item":  ean = TestProperties.get("TUN_ITEM"); break;
-                case "Price embedded item":  ean = TestProperties.get("PRICE_EMBEDDED"); break;
-                case "Tiliter Weight item":  ean = TestProperties.get("TILITER_WEIGHT_ITEM"); break;
-                case "Tiliter Quantity item":  ean = TestProperties.get("TILITER_QTY_ITEM"); break;
-                case "Weight required item":  ean = TestProperties.get("WEIGHT_REQUIRED_ITEM"); break;
-                case "Shelf Label item":  ean = TestProperties.get("SHELF_LABEL_ITEM"); break;
-                case "GS1 item":  ean = TestProperties.get("GS1_ITEM"); break;
-                case "Age restricted item":  ean = TestProperties.get("AGE_RESTRICTED_ITEM"); break;
-                case "Sale restricted item":  ean = TestProperties.get("SALE_RESTRICTED_ITEM");
-        }
-
-        addItemRequest.setEan(ean);
-
-        String endPoint = URLResources.SCANGO_ADD_ITEM;
-        requestStr = mapper.writeValueAsString(addItemRequest);
-
-        mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListScanGo);
-        responseStr = mapWebserviceResponse.get("response");
-        response = mapper.readValue(responseStr, AddItemResponse.class);
-        response.setStatusCode(mapWebserviceResponse.get("statusCode"));
-        return response;
-    }
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListScanGo);
+    responseStr = mapWebserviceResponse.get("response");
+    response = mapper.readValue(responseStr, AddItemResponse.class);
+    response.setStatusCode(mapWebserviceResponse.get("statusCode"));
+    return response;
+  }
 }

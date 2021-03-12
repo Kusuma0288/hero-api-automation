@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 public class StepUp {
 
-    private String type;
-    private Boolean mandatory;
-    private String url;
-    private String sessionId;
+  private String type;
+  private Boolean mandatory;
+  private String url;
+  private String sessionId;
 }

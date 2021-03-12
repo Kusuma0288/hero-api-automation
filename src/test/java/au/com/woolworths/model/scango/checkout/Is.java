@@ -6,8 +6,8 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class Is {
-    private Boolean enabledigitalpay;
-    private Boolean paymentFailLimitExceeded;
-    private Boolean transferToPos;
-    private Boolean finishTransaction;
+  private Boolean enabledigitalpay;
+  private Boolean paymentFailLimitExceeded;
+  private Boolean transferToPos;
+  private Boolean finishTransaction;
 }

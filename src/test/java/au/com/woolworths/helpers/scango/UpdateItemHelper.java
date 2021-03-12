@@ -15,49 +15,49 @@ import java.util.logging.Logger;
 
 public class UpdateItemHelper extends BaseHelper {
 
-    RestInvocationUtil invocationUtil;
-    private final static Logger logger = Logger.getLogger("UpdateItemHelper.class");
+  private final static Logger logger = Logger.getLogger("UpdateItemHelper.class");
+  RestInvocationUtil invocationUtil;
 
-    public UpdateItemHelper() {
-        this.invocationUtil = ServiceHooks.restInvocationUtil;
+  public UpdateItemHelper() {
+    this.invocationUtil = ServiceHooks.restInvocationUtil;
 
-    }
+  }
 
-    public UpdateItemResponse iCallUpdateWeightAPI() throws IOException {
-        Map<String, String> mapWebserviceResponse;
-        String responseStr = null;
-        String requestStr = null;
-        Map<String, String> queryParams = new HashMap<>();
+  public UpdateItemResponse iCallUpdateWeightAPI() throws IOException {
+    Map<String, String> mapWebserviceResponse;
+    String responseStr = null;
+    String requestStr = null;
+    Map<String, String> queryParams = new HashMap<>();
 
-        UpdateWeightRequest updateWeightRequest = new UpdateWeightRequest();
-        updateWeightRequest.setWeights(Double.parseDouble(TestProperties.get("WEIGHT")));
-        UpdateItemResponse response;
+    UpdateWeightRequest updateWeightRequest = new UpdateWeightRequest();
+    updateWeightRequest.setWeights(Double.parseDouble(TestProperties.get("WEIGHT")));
+    UpdateItemResponse response;
 
-        String endPoint = URLResources.SCANGO_UPDATE_ITEM + sharedData.lineNumber;
+    String endPoint = URLResources.SCANGO_UPDATE_ITEM + sharedData.lineNumber;
 
-        requestStr = mapper.writeValueAsString(updateWeightRequest);
-        mapWebserviceResponse = invocationUtil.invokePut(endPoint,requestStr,headerListScanGo);
-        responseStr = mapWebserviceResponse.get("response");
-        response = mapper.readValue(responseStr, UpdateItemResponse.class);
-        response.setStatusCode(mapWebserviceResponse.get("statusCode"));
-        return response;
-    }
+    requestStr = mapper.writeValueAsString(updateWeightRequest);
+    mapWebserviceResponse = invocationUtil.invokePut(endPoint, requestStr, headerListScanGo);
+    responseStr = mapWebserviceResponse.get("response");
+    response = mapper.readValue(responseStr, UpdateItemResponse.class);
+    response.setStatusCode(mapWebserviceResponse.get("statusCode"));
+    return response;
+  }
 
-    public UpdateItemResponse iCallUpdateQuantityAPI() throws IOException {
-        Map<String, String> mapWebserviceResponse;
-        String responseStr = null;
-        String requestStr = "";
-        Map<String, String> queryParams = new HashMap<>();
+  public UpdateItemResponse iCallUpdateQuantityAPI() throws IOException {
+    Map<String, String> mapWebserviceResponse;
+    String responseStr = null;
+    String requestStr = "";
+    Map<String, String> queryParams = new HashMap<>();
 
-        UpdateItemResponse response;
+    UpdateItemResponse response;
 
-        String endPoint = URLResources.SCANGO_UPDATE_ITEM + sharedData.lineNumber;
+    String endPoint = URLResources.SCANGO_UPDATE_ITEM + sharedData.lineNumber;
 
-        mapWebserviceResponse = invocationUtil.invokePut(endPoint,requestStr,headerListScanGo);
-        responseStr = mapWebserviceResponse.get("response");
-        response = mapper.readValue(responseStr, UpdateItemResponse.class);
-        response.setStatusCode(mapWebserviceResponse.get("statusCode"));
-        return response;
-    }
+    mapWebserviceResponse = invocationUtil.invokePut(endPoint, requestStr, headerListScanGo);
+    responseStr = mapWebserviceResponse.get("response");
+    response = mapper.readValue(responseStr, UpdateItemResponse.class);
+    response.setStatusCode(mapWebserviceResponse.get("statusCode"));
+    return response;
+  }
 
 }

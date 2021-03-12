@@ -6,6 +6,6 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class KioskDeleteCartRequest {
-    private String cartbarcode;
-    private String reason;
+  private String cartbarcode;
+  private String reason;
 }

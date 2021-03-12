@@ -9,15 +9,15 @@ import org.testng.Assert;
 public class UserProfileDefinition extends UserProfileHelper {
 
 
-    @Then("^I verify \"([^\"]*)\" status in UserProfile API$")
-    public void i_Verify_Status_In_UserProfileAPI(String status) throws Throwable {
-        UserProfileResponse userProfileResponse = iCallUserProfileAPI();
+  @Then("^I verify \"([^\"]*)\" status in UserProfile API$")
+  public void verifyStatusInUserProfileApi(String status) throws Throwable {
+    UserProfileResponse userProfileResponse = iCallUserProfileAPI();
 
-        String cartStatus = userProfileResponse.getStatus().getStatus();
-        Assert.assertTrue(cartStatus.equals("CANCELLED"), "Invalid Status" );
+    String cartStatus = userProfileResponse.getStatus().getStatus();
+    Assert.assertTrue(cartStatus.equals("CANCELLED"), "Invalid Status");
 
-        Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
+    Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
 
-        System.out.println("UserProfileResponse  file " +userProfileResponse.toString());
-    }
+    System.out.println("UserProfileResponse  file " + userProfileResponse.toString());
+  }
 }

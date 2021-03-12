@@ -12,27 +12,27 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 public class ReasonCodeConfigHelper extends BaseHelper {
-    RestInvocationUtil invocationUtil;
-    private final static Logger logger = Logger.getLogger("ReasonCodeConfigHelper.class");
+  private final static Logger logger = Logger.getLogger("ReasonCodeConfigHelper.class");
+  RestInvocationUtil invocationUtil;
 
-    public ReasonCodeConfigHelper() {
-        this.invocationUtil = ServiceHooks.restInvocationUtil;
+  public ReasonCodeConfigHelper() {
+    this.invocationUtil = ServiceHooks.restInvocationUtil;
 
-    }
+  }
 
-    public KioskReasonCodeConfigResponse iCallKioskReasonCodeConfigAPI() throws IOException {
-        Map<String, String> mapWebserviceResponse;
-        String responseStr = null;
-        Map<String, String> queryParams = new HashMap<>();
+  public KioskReasonCodeConfigResponse iCallKioskReasonCodeConfigAPI() throws IOException {
+    Map<String, String> mapWebserviceResponse;
+    String responseStr = null;
+    Map<String, String> queryParams = new HashMap<>();
 
-        KioskReasonCodeConfigResponse response;
+    KioskReasonCodeConfigResponse response;
 
-        String endPoint = URLResources.SCANGO_KIOSK_CONFIG;
+    String endPoint = URLResources.SCANGO_KIOSK_CONFIG;
 
-        mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListScanGoKiosk);
-        responseStr = mapWebserviceResponse.get("response");
-        response = mapper.readValue(responseStr, KioskReasonCodeConfigResponse.class);
-        response.setStatusCode(mapWebserviceResponse.get("statusCode"));
-        return response;
-    }
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListScanGoKiosk);
+    responseStr = mapWebserviceResponse.get("response");
+    response = mapper.readValue(responseStr, KioskReasonCodeConfigResponse.class);
+    response.setStatusCode(mapWebserviceResponse.get("statusCode"));
+    return response;
+  }
 }

@@ -6,8 +6,8 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class UserProfileStoreInfo {
-    private String no;
-    private String name;
-    private String checkouttitle;
-    private String checkoutmessage;
+  private String no;
+  private String name;
+  private String checkouttitle;
+  private String checkoutmessage;
 }

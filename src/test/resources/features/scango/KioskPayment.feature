@@ -1,4 +1,4 @@
-@SMOKE_SCANGO
+
 Feature: Kiosk payment
 
   Background:

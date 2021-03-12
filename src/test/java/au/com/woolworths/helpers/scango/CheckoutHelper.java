@@ -15,48 +15,48 @@ import java.util.logging.Logger;
 
 public class CheckoutHelper extends BaseHelper {
 
-    RestInvocationUtil invocationUtil;
-    private final static Logger logger = Logger.getLogger("CheckoutHelper.class");
+  private final static Logger logger = Logger.getLogger("CheckoutHelper.class");
+  RestInvocationUtil invocationUtil;
 
-    public CheckoutHelper() {
-        this.invocationUtil = ServiceHooks.restInvocationUtil;
+  public CheckoutHelper() {
+    this.invocationUtil = ServiceHooks.restInvocationUtil;
 
-    }
+  }
 
-    public CheckoutResponse iClickOnCheckout() throws IOException {
-        Map<String, String> mapWebserviceResponse;
-        String responseStr = null;
-        Map<String, String> queryParams = new HashMap<>();
+  public CheckoutResponse iClickOnCheckout() throws IOException {
+    Map<String, String> mapWebserviceResponse;
+    String responseStr = null;
+    Map<String, String> queryParams = new HashMap<>();
 
-        CheckoutResponse response;
+    CheckoutResponse response;
 
-        String endPoint = URLResources.SCANGO_CHECKOUT;
+    String endPoint = URLResources.SCANGO_CHECKOUT;
 
-        mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListScanGo);
-        responseStr = mapWebserviceResponse.get("response");
-        response = mapper.readValue(responseStr, CheckoutResponse.class);
-        response.setStatusCode(mapWebserviceResponse.get("statusCode"));
-        return response;
-    }
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListScanGo);
+    responseStr = mapWebserviceResponse.get("response");
+    response = mapper.readValue(responseStr, CheckoutResponse.class);
+    response.setStatusCode(mapWebserviceResponse.get("statusCode"));
+    return response;
+  }
 
-    public KioskCheckoutResponse iClickOnKioskCheckout() throws IOException {
-        Map<String, String> mapWebserviceResponse;
-        String requestStr = null;
-        String responseStr = null;
-        String cartID = sharedData.checkoutResponse.getCartid();
+  public KioskCheckoutResponse iClickOnKioskCheckout() throws IOException {
+    Map<String, String> mapWebserviceResponse;
+    String requestStr = null;
+    String responseStr = null;
+    String cartID = sharedData.checkoutResponse.getCartid();
 
-        KioskCheckoutRequest kioskCheckoutRequest = new KioskCheckoutRequest();
-        kioskCheckoutRequest.setCartbarcode(cartID);
+    KioskCheckoutRequest kioskCheckoutRequest = new KioskCheckoutRequest();
+    kioskCheckoutRequest.setCartbarcode(cartID);
 
-        KioskCheckoutResponse response;
+    KioskCheckoutResponse response;
 
-        String endPoint = URLResources.SCANGO_KIOSK_CHECKOUT;
-        requestStr = mapper.writeValueAsString(kioskCheckoutRequest);
+    String endPoint = URLResources.SCANGO_KIOSK_CHECKOUT;
+    requestStr = mapper.writeValueAsString(kioskCheckoutRequest);
 
-        mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListScanGoKiosk);
-        responseStr = mapWebserviceResponse.get("response");
-        response = mapper.readValue(responseStr, KioskCheckoutResponse.class);
-        response.setStatusCode(mapWebserviceResponse.get("statusCode"));
-        return response;
-    }
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListScanGoKiosk);
+    responseStr = mapWebserviceResponse.get("response");
+    response = mapper.readValue(responseStr, KioskCheckoutResponse.class);
+    response.setStatusCode(mapWebserviceResponse.get("statusCode"));
+    return response;
+  }
 }

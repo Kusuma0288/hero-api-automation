@@ -6,5 +6,5 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class UpdateQuantityRequest {
-    private int quantity;
+  private int quantity;
 }
