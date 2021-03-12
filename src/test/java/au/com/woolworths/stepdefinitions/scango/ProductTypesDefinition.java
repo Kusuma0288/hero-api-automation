@@ -12,8 +12,5 @@ public class ProductTypesDefinition extends ProductTypesHelper {
 
     AddItemResponse addItemResponse = iClickOnScanItem(productType);
     sharedData.lineNumber = addItemResponse.getItems().get(0).getLinenumber();
-
-    System.out.println("AddItemResponse  file " + addItemResponse.toString());
-
   }
 }

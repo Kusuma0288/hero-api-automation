@@ -41,8 +41,6 @@ public class PaymentDefinition extends PaymentHelper {
     sharedData.responseStatusCode = paymentResponse.getStatusCode();
 
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-    System.out.println("PaymentResponse  file " + paymentResponse.toString());
-
   }
 
 }

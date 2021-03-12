@@ -14,6 +14,5 @@ public class ViewReceiptDefinition extends ViewReceiptHelper {
     sharedData.responseStatusCode = viewReceiptResponse.getStatusCode();
 
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-    System.out.println("viewReceiptResponse  file " + viewReceiptResponse.toString());
   }
 }

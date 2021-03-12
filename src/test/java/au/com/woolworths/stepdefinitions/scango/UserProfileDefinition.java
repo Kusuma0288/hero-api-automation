@@ -17,7 +17,5 @@ public class UserProfileDefinition extends UserProfileHelper {
     Assert.assertTrue(cartStatus.equals("CANCELLED"), "Invalid Status");
 
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-
-    System.out.println("UserProfileResponse  file " + userProfileResponse.toString());
   }
 }

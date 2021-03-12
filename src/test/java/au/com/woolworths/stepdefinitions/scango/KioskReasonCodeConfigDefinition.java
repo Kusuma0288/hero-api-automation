@@ -12,8 +12,7 @@ public class KioskReasonCodeConfigDefinition extends ReasonCodeConfigHelper {
     KioskReasonCodeConfigResponse kioskReasonCodeConfigResponse = iCallKioskReasonCodeConfigAPI();
     sharedData.kioskReasonCodeConfigResponse = kioskReasonCodeConfigResponse;
     sharedData.responseStatusCode = kioskReasonCodeConfigResponse.getStatusCode();
-    Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
 
-    System.out.println("KioskReasonCodeConfigResponse  file " + kioskReasonCodeConfigResponse.toString());
+    Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
   }
 }

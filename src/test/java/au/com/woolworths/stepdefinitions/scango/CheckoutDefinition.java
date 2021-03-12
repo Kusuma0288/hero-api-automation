@@ -10,11 +10,9 @@ public class CheckoutDefinition extends CheckoutHelper {
   @When("^I call Checkout API$")
   public void iCallCheckoutAPI() throws Throwable {
     CheckoutResponse checkoutResponse = iClickOnCheckout();
-
     sharedData.checkoutResponse = checkoutResponse;
     sharedData.responseStatusCode = checkoutResponse.getStatusCode();
 
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-    System.out.println("CheckoutResponse  file " + checkoutResponse.toString());
   }
 }

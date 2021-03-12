@@ -13,8 +13,6 @@ public class TransactionHistoryDefinition extends TransactionHistoryHelper {
     TransactionHistoryResponse transactionHistoryResponse = iCallTransactionHistory();
     sharedData.responseStatusCode = transactionHistoryResponse.getStatusCode();
 
-    //TODO: verify cart barcode is present in the history list
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-    System.out.println("transactionHistoryResponse  file " + transactionHistoryResponse.toString());
   }
 }

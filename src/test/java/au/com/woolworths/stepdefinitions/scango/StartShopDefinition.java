@@ -12,7 +12,5 @@ public class StartShopDefinition extends StartShopHelper {
 
     sharedData.storeID = startShopResponse.getStoreid();
     sharedData.cartID = startShopResponse.getCartid();
-
-    System.out.println("StartShopDefinition  file " + startShopResponse.toString());
   }
 }

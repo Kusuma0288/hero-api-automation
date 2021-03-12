@@ -14,8 +14,6 @@ public class KioskPaymentDefinition extends PaymentHelper {
 
     sharedData.responseStatusCode = kioskPaymentResponse.getStatusCode();
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-
-    System.out.println("PaymentResponse  file " + kioskPaymentResponse.toString());
   }
 
 }

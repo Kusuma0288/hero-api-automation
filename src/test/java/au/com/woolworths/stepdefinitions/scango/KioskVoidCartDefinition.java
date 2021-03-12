@@ -15,7 +15,5 @@ public class KioskVoidCartDefinition extends DeleteCartHelper {
     KioskDeleteCartResponse kioskDeleteCartResponse = iClickOnKioskDeleteCartAPI();
 
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-
-    System.out.println("KioskDeleteCartResponse  file " + kioskDeleteCartResponse.toString());
   }
 }

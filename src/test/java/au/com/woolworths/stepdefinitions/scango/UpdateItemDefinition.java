@@ -17,8 +17,6 @@ public class UpdateItemDefinition extends UpdateItemHelper {
     sharedData.responseStatusCode = updateItemResponse.getStatusCode();
 
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-
-    System.out.println("updateItemResponse  file " + updateItemResponse.toString());
   }
 
   @When("^I call Update Quantity API$")
@@ -28,7 +26,5 @@ public class UpdateItemDefinition extends UpdateItemHelper {
     sharedData.responseStatusCode = updateItemResponse.getStatusCode();
 
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-
-    System.out.println("updateItemResponse  file " + updateItemResponse.toString());
   }
 }

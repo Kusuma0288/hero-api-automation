@@ -10,10 +10,8 @@ public class KioskLoadCartDefinition extends LoadCartHelper {
   @When("^I call Kiosk Load Cart API$")
   public void iCallKioskLoadCartApi() throws Throwable {
     KioskLoadCartResponse kioskLoadCartResponse = iCallKioskLoadCart();
-
     sharedData.responseStatusCode = kioskLoadCartResponse.getStatusCode();
-    Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
 
-    System.out.println("KioskLoadCartDefinition  file " + kioskLoadCartResponse.toString());
+    Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
   }
 }

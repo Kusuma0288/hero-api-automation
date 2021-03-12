@@ -13,7 +13,5 @@ public class LoadCartDefinition extends LoadCartHelper {
 
     sharedData.responseStatusCode = loadCartResponse.getStatusCode();
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-
-    System.out.println("LoadCartDefinition  file " + loadCartResponse.toString());
   }
 }

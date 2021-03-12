@@ -14,8 +14,6 @@ public class KioskRemoveInterventionItemDefinition extends RemoveItemHelper {
     KioskRemoveInterventionResponse kioskRemoveInterventionResponse = iClickOnKioskRemoveInterventionAPI();
 
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-
-    System.out.println("KioskRemoveInterventionResponse  file " + kioskRemoveInterventionResponse.toString());
   }
 
 }

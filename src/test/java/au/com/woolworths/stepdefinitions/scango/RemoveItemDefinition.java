@@ -14,8 +14,6 @@ public class RemoveItemDefinition extends RemoveItemHelper {
     RemoveItemResponse removeItemResponse = iClickOnRemoveItemAPI();
 
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-
-    System.out.println("RemoveItemResponse  file " + removeItemResponse.toString());
   }
 
 }

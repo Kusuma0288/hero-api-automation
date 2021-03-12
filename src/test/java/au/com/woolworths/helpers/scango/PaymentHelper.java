@@ -86,7 +86,6 @@ public class PaymentHelper extends BaseHelper {
     Map<String, String> queryParams = new HashMap<>();
 
     String cartID = sharedData.checkoutResponse.getCartid();
-    //     Double purchaseAmt = sharedData.kioskCheckoutResponse.getBalancedue();
 
     KioskPaymentinfo kioskPaymentinfo = new KioskPaymentinfo();
     kioskPaymentinfo.setAmountpurchase(balanceDue);
@@ -158,8 +157,6 @@ public class PaymentHelper extends BaseHelper {
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListScanGo);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, PaymentErrorResponse.class);
-    // response.setStatusCode(mapWebserviceResponse.get("statusCode"));
-
     return response;
   }
 }

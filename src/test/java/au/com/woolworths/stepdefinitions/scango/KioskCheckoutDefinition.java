@@ -10,11 +10,9 @@ public class KioskCheckoutDefinition extends CheckoutHelper {
   @When("^I call Kiosk Checkout API$")
   public void iCallKioskCheckoutApi() throws Throwable {
     KioskCheckoutResponse kioskCheckoutResponse = iClickOnKioskCheckout();
-
     sharedData.kioskCheckoutResponse = kioskCheckoutResponse;
     sharedData.responseStatusCode = kioskCheckoutResponse.getStatusCode();
 
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
-    System.out.println("KioskCheckoutResponse  file " + kioskCheckoutResponse.toString());
   }
 }
