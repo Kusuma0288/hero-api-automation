@@ -271,6 +271,8 @@ public class RestInvocationUtil {
     }
     else if (endPoint.contains("merchant")) {
       return TestProperties.get("BASE_URI_DIGIPAY");
+    } else if (endPoint.contains("rewardspartner")) {
+      return TestProperties.get("BASE_URI_REWARDS");
     } else
       return TestProperties.get("BASE_URI_APIGEE");
   }

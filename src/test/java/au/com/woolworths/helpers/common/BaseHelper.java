@@ -9,6 +9,11 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.restassured.http.Header;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import io.restassured.http.Header;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -21,6 +26,8 @@ public class BaseHelper {
   protected static List<Header> headerListTrader;
   protected static List<Header> headerListRewards;
   protected static List<Header> headerListDigipay;
+  protected static List<Header> headerListScanGo;
+  protected static List<Header> headerListScanGoKiosk;
   protected static SharedData sharedData;
   protected ObjectMapper mapper = new ObjectMapper();
   protected ObjectNode variables;
@@ -31,6 +38,8 @@ public class BaseHelper {
     this.headerListRewards = new LinkedList<>();
     this.headerListDigipay = new LinkedList<>();
     this.variables = new ObjectMapper().createObjectNode();
+    this.headerListScanGo = new LinkedList<>();
+    this.headerListScanGoKiosk = new LinkedList<>();
     this.sharedData = ApplicationContext.getSharedData();
     headerListCommon.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerListCommon.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
@@ -42,6 +51,13 @@ public class BaseHelper {
     addApiKeyBasedOnClientOs(sharedData.clientOS);
 
     headerListDigipay.add(new Header("x-api-key", TestProperties.get("digipay-x-api-key")));
+
+    headerListScanGo.add(new Header("x-api-key", TestProperties.get("SCANGO_API_KEY")));
+    headerListScanGo.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
+
+    headerListScanGoKiosk.add(new Header("x-api-key", TestProperties.get("KIOSK_API_KEY")));
+    headerListScanGoKiosk.add(new Header("deviceid", "SCANNER_KIOSK_" + sharedData.storeID));
+    headerListScanGoKiosk.add(new Header("storeid", sharedData.storeID));
 
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
@@ -71,6 +87,14 @@ public class BaseHelper {
     } else if (clientOS != null && clientOS.equalsIgnoreCase("Android")) {
       headerListRewards.add(new Header("x-api-key", TestProperties.get("rewards-android-x-api-key")));
     }
+  }
+
+  public WebDriver initiateWebdriver() {
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--headless");
+    WebDriverManager.chromedriver().setup();
+    WebDriver driver = new ChromeDriver(options);
+    return driver;
   }
 
 }
