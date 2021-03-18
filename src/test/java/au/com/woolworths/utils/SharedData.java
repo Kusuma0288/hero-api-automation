@@ -45,7 +45,6 @@ public class SharedData {
   public AddressStoresV2 searchPostCodeResponse;
   public String productAisle;
   public String productCategory;
-  public String productCategories;
   public SearchResponseV3 searchProductResponse;
   public String promoTileDataPath;
   public List<String> stockCode = new ArrayList<>();
