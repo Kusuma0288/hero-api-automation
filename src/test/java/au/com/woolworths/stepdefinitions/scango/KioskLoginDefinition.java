@@ -1,8 +1,10 @@
 package au.com.woolworths.stepdefinitions.scango;
 
 import au.com.woolworths.helpers.scango.LoginHelper;
+import au.com.woolworths.model.scango.firstore.FirestoreReadDocTeamMemberBarcodeResponse;
 import au.com.woolworths.model.scango.kiosk.KioskLoginResponse;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.When;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -16,4 +18,12 @@ public class KioskLoginDefinition extends LoginHelper {
     KioskLoginResponse response = iCallKioskLoginAPI();
     sharedData.kioskAccessToken = response.getAccess_token();
   }
+
+  @When("^I get Team Member barcode from Firestore Document$")
+  public void iGetTeamMemberBarcodeFromFirestoreDocument() throws Throwable {
+    FirestoreReadDocTeamMemberBarcodeResponse response = iCallFireStoreTeamMemberBarcodeAPI();
+    sharedData.teamMemberBarcode = response.getEntities()[0].get_2701();
+    System.out.println(sharedData.teamMemberBarcode);
+  }
+
 }

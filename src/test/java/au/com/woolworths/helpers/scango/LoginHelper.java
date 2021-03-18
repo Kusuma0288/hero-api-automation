@@ -1,6 +1,7 @@
 package au.com.woolworths.helpers.scango;
 
 import au.com.woolworths.helpers.common.BaseHelper;
+import au.com.woolworths.model.scango.firstore.FirestoreReadDocTeamMemberBarcodeResponse;
 import au.com.woolworths.model.scango.kiosk.KioskLoginRequest;
 import au.com.woolworths.model.scango.kiosk.KioskLoginResponse;
 import au.com.woolworths.model.scango.login.*;
@@ -13,6 +14,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -107,6 +109,7 @@ public class LoginHelper extends BaseHelper {
     KioskLoginResponse response;
 
     kioskLoginRequest.setBarcode(TestProperties.get("TEAM_MEMBER_BARCODE"));
+    kioskLoginRequest.setBarcode(sharedData.teamMemberBarcode);
 
     String endPoint = URLResources.SCANGO_KIOSK_LOGIN;
     requestStr = mapper.writeValueAsString(kioskLoginRequest);
@@ -124,6 +127,21 @@ public class LoginHelper extends BaseHelper {
     String[] params = rewardsUrl.split("=");
     String[] param = params[1].split("&");
     return param[0];
+  }
+
+  public FirestoreReadDocTeamMemberBarcodeResponse iCallFireStoreTeamMemberBarcodeAPI() throws IOException {
+    Map<String, String> mapWebserviceResponse;
+    String responseStr = null;
+    Map<String, String> queryParams = new HashMap<>();
+
+    FirestoreReadDocTeamMemberBarcodeResponse response;
+
+    String endPoint = URLResources.SCANGO_FIRESTORE_DOC_KIOSK_TEAM_MEMBER;
+
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListFirestoreScanGoTeamMemberbarcode);
+    responseStr = mapWebserviceResponse.get("response");
+    response = mapper.readValue(responseStr, FirestoreReadDocTeamMemberBarcodeResponse.class);
+    return response;
   }
 }
 

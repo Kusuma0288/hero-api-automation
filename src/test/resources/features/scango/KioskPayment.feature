@@ -1,4 +1,4 @@
-@SMOKE_SCANGO
+
 Feature: Kiosk payment
 
   Background:
@@ -41,6 +41,7 @@ Feature: Kiosk payment
     When I call Load cart API
     And I call Checkout API
     And I call Verify Cart API
+    And I get Team Member barcode from Firestore Document
     And I call Team member barcode API to get team member access token
     And I call Kiosk Load Cart API
     Then I verify Intervention items are removed through Kiosk Remove Intervention API

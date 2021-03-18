@@ -133,6 +133,7 @@ public class SharedData {
   public String cartID;
   public String kioskAccessToken;
   public String voidTransactionReasonCode;
+  public String teamMemberBarcode;
 
   public void setDeliveryAddresses(int addressID, String addressText) {
     deliveryAddresses.put(addressID, addressText);

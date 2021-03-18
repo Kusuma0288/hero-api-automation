@@ -112,4 +112,5 @@ public final class URLResources {
   public static final String SCANGO_KIOSK_CONFIG = "/scango/store/kiosk/config";
   public static final String SCANGO_KIOSK_LOGIN = "scango/store/kiosk/team/login";
   public static final String SCANGO_KIOSK_DELETE_CART = "scango/store/kiosk/cart/void";
+  public static final String SCANGO_FIRESTORE_DOC_KIOSK_TEAM_MEMBER = "/wow/firestore/v1/document/read";
 }
