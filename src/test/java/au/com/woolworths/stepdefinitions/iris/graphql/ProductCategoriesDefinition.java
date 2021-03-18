@@ -12,9 +12,8 @@ import junit.framework.Assert;
 import java.io.InputStream;
 
 public class ProductCategoriesDefinition extends BaseHelper {
-
-    ObjectMapper mapper = new ObjectMapper();
-    public GraphqlHelper graphqlHelper = new GraphqlHelper();
+  ObjectMapper mapper = new ObjectMapper();
+  public GraphqlHelper graphqlHelper = new GraphqlHelper();
 
     @When("^user requests for \"([^\"]*)\" sub-categories for store: \"([^\"]*)\"$")
     public void getAvailableProductCategories(String categoryType, String storeId) throws Throwable {
