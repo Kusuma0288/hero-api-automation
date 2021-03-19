@@ -1,0 +1,11 @@
+query ($categoryId: String, $storeId: String, $categoriesType: CategoriesType) {
+    productCategories(categoryId: $categoryId, storeId: $storeId, categoriesType: $categoriesType) {
+        headerTitle,
+        categories {
+            isFinalLevel,
+            iconUrl,
+            title,
+            categoryId
+        }
+    }
+}
