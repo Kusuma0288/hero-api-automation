@@ -1,4 +1,4 @@
-@REGRESSION_APIGEE @Lobsters @PRODUCT_CATEGORIES @IN_PROGRESS
+@REGRESSION_APIGEE @Lobsters @PRODUCT_CATEGORIES
 Feature: Product Categories GraphQL
 
   Scenario: Guest user recursively requests subcategories for online products
