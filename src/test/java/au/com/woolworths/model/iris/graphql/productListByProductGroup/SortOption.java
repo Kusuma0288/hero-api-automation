@@ -1,4 +1,3 @@
-
 package au.com.woolworths.model.iris.graphql.productListByProductGroup;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,7 +8,7 @@ public class SortOption {
   public String typename;
   public String key;
   public String title;
-  public Object subtitle;
-  public Boolean isApplied;
+  public String subtitle;
+  public boolean isApplied;
 
 }

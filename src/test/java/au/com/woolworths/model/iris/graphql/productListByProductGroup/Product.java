@@ -1,4 +1,3 @@
-
 package au.com.woolworths.model.iris.graphql.productListByProductGroup;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,11 +8,11 @@ public class Product {
   public String typename;
   public String productId;
   public String name;
-  public Boolean isNew;
+  public boolean isNew;
   public String purchaseRestriction;
   public String productImage;
-  public Boolean isAvailable;
-  public Integer price;
+  public boolean isAvailable;
+  public int price;
   public String badgeImage;
   public Object promotionInfo;
   public String unitPriceDescription;

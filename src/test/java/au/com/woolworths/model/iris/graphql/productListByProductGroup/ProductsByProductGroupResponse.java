@@ -1,4 +1,3 @@
-
 package au.com.woolworths.model.iris.graphql.productListByProductGroup;
 
 @lombok.Data

@@ -1,4 +1,4 @@
-@REGRESSION_APIGEE @PRODUCT_GROUPS @Taniwha @Lobsters
+@REGRESSION_APIGEE @PRODUCT_GROUPS @Lobsters
 Feature: Product groups graphql
 
   Scenario: User queries a product group

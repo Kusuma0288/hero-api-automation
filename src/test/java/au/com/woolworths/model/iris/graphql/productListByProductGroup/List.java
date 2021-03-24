@@ -1,4 +1,3 @@
-
 package au.com.woolworths.model.iris.graphql.productListByProductGroup;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,11 +6,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class List {
   @JsonProperty("__typename")
   public String typename;
-  public Integer minimum;
-  public Integer maximum;
-  public Integer increment;
+  public int minimum;
+  public int maximum;
+  public int increment;
   @JsonProperty("default")
-  public Integer _default;
+  public int _default;
   public Object unit;
 
 }

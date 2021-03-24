@@ -1,4 +1,3 @@
-
 package au.com.woolworths.model.iris.graphql.productListByProductGroup;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,6 +8,6 @@ public class InlineLabel {
   public String typename;
   public String type;
   public String label;
-  public Integer priority;
+  public int priority;
 
 }
