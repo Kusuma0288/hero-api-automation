@@ -136,7 +136,7 @@ public class LoginHelper extends BaseHelper {
 
     FirestoreReadDocTeamMemberBarcodeResponse response;
 
-    String endPoint = URLResources.SCANGO_FIRESTORE_DOC_KIOSK_TEAM_MEMBER;
+    String endPoint = URLResources.SCANGO_READ_FIRESTORE;
 
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListFirestoreScanGoTeamMemberbarcode);
     responseStr = mapWebserviceResponse.get("response");

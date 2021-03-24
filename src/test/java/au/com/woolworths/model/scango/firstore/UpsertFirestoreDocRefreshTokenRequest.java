@@ -5,8 +5,7 @@ import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class FirestoreReadDocTeamMemberBarcodeResponse {
-  private String result;
-  private Entity[] entities;
-  private String statusCode;
+public class UpsertFirestoreDocRefreshTokenRequest {
+  private String documentId;
+  private String uat_refresh_token;
 }

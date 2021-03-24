@@ -1,10 +1,9 @@
 Feature: Bag Check Scan
 
   Background:
-    Given a user enter valid username and password in the rewards portal
-    And a user calls the Rewards API with valid Authcode in the header
-    And a user calls the Login API with valid AccessToken in the header
-    When user successfully logged in
+    Given I get Refresh Token from Firestore
+    And a user calls the Refresh Token API to get new Access Token
+    And I Update the Refresh Token to Firestore
     And user calls the Start Shop API
 
   Scenario: Verify user is able to complete through in-app and Bag Check Scan matched
@@ -61,8 +60,8 @@ Feature: Bag Check Scan
     And I call Verify Cart API
     And I verify the Skip Bag Check Scan API for the transaction
 
-  Scenario: Verify user is not prompted for Bag check when user's cart has Weight required Item
-    Given I add a "Weight required item" into cart
+  Scenario: Verify user is not prompted for Bag check when user's cart has Tiliter Weight Required Item
+    Given I add a "TILITER_WEIGHT_ITEM" into cart
     When I call Load cart API
     And I call Checkout API
     And I call List Instruments API

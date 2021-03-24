@@ -27,6 +27,7 @@ public class BaseHelper {
   protected static List<Header> headerListScanGo;
   protected static List<Header> headerListScanGoKiosk;
   protected static List<Header> headerListFirestoreScanGoTeamMemberbarcode;
+  protected static List<Header> headerListFirestoreScanGoToken;
   protected static SharedData sharedData;
   protected ObjectMapper mapper = new ObjectMapper();
 
@@ -38,6 +39,7 @@ public class BaseHelper {
     this.headerListScanGo = new LinkedList<>();
     this.headerListScanGoKiosk = new LinkedList<>();
     this.headerListFirestoreScanGoTeamMemberbarcode = new LinkedList<>();
+    this.headerListFirestoreScanGoToken = new LinkedList<>();
 
     this.sharedData = ApplicationContext.getSharedData();
     headerListCommon.add(new Header("x-api-key", TestProperties.get("x-api-key")));
@@ -64,6 +66,11 @@ public class BaseHelper {
     headerListFirestoreScanGoTeamMemberbarcode.add(new Header("datapath", TestProperties.get("datapath")));
     headerListFirestoreScanGoTeamMemberbarcode.add(new Header("configidentifier", TestProperties.get("configidentifier")));
     headerListFirestoreScanGoTeamMemberbarcode.add(new Header("appidentifier", TestProperties.get("appidentifier")));
+
+    headerListFirestoreScanGoToken.add(new Header("x-api-key", TestProperties.get("SCANGO_API_KEY")));
+    headerListFirestoreScanGoToken.add(new Header("datapath", TestProperties.get("datapath_refresh_token")));
+    headerListFirestoreScanGoToken.add(new Header("configidentifier", TestProperties.get("configidentifier")));
+    headerListFirestoreScanGoToken.add(new Header("appidentifier", TestProperties.get("appidentifier_refresh_token")));
 
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);

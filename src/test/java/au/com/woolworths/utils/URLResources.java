@@ -112,5 +112,7 @@ public final class URLResources {
   public static final String SCANGO_KIOSK_CONFIG = "/scango/store/kiosk/config";
   public static final String SCANGO_KIOSK_LOGIN = "scango/store/kiosk/team/login";
   public static final String SCANGO_KIOSK_DELETE_CART = "scango/store/kiosk/cart/void";
-  public static final String SCANGO_FIRESTORE_DOC_KIOSK_TEAM_MEMBER = "/wow/firestore/v1/document/read";
+  public static final String SCANGO_READ_FIRESTORE = "/wow/firestore/v1/document/read";
+  public static final String SCANGO_REFRESH_TOKEN = "/scan/go/v2/rewards/token/";
+  public static final String SCANGO_UPSERT_FIRESTORE = "/wow/firestore/v1/document/upsert";
 }

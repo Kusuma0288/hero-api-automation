@@ -2,10 +2,9 @@
 Feature: In-App payment
 
   Background:
-    Given a user enter valid username and password in the rewards portal
-    And a user calls the Rewards API with valid Authcode in the header
-    And a user calls the Login API with valid AccessToken in the header
-    When user successfully logged in
+    Given I get Refresh Token from Firestore
+    And a user calls the Refresh Token API to get new Access Token
+    And I Update the Refresh Token to Firestore
     And user calls the Start Shop API
 
   Scenario: Verify user is able to complete payment through In-App
@@ -41,7 +40,6 @@ Feature: In-App payment
     And I call Verify Cart API
     And I verify transaction is available in the Transaction History API
     And I verify the View receipt API for the transaction
-
 
   Scenario: Verify user is able to Remove item and Delete the transaction
     Given I add a "Price embedded item" into cart
