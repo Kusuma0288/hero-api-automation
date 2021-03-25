@@ -5,8 +5,10 @@ import au.com.woolworths.model.iris.graphql.productDetails.ProductDetailsRespons
 import au.com.woolworths.utils.TestProperties;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
-import static au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.*;
-import static au.com.woolworths.helpers.iris.graphql.ProductDetailsResponseHelper.*;
+
+import static au.com.woolworths.helpers.iris.graphql.ProductDetailsResponseHelper.ProductDetailsArgs;
+import static au.com.woolworths.helpers.iris.graphql.ProductDetailsResponseHelper.assertProductDetails;
+import static au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.ProductIdSource;
 
 public class ProductDetailsDefinition extends GraphqlBaseDefinition {
 

@@ -10,8 +10,8 @@ import java.io.InputStream;
 
 public class GraphqlBaseDefinition {
 
-  public GraphqlQueryHelper queryHelper;
   public static SharedData sharedData;
+  public GraphqlQueryHelper queryHelper;
   public ObjectMapper mapper;
   public InputStream iStream;
   public ObjectNode variables;

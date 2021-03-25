@@ -14,9 +14,9 @@ Feature: Verify Product details Api
     And I get the list of specials groups and verify the product count and total record count of each group
 
     Examples:
-      | Email Address |
-      | SHOPPER_USERNAME4    |
-      | SHOPPER_USERNAME5    |
+      | Email Address     |
+      | SHOPPER_USERNAME4 |
+      | SHOPPER_USERNAME5 |
 
   @PROD_TRADER
   Scenario: Verify the product count and total record count of each special group against products API for guest user

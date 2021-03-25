@@ -1,8 +1,8 @@
 package au.com.woolworths.model.trader;
 
+import au.com.woolworths.model.common.SubstitutionPreferences;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
-import au.com.woolworths.model.common.SubstitutionPreferences;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data

@@ -1,4 +1,5 @@
 package au.com.woolworths.model.scango.firstore;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 

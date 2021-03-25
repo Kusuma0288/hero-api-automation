@@ -19,7 +19,7 @@ variables:
   - group: MobileAuto-UAT
   - name: trader-uat-lastFailCount
     value: $[variables.Trader_UAT_LastFailCount]
-    
+
 stages:
   - stage: Auto
     # Job schedules are managed --> https://wowonline.visualstudio.com/Mobile/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=1603&view=Tab_Triggers

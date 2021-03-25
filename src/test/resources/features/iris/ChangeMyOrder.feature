@@ -4,7 +4,7 @@ Feature: Checkout API scenarios
   Background:
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME6"
     When connection from user to apigee endpoint happens
-  
+
   Scenario Outline: To verify that the user is able to complete a pick up order using Paypal payment
     Given I set a pick up store using post code 2000
     And I clear the trolley
@@ -22,8 +22,8 @@ Feature: Checkout API scenarios
     Examples:
       | Mode   |
       | Pickup |
-   
-   Scenario Outline:  Verify getting and setting of v3/checkout windows and Packaging preference for Delivery mode
+
+  Scenario Outline:  Verify getting and setting of v3/checkout windows and Packaging preference for Delivery mode
     Given I pick a location at "<lookupAddress>" for delivery
     And I make a request to fulfilment api with primary address id to set the address as fulfilment address
     And I clear the trolley
@@ -41,7 +41,7 @@ Feature: Checkout API scenarios
     And I verify the completed "<Mode>" order
     Then I check my order details in order summary page
     #todo: Implement validation steps.
-   
+
     Examples:
       | Mode     | lookupAddress |
       | Delivery | Darcy Road    |

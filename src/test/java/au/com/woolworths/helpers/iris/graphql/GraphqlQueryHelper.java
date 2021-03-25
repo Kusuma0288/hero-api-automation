@@ -1,17 +1,17 @@
 package au.com.woolworths.helpers.iris.graphql;
 
+import au.com.woolworths.helpers.common.BaseHelper;
+import au.com.woolworths.stepdefinitions.common.ServiceHooks;
+import au.com.woolworths.utils.RestInvocationUtil;
+import au.com.woolworths.utils.URLResources;
+
 import java.util.Map;
 import java.util.logging.Logger;
 
-import au.com.woolworths.helpers.common.BaseHelper;
-import au.com.woolworths.utils.RestInvocationUtil;
-import au.com.woolworths.utils.URLResources;
-import au.com.woolworths.stepdefinitions.common.ServiceHooks;
-
 public class GraphqlQueryHelper extends BaseHelper {
 
-  RestInvocationUtil invocationUtil;
   private final static Logger logger = Logger.getLogger("GraphqlQueryHelper.class");
+  RestInvocationUtil invocationUtil;
 
   public GraphqlQueryHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;

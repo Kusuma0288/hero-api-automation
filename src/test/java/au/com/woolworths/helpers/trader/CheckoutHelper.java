@@ -1,10 +1,10 @@
 package au.com.woolworths.helpers.trader;
 
-import au.com.woolworths.utils.RestInvocationUtil;
-import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.trader.*;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
+import au.com.woolworths.utils.RestInvocationUtil;
+import au.com.woolworths.utils.URLResources;
 
 import java.util.HashMap;
 import java.util.Map;

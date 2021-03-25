@@ -1,9 +1,8 @@
 package au.com.woolworths.stepdefinitions.trader;
 
-import au.com.woolworths.utils.TestProperties;
-import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.trader.ShopperHelper;
 import au.com.woolworths.model.trader.GuestLoginResponse;
+import au.com.woolworths.utils.Utilities;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -17,19 +16,21 @@ public class GuestLoginDefinition extends ShopperHelper {
   private GuestLoginResponse response = new GuestLoginResponse();
   private String deviceId;
 
-    
-  @Given("^apigee connect to trader public api endpoint as guest in store (\\d+)$") 
-  public void apigeeConnectToTraderPublicAPIEndpointAsGuestInStore(int storeId) throws Throwable { 
+
+  @Given("^apigee connect to trader public api endpoint as guest in store (\\d+)$")
+  public void apigeeConnectToTraderPublicAPIEndpointAsGuestInStore(int storeId) throws Throwable {
     deviceId = Utilities.generateRandomUUIDString();
     response = apigeeConnectToTraderPublicAPIEndpointAsGuestWithPossibleOptions(deviceId);
-  
-    sharedData.deviceId = deviceId; sharedData.responseStatusCode =
-    response.getStatusCode(); sharedData.guestLoginResponse = response;
+
+    sharedData.deviceId = deviceId;
+    sharedData.responseStatusCode =
+        response.getStatusCode();
+    sharedData.guestLoginResponse = response;
     sharedData.authToken = response.getAuthToken();
-    Assert.assertTrue(response.getStatusCode().equals("200")); 
-  
+    Assert.assertTrue(response.getStatusCode().equals("200"));
+
   }
-     
+
 
   @Given("^apigee connect to trader public api endpoint as guest$")
   public void apigeeConnectToTraderPublicAPIEndpointAsGuest() throws Throwable {
@@ -43,7 +44,7 @@ public class GuestLoginDefinition extends ShopperHelper {
   }
 
   @Given("^apigee connect to trader public api endpoint as guest with fulfilment store id (\\d+)$")
-  public void apigeeConnectToTraderPublicAPIEndpointAsGuestWithFulfilmentStoreId(int expectedFulfilmentStoreId)throws Throwable {
+  public void apigeeConnectToTraderPublicAPIEndpointAsGuestWithFulfilmentStoreId(int expectedFulfilmentStoreId) throws Throwable {
     deviceId = Utilities.generateRandomUUIDString();
     response = apigeeConnectToTraderPublicAPIEndpointAsGuestWithPossibleOptions(deviceId);
 
@@ -78,7 +79,7 @@ public class GuestLoginDefinition extends ShopperHelper {
 
   @Given("^apigee connect to the trader public V2 endpoint as guest with fulfilment store id (\\d+)$")
   public void apigeeConnectToTheTraderPublicV2EndpointAsAGuestWithFulfilmentStoreId(int expectedFulfilmentStoreId)
-        throws Throwable {
+      throws Throwable {
     deviceId = Utilities.generateRandomUUIDString();
     response = apigeeConnectToTraderPublicAPIEndpointAsGuestWithPossibleOptionsV2(deviceId);
     sharedData.deviceId = deviceId;
@@ -145,7 +146,7 @@ public class GuestLoginDefinition extends ShopperHelper {
   @Then("^apigee failed to authenticate to trader public api V2 endpoint$")
   public void apigeeFailedToAuthenticateToTraderPublicAPIV2Endpoint() throws Throwable {
     Assert.assertTrue(sharedData.responseStatusCode.equals("500"),
-            "Status Code expected is 500 but found::" + sharedData.responseStatusCode);
+        "Status Code expected is 500 but found::" + sharedData.responseStatusCode);
     Assert.assertTrue(response.getMessage().contains("WowApi Error"), "Error Message is::" + response.getMessage());
   }
 

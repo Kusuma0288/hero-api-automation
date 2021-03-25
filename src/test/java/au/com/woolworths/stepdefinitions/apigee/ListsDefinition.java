@@ -1,8 +1,7 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
-import au.com.woolworths.helpers.apigee.TrolleyHelper;
-import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.apigee.ListHelper;
+import au.com.woolworths.helpers.apigee.TrolleyHelper;
 import au.com.woolworths.model.apigee.lists.GetListResponse;
 import au.com.woolworths.model.apigee.lists.ListDetailsResponse;
 import au.com.woolworths.model.apigee.lists.ListResponse;
@@ -10,6 +9,7 @@ import au.com.woolworths.model.apigee.lists.SwitchDefaultListResponse;
 import au.com.woolworths.model.apigee.search.SearchResponseV3;
 import au.com.woolworths.model.apigee.trolley.TrolleyV2Response;
 import au.com.woolworths.model.apigee.trolley.TrolleyV3Response;
+import au.com.woolworths.utils.Utilities;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;

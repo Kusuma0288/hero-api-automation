@@ -21,10 +21,10 @@ import java.io.InputStream;
 
 public class WalletDefinition extends RewardsCardWithWalletHelper {
 
+  final int cardNumberLength = TestProperties.get("CARD_NUMBER").length();
   private RewardsCardHomePageWithWalletResponse rewardsCardHomePageWithWalletResponse;
   private FetchPaymentInstrumentsResponse fetchPaymentInstrumentsResponse;
   private FetchUserPreferencesResponse fetchUserPreferencesResponse;
-  final int cardNumberLength = TestProperties.get("CARD_NUMBER").length();
   private String fetchAddSchemeCardURL;
   private String fetchUpdateSchemeCardURL;
   private String cardToUpdate;
@@ -122,7 +122,7 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
   }
 
   @Then("^the user should see a badge for new user$")
-    public void hasViewedWalletBadge()  {
+  public void hasViewedWalletBadge() {
     if (fetchUserPreferencesResponse.getData().getUserPreferences().isHasViewedWallet()) {
 
     }

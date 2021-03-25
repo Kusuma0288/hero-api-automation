@@ -57,8 +57,8 @@ Feature: Checkout API scenarios
     And I get the available Delivery Now window to reserve them and validate the leave unattended flag
 
     Examples:
-      | lookupAddress |
-      | 407 Elizabeth Street    |
+      | lookupAddress        |
+      | 407 Elizabeth Street |
 
   @Falcon
   Scenario Outline: To verify that the user is able to complete a pick up order using Paypal payment

@@ -19,16 +19,16 @@ stages:
     jobs:
       - job: Prod_Rewards
         steps:
-            - script: |
-                echo "Setting up delay for the job"
-                sleep 10m
-                echo ${{ parameters.triggerEnv }}
-            - template: pipelines/templates/base-template.yml
-              parameters:
-                TestRunTitle: Prod_Rewards Automation Run Report
-                Profile: regression_rewards
-                RunEnv: prod
-                Service: rewards
+          - script: |
+              echo "Setting up delay for the job"
+              sleep 10m
+              echo ${{ parameters.triggerEnv }}
+          - template: pipelines/templates/base-template.yml
+            parameters:
+              TestRunTitle: Prod_Rewards Automation Run Report
+              Profile: regression_rewards
+              RunEnv: prod
+              Service: rewards
         condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'))
 
 

@@ -1,14 +1,15 @@
 package au.com.woolworths.stepdefinitions.iris.graphql;
 
+import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.model.iris.graphql.productList.Product;
 import au.com.woolworths.model.iris.graphql.productList.ProductsBySearchResponse;
 import cucumber.api.java.en.When;
-import au.com.woolworths.graphql.parser.GraphqlParser;
-
-import static au.com.woolworths.helpers.iris.graphql.GraphqlQueryHelper.*;
-import static au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.*;
 
 import java.util.List;
+
+import static au.com.woolworths.helpers.iris.graphql.GraphqlQueryHelper.Mode;
+import static au.com.woolworths.helpers.iris.graphql.GraphqlQueryHelper.ProductListPageSize;
+import static au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.*;
 
 public class ProductsBySearchDefinition extends GraphqlBaseDefinition {
 

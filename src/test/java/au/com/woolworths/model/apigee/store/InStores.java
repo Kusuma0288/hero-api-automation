@@ -1,8 +1,7 @@
 package au.com.woolworths.model.apigee.store;
 
-import lombok.Data;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
 import java.util.ArrayList;
 
@@ -10,6 +9,7 @@ import java.util.ArrayList;
 @Data
 public class InStores {
 
+  ArrayList<Object> facilities = new ArrayList<Object>();
   private String name;
   private String addressLine1;
   private String addressLine2;
@@ -31,7 +31,6 @@ public class InStores {
   private String extra13;
   private String extra14;
   private String extra15;
-  ArrayList<Object> facilities = new ArrayList<Object>();
   private String geoLevel;
   private String GMTZone;
   private Object images;
