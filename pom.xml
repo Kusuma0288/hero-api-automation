@@ -293,7 +293,7 @@
         <java.version>1.8</java.version>
         <cucumber.version>1.2.5</cucumber.version>
         <jackson.version>2.9.8</jackson.version>
-        <restassured.version>3.2.0</restassured.version>
+        <restassured.version>4.3.3</restassured.version>
 
         <!-- Set default encoding to UTF-8 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -315,25 +315,6 @@
         </dependency>
 
         <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>json-path</artifactId>
-            <version>${restassured.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>xml-path</artifactId>
-            <version>${restassured.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>json-schema-validator</artifactId>
-            <version>${restassured.version}</version>
-        </dependency>
-
-        <!-- cucumber -->
-        <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
@@ -344,7 +325,6 @@
             <artifactId>cucumber-testng</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
-
 
         <dependency>
             <groupId>com.github.temyers</groupId>
