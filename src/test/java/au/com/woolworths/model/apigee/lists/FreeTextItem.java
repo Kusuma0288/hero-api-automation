@@ -11,4 +11,5 @@ public class FreeTextItem {
   private String text;
   private long timestamp;
   private boolean checked;
+  private String referenceId;
 }

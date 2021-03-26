@@ -13,5 +13,5 @@ public class ProductsInList {
   private long timestamp;
   private boolean checked;
   private String description;
-
+  private String referenceId;
 }

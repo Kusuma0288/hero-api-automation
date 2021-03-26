@@ -13,4 +13,5 @@ public class Lists {
   private String url;
   private int productCount;
   private String color;
+  private String referenceId;
 }

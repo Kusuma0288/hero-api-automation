@@ -22,4 +22,5 @@ public class ListDetailsResponse {
   private FreeTextItem[] freeTextItems;
   private ProductsInList[] products;
   private String color;
+  private String referenceId;
 }
