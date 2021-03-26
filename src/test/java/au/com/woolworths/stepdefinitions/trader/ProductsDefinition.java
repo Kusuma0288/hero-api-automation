@@ -4,7 +4,7 @@ import au.com.woolworths.helpers.trader.ProductsHelper;
 import au.com.woolworths.model.trader.GroupResponse;
 import au.com.woolworths.model.trader.SpecialsGroupDetailsResponse;
 import au.com.woolworths.model.trader.SpecialsGroupResponse;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 import java.util.HashMap;

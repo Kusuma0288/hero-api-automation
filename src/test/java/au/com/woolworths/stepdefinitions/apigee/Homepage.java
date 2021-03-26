@@ -7,9 +7,8 @@ import au.com.woolworths.model.apigee.homepage.HomepageResponse;
 import au.com.woolworths.model.apigee.productgroups.ProductGroupComponents;
 import au.com.woolworths.model.apigee.productgroups.ProductGroupResponse;
 import au.com.woolworths.model.apigee.productgroups.ProductGroupTrolleyData;
-import cucumber.api.PendingException;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import junit.framework.Assert;
 
 import java.util.Arrays;

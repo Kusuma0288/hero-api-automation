@@ -2,7 +2,7 @@ package au.com.woolworths.stepdefinitions.apigee;
 
 import au.com.woolworths.helpers.apigee.InStoreHelper;
 import au.com.woolworths.model.apigee.search.SearchInStore;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.When;
 import junit.framework.Assert;
 
 import java.util.logging.Logger;

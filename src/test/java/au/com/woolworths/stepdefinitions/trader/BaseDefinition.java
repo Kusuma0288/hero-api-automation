@@ -1,6 +1,6 @@
 package au.com.woolworths.stepdefinitions.trader;
 
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.When;
 
 import java.util.logging.Logger;
 

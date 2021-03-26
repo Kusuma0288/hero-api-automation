@@ -3,8 +3,8 @@ package au.com.woolworths.stepdefinitions.scango;
 import au.com.woolworths.helpers.scango.PaymentHelper;
 import au.com.woolworths.model.scango.payment.ListInstrumentsResponse;
 import au.com.woolworths.model.scango.payment.PaymentResponse;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 public class PaymentDefinition extends PaymentHelper {

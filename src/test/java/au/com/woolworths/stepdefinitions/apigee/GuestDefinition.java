@@ -4,9 +4,9 @@ import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.apigee.GuestHelper;
 
 import au.com.woolworths.model.apigee.authentication.LoginReponse;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 import java.util.logging.Logger;

@@ -4,9 +4,9 @@ import au.com.woolworths.utils.RestInvocationUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 
 import java.util.logging.Logger;
 
@@ -30,13 +30,13 @@ public class ServiceHooks {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       JsonParser jp = new JsonParser();
       for (int i = 0; i < restInvocationUtil.requests.size(); i++) {
-        scenario.embed(restInvocationUtil.endPoints.get(i).getBytes(), "text/html");
+        scenario.attach(restInvocationUtil.endPoints.get(i).getBytes(), "text/html", "endpoints");
         try {
-          scenario.embed(gson.toJson(jp.parse(restInvocationUtil.requests.get(i))).getBytes(), "application/json");
+          scenario.attach(gson.toJson(jp.parse(restInvocationUtil.requests.get(i))).getBytes(), "application/json", "requests");
         } catch (Exception e) {
-          scenario.embed(restInvocationUtil.requests.get(i).getBytes(), "application/json");
+          scenario.attach(restInvocationUtil.requests.get(i).getBytes(), "application/json", "requests");
         }
-        scenario.embed(gson.toJson(jp.parse(restInvocationUtil.responses.get(i).getBody().asString())).getBytes(), "application/json");
+        scenario.attach(gson.toJson(jp.parse(restInvocationUtil.responses.get(i).getBody().asString())).getBytes(), "application/json", "responses");
       }
     }
     if (scenario.isFailed()) {

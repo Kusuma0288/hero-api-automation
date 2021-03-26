@@ -6,8 +6,8 @@ import au.com.woolworths.helpers.iris.graphql.GraphqlHelper;
 import au.com.woolworths.model.iris.graphql.productDetails.ProductDetailsResponse;
 import au.com.woolworths.utils.TestProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Then;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 
 import java.io.InputStream;
 

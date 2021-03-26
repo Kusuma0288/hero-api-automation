@@ -2,7 +2,7 @@ package au.com.woolworths.stepdefinitions.scango;
 
 import au.com.woolworths.helpers.scango.KioskVerifyCartHelper;
 import au.com.woolworths.model.scango.kiosk.VerifyCartResponse;
-import cucumber.api.java.en.Then;
+import io.cucumber.java.en.Then;
 import org.testng.Assert;
 
 public class KioskVerifyCartDefinition extends KioskVerifyCartHelper {

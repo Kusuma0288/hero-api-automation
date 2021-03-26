@@ -5,8 +5,8 @@ import au.com.woolworths.helpers.metis.PerksHelper;
 import au.com.woolworths.model.metis.perks.Banner;
 import au.com.woolworths.model.metis.perks.Perk;
 import au.com.woolworths.model.metis.perks.RewardsPerksResponse;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 import java.io.IOException;

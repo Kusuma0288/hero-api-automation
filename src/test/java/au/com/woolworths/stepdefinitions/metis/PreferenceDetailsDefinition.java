@@ -7,8 +7,8 @@ import au.com.woolworths.model.metis.preferenceDetails.Details;
 import au.com.woolworths.model.metis.preferenceDetails.PreferenceDetailsResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import junit.framework.Assert;
 
 import java.io.InputStream;

@@ -4,9 +4,10 @@ import au.com.woolworths.helpers.apigee.CheckoutHelper;
 import au.com.woolworths.model.apigee.checkout.*;
 import au.com.woolworths.model.apigee.payment.*;
 import au.com.woolworths.utils.TestProperties;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.cucumber.java.en.And;
 import junit.framework.Assert;
 
 import java.util.Arrays;

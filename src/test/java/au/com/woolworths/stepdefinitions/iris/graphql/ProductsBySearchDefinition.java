@@ -5,7 +5,7 @@ import au.com.woolworths.helpers.iris.graphql.GraphqlHelper;
 import au.com.woolworths.model.iris.graphql.productList.Product;
 import au.com.woolworths.model.iris.graphql.productList.ProductsBySearchResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.When;
 import au.com.woolworths.graphql.parser.GraphqlParser;
 
 import static au.com.woolworths.helpers.iris.graphql.GraphqlHelper.*;
