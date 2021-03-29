@@ -2,11 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>APIGEEAPIFramework</groupId>
-    <artifactId>APIGEEAPI</artifactId>
+    <groupId>au.com.woolworths</groupId>
+    <artifactId>mobile-api-framework</artifactId>
     <packaging>jar</packaging>
     <version>1.0</version>
-    <name>RESTAssuredTest</name>
     <url>http://maven.apache.org</url>
 
     <profiles>
@@ -127,29 +126,51 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe.version}</version>
                 <dependencies>
+                    <!-- Specify the JUnit runner, otherwise TestNG is used -->
                     <dependency>
                         <groupId>org.apache.maven.surefire</groupId>
-                        <artifactId>surefire-junit4</artifactId>
-                        <version>3.0.0-M5</version>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>${maven.failsafe.version}</version>
                     </dependency>
                 </dependencies>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <parallel>methods</parallel>
+                            <useUnlimitedThreads>true</useUnlimitedThreads>
+                            <testFailureIgnore>true</testFailureIgnore>
+                            <includes>
+                                <include>RunCucumberIT.java</include>
+                            </includes>
+                            <systemPropertyVariables>
+                                <cucumber.filter.tags>${cucumber.filter.tags}</cucumber.filter.tags>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.failsafe.version}</version>
                 <configuration>
-                    <parallel>methods</parallel>
-                    <useUnlimitedThreads>true</useUnlimitedThreads>
-                    <testFailureIgnore>true</testFailureIgnore>
-                    <systemPropertyVariables>
-                        <cucumber.filter.tags>${cucumber.filter.tags}</cucumber.filter.tags>
-                    </systemPropertyVariables>
+                    <!-- Disable unit tests, we don't need this step -->
+                    <skip>true</skip>
                 </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>${maven.checkstyle.version}</version>
                 <configuration>
                     <configLocation>checkstyle.xml</configLocation>
                     <includeTestResources>true</includeTestResources>
@@ -170,11 +191,14 @@
         </plugins>
     </reporting>
 
-
     <properties>
-        <java.version>1.8</java.version>
+        <cucumber.version>6.8.1</cucumber.version>
         <jackson.version>2.9.8</jackson.version>
+        <java.version>1.8</java.version>
+        <maven.checkstyle.version>3.1.1</maven.checkstyle.version>
+        <maven.failsafe.version>3.0.0-M5</maven.failsafe.version>
         <restassured.version>4.3.3</restassured.version>
+        <testng.verson>7.4.0</testng.verson>
 
         <!-- Set default encoding to UTF-8 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -186,7 +210,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.14.2</version>
+            <version>${testng.verson}</version>
         </dependency>
 
         <dependency>
@@ -198,15 +222,13 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>6.8.1</version>
-            <scope>test</scope>
+            <version>${cucumber.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>6.8.1</version>
-            <scope>test</scope>
+            <version>${cucumber.version}</version>
         </dependency>
 
         <dependency>
