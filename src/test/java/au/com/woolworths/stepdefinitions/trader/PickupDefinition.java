@@ -15,8 +15,8 @@ import java.util.logging.Logger;
 public class PickupDefinition extends AddressHelper {
 
   private final static Logger logger = Logger.getLogger("PickupDefinition.class");
-  private PickupResponse[] pickupResponse;
   private final ShopperHelper shopperHelper;
+  private PickupResponse[] pickupResponse;
 
 
   public PickupDefinition() {

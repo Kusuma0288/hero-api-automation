@@ -12,8 +12,8 @@ import java.util.logging.Logger;
 
 public class ServiceHooks {
 
-  private static Logger logger = Logger.getLogger("ServiceHooks.class");
   public static RestInvocationUtil restInvocationUtil;
+  private static Logger logger = Logger.getLogger("ServiceHooks.class");
   public String saveRequestResponse = "No";
 
   @Before

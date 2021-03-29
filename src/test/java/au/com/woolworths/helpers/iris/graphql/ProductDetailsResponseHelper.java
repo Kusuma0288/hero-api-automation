@@ -1,53 +1,18 @@
 package au.com.woolworths.helpers.iris.graphql;
 
-import java.util.Optional;
-import java.util.logging.Logger;
-
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.iris.graphql.productDetails.Feed;
 import au.com.woolworths.model.iris.graphql.productDetails.ProductDetailsResponse;
-import static au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.*;
 import org.testng.asserts.SoftAssert;
+
+import java.util.Optional;
+import java.util.logging.Logger;
+
+import static au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.ProductIdSource;
 
 public class ProductDetailsResponseHelper extends BaseHelper {
 
   private final static Logger logger = Logger.getLogger("ProductDetailsResponseHelper.class");
-
-  public enum Typename {
-    PRODUCT_CARD("ProductCard"),
-    PRODUCT_NUTRITION_INFO("ProductNutritionInfo"),
-    PRODUCT_ORIGIN_AND_HEALTH_INFO("ProductOriginAndHealthInfo"),
-    IMAGE_CONTENT("ImageContent"),
-    FORMATTED_CONTENT("FormattedContent"),
-    FORMATTED_BANNER("FormattedBanner"),
-    PRODUCT_DISCLAIMER("ProductDisclaimer");
-
-    private String typename;
-
-    Typename(String typename) {
-      this.typename = typename;
-    }
-
-    public String get() {
-      return typename;
-    }
-  }
-
-  public enum ProductDetailsArgs {
-    PRODUCT_ID("productId"),
-    BARCODE("barcode"),
-    STORE_ID("storeId");
-
-    private String arg;
-
-    ProductDetailsArgs(String arg) {
-      this.arg = arg;
-    }
-
-    public String get() {
-      return arg;
-    }
-  }
 
   private static Optional<Feed> getFeed(ProductDetailsResponse productDetailsResponse, String typename) {
     return productDetailsResponse.getData().getProductDetails()
@@ -110,6 +75,42 @@ public class ProductDetailsResponseHelper extends BaseHelper {
         "Disclaimer text not found");
 
     softAssert.assertAll();
+  }
+
+  public enum Typename {
+    PRODUCT_CARD("ProductCard"),
+    PRODUCT_NUTRITION_INFO("ProductNutritionInfo"),
+    PRODUCT_ORIGIN_AND_HEALTH_INFO("ProductOriginAndHealthInfo"),
+    IMAGE_CONTENT("ImageContent"),
+    FORMATTED_CONTENT("FormattedContent"),
+    FORMATTED_BANNER("FormattedBanner"),
+    PRODUCT_DISCLAIMER("ProductDisclaimer");
+
+    private String typename;
+
+    Typename(String typename) {
+      this.typename = typename;
+    }
+
+    public String get() {
+      return typename;
+    }
+  }
+
+  public enum ProductDetailsArgs {
+    PRODUCT_ID("productId"),
+    BARCODE("barcode"),
+    STORE_ID("storeId");
+
+    private String arg;
+
+    ProductDetailsArgs(String arg) {
+      this.arg = arg;
+    }
+
+    public String get() {
+      return arg;
+    }
   }
 
 }

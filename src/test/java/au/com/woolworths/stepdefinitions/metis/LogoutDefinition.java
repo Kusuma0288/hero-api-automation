@@ -2,10 +2,10 @@ package au.com.woolworths.stepdefinitions.metis;
 
 import au.com.woolworths.helpers.metis.LogoutHelper;
 import au.com.woolworths.model.metis.logout.Logout;
+import au.com.woolworths.utils.Utilities;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.util.logging.Logger;
-import au.com.woolworths.utils.Utilities;
 import junit.framework.Assert;
 
 public class LogoutDefinition extends LogoutHelper {

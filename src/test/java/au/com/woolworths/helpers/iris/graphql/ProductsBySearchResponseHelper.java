@@ -1,11 +1,10 @@
-
 package au.com.woolworths.helpers.iris.graphql;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.iris.graphql.productList.Product;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductsBySearchResponseHelper extends BaseHelper {
 

@@ -1,10 +1,10 @@
 package au.com.woolworths.stepdefinitions.trader;
 
-import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.trader.ShopperHelper;
 import au.com.woolworths.model.trader.Errors;
 import au.com.woolworths.model.trader.ShopperLoginResponseV2;
 import au.com.woolworths.model.trader.UserDetail;
+import au.com.woolworths.utils.Utilities;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

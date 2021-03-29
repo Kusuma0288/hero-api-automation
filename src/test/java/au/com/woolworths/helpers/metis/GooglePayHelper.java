@@ -20,7 +20,7 @@ public class GooglePayHelper extends BaseHelper {
   public WalletResponse iAddToWallet(String query) throws IOException {
 
     ObjectMapper mapper = new ObjectMapper();
-    Map <String, String> mapWebserviceResponse;
+    Map<String, String> mapWebserviceResponse;
 
     String endPoint = URLResources.METIS_REWARDS_GRAPHQL;
 

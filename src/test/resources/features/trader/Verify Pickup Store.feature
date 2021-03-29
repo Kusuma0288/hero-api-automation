@@ -31,7 +31,7 @@ Feature: Verify the pickup store
     And I add wait for 5000 msecs to make sure the sync is successful
     Then I validate fulfilmentMethod match to FulfilmentMethod for pickup mode stores
     Examples:
-      | PostCode | EmailAddress     |
-      | 2150     | SHOPPER_WOLVES3  |
+      | PostCode | EmailAddress    |
+      | 2150     | SHOPPER_WOLVES3 |
 
 

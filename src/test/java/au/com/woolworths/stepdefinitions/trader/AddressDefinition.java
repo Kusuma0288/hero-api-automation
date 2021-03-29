@@ -1,8 +1,8 @@
 package au.com.woolworths.stepdefinitions.trader;
 
-import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.trader.AddressHelper;
 import au.com.woolworths.model.trader.*;
+import au.com.woolworths.utils.Utilities;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

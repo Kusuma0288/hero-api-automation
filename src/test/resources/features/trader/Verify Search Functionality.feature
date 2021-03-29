@@ -41,5 +41,5 @@ Feature: Verify V3 Search scenarios
     Then I search for the product "Eggs" with the new search endpoint
 
     Examples:
-      |PostCode                | EmailAddress |
-      | 2204                   | shopapp+61   |
+      | PostCode | EmailAddress |
+      | 2204     | shopapp+61   |

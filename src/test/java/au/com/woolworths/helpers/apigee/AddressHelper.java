@@ -1,20 +1,20 @@
 package au.com.woolworths.helpers.apigee;
 
+import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.apigee.address.AddressDetails;
 import au.com.woolworths.model.apigee.address.AddressRequest;
 import au.com.woolworths.model.apigee.address.AddressStoresV2;
 import au.com.woolworths.model.apigee.address.SearchAddresses;
+import au.com.woolworths.model.apigee.authentication.ErrorResponseV2;
 import au.com.woolworths.model.apigee.delivery.DeliveryAddressRequest;
 import au.com.woolworths.model.apigee.delivery.DeliveryFulfilmentV3Response;
 import au.com.woolworths.model.apigee.fulfilment.FulFilmentResponse;
 import au.com.woolworths.model.apigee.fulfilment.Fulfilmentv3ErrorResponse;
 import au.com.woolworths.model.apigee.lists.ListAddresses;
-import au.com.woolworths.model.apigee.authentication.ErrorResponseV2;
 import au.com.woolworths.model.apigee.store.StoreAddressRequest;
+import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
-import au.com.woolworths.helpers.common.BaseHelper;
-import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,8 +22,8 @@ import java.util.logging.Logger;
 
 public class AddressHelper extends BaseHelper {
 
-  RestInvocationUtil invocationUtil;
   private final static Logger logger = Logger.getLogger("AddressHelper.class");
+  RestInvocationUtil invocationUtil;
 
   public AddressHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;

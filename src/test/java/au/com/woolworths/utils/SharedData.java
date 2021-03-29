@@ -1,12 +1,14 @@
 package au.com.woolworths.utils;
 
-import au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.*;
+import au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.ProductIdSource;
 import au.com.woolworths.model.apigee.address.AddressStoresV2;
 import au.com.woolworths.model.apigee.address.SearchAddresses;
-import au.com.woolworths.model.apigee.lists.ListResponse;
 import au.com.woolworths.model.apigee.authentication.LoginReponse;
+import au.com.woolworths.model.apigee.checkout.CheckoutPackagingPreferencesResponse;
+import au.com.woolworths.model.apigee.lists.ListResponse;
 import au.com.woolworths.model.apigee.products.SpecialspageResponse;
 import au.com.woolworths.model.apigee.search.SearchInStore;
+import au.com.woolworths.model.apigee.search.SearchResponseV3;
 import au.com.woolworths.model.apigee.trolley.TrolleyV2Response;
 import au.com.woolworths.model.apigee.trolley.TrolleyV3Response;
 import au.com.woolworths.model.apigee.search.SearchResponseV3;
@@ -14,6 +16,8 @@ import au.com.woolworths.model.apigee.checkout.CheckoutPackagingPreferencesRespo
 import au.com.woolworths.model.iris.graphql.list.CreateListResponse;
 import au.com.woolworths.model.iris.graphql.productList.Product;
 import au.com.woolworths.model.scango.checkout.CheckoutResponse;
+import au.com.woolworths.model.scango.kiosk.KioskCheckoutResponse;
+import au.com.woolworths.model.scango.kiosk.KioskReasonCodeConfigResponse;
 import au.com.woolworths.model.scango.login.ScanGoLoginResponse;
 import au.com.woolworths.model.scango.payment.ListInstrumentsResponse;
 import au.com.woolworths.model.trader.*;
@@ -126,7 +130,19 @@ public class SharedData {
   public String listName;
   public long productId;
   public int quantity;
-
+  public ScanGoLoginResponse scanGoLoginResponse;
+  public ListInstrumentsResponse listInstrumentsResponse;
+  public CheckoutResponse checkoutResponse = null;
+  public KioskCheckoutResponse kioskCheckoutResponse = null;
+  public KioskReasonCodeConfigResponse kioskReasonCodeConfigResponse = null;
+  public String storeID;
+  public String rewardsAuthCode;
+  public String lineNumber;
+  public String cartID;
+  public String kioskAccessToken;
+  public String voidTransactionReasonCode;
+  public String teamMemberBarcode;
+  
   public void setDeliveryAddresses(int addressID, String addressText) {
     deliveryAddresses.put(addressID, addressText);
   }
@@ -138,13 +154,5 @@ public class SharedData {
   public void removeAllItemsInDeliveryAddresses() {
     deliveryAddresses.clear();
   }
-
-  public ScanGoLoginResponse scanGoLoginResponse;
-  public ListInstrumentsResponse listInstrumentsResponse;
-  public CheckoutResponse checkoutResponse = null;
-  public String rewardsUrl;
-  public String storeID;
-  public String rewardsAuthCode;
-
 
 }

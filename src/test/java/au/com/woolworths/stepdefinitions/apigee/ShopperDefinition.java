@@ -1,12 +1,12 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
-import au.com.woolworths.utils.TestProperties;
 import au.com.woolworths.helpers.apigee.ShopperHelper;
-import io.cucumber.java.en.And;
 import au.com.woolworths.model.apigee.authentication.LoginReponse;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import au.com.woolworths.utils.TestProperties;
 import org.testng.Assert;
 
 import java.util.logging.Logger;

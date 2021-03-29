@@ -8,8 +8,8 @@ Feature: Verify Products by Product Group Api
     When shopper calls products by product group api with "<productGroupId>"
     Then verify products by product group api responds with all products for this productGroupId
     Examples:
-      | emailAddress       | productGroupId |
-      | SHOPPER_USERNAME4  | 25             |
+      | emailAddress      | productGroupId |
+      | SHOPPER_USERNAME4 | 25             |
 
   @SMOKE_TRADER
   Scenario Outline: Verify products by product group api as a guest shopper
@@ -32,8 +32,8 @@ Feature: Verify Products by Product Group Api
     Then trolley <quantity> and other information is updated for the products added to the trolley
     And I clear the trolley for the shopper
     Examples:
-      | emailAddress | productGroupId | quantity | productCount |
-      | SHOPPER_USERNAME4   | 25             | 2        | 2            |
+      | emailAddress      | productGroupId | quantity | productCount |
+      | SHOPPER_USERNAME4 | 25             | 2        | 2            |
 
   @REGRESSION_TRADER @PROD_TRADER
   Scenario Outline: Verify products by product group api for trolley updates as a guest shopper

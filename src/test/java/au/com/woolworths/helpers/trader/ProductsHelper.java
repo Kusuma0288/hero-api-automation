@@ -1,11 +1,14 @@
 package au.com.woolworths.helpers.trader;
 
+import au.com.woolworths.helpers.common.BaseHelper;
+import au.com.woolworths.model.trader.ProductDetailsResponse;
+import au.com.woolworths.model.trader.SpecialsGroupDetailsResponse;
+import au.com.woolworths.model.trader.SpecialsGroupResponse;
+import au.com.woolworths.model.trader.WeeklyPicksResponse;
 import au.com.woolworths.model.trader.product.productGroup.ProductsByProductGroup;
+import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
-import au.com.woolworths.helpers.common.BaseHelper;
-import au.com.woolworths.model.trader.*;
-import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;

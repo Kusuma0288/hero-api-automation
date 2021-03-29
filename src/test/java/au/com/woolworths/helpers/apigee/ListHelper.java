@@ -1,20 +1,22 @@
 package au.com.woolworths.helpers.apigee;
 
+import au.com.woolworths.helpers.common.BaseHelper;
+import au.com.woolworths.model.apigee.lists.*;
 import au.com.woolworths.model.apigee.products.AddProductsToListRequest;
 import au.com.woolworths.model.apigee.products.AddProductsToListResponse;
-import au.com.woolworths.model.apigee.lists.*;
+import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
-import au.com.woolworths.helpers.common.BaseHelper;
-import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.Utilities;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 public class ListHelper extends BaseHelper {
-  RestInvocationUtil invocationUtil;
   private final static Logger logger = Logger.getLogger("ListHelper.class");
+  RestInvocationUtil invocationUtil;
 
   public ListHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;

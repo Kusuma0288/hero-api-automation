@@ -11,5 +11,5 @@ public class SCItem {
   private String title;
   private String cardNumber;
   private String status;
-  private String isPrimary;
+  private Boolean isPrimary;
 }
