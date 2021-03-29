@@ -2,7 +2,8 @@ package au.com.woolworths.stepdefinitions.metis;
 
 import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.helpers.metis.ReceiptHelper;
-import au.com.woolworths.model.metis.receipt.*;
+import au.com.woolworths.model.metis.receipt.Detail;
+import au.com.woolworths.model.metis.receipt.ReceiptDetailsResponse;
 import au.com.woolworths.utils.TestProperties;
 import au.com.woolworths.utils.Utilities;
 import com.fasterxml.jackson.databind.ObjectMapper;

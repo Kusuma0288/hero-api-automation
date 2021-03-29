@@ -27,8 +27,8 @@ Feature: Verify Apigee List scenarios for User
     Then user deletes free text item "<Free Text Item>" from the new list
     And I delete the newly created list
     Examples:
-      | Address     | List Name      | Free Text Item |
-      | Darcy Road  | AutoList Exact | Coke           |
+      | Address    | List Name      | Free Text Item |
+      | Darcy Road | AutoList Exact | Coke           |
 
 
   Scenario Outline: Create List and check / uncheck free text item to the list
@@ -42,8 +42,8 @@ Feature: Verify Apigee List scenarios for User
     And checks free text item "<Free Text Item>" from the "<List Name>"
     And user verifies the free text item "<Free Text Item>" is added to "<List Name>" is checked
     Examples:
-      | Address     | List Name      | Free Text Item |
-      | Darcy Road  | AutoList Exact | Coke           |
+      | Address    | List Name      | Free Text Item |
+      | Darcy Road | AutoList Exact | Coke           |
 
   Scenario Outline: Validate "<Version>" list to trolley sync scenario for a logged in user in Pickup Mode
     Given I set a pick up store using post code <Post Code>
@@ -55,9 +55,9 @@ Feature: Verify Apigee List scenarios for User
     And I add items to cart after selecting "<Quantity>" for every item from "<Version>" list "<List Name>"
     And I verify that the correct items with quantity from "<Version>" list "<List Name>" are added to the cart
     Examples:
-      | Quantity | List Name       | Version | Post Code | Product |
-      | 1        | AutoList Exact  | V2      | 2204      | Milk    |
-      | 1        | AutoList Exact  | V3      | 2204      | Milk    |
+      | Quantity | List Name      | Version | Post Code | Product |
+      | 1        | AutoList Exact | V2      | 2204      | Milk    |
+      | 1        | AutoList Exact | V3      | 2204      | Milk    |
 
   Scenario Outline: Validate "<Version>" list to trolley merge scenario for a logged in user in Delivery Mode
     Given I pick a location at "<Address>" for delivery
@@ -69,6 +69,6 @@ Feature: Verify Apigee List scenarios for User
     And I add items to cart after selecting "<Quantity>" for every item from "<Version>" list "<List Name>"
     And I verify that the correct items with quantity from "<Version>" list "<List Name>" are added to the cart
     Examples:
-      | Quantity   | List Name       | Version | Address    | Product  |
-      | 1	   	   | AutoList Exact  | V2      | Darcy Road | Milk     |
-      | 1	   	   | AutoList Exact  | V3      | Darcy Road | Bread    |
+      | Quantity | List Name      | Version | Address    | Product |
+      | 1        | AutoList Exact | V2      | Darcy Road | Milk    |
+      | 1        | AutoList Exact | V3      | Darcy Road | Bread   |

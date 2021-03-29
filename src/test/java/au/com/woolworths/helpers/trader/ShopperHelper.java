@@ -1,11 +1,11 @@
 package au.com.woolworths.helpers.trader;
 
-import au.com.woolworths.utils.RestInvocationUtil;
-import au.com.woolworths.utils.TestProperties;
-import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.trader.*;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
+import au.com.woolworths.utils.RestInvocationUtil;
+import au.com.woolworths.utils.TestProperties;
+import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.utils.Utilities;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.MapperFeature;
@@ -82,12 +82,12 @@ public class ShopperHelper extends BaseHelper {
 
   }
 
-  public GuestLoginResponse apigeeConnectToTraderPublicAPIEndpointAsGuestWithPossibleOptions(String deviceId)throws Throwable {
+  public GuestLoginResponse apigeeConnectToTraderPublicAPIEndpointAsGuestWithPossibleOptions(String deviceId) throws Throwable {
     GuestLoginRequest guestLoginRequest = new GuestLoginRequest();
     GuestLoginResponse response;
 
     guestLoginRequest.setDeviceAuthToken(deviceId);
-       
+
     String endPoint = URLResources.TRADER_V3_GUEST;
 
     String requestStr = mapper.writeValueAsString(guestLoginRequest);
@@ -102,7 +102,7 @@ public class ShopperHelper extends BaseHelper {
     return response;
   }
 
-  public GuestLoginResponse apigeeConnectToTraderPublicAPIEndpointAsGuestWithPossibleOptionsV2(String deviceId)throws Throwable {
+  public GuestLoginResponse apigeeConnectToTraderPublicAPIEndpointAsGuestWithPossibleOptionsV2(String deviceId) throws Throwable {
     GuestLoginRequest guestLoginRequest = new GuestLoginRequest();
     GuestLoginResponse response;
 
@@ -175,17 +175,17 @@ public class ShopperHelper extends BaseHelper {
     String endPoint = URLResources.TRADER_V3_CHECKOUT_ADDRESS;
     StoreAddressIdRequest storeAddressIdRequest = new StoreAddressIdRequest();
     storeAddressIdRequest.setStoreAddressId(storeAddressId);
-    
+
     ObjectMapper mapper = new ObjectMapper();
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
     String storeRequestStr = mapper.writeValueAsString(storeAddressIdRequest);
-    
+
     // invoke the service with the framed request
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, storeRequestStr, headerListTrader);
     String responseStr = mapWebserviceResponse.get("response");
-    
+
     CheckoutAddressResponse checkoutAddressResponse = mapper.readValue(responseStr, CheckoutAddressResponse.class);
     Assert.assertEquals(mapWebserviceResponse.get("statusCode"), "200", "There is some issue with the save fulfilment store id: " + checkoutAddressResponse.toString());
     return checkoutAddressResponse;
@@ -229,7 +229,7 @@ public class ShopperHelper extends BaseHelper {
 
   }
 
-  public TrolleyResponse iAddProductsToTrolleyWithNotes(int quantity, String stockCode, boolean isUpdate, String note)throws Throwable {
+  public TrolleyResponse iAddProductsToTrolleyWithNotes(int quantity, String stockCode, boolean isUpdate, String note) throws Throwable {
 
     TrolleyItem trolleyItem = new TrolleyItem();
     List<ProductItem> productItems = new ArrayList<ProductItem>();
@@ -257,7 +257,7 @@ public class ShopperHelper extends BaseHelper {
     return trolleyResponse;
   }
 
-  public TrolleyResponse iAddFollowingProductsToTrolley(int quantity, List<String> stockCodes, boolean isUpdate)throws Throwable {
+  public TrolleyResponse iAddFollowingProductsToTrolley(int quantity, List<String> stockCodes, boolean isUpdate) throws Throwable {
 
     TrolleyItem trolleyItem = new TrolleyItem();
     List<ProductItem> productItems = new ArrayList<ProductItem>();

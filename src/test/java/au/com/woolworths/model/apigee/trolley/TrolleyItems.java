@@ -1,8 +1,7 @@
 package au.com.woolworths.model.apigee.trolley;
 
-import lombok.Data;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
 import java.util.List;
 

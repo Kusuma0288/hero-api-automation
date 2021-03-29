@@ -1,6 +1,9 @@
 package au.com.woolworths.helpers.scango;
 
 import au.com.woolworths.helpers.common.BaseHelper;
+import au.com.woolworths.model.scango.firstore.FirestoreReadDocTeamMemberBarcodeResponse;
+import au.com.woolworths.model.scango.kiosk.KioskLoginRequest;
+import au.com.woolworths.model.scango.kiosk.KioskLoginResponse;
 import au.com.woolworths.model.scango.login.*;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
@@ -11,6 +14,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +37,7 @@ public class LoginHelper extends BaseHelper {
     driver.findElement(By.xpath("//div[@id='wr-ios']/app-user-email-card-number/section/form/div/button/span")).click();
     driver.findElement(By.id("otp")).sendKeys(TestProperties.get("PASSWORD"));
     driver.findElement(By.xpath("//div[@id='wr-ios']/app-user-email-card-number/section/app-one-time-pass/section/form/div/button/span")).click();
+    System.out.println("current url " + driver.getCurrentUrl());
     String rewardsTokenUrl = driver.getCurrentUrl();
     String authCode = getAuthCode(rewardsTokenUrl);
     driver.quit();
@@ -95,11 +100,48 @@ public class LoginHelper extends BaseHelper {
 
   }
 
+  public KioskLoginResponse iCallKioskLoginAPI() throws IOException {
+    Map<String, String> mapWebserviceResponse;
+    String requestStr = null;
+    String responseStr = null;
+
+    KioskLoginRequest kioskLoginRequest = new KioskLoginRequest();
+    KioskLoginResponse response;
+
+    kioskLoginRequest.setBarcode(TestProperties.get("TEAM_MEMBER_BARCODE"));
+    kioskLoginRequest.setBarcode(sharedData.teamMemberBarcode);
+
+    String endPoint = URLResources.SCANGO_KIOSK_LOGIN;
+    requestStr = mapper.writeValueAsString(kioskLoginRequest);
+
+    mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListScanGoKiosk);
+    responseStr = mapWebserviceResponse.get("response");
+    response = mapper.readValue(responseStr, KioskLoginResponse.class);
+    response.setStatusCode(mapWebserviceResponse.get("statusCode"));
+    return response;
+
+  }
+
 
   public String getAuthCode(String rewardsUrl) {
     String[] params = rewardsUrl.split("=");
     String[] param = params[1].split("&");
     return param[0];
+  }
+
+  public FirestoreReadDocTeamMemberBarcodeResponse iCallFireStoreTeamMemberBarcodeAPI() throws IOException {
+    Map<String, String> mapWebserviceResponse;
+    String responseStr = null;
+    Map<String, String> queryParams = new HashMap<>();
+
+    FirestoreReadDocTeamMemberBarcodeResponse response;
+
+    String endPoint = URLResources.SCANGO_READ_FIRESTORE;
+
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListFirestoreScanGoTeamMemberbarcode);
+    responseStr = mapWebserviceResponse.get("response");
+    response = mapper.readValue(responseStr, FirestoreReadDocTeamMemberBarcodeResponse.class);
+    return response;
   }
 }
 

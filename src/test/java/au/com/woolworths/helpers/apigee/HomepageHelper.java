@@ -1,19 +1,19 @@
 package au.com.woolworths.helpers.apigee;
 
-import au.com.woolworths.utils.RestInvocationUtil;
-import au.com.woolworths.utils.URLResources;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.apigee.homepage.HomepageResponse;
 import au.com.woolworths.model.apigee.productgroups.ProductGroupResponse;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
+import au.com.woolworths.utils.RestInvocationUtil;
+import au.com.woolworths.utils.URLResources;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
 public class HomepageHelper extends BaseHelper {
-  RestInvocationUtil invocationUtil;
   private final static Logger logger = Logger.getLogger("HomepageHelper.class");
+  RestInvocationUtil invocationUtil;
 
   public HomepageHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
