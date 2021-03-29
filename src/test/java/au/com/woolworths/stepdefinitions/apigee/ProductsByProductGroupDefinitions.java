@@ -22,19 +22,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static au.com.woolworths.graphql.parser.GraphqlParser.parseGraphql;
-import static au.com.woolworths.stepdefinitions.common.ServiceHooks.*;
+import static au.com.woolworths.stepdefinitions.common.ServiceHooks.restInvocationUtil;
 import static au.com.woolworths.utils.Utilities.generateRandomUUIDString;
 import static io.restassured.RestAssured.given;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.fail;
 
-public class ProductGroupStepDefinitions {
+public class ProductsByProductGroupDefinitions {
 
-  private Header accessToken = new Header("Key", "Value"); // Overwritten later
   private final ObjectMapper mapper = new ObjectMapper(); // Jackson databind class
   private final Map<String, String> webServiceResponseMap = new HashMap<>(); // Var to store json result - statusCode/responseBody/contentType
+  private Header accessToken = new Header("Key", "Value"); // Overwritten later
   private Response response;
 
-  // This method only does POST actions but hopefully clarifies what goes on under the hood
+  // TODO: We need to use/refactor existing request methods defined on framework level
+  //  being used by both rewards and shop app bff tests.
   private void makeHttpRequest(String endPoint, String requestStr) {
 
     // Clear any previous request's history
@@ -54,9 +56,9 @@ public class ProductGroupStepDefinitions {
                       .header(accessToken)
                       .body(requestStr)
                       //.log().all() // DEBUG - request log
-              .when()
+                      .when()
                       .post(endPoint)
-              .then()
+                      .then()
                       //.log().all() // DEBUG - response log
                       .extract().response();
 
@@ -128,16 +130,16 @@ public class ProductGroupStepDefinitions {
     softAssert.assertTrue(products.getSortOptions().size() >= 53, "products.sortOptions.count >= " + 53 + " but was: " + products.getSortOptions().size());
 
     // ASSERT - product count - env(TEST) sometimes returns 0 products
-    softAssert.assertNotEquals(products.getTotalNumberOfProducts().doubleValue(), 0, "totalNumberOfProducts != 0 but was: " + products.getTotalNumberOfProducts());
+    softAssert.assertNotEquals(products.getTotalNumberOfProducts(), 0, "totalNumberOfProducts != 0 but was: " + products.getTotalNumberOfProducts());
     softAssert.assertTrue(products.getProducts().size() > 0, "products.count > 0 but was: " + products.getProducts().size());
 
     // ASSERT - 1st product with "isAvailable":true - if existing
-    Product firstAvailableProduct = products.getProducts().stream().filter(Product::getIsAvailable).findFirst().orElse(null);
+    Product firstAvailableProduct = products.getProducts().stream().filter(Product::isAvailable).findFirst().orElse(null);
 
     if (firstAvailableProduct != null) {
       softAssert.assertNotNull(firstAvailableProduct.getName(), "Available products[0].name != null but was: " + firstAvailableProduct.getName());
       softAssert.assertTrue(firstAvailableProduct.getProductImage().contains("cdn0.woolworths.media/content/wowproductimages/medium/"), "Available products[0].productImage contains 'https://uatcdn0.woolworths.media/content/wowproductimages/medium/' but was: " + firstAvailableProduct.getProductImage());
-      softAssert.assertTrue(firstAvailableProduct.getPrice() != null, "Available products[0].price =! null but was: " + firstAvailableProduct.getPrice());
+      softAssert.assertNotNull(firstAvailableProduct.getPrice(), "Available products[0].price =! null but was: " + firstAvailableProduct.getPrice());
       softAssert.assertEquals(firstAvailableProduct.getTrolley().getButtonState(), "ADD", "Available products[0].trolley.buttonState == 'ADD' but was: " + firstAvailableProduct.getTrolley().getButtonState());
       softAssert.assertNotNull(firstAvailableProduct.getList(), "Available products[0].list != null but was: " + firstAvailableProduct.getList());
     }

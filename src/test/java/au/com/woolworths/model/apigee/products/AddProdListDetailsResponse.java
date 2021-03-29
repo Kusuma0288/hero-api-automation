@@ -13,5 +13,6 @@ public class AddProdListDetailsResponse {
   private boolean checked;
   private long timestamp;
   private String status;
+  private String referenceId;
 
 }
