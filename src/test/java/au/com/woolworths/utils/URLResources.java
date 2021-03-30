@@ -96,8 +96,6 @@ public final class URLResources {
   public static final String SCANGO_LOGIN = "scan/go/v1/login/wow/online";
   public static final String SCANGO_START_SHOP = "scan/go/tapon";
   public static final String SCANGO_ADD_ITEM  = "scan/go/cart/items";
-  public static final String SCANGO_START_SHOP = "scan/go/tapon";
-  public static final String SCANGO_ADD_ITEM = "scan/go/cart/items";
   public static final String SCANGO_CHECKOUT = "scan/go/checkout";
   public static final String SCANGO_LIST_INSTRUMENTS = "wow/v1/pay/instruments";
   public static final String SCANGO_PAYMENT = "scan/go/payment";
