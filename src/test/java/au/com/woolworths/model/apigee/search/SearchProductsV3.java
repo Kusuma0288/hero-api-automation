@@ -1,16 +1,16 @@
 package au.com.woolworths.model.apigee.search;
 
+import au.com.woolworths.model.apigee.products.ProductDisclaimer;
 import au.com.woolworths.model.apigee.products.ProductFlag;
 import au.com.woolworths.model.common.Promotions;
-import au.com.woolworths.model.apigee.products.ProductDisclaimer;
-import lombok.Data;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class SearchProductsV3 {
 
+  Promotions promotions;
   private String name;
   private String article;
   private String description;
@@ -28,7 +28,6 @@ public class SearchProductsV3 {
   private Object promo;
   private Object footer;
   private Object footerNew;
-  Promotions promotions;
   private float stockqty;
   private float defaultqty;
   private float incrementalquantity;

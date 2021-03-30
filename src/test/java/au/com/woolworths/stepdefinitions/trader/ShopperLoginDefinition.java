@@ -1,14 +1,13 @@
 package au.com.woolworths.stepdefinitions.trader;
 
-import au.com.woolworths.utils.TestProperties;
-import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.trader.ShopperHelper;
 import au.com.woolworths.model.trader.CheckoutAddressResponse;
 import au.com.woolworths.model.trader.ShopperLoginResponseV2;
+import au.com.woolworths.utils.TestProperties;
+import au.com.woolworths.utils.Utilities;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.junit.Test;
 import org.testng.Assert;
 
 import java.util.Random;

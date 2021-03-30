@@ -1,15 +1,14 @@
 package au.com.woolworths.model.apigee.products;
 
-import lombok.Data;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class ProductsSpecial {
-  private int page;
-  private int count;
   Products[] products;
   SortOptions[] sortoptions;
+  private int page;
+  private int count;
   private String nextpage;
 }

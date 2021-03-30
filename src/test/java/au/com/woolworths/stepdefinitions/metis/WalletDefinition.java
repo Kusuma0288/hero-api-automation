@@ -5,6 +5,7 @@ import au.com.woolworths.helpers.metis.RewardsCardWithWalletHelper;
 import au.com.woolworths.model.apigee.payment.iFrameResponse;
 import au.com.woolworths.model.metis.card.add_gift_card.AddGiftCardResponse;
 import au.com.woolworths.model.metis.card.add_scheme_card.FetchAddSchemeCardURLResponse;
+import au.com.woolworths.model.metis.card.default_payment_settings_sc.SetPrimarySchemeCardResponse;
 import au.com.woolworths.model.metis.card.delete_scheme_card.DeleteSchemeCardResponse;
 import au.com.woolworths.model.metis.card.home_page_with_wallet.RewardsCardHomePageWithWalletResponse;
 import au.com.woolworths.model.metis.card.payment_instruments.FetchPaymentInstrumentsResponse;
@@ -40,6 +41,7 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
   private ViewGiftCardResponse viewGiftCardResponse;
   private ViewGCPaymentPreferencesResponse viewGCPaymentPreferencesResponse;
   private ViewSCPaymentPreferencesResponse viewSCPaymentPreferencesResponse;
+  private SetPrimarySchemeCardResponse setPrimarySchemeCardResponse;
   private String fetchAddSchemeCardURL;
   private String fetchUpdateSchemeCardURL;
   private String cardToUpdate;
@@ -319,4 +321,32 @@ public class WalletDefinition extends RewardsCardWithWalletHelper {
     Assert.assertNotNull("Within items, status field should not be missing", items.get(0).getStatus());
     Assert.assertNotNull("Within items, isPrimary field should not be missing", items.get(0).getIsPrimary());
   }
+
+  @And("^the user should be able to set scheme card as the default payment settings$")
+  public void theUserShouldBeAbleToSetSchemeCardAsTheDefaultPaymentSettings() throws IOException {
+    SetPrimarySchemeCardResponse response = setDefaultPaymentSettingsForSC();
+    scPaymentSettingsAssertions(response);
+  }
+
+  public SetPrimarySchemeCardResponse setDefaultPaymentSettingsForSC() throws IOException {
+    String id = fetchSCPaymentPreferencesResponse().getData().getPaymentSettings().getItems().get(0).getId();
+    Boolean isPrimary = fetchSCPaymentPreferencesResponse().getData().getPaymentSettings().getItems().get(0).getIsPrimary();
+
+    InputStream setPrimaryCardStream = WalletDefinition.class.getResourceAsStream("/gqlQueries/metis/mutations/wallet/setDefaultPaymentSettings.graphql");
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    variables.put("id", id);
+    String setPrimaryCardInstruments = GraphqlParser.parseGraphql(setPrimaryCardStream, variables);
+
+    setPrimarySchemeCardResponse = iRetrieveSetPrimarySchemeCardResponse(setPrimaryCardInstruments);
+    return setPrimarySchemeCardResponse;
+  }
+
+  public void scPaymentSettingsAssertions(SetPrimarySchemeCardResponse response) {
+    String message = response.getData().getSetPrimarySchemeCard().getMessage();
+    Boolean success = response.getData().getSetPrimarySchemeCard().getSuccess();
+
+    Assert.assertTrue("Verify that default payment settings did not fail", success);
+    Assert.assertEquals("Verify that there is no text in the message field returned", message, null);
+  }
+
 }

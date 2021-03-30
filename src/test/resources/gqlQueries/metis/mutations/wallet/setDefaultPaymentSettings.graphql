@@ -1,0 +1,8 @@
+mutation SetPrimarySchemeCard($id: ID!)
+{
+    setPrimarySchemeCard(id: $id)
+    {
+        success
+        message
+    }
+}

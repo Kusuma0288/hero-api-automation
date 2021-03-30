@@ -9,7 +9,7 @@ Feature: Signup as a new user and verify the deliver address from GUEST
     And I select the "1" address as checkout address from matching addresses
     And I use the following details for signing up as a new user in same device
       | firstName | lastName | emailAddress        | password | mobilePhone | dateOfBirth | isBusinessShopper | emailProductsAndServices | smsProductsServicesAndPromotions | campaignName | agreeToTsAndCs |
-      | anish     | pillai   | traderAPI@gmail.com | test123  | 0435876458  | 01/01/1940  | false             | false                    | false                            | WBT          | true			|
+      | anish     | pillai   | traderAPI@gmail.com | test123  | 0435876458  | 01/01/1940  | false             | false                    | false                            | WBT          | true           |
     Then I login to signed up account to see the addresses
     Examples:
       | Address                              |
@@ -22,7 +22,7 @@ Feature: Signup as a new user and verify the deliver address from GUEST
     And I select the "1" address as checkout address from matching addresses
     And I use the following details for signing up as a new user in same device
       | firstName | lastName | emailAddress        | password | mobilePhone | dateOfBirth | isBusinessShopper | emailProductsAndServices | smsProductsServicesAndPromotions | campaignName | agreeToTsAndCs |
-      | anish     | pillai   | traderAPI@gmail.com | test123  | 0435876458  | 01/01/1940  | false             | false                    | false                            | WBT          | true			|
+      | anish     | pillai   | traderAPI@gmail.com | test123  | 0435876458  | 01/01/1940  | false             | false                    | false                            | WBT          | true           |
     Then I login to signed up account to see the address information match
     Examples:
       | Address                                      |
@@ -31,7 +31,7 @@ Feature: Signup as a new user and verify the deliver address from GUEST
   Scenario: Signup as a new shopper and login with the user
     Given I use the following details for signing up as a new user
       | firstName | lastName | emailAddress        | password | mobilePhone | dateOfBirth | isBusinessShopper | emailProductsAndServices | smsProductsServicesAndPromotions | campaignName | agreeToTsAndCs |
-      | anish     | pillai   | traderAPI@gmail.com | 123456   | 0435876458  | 01/01/1940  | false             | false                    | false                            | WBT          | true			|
+      | anish     | pillai   | traderAPI@gmail.com | 123456   | 0435876458  | 01/01/1940  | false             | false                    | false                            | WBT          | true           |
     And apigee successfully authenticate to trader public api endpoint with signedup user session details
     And apigee connect to trader public api endpoint with newly created login and password "123456"
     When connection from apigee to trader public api shopper endpoint happens
@@ -45,7 +45,7 @@ Feature: Signup as a new user and verify the deliver address from GUEST
     And I select the "1" address as checkout address from matching addresses
     And I use the following details for signing up as a new user in same device
       | firstName | lastName | emailAddress        | password | mobilePhone | dateOfBirth | isBusinessShopper | emailProductsAndServices | smsProductsServicesAndPromotions | campaignName | agreeToTsAndCs |
-      | anish     | pillai   | traderAPI@gmail.com | 123456   | 0435876458  | 01/01/1940  | false             | false                    | false                            | WBT          | true			|
+      | anish     | pillai   | traderAPI@gmail.com | 123456   | 0435876458  | 01/01/1940  | false             | false                    | false                            | WBT          | true           |
     Then apigee successfully authenticate to trader public api endpoint with signedup user session details
     When apigee connect to trader public api endpoint with newly created login and password "123456"
     And connection from apigee to trader public api shopper endpoint happens
@@ -57,7 +57,7 @@ Feature: Signup as a new user and verify the deliver address from GUEST
   Scenario: Signup as an existing shopper and verify the error
     Given I use the exact details for signing up as a new shopper
       | firstName | lastName | emailAddress                 | password | mobilePhone | dateOfBirth | isBusinessShopper | emailProductsAndServices | smsProductsServicesAndPromotions | campaignName | agreeToTsAndCs |
-      |           |          | shopapp+25@woolworths.com.au |          | 000         | 01/01/1940  | false             | false                    | false                            | WBT          | true			 |
+      |           |          | shopapp+25@woolworths.com.au |          | 000         | 01/01/1940  | false             | false                    | false                            | WBT          | true           |
     When connection from apigee to trader public api signup endpoint happens
     Then trader signup api responds with the response status "400" and following error fields
       | fieldName    | errorDescription                             |
@@ -70,7 +70,7 @@ Feature: Signup as a new user and verify the deliver address from GUEST
   Scenario Outline: Signup with different combinations and check results
     Given I use the following details for signing up as a new user
       | firstName   | lastName   | emailAddress   | password   | mobilePhone   | dateOfBirth   | isBusinessShopper   | emailProductsAndServices   | smsProductsServicesAndPromotions   | campaignName   | agreeToTsAndCs |
-      | <firstName> | <lastName> | <emailAddress> | <password> | <mobilePhone> | <dateOfBirth> | <isBusinessShopper> | <emailProductsAndServices> | <smsProductsServicesAndPromotions> | <campaignName> | true			 |
+      | <firstName> | <lastName> | <emailAddress> | <password> | <mobilePhone> | <dateOfBirth> | <isBusinessShopper> | <emailProductsAndServices> | <smsProductsServicesAndPromotions> | <campaignName> | true           |
     When connection from apigee to trader public signup api endpoint happens
     Then I should see the following "<status>" captured with status code as <statusCode> having <errorFields>
 
@@ -87,7 +87,7 @@ Feature: Signup as a new user and verify the deliver address from GUEST
   Scenario: Signup as a new shopper and login with the user with wrong password
     Given I use the following details for signing up as a new user
       | firstName | lastName   | emailAddress        | password | mobilePhone | dateOfBirth | isBusinessShopper | emailProductsAndServices | smsProductsServicesAndPromotions | campaignName | agreeToTsAndCs |
-      | trader    | automation | traderAPI@gmail.com | 123456   | 0435876458  | 01/01/1940  | false             | false                    | false                            | WBT          | true		      |
+      | trader    | automation | traderAPI@gmail.com | 123456   | 0435876458  | 01/01/1940  | false             | false                    | false                            | WBT          | true           |
     And apigee successfully authenticate to trader public api endpoint with signedup user session details
     And apigee connect to trader public api endpoint with newly created login and password "123456"
     And connection from apigee to trader public api shopper endpoint happens

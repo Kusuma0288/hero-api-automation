@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderSummary {
-    
+
   @JsonProperty("__typename")
   private String typename;
   private int orderId;

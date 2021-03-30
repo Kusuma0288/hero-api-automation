@@ -15,7 +15,7 @@ public class UserDetail {
   private final boolean isBusinessShopper;
   private final boolean emailProductsAndServices;
   private final boolean smsProductsServicesAndPromotions;
-  private boolean agreeToTsAndCs;
   private final String campaignName;
+  private boolean agreeToTsAndCs;
 
 }

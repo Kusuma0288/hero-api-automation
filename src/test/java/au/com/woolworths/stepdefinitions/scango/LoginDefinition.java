@@ -40,6 +40,7 @@ public class LoginDefinition extends LoginHelper {
 
   @When("user successfully logged in")
   public void userSuccessfullyLoggedIn() {
+    Assert.assertNotNull("Connection issue::" + sharedData.responseStatusCode, sharedData.responseStatusCode);
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
   }
 

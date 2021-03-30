@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = true) //TODO fix it
 @Data
 public class Images {
   private List<String> _360 = null;

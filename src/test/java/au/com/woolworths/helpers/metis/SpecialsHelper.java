@@ -5,7 +5,6 @@ import au.com.woolworths.model.metis.specials.SpecialsResponse;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
-import junit.framework.Assert;
 
 import java.io.IOException;
 import java.util.HashMap;

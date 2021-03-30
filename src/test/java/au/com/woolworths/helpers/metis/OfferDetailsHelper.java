@@ -1,11 +1,11 @@
 package au.com.woolworths.helpers.metis;
 
 import au.com.woolworths.helpers.common.BaseHelper;
+import au.com.woolworths.model.metis.offerdetails.OfferDetailsResponse;
 import au.com.woolworths.stepdefinitions.common.ServiceHooks;
 import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.URLResources;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import au.com.woolworths.model.metis.offerdetails.OfferDetailsResponse;
 
 import java.io.IOException;
 import java.util.Map;

@@ -59,6 +59,6 @@ public class ShoreCampaignDetailsDefinition extends ShoreCampaignHelper {
     Assert.assertNotNull("Shore footer alternative image text not returned", footer.getImageAlt());
     Assert.assertTrue("Shore footer image not returned ", footer.getImageUrl().contains("shore"));
     Assert.assertNotNull("Footer text is not returned ", footer.getTermsAndConditions());
-    Assert.assertTrue("Footer title Terms and Conditions not returned ",  footer.getTitle().equalsIgnoreCase("Terms and Conditions"));
+    Assert.assertTrue("Footer title Terms and Conditions not returned ", footer.getTitle().equalsIgnoreCase("Terms and Conditions"));
   }
 }

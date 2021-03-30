@@ -6,6 +6,7 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class Is {
+  private Boolean quantityupdateallowed;
   private Boolean liquor;
   private Boolean ranged;
   private Boolean weighed;

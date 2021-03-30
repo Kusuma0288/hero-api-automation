@@ -1,16 +1,19 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
-import java.util.*;
-import java.util.logging.Logger;
-
-import au.com.woolworths.utils.Utilities;
 import au.com.woolworths.helpers.apigee.AddressHelper;
-import au.com.woolworths.model.apigee.store.Stores;
 import au.com.woolworths.model.apigee.address.AddressStoresV2;
 import au.com.woolworths.model.apigee.authentication.ErrorResponseV2;
 import au.com.woolworths.model.apigee.fulfilment.FulFilmentResponse;
-import cucumber.api.java.en.*;
+import au.com.woolworths.model.apigee.store.Stores;
+import au.com.woolworths.utils.Utilities;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.testng.Assert;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
 
 public class PickupDefinition extends AddressHelper {
   private final static Logger logger = Logger.getLogger("PickupDefinition.class");

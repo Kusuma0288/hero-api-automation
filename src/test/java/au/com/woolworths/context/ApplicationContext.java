@@ -7,6 +7,10 @@ public class ApplicationContext {
   private ApplicationContext() {
   }
 
+  public static SharedData getSharedData() {
+    return Singleton.INSTANCE.getSharedData();
+  }
+
   private enum Singleton {
 
     INSTANCE;
@@ -20,9 +24,5 @@ public class ApplicationContext {
     public SharedData getSharedData() {
       return sharedData;
     }
-  }
-
-  public static SharedData getSharedData() {
-    return Singleton.INSTANCE.getSharedData();
   }
 }

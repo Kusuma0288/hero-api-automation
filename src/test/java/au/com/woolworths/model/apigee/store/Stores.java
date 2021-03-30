@@ -1,9 +1,8 @@
 package au.com.woolworths.model.apigee.store;
 
 import au.com.woolworths.model.apigee.pickup.PickUpType;
-import lombok.Data;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data

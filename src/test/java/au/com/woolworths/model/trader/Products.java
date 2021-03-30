@@ -1,6 +1,5 @@
 package au.com.woolworths.model.trader;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 //@JsonInclude(JsonInclude.Include.NON_NULL) Will undo this once the new changes are pushed to UAT

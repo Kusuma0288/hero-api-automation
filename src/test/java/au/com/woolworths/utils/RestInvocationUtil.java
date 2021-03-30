@@ -132,6 +132,9 @@ public class RestInvocationUtil {
   }
 
   private Response putRestWithBody(String endPoint, String requestPayload, List<Header> headerList) {
+
+    System.out.println("endPoint" + endPoint);
+    System.out.println("requestPayload" + requestPayload);
     try {
       RestAssured.baseURI = getBaseURL(endPoint);
       Headers headers = new Headers(headerList);
@@ -262,14 +265,13 @@ public class RestInvocationUtil {
     }
     return response;
   }
-  
+
   private String getBaseURL(String endPoint) {
     if (endPoint.startsWith("/api") || endPoint.startsWith("api") || endPoint.startsWith("/Auth"))
       return TestProperties.get("BASE_URI_TRADER");
     else if (endPoint.contains("helios")) {
       return TestProperties.get("BASE_URI_HELIOS");
-    }
-    else if (endPoint.contains("merchant")) {
+    } else if (endPoint.contains("merchant")) {
       return TestProperties.get("BASE_URI_DIGIPAY");
     } else if (endPoint.contains("rewardspartner")) {
       return TestProperties.get("BASE_URI_REWARDS");
