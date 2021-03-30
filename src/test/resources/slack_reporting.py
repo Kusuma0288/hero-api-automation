@@ -48,8 +48,8 @@ for filepath in glob.glob(os.path.join(os.path.expanduser(path), '*.json')):
         total_no_of_scenarios = individual_scenarios
         total_scenarios_failed += len(jp.match("$.[*].elements[?(steps[*].result.status~'.*failed.*')]", json_data))
 
-print "\n\nThe Total Number of Scenarios::",total_no_of_scenarios
-print "\n\nFailed Scenarios::",total_scenarios_failed
+print ("\n\nThe Total Number of Scenarios::",total_no_of_scenarios)
+print ("\n\nFailed Scenarios::",total_scenarios_failed)
 
 sizes = [total_no_of_scenarios - total_scenarios_failed, total_scenarios_failed]
 
