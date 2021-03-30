@@ -39,7 +39,7 @@ for filepath in glob.glob(os.path.join(os.path.expanduser(path), '*.json')):
         json_data = json.load(json_file)
 
         # Filter out all values in the "elements" array that are not tests
-        for element in json_data[0]["elements"]:
+        for element in json_data[1]["elements"]:
             if ("before" not in element):
                 print("This is a Background step; not a Test")
             elif (element["before"]):
@@ -56,6 +56,8 @@ sizes = [total_no_of_scenarios - total_scenarios_failed, total_scenarios_failed]
 labels = ('Passed: ' + str((total_no_of_scenarios - total_scenarios_failed)), 'Failed: ' + str(total_scenarios_failed))
 colors = ['#58FB4C', '#F8183A']
 explode = (0.1, 0)
+print ("\n\nThe Total Number of Scenarios::",total_no_of_scenarios)
+print ("\n\nFailed Scenarios::",total_scenarios_failed)
 plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=90)
 plt.title("Scenario coverage")
 filename = workspace + '/target/cucumber-reports/test.png'
