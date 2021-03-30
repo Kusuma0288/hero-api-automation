@@ -37,17 +37,15 @@ individual_scenarios = 0
 with open(os.path.join(os.path.expanduser(path), 'cucumber.json')) as json_file:
     json_data = json.load(json_file)
 
-    print("\n****************************************************************")
-    print(json_data)
-
-    # Filter out all values in the "elements" array that are not tests
-    for element in json_data["elements"]:
-        print("\n************************************")
-        print(element)
-        if 'before' not in element:
-            print("This is a Background step; not a Test")
-        elif element["before"]:
-            individual_scenarios += 1
+    for i in json_data:
+        # Filter out all values in the "elements" array that are not tests
+        for element in i["elements"]:
+            print("\n************************************")
+            print(element)
+            if 'before' not in element:
+                print("This is a Background step; not a Test")
+            elif element["before"]:
+                individual_scenarios += 1
 
     total_no_of_scenarios = individual_scenarios
     total_scenarios_failed += len(jp.match("$.[*].elements[?(steps[*].result.status~'.*failed.*')]", json_data))
