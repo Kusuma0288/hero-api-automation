@@ -4,7 +4,7 @@ $baseUrl = $ClusterUrl + "/" + $Service + "_" + $RunEnv + "_" + $BuildNumber
 echo 'baseURL:'$baseUrl
 
 $testResultDetailsUrl = $baseUrl + "/index.html"
-$imageURL = $baseUrl + "/advanced-reports/test.png"
+$imageURL = $baseUrl + "/test.png"
 $wolvesURL = $baseUrl + "/pages/tag-scenarios/tag_Wolves.html"
 $lionURL = $baseUrl + "/pages/tag-scenarios/tag_LION.html"
 $lobsterURL = $baseUrl + "/pages/tag-scenarios/tag_Lobsters.html"

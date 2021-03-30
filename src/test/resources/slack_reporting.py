@@ -27,7 +27,7 @@ elif user == 'vsts':
 elif user == 'AzDevOps':
     workspace = args.workspace
 
-path = workspace + '/target/cucumber-reports/advanced-reports/'
+path = workspace + '/target/cucumber-reports/'
 
 total_no_of_scenarios = 0
 total_scenarios_failed = 0
@@ -58,7 +58,7 @@ colors = ['#58FB4C', '#F8183A']
 explode = (0.1, 0)
 plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=90)
 plt.title("Scenario coverage")
-filename = workspace + '/target/cucumber-reports/advanced-reports/test.png'
+filename = workspace + '/target/cucumber-reports/test.png'
 plt.savefig(os.path.expanduser(filename))
 
 '''
