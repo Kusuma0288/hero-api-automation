@@ -8,6 +8,7 @@ Feature: Checkout safely and securely using your preferred payment method
     Then the user should see the wallet is empty
     And the user should be able to add a new card
 
+    @IN_PROGRESS
   Scenario: Verify tooltip appearance
     Given a user logs in the rewards app as an "iOS" user with card number "REWARDS_USER_NO_CARD"
     When the user goes to the card screen
