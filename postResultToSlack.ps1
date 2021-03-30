@@ -28,7 +28,7 @@ function calculation {
    $newVal = $Regex.value
    $pattern11='<i[^>]*>(?:.|\n)+?</i>'
    $Regex1 = [Regex]::Matches($newVal, $pattern11)
-   $count = $Regex1.value.split("anchor-passed")[1].Trim().Substring(4,2)
+   $count = $Regex1.value.split("onclick=""document.location.hash='anchor-passed';"">")[1].Trim()
  }
  catch{
    #"No feature/scenario exists for the tag provided"
