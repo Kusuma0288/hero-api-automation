@@ -36,6 +36,8 @@ individual_scenarios = 0
 # print("The Feature file Path is::"+filepath)
 with open(os.path.join(os.path.expanduser(path), 'cucumber.json')) as json_file:
     json_data = json.load(json_file)
+    print("\n************************************")
+    print(json_data)
 
     # Filter out all values in the "elements" array that are not tests
     for element in json_data[0]["elements"]:
