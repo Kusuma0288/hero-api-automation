@@ -33,20 +33,19 @@ total_no_of_scenarios = 0
 total_scenarios_failed = 0
 individual_scenarios = 0
 
-for filepath in glob.glob(os.path.join(os.path.expanduser(path), '*.json')):
-    # print("The Feature file Path is::"+filepath)
-    with open(filepath) as json_file:
-        json_data = json.load(json_file)
+# print("The Feature file Path is::"+filepath)
+with open(os.path.join(os.path.expanduser(path), 'cucumber.json')) as json_file:
+    json_data = json.load(json_file)
 
-        # Filter out all values in the "elements" array that are not tests
-        for element in json_data[1]["elements"]:
-            if ("before" not in element):
-                print("This is a Background step; not a Test")
-            elif (element["before"]):
-                individual_scenarios += 1
+    # Filter out all values in the "elements" array that are not tests
+    for element in json_data[0]["elements"]:
+        if ("before" not in element):
+            print("This is a Background step; not a Test")
+        elif (element["before"]):
+            individual_scenarios += 1
 
-        total_no_of_scenarios = individual_scenarios
-        total_scenarios_failed += len(jp.match("$.[*].elements[?(steps[*].result.status~'.*failed.*')]", json_data))
+    total_no_of_scenarios = individual_scenarios
+    total_scenarios_failed += len(jp.match("$.[*].elements[?(steps[*].result.status~'.*failed.*')]", json_data))
 
 print ("\n\nThe Total Number of Scenarios::",total_no_of_scenarios)
 print ("\n\nFailed Scenarios::",total_scenarios_failed)
