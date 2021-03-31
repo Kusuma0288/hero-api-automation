@@ -28,7 +28,7 @@ function calculation {
    $newVal = $Regex.value
    $pattern11='<i[^>]*>(?:.|\n)+?</i>'
    $Regex1 = [Regex]::Matches($newVal, $pattern11)
-   $count = $Regex1.value.split("='anchor-failed';")[1]
+   $count = $Regex1.value.split("='anchor-failed';`">")[1].Trim()
  }
  catch{
    #"No feature/scenario exists for the tag provided"
