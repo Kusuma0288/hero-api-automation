@@ -62,7 +62,6 @@ public class RewardsLoginDefinition extends LoginHelper {
   @Given("^(?:a|the) user logs in the rewards app as an \"([^\"]*)\" user with card number \"([^\"]*)\"$")
   public void userLogsInWithCardNumber(String clientOS, String rewardUser) throws Throwable {
     sharedData.rewardsCard = TestProperties.get(rewardUser);
-    sharedData.rewardsCard = "9353220051910";
     hasLinkSessionToken(clientOS);
     getTheAuthcodeOfCardNumberOfAnUser(sharedData.rewardsCard, clientOS);
     logsInWithAuthcode();
