@@ -1,6 +1,5 @@
 package au.com.woolworths.model.iris.graphql.changeMyOrder;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @lombok.Data

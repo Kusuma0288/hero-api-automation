@@ -1,9 +1,10 @@
 package au.com.woolworths.model.iris.graphql.changeMyOrder;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+
+import java.util.List;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -28,5 +29,5 @@ public class Items {
   private List<Savings> savings;
   private List<PaymentMethods> paymentMethods;
   private List<Discounts> discounts;
-  private List<au.com.woolworths.model.iris.graphql.changeMyOrder.ItemInHorizontalList.Items> items;   
+  private List<au.com.woolworths.model.iris.graphql.changeMyOrder.ItemInHorizontalList.Items> items;
 }

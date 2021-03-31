@@ -44,7 +44,6 @@ public class StartShopHelper extends BaseHelper {
     mapWebserviceResponse = invocationUtil.invokePostWithHeaders(endPoint, requestStr, headerListScanGo);
     responseStr = mapWebserviceResponse.get("response");
     response = mapper.readValue(responseStr, StartShopResponse.class);
-    //response.setStatusCode(mapWebserviceResponse.get("statusCode"));
     return response;
   }
 }

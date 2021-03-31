@@ -100,8 +100,21 @@ public final class URLResources {
   public static final String SCANGO_LIST_INSTRUMENTS = "wow/v1/pay/instruments";
   public static final String SCANGO_PAYMENT = "scan/go/payment";
   public static final String SCANGO_REWARDS_TOKEN = "/wx/v1/rewardspartner/secure/code2login/token";
-  public static final String SCANGO_LOAD_CART = "scan/go/cart";
+  public static final String SCANGO_LOAD_OR_DELETE_CART = "scan/go/cart";
   public static final String SCANGO_VERIFY_CART = "scango/store/kiosk/cart/verify";
   public static final String SCANGO_TRANSACTION_HISTORY = "scan/go/transaction/history";
   public static final String SCANGO_VEIW_RECEIPT = "scan/go/receipt/view";
+  public static final String SCANGO_UPDATE_ITEM = "/scan/go/v2/cart/items/";
+  public static final String SCANGO_REMOVE_ITEM = "/scan/go/cart/items/";
+  public static final String SCANGO_USER_PROFILE = "/scan/go/userprofile";
+  public static final String SCANGO_KIOSK_CHECKOUT = "/scango/store/kiosk/cart/checkout";
+  public static final String SCANGO_KIOSK_LOAD_CART = "/scango/store/kiosk/cart";
+  public static final String SCANGO_KIOSK_PAYMENT = "/scango/store/kiosk/cart/payment/confirm";
+  public static final String SCANGO_KIOSK_REMOVE_INTERVENTION = "/scango/store/kiosk/item/intervention/remove/";
+  public static final String SCANGO_KIOSK_CONFIG = "/scango/store/kiosk/config";
+  public static final String SCANGO_KIOSK_LOGIN = "scango/store/kiosk/team/login";
+  public static final String SCANGO_KIOSK_DELETE_CART = "scango/store/kiosk/cart/void";
+  public static final String SCANGO_READ_FIRESTORE = "/wow/firestore/v1/document/read";
+  public static final String SCANGO_REFRESH_TOKEN = "/scan/go/v2/rewards/token/";
+  public static final String SCANGO_UPSERT_FIRESTORE = "/wow/firestore/v1/document/upsert";
 }

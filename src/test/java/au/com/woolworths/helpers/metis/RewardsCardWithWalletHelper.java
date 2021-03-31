@@ -4,6 +4,7 @@ import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.helpers.apigee.IFrameCardHelper;
 import au.com.woolworths.model.metis.card.add_gift_card.AddGiftCardResponse;
 import au.com.woolworths.model.metis.card.add_scheme_card.FetchAddSchemeCardURLResponse;
+import au.com.woolworths.model.metis.card.default_payment_settings_sc.SetPrimarySchemeCardResponse;
 import au.com.woolworths.model.metis.card.delete_scheme_card.DeleteSchemeCardResponse;
 import au.com.woolworths.model.metis.card.home_page_with_wallet.RewardsCardHomePageWithWalletResponse;
 import au.com.woolworths.model.metis.card.payment_instruments.FetchPaymentInstrumentsResponse;
@@ -83,6 +84,10 @@ public class RewardsCardWithWalletHelper extends IFrameCardHelper {
 
   public ViewSCPaymentPreferencesResponse iRetrieveViewSCPaymentPreferencesResponse(String query) throws IOException {
     return mapper.readValue(postQuery(query), ViewSCPaymentPreferencesResponse.class);
+  }
+
+  public SetPrimarySchemeCardResponse iRetrieveSetPrimarySchemeCardResponse(String query) throws IOException {
+    return mapper.readValue(postQuery(query), SetPrimarySchemeCardResponse.class);
   }
 
   private String postQuery(String query) {

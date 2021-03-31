@@ -9,4 +9,4 @@ Feature: Discover enables a customer to find stores nearby for Woolworths and pa
       | latitude    | longitude   |
       | -33.8862486 | 151.2112155 |
       | -20.8862486 | 171.311155  |
-      | -10.8862486 | 181.311155   |
+      | -10.8862486 | 181.311155  |

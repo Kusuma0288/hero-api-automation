@@ -1,8 +1,7 @@
 package au.com.woolworths.model.apigee.products;
 
-import lombok.Data;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @Data
@@ -13,5 +12,5 @@ public class ProductsInList {
   private long timestamp;
   private boolean checked;
   private String description;
-
+  private String referenceId;
 }

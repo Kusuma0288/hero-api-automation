@@ -2,12 +2,13 @@ package au.com.woolworths.model.apigee.trolley;
 
 import au.com.woolworths.model.apigee.search.InStorePrice;
 import au.com.woolworths.model.common.Promotions;
-import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class TrolleyItemsListResponse {
+  Promotions promotions;
   private String name;
   private String article;
   private String description;
@@ -20,7 +21,6 @@ public class TrolleyItemsListResponse {
   private boolean allowsubstitution;
   private String comment;
   private InStorePrice instoreprice;
-  Promotions promotions;
   private Object footer;
   private int maxquantitylimit;
   private int defaultquantity;

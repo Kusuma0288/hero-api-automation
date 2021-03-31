@@ -1,5 +1,4 @@
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>APIGEEAPIFramework</groupId>
@@ -13,9 +12,9 @@
         <profile>
             <id>smoke</id>
             <properties>
-            <cucumber.options>
-                --tags @SMOKE
-            </cucumber.options>
+                <cucumber.options>
+                    --tags @SMOKE
+                </cucumber.options>
             </properties>
         </profile>
 
@@ -166,45 +165,46 @@
         <plugins>
 
             <plugin>
-            <groupId>com.github.temyers</groupId>
-            <artifactId>cucumber-jvm-parallel-plugin</artifactId>
-            <version>5.0.0</version>
-            <executions>
-                <execution>
-                    <id>generateRunners</id>
-                    <phase>generate-test-sources</phase>
-                    <goals>
-                        <goal>generateRunners</goal>
-                    </goals>
-                    <configuration>
-                        <!-- Mandatory -->
-                        <!-- comma separated list of package names to scan for glue code -->
-                        <glue>au.com.woolworths.stepdefinitions</glue>
-                        <outputDirectory>${project.build.directory}/generated-test-sources/cucumber</outputDirectory>
-                        <!-- The directory, which must be in the root of the runtime classpath, containing your feature files.  -->
-                        <featuresDirectory>src/test/resources/features/</featuresDirectory>
-                        <!-- Directory where the cucumber report files shall be written  -->
-                        <cucumberOutputDir>target/cucumber-reports/advanced-reports</cucumberOutputDir>
-                        <!-- CucumberOptions.strict property -->
-                        <strict>false</strict>
-                        <!-- CucumberOptions.monochrome property -->
-                        <monochrome>false</monochrome>
-                        <!-- The tags to run, maps to CucumberOptions.tags property you can pass ANDed tags like "@tag1","@tag2" and ORed tags like "@tag1,@tag2,@tag3" -->
-                        <tags></tags>
-                        <!-- Generate TestNG runners instead of default JUnit ones. -->
-                        <useTestNG>true</useTestNG>
-                        <!-- The naming scheme to use for the generated test classes.  One of 'simple' or 'feature-title' -->
-                        <namingScheme>simple</namingScheme>
-                        <!-- The class naming pattern to use.  Only required/used if naming scheme is 'pattern'.-->
-                        <namingPattern>Parallel{c}IT</namingPattern>
-                        <!-- One of [SCENARIO, FEATURE]. SCENARIO generates one runner per scenario.  FEATURE generates a runner per feature. -->
-                        <parallelScheme>FEATURE</parallelScheme>
-                        <!-- This is optional, required only if you want to specify a custom template for the generated sources (this is a relative path) -->
-                        <customVmTemplate>src/test/resources/cucumber-custom-runner.vm</customVmTemplate>
+                <groupId>com.github.temyers</groupId>
+                <artifactId>cucumber-jvm-parallel-plugin</artifactId>
+                <version>5.0.0</version>
+                <executions>
+                    <execution>
+                        <id>generateRunners</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>generateRunners</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Mandatory -->
+                            <!-- comma separated list of package names to scan for glue code -->
+                            <glue>au.com.woolworths.stepdefinitions</glue>
+                            <outputDirectory>${project.build.directory}/generated-test-sources/cucumber
+                            </outputDirectory>
+                            <!-- The directory, which must be in the root of the runtime classpath, containing your feature files.  -->
+                            <featuresDirectory>src/test/resources/features/</featuresDirectory>
+                            <!-- Directory where the cucumber report files shall be written  -->
+                            <cucumberOutputDir>target/cucumber-reports/advanced-reports</cucumberOutputDir>
+                            <!-- CucumberOptions.strict property -->
+                            <strict>false</strict>
+                            <!-- CucumberOptions.monochrome property -->
+                            <monochrome>false</monochrome>
+                            <!-- The tags to run, maps to CucumberOptions.tags property you can pass ANDed tags like "@tag1","@tag2" and ORed tags like "@tag1,@tag2,@tag3" -->
+                            <tags></tags>
+                            <!-- Generate TestNG runners instead of default JUnit ones. -->
+                            <useTestNG>true</useTestNG>
+                            <!-- The naming scheme to use for the generated test classes.  One of 'simple' or 'feature-title' -->
+                            <namingScheme>simple</namingScheme>
+                            <!-- The class naming pattern to use.  Only required/used if naming scheme is 'pattern'.-->
+                            <namingPattern>Parallel{c}IT</namingPattern>
+                            <!-- One of [SCENARIO, FEATURE]. SCENARIO generates one runner per scenario.  FEATURE generates a runner per feature. -->
+                            <parallelScheme>FEATURE</parallelScheme>
+                            <!-- This is optional, required only if you want to specify a custom template for the generated sources (this is a relative path) -->
+                            <customVmTemplate>src/test/resources/cucumber-custom-runner.vm</customVmTemplate>
 
-                    </configuration>
-                </execution>
-            </executions>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
@@ -222,7 +222,8 @@
                 </executions>
                 <configuration>
                     <sourceJsonReportDirectory>${project.build.directory}/cucumber-reports</sourceJsonReportDirectory>
-                    <generatedHtmlReportDirectory>${project.build.directory}/cucumber-reports</generatedHtmlReportDirectory>
+                    <generatedHtmlReportDirectory>${project.build.directory}/cucumber-reports
+                    </generatedHtmlReportDirectory>
                 </configuration>
             </plugin>
 
@@ -232,7 +233,7 @@
                 <version>3.0.0-M3</version>
 
                 <configuration>
-                    <forkCount>3</forkCount>
+                    <forkCount>0</forkCount>
                     <reuseForks>false</reuseForks>
                     <systemPropertyVariables>
                         <cucumber.options>${cucumber.options}</cucumber.options>
@@ -293,7 +294,7 @@
         <java.version>1.8</java.version>
         <cucumber.version>1.2.5</cucumber.version>
         <jackson.version>2.9.8</jackson.version>
-        <restassured.version>3.2.0</restassured.version>
+        <restassured.version>4.3.3</restassured.version>
 
         <!-- Set default encoding to UTF-8 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -315,25 +316,6 @@
         </dependency>
 
         <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>json-path</artifactId>
-            <version>${restassured.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>xml-path</artifactId>
-            <version>${restassured.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>json-schema-validator</artifactId>
-            <version>${restassured.version}</version>
-        </dependency>
-
-        <!-- cucumber -->
-        <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
@@ -344,7 +326,6 @@
             <artifactId>cucumber-testng</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
-
 
         <dependency>
             <groupId>com.github.temyers</groupId>

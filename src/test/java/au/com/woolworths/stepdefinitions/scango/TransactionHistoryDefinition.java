@@ -12,6 +12,7 @@ public class TransactionHistoryDefinition extends TransactionHistoryHelper {
   public void verifyTransactionAvailableInTransactionHistoryAPI() throws Throwable {
     TransactionHistoryResponse transactionHistoryResponse = iCallTransactionHistory();
     sharedData.responseStatusCode = transactionHistoryResponse.getStatusCode();
+
     Assert.assertTrue(sharedData.responseStatusCode.contains("200"), "Connection not successful::" + sharedData.responseStatusCode);
   }
 }

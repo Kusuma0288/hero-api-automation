@@ -7,6 +7,7 @@ import org.testng.Assert;
 
 public class ViewReceiptDefinition extends ViewReceiptHelper {
 
+
   @Then("^I verify the View receipt API for the transaction$")
   public void verifyViewReceiptAPI() throws Throwable {
     ViewReceiptResponse viewReceiptResponse = iCallViewReceiptAPI();
