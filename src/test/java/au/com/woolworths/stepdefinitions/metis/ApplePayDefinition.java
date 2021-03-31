@@ -11,7 +11,6 @@ import java.io.InputStream;
 import java.util.logging.Logger;
 
 public class ApplePayDefinition extends ApplePayHelper {
-  private final static Logger logger = Logger.getLogger("ApplePayDefinition.class");
   private AppleWalletResponse AppleWalletResponse = new AppleWalletResponse();
 
   @When("^the user adds the rewards card to Apple pay wallet$")
@@ -35,6 +34,5 @@ public class ApplePayDefinition extends ApplePayHelper {
     Assert.assertTrue("the strip should be present", message.contains("strip.png"));
     Assert.assertTrue("the 2X-strip should be present", message.contains("strip@2x.png"));
   }
-
 
 }
