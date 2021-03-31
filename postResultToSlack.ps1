@@ -26,7 +26,7 @@ function calculation {
    $html = $webclient.DownloadString($value)
    $Regex = [Regex]::Matches($html, $pattern)
    $newVal = $Regex.value
-   $pattern11='<i[^>]*>(?:.|\n)+?</i>'
+   $pattern11='<a[^>]*>(?:.|\n)+?</a>'
    $Regex1 = [Regex]::Matches($newVal, $pattern11)
    $count = $Regex1.value.split("='anchor-failed';`">")[1]
  }
