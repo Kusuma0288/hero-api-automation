@@ -22,10 +22,11 @@ public class ApplePayDefinition extends ApplePayHelper {
   }
 
   @Then("^the rewards card is saved to Apple Pay")
-  public void activityDetailsAreDisplayed() {
+  public void tokenAndBase64DecodedAssetsAreDisplayed() {
     String file = AppleWalletResponse.getData().getWalletPkPass().getFile();
     String message = base64decode(file);
     Assert.assertNotNull("the file token should not be empty", file);
+    Assert.assertNotNull("the decoded value should not be empty", message);
     Assert.assertTrue("the icon should be present", message.contains("icon.png"));
     Assert.assertTrue("the logo should be present", message.contains("logo.png"));
     Assert.assertTrue("the 2X-logo should be present", message.contains("logo@2x.png"));
