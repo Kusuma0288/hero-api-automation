@@ -1,0 +1,41 @@
+query {
+    rewardsAccountHome {
+	    sections {
+	        title
+	            options {
+	                ...on AccountHomeOptionItem {
+	                    __typename
+	                    id
+	                    title
+	                    action {
+	                        action
+	                        url
+	                        }
+	                    shouldShowNewBadge
+	                }
+	                ...on AccountHomeOptionMagicLinkItem {
+	                    __typename
+	                    id
+	                    title
+	                    page
+	                }
+	                ...on AccountHomeOptionMandyItem {
+	                    __typename
+	                    id
+	                    title
+	                    page
+	                }
+	                 ...on AccountHomeIOSAppReviewLinkItem {
+                        __typename
+                        id
+                        title
+                        url
+                        shouldShowNewBadge
+                     }
+	            }
+	        }
+	    }
+
+	}
+
+
