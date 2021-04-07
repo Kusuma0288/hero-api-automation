@@ -70,6 +70,7 @@ steps:
       sudo chmod -R 0777 target/
       echo "--Installing python dependencies--"
       cd /usr/lib
+      pip install wheel
       pip install jsonpath-rw-ext
       sudo apt-get jsonpath-rw-ext
       pip install matplotlib
