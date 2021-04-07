@@ -40,8 +40,6 @@ with open(os.path.join(os.path.expanduser(path), 'cucumber.json')) as json_file:
     for i in json_data:
         # Filter out all values in the "elements" array that are not tests
         for element in i["elements"]:
-            print("\n************************************")
-            print(element)
             if 'before' not in element:
                 print("This is a Background step; not a Test")
             elif element["before"]:
