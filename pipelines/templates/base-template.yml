@@ -71,13 +71,11 @@ steps:
       echo "--Installing python dependencies--"
       cd /usr/lib
       pip install wheel
+      sudo apt-get install python-dev
       pip install jsonpath-rw-ext
       sudo apt-get jsonpath-rw-ext
       pip install matplotlib
       sudo apt-get install python-tk
-      echo "--Find json path--"
-      pip list | grep -i jsonpath-rw-ext
-      python -m pip jsonpath-rw-ext
 
     displayName: 'Install dependencies for Python'
     continueOnError: true
