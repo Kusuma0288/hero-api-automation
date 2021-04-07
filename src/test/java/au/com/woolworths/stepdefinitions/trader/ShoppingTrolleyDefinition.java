@@ -1,10 +1,10 @@
 package au.com.woolworths.stepdefinitions.trader;
 
 import au.com.woolworths.helpers.trader.ShopperHelper;
-import au.com.woolworths.model.trader.CartItem;
 import au.com.woolworths.model.trader.GetProductItems;
 import au.com.woolworths.model.trader.Products;
 import au.com.woolworths.model.trader.TrolleyResponse;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,6 +12,7 @@ import org.testng.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 public class ShoppingTrolleyDefinition extends ShopperHelper {
@@ -38,29 +39,33 @@ public class ShoppingTrolleyDefinition extends ShopperHelper {
   }
 
   @Given("^I replace with the following products to the trolley$")
-  public void iReplaceWithTheFollowingProductsToTheTrolley(List<CartItem> cartItems) throws Throwable {
-    iAddOrReplaceItemsInTheTrolley(cartItems, true);
+  public void iReplaceWithTheFollowingProductsToTheTrolley(DataTable cartItems) throws Throwable {
+    List<Map<String, String>> rows = cartItems.asMaps(String.class, String.class);
+
+    iAddOrReplaceItemsInTheTrolley(rows, true);
   }
 
   @Given("^I add the following products to the trolley$")
-  public void iAddTheFollowingProductsToTheTrolley(List<CartItem> cartItems) throws Throwable {
-    iAddOrReplaceItemsInTheTrolley(cartItems, false);
+  public void iAddTheFollowingProductsToTheTrolley(DataTable cartItems) throws Throwable {
+    List<Map<String, String>> rows = cartItems.asMaps(String.class, String.class);
+
+    iAddOrReplaceItemsInTheTrolley(rows, false);
   }
 
-  private void iAddOrReplaceItemsInTheTrolley(List<CartItem> cartItems, boolean isUpdate) throws Throwable {
-    for (CartItem cartItem : cartItems) {
+  private void iAddOrReplaceItemsInTheTrolley(List<Map<String, String>> cartItems, boolean isUpdate) throws Throwable {
+    for (Map<String, String> cartItem : cartItems) {
 
-      TrolleyResponse trolleyResponse = iAddOrUpdateTheFollowingProductsToTheTrolley(cartItem.getQuantity(), cartItem.getStockCode(), isUpdate);
+      TrolleyResponse trolleyResponse = iAddOrUpdateTheFollowingProductsToTheTrolley(Integer.parseInt(cartItem.get("quantity")), cartItem.get("stockCode"), isUpdate);
 
-      if (cartItem.getStatus().equals("PASS")) {
+      if (cartItem.get("status").equals("PASS")) {
         Assert.assertTrue(trolleyResponse.getErrors().size() == 0, "Errors while adding items to the trolley");
         List<Products> products = trolleyResponse.getProducts();
-        Products result = products.stream().filter(x -> cartItem.getStockCode().equals(x.getStockcode())).findAny().orElse(null);
-        Assert.assertNotNull(result, "The product was not found for this stockcode::" + cartItem.getStockCode());
-        Assert.assertTrue(result.getQuantity() == cartItem.getQuantity(), "Quantity is not saved for the Product Stockcode:: " + cartItem.getStockCode());
-        Assert.assertTrue(result.getName().contains(cartItem.getName()), "Shopping Cart Item name is not matching:: " + cartItem.getName());
+        Products result = products.stream().filter(x -> cartItem.get("stockCode").equals(x.getStockcode())).findAny().orElse(null);
+        Assert.assertNotNull(result, "The product was not found for this stockcode::" + cartItem.get("stockCode"));
+        Assert.assertTrue(result.getQuantity() == Integer.parseInt(cartItem.get("quantity")), "Quantity is not saved for the Product Stockcode:: " + cartItem.get("stockCode"));
+        Assert.assertTrue(result.getName().contains(cartItem.get("name")), "Shopping Cart Item name is not matching:: " + cartItem.get("name"));
         //Adding to the sharedData for any verification
-        sharedData.trolleyQuantity = sharedData.trolleyQuantity + cartItem.getQuantity();
+        sharedData.trolleyQuantity = sharedData.trolleyQuantity + Integer.parseInt(cartItem.get("quantity"));
       } else {
         Assert.assertTrue(trolleyResponse.getErrors().size() != 0, "Errors while adding items to the trolley");
         Assert.assertTrue(trolleyResponse.getErrors().get(0).getMessage().equals("A product was not found for this stockcode."), "Not a valid error message::" + trolleyResponse.getErrors().get(0).getMessage());
