@@ -1,4 +1,4 @@
-@SMOKE_SCANGO
+@SMOKE_SCANGO @Manuka
 Feature: In-App payment
 
   Background:

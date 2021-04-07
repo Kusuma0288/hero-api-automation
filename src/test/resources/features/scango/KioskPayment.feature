@@ -1,4 +1,4 @@
-@SMOKE_SCANGO
+@SMOKE_SCANGO @Manuka
 Feature: Kiosk payment
 
   Background:
@@ -11,7 +11,6 @@ Feature: Kiosk payment
     Given I add a "Simple item" into cart
     When I call Load cart API
     And I call Checkout API
-
     And I call Verify Cart API
     And I call Kiosk Load Cart API
     And I call Kiosk Checkout API

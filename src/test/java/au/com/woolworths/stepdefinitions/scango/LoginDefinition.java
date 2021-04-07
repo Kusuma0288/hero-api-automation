@@ -13,12 +13,6 @@ public class LoginDefinition extends LoginHelper {
 
   private final static Logger logger = Logger.getLogger("LoginDefinition.class");
 
-  @Given("^a user enter valid username and password in the rewards portal$")
-  public void userEnterValidUsernameAndPassword() throws Throwable {
-    String authCode = iLoginWithValidRewardsCredentials();
-    sharedData.rewardsAuthCode = authCode;
-  }
-
   @Given("^a user calls the Rewards API with valid Authcode in the header$")
   public void callRewardsAPIWithValidAuthCode() throws Throwable {
     RewardsTokenResponse response = iCallRewardsTokenAPI();

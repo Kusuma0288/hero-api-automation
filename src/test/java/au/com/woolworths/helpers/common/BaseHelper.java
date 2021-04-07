@@ -9,8 +9,6 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.restassured.http.Header;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.restassured.http.Header;
 
 import java.util.LinkedList;
 import java.util.List;
