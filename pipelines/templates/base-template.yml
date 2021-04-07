@@ -70,6 +70,7 @@ steps:
       echo "--Installing python dependencies--"
       cd /usr/lib
       pip install jsonpath-rw-ext
+      sudo apt-get jsonpath-rw-ext
       pip install matplotlib
       sudo apt-get install python-tk
 
