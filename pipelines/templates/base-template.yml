@@ -65,6 +65,11 @@ steps:
   - script: |
       echo "--Giving permissions to update target directory--"
       echo "--Testing directory--"
+      cho "--Python version--"
+      python ––version
+      sudo apt install python3.8
+      echo "--Python version again--"
+      python ––version
       cd $(Build.SourcesDirectory)
       ls
       sudo chmod -R 0777 target/

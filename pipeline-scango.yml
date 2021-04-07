@@ -13,7 +13,7 @@ trigger:
   none
 
 
-pool: 'ubuntu-latest'
+pool: 'wlx-ubuntu1804'
 
 variables:
   - group: MobileAuto-UAT
