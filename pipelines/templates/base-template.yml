@@ -65,22 +65,16 @@ steps:
   - script: |
       echo "--Giving permissions to update target directory--"
       echo "--Testing directory--"
-      echo "--install python3--"
-      sudo apt install python3-pip
-      sudo apt install python3.8
-
+      echo "--Install virtualenv--"
+      pip install virtualenv
       cd $(Build.SourcesDirectory)
       ls
       sudo chmod -R 0777 target/
       echo "--Installing python dependencies--"
       cd /usr/lib
-      pip install wheel
-      sudo apt-get install python-dev
-      echo "--install with pip3--"
-      pip3 install jsonpath-rw
-      echo "--install with apt-get--"
-      sudo apt-get install python-pip
-      pip install jsonpath-rw
+      echo "--Activate virtual env--"
+      virtualenv venv
+      source venv/bin/activate
 
     displayName: 'Install dependencies for Python'
     continueOnError: true
