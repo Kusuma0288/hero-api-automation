@@ -78,9 +78,9 @@ steps:
       sudo apt-get install python-dev
       echo "--install with pip3--"
       pip3 install jsonpath-rw
-      pip install jsonpath-rw jsonpath-rw-ext
-      pip install matplotlib
-      sudo apt-get install python-tk
+      echo "--install with apt-get--"
+      sudo apt-get install python-pip
+      pip install jsonpath-rw
 
     displayName: 'Install dependencies for Python'
     continueOnError: true
