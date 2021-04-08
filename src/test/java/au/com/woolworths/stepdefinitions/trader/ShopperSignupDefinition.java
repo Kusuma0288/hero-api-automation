@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class ShopperSignupDefinition extends ShopperHelper {
-  private final static Logger logger = Logger.getLogger("ShopperSignupDefinition.class");
+  private final static Logger logger = Logger.gcetLogger("ShopperSignupDefinition.class");
 
   @DataTableType(replaceWithEmptyString = "[blank]")
   public String listOfStringListsType(String cell) {
