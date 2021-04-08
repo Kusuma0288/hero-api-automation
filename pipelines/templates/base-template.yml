@@ -65,12 +65,10 @@ steps:
   - script: |
       echo "--Giving permissions to update target directory--"
       echo "--Testing directory--"
-      echo "--Python version--"
-      python –V
+      echo "--Install python3--"
       sudo apt install python3-pip
       sudo apt install python3.8
-      echo "--Python version again--"
-      python –V
+
       cd $(Build.SourcesDirectory)
       ls
       sudo chmod -R 0777 target/
@@ -79,6 +77,7 @@ steps:
       pip install wheel
       sudo apt-get install python-dev
       pip install --upgrade setuptools
+      echo "--Install with pip3--"
       pip3 install jsonpath-rw
       pip install jsonpath-rw jsonpath-rw-ext
       pip install matplotlib
