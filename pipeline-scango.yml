@@ -1,0 +1,86 @@
+parameters:
+  - name: triggerEnv
+    displayName: Run Environment
+    type: string
+    default: uat
+    values:
+      - uat
+      - test
+      - prod
+      - all
+
+trigger:
+  none
+
+
+pool: 'wlx-ubuntu1804'
+
+variables:
+  - group: MobileAuto-UAT
+  - name: scan-go-uat-lastFailCount
+    value: $[variables.Scan_Go_UAT_LastFailCount]
+
+stages:
+  - stage: Auto
+    # Job schedules are managed --> https://wowonline.visualstudio.com/Mobile/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=1602&view=Tab_Triggers
+
+    jobs:
+      - job: Prod_ScanGo
+        steps:
+          - script: |
+              echo ${{ parameters.triggerEnv }}
+              echo "build --"
+              echo $(Build.Reason)
+          - template: pipelines/templates/base-template.yml
+            parameters:
+              TestRunTitle: Prod Scan&Go Automation Run Report
+              Profile: prod_scango
+              RunEnv: prod
+              Service: scango
+        condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'), eq(variables['Build.Reason'], 'Schedule'))
+
+      - job: Uat_ScanGo
+        steps:
+          - script: |
+              echo "Setting up delay for the job"
+              sleep 10m
+
+          - template: pipelines/templates/base-template.yml
+            parameters:
+              TestRunTitle: Uat Scan&Go Automation Run Report
+              Profile: smoke_scango
+              RunEnv: uat
+              Service: scango
+        condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'), eq(variables['Build.Reason'], 'Schedule'))
+
+
+  - stage: Manual
+    jobs:
+      - job: Manual
+        displayName: Manual Automation Run
+        variables:
+          ${{ if eq(parameters.triggerEnv, 'prod') }}:
+            TriggeredProfile: prod_scango
+            TriggeredEnv: ${{ parameters.triggerEnv }}
+          ${{ if eq(parameters.triggerEnv, 'uat') }}:
+            TriggeredProfile: smoke_scango
+            TriggeredEnv: ${{ parameters.triggerEnv }}
+          ${{ if eq(variables['Build.Reason'], 'IndividualCI') }}:
+            TriggeredProfile: smoke_scango
+            TriggeredEnv: uat
+          ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
+            TriggeredProfile: smoke_scango
+            TriggeredEnv: uat
+        steps:
+          - script: |
+              echo $(Build.Reason)
+              echo ${{variables.TriggeredEnv}}
+          - template: pipelines/templates/base-template.yml
+            parameters:
+              SlackWebHookUrl: https://hooks.slack.com/services/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
+              TestRunTitle: Scan&Go Automation Run Report
+              Profile: ${{variables.TriggeredProfile}}
+              RunEnv: ${{variables.TriggeredEnv}}
+              Service: scango
+        condition: and(succeededOrFailed(), in(variables['Build.Reason'], 'Manual','IndividualCI','PullRequest'))
+

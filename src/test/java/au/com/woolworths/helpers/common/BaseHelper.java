@@ -9,11 +9,6 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.restassured.http.Header;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.restassured.http.Header;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -105,12 +100,5 @@ public class BaseHelper {
     }
   }
 
-  public WebDriver initiateWebdriver() {
-    ChromeOptions options = new ChromeOptions();
-    options.addArguments("--headless");
-    WebDriverManager.chromedriver().setup();
-    WebDriver driver = new ChromeDriver(options);
-    return driver;
-  }
 
 }

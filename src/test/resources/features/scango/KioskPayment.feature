@@ -1,4 +1,3 @@
-@SMOKE_SCANGO
 Feature: Kiosk payment
 
   Background:
@@ -7,11 +6,11 @@ Feature: Kiosk payment
     And I Update the Refresh Token to Firestore
     And user calls the Start Shop API
 
+  @SMOKE_SCANGO @Manuka
   Scenario: Verify user is able to complete payment through Kiosk for voluntary transfer
     Given I add a "Simple item" into cart
     When I call Load cart API
     And I call Checkout API
-
     And I call Verify Cart API
     And I call Kiosk Load Cart API
     And I call Kiosk Checkout API
@@ -19,6 +18,7 @@ Feature: Kiosk payment
     And I verify transaction is available in the Transaction History API
     And I verify the View receipt API for the transaction
 
+  @SMOKE_SCANGO @Manuka
   Scenario: Verify user is able to complete payment through Kiosk when In-app payment limit exceeds
     Given I add a "Simple item" into cart
     And I add a "Tun item" into cart
