@@ -69,7 +69,11 @@ steps:
       sudo chmod -R 0777 target/
       echo "--Installing python dependencies--"
       cd /usr/lib
-      pip install jsonpath-rw-ext
+      sudo apt-get update -y
+      sudo apt-get install -y python-jsonpath-rw-ext
+      sudo apt-get install -y python3-pip
+      pip3 install wheel
+      pip3 install matplotlib
       pip install matplotlib
       sudo apt-get install python-tk
 
