@@ -49,7 +49,7 @@ steps:
     inputs:
       dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
       dockerComposeCommand: 'run --entrypoint="mvn clean verify -P${{ parameters.Profile }} -Denv=${{ parameters.RunEnv }}" tests'
-    continueOnError: true
+    continueOnError: false
     condition: succeeded()
 
   - task: PublishTestResults@2
