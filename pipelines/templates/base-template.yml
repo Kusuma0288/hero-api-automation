@@ -64,17 +64,14 @@ steps:
 
   - script: |
       echo "--Giving permissions to update target directory--"
-      echo "--Testing directory--"
-      echo "--Install virtualenv--"
-      pip install virtualenv
       cd $(Build.SourcesDirectory)
       ls
       sudo chmod -R 0777 target/
       echo "--Installing python dependencies--"
       cd /usr/lib
-      echo "--Activate virtual env--"
-      virtualenv venv
-      source venv/bin/activate
+      pip install jsonpath-rw-ext
+      pip install matplotlib
+      sudo apt-get install python-tk
 
     displayName: 'Install dependencies for Python'
     continueOnError: true
