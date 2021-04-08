@@ -65,7 +65,7 @@ steps:
   - script: |
       echo "--Giving permissions to update target directory--"
       echo "--Testing directory--"
-      echo "--Install python3--"
+      echo "--install python3--"
       sudo apt install python3-pip
       sudo apt install python3.8
 
@@ -76,8 +76,7 @@ steps:
       cd /usr/lib
       pip install wheel
       sudo apt-get install python-dev
-      pip install --upgrade setuptools
-      echo "--Install with pip3--"
+      echo "--install with pip3--"
       pip3 install jsonpath-rw
       pip install jsonpath-rw jsonpath-rw-ext
       pip install matplotlib
