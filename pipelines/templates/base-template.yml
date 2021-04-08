@@ -67,6 +67,7 @@ steps:
       echo "--Testing directory--"
       echo "--Python version--"
       python –V
+      sudo apt install python3-pip
       sudo apt install python3.8
       echo "--Python version again--"
       python –V
@@ -78,6 +79,7 @@ steps:
       pip install wheel
       sudo apt-get install python-dev
       pip install --upgrade setuptools
+      pip3 install jsonpath-rw
       pip install jsonpath-rw jsonpath-rw-ext
       pip install matplotlib
       sudo apt-get install python-tk
