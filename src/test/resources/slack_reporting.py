@@ -1,5 +1,4 @@
 import os
-import io
 import glob
 import json
 import jsonpath_rw_ext as jp

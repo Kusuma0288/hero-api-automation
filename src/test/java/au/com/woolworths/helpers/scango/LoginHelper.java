@@ -10,8 +10,6 @@ import au.com.woolworths.utils.RestInvocationUtil;
 import au.com.woolworths.utils.TestProperties;
 import au.com.woolworths.utils.URLResources;
 import io.restassured.http.Header;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -28,20 +26,6 @@ public class LoginHelper extends BaseHelper {
   public LoginHelper() {
     this.invocationUtil = ServiceHooks.restInvocationUtil;
 
-  }
-
-  public String iLoginWithValidRewardsCredentials() {
-    WebDriver driver = initiateWebdriver();
-    driver.get(TestProperties.get("REWARDS_URL"));
-    driver.findElement(By.id("emailCardNumber")).sendKeys(TestProperties.get("USER_EMAIL_ID"));
-    driver.findElement(By.xpath("//div[@id='wr-ios']/app-user-email-card-number/section/form/div/button/span")).click();
-    driver.findElement(By.id("otp")).sendKeys(TestProperties.get("PASSWORD"));
-    driver.findElement(By.xpath("//div[@id='wr-ios']/app-user-email-card-number/section/app-one-time-pass/section/form/div/button/span")).click();
-    System.out.println("current url " + driver.getCurrentUrl());
-    String rewardsTokenUrl = driver.getCurrentUrl();
-    String authCode = getAuthCode(rewardsTokenUrl);
-    driver.quit();
-    return authCode;
   }
 
   public RewardsTokenResponse iCallRewardsTokenAPI() throws IOException {

@@ -12,6 +12,7 @@ $vegemiteURL = $baseUrl + "/pages/tag-scenarios/tag_VEGEMITE.html"
 $nutellaURL = $baseUrl + "/pages/tag-scenarios/tag_NUTELLA.html"
 $cloverURL = $baseUrl + "/pages/tag-scenarios/tag_CLOVER.html"
 $falconURL = $baseUrl + "/pages/tag-scenarios/tag_Falcon.html"
+$manukaURL = $baseUrl + "/pages/tag-scenarios/tag_Manuka.html"
 $totalURL = $baseUrl + "/pages/tag-scenarios/tag_REGRESSION_APIGEE.html"
 
 ##functions
@@ -44,6 +45,7 @@ $vegemiteCount = calculation $vegemiteURL
 $cloverCount = calculation $cloverURL
 $nutellaCount = calculation $nutellaURL
 $falconCount = calculation $falconURL
+$manukaCount = calculation $manukaURL
 $total_failures = calculation $totalURL
 
 if($SourceBranchName -ne 'merge')
@@ -80,6 +82,9 @@ if($SourceBranchName -ne 'merge')
           }
           if([int]$falconCount -ne 0){
                 @{title = 'Falcon'; value = $falconCount; short = 'true'}
+          }
+           if([int]$manukaCount -ne 0){
+                @{title = 'Manuka'; value = $manukaCount; short = 'true'}
           }
         )
      image_url = $imageURL
