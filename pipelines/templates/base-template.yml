@@ -48,7 +48,7 @@ steps:
     displayName: 'Execute Tests'
     inputs:
       dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
-      dockerComposeCommand: 'run --entrypoint="mvn clean verify -P${{ parameters.Profile }} -Denv=${{ parameters.RunEnv }}" tests'
+      dockerComposeCommand: 'run --entrypoint="mvn clean verify -P${{ parameters.Profile }} -Denv=${{ parameters.RunEnv }} -DsaveRequestResponse=yes" tests'
     continueOnError: false
     condition: succeeded()
 
