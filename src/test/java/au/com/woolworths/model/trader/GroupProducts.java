@@ -86,5 +86,6 @@ public class GroupProducts {
   private boolean IsSponsoredAd;
   private String AdID = null;
   private String AdIndex = null;
+  private String DisplayName;
 
 }

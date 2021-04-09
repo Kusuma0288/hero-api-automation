@@ -53,6 +53,7 @@ public class Products {
   //New fields introduced for Project Shore
   private boolean IsPurchasableWithRewardsCredits;
   private Object RewardsCreditPrice;
+  private String DisplayName;
 
 
 }
