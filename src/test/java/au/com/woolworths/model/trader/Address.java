@@ -32,5 +32,6 @@ public class Address {
   private String Longitude;
   private String GuestToken;
   private String AddressProvider;
+  private int FulfillmentStoreId;
 
 }
