@@ -77,7 +77,7 @@ stages:
               echo ${{variables.TriggeredEnv}}
           - template: pipelines/templates/base-template.yml
             parameters:
-              SlackWebHookUrl: https://hooks.slack.com/services/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
+              SlackWebHookUrl: https://hooks.slack.com/services/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
               TestRunTitle: Scan&Go Automation Run Report
               Profile: ${{variables.TriggeredProfile}}
               RunEnv: ${{variables.TriggeredEnv}}
