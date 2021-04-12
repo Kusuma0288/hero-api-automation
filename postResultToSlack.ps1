@@ -14,9 +14,8 @@ $nutellaURL = $baseUrl + "/pages/tag-scenarios/tag_NUTELLA.html"
 $cloverURL = $baseUrl + "/pages/tag-scenarios/tag_CLOVER.html"
 $falconURL = $baseUrl + "/pages/tag-scenarios/tag_Falcon.html"
 $manukaURL = $baseUrl + "/pages/tag-scenarios/tag_Manuka.html"
-
-##$totalURL = $baseUrl + "/pages/tag-scenarios/tag_" + $totalTagUrl + ".html"
-$totalURL = $baseUrl + "/pages/tag-scenarios/tag_REGRESSION_TRADER.html"
+$totalURL = $baseUrl + "/pages/tag-scenarios/tag_" + $totalTagUrl + ".html"
+##$totalURL = $baseUrl + "/pages/tag-scenarios/tag_REGRESSION_TRADER.html"
 
 ##functions
 function calculation {
