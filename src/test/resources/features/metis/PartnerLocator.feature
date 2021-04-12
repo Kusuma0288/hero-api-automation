@@ -1,5 +1,5 @@
 @REGRESSION_REWARDS @CLOVER
-Feature: View all the partner loactions using  lat/long
+Feature: View all the partner locations using  lat/long
 
   Scenario Outline: User views the partner locator in ios
     Given a user logs in the rewards app as an "iOS" user with card number "REWARDS_USER_DEFAULT"
