@@ -47,6 +47,7 @@ public final class URLResources {
   public static final String METIS_TOKEN = "/zeus/metis/v1/rewards/token";
   public static final String METIS_CONFIG = "/zeus/metis/v1/rewards/config";
   public static final String METIS_PARTNER_DETAILS = "/zeus/metis/v1/rewards/partner";
+  public static final String METIS_PARTNER_LOCATION = "/zeus/metis/v1/rewards/partner/locator";
   public static final String METIS_QRID = "/zeus/metis/v1/api/digipay/instore/customer/payment/session/qr/:qrId";
   public static final String METIS_PAYMENT_SESSION = "/zeus/metis/v1/api/digipay/instore/customer/payment/session/:paymentSessionId";
   public static final String METIS_TRANSACTIONS = "/zeus/metis/v1/api/digipay/instore/customer/transactions";
