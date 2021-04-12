@@ -58,7 +58,6 @@ if($SourceBranchName -ne 'merge')
     attachments = @(
     @{
        title = $TestRunTitle
-       color = $color
        title_link = $testResultDetailsUrl
        fields = @(
           @{title = 'Source Branch'; value = $SourceBranchName ; short = 'true'},
@@ -93,6 +92,7 @@ if($SourceBranchName -ne 'merge')
                 @{title = 'Manuka'; value = $manukaCount; short = 'true'}
           }
         )
+     color = $color
      image_url = $imageURL
     }
     )
