@@ -9,4 +9,5 @@ public class SearchProductItem {
   private String Name;
   private Products[] Products;
   private int ProductCount;
+  private String DisplayName;
 }

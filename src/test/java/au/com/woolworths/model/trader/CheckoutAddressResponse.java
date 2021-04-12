@@ -14,5 +14,6 @@ public class CheckoutAddressResponse {
   private String FulfilmentMethod;
   private String Code;
   private String Message;
+  private int FulFilmentStoreId;
 
 }

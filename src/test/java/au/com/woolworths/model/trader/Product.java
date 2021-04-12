@@ -51,4 +51,5 @@ public class Product {
   private String SmallImageFile;
   private String MediumImageFile;
   private String LargeImageFile;
+  private String DisplayName;
 }

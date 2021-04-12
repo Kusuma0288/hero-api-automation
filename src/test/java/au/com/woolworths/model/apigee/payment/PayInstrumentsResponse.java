@@ -6,7 +6,7 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class PayInstrumentsResponse {
-  private String[] creditCards;
+  private Object creditCards;
   private String[] giftCards;
   private PayPal[] payPal;
   private String[] paymentAgreements;

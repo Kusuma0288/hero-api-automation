@@ -64,7 +64,7 @@ Feature: Checkout API scenarios
   Scenario Outline: To verify that the user is able to complete a pick up order using Paypal payment
     Given I set a pick up store using post code 2000
     And I clear the trolley
-    When I search for the product Egg in pickup mode and store response
+    When I search for the product Oil in pickup mode and store response
     And I add the 5 available products with 5 each from the store to the V3 trolley
     And I get the available windows for the logged in user with storeId or addressId
     Then I reserve the available window for the selected "<Mode>"

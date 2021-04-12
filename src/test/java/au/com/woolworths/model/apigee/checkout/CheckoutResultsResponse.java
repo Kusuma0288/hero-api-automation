@@ -10,4 +10,5 @@ public class CheckoutResultsResponse {
   private CheckoutResultsErrorResponse FulfilmentWindows;
   private CheckoutResultsErrorResponse PickupStores;
   private CheckoutResultsErrorResponse SetPackagingOption;
+  private Object DeliveryNow;
 }

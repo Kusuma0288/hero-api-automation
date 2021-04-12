@@ -20,5 +20,6 @@ public class AvailableOrderItems {
   private int MinQuantity;
   private int SupplyLimit;
   private int Price;
+  private String DisplayName;
 }
 

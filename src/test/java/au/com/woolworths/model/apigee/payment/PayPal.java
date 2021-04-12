@@ -9,10 +9,11 @@ public class PayPal {
   private String paymentInstrumentId;
   private String paymentToken;
   private String status;
+  private String createdOn;
   private String lastUpdated;
   private String lastUsed;
   private Boolean primary;
   private Boolean allowed;
-  private String payPalId;
   private String customerId;
+  private String payPalId;
 }

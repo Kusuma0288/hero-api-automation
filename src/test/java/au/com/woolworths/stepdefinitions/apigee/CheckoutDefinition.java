@@ -37,21 +37,28 @@ public class CheckoutDefinition extends CheckoutHelper {
       //Get Afternoon Slot
       CheckoutWindowItems checkoutWindowAfternoonItems = checkoutFulfilmentWindows[0].getAfternoon();
       CheckoutWindowSlots[] checkoutWindowAfternoonSlots = checkoutWindowAfternoonItems.getSlots();
-      checkoutWindowAfternoonSlots[0] = Arrays.stream(checkoutWindowAfternoonItems.getSlots()).filter(j -> j.getStatus().equals("Available"))
-          .findFirst().orElse(null);
 
       //Get Evening Slot
       CheckoutWindowItems checkoutWindowEveningItems = checkoutFulfilmentWindows[0].getEvening();
       CheckoutWindowSlots[] checkoutWindowEveningSlots = checkoutWindowEveningItems.getSlots();
-      checkoutWindowEveningSlots[0] = Arrays.stream(checkoutWindowEveningItems.getSlots()).filter(j -> j.getStatus().equals("Available"))
-          .findFirst().orElse(null);
+
+    //Made the changes to cover if there are no slots available. Earlier it was throwing Array OutOfBound error
+      if (checkoutWindowAfternoonSlots.length == 0) {
+        checkoutWindowEveningSlots[0] = Arrays.stream(checkoutWindowEveningItems.getSlots()).filter(j -> j.getStatus().equals("Available"))
+            .findFirst().orElse(null);
+      } else {
+        checkoutWindowAfternoonSlots[0] = Arrays.stream(checkoutWindowAfternoonItems.getSlots()).filter(j -> j.getStatus().equals("Available"))
+            .findFirst().orElse(null);
+      }
 
       if (checkoutWindowAfternoonSlots[0] != null) {
         sharedData.windowId = checkoutWindowAfternoonSlots[0].getId();
         sharedData.orderCheckoutPaymentWindowTime = checkoutWindowAfternoonSlots[0].getStartTime();
+        break;
       } else if (checkoutWindowEveningSlots[0] != null) {
         sharedData.windowId = checkoutWindowEveningSlots[0].getId();
         sharedData.orderCheckoutPaymentWindowTime = checkoutWindowEveningSlots[0].getStartTime();
+        break;
       }
     }
 
