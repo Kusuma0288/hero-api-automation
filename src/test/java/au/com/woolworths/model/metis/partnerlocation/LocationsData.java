@@ -17,5 +17,6 @@ public class LocationsData {
   private Double longitude;
   private String mapClusterColour;
   private String icon;
+  private String badgeUrl;
   private String iconUrl;
 }

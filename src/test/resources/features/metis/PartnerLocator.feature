@@ -6,7 +6,7 @@ Feature: View all the partner locations using  lat/long
     When the user selects "<partner>" details with "<latitude>" and "<longitude>"
     Then the user should be able to see the partner location "<partner>"
     Examples:
-      | partner          | latitude    | longitude  |
+      | partner        | latitude              | longitude  |
       | WOOLWORTHS     | -33.8086990832999     | 150.97555090962393  |
       | BWS            | -33.8086990832999     | 150.97555090962393  |
       | CALTEX         | -33.8086990832999     | 150.97555090962393  |
@@ -17,7 +17,7 @@ Feature: View all the partner locations using  lat/long
     When the user selects "<partner>" details with "<latitude>" and "<longitude>"
     Then the user should be able to see the partner location "<partner>"
     Examples:
-      | partner          | latitude    | longitude  |
+      | partner        | latitude              | longitude  |
       | WOOLWORTHS     | -33.8086990832999     | 150.97555090962393  |
       | BWS            | -33.8086990832999     | 150.97555090962393  |
       | CALTEX         | -33.8086990832999     | 150.97555090962393  |

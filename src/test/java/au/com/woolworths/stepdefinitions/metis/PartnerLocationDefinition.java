@@ -54,7 +54,10 @@ public class PartnerLocationDefinition extends PartnerLocationHelper {
         Assert.assertTrue("Caltex division name is missing ", StringUtils.equalsAny(items.get(i).getData().getDivision(), "CALTEXWOW", "PETROL"));
         Assert.assertEquals("Caltex cluster colour is missing  ", "#004C63", items.get(i).getData().getMapClusterColour());
         Assert.assertTrue("Caltex icon is missing ", StringUtils.equalsAny(items.get(i).getData().getIcon(), "caltex", "caltex_woolworths"));
-        Assert.assertTrue("Caltex icon url is missing the division log ", StringUtils.containsAny(items.get(i).getData().getIconUrl(), "caltexwow_division_logo.png", "petrol_division_logo.png"));
+        if (items.get(i).getData().getBadgeUrl() != null) {
+          Assert.assertEquals("Caltex badge url is missing the 4c  ", "4c.png", items.get(i).getData().getBadgeUrl());
+        }
+        Assert.assertTrue("Caltex icon url is missing the division logo ", StringUtils.containsAny(items.get(i).getData().getIconUrl(), "caltexwow_division_logo.png", "petrol_division_logo.png"));
       } else if (partner.equals("BIGW")) {
         Assert.assertEquals("BIGW division name is missing ", "BIGW", items.get(i).getData().getDivision());
         Assert.assertEquals("BIGW cluster colour is missing ", "#274AD3", items.get(i).getData().getMapClusterColour());
