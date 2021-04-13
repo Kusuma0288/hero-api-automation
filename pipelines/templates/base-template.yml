@@ -101,7 +101,7 @@ steps:
       $returnValues = &'$(Build.SourcesDirectory)/postResultToSlack.ps1' -ClusterUrl '${{ parameters.ClusterUrl }}' `
                -Service '${{ parameters.Service }}' -RunEnv '${{ parameters.RunEnv }}' -BuildNumber '$(Build.BuildNumber)' `
                -TestRunTitle '${{ parameters.TestRunTitle }}' -SlackWebhookUrl '${{ parameters.SlackWebHookUrl }}' `
-               -SourceBranchName '$(Build.SourceBranchName)'
+               -SourceBranchName '$(Build.SourceBranchName)' -Profile '${{ parameters.Profile }}'
 
       $total_failures = $returnValues.currentFailures.Trim()
       echo "total_failures=" $total_failures

@@ -1,7 +1,8 @@
-Param([string]$ClusterUrl, [string]$Service, [string]$RunEnv, [string]$BuildNumber, [string] $TestRunTitle, [string] $SlackWebhookUrl, [string] $SourceBranchName)
+Param([string]$ClusterUrl, [string]$Service, [string]$RunEnv, [string]$BuildNumber, [string] $TestRunTitle, [string] $SlackWebhookUrl, [string] $SourceBranchName, [string] $Profile)
 
 $baseUrl = $ClusterUrl + "/" + $Service + "_" + $RunEnv + "_" + $BuildNumber
 echo 'baseURL:'$baseUrl
+$totalTagUrl = $Profile.ToUpper()
 
 $testResultDetailsUrl = $baseUrl + "/index.html"
 $imageURL = $baseUrl + "/advanced-reports/test.png"
@@ -13,7 +14,7 @@ $nutellaURL = $baseUrl + "/pages/tag-scenarios/tag_NUTELLA.html"
 $cloverURL = $baseUrl + "/pages/tag-scenarios/tag_CLOVER.html"
 $falconURL = $baseUrl + "/pages/tag-scenarios/tag_Falcon.html"
 $manukaURL = $baseUrl + "/pages/tag-scenarios/tag_Manuka.html"
-$totalURL = $baseUrl + "/pages/tag-scenarios/tag_REGRESSION_APIGEE.html"
+$totalURL = $baseUrl + "/pages/tag-scenarios/tag_" + $totalTagUrl + ".html"
 
 ##functions
 function calculation {
@@ -55,12 +56,14 @@ if($SourceBranchName -ne 'merge')
     attachments = @(
     @{
        title = $TestRunTitle
-       color = $color
        title_link = $testResultDetailsUrl
        fields = @(
           @{title = 'Source Branch'; value = $SourceBranchName ; short = 'true'},
           @{title = 'Run Env'; value = $RunEnv; short = 'true'}
-          @{title = 'Failures:'; short = 'false'}
+          if([int]$total_failures -ne 0){
+            $color = 'danger';
+            @{title = 'Failures:'; short = 'false'}
+          }
           @{title = ' '; short = 'false'}
           if([int]$wolvesCount -ne 0){
             @{title = 'Wolves'; value = $wolvesCount; short = 'true'}
@@ -87,6 +90,7 @@ if($SourceBranchName -ne 'merge')
                 @{title = 'Manuka'; value = $manukaCount; short = 'true'}
           }
         )
+     color = $color
      image_url = $imageURL
     }
     )
