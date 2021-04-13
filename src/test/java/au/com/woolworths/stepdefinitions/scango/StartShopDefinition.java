@@ -2,7 +2,7 @@ package au.com.woolworths.stepdefinitions.scango;
 
 import au.com.woolworths.helpers.scango.StartShopHelper;
 import au.com.woolworths.model.scango.startshop.StartShopResponse;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.When;
 
 public class StartShopDefinition extends StartShopHelper {
 

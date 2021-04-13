@@ -4,9 +4,9 @@ import au.com.woolworths.helpers.trader.AddressHelper;
 import au.com.woolworths.helpers.trader.ShopperHelper;
 import au.com.woolworths.model.trader.CheckoutAddressResponse;
 import au.com.woolworths.model.trader.PickupResponse;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 import java.util.Arrays;

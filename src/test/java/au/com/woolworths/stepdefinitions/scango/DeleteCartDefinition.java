@@ -2,7 +2,7 @@ package au.com.woolworths.stepdefinitions.scango;
 
 import au.com.woolworths.helpers.scango.DeleteCartHelper;
 import au.com.woolworths.model.scango.scanitems.DeleteCartResponse;
-import cucumber.api.java.en.And;
+import io.cucumber.java.en.And;
 import org.testng.Assert;
 
 import java.io.IOException;

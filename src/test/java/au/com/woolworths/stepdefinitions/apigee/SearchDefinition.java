@@ -2,7 +2,7 @@ package au.com.woolworths.stepdefinitions.apigee;
 
 import au.com.woolworths.helpers.apigee.SearchHelper;
 import au.com.woolworths.model.apigee.search.SearchResponseV3;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 import java.util.logging.Logger;

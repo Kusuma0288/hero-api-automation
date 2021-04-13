@@ -5,7 +5,7 @@ echo 'baseURL:'$baseUrl
 $totalTagUrl = $Profile.ToUpper()
 
 $testResultDetailsUrl = $baseUrl + "/index.html"
-$imageURL = $baseUrl + "/advanced-reports/test.png"
+$imageURL = $baseUrl + "/test.png"
 $wolvesURL = $baseUrl + "/pages/tag-scenarios/tag_Wolves.html"
 $lionURL = $baseUrl + "/pages/tag-scenarios/tag_LION.html"
 $lobsterURL = $baseUrl + "/pages/tag-scenarios/tag_Lobsters.html"
@@ -28,9 +28,9 @@ function calculation {
    $html = $webclient.DownloadString($value)
    $Regex = [Regex]::Matches($html, $pattern)
    $newVal = $Regex.value
-   $pattern11='<i[^>]*>(?:.|\n)+?</i>'
+   $pattern11='<a[^>]*>(?:.|\n)+?</a>'
    $Regex1 = [Regex]::Matches($newVal, $pattern11)
-   $count = $Regex1.value.split('title="passed"></i>')[1].Trim().Substring(0,2)
+   $count = $Regex1.value.split("='anchor-failed';`">")[2].Trim().Substring(0,2)
  }
  catch{
    #"No feature/scenario exists for the tag provided"

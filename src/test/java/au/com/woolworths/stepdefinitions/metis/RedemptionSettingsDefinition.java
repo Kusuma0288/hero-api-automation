@@ -4,9 +4,9 @@ import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.helpers.metis.RedemptionSettingsHelper;
 import au.com.woolworths.model.metis.redemptionsettings.Item;
 import au.com.woolworths.model.metis.redemptionsettings.RewardsRedemptionResponse;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import junit.framework.Assert;
 
 import java.io.InputStream;

@@ -1,78 +1,39 @@
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>APIGEEAPIFramework</groupId>
-    <artifactId>APIGEEAPI</artifactId>
+    <groupId>au.com.woolworths</groupId>
+    <artifactId>mobile-api-framework</artifactId>
     <packaging>jar</packaging>
     <version>1.0</version>
-    <name>RESTAssuredTest</name>
     <url>http://maven.apache.org</url>
 
     <profiles>
         <profile>
             <id>smoke</id>
             <properties>
-                <cucumber.options>
-                    --tags @SMOKE
-                </cucumber.options>
+                <cucumber.filter.tags>@SMOKE</cucumber.filter.tags>
             </properties>
-        </profile>
-
-        <profile>
-            <id>eventhub</id>
-            <properties>
-                <cucumber.options>
-                    --tags @REGRESSION
-                </cucumber.options>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>1.6.0</version>
-                        <executions>
-                            <execution>
-                                <id>my-execution</id>
-                                <phase>test</phase>
-                                <goals>
-                                    <goal>java</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <mainClass>au.com.woolworths.PushLogToEventStream</mainClass>
-                            <classpathScope>test</classpathScope>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
 
         <profile>
             <id>progress</id>
             <properties>
-                <cucumber.options>
-                    --tags @IN_PROGRESS
-                </cucumber.options>
+                <cucumber.filter.tags>@IN_PROGRESS</cucumber.filter.tags>
             </properties>
         </profile>
 
         <profile>
             <id>prod_apigee</id>
             <properties>
-                <cucumber.options>
-                    --tags @PROD_APIGEE
-                </cucumber.options>
+                <cucumber.filter.tags>@PROD_APIGEE</cucumber.filter.tags>
             </properties>
         </profile>
 
         <profile>
             <id>regression_apigee</id>
             <properties>
-                <cucumber.options>
-                    --tags @REGRESSION_APIGEE
-                </cucumber.options>
+                <cucumber.filter.tags>@REGRESSION_APIGEE</cucumber.filter.tags>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -82,135 +43,72 @@
         <profile>
             <id>Prod_trader</id>
             <properties>
-                <cucumber.options>
-                    --tags @PROD_TRADER
-                </cucumber.options>
+                <cucumber.filter.tags>@PROD_TRADER</cucumber.filter.tags>
             </properties>
         </profile>
 
         <profile>
             <id>regression_trader</id>
             <properties>
-                <cucumber.options>
-                    --tags @REGRESSION_TRADER
-                </cucumber.options>
+                <cucumber.filter.tags>@REGRESSION_TRADER</cucumber.filter.tags>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-
-
         </profile>
+
         <profile>
             <id>smoke_trader</id>
             <properties>
-                <cucumber.options>
-                    --tags @SMOKE_TRADER
-                </cucumber.options>
+                <cucumber.filter.tags>@SMOKE_TRADER</cucumber.filter.tags>
             </properties>
         </profile>
 
         <profile>
             <id>regression_rewards</id>
             <properties>
-                <cucumber.options>
-                    --tags @REGRESSION_REWARDS
-                </cucumber.options>
+                <cucumber.filter.tags>@REGRESSION_REWARDS</cucumber.filter.tags>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-
         </profile>
 
         <profile>
             <id>smoke_rewards</id>
             <properties>
-                <cucumber.options>
-                    --tags @SMOKE_REWARDS
-                </cucumber.options>
+                <cucumber.filter.tags>@SMOKE_REWARDS</cucumber.filter.tags>
             </properties>
         </profile>
 
         <profile>
             <id>Prod_rewards</id>
             <properties>
-                <cucumber.options>
-                    --tags @PROD_REWARDS
-                </cucumber.options>
+                <cucumber.filter.tags>@PROD_REWARDS</cucumber.filter.tags>
             </properties>
         </profile>
 
-<profile>
+        <profile>
             <id>Falcon</id>
             <properties>
-                <cucumber.options>
-                    --tags @Falcon
-                </cucumber.options>
+                <cucumber.filter.tags>@Falcon</cucumber.filter.tags>
             </properties>
         </profile>
 
         <profile>
             <id>smoke_scango</id>
             <properties>
-                <cucumber.options>
-                    --tags @SMOKE_SCANGO
-                </cucumber.options>
+                <cucumber.filter.tags>@SMOKE_SCANGO</cucumber.filter.tags>
             </properties>
         </profile>
-</profiles>
+    </profiles>
 
     <build>
-
         <plugins>
-
-            <plugin>
-                <groupId>com.github.temyers</groupId>
-                <artifactId>cucumber-jvm-parallel-plugin</artifactId>
-                <version>5.0.0</version>
-                <executions>
-                    <execution>
-                        <id>generateRunners</id>
-                        <phase>generate-test-sources</phase>
-                        <goals>
-                            <goal>generateRunners</goal>
-                        </goals>
-                        <configuration>
-                            <!-- Mandatory -->
-                            <!-- comma separated list of package names to scan for glue code -->
-                            <glue>au.com.woolworths.stepdefinitions</glue>
-                            <outputDirectory>${project.build.directory}/generated-test-sources/cucumber
-                            </outputDirectory>
-                            <!-- The directory, which must be in the root of the runtime classpath, containing your feature files.  -->
-                            <featuresDirectory>src/test/resources/features/</featuresDirectory>
-                            <!-- Directory where the cucumber report files shall be written  -->
-                            <cucumberOutputDir>target/cucumber-reports/advanced-reports</cucumberOutputDir>
-                            <!-- CucumberOptions.strict property -->
-                            <strict>false</strict>
-                            <!-- CucumberOptions.monochrome property -->
-                            <monochrome>false</monochrome>
-                            <!-- The tags to run, maps to CucumberOptions.tags property you can pass ANDed tags like "@tag1","@tag2" and ORed tags like "@tag1,@tag2,@tag3" -->
-                            <tags></tags>
-                            <!-- Generate TestNG runners instead of default JUnit ones. -->
-                            <useTestNG>true</useTestNG>
-                            <!-- The naming scheme to use for the generated test classes.  One of 'simple' or 'feature-title' -->
-                            <namingScheme>simple</namingScheme>
-                            <!-- The class naming pattern to use.  Only required/used if naming scheme is 'pattern'.-->
-                            <namingPattern>Parallel{c}IT</namingPattern>
-                            <!-- One of [SCENARIO, FEATURE]. SCENARIO generates one runner per scenario.  FEATURE generates a runner per feature. -->
-                            <parallelScheme>FEATURE</parallelScheme>
-                            <!-- This is optional, required only if you want to specify a custom template for the generated sources (this is a relative path) -->
-                            <customVmTemplate>src/test/resources/cucumber-custom-runner.vm</customVmTemplate>
-
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
             <plugin>
                 <groupId>com.trivago.rta</groupId>
                 <artifactId>cluecumber-report-plugin</artifactId>
-                <version>1.6.5</version>
+                <version>${cluecumber.report.version}</version>
                 <executions>
                     <execution>
                         <id>report</id>
@@ -222,54 +120,57 @@
                 </executions>
                 <configuration>
                     <sourceJsonReportDirectory>${project.build.directory}/cucumber-reports</sourceJsonReportDirectory>
-                    <generatedHtmlReportDirectory>${project.build.directory}/cucumber-reports
-                    </generatedHtmlReportDirectory>
+                    <generatedHtmlReportDirectory>${project.build.directory}/cucumber-reports</generatedHtmlReportDirectory>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe.version}</version>
+                <dependencies>
+                    <!-- Specify the JUnit runner, otherwise TestNG is used -->
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>${maven.failsafe.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <parallel>classes</parallel>
+                            <useUnlimitedThreads>true</useUnlimitedThreads>
+                            <testFailureIgnore>true</testFailureIgnore>
+                            <includes>
+                                <include>RunCucumberIT.java</include>
+                            </includes>
+                            <systemPropertyVariables>
+                                <cucumber.filter.tags>${cucumber.filter.tags}</cucumber.filter.tags>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M3</version>
-
+                <version>${maven.failsafe.version}</version>
                 <configuration>
-                    <forkCount>0</forkCount>
-                    <reuseForks>false</reuseForks>
-                    <systemPropertyVariables>
-                        <cucumber.options>${cucumber.options}</cucumber.options>
-                    </systemPropertyVariables>
-                    <includes>
-                        <include>**/Parallel*IT.class</include>
-                    </includes>
-                    <testFailureIgnore>true</testFailureIgnore>
-
+                    <!-- Disable unit tests, we don't need this step -->
+                    <skip>true</skip>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>net.masterthought</groupId>
-                <artifactId>maven-cucumber-reporting</artifactId>
-                <version>4.7.0</version>
-                <executions>
-                    <execution>
-                        <id>execution</id>
-                        <phase>verify</phase>
-                        <configuration>
-                            <projectName>APIGEE API Testing</projectName>
-                            <inputDirectory>target/cucumber-reports/advanced-reports</inputDirectory>
-                            <outputDirectory>target/cucumber-reports/advanced-reports</outputDirectory>
-                            <jsonFiles>
-                                <!-- supports wildcard or name pattern -->
-                                <param>**/*.json</param>
-                            </jsonFiles>
-                            <buildNumber>1</buildNumber>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>${maven.checkstyle.version}</version>
                 <configuration>
                     <configLocation>checkstyle.xml</configLocation>
                     <includeTestResources>true</includeTestResources>
@@ -291,10 +192,14 @@
     </reporting>
 
     <properties>
-        <java.version>1.8</java.version>
-        <cucumber.version>1.2.5</cucumber.version>
+        <cucumber.version>6.8.1</cucumber.version>
         <jackson.version>2.9.8</jackson.version>
+        <java.version>1.8</java.version>
+        <maven.checkstyle.version>3.1.1</maven.checkstyle.version>
+        <maven.failsafe.version>3.0.0-M5</maven.failsafe.version>
+        <cluecumber.report.version>2.6.1</cluecumber.report.version>
         <restassured.version>4.3.3</restassured.version>
+        <testng.verson>7.4.0</testng.verson>
 
         <!-- Set default encoding to UTF-8 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -306,7 +211,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.14.2</version>
+            <version>${testng.verson}</version>
         </dependency>
 
         <dependency>
@@ -316,21 +221,15 @@
         </dependency>
 
         <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-testng</artifactId>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
             <version>${cucumber.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.temyers</groupId>
-            <artifactId>cucumber-jvm-parallel-plugin</artifactId>
-            <version>5.0.0</version>
         </dependency>
 
         <dependency>
@@ -364,33 +263,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.trivago.rta</groupId>
-            <artifactId>cluecumber-report-plugin</artifactId>
-            <version>1.6.5</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.8.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.6</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.microsoft.azure</groupId>
-            <artifactId>azure-eventhubs</artifactId>
-            <version>2.2.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.microsoft.azure</groupId>
-            <artifactId>azure-servicebus</artifactId>
-            <version>1.2.8</version>
         </dependency>
 
         <dependency>
@@ -410,15 +285,12 @@
             <artifactId>lombok</artifactId>
             <version>1.18.2</version>
         </dependency>
-        
+
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>3.19.0</version>
             <scope>test</scope>
         </dependency>
-
-
     </dependencies>
-
 </project>

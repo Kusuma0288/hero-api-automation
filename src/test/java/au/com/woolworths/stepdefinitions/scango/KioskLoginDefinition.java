@@ -3,8 +3,8 @@ package au.com.woolworths.stepdefinitions.scango;
 import au.com.woolworths.helpers.scango.LoginHelper;
 import au.com.woolworths.model.scango.firstore.FirestoreReadDocTeamMemberBarcodeResponse;
 import au.com.woolworths.model.scango.kiosk.KioskLoginResponse;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.When;
 
 import java.io.IOException;
 import java.util.logging.Logger;

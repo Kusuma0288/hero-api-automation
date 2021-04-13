@@ -5,9 +5,9 @@ import au.com.woolworths.helpers.metis.OffersHelper;
 import au.com.woolworths.model.metis.offers.Filter;
 import au.com.woolworths.model.metis.offers.Item;
 import au.com.woolworths.model.metis.offers.OffersResponse;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import junit.framework.Assert;
 
 import java.io.IOException;

@@ -3,12 +3,12 @@ package au.com.woolworths.stepdefinitions.trader;
 import au.com.woolworths.helpers.trader.ShopperHelper;
 import au.com.woolworths.model.trader.Errors;
 import au.com.woolworths.model.trader.ShopperLoginResponseV2;
-import au.com.woolworths.model.trader.UserDetail;
 import au.com.woolworths.utils.Utilities;
-import cucumber.api.DataTable;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.DataTableType;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 import java.util.*;
@@ -18,10 +18,16 @@ import java.util.stream.Collectors;
 public class ShopperSignupDefinition extends ShopperHelper {
   private final static Logger logger = Logger.getLogger("ShopperSignupDefinition.class");
 
+  @DataTableType(replaceWithEmptyString = "[blank]")
+  public String listOfStringListsType(String cell) {
+    return cell;
+  }
 
   @Then("^I use the following details for signing up as a new user in same device$")
-  public void iUseTheFollowingDetailsForSigningUpAsANewUserInSameDevice(List<UserDetail> userDetails) throws Throwable {
-    ShopperLoginResponseV2 signupResponse = iUseTheFollowingDetailsForSigningUpAsANewUser(userDetails, sharedData.deviceId);
+  public void iUseTheFollowingDetailsForSigningUpAsANewUserInSameDevice(DataTable userDetails) throws Throwable {
+    List<Map<String, String>> rows = userDetails.asMaps(String.class, String.class);
+
+    ShopperLoginResponseV2 signupResponse = iUseTheFollowingDetailsForSigningUpAsANewUser(rows.get(0), sharedData.deviceId);
     if (signupResponse.getStatusCode().equals("201")) {
       sharedData.signedUpEmail = signupResponse.getSession().getEmail();
     }
@@ -32,9 +38,11 @@ public class ShopperSignupDefinition extends ShopperHelper {
   }
 
   @Then("^I use the following details for signing up as a new user$")
-  public void iUseTheFollowingDetailsForSigningUpAsANewUser(List<UserDetail> userDetails) throws Throwable {
+  public void iUseTheFollowingDetailsForSigningUpAsANewUser(DataTable userDetails) throws Throwable {
+    List<Map<String, String>> rows = userDetails.asMaps(String.class, String.class);
+
     String deviceId = Utilities.generateRandomUUIDString();
-    ShopperLoginResponseV2 signupResponse = iUseTheFollowingDetailsForSigningUpAsANewUser(userDetails, deviceId);
+    ShopperLoginResponseV2 signupResponse = iUseTheFollowingDetailsForSigningUpAsANewUser(rows.get(0), deviceId);
     if (signupResponse.getStatusCode().equals("201")) {
       sharedData.signedUpEmail = signupResponse.getSession().getEmail();
     }
@@ -51,9 +59,11 @@ public class ShopperSignupDefinition extends ShopperHelper {
   }
 
   @Given("^I use the exact details for signing up as a new shopper$")
-  public void iUseTheExactDetailsForSigningUpAsANewShopper(List<UserDetail> userDetails) throws Throwable {
+  public void iUseTheExactDetailsForSigningUpAsANewShopper(DataTable userDetails) throws Throwable {
+    List<Map<String, String>> rows = userDetails.asMaps(String.class, String.class);
+
     String deviceId = Utilities.generateRandomUUIDString();
-    ShopperLoginResponseV2 signupResponse = iUseTheExactDetailsForSigningUpAsANewUser(userDetails, deviceId);
+    ShopperLoginResponseV2 signupResponse = iUseTheExactDetailsForSigningUpAsANewUser(rows.get(0), deviceId);
     sharedData.signupLoginResponseV2 = signupResponse;
     sharedData.signupResponseStatusCode = signupResponse.getStatusCode();
   }
@@ -63,10 +73,10 @@ public class ShopperSignupDefinition extends ShopperHelper {
     Assert.assertTrue(sharedData.signupResponseStatusCode.equals(statusCode), "Status Code is::" + sharedData.signupResponseStatusCode + " expected::" + statusCode);
     Assert.assertTrue(sharedData.signupLoginResponseV2.getResponseStatus().getErrorCode().equals("ValidationError"), "Validation Error status is not present");
     //logger.info("Total Error::"+sharedData.signupLoginResponseV2.getResponseStatus().getErrors().size());
-    for (Map<String, String> errors : fields.asMaps(String.class, String.class)) {
-      Errors errorField = sharedData.signupLoginResponseV2.getResponseStatus().getErrors().stream().filter(x -> x.getFieldName().contains(errors.get("fieldName"))).findAny().orElse(null);
+    for (Map<Object, Object> errors : fields.asMaps(String.class, String.class)) {
+      Errors errorField = sharedData.signupLoginResponseV2.getResponseStatus().getErrors().stream().filter(x -> x.getFieldName().contains(errors.get("fieldName").toString())).findAny().orElse(null);
       if (errorField != null) {
-        boolean descriptionPresent = sharedData.signupLoginResponseV2.getResponseStatus().getErrors().stream().filter(x -> x.getMessage().contains(errors.get("errorDescription"))).findAny().isPresent();
+        boolean descriptionPresent = sharedData.signupLoginResponseV2.getResponseStatus().getErrors().stream().filter(x -> x.getMessage().contains(errors.get("errorDescription").toString())).findAny().isPresent();
         Assert.assertTrue(descriptionPresent, "Expected error description is missing::" + errors.get("errorDescription"));
       } else {
         Assert.assertTrue(false, "Expected error field is missing::" + errors.get("fieldName"));

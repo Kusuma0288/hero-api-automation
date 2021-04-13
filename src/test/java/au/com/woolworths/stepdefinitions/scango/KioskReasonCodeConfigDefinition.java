@@ -2,7 +2,7 @@ package au.com.woolworths.stepdefinitions.scango;
 
 import au.com.woolworths.helpers.scango.ReasonCodeConfigHelper;
 import au.com.woolworths.model.scango.kiosk.KioskReasonCodeConfigResponse;
-import cucumber.api.java.en.Then;
+import io.cucumber.java.en.Then;
 import org.testng.Assert;
 
 public class KioskReasonCodeConfigDefinition extends ReasonCodeConfigHelper {

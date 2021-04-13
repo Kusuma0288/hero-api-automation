@@ -4,8 +4,8 @@ import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.helpers.metis.AccountHelper;
 import au.com.woolworths.model.metis.account.AccountHomePageResponse;
 import au.com.woolworths.model.metis.account.Section;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import junit.framework.Assert;
 
 import java.io.InputStream;

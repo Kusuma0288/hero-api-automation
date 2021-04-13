@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.helpers.iris.graphql.GraphqlHelper;
-import cucumber.api.java.en.Then;
+import io.cucumber.java.en.Then;
 import au.com.woolworths.graphql.parser.GraphqlParser;
 
 public class HomepagePromoTileDefinition extends BaseHelper {

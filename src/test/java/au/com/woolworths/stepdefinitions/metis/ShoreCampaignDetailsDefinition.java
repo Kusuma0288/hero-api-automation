@@ -7,8 +7,8 @@ import au.com.woolworths.model.metis.shorecampaigndetails.Header;
 import au.com.woolworths.model.metis.shorecampaigndetails.Product;
 import au.com.woolworths.model.metis.shorecampaigndetails.RewardsShoreCampaignDetailsResponse;
 import au.com.woolworths.utils.Utilities;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import junit.framework.Assert;
 
 import java.io.IOException;

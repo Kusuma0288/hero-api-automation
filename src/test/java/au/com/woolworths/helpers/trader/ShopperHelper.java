@@ -122,30 +122,30 @@ public class ShopperHelper extends BaseHelper {
     return response;
   }
 
-  public ShopperLoginResponseV2 signUpAsAShopperWithFollowingDetails(List<UserDetail> userDetails, String deviceId, boolean exactEmail) throws Throwable {
+  public ShopperLoginResponseV2 signUpAsAShopperWithFollowingDetails(Map<String, String> userDetails, String deviceId, boolean exactEmail) throws Throwable {
     Assert.assertNotNull(userDetails);
     Register registerRequest = new Register();
     ShopperLoginResponseV2 signupResponse;
 
-    for (UserDetail userDetail : userDetails) {
-      registerRequest.setFirstName(userDetail.getFirstName());
-      registerRequest.setLastName(userDetail.getLastName());
-      if (exactEmail) {
-        registerRequest.setEmailAddress(userDetail.getEmailAddress());
-      } else {
-        registerRequest.setEmailAddress(userDetail.getEmailAddress().replace("@", Utilities.getSaltString() + "@"));
+    registerRequest.setFirstName(userDetails.get("firstName"));
+    registerRequest.setLastName(userDetails.get("lastName"));
+    if (exactEmail) {
+      registerRequest.setEmailAddress(userDetails.get("emailAddress"));
+    } else {
+      if (userDetails.get("emailAddress") != null) {
+        registerRequest.setEmailAddress(userDetails.get("emailAddress").replace("@", Utilities.getSaltString() + "@"));
       }
-      registerRequest.setPassword(userDetail.getPassword());
-      registerRequest.setMobilePhone(userDetail.getMobilePhone());
-      registerRequest.setDateOfBirth(userDetail.getDateOfBirth());
-      registerRequest.setIsBusinessShopper(userDetail.isBusinessShopper());
-      registerRequest.setEmailProductsAndServices(userDetail.isEmailProductsAndServices());
-      registerRequest.setSmsProductsServicesAndPromotions(userDetail.isSmsProductsServicesAndPromotions());
-      registerRequest.setCampaignName(userDetail.getCampaignName());
-      registerRequest.setGuestTrolleyToken(deviceId);
-      registerRequest.setAgreetotsandcs(userDetail.isAgreeToTsAndCs());
-
     }
+    registerRequest.setPassword(userDetails.get("password"));
+    registerRequest.setMobilePhone(userDetails.get("mobilePhone"));
+    registerRequest.setDateOfBirth(userDetails.get("dateOfBirth"));
+    registerRequest.setIsBusinessShopper(Boolean.parseBoolean(userDetails.get("isBusinessShopper")));
+    registerRequest.setEmailProductsAndServices(Boolean.parseBoolean(userDetails.get("emailProductsAndServices")));
+    registerRequest.setSmsProductsServicesAndPromotions(Boolean.parseBoolean(userDetails.get("smsProductsServicesAndPromotions")));
+    registerRequest.setCampaignName(userDetails.get("campaignName"));
+    registerRequest.setGuestTrolleyToken(deviceId);
+    registerRequest.setAgreetotsandcs(Boolean.parseBoolean(userDetails.get("agreeToTsAndCs")));
+
 
     String requestStr = mapper.writeValueAsString(registerRequest);
     // logger.info("Shopper Login Request Body is: " + requestStr);
@@ -162,11 +162,11 @@ public class ShopperHelper extends BaseHelper {
     return signupResponse;
   }
 
-  public ShopperLoginResponseV2 iUseTheExactDetailsForSigningUpAsANewUser(List<UserDetail> userDetails, String deviceId) throws Throwable {
+  public ShopperLoginResponseV2 iUseTheExactDetailsForSigningUpAsANewUser(Map<String, String> userDetails, String deviceId) throws Throwable {
     return signUpAsAShopperWithFollowingDetails(userDetails, deviceId, true);
   }
 
-  public ShopperLoginResponseV2 iUseTheFollowingDetailsForSigningUpAsANewUser(List<UserDetail> userDetails, String deviceId) throws Throwable {
+  public ShopperLoginResponseV2 iUseTheFollowingDetailsForSigningUpAsANewUser(Map<String, String> userDetails, String deviceId) throws Throwable {
     return signUpAsAShopperWithFollowingDetails(userDetails, deviceId, false);
   }
 

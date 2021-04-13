@@ -2,7 +2,7 @@ package au.com.woolworths.stepdefinitions.scango;
 
 import au.com.woolworths.helpers.scango.ProductTypesHelper;
 import au.com.woolworths.model.scango.scanitems.AddItemResponse;
-import cucumber.api.java.en.Given;
+import io.cucumber.java.en.Given;
 
 public class ProductTypesDefinition extends ProductTypesHelper {
 

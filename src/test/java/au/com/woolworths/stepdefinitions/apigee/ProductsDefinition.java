@@ -3,7 +3,7 @@ package au.com.woolworths.stepdefinitions.apigee;
 import au.com.woolworths.helpers.apigee.ProductsHelper;
 import au.com.woolworths.model.apigee.products.ProductCategoriesSpecial;
 import au.com.woolworths.model.apigee.products.ProductsSpecial;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.When;
 import junit.framework.Assert;
 
 import java.util.HashMap;

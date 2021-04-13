@@ -3,7 +3,7 @@ package au.com.woolworths.stepdefinitions.scango;
 
 import au.com.woolworths.helpers.scango.UserProfileHelper;
 import au.com.woolworths.model.scango.startshop.UserProfileResponse;
-import cucumber.api.java.en.Then;
+import io.cucumber.java.en.Then;
 import org.testng.Assert;
 
 public class UserProfileDefinition extends UserProfileHelper {

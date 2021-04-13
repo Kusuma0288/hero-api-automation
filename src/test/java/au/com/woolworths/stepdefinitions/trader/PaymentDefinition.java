@@ -5,7 +5,7 @@ import au.com.woolworths.model.trader.Address;
 import au.com.woolworths.model.trader.MyOrders;
 import au.com.woolworths.model.trader.OrderResponse;
 import au.com.woolworths.model.trader.PaywithPayPalResponse;
-import cucumber.api.java.en.And;
+import io.cucumber.java.en.And;
 import org.testng.Assert;
 
 import java.util.logging.Logger;

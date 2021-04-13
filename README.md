@@ -14,25 +14,21 @@ To execute the project need to pass the parameters -Denv=<test or uat> -P<profil
 For ex:
 test = It will run in the test environment (Check the URL under resources/config/test.properties)
 
+To run the tests
+
 ```sh
-mvn clean test -Denv=test -Psmoke
+mvn clean verify -Denv=test -Psmoke
 ```
 
-To check the test reports
+To run the tests and include the Request and Response in the report
 
 ```sh
-mvn clean test verify -Denv=test -Psmoke
+mvn clean verify -Denv=test -Psmoke -DsaveRequestResponse=yes
 ```
 
-To check the Request and Response Structure
-
+To run the regression tests
 ```sh
-mvn clean test verify -Denv=test -Psmoke -DsaveRequestResponse=yes
-```
-
-For Regression
-```sh
-mvn clean test verify -Denv=test -Pregression -DsaveRequestResponse=yes
+mvn clean verify -Denv=test -Pregression -DsaveRequestResponse=yes
 ```
 
 # Installing Project Lombok Plugin in Intellij

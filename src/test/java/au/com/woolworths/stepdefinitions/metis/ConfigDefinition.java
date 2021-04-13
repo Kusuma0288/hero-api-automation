@@ -2,8 +2,8 @@ package au.com.woolworths.stepdefinitions.metis;
 
 import au.com.woolworths.helpers.metis.ConfigHelper;
 import au.com.woolworths.model.metis.config.ConfigResponse;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import junit.framework.Assert;
 
 import java.util.logging.Logger;

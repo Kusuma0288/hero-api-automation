@@ -3,8 +3,8 @@ package au.com.woolworths.stepdefinitions.scango;
 import au.com.woolworths.helpers.scango.RefreshTokenHelper;
 import au.com.woolworths.model.scango.firstore.ReadFirestoreDocRefreshTokenResponse;
 import au.com.woolworths.model.scango.firstore.UpsertFirestoreDocRefreshResponse;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 
 public class FireStoreDefinition extends RefreshTokenHelper {
   @Given("^I get Refresh Token from Firestore$")

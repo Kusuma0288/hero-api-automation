@@ -2,7 +2,7 @@ package au.com.woolworths.stepdefinitions.scango;
 
 import au.com.woolworths.helpers.scango.RefreshTokenHelper;
 import au.com.woolworths.model.scango.login.ScanGoRefreshTokenResponse;
-import cucumber.api.java.en.And;
+import io.cucumber.java.en.And;
 import org.testng.Assert;
 
 public class RefreshTokenDefinition extends RefreshTokenHelper {

@@ -3,11 +3,10 @@ package au.com.woolworths.stepdefinitions.metis;
 import au.com.woolworths.helpers.metis.LogoutHelper;
 import au.com.woolworths.model.metis.logout.Logout;
 import au.com.woolworths.utils.Utilities;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
-import junit.framework.Assert;
-
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import java.util.logging.Logger;
+import junit.framework.Assert;
 
 public class LogoutDefinition extends LogoutHelper {
   private final static Logger logger = Logger.getLogger("LogoutDefinition.class");

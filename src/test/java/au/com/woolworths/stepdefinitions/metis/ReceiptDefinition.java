@@ -8,8 +8,8 @@ import au.com.woolworths.utils.TestProperties;
 import au.com.woolworths.utils.Utilities;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Then;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import junit.framework.Assert;
 
 import java.io.InputStream;

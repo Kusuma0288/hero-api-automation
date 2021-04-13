@@ -48,15 +48,15 @@ steps:
     displayName: 'Execute Tests'
     inputs:
       dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
-      dockerComposeCommand: 'run --entrypoint="mvn clean verify test -P${{ parameters.Profile }} -Denv=${{ parameters.RunEnv }} -DsaveRequestResponse=yes" tests'
-    continueOnError: true
+      dockerComposeCommand: 'run --entrypoint="mvn clean verify -P${{ parameters.Profile }} -Denv=${{ parameters.RunEnv }} -DsaveRequestResponse=yes" tests'
+    continueOnError: false
     condition: succeeded()
 
   - task: PublishTestResults@2
     displayName: 'Publish Test Results'
     inputs:
       testResultsFormat: 'JUnit'
-      testResultsFiles: '**/junitreports/TEST-*.xml'
+      testResultsFiles: '**/failsafe-reports/TEST-*.xml'
       searchFolder: '$(Build.SourcesDirectory)'
       mergeTestResults: true
     continueOnError: true

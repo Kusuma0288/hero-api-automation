@@ -3,8 +3,8 @@ package au.com.woolworths.stepdefinitions.scango;
 import au.com.woolworths.helpers.scango.LoginHelper;
 import au.com.woolworths.model.scango.login.RewardsTokenResponse;
 import au.com.woolworths.model.scango.login.ScanGoLoginResponse;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 import java.util.logging.Logger;

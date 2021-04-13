@@ -2,7 +2,7 @@ package au.com.woolworths.stepdefinitions.scango;
 
 import au.com.woolworths.helpers.scango.UpdateItemHelper;
 import au.com.woolworths.model.scango.scanitems.UpdateItemResponse;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 import java.io.IOException;

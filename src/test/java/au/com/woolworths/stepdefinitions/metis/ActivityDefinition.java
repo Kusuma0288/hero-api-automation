@@ -5,8 +5,8 @@ import au.com.woolworths.helpers.metis.ActivityHelper;
 import au.com.woolworths.model.metis.activity.ActivityResponse;
 import au.com.woolworths.model.metis.activity.Groups;
 import au.com.woolworths.model.metis.activity.Items;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import junit.framework.Assert;
 
 import java.io.InputStream;
