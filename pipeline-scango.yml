@@ -12,7 +12,6 @@ parameters:
 trigger:
   none
 
-
 pool: 'wlx-ubuntu1804'
 
 variables:
