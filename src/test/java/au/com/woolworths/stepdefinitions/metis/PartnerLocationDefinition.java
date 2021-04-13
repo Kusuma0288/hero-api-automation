@@ -4,8 +4,8 @@ package au.com.woolworths.stepdefinitions.metis;
 import au.com.woolworths.helpers.metis.PartnerLocationHelper;
 import au.com.woolworths.model.metis.partnerlocation.Locations;
 import au.com.woolworths.model.metis.partnerlocation.PartnerLocationDetailsResponse;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import junit.framework.Assert;
 import org.apache.commons.lang3.StringUtils;
 
