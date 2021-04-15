@@ -24,21 +24,6 @@ stages:
     # Job schedules are managed --> https://wowonline.visualstudio.com/Mobile/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=1602&view=Tab_Triggers
 
     jobs:
-      - job: Prod_ScanGo
-        steps:
-          - script: |
-              echo ${{ parameters.triggerEnv }}
-              echo "build --"
-              echo $(Build.Reason)
-          - template: pipelines/templates/base-template.yml
-            parameters:
-              SlackWebHookUrl: https://hooks.slack.com/services/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
-              TestRunTitle: Prod Scan&Go Automation Run Report
-              Profile: prod_scango
-              RunEnv: prod
-              Service: scango
-        condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'), eq(variables['Build.Reason'], 'Schedule'))
-
       - job: Uat_ScanGo
         steps:
           - script: |
