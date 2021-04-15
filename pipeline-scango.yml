@@ -2,7 +2,7 @@ parameters:
   - name: triggerEnv
     displayName: Run Environment
     type: string
-    default: uat
+    default: all
     values:
       - uat
       - test
