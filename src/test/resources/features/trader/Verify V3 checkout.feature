@@ -25,7 +25,7 @@ Feature: Verify V3 Checkout scenarios
     Then I clear the checkout details
     Examples:
       | DeliveryAddress              | EmailAddress    |
-      | 1 Darcy Rd, PORT KEMBLA 2505 | SHOPPER_WOLVES1 |
+      | 34 Victoria Rd, Marrickville NSW  2204 | SHOPPER_USERNAME1 |
 
 
   @REGRESSION_TRADER
@@ -50,7 +50,7 @@ Feature: Verify V3 Checkout scenarios
     Then I clear the checkout details
     Examples:
       | PostCode | EmailAddress    |
-      | 2000     | SHOPPER_WOLVES2 |
+      | 2000     | SHOPPER_USERNAME2 |
 
   Scenario: Validate the E2E scenario with Paypal Payment
     Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME8 and password

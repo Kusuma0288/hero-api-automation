@@ -29,7 +29,7 @@ Feature: Verify Shopping Trolley
     And I search for the address <Address>
     And I select the "1" address as checkout address from matching addresses
     And I clear the trolley for the shopper
-    And I search for the product "Biscuit" and should see more than 1 matching results
+    And I search for the product "Milk" and should see more than 1 matching results
     And I add 4 items to my trolley from search list with 1 quantity each
     Then shopper trolley should have 4 products
     And I can leave the products unattended
@@ -153,7 +153,7 @@ Feature: Verify Shopping Trolley
     And I search for the address <Address>
     And I select the "1" address as checkout address from matching addresses
     When I clear the trolley for the shopper
-    And I search for the product "Chicken" and should see more than 1 matching results
+    And I search for the product "Milk" and should see more than 1 matching results
     And I add 3 items to my trolley from search list with 1 quantity each
     And shopper trolley should have 3 products
     And I delete 1 product from trolley and verify it is deleted
@@ -187,7 +187,7 @@ Feature: Verify Shopping Trolley
     And apigee successfully authenticate to trader public api endpoint as guest
     And I search for the address <Address>
     And I select the "1" address as checkout address from matching addresses
-    And I search for the product "Chicken" and should see more than 1 matching results
+    And I search for the product "Milk" and should see more than 1 matching results
     And I add 3 items to my trolley from search list with 1 quantity each
     And I search for the product "Nivea" and should see more than 1 matching results
     And I keep on adding 2 items to my existing trolley from search list with 5 quantity each
@@ -195,7 +195,7 @@ Feature: Verify Shopping Trolley
     And I keep on adding 1 items to my existing trolley from search list with 2 quantity each
     And I search for the product "Chips" and should see more than 1 matching results
     And I keep on adding 2 items to my existing trolley from search list with 1 quantity each
-    And I search for the product "Oil" and should see more than 1 matching results
+    And I search for the product "Book" and should see more than 1 matching results
     And I keep on adding 3 items to my existing trolley from search list with 1 quantity each
     Then shopper trolley should have 11 products
     When apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME1 and password
