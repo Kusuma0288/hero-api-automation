@@ -32,6 +32,7 @@ stages:
               echo $(Build.Reason)
           - template: pipelines/templates/base-template.yml
             parameters:
+              SlackWebHookUrl: https://hooks.slack.com/services/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
               TestRunTitle: Prod Scan&Go Automation Run Report
               Profile: prod_scango
               RunEnv: prod
@@ -46,6 +47,7 @@ stages:
 
           - template: pipelines/templates/base-template.yml
             parameters:
+              SlackWebHookUrl: https://hooks.slack.com/services/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
               TestRunTitle: Uat Scan&Go Automation Run Report
               Profile: smoke_scango
               RunEnv: uat
