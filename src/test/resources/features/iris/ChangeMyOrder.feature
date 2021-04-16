@@ -1,10 +1,11 @@
-@REGRESSION_APIGEE @LION
+@REGRESSION_APIGEE
 Feature: Checkout API scenarios
 
   Background:
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME6"
     When connection from user to apigee endpoint happens
 
+  @Falcon
   Scenario Outline: To verify that the user is able to complete a pick up order using Paypal payment
     Given I set a pick up store using post code 2000
     And I clear the trolley
@@ -23,6 +24,7 @@ Feature: Checkout API scenarios
       | Mode   |
       | Pickup |
 
+  @LION
   Scenario Outline:  Verify getting and setting of v3/checkout windows and Packaging preference for Delivery mode
     Given I pick a location at "<lookupAddress>" for delivery
     And I make a request to fulfilment api with primary address id to set the address as fulfilment address
