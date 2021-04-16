@@ -61,8 +61,8 @@ public class TrolleyDefinition extends TrolleyHelper {
   public void iAddSomeItemsToTheV3Trolley(String version, String mode) throws Throwable {
     Map<String, Integer> productsToAdd = new HashMap<>();
 
-    productsToAdd.put("milk", 2);
-    productsToAdd.put("bread", 1);
+    productsToAdd.put("crunchie", 2);
+    productsToAdd.put("oil", 1);
     productsToAdd.put("pasta", 2);
 
 
