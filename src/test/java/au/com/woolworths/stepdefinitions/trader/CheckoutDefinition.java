@@ -29,7 +29,7 @@ public class CheckoutDefinition extends CheckoutHelper {
       Assert.assertTrue(checkoutResponse.getOrder().isCanLeaveUnattended(), "Can Leave Unattended should be true");
     } else {
       Assert.assertFalse(checkoutResponse.getOrder().isCanLeaveUnattended(), "Can Leave Unattended should be false");
-      Assert.assertTrue(checkoutResponse.getWarningMessage().contains("Your order contains restricted items. Please ensure someone over 18 with valid photo ID is available to sign for the delivery."), "Restricted items warning message is not coming as expected");
+      Assert.assertTrue(checkoutResponse.getWarningMessage().contains("Your order has restricted items. Only someone over 18 with a valid photo ID can sign for Delivery."), "Restricted items warning message is not coming as expected");
     }
 
   }
