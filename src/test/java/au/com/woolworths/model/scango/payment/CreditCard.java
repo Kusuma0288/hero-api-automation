@@ -10,6 +10,7 @@ public class CreditCard {
   private String paymentToken;
   private String status;
   private String lastUpdated;
+  private String createdOn;
   private String lastUsed;
   private Boolean primary;
   private Boolean allowed;
