@@ -115,9 +115,7 @@ steps:
 
       ##Code to validate the failure count
       if('${{ parameters.Service }}' -eq 'apigee' -AND '${{ parameters.RunEnv }}' -eq 'uat'){
-          echo "apigee-----"
           echo $(System.AccessToken) | az devops login
-          Write-Host "apigee inside" $(Apigee_UAT_LastFailCount)
           $lastApigeeFailCount = $(Apigee_UAT_LastFailCount)
           $lastApigeeFailCount = $lastApigeeFailCount.toString().Trim()
 
@@ -135,11 +133,11 @@ steps:
 
       }
       elseif('${{ parameters.Service }}' -eq 'trader' -AND '${{ parameters.RunEnv }}' -eq 'uat'){
-          echo "trader-----"
           echo $(System.AccessToken) | az devops login
-          Write-Host "trader inside"
-          $newFailures = [int]$total_failures - [int]$(Trader_UAT_LastFailCount)
-          echo "newFailures" $newFailures
+          $lastTraderFailCount = $(Trader_UAT_LastFailCount)
+          $lastTraderFailCount = $lastTraderFailCount.toString().Trim()
+          $newFailures = [int]$total_failures - [int]$lastTraderFailCount
+
           if([int]$newFailures -gt 0){
              Write-Host "##vso[task.logissue type=error]There are $newFailures new failures in this run"
              echo "Status below :  "
