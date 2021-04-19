@@ -107,7 +107,6 @@ steps:
       echo "total_failures=" $total_failures
 
       ##functions: Start
-      ## This
       function updateVariableGroup {
         param ([string]$VarName)
         echo "param function-----"
