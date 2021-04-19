@@ -109,7 +109,6 @@ steps:
       ##functions: Start
       function updateVariableGroup {
         param ([string]$VarName)
-        echo "param function-----"
         az pipelines variable-group variable update --org https://dev.azure.com/wowonline/ -p Mobile --group-id 717 --name $VarName --value $total_failures --output yaml
       }
       ##functions: End
