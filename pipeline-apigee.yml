@@ -12,7 +12,8 @@ parameters:
 trigger:
   none
 
-pool: 'wlx-ubuntu1804'
+pool:
+  vmImage: 'ubuntu-latest'
 
 variables:
   - group: MobileAuto-UAT
