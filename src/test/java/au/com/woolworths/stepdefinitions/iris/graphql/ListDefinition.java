@@ -80,4 +80,21 @@ public class ListDefinition extends ListHelper {
     SyncListResponse syncListResponse = mapper.readValue(getListResponse, SyncListResponse.class);
     Assert.assertEquals("ListId is not matching", sharedData.listResponseEdited.getData().getSyncLists().getUpdatedLists()[0].getId(), Integer.parseInt(syncListResponse.getData().getSyncLists().getDeletedLists()[0]));
   }
+
+  @And("^I get a list of lists$")
+  public void iGetAListOfLists() throws IOException {
+    InputStream iStream = ListsDefinition.class.getResourceAsStream("/gqlQueries/iris/getListOfists.graphql");
+
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, variables);
+    String getListResponse = graphqlHelper.postGraphqlQuery(graphqlQuery);
+    GetListOfListsResponse getListOfListsResponse = mapper.readValue(getListResponse, GetListOfListsResponse.class);
+    sharedData.getListOfListsResponse = getListOfListsResponse;
+  }
+
+  @Then("I verify the lists with correct details {string} {string}")
+  public void iVerifyTheListsWithCorrectDetails(String listName1, String listName2) {
+    listName1 = listName1 + Utilities.getSaltString();
+    listName2 = listName2 + Utilities.getSaltString();
+    Assert.assertEquals("ListName1 is not matching", sharedData.getListOfListsResponse.getData().getEditList().getTitle(), sharedData.listName);
+  }
 }

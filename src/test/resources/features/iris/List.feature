@@ -14,3 +14,12 @@ Feature: Verify GraphQl List scenarios for User
     Examples:
       | List Name 1    | color1 | List Name 2    | color2 |
       | AutoListFirst  | Green  | AutoListSecond | Red    |
+
+  Scenario Outline: Validate list of lists scenario
+    When I create a list with list name "<List Name 1>" and color "<Color1>"
+    And I create a list with list name "<List Name 2>" and color "<Color2>"
+    Then I get a list of lists
+    And I verify the lists with correct details "<ListName1>" "<ListName2>"
+    Examples:
+      | List Name 1   | Color1 | List Name 2   | Color2 |
+      | AutoListOne | Green  | AutoListTwo | Red    |
