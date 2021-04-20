@@ -36,8 +36,8 @@ steps:
 
       $rows = $errorDetails.checkstyle.file.error
       if($rows.count -gt 0){
-           echo $rows
-           throw "Build failed. Please check the lint errors."
+        echo $rows
+        throw "Build failed. Please check the lint errors."
       }
 
     displayName: 'Analysing Code linting results'
@@ -106,66 +106,49 @@ steps:
       $total_failures = $returnValues.currentFailures.Trim()
       echo "total_failures=" $total_failures
 
-      $lastApigeeFailCount = $(Apigee_UAT_LastFailCount)
-      $lastApigeeFailCount = $lastApigeeFailCount.toString().Trim()
-      echo "lastApigeeFailCount=" $lastApigeeFailCount
-
-
-      $PROJECT= "Mobile"
-      $ORGANIZATION_URL="https://dev.azure.com/wowonline/"
       ##functions: Start
       function updateVariableGroup {
-       param ([string]$VarName)
-       az pipelines variable-group variable update --org $ORGANIZATION_URL -p $PROJECT --group-id 717 --name $VarName --value $total_failures --output yaml
-
+        param ([string]$VarName)
+        az pipelines variable-group variable update --org https://dev.azure.com/wowonline/ -p Mobile --group-id 717 --name $VarName --value $total_failures --output yaml
       }
       ##functions: End
+
       ##Code to validate the failure count
+      if('${{ parameters.Service }}' -eq 'apigee' -AND '${{ parameters.RunEnv }}' -eq 'uat'){
+          echo $(System.AccessToken) | az devops login
+          $lastApigeeFailCount = $(Apigee_UAT_LastFailCount)
+          $lastApigeeFailCount = $lastApigeeFailCount.toString().Trim()
 
-      echo $(System.AccessToken) | az devops login --org $ORGANIZATION_URL
-
-      if('${{ parameters.Service }}' -eq 'apigee' -And '${{ parameters.RunEnv }}' -eq 'uat'){
-          if([int]$total_failures -gt [int]$lastApigeeFailCount){
-              Write-Host "##vso[task.setvariable variable=buildStatus;]FAIL"
-              echo "Apigee build failed. Details below: "
-              echo "Current failures: " $returnValues.currentFailures
-              echo "Last failures count: " $lastApigeeFailCount
-              echo "Report URL: " $returnValues.reportURL
+          $newFailures = [int]$total_failures - [int]$lastApigeeFailCount
+          if([int]$newFailures -gt 0){
+                 Write-Host "##vso[task.logissue type=error]There are $newFailures new failures in this run"
+                 echo "Status below :  "
+                 echo "Apigee build failed. Details below: "
+                 echo "Current failures: " $returnValues.currentFailures
+                 echo "Last failures count: " $lastApigeeFailCount
+                 echo "Report URL: " $returnValues.reportURL
           }
-          else{
-              Write-Host "##vso[task.setvariable variable=buildStatus;]PASS"
-
-          }
-          echo "Total Failures:" $total_failures
-          echo "Source Branch:" $(Build.SourceBranchName)
-          updateVariableGroup -VarName 'Apigee_UAT_LastFailCount' -ORGANIZATION_URL $ORGANIZATION_URL -PROJECT $PROJECT
+          updateVariableGroup -VarName 'Apigee_UAT_LastFailCount'
+          echo "newFailures" $newFailures
 
       }
-      elseif('${{ parameters.Service }}' -eq 'trader' -And '${{ parameters.RunEnv }}' -eq 'uat'){
-          if($total_failures -gt $(Trader_UAT_LastFailCount)){
-              Write-Host "##vso[task.setvariable variable=buildStatus;]FAIL"
-              echo "Trader build failed. Details below: "
-              echo "Current failures: " $returnValues.currentFailures
-              echo "Last failures count: " $(Trader_UAT_LastFailCount)
-              echo "Report URL: " $returnValues.reportURL
-          }
-          else{
-              Write-Host "##vso[task.setvariable variable=buildStatus;]PASS"
-              updateVariableGroup -VarName 'Trader_UAT_LastFailCount' -ORGANIZATION_URL $ORGANIZATION_URL -PROJECT $PROJECT
-          }
+      elseif('${{ parameters.Service }}' -eq 'trader' -AND '${{ parameters.RunEnv }}' -eq 'uat'){
+          echo $(System.AccessToken) | az devops login
+          $lastTraderFailCount = $(Trader_UAT_LastFailCount)
+          $lastTraderFailCount = $lastTraderFailCount.toString().Trim()
+          $newFailures = [int]$total_failures - [int]$lastTraderFailCount
 
+          if([int]$newFailures -gt 0){
+             Write-Host "##vso[task.logissue type=error]There are $newFailures new failures in this run"
+             echo "Status below :  "
+             echo "Trader build failed. Details below: "
+             echo "Current failures: " $returnValues.currentFailures
+             echo "Last failures count: " $(Trader_UAT_LastFailCount)
+             echo "Report URL: " $returnValues.reportURL
+         }
+         updateVariableGroup -VarName 'Trader_UAT_LastFailCount'
       }
-      az devops logout
 
     displayName: 'Post test results to Slack'
     continueOnError: true
     condition: and(succeeded(), ne('${{ parameters.SlackWebhookUrl }}', ''))
-
-  - powershell: |
-      if('$(buildStatus)' -eq 'FAIL' -And '$(Build.Reason)' -eq 'PullRequest'){
-        throw "Build failed. Please check the new failures."
-      }
-
-    displayName: 'Check the run results'
-    continueOnError: false
-    condition: always()
