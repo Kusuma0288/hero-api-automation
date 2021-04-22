@@ -1,37 +1,40 @@
-mutation createList($title: String!, $color: String!, $referenceId: ID!, $text: String!, $checked: Boolean!, $productId: ID!, $quantity: Float!) {
-  createList(listInput: {
-    title: $title,
-    color: $color,
-    referenceId: $referenceId,
-    freeTextItems: [
-      {
-        text: $text,
-        checked: $checked
-      }
-    ],
-    productItems: [
-      {
-        productId: $productId,
-        quantity: $quantity,
-        checked: $checked
-      }
-    ]}){
-    id,
-    title,
-    color,
-    timestamp,
-    count,
-    freeTextItems {
-      id,
-      text,
-      timestamp,
-      checked
-    },
-    productItems {
-      id,
-      productId,
-      quantity,
-      timestamp,
+mutation syncLists($title: String!,$color: String!,$referenceId: ID!) {
+  syncLists(
+    syncListsInput: {
+      localLists: [
+      ],
+      createdLists:[
+        {
+          title: $title,
+          color: $color,
+          freeTextItems: [
+          ],
+          productItems: [
+          ],
+          referenceId: $referenceId
+        }
+      ],
+      updatedLists: [
+      ],
+      deletedLists: [
+      ]
     }
+
+    ,
+  ) {
+    createdLists {
+      id
+      title
+      color
+      referenceId
+      timestamp
+    },
+    updatedLists {
+      id
+      title
+      color
+      timestamp
+    },
+    deletedLists
   }
 }

@@ -3,6 +3,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @lombok.Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CreateListResponse {
+public class SyncListResponse {
   private Data data;
 }

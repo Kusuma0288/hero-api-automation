@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @lombok.Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class EditList {
+public class UpdatedLists {
   private int id;
   private String title;
   private String color;

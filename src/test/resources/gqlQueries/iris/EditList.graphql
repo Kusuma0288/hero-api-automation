@@ -1,16 +1,36 @@
-mutation editList($listId: ID!, $title: String!, $color: String!, $timestamp: Float!, $lastSynced: Float!) {
-    editList(
-        editListInput: {
-            title: $title,
-            color: $color,
-            timestamp: $timestamp,
-            lastSynced: $lastSynced
-        },
-        listId: $listId
+mutation syncLists($id:ID! ,$title: String!,$color: String!,$timestamp: Float!) {
+    syncLists(
+        syncListsInput: {
+            localLists: [
+            ],
+            createdLists:[
+            ],
+            updatedLists: [
+                {
+                    id: $id,
+                    title: $title,
+                    timestamp: $timestamp,
+                    color: $color
+                }
+            ],
+            deletedLists: [
+            ]
+        }
+        ,
     ) {
-        id,
-        title,
-        color,
-        timestamp,
+        createdLists {
+            id
+            title
+            color
+            referenceId
+            timestamp
+        },
+        updatedLists {
+            id
+            title
+            color
+            timestamp
+        },
+        deletedLists
     }
 }

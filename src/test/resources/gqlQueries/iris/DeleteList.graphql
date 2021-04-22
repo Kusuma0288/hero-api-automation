@@ -1,5 +1,39 @@
-mutation deleteList($listId: ID!) {
-    deleteList(
-        listId: $listId
-    )
+mutation syncLists($id:ID! ,$timestamp: Float!) {
+    syncLists(
+        syncListsInput: {
+
+            localLists: [
+
+            ],
+            createdLists:[
+
+            ],
+            updatedLists: [
+
+            ],
+            deletedLists: [
+                {
+                    id: $id,
+                    timestamp: $timestamp
+                }
+
+            ]
+        }
+        ,
+    ) {
+        createdLists {
+            id
+            title
+            color
+            referenceId
+            timestamp
+        },
+        updatedLists {
+            id
+            title
+            color
+            timestamp
+        },
+        deletedLists
+    }
 }
