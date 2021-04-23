@@ -54,4 +54,7 @@ public class OrderConfirmation {
   private Object RewardsCredits;
   private Object RewardsInfo;
   private Object RewardsCreditsUsed;
+  private String PackagingFeeDiscount;
+  private String DeliveryUnlimitedSavings;
+  private String HasDeliveryUnlimitedRewards;
 }

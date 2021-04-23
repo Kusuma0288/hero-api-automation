@@ -17,7 +17,6 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.iterable;
 
 public class Homepage extends HomepageHelper {
 
@@ -273,7 +272,7 @@ public class Homepage extends HomepageHelper {
 
     if (eligibility.equalsIgnoreCase("Eligible")) {
       assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("deliveryNowStatus").first().isEqualTo("Open");
-      assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("status").first().isEqualTo("ClosingSoon");
+      assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("status").first().isIn("ClosingSoon", "Available");
       assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("isEligible").first().isEqualTo("true");
     }
     else {
@@ -298,7 +297,7 @@ public class Homepage extends HomepageHelper {
 
     if (eligibility.equalsIgnoreCase("Eligible")) {
       assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("deliveryNowStatus").first().isEqualTo("Open");
-      assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("status").first().isEqualTo("ClosingSoon");
+      assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("status").first().isIn("ClosingSoon", "Available");
       assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("isEligible").first().isEqualTo("true");
     }
     else {
@@ -323,7 +322,7 @@ public class Homepage extends HomepageHelper {
 
     if (eligibility.equalsIgnoreCase("Eligible")) {
       assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("deliveryNowStatus").first().isEqualTo("Open");
-      assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("status").first().isEqualTo("ClosingSoon");
+      assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("status").first().isIn("ClosingSoon", "Available");
       assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("isEligible").first().isEqualTo("true");
     }
     else {

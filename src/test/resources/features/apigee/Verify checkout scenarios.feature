@@ -82,7 +82,7 @@ Feature: Checkout API scenarios
     Given I pick a location at "<lookupAddress>" for delivery
     And I make a request to fulfilment api with primary address id to set the address as fulfilment address
     And I clear the trolley
-    When I search for the product Milk in online mode and store response
+    When I search for the product oil in online mode and store response
     And I add the 5 available products with 5 each from the store to the V3 trolley
     And I get the available windows for the logged in user with storeId or addressId
     Then I reserve the available window for the selected "<Mode>"

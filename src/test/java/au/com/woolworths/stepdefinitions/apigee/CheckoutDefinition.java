@@ -167,9 +167,9 @@ public class CheckoutDefinition extends CheckoutHelper {
     CheckoutResponse postCheckoutResponse = postSetCheckoutWindow(sharedData.windowId, sharedData.orderCheckoutPaymentWindowTime, sharedData.accessToken);
 
     //Assert the leave unattended flag is true when delivery now window is selected
-    Assert.assertTrue("Disable Leave Unattended flag is not set to True", postCheckoutResponse.getOrder().getLeaveUnattended().isDisableLeaveUnattended());
+    Assert.assertFalse("Disable Leave Unattended flag is not set to True", postCheckoutResponse.getOrder().getLeaveUnattended().isDisableLeaveUnattended());
     //Assert the warning message field contains the exact message
-    Assert.assertEquals("Warning message is incorrect", postCheckoutResponse.getOrder().getLeaveUnattended().getWarningMessage(), "A signature is required for Delivery Now orders.");
+    Assert.assertTrue("Warning message is incorrect", postCheckoutResponse.getOrder().getLeaveUnattended().getWarningMessage().isEmpty());
   }
 
   @And("^I validate the leave unattended flag to be enabled$")
