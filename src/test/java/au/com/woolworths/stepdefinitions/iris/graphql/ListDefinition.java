@@ -91,7 +91,6 @@ public class ListDefinition extends ListHelper {
     String listOfListsResponse = graphqlHelper.postGraphqlQuery(graphqlQuery);
     SyncListResponse syncListResponse = mapper.readValue(listOfListsResponse, SyncListResponse.class);
 
-
     Lists[] lists = syncListResponse.getData().getLists();
     Assert.assertTrue("List should not be empty", lists.length > 0);
 
