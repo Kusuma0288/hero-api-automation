@@ -119,4 +119,11 @@ public class SpecialsDefinition extends SpecialsHelper {
     }
   }
 
+  @And("the disclaimer should be returned")
+  public void theDisclaimerShouldBeReturned() {
+    Partner woolworthsPartner = response.getData().getPartners().get(0);
+    if (woolworthsPartner.getData().getProducts().size() == 0) {
+      Assert.assertNotNull("Disclaimer should be returned", woolworthsPartner.getData().getDisclaimer().getData().getMessage());
+    }
+  }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 public class PartnersData {
   private Details details;
+  private Disclaimer disclaimer;
   private String itemCountText;
   private List<Product> products;
   private Sorting sorting;
