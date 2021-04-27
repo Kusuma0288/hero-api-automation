@@ -3,6 +3,7 @@ package au.com.woolworths.stepdefinitions.iris.graphql;
 import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.helpers.iris.graphql.GraphqlHelper;
 import au.com.woolworths.helpers.iris.graphql.ListHelper;
+import au.com.woolworths.model.iris.graphql.list.listOfLists.listOfListsResponse;
 import au.com.woolworths.model.iris.graphql.list.SyncListResponse;
 import au.com.woolworths.stepdefinitions.apigee.ListsDefinition;
 import au.com.woolworths.utils.Utilities;
@@ -20,7 +21,6 @@ public class ListDefinition extends ListHelper {
   public GraphqlHelper graphqlHelper = new GraphqlHelper();
 
   ObjectMapper mapper = new ObjectMapper();
-
 
   @And("^I create a list with list name \"([^\"]*)\" and color \"([^\"]*)\"$")
   public void iCreateAListWithListNameAndFromGraphqlAndAddedFreeTextAndProduct(String listName, String color) throws IOException {
@@ -68,6 +68,7 @@ public class ListDefinition extends ListHelper {
   public void iVerifyListIsEditedWithCorrectDetails() {
     Assert.assertEquals("ListName is not matching", sharedData.listResponseEdited.getData().getSyncLists().getUpdatedLists()[0].getTitle(), sharedData.listName);
   }
+
   @And("^I delete the newly created and edited list$")
   public void iDeleteTheNewlyCreatedAndEditedList() throws Throwable {
     InputStream iStream = ListsDefinition.class.getResourceAsStream("/gqlQueries/iris/DeleteList.graphql");
@@ -83,18 +84,18 @@ public class ListDefinition extends ListHelper {
 
   @And("^I get a list of lists$")
   public void iGetAListOfLists() throws IOException {
-    InputStream iStream = ListsDefinition.class.getResourceAsStream("/gqlQueries/iris/getListOfists.graphql");
+    InputStream iStream = ListsDefinition.class.getResourceAsStream("/gqlQueries/iris/listOfLists.graphql");
+    ObjectNode variables = new ObjectMapper().createObjectNode();
 
     String graphqlQuery = GraphqlParser.parseGraphql(iStream, variables);
-    String getListResponse = graphqlHelper.postGraphqlQuery(graphqlQuery);
-    GetListOfListsResponse getListOfListsResponse = mapper.readValue(getListResponse, GetListOfListsResponse.class);
-    sharedData.getListOfListsResponse = getListOfListsResponse;
+    String response = graphqlHelper.postGraphqlQuery(graphqlQuery);
+    listOfListsResponse listOfListsResponse = mapper.readValue(response, listOfListsResponse.class);
+    sharedData.listOfListsResponse = listOfListsResponse;
+    this.iVerifyTheListsWithCorrectDetails();
   }
 
-  @Then("I verify the lists with correct details {string} {string}")
-  public void iVerifyTheListsWithCorrectDetails(String listName1, String listName2) {
-    listName1 = listName1 + Utilities.getSaltString();
-    listName2 = listName2 + Utilities.getSaltString();
-    Assert.assertEquals("ListName1 is not matching", sharedData.getListOfListsResponse.getData().getEditList().getTitle(), sharedData.listName);
+  @Then("I verify the lists with correct details$")
+  public void iVerifyTheListsWithCorrectDetails() {
+    Assert.assertEquals("List Name is not matching", sharedData.listOfListsResponse.getData().getLists()[0].getTitle(), sharedData.listName);
   }
 }

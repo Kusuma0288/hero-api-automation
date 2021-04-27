@@ -1,8 +1,8 @@
-package au.com.woolworths.model.iris.graphql.list;
+package au.com.woolworths.model.iris.graphql.list.listOfLists;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @lombok.Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class GetListOfListsResponse {
+public class listOfListsResponse {
   private Data data;
 }

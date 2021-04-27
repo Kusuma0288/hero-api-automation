@@ -13,7 +13,8 @@ public class ListHelper extends BaseHelper {
     CHECKED("checked"),
     ID("id"),
     TIMESTAMP("timestamp"),
-    LAST_SYNC("lastSynced");
+    LAST_SYNC("lastSynced"),
+    COUNT("count");
 
     private String typename;
     Typename(String typename) {
