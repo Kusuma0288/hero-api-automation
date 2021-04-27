@@ -11,7 +11,6 @@ import au.com.woolworths.model.apigee.search.SearchInStore;
 import au.com.woolworths.model.apigee.search.SearchResponseV3;
 import au.com.woolworths.model.apigee.trolley.TrolleyV2Response;
 import au.com.woolworths.model.apigee.trolley.TrolleyV3Response;
-import au.com.woolworths.model.iris.graphql.list.listOfLists.listOfListsResponse;
 import au.com.woolworths.model.iris.graphql.list.SyncListResponse;
 import au.com.woolworths.model.iris.graphql.productList.Product;
 import au.com.woolworths.model.scango.checkout.CheckoutResponse;
@@ -125,7 +124,6 @@ public class SharedData {
   public String orderIdTrader;
   public SyncListResponse syncListResponse;
   public SyncListResponse listResponseEdited;
-  public listOfListsResponse listOfListsResponse;
   public String listName;
   public String color;
   public long productId;

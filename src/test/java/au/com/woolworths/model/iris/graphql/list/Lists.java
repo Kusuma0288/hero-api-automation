@@ -1,4 +1,4 @@
-package au.com.woolworths.model.iris.graphql.list.listOfLists;
+package au.com.woolworths.model.iris.graphql.list;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

@@ -3,7 +3,7 @@ package au.com.woolworths.stepdefinitions.iris.graphql;
 import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.helpers.iris.graphql.GraphqlHelper;
 import au.com.woolworths.helpers.iris.graphql.ListHelper;
-import au.com.woolworths.model.iris.graphql.list.listOfLists.listOfListsResponse;
+import au.com.woolworths.model.iris.graphql.list.Lists;
 import au.com.woolworths.model.iris.graphql.list.SyncListResponse;
 import au.com.woolworths.stepdefinitions.apigee.ListsDefinition;
 import au.com.woolworths.utils.Utilities;
@@ -88,14 +88,20 @@ public class ListDefinition extends ListHelper {
     ObjectNode variables = new ObjectMapper().createObjectNode();
 
     String graphqlQuery = GraphqlParser.parseGraphql(iStream, variables);
-    String response = graphqlHelper.postGraphqlQuery(graphqlQuery);
-    listOfListsResponse listOfListsResponse = mapper.readValue(response, listOfListsResponse.class);
-    sharedData.listOfListsResponse = listOfListsResponse;
-    this.iVerifyTheListsWithCorrectDetails();
-  }
+    String listOfListsResponse = graphqlHelper.postGraphqlQuery(graphqlQuery);
+    SyncListResponse syncListResponse = mapper.readValue(listOfListsResponse, SyncListResponse.class);
 
-  @Then("I verify the lists with correct details$")
-  public void iVerifyTheListsWithCorrectDetails() {
-    Assert.assertEquals("List Name is not matching", sharedData.listOfListsResponse.getData().getLists()[0].getTitle(), sharedData.listName);
+
+    Lists[] lists = syncListResponse.getData().getLists();
+    Assert.assertTrue("List should not be empty", lists.length > 0);
+
+    Boolean found = false;
+    for (int i = 0; i < lists.length; i++) {
+      if (lists[i].getTitle().contentEquals(sharedData.listName)) {
+        found = true;
+        break;
+      }
+    }
+    Assert.assertTrue("List Name is not found", found);
   }
 }
