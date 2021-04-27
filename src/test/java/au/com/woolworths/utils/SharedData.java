@@ -20,7 +20,6 @@ import au.com.woolworths.model.scango.login.ScanGoLoginResponse;
 import au.com.woolworths.model.scango.payment.ListInstrumentsResponse;
 import au.com.woolworths.model.trader.*;
 import au.com.woolworths.model.trader.product.productGroup.ProductsByProductGroup;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -141,7 +140,7 @@ public class SharedData {
   public String kioskAccessToken;
   public String voidTransactionReasonCode;
   public String teamMemberBarcode;
-  
+
   public void setDeliveryAddresses(int addressID, String addressText) {
     deliveryAddresses.put(addressID, addressText);
   }

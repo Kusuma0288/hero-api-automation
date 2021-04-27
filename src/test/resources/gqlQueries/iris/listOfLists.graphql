@@ -1,0 +1,9 @@
+query {
+  lists {
+    id,
+    title,
+    color,
+    timestamp,
+    count
+  },
+}

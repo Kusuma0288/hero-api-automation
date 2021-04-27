@@ -3,6 +3,7 @@ package au.com.woolworths.stepdefinitions.iris.graphql;
 import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.helpers.iris.graphql.GraphqlHelper;
 import au.com.woolworths.helpers.iris.graphql.ListHelper;
+import au.com.woolworths.model.iris.graphql.list.Lists;
 import au.com.woolworths.model.iris.graphql.list.SyncListResponse;
 import au.com.woolworths.stepdefinitions.apigee.ListsDefinition;
 import au.com.woolworths.utils.Utilities;
@@ -20,7 +21,6 @@ public class ListDefinition extends ListHelper {
   public GraphqlHelper graphqlHelper = new GraphqlHelper();
 
   ObjectMapper mapper = new ObjectMapper();
-
 
   @And("^I create a list with list name \"([^\"]*)\" and color \"([^\"]*)\"$")
   public void iCreateAListWithListNameAndFromGraphqlAndAddedFreeTextAndProduct(String listName, String color) throws IOException {
@@ -68,6 +68,7 @@ public class ListDefinition extends ListHelper {
   public void iVerifyListIsEditedWithCorrectDetails() {
     Assert.assertEquals("ListName is not matching", sharedData.listResponseEdited.getData().getSyncLists().getUpdatedLists()[0].getTitle(), sharedData.listName);
   }
+
   @And("^I delete the newly created and edited list$")
   public void iDeleteTheNewlyCreatedAndEditedList() throws Throwable {
     InputStream iStream = ListsDefinition.class.getResourceAsStream("/gqlQueries/iris/DeleteList.graphql");
@@ -79,5 +80,27 @@ public class ListDefinition extends ListHelper {
     String getListResponse = graphqlHelper.postGraphqlQuery(graphqlQuery);
     SyncListResponse syncListResponse = mapper.readValue(getListResponse, SyncListResponse.class);
     Assert.assertEquals("ListId is not matching", sharedData.listResponseEdited.getData().getSyncLists().getUpdatedLists()[0].getId(), Integer.parseInt(syncListResponse.getData().getSyncLists().getDeletedLists()[0]));
+  }
+
+  @And("^I get a list of lists$")
+  public void iGetAListOfLists() throws IOException {
+    InputStream iStream = ListsDefinition.class.getResourceAsStream("/gqlQueries/iris/listOfLists.graphql");
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, variables);
+    String listOfListsResponse = graphqlHelper.postGraphqlQuery(graphqlQuery);
+    SyncListResponse syncListResponse = mapper.readValue(listOfListsResponse, SyncListResponse.class);
+
+    Lists[] lists = syncListResponse.getData().getLists();
+    Assert.assertTrue("List should not be empty", lists.length > 0);
+
+    Boolean found = false;
+    for (int i = 0; i < lists.length; i++) {
+      if (lists[i].getTitle().contentEquals(sharedData.listName)) {
+        found = true;
+        break;
+      }
+    }
+    Assert.assertTrue("List Name (" + sharedData.listName + ") is not found", found);
   }
 }
