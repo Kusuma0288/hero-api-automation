@@ -101,6 +101,6 @@ public class ListDefinition extends ListHelper {
         break;
       }
     }
-    Assert.assertTrue("List Name is not found", found);
+    Assert.assertTrue("List Name (" + sharedData.listName + ") is not found", found);
   }
 }
