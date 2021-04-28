@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @lombok.Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SyncLists {
-  private CreatedLists[] createdLists;
-  private UpdatedLists[] updatedLists;
+  private Lists[] createdLists;
+  private Lists[] updatedLists;
   private String[] deletedLists;
 }

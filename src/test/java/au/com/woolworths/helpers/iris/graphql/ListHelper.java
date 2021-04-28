@@ -13,6 +13,8 @@ public class ListHelper extends BaseHelper {
     CHECKED("checked"),
     ID("id"),
     LIST_ID("listId"),
+    ID_PROD("idProd"),
+    ID_FREE("idFree"),
     TIMESTAMP("timestamp"),
     LAST_SYNC("lastSynced"),
     COUNT("count");

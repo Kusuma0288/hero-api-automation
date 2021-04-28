@@ -11,6 +11,7 @@ import au.com.woolworths.model.apigee.search.SearchInStore;
 import au.com.woolworths.model.apigee.search.SearchResponseV3;
 import au.com.woolworths.model.apigee.trolley.TrolleyV2Response;
 import au.com.woolworths.model.apigee.trolley.TrolleyV3Response;
+import au.com.woolworths.model.iris.graphql.list.Lists;
 import au.com.woolworths.model.iris.graphql.list.SyncListResponse;
 import au.com.woolworths.model.iris.graphql.productList.Product;
 import au.com.woolworths.model.scango.checkout.CheckoutResponse;
@@ -140,6 +141,9 @@ public class SharedData {
   public String kioskAccessToken;
   public String voidTransactionReasonCode;
   public String teamMemberBarcode;
+
+  public Lists syncListItems;
+  public String freeText;
 
   public void setDeliveryAddresses(int addressID, String addressText) {
     deliveryAddresses.put(addressID, addressText);

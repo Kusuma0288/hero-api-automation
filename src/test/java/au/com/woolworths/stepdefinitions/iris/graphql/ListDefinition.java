@@ -118,4 +118,74 @@ public class ListDefinition extends ListHelper {
     }
     Assert.assertTrue("List Name (" + sharedData.listName + ") is not found", found);
   }
+
+  @And("I add {int} numbers of a Product from search result and free text {string} in the list")
+  public void iAddProductAndFreeTextInTheList(int quantity, String freeText) throws IOException {
+    String productCode = sharedData.availableProducts.get(0).getProductId();
+    InputStream iStream = ListsDefinition.class.getResourceAsStream("/gqlQueries/iris/createSyncListItem.graphql");
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    variables.put(Typename.LIST_ID.get(), sharedData.syncListResponse.getData().getSyncLists().getCreatedLists()[0].getId());
+    variables.put(Typename.TIMESTAMP.get(), sharedData.syncListResponse.getData().getSyncLists().getCreatedLists()[0].getTimestamp());
+    variables.put(Typename.PRODUCT_ID.get(), productCode);
+    variables.put(Typename.QUANTITY.get(), quantity);
+    variables.put(Typename.CHECKED.get(), false);
+    variables.put(Typename.FREE_TEXT.get(), freeText);
+    variables.put(Typename.REFERENCE_ID.get(), UUID.randomUUID().toString());
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, variables);
+    String getListResponse = graphqlHelper.postGraphqlQuery(graphqlQuery);
+    SyncListResponse syncListResponse = mapper.readValue(getListResponse, SyncListResponse.class);
+    sharedData.syncListItems = syncListResponse.getData().getSyncListItems();
+    sharedData.freeText = freeText;
+    sharedData.quantity = quantity;
+  }
+
+  @And("I update Product quantity to {int} and free text {string} in the list")
+  public void iUpdateProductQuantityToAndFreeTextInTheList(int quantity, String freeText) throws IOException {
+    InputStream iStream = ListsDefinition.class.getResourceAsStream("/gqlQueries/iris/updateSyncListItem.graphql");
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    variables.put(Typename.LIST_ID.get(), sharedData.syncListItems.getListId());
+    variables.put(Typename.TIMESTAMP.get(), sharedData.syncListItems.getCreatedProductItems()[0].getTimestamp());
+    variables.put(Typename.PRODUCT_ID.get(), String.valueOf(sharedData.syncListItems.getCreatedProductItems()[0].getProductId()));
+    variables.put(Typename.QUANTITY.get(), quantity);
+    variables.put(Typename.CHECKED.get(), false);
+    variables.put(Typename.FREE_TEXT.get(), freeText);
+    variables.put(Typename.ID_PROD.get(), sharedData.syncListItems.getCreatedProductItems()[0].getId());
+    variables.put(Typename.ID_FREE.get(), sharedData.syncListItems.getCreatedFreeTextItems()[0].getId());
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, variables);
+    String getListResponse = graphqlHelper.postGraphqlQuery(graphqlQuery);
+    SyncListResponse syncListResponse = mapper.readValue(getListResponse, SyncListResponse.class);
+    sharedData.syncListItems = syncListResponse.getData().getSyncListItems();
+    sharedData.freeText = freeText;
+    sharedData.quantity = quantity;
+  }
+
+  @Then("I verify Product and free text is added with correct details")
+  public void iVerifyProductAndFreeTextIsAddedWithCorrectDetails() {
+    Assert.assertEquals("ListId is not matching", sharedData.syncListItems.getListId(), sharedData.syncListResponse.getData().getSyncLists().getCreatedLists()[0].getId());
+    Assert.assertEquals("List free text is not matching", sharedData.syncListItems.getCreatedFreeTextItems()[0].getText(), sharedData.freeText);
+    Assert.assertTrue("List Product id is not matching", sharedData.availableProducts.get(0).getProductId().contains(String.valueOf(sharedData.syncListItems.getCreatedProductItems()[0].getProductId())));
+    Assert.assertEquals("List Product quantity is not matching", sharedData.syncListItems.getCreatedProductItems()[0].getQuantity(), sharedData.quantity);
+  }
+
+  @Then("I verify Product and free text is updated with correct details")
+  public void iVerifyProductAndFreeTextIsUpdatedWithCorrectDetails() {
+    Assert.assertEquals("ListId is not matching", sharedData.syncListItems.getListId(), sharedData.syncListResponse.getData().getSyncLists().getCreatedLists()[0].getId());
+    Assert.assertEquals("List free text is not matching", sharedData.syncListItems.getEditedFreeTextItems()[0].getText(), sharedData.freeText);
+    Assert.assertTrue("List Product id is not matching", sharedData.availableProducts.get(0).getProductId().contains(String.valueOf(sharedData.syncListItems.getEditedProductItems()[0].getProductId())));
+    Assert.assertEquals("List Product quantity is not matching", sharedData.syncListItems.getEditedProductItems()[0].getQuantity(), sharedData.quantity);
+  }
+
+  @Then("I delete the product added to the list")
+  public void iDeleteTheProductAddedToTheList() throws IOException {
+    InputStream iStream = ListsDefinition.class.getResourceAsStream("/gqlQueries/iris/deleteSyncListItem.graphql");
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    variables.put(Typename.LIST_ID.get(), sharedData.syncListItems.getListId());
+    variables.put(Typename.TIMESTAMP.get(), sharedData.syncListItems.getEditedProductItems()[0].getTimestamp());
+    variables.put(Typename.ID.get(), sharedData.syncListItems.getEditedProductItems()[0].getId());
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, variables);
+    String getListResponse = graphqlHelper.postGraphqlQuery(graphqlQuery);
+    SyncListResponse syncListResponse = mapper.readValue(getListResponse, SyncListResponse.class);
+    Assert.assertEquals("ListId is not matching", syncListResponse.getData().getSyncListItems().getListId(), sharedData.syncListResponse.getData().getSyncLists().getCreatedLists()[0].getId());
+    Assert.assertEquals("List Product id is not matching", syncListResponse.getData().getSyncListItems().getDeletedItems()[0].getId(), sharedData.syncListItems.getEditedProductItems()[0].getId());
+  }
 }

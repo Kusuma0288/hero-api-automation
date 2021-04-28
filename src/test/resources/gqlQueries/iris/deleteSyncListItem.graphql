@@ -1,0 +1,26 @@
+mutation syncListEditListItems ($id: ID!, $listId: ID!, $timestamp: Float!) {
+  syncListItems(
+    syncListItemsInput: {
+      listId: $listId,
+      timestamp: $timestamp,
+      createdProductItems: [
+      ],
+      createdFreeTextItems: [
+      ],
+      updatedProductItems: [
+      ],
+      updatedFreeTextItems: [
+      ],
+      deletedItems: [
+        { id: $id,
+          timestamp: $timestamp
+        }
+      ]
+    },) {
+    listId
+    deletedItems {
+      id
+      timestamp
+    }
+  }
+}

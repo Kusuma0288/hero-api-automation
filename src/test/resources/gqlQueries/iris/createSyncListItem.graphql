@@ -1,0 +1,43 @@
+mutation syncListCreateItems($listId: ID!, $timestamp: Float!,$productId: ID!,$quantity: Float!,$checked: Boolean!, $text: String!, $referenceId: ID!) {
+  syncListItems(
+    syncListItemsInput: {
+      listId: $listId,
+      timestamp: $timestamp,
+      createdProductItems: [
+        {
+          productId: $productId,
+          quantity: $quantity,
+          checked: $checked
+        }
+      ],
+      createdFreeTextItems: [
+        {   text:$text,
+          checked: $checked,
+          referenceId: $referenceId
+        }
+      ],
+      updatedProductItems: [
+      ],
+      updatedFreeTextItems: [
+      ],
+      deletedItems: [
+      ]
+    },
+  ) {
+    listId
+    createdFreeTextItems {
+      id
+      text
+      timestamp
+      checked
+      referenceId
+    }
+    createdProductItems {
+      id
+      productId
+      quantity
+      timestamp
+      checked
+    }
+  }
+}

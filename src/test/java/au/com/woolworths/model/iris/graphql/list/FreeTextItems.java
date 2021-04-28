@@ -8,4 +8,5 @@ public class FreeTextItems {
   private String text;
   private double timestamp;
   private boolean checked;
+  private String referenceId;
 }
