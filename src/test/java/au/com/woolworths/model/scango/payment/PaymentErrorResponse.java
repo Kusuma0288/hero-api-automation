@@ -12,4 +12,6 @@ public class PaymentErrorResponse {
   private String description;
   private String digitalPayDescp;
   private Boolean paymentFailLimitExceeded;
+  private String level;
+  private String moduleName;
 }
