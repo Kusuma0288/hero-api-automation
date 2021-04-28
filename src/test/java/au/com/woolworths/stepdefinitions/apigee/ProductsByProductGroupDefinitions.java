@@ -1,88 +1,31 @@
 package au.com.woolworths.stepdefinitions.apigee;
 
+import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.apigee.authentication.GuestLoginRequest;
 import au.com.woolworths.model.apigee.authentication.LoginReponse;
 import au.com.woolworths.model.iris.graphql.productListByProductGroup.Product;
 import au.com.woolworths.model.iris.graphql.productListByProductGroup.ProductsByProductGroup;
 import au.com.woolworths.model.iris.graphql.productListByProductGroup.ProductsByProductGroupResponse;
-import au.com.woolworths.utils.TestProperties;
-import au.com.woolworths.utils.URLResources;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.restassured.RestAssured;
-import io.restassured.http.Header;
-import io.restassured.response.Response;
-import org.hamcrest.Matchers;
-import org.testng.asserts.SoftAssert;
 
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 
 import static au.com.woolworths.graphql.parser.GraphqlParser.parseGraphql;
 import static au.com.woolworths.stepdefinitions.common.ServiceHooks.restInvocationUtil;
+import static au.com.woolworths.utils.URLResources.APIGEE_V2_GUEST_LOGIN;
+import static au.com.woolworths.utils.URLResources.HERMES_V1_GRAPHQL;
 import static au.com.woolworths.utils.Utilities.generateRandomUUIDString;
-import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.fail;
 
-public class ProductsByProductGroupDefinitions {
+public class ProductsByProductGroupDefinitions extends BaseHelper {
 
-  private final ObjectMapper mapper = new ObjectMapper(); // Jackson databind class
-  private final Map<String, String> webServiceResponseMap = new HashMap<>(); // Var to store json result - statusCode/responseBody/contentType
-  private Header accessToken = new Header("Key", "Value"); // Overwritten later
-  private Response response;
-
-  // TODO: We need to use/refactor existing request methods defined on framework level
-  //  being used by both rewards and shop app bff tests.
-  private void makeHttpRequest(String endPoint, String requestStr) {
-
-    // Clear any previous request's history
-    webServiceResponseMap.clear();
-
-    try {
-      // ENDPOINT
-      RestAssured.baseURI = TestProperties.get("BASE_URI_APIGEE");
-
-      // CALL
-      response =
-              given()
-                      .header("Content-Type", "application/json")
-                      .header("Accept", "application/json")
-                      .header("x-api-key", TestProperties.get("x-api-key"))
-                      .header("user-agent", TestProperties.get("user-agent"))
-                      .header(accessToken)
-                      .body(requestStr)
-                      //.log().all() // DEBUG - request log
-                      .when()
-                      .post(endPoint)
-                      .then()
-                      //.log().all() // DEBUG - response log
-                      .extract().response();
-
-      // CATCH - any GraphQL errors - throws exception if found
-      response.then().body("errors", Matchers.nullValue());
-
-      // SAVE - response for future steps
-      webServiceResponseMap.put("response", response.getBody().asString());
-      webServiceResponseMap.put("statusCode", Integer.toString(response.getStatusCode()));
-    } catch (Exception e) {
-      fail("Endpoint: " + endPoint + ", Request payload: " + requestStr + ", Error: " + e.getMessage());
-    } finally {
-      // SAVE - endpoint/request/response strings for Cluecumber report
-      restInvocationUtil.endPoints.add(endPoint);
-      restInvocationUtil.requests.add(requestStr);
-      restInvocationUtil.responses.add(response);
-    }
-  }
-
-  @Given("^I connect to apigee endpoint as a mobile, guest user$")
+  @Given("^I connect to apigee endpoint as a guest user$")
   public void mobileUserConnectToApigeeAPIEndpointAsGuest() throws Throwable {
 
     // ENDPOINT
-    String endPoint = URLResources.APIGEE_V2_GUEST_LOGIN;
+    String endPoint = APIGEE_V2_GUEST_LOGIN;
 
     // REQUEST - set up unique deviceId
     GuestLoginRequest loginRequest = new GuestLoginRequest();
@@ -90,23 +33,23 @@ public class ProductsByProductGroupDefinitions {
     String requestStr = mapper.writeValueAsString(loginRequest);
 
     // CALL
-    makeHttpRequest(endPoint, requestStr);
+    sharedData.recentCompleteResponse = restInvocationUtil.makeHttpRequest(endPoint, requestStr, sharedData.accessToken);
 
-    // RESPONSE
-    LoginReponse response = mapper.readValue(webServiceResponseMap.get("response"), LoginReponse.class);
+    // RESPONSE - parse for sanity
+    LoginReponse loginResponse = mapper.readValue(sharedData.recentCompleteResponse.get("response"), LoginReponse.class);
 
     // ASSERT
-    assertEquals(webServiceResponseMap.get("statusCode"), "200", "statusCode == 200 but was: " + webServiceResponseMap.get("statusCode"));
+    assertEquals(sharedData.recentCompleteResponse.get("statusCode"), "200", "statusCode == 200 but was: " + sharedData.recentCompleteResponse.get("statusCode"));
 
     // Update token for subsequent calls
-    accessToken = new Header("Authorization", "Bearer " + response.getAccess_token());
+    sharedData.accessToken = loginResponse.getAccess_token();
   }
 
-  @Given("^I request product group \"([^\"]*)\"$")
+  @Given("I request product group {string}")
   public void userRequestsAProductGroup(String groupId) throws Throwable {
 
     // ENDPOINT
-    String endPoint = URLResources.HERMES_V1_GRAPHQL;
+    String endPoint = HERMES_V1_GRAPHQL;
 
     // REQUEST - add 'groupId' inside 'variable' json object
     InputStream iStream = this.getClass().getResourceAsStream("/gqlQueries/iris/productsByProductGroup.graphql");
@@ -114,17 +57,14 @@ public class ProductsByProductGroupDefinitions {
     String graphqlQuery = parseGraphql(iStream, variables);
 
     // CALL - any errors caught within
-    makeHttpRequest(endPoint, graphqlQuery);
+    sharedData.recentCompleteResponse = restInvocationUtil.makeHttpRequest(endPoint, graphqlQuery, sharedData.accessToken);
   }
 
   @Then("^I can see the product group with products listed$")
   public void productGroupIsAvailable() throws Throwable {
 
-    // Assertion that only fails once all asserts are complete - better reporting
-    SoftAssert softAssert = new SoftAssert();
-
     // Deserialize and parse product list
-    ProductsByProductGroup products = mapper.readValue(webServiceResponseMap.get("response"), ProductsByProductGroupResponse.class).getData().getProductsByProductGroup();
+    ProductsByProductGroup products = mapper.readValue(sharedData.recentCompleteResponse.get("response"), ProductsByProductGroupResponse.class).getData().getProductsByProductGroup();
 
     // ASSERT - sort options - returns 53/54
     softAssert.assertTrue(products.getSortOptions().size() >= 53, "products.sortOptions.count >= " + 53 + " but was: " + products.getSortOptions().size());

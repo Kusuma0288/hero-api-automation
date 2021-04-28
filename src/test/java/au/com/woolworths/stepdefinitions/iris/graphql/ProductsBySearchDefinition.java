@@ -4,53 +4,121 @@ import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.helpers.iris.graphql.GraphqlHelper;
 import au.com.woolworths.model.iris.graphql.productList.Product;
 import au.com.woolworths.model.iris.graphql.productList.ProductsBySearchResponse;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import au.com.woolworths.graphql.parser.GraphqlParser;
-
-import static au.com.woolworths.helpers.iris.graphql.GraphqlHelper.*;
-import static au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.*;
 
 import java.io.InputStream;
-import java.util.List;
+import java.util.*;
+
+import static au.com.woolworths.graphql.parser.GraphqlParser.parseGraphql;
+import static au.com.woolworths.helpers.iris.graphql.GraphqlHelper.ProductListPageSize.DEFAULT_PRODUCT_LIST_PAGE_SIZE;
+import static au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.ProductIdSource.RANDOM;
+import static au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.ProductIdSource.STORED;
+import static au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.ProductsBySearchArgs.*;
+import static au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.getAvailableProducts;
+import static au.com.woolworths.stepdefinitions.common.ServiceHooks.restInvocationUtil;
+import static au.com.woolworths.utils.URLResources.HERMES_V1_GRAPHQL;
 
 public class ProductsBySearchDefinition extends BaseHelper {
-  InputStream iStream = ChangeMyOrderDefinition.class.getResourceAsStream("/gqlQueries/iris/productsBySearch.graphql");
-  ObjectMapper mapper = new ObjectMapper();
-  public GraphqlHelper graphqlHelper = new GraphqlHelper();
+  private InputStream iStream = this.getClass().getResourceAsStream("/gqlQueries/iris/productsBySearch.graphql");
+  private GraphqlHelper graphqlHelper = new GraphqlHelper();
+  private ArrayList<String> tempProducts = new ArrayList<>();
+  private Integer totalProductCount;
 
-  @When("user requests for online \"([^\"]*)\" products by search$")
+  @When("user requests for online {string} products by search")
   public void getAvailableProductsFromOnlineProductsBySearch(String searchTerm) throws Throwable {
-    variables.put(ProductsBySearchArgs.SEARCH_TERM.get(), searchTerm);
-    variables.put(ProductsBySearchArgs.PAGE_SIZE.get(), ProductListPageSize.DEFAULT_PRODUCT_LIST_PAGE_SIZE.get());
-    String productsBySearchQuery = GraphqlParser.parseGraphql(iStream, variables);
+    variables.put(SEARCH_TERM.get(), searchTerm);
+    variables.put(PAGE_SIZE.get(), DEFAULT_PRODUCT_LIST_PAGE_SIZE.get());
+    String productsBySearchQuery = parseGraphql(iStream, variables);
     String productsBySearchResponseString = graphqlHelper.postGraphqlQuery(productsBySearchQuery);
     ProductsBySearchResponse productsBySearchResponse = mapper.readValue(productsBySearchResponseString, ProductsBySearchResponse.class);
     List<Product> productList = productsBySearchResponse.getData().getProductsBySearch().getProducts();
     if (productList.size() == 0) {
-      sharedData.productIdSource = ProductIdSource.STORED;
+      sharedData.productIdSource = STORED;
     } else {
-      sharedData.productIdSource = ProductIdSource.RANDOM;
+      sharedData.productIdSource = RANDOM;
       sharedData.availableProducts = getAvailableProducts(productList);
     }
   }
 
-  @When("user requests for instore \"([^\"]*)\" products by search for store \"([^\"]*)\"$")
+  @When("user requests for instore {string} products by search for store {string}")
   public void getAvailableProductsFromInstoreProductsBySearch(String searchTerm, String storeId) throws Throwable {
-    variables.put(ProductsBySearchArgs.SEARCH_TERM.get(), searchTerm);
-    variables.put(ProductsBySearchArgs.STORE_ID.get(), storeId);
-    variables.put(ProductsBySearchArgs.PAGE_SIZE.get(), ProductListPageSize.DEFAULT_PRODUCT_LIST_PAGE_SIZE.get());
-    String productsBySearchQuery = GraphqlParser.parseGraphql(iStream, variables);
+    variables.put(SEARCH_TERM.get(), searchTerm);
+    variables.put(STORE_ID.get(), storeId);
+    variables.put(PAGE_SIZE.get(), DEFAULT_PRODUCT_LIST_PAGE_SIZE.get());
+    String productsBySearchQuery = parseGraphql(iStream, variables);
     String productsBySearchResponseString = graphqlHelper.postGraphqlQuery(productsBySearchQuery);
     ProductsBySearchResponse productsBySearchResponse = mapper.readValue(productsBySearchResponseString, ProductsBySearchResponse.class);
     List<Product> productList = productsBySearchResponse.getData().getProductsBySearch().getProducts();
     if (productList.isEmpty()) {
-      sharedData.productIdSource = ProductIdSource.STORED;
+      sharedData.productIdSource = STORED;
     } else {
-      sharedData.productIdSource = ProductIdSource.RANDOM;
+      sharedData.productIdSource = RANDOM;
       sharedData.availableProducts = getAvailableProducts(productList);
     }
     sharedData.inStoreId = storeId;
   }
 
+  @When("user searches for online {string} products {int} at a time and scrolls to the end of the results")
+  public void userSearchesForOnlineProductsAndScrollsToTheEndOfTheResults(String searchString, int pageSize) throws Throwable {
+
+    // ENDPOINT
+    String endPoint = HERMES_V1_GRAPHQL;
+
+    // Nullable variable of next available page
+    Integer nextPage = 1;
+
+    // To display current product count
+    Integer productCount = 0;
+
+    // LOOP - while another page of products exists
+    do {
+      // REQUEST - create GraphQL
+      iStream = this.getClass().getResourceAsStream("/gqlQueries/iris/productsBySearch.graphql"); // need to re-instantiate each time
+      ObjectNode variables = mapper.createObjectNode()
+              .put("searchTerm", searchString)
+              .put("pageSize", pageSize)
+              .put("pageNumber", nextPage);
+      String graphqlQuery = parseGraphql(iStream, variables);
+
+      // CALL - any errors caught within
+      Map<String, String> response = restInvocationUtil.makeHttpRequest(endPoint, graphqlQuery, sharedData.accessToken);
+
+      // PARSE
+      ProductsBySearchResponse productsBySearchResponse = mapper.readValue(response.get("response"), ProductsBySearchResponse.class);
+
+      // RECORD
+      totalProductCount = productsBySearchResponse.getData().getProductsBySearch().getTotalNumberOfProducts();
+
+      // Get products from response
+      List<Product> productList = productsBySearchResponse.getData().getProductsBySearch().getProducts();
+
+      // LOOP - to save productIds
+      for (Product product : productList) {
+        // DEBUG
+        // System.out.println(nextPage + "::" + productCount + ": " + product.getProductId() + " " + (!product.getName().isEmpty() ? product.getName() : "No name"));
+        tempProducts.add(product.getProductId());
+        productCount++;
+      }
+
+      nextPage = productsBySearchResponse.getData().getProductsBySearch().getNextPage();
+    } while (nextPage != null);
+  }
+
+  @Then("no duplicate results are returned")
+  public void noDuplicateResultsAreReturned() {
+    Set<String> s = new HashSet<>();
+    for (String p : tempProducts) {
+      softAssert.assertTrue(s.add(p), p + " is duplicated!");
+    }
+  }
+
+
+  @And("the product total count matches the actual number of products returned")
+  public void theProductTotalCountMatchesTheActualNumberOfProductsReturned() {
+    softAssert.assertEquals(totalProductCount.intValue(), tempProducts.size(), "User was told " + totalProductCount + " items would be displayed but " + tempProducts.size() + " were.");
+    softAssert.assertAll();
+  }
 }

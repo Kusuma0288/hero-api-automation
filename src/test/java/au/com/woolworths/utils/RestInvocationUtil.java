@@ -1,6 +1,5 @@
 package au.com.woolworths.utils;
 
-import io.restassured.RestAssured;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
@@ -11,7 +10,11 @@ import java.io.StringWriter;
 import java.util.*;
 import java.util.logging.Logger;
 
+import static au.com.woolworths.stepdefinitions.common.ServiceHooks.restInvocationUtil;
+import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.nullValue;
+import static org.testng.Assert.fail;
 
 public class RestInvocationUtil {
 
@@ -109,18 +112,18 @@ public class RestInvocationUtil {
 
   private Response getRestWithDynamicHeaders(String endPoint, Map<String, ?> params, List<Header> dynamicHeaderList) {
     try {
-      RestAssured.baseURI = getBaseURL(endPoint);
+      baseURI = getBaseURL(endPoint);
 
       Headers headers = new Headers(dynamicHeaderList);
       response = given()
-          .header("Content-Type", "application/json")
-          .header("Accept", "application/json")
-          .headers(headers)
-          .params(params)
-          .when()
-          .get(endPoint)
-          .then()
-          .extract().response();
+              .header("Content-Type", "application/json")
+              .header("Accept", "application/json")
+              .headers(headers)
+              .params(params)
+              .when()
+              .get(endPoint)
+              .then()
+              .extract().response();
     } catch (Exception e) {
       e.printStackTrace();
       StringWriter errors = new StringWriter();
@@ -136,17 +139,17 @@ public class RestInvocationUtil {
     System.out.println("endPoint" + endPoint);
     System.out.println("requestPayload" + requestPayload);
     try {
-      RestAssured.baseURI = getBaseURL(endPoint);
+      baseURI = getBaseURL(endPoint);
       Headers headers = new Headers(headerList);
       response = given()
-          .header("Content-Type", "application/json")
-          .header("Accept", "application/json")
-          .headers(headers)
-          .body(requestPayload)
-          .when()
-          .put(endPoint)
-          .then()
-          .extract().response();
+              .header("Content-Type", "application/json")
+              .header("Accept", "application/json")
+              .headers(headers)
+              .body(requestPayload)
+              .when()
+              .put(endPoint)
+              .then()
+              .extract().response();
     } catch (Exception e) {
       e.printStackTrace();
       Assert.fail("Endpoint::" + endPoint + "Request PayLoad::" + requestPayload + "Error::" + e.getMessage());
@@ -156,17 +159,17 @@ public class RestInvocationUtil {
 
   private Response postRestWithBodyAndHeaders(String endPoint, String requestPayload, List<Header> dynamicHeaderList) {
     try {
-      RestAssured.baseURI = getBaseURL(endPoint);
+      baseURI = getBaseURL(endPoint);
       Headers headers = new Headers(dynamicHeaderList);
       response = given()
-          .header("Content-Type", "application/json")
-          .header("Accept", "application/json")
-          .headers(headers)
-          .body(requestPayload)
-          .when()
-          .post(endPoint)
-          .then()
-          .extract().response();
+              .header("Content-Type", "application/json")
+              .header("Accept", "application/json")
+              .headers(headers)
+              .body(requestPayload)
+              .when()
+              .post(endPoint)
+              .then()
+              .extract().response();
     } catch (Exception e) {
       e.printStackTrace();
       Assert.fail("Endpoint::" + endPoint + "Request PayLoad::" + requestPayload + "Error::" + e.getMessage());
@@ -176,16 +179,16 @@ public class RestInvocationUtil {
 
   private Response postRestWithoutBody(String endPoint, List<Header> headerList) {
     try {
-      RestAssured.baseURI = getBaseURL(endPoint);
+      baseURI = getBaseURL(endPoint);
       Headers headers = new Headers(headerList);
       response = given()
-          .header("Content-Type", "application/json")
-          .header("Accept", "application/json")
-          .headers(headers)
-          .when()
-          .post(endPoint)
-          .then()
-          .extract().response();
+              .header("Content-Type", "application/json")
+              .header("Accept", "application/json")
+              .headers(headers)
+              .when()
+              .post(endPoint)
+              .then()
+              .extract().response();
     } catch (Exception e) {
       e.printStackTrace();
       StringWriter errors = new StringWriter();
@@ -199,17 +202,17 @@ public class RestInvocationUtil {
 
   private Response getDeleteResponse(String endPoint, Map<String, ?> params, List<Header> headerList) {
     try {
-      RestAssured.baseURI = getBaseURL(endPoint);
+      baseURI = getBaseURL(endPoint);
       Headers headers = new Headers(headerList);
       response = given()
-          .header("Content-Type", "application/json")
-          .header("Accept", "application/json")
-          .headers(headers)
-          .params(params)
-          .when()
-          .delete(endPoint)
-          .then()
-          .extract().response();
+              .header("Content-Type", "application/json")
+              .header("Accept", "application/json")
+              .headers(headers)
+              .params(params)
+              .when()
+              .delete(endPoint)
+              .then()
+              .extract().response();
     } catch (Exception e) {
       e.printStackTrace();
       StringWriter errors = new StringWriter();
@@ -221,16 +224,16 @@ public class RestInvocationUtil {
 
   private Response getResponseWithoutParam(String endPoint, List<Header> headerList) {
     try {
-      RestAssured.baseURI = getBaseURL(endPoint);
+      baseURI = getBaseURL(endPoint);
       Headers headers = new Headers(headerList);
       response = given()
-          .header("Content-Type", "application/json")
-          .header("Accept", "application/json")
-          .headers(headers)
-          .when()
-          .get(endPoint)
-          .then()
-          .extract().response();
+              .header("Content-Type", "application/json")
+              .header("Accept", "application/json")
+              .headers(headers)
+              .when()
+              .get(endPoint)
+              .then()
+              .extract().response();
     } catch (Exception e) {
       e.printStackTrace();
       StringWriter errors = new StringWriter();
@@ -242,20 +245,20 @@ public class RestInvocationUtil {
 
   private Response postRestWithBodyAndAPIkey(String endPoint, String requestPayload, String apiKey) {
     try {
-      RestAssured.baseURI = getBaseURL(endPoint);
+      baseURI = getBaseURL(endPoint);
       List<Header> headerList = new LinkedList<>();
       headerList.add(new Header("wowapi-key", apiKey));
       headerList.add(new Header("cache-control", "no-cache"));
       Headers headers = new Headers(headerList);
 
       response = given()
-          .header("Content-Type", "application/json")
-          .header("Accept", "application/json")
-          .headers(headers)
-          .body(requestPayload)
-          .when()
-          .post(endPoint).then()
-          .extract().response();
+              .header("Content-Type", "application/json")
+              .header("Accept", "application/json")
+              .headers(headers)
+              .body(requestPayload)
+              .when()
+              .post(endPoint).then()
+              .extract().response();
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -264,6 +267,49 @@ public class RestInvocationUtil {
       Assert.fail("Endpoint::" + endPoint + "Request PayLoad::" + requestPayload + "Error::" + e.getMessage() + "Stack Trace::" + errors.toString());
     }
     return response;
+  }
+
+  // TODO: WIP - Generic method to simplify above methods
+  public Map<String, String> makeHttpRequest(String endPoint, String requestStr, String accessToken) {
+
+    // For saving response into
+    Map<String, String> responseMap = new HashMap<>();
+
+    try {
+      // ENDPOINT
+      baseURI = TestProperties.get("BASE_URI_APIGEE");
+
+      // CALL
+      response =
+              given()
+                      .header("Content-Type", "application/json")
+                      .header("Accept", "application/json")
+                      .header("x-api-key", TestProperties.get("x-api-key"))
+                      .header("user-agent", TestProperties.get("user-agent"))
+                      .header("authorization", "Bearer " + accessToken)
+                      .body(requestStr)
+//                      .log().all() // DEBUG - request log
+                      .when()
+                      .post(endPoint)
+                      .then()
+//                      .log().all() // DEBUG - response log
+                      .extract().response();
+
+      // CATCH - any GraphQL errors - throws exception if found
+      response.then().body("errors", nullValue());
+
+      // SAVE - response for future steps
+      responseMap.put("response", response.getBody().asString());
+      responseMap.put("statusCode", Integer.toString(response.getStatusCode()));
+    } catch (Exception e) {
+      fail("Endpoint: " + endPoint + ", Request payload: " + requestStr + ", Error: " + e.getMessage());
+    } finally {
+      // SAVE - endpoint/request/response strings for Cluecumber report
+      restInvocationUtil.endPoints.add(endPoint);
+      restInvocationUtil.requests.add(requestStr);
+      restInvocationUtil.responses.add(response);
+    }
+    return responseMap;
   }
 
   private String getBaseURL(String endPoint) {

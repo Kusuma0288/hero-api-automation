@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.restassured.http.Header;
+import org.testng.asserts.SoftAssert;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class BaseHelper {
   protected static SharedData sharedData;
   protected ObjectMapper mapper = new ObjectMapper();
   protected ObjectNode variables;
+  protected SoftAssert softAssert;
 
   public BaseHelper() {
     this.headerListCommon = new LinkedList<>();
@@ -40,6 +42,7 @@ public class BaseHelper {
     this.headerListFirestoreScanGoTeamMemberbarcode = new LinkedList<>();
     this.headerListFirestoreScanGoToken = new LinkedList<>();
     this.sharedData = ApplicationContext.getSharedData();
+    this.softAssert = new SoftAssert();
     headerListCommon.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerListCommon.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
 
