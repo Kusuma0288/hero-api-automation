@@ -10,4 +10,6 @@ public class Lists {
   private String color;
   private double timestamp;
   private int count;
+  private ProductItems[] productItems;
+  private FreeTextItems[] freeTextItems;
 }

@@ -1,0 +1,22 @@
+query ($listId: ID!) {
+  list(listId: $listId) {
+    id
+    title
+    timestamp
+    productItems {
+      id
+      productId
+      quantity
+      checked
+      timestamp
+
+    }
+    freeTextItems{
+      id
+      text
+      checked
+      timestamp
+    }
+    count
+  }
+}

@@ -8,4 +8,5 @@ public class ProductItems {
   private int productId;
   private long quantity;
   private double timestamp;
+  private boolean checked;
 }

@@ -6,4 +6,5 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class Data {
   private SyncLists syncLists;
   private Lists[] lists;
+  private Lists list;
 }

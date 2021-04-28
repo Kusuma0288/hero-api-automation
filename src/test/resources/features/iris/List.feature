@@ -9,6 +9,7 @@ Feature: Verify GraphQl List scenarios for User
     When I create a list with list name "<List Name 1>" and color "<color1>"
     Then I verify list is created with correct details
     And I get a list of lists
+    And I verify created list by listId
     When I edit a created list to list name "<List Name 2>" with color "<color2>"
     Then I verify list is Edited with correct details
     And I delete the newly created and edited list

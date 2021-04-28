@@ -46,6 +46,21 @@ public class ListDefinition extends ListHelper {
     Assert.assertEquals("ListName is not matching", sharedData.syncListResponse.getData().getSyncLists().getCreatedLists()[0].getTitle(), sharedData.listName);
   }
 
+  @Then("I verify created list by listId")
+  public void iVerifyCreatedListByListId() throws IOException {
+    InputStream iStream = ListsDefinition.class.getResourceAsStream("/gqlQueries/iris/getList.graphql");
+
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    variables.put(Typename.LIST_ID.get(), sharedData.syncListResponse.getData().getSyncLists().getCreatedLists()[0].getId());
+
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, variables);
+    String response = graphqlHelper.postGraphqlQuery(graphqlQuery);
+    SyncListResponse syncListResponse = mapper.readValue(response, SyncListResponse.class);
+
+    Assert.assertEquals("List Name is not matching", syncListResponse.getData().getList().getTitle(), sharedData.syncListResponse.getData().getSyncLists().getCreatedLists()[0].getTitle());
+    Assert.assertEquals("ListId is not matching", syncListResponse.getData().getList().getId(), sharedData.syncListResponse.getData().getSyncLists().getCreatedLists()[0].getId());
+  }
+
   @When("^I edit a created list to list name \"([^\"]*)\" with color \"([^\"]*)\"$")
   public void iEditAListWithListNameToWithColor(String listNameNew, String color) throws IOException {
     listNameNew = listNameNew + Utilities.getSaltString();
