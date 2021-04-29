@@ -15,11 +15,6 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  - group: MobileAuto-UAT
-  - name: trader-uat-lastFailCount
-    value: $[variables.Trader_UAT_LastFailCount]
-
 stages:
   - stage: Auto
     # Job schedules are managed --> https://wowonline.visualstudio.com/Mobile/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=1603&view=Tab_Triggers
@@ -79,7 +74,7 @@ stages:
               echo ${{ parameters.triggerEnv }}
           - template: pipelines/templates/base-template.yml
             parameters:
-              SlackWebHookUrl: https://hooks.slack.com/services/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
+              SlackWebHookUrl: $(shop_slackWebHookUrl)
               TestRunTitle: Trader Automation Run Report
               Profile: ${{variables.TriggeredProfile}}
               RunEnv: ${{ parameters.triggerEnv }}

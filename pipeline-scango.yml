@@ -14,11 +14,6 @@ trigger:
 
 pool: 'wlx-ubuntu1804'
 
-variables:
-  - group: MobileAuto-UAT
-  - name: scan-go-uat-lastFailCount
-    value: $[variables.Scan_Go_UAT_LastFailCount]
-
 stages:
   - stage: Auto
     # Job schedules are managed --> https://wowonline.visualstudio.com/Mobile/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=1602&view=Tab_Triggers
@@ -32,7 +27,7 @@ stages:
 
           - template: pipelines/templates/base-template.yml
             parameters:
-              SlackWebHookUrl: https://hooks.slack.com/services/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
+              SlackWebHookUrl: $(scanNGo_slackWebHookUrl)
               TestRunTitle: Uat Scan&Go Automation Run Report
               Profile: smoke_scango
               RunEnv: uat
@@ -63,7 +58,7 @@ stages:
               echo ${{variables.TriggeredEnv}}
           - template: pipelines/templates/base-template.yml
             parameters:
-              SlackWebHookUrl: https://hooks.slack.com/services/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
+              SlackWebHookUrl: $(scanNGo_slackWebHookUrl)
               TestRunTitle: Scan&Go Automation Run Report
               Profile: ${{variables.TriggeredProfile}}
               RunEnv: ${{variables.TriggeredEnv}}

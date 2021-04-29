@@ -15,14 +15,12 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  - group: MobileAuto-UAT
-  - name: apigee-uat-lastFailCount
-    value: $[variables.Apigee_UAT_LastFailCount]
-
 stages:
   - stage: Auto
     # Job schedules are managed --> https://wowonline.visualstudio.com/Mobile/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=1602&view=Tab_Triggers
+
+    variables:
+      - template: pipelines/templates/variables.yml
 
     jobs:
       - job: Prod_Apigee
@@ -93,7 +91,7 @@ stages:
               echo ${{variables.TriggeredEnv}}
           - template: pipelines/templates/base-template.yml
             parameters:
-              SlackWebHookUrl: https://hooks.slack.com/services/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
+              SlackWebHookUrl: $(shop_slackWebHookUrl)
               TestRunTitle: Apigee Automation Run Report
               Profile: ${{variables.TriggeredProfile}}
               RunEnv: ${{variables.TriggeredEnv}}
