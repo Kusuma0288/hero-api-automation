@@ -8,6 +8,6 @@ import lombok.Data;
 public class TgaAttributes {
   private String Directions;
   private String ProductWarnings;
-
-
+  private String SuitableFor;
+  private String StorageInstructions;
 }
