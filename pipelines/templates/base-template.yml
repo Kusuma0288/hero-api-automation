@@ -103,6 +103,8 @@ steps:
                -TestRunTitle '${{ parameters.TestRunTitle }}' -SlackWebhookUrl '${{ parameters.SlackWebHookUrl }}' `
                -SourceBranchName '$(Build.SourceBranchName)' -Profile '${{ parameters.Profile }}'
 
+      echo "parameters.SlackWebHookUrl=" ${{ parameters.SlackWebHookUrl }}
+
       $total_failures = $returnValues.currentFailures.Trim()
       echo "total_failures=" $total_failures
 

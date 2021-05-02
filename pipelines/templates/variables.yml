@@ -1,2 +1,2 @@
 variables:
-  - group: MOBILE-AUTOMATION-ALL-ENVS
+  - group: MOBILE-AUTOMATION-ALL-ENVS   #Ref: https://wowonline.visualstudio.com/Mobile/_library

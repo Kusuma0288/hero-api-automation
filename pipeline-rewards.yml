@@ -16,6 +16,10 @@ pool: 'wlx-ubuntu1804'
 stages:
   - stage: Auto
     # Jobs schedules are managed --> https://wowonline.visualstudio.com/Mobile/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=1604&view=Tab_Triggers
+
+    variables:
+      - template: pipelines/templates/variables.yml
+
     jobs:
       - job: Prod_Rewards
         steps:

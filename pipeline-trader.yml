@@ -18,6 +18,10 @@ pool:
 stages:
   - stage: Auto
     # Job schedules are managed --> https://wowonline.visualstudio.com/Mobile/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=1603&view=Tab_Triggers
+
+    variables:
+      - template: pipelines/templates/variables.yml
+
     jobs:
       - job: Prod_Trader
         steps:

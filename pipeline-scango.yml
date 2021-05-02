@@ -18,6 +18,9 @@ stages:
   - stage: Auto
     # Job schedules are managed --> https://wowonline.visualstudio.com/Mobile/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=1602&view=Tab_Triggers
 
+    variables:
+      - template: pipelines/templates/variables.yml
+
     jobs:
       - job: Uat_ScanGo
         steps:
