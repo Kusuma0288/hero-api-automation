@@ -47,6 +47,8 @@ public class Product {
   private Double RewardsCreditPrice;
   private String Disclaimer;
   private Object Restrictions;
+  private String SuitableFor;
+  private String StorageInstructions;
   //New fields introduced for CMO (Change my order) changes.
   private String SmallImageFile;
   private String MediumImageFile;
