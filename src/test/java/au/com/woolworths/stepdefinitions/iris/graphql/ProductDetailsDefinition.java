@@ -11,8 +11,9 @@ import io.cucumber.java.en.Then;
 
 import java.io.InputStream;
 
-import static au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.*;
-import static au.com.woolworths.helpers.iris.graphql.ProductDetailsResponseHelper.*;
+import static au.com.woolworths.helpers.iris.graphql.ProductDetailsResponseHelper.ProductDetailsArgs;
+import static au.com.woolworths.helpers.iris.graphql.ProductDetailsResponseHelper.assertProductDetails;
+import static au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.ProductIdSource;
 
 public class ProductDetailsDefinition extends BaseHelper {
   InputStream iStream = ChangeMyOrderDefinition.class.getResourceAsStream("/gqlQueries/iris/productDetails.graphql");

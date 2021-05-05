@@ -3,6 +3,7 @@ package au.com.woolworths.stepdefinitions.iris.graphql;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.helpers.iris.graphql.GraphqlHelper;
 import au.com.woolworths.model.iris.graphql.productList.Product;
+import au.com.woolworths.model.iris.graphql.productList.ProductsBySearch;
 import au.com.woolworths.model.iris.graphql.productList.ProductsBySearchResponse;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.cucumber.java.en.And;
@@ -23,9 +24,11 @@ import static au.com.woolworths.utils.URLResources.HERMES_V1_GRAPHQL;
 
 public class ProductsBySearchDefinition extends BaseHelper {
   private InputStream iStream = this.getClass().getResourceAsStream("/gqlQueries/iris/productsBySearch.graphql");
-  private GraphqlHelper graphqlHelper = new GraphqlHelper();
-  private ArrayList<String> tempProducts = new ArrayList<>();
+  private final GraphqlHelper graphqlHelper = new GraphqlHelper();
+  private final ArrayList<String> tempProducts = new ArrayList<>();
   private Integer totalProductCount;
+  private ProductsBySearch before;
+  private ProductsBySearch after;
 
   @When("user requests for online {string} products by search")
   public void getAvailableProductsFromOnlineProductsBySearch(String searchTerm) throws Throwable {
@@ -115,10 +118,48 @@ public class ProductsBySearchDefinition extends BaseHelper {
     }
   }
 
-
   @And("the product total count matches the actual number of products returned")
   public void theProductTotalCountMatchesTheActualNumberOfProductsReturned() {
     softAssert.assertEquals(totalProductCount.intValue(), tempProducts.size(), "User was told " + totalProductCount + " items would be displayed but " + tempProducts.size() + " were.");
-    softAssert.assertAll();
+  }
+
+  /*
+   NOTE: This query requests a response from Adobe Target so the search keyword "Coke" must return any Google ad card
+   */
+  @When("user searches for {string} with productsFeed {string}")
+  public void userSearchesForWithProductsFeed(String searchString, String productsFeed) throws Throwable {
+    // ENDPOINT
+    String endPoint = HERMES_V1_GRAPHQL;
+
+    // REQUEST
+    iStream = this.getClass().getResourceAsStream("/gqlQueries/iris/productsBySearchProductsFeed.graphql");
+    ObjectNode variables = mapper.createObjectNode()
+            .put("searchTerm", searchString)
+            .put("productsFeed", productsFeed.equals("true"));
+    String graphqlQuery = parseGraphql(iStream, variables);
+
+    // CALL - any errors caught within
+    Map<String, String> response = restInvocationUtil.makeHttpRequest(endPoint, graphqlQuery, sharedData.accessToken);
+
+    // PARSE & SAVE
+    ProductsBySearch result = mapper.readValue(response.get("response"), ProductsBySearchResponse.class).getData().getProductsBySearch();
+    if (!productsFeed.equals("true")) {
+      before = result;
+    } else {
+      after = result;
+    }
+  }
+
+  /*
+   The only differences between the responses should be:
+   - the name of the array holding the products (products vs. productsFeed)
+   - the GoogleAdBanner in place of the first product in productsFeed
+   */
+  @Then("the products by search responses are identical")
+  public void theProductsBySearchResponsesAreIdentical() {
+    after.getProductsFeed().remove(0); // Remove GoogleAdBanner from productList
+
+    softAssert.assertTrue(before.equals(after), "totalNumberOfProducts, nextPage, filters or sortOptions differed");
+    softAssert.assertTrue(before.getProducts().equals(after.getProductsFeed()), "List<Product> differed between responses");
   }
 }

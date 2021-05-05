@@ -1,5 +1,6 @@
 package au.com.woolworths.stepdefinitions.common;
 
+import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.utils.RestInvocationUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -7,6 +8,7 @@ import com.google.gson.JsonParser;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import org.testng.asserts.SoftAssert;
 
 import java.util.logging.Logger;
 
@@ -18,6 +20,7 @@ public class ServiceHooks {
 
   @Before
   public void initializeTest() {
+    BaseHelper.softAssert = new SoftAssert();
     restInvocationUtil = new RestInvocationUtil();
     if ((System.getProperty("saveRequestResponse") != null) && System.getProperty("saveRequestResponse").equalsIgnoreCase("Yes")) {
       saveRequestResponse = "Yes";
@@ -26,6 +29,7 @@ public class ServiceHooks {
 
   @After
   public void finaliseTest(Scenario scenario) {
+    BaseHelper.softAssert.assertAll();
     if (saveRequestResponse.equalsIgnoreCase("Yes") && restInvocationUtil.requests.size() == restInvocationUtil.responses.size()) {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       JsonParser jp = new JsonParser();

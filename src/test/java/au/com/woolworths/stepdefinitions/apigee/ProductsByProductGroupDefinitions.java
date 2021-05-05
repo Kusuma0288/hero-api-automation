@@ -94,8 +94,5 @@ public class ProductsByProductGroupDefinitions extends BaseHelper {
       softAssert.assertEquals(firstUnavailableProduct.getTrolley().getButtonState(), "DISABLED", "Unavailable products[0].trolley.buttonState == 'DISABLED' but was: " + firstUnavailableProduct.getTrolley().getButtonState());
       softAssert.assertNotNull(firstUnavailableProduct.getList(), "Unavailable products[0].list != null but was: " + firstUnavailableProduct.getList());
     }
-
-    // Finally parse assert results
-    softAssert.assertAll();
   }
 }

@@ -29,7 +29,7 @@ public class BaseHelper {
   protected static SharedData sharedData;
   protected ObjectMapper mapper = new ObjectMapper();
   protected ObjectNode variables;
-  protected SoftAssert softAssert;
+  public static SoftAssert softAssert;
 
   public BaseHelper() {
     this.headerListCommon = new LinkedList<>();
@@ -42,7 +42,6 @@ public class BaseHelper {
     this.headerListFirestoreScanGoTeamMemberbarcode = new LinkedList<>();
     this.headerListFirestoreScanGoToken = new LinkedList<>();
     this.sharedData = ApplicationContext.getSharedData();
-    this.softAssert = new SoftAssert();
     headerListCommon.add(new Header("x-api-key", TestProperties.get("x-api-key")));
     headerListCommon.add(new Header("Authorization", "Bearer " + sharedData.accessToken));
 

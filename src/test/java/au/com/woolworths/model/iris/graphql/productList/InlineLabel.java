@@ -1,10 +1,9 @@
 package au.com.woolworths.model.iris.graphql.productList;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-@Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@lombok.Data
+@EqualsAndHashCode
 public class InlineLabel {
   private String type;
   private String label;

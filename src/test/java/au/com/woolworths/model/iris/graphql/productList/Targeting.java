@@ -4,7 +4,6 @@ import lombok.EqualsAndHashCode;
 
 @lombok.Data
 @EqualsAndHashCode
-public class InStoreDetails {
-  private String locationText;
-  private String locationType;
+public class Targeting {
+  public String size;
 }

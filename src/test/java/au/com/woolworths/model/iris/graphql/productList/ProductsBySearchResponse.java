@@ -1,9 +1,10 @@
 package au.com.woolworths.model.iris.graphql.productList;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.EqualsAndHashCode;
 
 @lombok.Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@EqualsAndHashCode
 public class ProductsBySearchResponse {
+  @EqualsAndHashCode.Exclude
   private Data data;
 }

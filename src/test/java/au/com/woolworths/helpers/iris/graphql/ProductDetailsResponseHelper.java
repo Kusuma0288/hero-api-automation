@@ -3,7 +3,6 @@ package au.com.woolworths.helpers.iris.graphql;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.model.iris.graphql.productDetails.Feed;
 import au.com.woolworths.model.iris.graphql.productDetails.ProductDetailsResponse;
-import org.testng.asserts.SoftAssert;
 
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -22,7 +21,6 @@ public class ProductDetailsResponseHelper extends BaseHelper {
   }
 
   public static void assertProductDetails(ProductDetailsResponse productDetailsResponse) {
-    SoftAssert softAssert = new SoftAssert();
     Optional<Feed> productCard = getFeed(productDetailsResponse, Typename.PRODUCT_CARD.get());
     if (sharedData.productIdSource.equals(ProductIdSource.RANDOM)) {
       softAssert.assertTrue(productCard.get().getName().replaceAll(" ", "")
@@ -73,8 +71,6 @@ public class ProductDetailsResponseHelper extends BaseHelper {
 
     softAssert.assertNotNull(productDisclaimer.get().getContent(),
         "Disclaimer text not found");
-
-    softAssert.assertAll();
   }
 
   public enum Typename {
