@@ -10,6 +10,7 @@ public class Product {
   private String nativeCustomTemplateId;
   private String iabSize;
   private Targeting targeting;
+  private Analytics analytics;
 
   @JsonProperty("__typename")
   private String typename;

@@ -4,7 +4,7 @@ import lombok.EqualsAndHashCode;
 
 @lombok.Data
 @EqualsAndHashCode
-public class Targeting {
-  public String size;
-  public String searchKeyword;
+public class Analytics {
+  public String adobeTnta;
+  public String adobePe;
 }

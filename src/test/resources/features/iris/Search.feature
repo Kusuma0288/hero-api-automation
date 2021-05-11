@@ -1,4 +1,4 @@
-@Wolves @IN_PROGRESS
+@Wolves
 Feature: Search GraphQL
 
   @PROD_APIGEE # UAT has known issues so focus on PROD TODO: Create new IRIS tags
