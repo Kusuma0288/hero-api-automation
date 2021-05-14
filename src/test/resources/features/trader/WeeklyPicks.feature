@@ -1,4 +1,4 @@
-@WEEKLYPICKS  @REGRESSION_TRADER @Lobsters
+@WEEKLYPICKS  @REGRESSION_TRADER @Wolves
 Feature: Verify Products weekly picks Api
 
   @SMOKE_TRADER

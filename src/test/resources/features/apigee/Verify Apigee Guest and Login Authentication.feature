@@ -1,4 +1,4 @@
-@REGRESSION_APIGEE @Lobsters
+@REGRESSION_APIGEE @Lion
 Feature: Verify Apigee Guest and Login Authentication
   Test for the guest/login feature
 
