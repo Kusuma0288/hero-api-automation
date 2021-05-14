@@ -1,4 +1,4 @@
-@REGRESSION_APIGEE @PRODUCTS @PROD_APIGEE @Lobsters
+@REGRESSION_APIGEE @PRODUCTS @PROD_APIGEE @VEGEMITE
 Feature: Verify products by aisle and category
 
   Scenario: Verify products by aisle and category in INSTORE mode with type as specials

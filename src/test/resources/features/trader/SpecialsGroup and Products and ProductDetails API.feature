@@ -1,4 +1,4 @@
-@PRODUCT_DETAILS @Lobsters
+@PRODUCT_DETAILS @VEGEMITE
 Feature: Verify Product details Api
 
   @SMOKE_TRADER @REGRESSION_TRADER

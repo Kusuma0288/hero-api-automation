@@ -1,4 +1,4 @@
-@PRODUCT_GROUPS @Lobsters
+@PRODUCT_GROUPS @Wolves
 Feature: Verify Products by Product Group Api
 
   @SMOKE_TRADER

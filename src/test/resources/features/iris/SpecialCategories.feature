@@ -1,4 +1,4 @@
-@REGRESSION_APIGEE @Lobsters @PRODUCT_CATEGORIES
+@REGRESSION_APIGEE @VEGEMITE @PRODUCT_CATEGORIES
 Feature: Special Categories GraphQL
 
   Scenario: Guest user recursively requests subcategories for online specials
