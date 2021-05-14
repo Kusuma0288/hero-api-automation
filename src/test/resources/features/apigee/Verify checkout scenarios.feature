@@ -50,19 +50,19 @@ Feature: Checkout API scenarios
 
   @Falcon
   Scenario Outline: To verify that the leave unattended flag is disabled when user selects a delivery now window
-    Given I pick a location at "<lookupAddress>" for delivery
+    Given I pick a location at "<LookupAddress>" for delivery
     And I make a request to fulfilment api with primary address id to set the address as fulfilment address
     When I search for the product eggs in online mode and store response
     And I add the 2 available products with 1 each from the store to the V3 trolley
     And I get the available Delivery Now window to reserve them and validate the leave unattended flag
 
     Examples:
-      | lookupAddress |
-      | 407-419 Elizabeth St, SURRY HILLS NSW 2010 |
+      | LookupAddress                                 |
+      | 13-19 Seven Hills Rd, BAULKHAM HILLS NSW 2153 |
 
   @Falcon
   Scenario Outline: To verify that the user is able to complete a pick up order using Paypal payment
-    Given I set a pick up store using post code 2000
+    Given I set a pick up store using post code 2010
     And I clear the trolley
     When I search for the product Oil in pickup mode and store response
     And I add the 5 available products with 5 each from the store to the V3 trolley

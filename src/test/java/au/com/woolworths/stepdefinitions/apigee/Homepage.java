@@ -9,13 +9,11 @@ import au.com.woolworths.model.apigee.productgroups.ProductGroupResponse;
 import au.com.woolworths.model.apigee.productgroups.ProductGroupTrolleyData;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Homepage extends HomepageHelper {
@@ -257,17 +255,17 @@ public class Homepage extends HomepageHelper {
 
   }
 
-  @SuppressWarnings("checkstyle:Indentation")
+
   @Then("^I make a request to Homepage in Delivery mode and verify the DeliveryNowCard for \"([^\"]*)\" address$")
   public void iMakeARequestToHomepageInDeliveryModeAndVerifyTheDeliveryNowCardForAddress(String eligibility) throws Throwable {
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("mode", "online");
     HomepageResponse homepageResponse = iRetrieveHomepageWithInStore(queryParams);
 
-    //Assert Response is not Null
+    //Validate Homepage API Response is not Null
     assertThat(homepageResponse.getData()).isNotNull();
 
-    //Assert Delivery Now Card details
+    //Validate Delivery Now Card details
     assertThat(homepageResponse.getData().getItems()).extracting(HomepageComponents::getType).contains("DeliveryNowCard");
 
     if (eligibility.equalsIgnoreCase("Eligible")) {
@@ -330,6 +328,5 @@ public class Homepage extends HomepageHelper {
       assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("status").first().isEqualTo("Ineligible");
       assertThat(homepageResponse.getData().getItems()).filteredOn(type -> type.getType().contains("DeliveryNowCard")).extracting("data").extracting("isEligible").first().isEqualTo("false");
     }
-
   }
 }

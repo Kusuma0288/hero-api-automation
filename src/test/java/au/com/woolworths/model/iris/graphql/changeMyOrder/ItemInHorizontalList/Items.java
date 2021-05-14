@@ -14,6 +14,7 @@ public class Items {
   private String name;
   private String imagePath;
   private String pricePerUnit;
+  private String salesPrice;
   private Float quantity;
   private String icon;
   private String subtitle;

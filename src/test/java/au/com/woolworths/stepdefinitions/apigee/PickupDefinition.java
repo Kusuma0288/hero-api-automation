@@ -8,6 +8,7 @@ import au.com.woolworths.model.apigee.store.Stores;
 import au.com.woolworths.utils.Utilities;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.en.And;
 import org.testng.Assert;
 
 import java.util.Arrays;
@@ -137,5 +138,10 @@ public class PickupDefinition extends AddressHelper {
     sharedData.fulfilment = "pickup";
     searchForThePostCode(postCode);
     iSetTheFulfilmentMethodToForTheStore(sharedData.fulfilment, 1);
+  }
+
+  @And("Sets a pick up store using post code {string}")
+  public void setsPickUpStoreUsingPostCode(String postCode) throws Throwable {
+    setPickUpStoreUsingPostCode(postCode);
   }
 }

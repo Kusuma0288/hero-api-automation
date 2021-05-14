@@ -89,4 +89,12 @@ public class ShopperDefinition extends ShopperHelper {
     sharedData.shopperResponse = response;
     sharedData.accessToken = response.getAccess_token();
   }
+
+  @Given("User logs in with username as {string}")
+  public void userLogsInWithUsernameAs(String username) throws Throwable {
+    userContinueToConnectToApigeeWithSpecifiedUsername(username);
+    GuestDefinition GD = new GuestDefinition();
+    GD.connectionFromUserToApigeeAPIEndpointHappens();
+  }
+
 }

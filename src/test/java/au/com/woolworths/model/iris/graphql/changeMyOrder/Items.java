@@ -24,10 +24,14 @@ public class Items {
   private String actionTitle;
   private String icon;
   private String cardNumber;
+  private String points;
   private List<Total> total;
   private List<SubTotal> subTotal;
   private List<Savings> savings;
   private List<PaymentMethods> paymentMethods;
   private List<Discounts> discounts;
   private List<au.com.woolworths.model.iris.graphql.changeMyOrder.ItemInHorizontalList.Items> items;
+  private boolean leaveUnattended;
+  private String driverInstructions;
+
 }

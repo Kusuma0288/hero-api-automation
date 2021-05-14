@@ -10,6 +10,7 @@ import au.com.woolworths.model.apigee.lists.ListAddresses;
 import au.com.woolworths.utils.Utilities;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.en.And;
 import junit.framework.Assert;
 
 import java.util.Arrays;
@@ -106,5 +107,9 @@ public class DeliveryAddressDefinition extends AddressHelper {
     Assert.assertTrue("Error Message not matching", fulfilmentv3ErrorResponse.getErrorMessage().equals("Not Found"));
   }
 
-
+  @And("^Selects Delivery Shopping Mode and set a Delivery Now eligible \"([^\"]*)\"$")
+  public void selectsDeliveryShoppingModeAndSetADeliveryNowEligibleAddress(String address) throws Throwable {
+    iPickALocationAtForDelivery(address);
+    iMakeARequestToFulfilmentApiWithPrimaryAddressIdToSetTheAddressAsFulfilmentAddress();
+  }
 }

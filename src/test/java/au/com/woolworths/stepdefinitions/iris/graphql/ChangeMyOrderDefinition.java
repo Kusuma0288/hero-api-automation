@@ -24,6 +24,7 @@ public class ChangeMyOrderDefinition extends BaseHelper {
     ObjectNode variables = new ObjectMapper().createObjectNode();
     variables.put("orderId", sharedData.orderId);
     String graphqlQuery = GraphqlParser.parseGraphql(iStream, variables);
+    Thread.sleep(3000);
     String changeMyOrderResponseString = graphqlHelper.postGraphqlQuery(graphqlQuery);
     ChangeMyOrderResponse changeMyOrderResponse = mapper.readValue(changeMyOrderResponseString, ChangeMyOrderResponse.class);
 

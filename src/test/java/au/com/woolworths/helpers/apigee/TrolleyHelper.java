@@ -93,6 +93,15 @@ public class TrolleyHelper extends BaseHelper {
     return trolleyResponse;
   }
 
+  //  To Clear V3 Trolley
+  public TrolleyV3Response clearV3Trolley() throws Throwable {
+    String endPoint = URLResources.APIGEE_V3_TROLLEY_CLEAR;
+    // invoke the service with the framed request
+    String responseStr = invocationUtil.invokePostWithoutBody(endPoint, headerListCommon).get("response");
+    TrolleyV3Response trolleyResponse = mapper.readValue(responseStr, TrolleyV3Response.class);
+    return trolleyResponse;
+  }
+
   public TrolleyV3Response retriveV3Trolley() throws Throwable {
     String endPoint = URLResources.APIGEE_V3_RETRIEVE_TROLLEY;
     Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
@@ -140,7 +149,7 @@ public class TrolleyHelper extends BaseHelper {
     return trolleyV2Response;
   }
 
-  public Map<String, Object> addItemsToTrolley(Map<String, Integer> productsToAdd, String mode, String version) throws Throwable {
+  public Map<String, Object>  addItemsToTrolley(Map<String, Integer> productsToAdd, String mode, String version) throws Throwable {
 
     HashMap<String, Object> output = new HashMap<String, Object>();
     for (String product : productsToAdd.keySet()) {
@@ -180,6 +189,8 @@ public class TrolleyHelper extends BaseHelper {
       // Round up the price before asserting it
       expectedTotalPrice = Math.round(expectedTotalPrice * 100.0) / 100.0;
     }
+    sharedData.productNames = productNames;
+
     output.put("expectedTotalPrice", expectedTotalPrice);
     output.put("productNames", productNames);
     return output;

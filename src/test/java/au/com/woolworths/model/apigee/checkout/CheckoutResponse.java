@@ -10,5 +10,5 @@ public class CheckoutResponse {
   private CheckoutPackagingPreferencesResponse[] DeliveryPackagingPreferences;
   private CheckoutFulfilmentWindows[] FulfilmentWindows;
   private CheckoutResultsResponse Results;
-  private Object DeliveryNow;
+  private DeliveryNow DeliveryNow;
 }

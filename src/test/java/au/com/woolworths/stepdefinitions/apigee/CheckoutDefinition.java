@@ -2,19 +2,22 @@ package au.com.woolworths.stepdefinitions.apigee;
 
 import au.com.woolworths.helpers.apigee.CheckoutHelper;
 import au.com.woolworths.model.apigee.checkout.*;
+import au.com.woolworths.model.apigee.delivery.Window;
 import au.com.woolworths.model.apigee.payment.*;
 import au.com.woolworths.utils.TestProperties;
-
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.en.And;
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class CheckoutDefinition extends CheckoutHelper {
   private final static Logger logger = Logger.getLogger("DeliveryAddressDefinition.class");
@@ -42,7 +45,7 @@ public class CheckoutDefinition extends CheckoutHelper {
       CheckoutWindowItems checkoutWindowEveningItems = checkoutFulfilmentWindows[0].getEvening();
       CheckoutWindowSlots[] checkoutWindowEveningSlots = checkoutWindowEveningItems.getSlots();
 
-    //Made the changes to cover if there are no slots available. Earlier it was throwing Array OutOfBound error
+      //Made the changes to cover if there are no slots available. Earlier it was throwing Array OutOfBound error
       if (checkoutWindowAfternoonSlots.length == 0) {
         checkoutWindowEveningSlots[0] = Arrays.stream(checkoutWindowEveningItems.getSlots()).filter(j -> j.getStatus().equals("Available"))
             .findFirst().orElse(null);
@@ -224,7 +227,7 @@ public class CheckoutDefinition extends CheckoutHelper {
     sharedData.orderConfirmationPackagingFee = orderPlaced.getOrder().getPackagingFee();
     sharedData.orderConfirmationPackagingFeeLabel = orderPlaced.getOrder().getPackagingFeeLabel();
 
-    //Validation of Order Confirmation responses
+//    Validation of Order Confirmation responses
     if (collectionMode.equals("Delivery")) {
       Assert.assertTrue(orderPlaced.getOrder().getFulfilmentMethod().contains("Courier"));
     } else if (collectionMode.equals("Pickup")) {
@@ -236,6 +239,84 @@ public class CheckoutDefinition extends CheckoutHelper {
     Assert.assertEquals("Packaging fee is not matching", sharedData.orderCheckoutPaymentPackagingFee, sharedData.orderConfirmationPackagingFee);
     Assert.assertEquals("Packaging preference is not matching", sharedData.orderCheckoutPaymentPackagingPreference, sharedData.orderConfirmationPackagingFeeLabel);
   }
+
+
+  @And("^Navigates to Checkout and Validate Delivery Now tile is available and enabled$")
+  public void navigatesToCheckoutAndValidateDeliveryNowTileIsAvailableAndEnabled() throws Throwable {
+    CheckoutResponse checkoutResponse = getCheckoutResponse(sharedData.accessToken);
+    DeliveryNowWindows deliveryNow = checkoutResponse.getFulfilmentWindows()[0].getDeliveryNow();
+    sharedData.checkOutResponse = checkoutResponse;
+    sharedData.windowId = deliveryNow.getId();
+    sharedData.orderCheckoutPaymentWindowTime = deliveryNow.getStartTime();
+     //    To verify Fulfillment Windows are not null
+    assertThat(checkoutResponse.getFulfilmentWindows()).isNotNull();
+    //    To verify Delivery Now Window is Available
+    assertThat(deliveryNow.getTitle()).isEqualTo("Delivery Now");
+    assertThat(deliveryNow.getId()).isNotNull();
+    assertThat(deliveryNow.getStartTime()).startsWith(String.valueOf(java.time.LocalDate.now()));
+    assertThat(deliveryNow.isIsReserved());
+
+  }
+
+  @And("^Validates text on Delivery Now tile and text under Learn More section$")
+  public void validatesTextOnDeliveryNowTileAndTextUnderLearnMoreSection() throws Throwable {
+    CheckoutResponse checkoutResponse = sharedData.checkOutResponse;
+//    DeliveryNowWindows deliveryNow = checkoutResponse.getFulfilmentWindows()[0].getDeliveryNow();
+//    assertThat(deliveryNow.getInfo()[0].getType()).isEqualTo("DELIVERY_TIME");
+//    assertThat(deliveryNow.getInfo()[0].getLabel()).isEqualTo("Delivered in under 2 hours");
+//    assertThat(deliveryNow.getInfo()[0].getDescription()).isEqualTo("See your estimated delivery time at checkout.");
+//    assertThat(deliveryNow.getInfo()[1].getType()).isEqualTo("CART_LIMIT");
+//    assertThat(deliveryNow.getInfo()[1].getLabel()).isEqualTo("Up to 50 items");
+//    assertThat(deliveryNow.getInfo()[1].getDescription()).isEqualTo("Shop from over 20,000 items handpicked in your local store.");
+//    assertThat(deliveryNow.getInfo()[2].getType()).isEqualTo("ORDER_TRACKING");
+//    assertThat(deliveryNow.getInfo()[2].getLabel()).isEqualTo("Track your order");
+//    assertThat(deliveryNow.getInfo()[2].getDescription()).isEqualTo("Check the status of your Delivery Now orders.");
+  }
+
+  @When("^Selects DeliveryNow Tile$")
+  public void selectsDeliveryNowTile() throws Throwable {
+    CheckoutResponse checkoutResponse = postSetCheckoutWindow(sharedData.windowId, sharedData.orderCheckoutPaymentWindowTime, sharedData.accessToken);
+    sharedData.checkOutResponse = checkoutResponse;
+    Window deliveryWindow = checkoutResponse.getOrder().getDelivery().getWindow();
+    assertThat(deliveryWindow.getId()).isEqualTo(sharedData.windowId);
+    assertThat(deliveryWindow.getDisplayDate()).isEqualTo("Delivery Now");
+    assertThat(deliveryWindow.getIsExpress()).isEqualTo(true);
+  }
+
+  @When("^Turns on \"([^\"]*)\" toggle$")
+  public void turnsOnSomethingToggle(String strArg1) throws Throwable {
+
+  }
+
+  @Then("^Validates no warning messages are displayed$")
+  public void validatesNoWarningMessagesAreDisplayed() throws Throwable {
+    CheckoutResponse checkoutResponse = sharedData.checkOutResponse;
+
+  }
+
+  @Then("^Validates warning message for chilled products$")
+  public void validatesWarningMessageForChilledProducts() throws Throwable {
+
+  }
+
+  @Then("Validate Checkout response and Validate Delivery Now Status for {string} address in {string} mode")
+  public void validateCheckoutResponseAndValidateDeliveryNowStatusForAddressIn(String address, String mode) throws Throwable {
+    CheckoutResponse checkoutResponse = getCheckoutResponse(sharedData.accessToken);
+    String status = checkoutResponse.getDeliveryNow().getStatus();
+
+    if (mode.equalsIgnoreCase("Online")) {
+      if (address.equalsIgnoreCase("Eligible")) {
+        assertTrue("In Delivery shopping mode Delivery Now Status Is Not As Expected", status.equals("ClosingSoon") || status.equals("Available"));
+      } else if (address.equalsIgnoreCase("Ineligible")) {
+        assertTrue("In Delivery shopping mode Delivery Now Status Is Not As Expected", status.equals("Ineligible"));
+      }
+    } else if (mode.equalsIgnoreCase("Pickup")) {
+      assertTrue("In PickUp shopping mode Delivery Now Status Is Not As Expected", status.equals("Ineligible"));
+    }
+
+  }
+
+
 }
 
 

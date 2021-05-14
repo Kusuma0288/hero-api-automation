@@ -7,7 +7,7 @@ Feature: Checkout API scenarios
 
   @Falcon
   Scenario Outline: To verify that the user is able to complete a pick up order using Paypal payment
-    Given I set a pick up store using post code 2000
+    Given I set a pick up store using post code 2010
     And I clear the trolley
     When I search for the product Apple in pickup mode and store response
     And I add the 5 available products with 5 each from the store to the V3 trolley
@@ -42,7 +42,7 @@ Feature: Checkout API scenarios
     And I make a payment using CREDIT-CARD
     And I verify the completed "<Mode>" order
     Then I check my order details in order summary page
-    #todo: Implement validation steps.
+
 
     Examples:
       | Mode     | lookupAddress |

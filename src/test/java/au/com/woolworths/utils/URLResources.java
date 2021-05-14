@@ -38,6 +38,8 @@ public final class URLResources {
   public static final String APIGEE_PAYMENT_DIGITALPAY = "/wow/v2/commerce/checkout/payment/digitalpay";
   public static final String HERMES_V1_GRAPHQL = "/hermes/iris/v1/graphql";
   public static final String APIGEE_V2_ORDER_CONFIRMATION = "/wow/v2/commerce/orders/";
+  public static final String APIGEE_V3_TROLLEY_CLEAR = "/wow/v3/trolley/clear?fields=trolleystate";
+
 
   public static final String METIS_REWARDS_LINK = "/zeus/metis/v1/rewards/link";
   public static final String METIS_LOGIN = "/zeus/metis/v1/rewards/login";

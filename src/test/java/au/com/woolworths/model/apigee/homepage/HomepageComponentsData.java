@@ -13,7 +13,10 @@ public class HomepageComponentsData {
   private String actionTitle;
   private String actionPath;
   private HomepageItems[] items;
+  private String label;
   private String image;
+  private String altText;
+  private String backgroundColor;
   private String productId;
   private String promotionType;
   private String dataPathType;
@@ -21,9 +24,9 @@ public class HomepageComponentsData {
   private boolean isExternal;
   private boolean requiresAuth;
   private String url;
-  private String altText;
   private String height;
   private HomepageQueryParameters queryParameters;
+  private String trackingId;
   private String id;
   private String deliveryNowStatus;
   private String status;

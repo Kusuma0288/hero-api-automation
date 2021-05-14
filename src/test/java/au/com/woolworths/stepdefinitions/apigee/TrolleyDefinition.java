@@ -74,8 +74,14 @@ public class TrolleyDefinition extends TrolleyHelper {
   @And("^I clear the trolley$")
   public void iClearTheTrolley() throws Throwable {
     TrolleyV2Response trolleyResponse = clearTrolley();
-
     Assert.assertEquals("Some items are there in trolley", 0.0, trolleyResponse.getTotaltrolleyprice());
+  }
+
+  @And("^I clear my trolley$")
+  public void iClearMyTrolley() throws Throwable {
+    TrolleyV3Response trolleyResponse = clearV3Trolley();
+
+    Assert.assertEquals("Some items are there in trolley", 0.0, trolleyResponse.getTrolley().getSubtotalInclDelivery());
   }
 
   @And("^I add the stockcode with quantity \"([^\"]*)\" to trolley$")
@@ -274,6 +280,22 @@ public class TrolleyDefinition extends TrolleyHelper {
       for (int i = 0; i < trolleyResponse.getTotalproducts(); i++) {
         Assert.assertTrue("Items not updated with correct quantity:", trolleyResponse.getItems().get(i).getItemquantityintrolley() == quantity);
       }
+    }
+  }
+
+  @Then("^Navigates to trolley and validate the items are added as expected$")
+  public void navigatesToTrolleyAndValidateTheItemsAreAddedAsExpected() throws Throwable {
+    TrolleyV2Response trolleyResponse = retriveV2Trolley();
+
+    Assert.assertTrue(trolleyResponse.getTotalproducts() == sharedData.productNames.size());
+
+    // Reverse the list first
+    Collections.reverse(sharedData.productNames);
+
+    // Verify all the products are correct
+    for (String productName : sharedData.productNames) {
+      String description = trolleyResponse.getItems().get(sharedData.productNames.indexOf(productName)).getDescription();
+      Assert.assertTrue("Product description is not correct (Expected - " + productName + ", but got - " + description, productName.equals(description));
     }
   }
 }

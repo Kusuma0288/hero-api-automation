@@ -5,6 +5,9 @@ import au.com.woolworths.model.apigee.search.SearchResponseV3;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 public class SearchDefinition extends SearchHelper {
@@ -40,4 +43,16 @@ public class SearchDefinition extends SearchHelper {
     userSearchProductAndStore(searchItem, sharedData.fulfilment);
     listsDefinition.iAddAvailableProductsWithEachFromTheStoreToList(Integer.parseInt(prodQuantity), 2, version, listName);
   }
+
+
+  @When("^Adds following items to the cart$")
+  public void addsFollowingItemsToTheCart(List<Map<String, String>> products) throws Throwable {
+    Map<String, Integer> productsToAdd = new HashMap<>();
+
+    for (Map<String, String> addProduct : products) {
+      productsToAdd.put(addProduct.get("products"), Integer.valueOf(addProduct.get("quantity")));
+    }
+    new TrolleyDefinition().addItemsToTrolley(productsToAdd, "online", "V2");
+  }
+
 }

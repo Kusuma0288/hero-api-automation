@@ -141,7 +141,8 @@ public class SharedData {
   public String kioskAccessToken;
   public String voidTransactionReasonCode;
   public String teamMemberBarcode;
-
+  public au.com.woolworths.model.apigee.checkout.CheckoutResponse checkOutResponse = null;
+  public List<String> productNames = new ArrayList();
   public Lists syncListItems;
   public String freeText;
 
