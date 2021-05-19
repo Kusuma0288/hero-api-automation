@@ -11,6 +11,5 @@ public class FooterTag {
   private String tagContent;
   private Object tagLink;
   private String tagName;
-
-
+  private String TagContentText;
 }

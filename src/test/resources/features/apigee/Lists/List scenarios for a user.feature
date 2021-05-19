@@ -56,8 +56,8 @@ Feature: Verify Apigee List scenarios for User
     And I verify that the correct items with quantity from "<Version>" list "<List Name>" are added to the cart
     Examples:
       | Quantity | List Name      | Version | Post Code | Product |
-      | 1        | AutoList Exact | V2      | 2204      | Milk    |
-      | 1        | AutoList Exact | V3      | 2204      | Milk    |
+      | 1        | AutoList Exact | V2      | 2067      | Milk    |
+      | 1        | AutoList Exact | V3      | 2067      | Milk    |
 
   Scenario Outline: Validate "<Version>" list to trolley merge scenario for a logged in user in Delivery Mode
     Given I pick a location at "<Address>" for delivery

@@ -11,5 +11,5 @@ public class CentreTag {
   private Object tagContent;
   private Object tagLink;
   private Object tagName;
-
+  private String TagContentText;
 }
