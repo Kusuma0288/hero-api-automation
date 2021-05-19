@@ -29,7 +29,9 @@ Feature: Verify Shopping Trolley
     And I search for the address <Address>
     And I select the "1" address as checkout address from matching addresses
     And I clear the trolley for the shopper
-    And I search for the product "Milk" and should see more than 1 matching results
+    And I search for the product "A2 Full Cream Milk" and should see more than 1 matching results
+    And I add 1 items to my trolley from search list with 1 quantity each
+    Then shopper trolley should have 1 products
     And I can leave the products unattended
     When I do a V2 checkout then I should see the leave unattended option "ENABLED" and turned "ON"
     And I clear the trolley for the shopper
