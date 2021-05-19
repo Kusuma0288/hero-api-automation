@@ -21,7 +21,7 @@ Feature: Verify Shopping Trolley
     And I add the following products to the trolley
       | stockCode | name | quantity | status |
       | 88        | Milk | 1        | FAILED |
-    Then shopper trolley should have 0 products
+    Then shopper trolley should have 2 products
 
   Scenario Outline: Login as Shopper and check leave unattended options with regular items
     Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME2 and password
@@ -30,8 +30,6 @@ Feature: Verify Shopping Trolley
     And I select the "1" address as checkout address from matching addresses
     And I clear the trolley for the shopper
     And I search for the product "Milk" and should see more than 1 matching results
-    And I add 4 items to my trolley from search list with 1 quantity each
-    Then shopper trolley should have 4 products
     And I can leave the products unattended
     When I do a V2 checkout then I should see the leave unattended option "ENABLED" and turned "ON"
     And I clear the trolley for the shopper
@@ -76,15 +74,15 @@ Feature: Verify Shopping Trolley
     Given apigee connect to trader public api endpoint as guest
     And apigee successfully authenticate to trader public api endpoint as guest
     And I search for the product "Cookies" and should see more than 1 matching results
-    And I add 5 items to my trolley from search list with 1 quantity each
-    Then shopper trolley should have 5 products
+    And I add 2 items to my trolley from search list with 1 quantity each
+    Then shopper trolley should have 2 products
     And I use the following details for signing up as a new user in same device
       | firstName | lastName | emailAddress        | password | mobilePhone | dateOfBirth | isBusinessShopper | emailProductsAndServices | smsProductsServicesAndPromotions | campaignName | agreeToTsAndCs |
       | anish     | pillai   | traderAPI@gmail.com | 123456   | 0435876458  | 01/01/1940  | false             | false                    | false                            | WBT          | true           |
     And apigee successfully authenticate to trader public api endpoint with signedup user session details
     When apigee connect to trader public api endpoint with newly created login and password "123456"
     And connection from apigee to trader public api shopper endpoint happens
-    Then shopper trolley should have 5 products
+    Then shopper trolley should have 2 products
     And I clear the trolley for the shopper
 
   Scenario: Login as Guest and then login as shopper to verify trolley items are migrated
@@ -125,7 +123,7 @@ Feature: Verify Shopping Trolley
       | 34 Victoria Rd, Marrickville NSW  2204 |
 
   Scenario Outline: Login as Shopper and add notes to an item in Trolley and verify the note is saved
-    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME7 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME6 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I search for the address <Address>
     And I select the "1" address as checkout address from matching addresses
