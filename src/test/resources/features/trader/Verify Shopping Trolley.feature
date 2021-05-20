@@ -20,8 +20,8 @@ Feature: Verify Shopping Trolley
     When I clear the trolley for the shopper
     And I add the following products to the trolley
       | stockCode | name               | quantity | status |
-      | 208064    | A2 Full Cream Milk | 1        | PASS |
-    Then shopper trolley should have 1 products
+      | 208064    | A2 Full Cream Milk | 2        | PASS |
+    Then shopper trolley should have 2 products
 
   Scenario Outline: Login as Shopper and check leave unattended options with regular items
     Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME2 and password

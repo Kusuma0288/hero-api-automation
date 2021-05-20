@@ -68,6 +68,8 @@ public class ShoppingTrolleyDefinition extends ShopperHelper {
         sharedData.trolleyQuantity = sharedData.trolleyQuantity + Integer.parseInt(cartItem.get("quantity"));
         logger.info("shared trolley quantity" + sharedData.trolleyQuantity);
         logger.info("cartItem" + Integer.parseInt(cartItem.get("quantity")));
+        logger.info("Results" + result);
+        logger.info("Results get quantity" + result.getQuantity());
       } else {
         Assert.assertTrue(trolleyResponse.getErrors().size() != 0, "Errors while adding items to the trolley");
         Assert.assertTrue(trolleyResponse.getErrors().get(0).getMessage().equals("A product was not found for this stockcode."), "Not a valid error message::" + trolleyResponse.getErrors().get(0).getMessage());
