@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class CheckoutDefinition extends CheckoutHelper {
   private final static Logger logger = Logger.getLogger("DeliveryAddressDefinition.class");
@@ -300,23 +300,59 @@ public class CheckoutDefinition extends CheckoutHelper {
   }
 
   @Then("Validate Checkout response and Validate Delivery Now Status for {string} address in {string} mode")
-  public void validateCheckoutResponseAndValidateDeliveryNowStatusForAddressIn(String address, String mode) throws Throwable {
+  public void validateCheckoutResponseAndValidateDeliveryNowStatusForAddressIn(String serviceability, String mode) throws Throwable {
     CheckoutResponse checkoutResponse = getCheckoutResponse(sharedData.accessToken);
+    CheckoutFulfilmentWindows[] checkoutFulfilmentWindows = checkoutResponse.getFulfilmentWindows();
+
     String status = checkoutResponse.getDeliveryNow().getStatus();
+    String choice = (serviceability + mode).toUpperCase();
 
-    if (mode.equalsIgnoreCase("Online")) {
-      if (address.equalsIgnoreCase("Eligible")) {
+    assertThat(choice).isNotEmpty();
+    //      Verify the DeliveryNow response code
+    assertEquals("DeliveryNow response code is not 200", 200, checkoutResponse.getResults().getDeliveryNow().getHttpStatusCode());
+
+    switch (choice) {
+      case "ELIGIBLEONLINE":
+        //      Validate user in Online mode and have Serviceable Delivery Now address
         assertTrue("In Delivery shopping mode Delivery Now Status Is Not As Expected", status.equals("ClosingSoon") || status.equals("Available"));
-      } else if (address.equalsIgnoreCase("Ineligible")) {
-        assertTrue("In Delivery shopping mode Delivery Now Status Is Not As Expected", status.equals("Ineligible"));
-      }
-    } else if (mode.equalsIgnoreCase("Pickup")) {
-      assertTrue("In PickUp shopping mode Delivery Now Status Is Not As Expected", status.equals("Ineligible"));
+
+        //Assert Delivery Now Window is not Null
+        assertNotNull("Delivery Now window is not available", checkoutFulfilmentWindows[0].getDeliveryNow());
+        break;
+
+      case "CLOSEDONLINE":
+        //      Validate user in Online mode and have Serviceable Delivery Now address but Closed as of now
+        assertEquals("In Delivery shopping mode Delivery Now Status Is Not As Expected", "Closed", status);
+
+        //Assert Delivery Now Window is Null
+        Assert.assertNull("Delivery Now window is available", checkoutFulfilmentWindows[0].getDeliveryNow());
+        break;
+
+      case "EXHAUSTEDONLINE":
+        //      Validate user in Online mode and have Serviceable Delivery Now address but Closed as of now
+        assertEquals("In Delivery shopping mode Delivery Now Status Is Not As Expected", "Exhausted", status);
+
+        //Assert Delivery Now Window is Null
+        Assert.assertNull("Delivery Now window is available", checkoutFulfilmentWindows[0].getDeliveryNow());
+        break;
+
+      case "INELIGIBLEONLINE":
+      case "ELIGIBLEPICKUP":
+      case "INELIGIBLEPICKUP":
+      case "CLOSEDPICKUP":
+      case "EXHAUSTEDPICKUP":
+        //      Validate user in Online mode and have Non Eligible Delivery Now address
+        assertEquals("In Delivery shopping mode Delivery Now Status Is Not As Expected", "Ineligible", status);
+
+        //Assert Delivery Now Window is Null
+        assertFalse("Delivery Now window is available", String.valueOf(checkoutFulfilmentWindows[0].getDeliveryNow()).isEmpty());
+        break;
+
+      default:
+        fail("Arguments passed are not correct, please check");
+        break;
     }
-
   }
-
-
 }
 
 

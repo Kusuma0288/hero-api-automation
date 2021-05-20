@@ -29,6 +29,7 @@ public class HomepageItemsData {
   private String date;
   private String icon;
   private Object actionMetadata;
+  private String image;
 }
 
 

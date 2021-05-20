@@ -51,12 +51,14 @@ Feature: Verify all the DeliveryNow related test cases
       | Address                                       | Eligibility |
       | 13-19 Seven Hills Rd, BAULKHAM HILLS NSW 2153 | Eligible    |
       | 31 Dean St, NORTH TAMWORTH NSW 2340           | Ineligible  |
+      | 159 Rooty Hill Rd S, EASTERN CREEK NSW 2766   | Closed      |
+      | 1802 Pacific Hwy, GORDON NSW 2072             | Exhausted   |
 
   @CHECKOUT
   Scenario Outline: To verify the Delivery Now Status on checkout screen in Pickup Mode (for eligible and ineligible address)
     Given User logs in with username as "SHOPPER_USERNAME"
     And Selects Delivery Shopping Mode and set a Delivery Now eligible "<Address>"
-    And Sets a pick up store using post code "2010"
+    And Sets a pick up store using post code "2204"
     And I clear my trolley
     When I search for the product oil in online mode and store response
     And I add the 2 available products with 5 each from the store to the V3 trolley
@@ -65,8 +67,10 @@ Feature: Verify all the DeliveryNow related test cases
       | Address                                       | Eligibility |
       | 13-19 Seven Hills Rd, BAULKHAM HILLS NSW 2153 | Eligible    |
       | 31 Dean St, NORTH TAMWORTH NSW 2340           | Ineligible  |
+      | 159 Rooty Hill Rd S, EASTERN CREEK NSW 2766   | Closed      |
+      | 1802 Pacific Hwy, GORDON NSW 2072             | Exhausted   |
 
-  @CHECKOUT
+  @E2E
   Scenario Outline: Login with existing user id and place Delivery Now Order
     Given User logs in with username as "SHOPPER_USERNAME"
     And Selects Delivery Shopping Mode and set a Delivery Now eligible "<Address>"
