@@ -10,5 +10,6 @@ public class Tag {
   private String TagContent;
   private String TagLink;
   private String TagName;
+  private String TagContentText;
 
 }
