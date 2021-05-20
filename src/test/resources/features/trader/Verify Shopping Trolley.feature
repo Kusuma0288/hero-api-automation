@@ -19,8 +19,8 @@ Feature: Verify Shopping Trolley
     And apigee successfully authenticate to trader public api endpoint as logged in user
     When I clear the trolley for the shopper
     And I add the following products to the trolley
-      | stockCode | name | quantity | status |
-      | 88        | Milk | 1        | FAILED |
+      | stockCode | name               | quantity | status |
+      | 208064    | A2 Full Cream Milk | 1        | PASS |
     Then shopper trolley should have 1 products
 
   Scenario Outline: Login as Shopper and check leave unattended options with regular items
@@ -178,9 +178,7 @@ Feature: Verify Shopping Trolley
       | 34 Victoria Rd, Marrickville NSW  2204 |
 
   Scenario Outline: Login as Guest and add address and then login as shopper to verify trolley items are migrated
-    Given apigee continue to connect to trader public api endpoint with login containing SHOPPER_USERNAME1 and password
-    And I clear the trolley for the shopper
-    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME2 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME1 and password
     And apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I clear the trolley for the shopper
     When apigee connect to trader public api endpoint as guest
