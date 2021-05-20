@@ -18,9 +18,10 @@ Feature: Verify Shopping Trolley
     Given apigee connect to trader public api endpoint with default login and password
     And apigee successfully authenticate to trader public api endpoint as logged in user
     When I clear the trolley for the shopper
-    And I add the following products to the trolley and verify the quantity
+    And I add the following products to the trolley
       | stockCode | name               | quantity | status |
       | 208064    | A2 Full Cream Milk | 2        | PASS |
+    Then shopper trolley should have 2 products
 
   Scenario Outline: Login as Shopper and check leave unattended options with regular items
     Given apigee connect to trader public api endpoint with login containing SHOPPER_USERNAME2 and password
