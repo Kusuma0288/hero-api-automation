@@ -65,7 +65,8 @@ public class ShoppingTrolleyDefinition extends ShopperHelper {
         Assert.assertTrue(result.getQuantity() == Integer.parseInt(cartItem.get("quantity")), "Quantity is not saved for the Product Stockcode:: " + cartItem.get("stockCode"));
         Assert.assertTrue(result.getName().contains(cartItem.get("name")), "Shopping Cart Item name is not matching:: " + cartItem.get("name"));
         //Adding to the sharedData for any verification
-        sharedData.trolleyQuantity = sharedData.trolleyQuantity + Integer.parseInt(cartItem.get("quantity"));
+        sharedData.trolleyQuantity = 0;
+        sharedData.trolleyQuantity =  Integer.parseInt(cartItem.get("quantity"));
       } else {
         Assert.assertTrue(trolleyResponse.getErrors().size() != 0, "Errors while adding items to the trolley");
         Assert.assertTrue(trolleyResponse.getErrors().get(0).getMessage().equals("A product was not found for this stockcode."), "Not a valid error message::" + trolleyResponse.getErrors().get(0).getMessage());
@@ -79,7 +80,6 @@ public class ShoppingTrolleyDefinition extends ShopperHelper {
 
   @Then("^shopper trolley should have (\\d+) products$")
   public void shopperTrolleyShouldHaveProducts(int quantity) throws Throwable {
-
     Assert.assertTrue(sharedData.trolleyQuantity == quantity, "There is mismatch in the number of expected quantities::" + quantity + " added in cart");
   }
 
