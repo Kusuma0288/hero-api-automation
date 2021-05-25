@@ -1,10 +1,4 @@
-.idea/*
-APIGEEAPI.iml
-target/*
-target/test-classes/*
-*.properties
-target/test-classes/au/com/woolworths/apigee/model/CheckoutRequest.class
-*.properties
+.idea/
+target/
 .DS_Store
-.gradle/
-mobile-api-framework.iml
+mobile-apps-api-automation.iml

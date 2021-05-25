@@ -14,8 +14,11 @@ public class TestProperties {
     props = new Properties();
     InputStream input = null;
     try {
-      if (System.getProperty("env") == null) {
+      String env = System.getProperty("env");
+      if ( env == null) {
         System.setProperty("env", "uat");
+      } else if ( env.startsWith("@") ) {
+        System.setProperty("env", env.substring(1).toLowerCase());
       }
       input = TestProperties.class.getResourceAsStream("/config/" + System.getProperty("env") + ".properties");
       props.load(input);

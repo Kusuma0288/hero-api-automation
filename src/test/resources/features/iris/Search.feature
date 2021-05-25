@@ -1,7 +1,7 @@
 @Wolves
 Feature: Search GraphQL
-
-  @PROD_APIGEE # UAT has known issues so focus on PROD TODO: Create new IRIS tags
+#  UAT has known issues so focus on PROD
+  @PROD_APIGEE @IRIS @PROD
   Scenario: User never sees duplicate products in search results
     Given I connect to apigee endpoint as a guest user
     When user searches for online "Milk" products 20 at a time and scrolls to the end of the results
@@ -13,7 +13,7 @@ Feature: Search GraphQL
 #     "searchTerm": "Coke",
 #     "productsFeed": true
 #   }
-  @REGRESSION_APIGEE # Only TEST/UAT as it requires a stable Adobe Target ad set up
+  @REGRESSION_APIGEE @IRIS @UAT @TEST # Only TEST/UAT as it requires a stable Adobe Target ad set up
   Scenario: Search with productsFeed contains same results as without productsFeed
     Given I connect to apigee endpoint as a guest user
     When user searches for "Coke" with productsFeed "false"

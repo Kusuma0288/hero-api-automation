@@ -1,5 +1,4 @@
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>au.com.woolworths</groupId>
@@ -9,6 +8,13 @@
     <url>http://maven.apache.org</url>
 
     <profiles>
+        <profile>
+            <id>testByTags</id>
+            <properties><!--suppress UnresolvedMavenProperty -->
+                <cucumber.filter.tags>${tags} and ${env}</cucumber.filter.tags>
+            </properties>
+        </profile>
+
         <profile>
             <id>smoke</id>
             <properties>
@@ -120,7 +126,8 @@
                 </executions>
                 <configuration>
                     <sourceJsonReportDirectory>${project.build.directory}/cucumber-reports</sourceJsonReportDirectory>
-                    <generatedHtmlReportDirectory>${project.build.directory}/cucumber-reports</generatedHtmlReportDirectory>
+                    <generatedHtmlReportDirectory>${project.build.directory}/cucumber-reports
+                    </generatedHtmlReportDirectory>
                 </configuration>
             </plugin>
 
@@ -146,9 +153,6 @@
                             <parallel>classes</parallel>
                             <useUnlimitedThreads>true</useUnlimitedThreads>
                             <testFailureIgnore>true</testFailureIgnore>
-                            <includes>
-                                <include>RunCucumberIT.java</include>
-                            </includes>
                             <systemPropertyVariables>
                                 <cucumber.filter.tags>${cucumber.filter.tags}</cucumber.filter.tags>
                             </systemPropertyVariables>
