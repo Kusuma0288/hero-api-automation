@@ -43,9 +43,9 @@ public class RecipeSearchDefinition extends BaseHelper {
 
     // ASSERT
     assertNotNull(response.getTotalNumberOfRecipes());
-    assertNotNull(response.getNextPage());
     assertNotNull(response.getRecipes().get(0).getTitle());
     assertNotNull(response.getRecipes().get(0).getId());
+    assertNotNull(response.getRecipes().get(0).getImage());
   }
 
 }
