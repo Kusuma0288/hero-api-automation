@@ -1,4 +1,4 @@
-@DELIVERY @REGRESSION_TRADER @Wolves
+@DELIVERY @REGRESSION_TRADER @LION
 Feature: Verify Delivery Options
   Test for the delivery options
 
@@ -21,7 +21,7 @@ Feature: Verify Delivery Options
       | 9 charles street |
 
   Scenario Outline: Login as Shopper and check the Resuable bags packaging option in V3 Checkout
-    Given apigee connect to trader public api endpoint with login containing SHOPPER_WOLVES2 and password
+    Given apigee connect to trader public api endpoint with login containing SHOPPER_WOLVES1 and password
     When apigee successfully authenticate to trader public api endpoint as shopper with all session details
     And I search for the address <Address>
     And I select the "1" address as checkout address from matching addresses
