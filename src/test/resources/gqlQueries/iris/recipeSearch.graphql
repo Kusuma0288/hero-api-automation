@@ -1,0 +1,11 @@
+query ($tags:[String], $key:String, $source:String, $pageNumber:Int ) {
+    recipeSearch(tags:$tags, key:$key, source:$source, pageNumber:$pageNumber) {
+        totalNumberOfRecipes,
+        nextPage,
+        recipes {
+            title,
+            image,
+            id,
+        }
+    }
+}
