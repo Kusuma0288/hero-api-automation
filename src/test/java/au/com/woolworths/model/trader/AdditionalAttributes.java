@@ -105,5 +105,9 @@ public class AdditionalAttributes {
   private Object tgawarning;
   private String vendorarticleid;
   private String vendorcostprice;
-
+  private String PiesProductB2bDepartmentNodeId;
+  private String PiesProductB2bDepartmentsjson;
+  private String piesb2bdepartmentnamesjson;
+  private String piesb2bcategorynamesjson;
+  private String piesb2bsubcategorynamesjson;
 }

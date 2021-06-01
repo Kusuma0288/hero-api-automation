@@ -1,0 +1,28 @@
+query($id: Int, $pageSize: Int, $pageNumber: Int, , $storeId: String) {
+  purchaseHistory(id: $id, pageSize: $pageSize, pageNumber: $pageNumber, storeId: $storeId) {
+    products {
+      productId
+      name
+      productImage
+      isAvailable
+      isNew
+      price
+      unitPriceDescription
+      badgeImage
+      promotionValue
+      promotionType
+      wasPrice
+      purchaseWarning
+      trolley {
+        minimum
+        maximum
+      }
+      inStoreDetails {
+        locationText
+        locationType
+      }
+    }
+    totalNumberOfProducts
+    nextPage
+  }
+}

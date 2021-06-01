@@ -145,6 +145,7 @@ public class SharedData {
   public List<String> productNames = new ArrayList();
   public Lists syncListItems;
   public String freeText;
+  public int pageSize;
 
   public void setDeliveryAddresses(int addressID, String addressText) {
     deliveryAddresses.put(addressID, addressText);

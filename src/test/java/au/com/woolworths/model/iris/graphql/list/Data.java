@@ -8,4 +8,6 @@ public class Data {
   private Lists[] lists;
   private Lists list;
   private Lists syncListItems;
+  private PastshopEvent pastshopEvent;
+  private PurchaseHistory purchaseHistory;
 }

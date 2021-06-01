@@ -1,0 +1,10 @@
+query($pageSize: Int, $pageNumber: Int) {
+  pastshopEvent(pageSize: $pageSize, pageNumber: $pageNumber) {
+    items {
+      id
+      title
+    }
+    totalItemCount
+    nextPage
+  }
+}

@@ -85,7 +85,7 @@ public final class URLResources {
   public static final String TRADER_V3_CHECKOUTDELIVERYWINDOWS = "/api/v3/checkout/windows";
   public static final String TRADER_V3_CHECKOUTWINDOWS = "/api/v3/checkout/window";
   public static final String TRADER_V3_PRODUCTS_WEEKLYPICKS = "api/v3/product/myweeklypicks";
-  public static final String TRADER_V2_PRODUCT_DETAIL = "apis/v2/product/detail/{stockcode}";
+  public static final String TRADER_V2_PRODUCT_DETAIL = "api/v3/product/detail/{stockcode}";
   public static final String TRADER_V2_PAYMENT_PAYPAL = "apis/v2/checkout/payment/paypal";
   public static final String TRADER_V2_ORDER = "apis/v2/orders/{orderId}";
   public static final String TRADER_V3_ORDER = "/api/v3/myorders";

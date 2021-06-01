@@ -189,4 +189,51 @@ public class ListDefinition extends ListHelper {
     Assert.assertEquals("ListId is not matching", syncListResponse.getData().getSyncListItems().getListId(), sharedData.syncListResponse.getData().getSyncLists().getCreatedLists()[0].getId());
     Assert.assertEquals("List Product id is not matching", syncListResponse.getData().getSyncListItems().getDeletedItems()[0].getId(), sharedData.syncListItems.getEditedProductItems()[0].getId());
   }
+
+  @When("I check pastshops event list is loaded for page number as {int} and pagesize as {int} for user")
+  public void iCheckPastshopsEventListIsLoadedForPageNumberAsAndPagesizeAsForUser(int pageNumber, int pageSize) throws IOException {
+    InputStream iStream = ListsDefinition.class.getResourceAsStream("/gqlQueries/iris/pastShops.graphql");
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    variables.put(Typename.PAGE_NUMBER.get(), pageNumber);
+    variables.put(Typename.PAGE_SIZE.get(), pageSize);
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, variables);
+    String getListResponse = graphqlHelper.postGraphqlQuery(graphqlQuery);
+    SyncListResponse syncListResponse = mapper.readValue(getListResponse, SyncListResponse.class);
+    sharedData.syncListResponse = syncListResponse;
+    sharedData.pageSize = pageSize;
+  }
+
+  @Then("I verify past shopping api responds with right response")
+  public void iVerifyPastShoppingApiRespondsWithRightResponse() {
+    Assert.assertTrue("List of past shops is empty", sharedData.syncListResponse.getData().getPastshopEvent().getItems().size() >= sharedData.pageSize);
+    Assert.assertTrue("count of returned list and total item count field should be same", sharedData.syncListResponse.getData().getPastshopEvent().getTotalItemCount() > 600);
+    Assert.assertEquals("Next Page should be 2", sharedData.syncListResponse.getData().getPastshopEvent().getNextPage(), 2);
+  }
+
+  @And("I check the purchase History with pastShops items for page number as {int} and pagesize as {int} and for store {string}")
+  public void iCheckThePurchaseHistoryWithPastShopsItemsForPageNumberAsAndPagesizeAsAndForStore(int pageNumber, int pageSize, String store) throws IOException {
+    InputStream iStream = ListsDefinition.class.getResourceAsStream("/gqlQueries/iris/pastShopsItems.graphql");
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    variables.put(Typename.PAGE_NUMBER.get(), pageNumber);
+    variables.put(Typename.PAGE_SIZE.get(), pageSize);
+    if (!store.equalsIgnoreCase(""))
+      variables.put(Typename.STORE.get(), store);
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, variables);
+    String getListResponse = graphqlHelper.postGraphqlQuery(graphqlQuery);
+    SyncListResponse syncListResponse = mapper.readValue(getListResponse, SyncListResponse.class);
+    Assert.assertEquals("List of product past shops is empty", syncListResponse.getData().getPurchaseHistory().getProducts().size(), pageSize);
+    Assert.assertTrue("count of returned list and total item count field should be same", syncListResponse.getData().getPurchaseHistory().getTotalNumberOfProducts() > 100);
+    Assert.assertEquals("Next Page should be 2", syncListResponse.getData().getPurchaseHistory().getNextPage(), 2);
+    for (int i = 0; i >= syncListResponse.getData().getPurchaseHistory().getProducts().size(); i++) {
+      if (!store.equalsIgnoreCase(""))
+        Assert.assertFalse("store details not available for instore mode", syncListResponse.getData().getPurchaseHistory().getProducts().get(i).getInStoreDetails().equals(null));
+      else
+        Assert.assertTrue("store details available for online mode", syncListResponse.getData().getPurchaseHistory().getProducts().get(i).getInStoreDetails().equals(null));
+    }
+  }
+
+  @And("I check the purchase History with pastShops items for page number as {int} and pagesize as {int} and online mode")
+  public void iCheckThePurchaseHistoryWithPastShopsItemsForPageNumberAsAndPagesizeAsAndOnlineMode(int pageNumber, int pageSize) throws IOException {
+    iCheckThePurchaseHistoryWithPastShopsItemsForPageNumberAsAndPagesizeAsAndForStore(pageNumber, pageSize, "");
+  }
 }

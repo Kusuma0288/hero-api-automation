@@ -17,6 +17,9 @@ public class ListHelper extends BaseHelper {
     ID_FREE("idFree"),
     TIMESTAMP("timestamp"),
     LAST_SYNC("lastSynced"),
+    PAGE_NUMBER("pageNumber"),
+    PAGE_SIZE("pageSize"),
+    STORE("storeId"),
     COUNT("count");
 
     private String typename;

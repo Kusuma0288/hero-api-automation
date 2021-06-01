@@ -25,6 +25,7 @@ public class Product {
   private String badgeImage;
   private PromotionInfo promotionInfo;
   private String promotionValue;
+  private String promotionType;
   private String wasPrice;
   private String purchaseWarning;
   private List list;
