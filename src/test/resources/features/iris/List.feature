@@ -22,3 +22,7 @@ Feature: Verify GraphQl List scenarios for User
     Examples:
       | List Name 1   | color1  | List Name 2    | color2  |
       | AutoListFirst | #00AB4E | AutoListSecond | #ED1C24 |
+
+    Scenario: Validate user is able to query product by productId
+      When I search product with "24940,807384" in instore mode "5654" to get Aisle information
+      And I search any product with "305554,24940" in online mode with no Aisle information

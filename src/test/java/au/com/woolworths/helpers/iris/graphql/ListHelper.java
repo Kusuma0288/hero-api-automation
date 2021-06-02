@@ -9,6 +9,8 @@ public class ListHelper extends BaseHelper {
     REFERENCE_ID("referenceId"),
     FREE_TEXT("text"),
     PRODUCT_ID("productId"),
+    PRODUCT_IDS("productIds"),
+    STORE_ID("storeId"),
     QUANTITY("quantity"),
     CHECKED("checked"),
     ID("id"),

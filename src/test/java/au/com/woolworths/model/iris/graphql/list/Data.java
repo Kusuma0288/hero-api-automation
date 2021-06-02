@@ -10,4 +10,5 @@ public class Data {
   private Lists syncListItems;
   private PastshopEvent pastshopEvent;
   private PurchaseHistory purchaseHistory;
+  private ProductsByProductIds productsByProductIds;
 }

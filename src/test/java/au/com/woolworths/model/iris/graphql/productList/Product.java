@@ -1,7 +1,7 @@
 package au.com.woolworths.model.iris.graphql.productList;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 @lombok.Data
 public class Product {
 

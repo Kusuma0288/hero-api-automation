@@ -8,6 +8,7 @@ import au.com.woolworths.model.iris.graphql.list.SyncListResponse;
 import au.com.woolworths.stepdefinitions.apigee.ListsDefinition;
 import au.com.woolworths.utils.Utilities;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -16,6 +17,7 @@ import junit.framework.Assert;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.UUID;
 
 public class ListDefinition extends ListHelper {
@@ -235,5 +237,32 @@ public class ListDefinition extends ListHelper {
   @And("I check the purchase History with pastShops items for page number as {int} and pagesize as {int} and online mode")
   public void iCheckThePurchaseHistoryWithPastShopsItemsForPageNumberAsAndPagesizeAsAndOnlineMode(int pageNumber, int pageSize) throws IOException {
     iCheckThePurchaseHistoryWithPastShopsItemsForPageNumberAsAndPagesizeAsAndForStore(pageNumber, pageSize, "");
+  }
+
+  @When("I search product with {string} in instore mode {string} to get Aisle information")
+  public void iSearchProductWithInInstoreMode(String productId, String stroeId) throws IOException {
+    InputStream iStream = ListsDefinition.class.getResourceAsStream("/gqlQueries/iris/ProductByProductID.graphql");
+    String[] productIds = productId.split(",");
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    ArrayNode productIdsArray = variables.putArray(Typename.PRODUCT_IDS.get());
+    for (String product : productIds) {
+      productIdsArray.add(product);
+    }
+    variables.put(Typename.STORE_ID.get(), stroeId);
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, variables);
+    String response = graphqlHelper.postGraphqlQuery(graphqlQuery);
+    SyncListResponse syncListResponse = mapper.readValue(response, SyncListResponse.class);
+
+    for (int i = 0; i < productIds.length; i++) {
+      if (!(syncListResponse.getData().getProductsByProductIds().getProducts()[i].getInStoreDetails() == null)) {
+        Assert.assertTrue(!syncListResponse.getData().getProductsByProductIds().getProducts()[i].getInStoreDetails().getLocationType().equals(null));
+      }
+      Assert.assertEquals("Product Id is not matching", syncListResponse.getData().getProductsByProductIds().getProducts()[i].getProductId(), productIds[i]);
+    }
+  }
+
+  @When("I search any product with {string} in online mode with no Aisle information")
+  public void iSearchAnyProductWithInOnlineLmode(String productId) throws IOException {
+    iSearchProductWithInInstoreMode(productId, "");
   }
 }
