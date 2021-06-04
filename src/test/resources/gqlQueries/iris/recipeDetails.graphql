@@ -1,0 +1,84 @@
+query recipeDetails($recipeId: String){
+    recipeDetails(recipeId: $recipeId) {
+        recipeId
+        recipeUrl
+        title
+        image
+        ingredients
+        ingredientProductIds
+        byline {
+            image
+            title
+        }
+        features {
+            ... on RecipeSummaryFeature {
+                title
+                amount
+                unit
+                altText
+            }
+            ... on RecipeSummaryDifficulty {
+                title
+                value
+                maxValue
+                altText
+            }
+        }
+        method {
+            description {
+                title
+                content
+            }
+            items {
+                title
+                content
+            }
+        }
+        nutritionTile {
+            title
+            perServeKilojoules
+            perServeCalories
+            dailyIntakePercentage
+            dailyIntakeText
+            disclaimer
+            features {
+                title
+                value
+            }
+        }
+        latestRecipes {
+            ... on HorizontalList {
+                title
+                items {
+                    __typename
+                    ... on RecipeSummaryCard {
+                        title
+                        image
+                        id
+                    }
+                    ... on RecipeMoreCard {
+                        actionMetadata {
+                            __typename
+                            ... on RecipeSource {
+                                source
+                            }
+                            ... on RecipeTagList {
+                                tags
+                            }
+                        }
+                    }
+                }
+                actionTitle
+                actionMetadata {
+                    __typename
+                    ... on RecipeSource {
+                        source
+                    }
+                    ... on RecipeTagList {
+                        tags
+                    }
+                }
+            }
+        }
+    }
+}
