@@ -6,9 +6,9 @@ import au.com.woolworths.model.apigee.authentication.ErrorResponseV2;
 import au.com.woolworths.model.apigee.fulfilment.FulFilmentResponse;
 import au.com.woolworths.model.apigee.store.Stores;
 import au.com.woolworths.utils.Utilities;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.en.And;
 import org.testng.Assert;
 
 import java.util.Arrays;
@@ -39,7 +39,7 @@ public class PickupDefinition extends AddressHelper {
   public void iSetTheFulfilmentMethodToForTheStore(String fulfilmentMethod, int order) throws Throwable {
     AddressStoresV2 searchStoresResponse = sharedData.searchPostCodeResponse;
     String getFulFilmentMethod = searchStoresResponse.getStores()[order - 1].getFulfilmentMethod();
-     if (getFulFilmentMethod.contains("Pickup")) {
+    if (getFulFilmentMethod.contains("Pickup")) {
       long storeAddressId = searchStoresResponse.getStores()[order - 1].getPickUpType()[0].getAddressId();
       FulFilmentResponse fulFilmentResponse = setTheFulfilmentForTheStore(String.valueOf(storeAddressId));
       Assert.assertTrue(fulFilmentResponse.getResults().getPickupStores().getHttpStatusCode() == 200, "Pickup Store status code is not 200");
