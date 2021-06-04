@@ -6,9 +6,9 @@ import au.com.woolworths.model.apigee.authentication.ErrorResponseV2;
 import au.com.woolworths.model.apigee.fulfilment.FulFilmentResponse;
 import au.com.woolworths.model.apigee.store.Stores;
 import au.com.woolworths.utils.Utilities;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.en.And;
 import org.testng.Assert;
 
 import java.util.Arrays;
@@ -27,7 +27,6 @@ public class PickupDefinition extends AddressHelper {
     queryParams.put("postcode", postCode);
     AddressStoresV2 searchPostCodeResponse = getStore(queryParams);
     sharedData.searchPostCodeResponse = searchPostCodeResponse;
-
     if (searchPostCodeResponse.getStores().length > 0) {
       Assert.assertNotNull(searchPostCodeResponse.getStores()[0].getAddressText(), "AddressText is null");
       Assert.assertNotNull(searchPostCodeResponse.getStores()[0].getDescription(), "Description is null");
@@ -135,9 +134,9 @@ public class PickupDefinition extends AddressHelper {
 
   @When("^I set a pick up store using post code(.*)$")
   public void setPickUpStoreUsingPostCode(String postCode) throws Throwable {
-    sharedData.fulfilment = "pickup";
+    sharedData.fulfilment = "Pickup";
     searchForThePostCode(postCode);
-    iSetTheFulfilmentMethodToForTheStore(sharedData.fulfilment, 1);
+    iSetTheFulfilmentMethodToForTheStore(sharedData.fulfilment, 6);
   }
 
   @And("Sets a pick up store using post code {string}")
