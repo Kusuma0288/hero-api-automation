@@ -27,7 +27,6 @@ public class PickupDefinition extends AddressHelper {
     queryParams.put("postcode", postCode);
     AddressStoresV2 searchPostCodeResponse = getStore(queryParams);
     sharedData.searchPostCodeResponse = searchPostCodeResponse;
-
     if (searchPostCodeResponse.getStores().length > 0) {
       Assert.assertNotNull(searchPostCodeResponse.getStores()[0].getAddressText(), "AddressText is null");
       Assert.assertNotNull(searchPostCodeResponse.getStores()[0].getDescription(), "Description is null");
@@ -40,7 +39,7 @@ public class PickupDefinition extends AddressHelper {
   public void iSetTheFulfilmentMethodToForTheStore(String fulfilmentMethod, int order) throws Throwable {
     AddressStoresV2 searchStoresResponse = sharedData.searchPostCodeResponse;
     String getFulFilmentMethod = searchStoresResponse.getStores()[order - 1].getFulfilmentMethod();
-    if (getFulFilmentMethod.contains("Pickup")) {
+     if (getFulFilmentMethod.contains("Pickup")) {
       long storeAddressId = searchStoresResponse.getStores()[order - 1].getPickUpType()[0].getAddressId();
       FulFilmentResponse fulFilmentResponse = setTheFulfilmentForTheStore(String.valueOf(storeAddressId));
       Assert.assertTrue(fulFilmentResponse.getResults().getPickupStores().getHttpStatusCode() == 200, "Pickup Store status code is not 200");
@@ -135,9 +134,9 @@ public class PickupDefinition extends AddressHelper {
 
   @When("^I set a pick up store using post code(.*)$")
   public void setPickUpStoreUsingPostCode(String postCode) throws Throwable {
-    sharedData.fulfilment = "pickup";
+    sharedData.fulfilment = "Pickup";
     searchForThePostCode(postCode);
-    iSetTheFulfilmentMethodToForTheStore(sharedData.fulfilment, 1);
+    iSetTheFulfilmentMethodToForTheStore(sharedData.fulfilment, 6);
   }
 
   @And("Sets a pick up store using post code {string}")
