@@ -12,19 +12,20 @@ import java.io.InputStream;
 
 import static au.com.woolworths.graphql.parser.GraphqlParser.parseGraphql;
 import static au.com.woolworths.helpers.iris.graphql.RecipeDetailsResponseHelper.RecipeDetailsArgs.RECIPE_ID;
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.*;
 
 public class RecipeDetailsDefinition {
   private final ObjectMapper mapper = new ObjectMapper();
   private final GraphqlHelper graphqlHelper = new GraphqlHelper();
   private final ObjectNode variables = new ObjectMapper().createObjectNode();
   private RecipeDetails response;
+  private String recipeID;
 
   @And("user requests for {string} recipe details")
     public void userRequestsForRecipeDetails(String recipeId) throws Throwable {
 
     // PREPARE - GraphQL query
+    recipeID = recipeId;
     InputStream iStream = this.getClass().getResourceAsStream("/gqlQueries/iris/recipeDetails.graphql");
     variables.put(RECIPE_ID.get(), recipeId);
     String recipeDetailsQuery = parseGraphql(iStream, variables);
@@ -45,5 +46,6 @@ public class RecipeDetailsDefinition {
     assertNotNull(response.getTitle());
     assertNotNull(response.getImage());
     assertNotNull(response.getIngredients());
+    assertTrue(response.getRecipeUrl().contains(recipeID));
   }
 }
