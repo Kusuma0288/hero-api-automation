@@ -133,9 +133,17 @@ public class ProductsBySearchDefinition extends BaseHelper {
 
     // REQUEST
     iStream = this.getClass().getResourceAsStream("/gqlQueries/iris/productsBySearchProductsFeed.graphql");
-    ObjectNode variables = mapper.createObjectNode()
+
+    ObjectNode croVariables = mapper.createObjectNode();
+    croVariables
+            .put("adobeEcid", "26920881514697393047774072919195156984")
+            .put("deliveryAddressPostcode", "4105");
+
+    ObjectNode variables = (ObjectNode) mapper.createObjectNode()
             .put("searchTerm", searchString)
-            .put("productsFeed", productsFeed.equals("true"));
+            .put("productsFeed", productsFeed.equals("true"))
+            .set("croVariables", croVariables);
+
     String graphqlQuery = parseGraphql(iStream, variables);
 
     // CALL - any errors caught within

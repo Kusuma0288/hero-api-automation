@@ -5,8 +5,9 @@ import au.com.woolworths.model.metis.logout.Logout;
 import au.com.woolworths.utils.Utilities;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import java.util.logging.Logger;
 import junit.framework.Assert;
+
+import java.util.logging.Logger;
 
 public class LogoutDefinition extends LogoutHelper {
   private final static Logger logger = Logger.getLogger("LogoutDefinition.class");

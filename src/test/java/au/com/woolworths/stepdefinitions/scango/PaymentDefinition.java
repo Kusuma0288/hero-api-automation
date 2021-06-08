@@ -1,7 +1,6 @@
 package au.com.woolworths.stepdefinitions.scango;
 
 import au.com.woolworths.helpers.scango.PaymentHelper;
-
 import au.com.woolworths.model.scango.payment.ListInstrumentsResponse;
 import au.com.woolworths.model.scango.payment.PaymentResponse;
 import au.com.woolworths.utils.TestProperties;

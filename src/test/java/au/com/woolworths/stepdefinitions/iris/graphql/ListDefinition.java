@@ -17,7 +17,6 @@ import junit.framework.Assert;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.UUID;
 
 public class ListDefinition extends ListHelper {

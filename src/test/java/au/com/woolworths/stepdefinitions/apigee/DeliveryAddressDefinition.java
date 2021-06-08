@@ -8,9 +8,9 @@ import au.com.woolworths.model.apigee.delivery.DeliveryFulfilmentV3Response;
 import au.com.woolworths.model.apigee.fulfilment.Fulfilmentv3ErrorResponse;
 import au.com.woolworths.model.apigee.lists.ListAddresses;
 import au.com.woolworths.utils.Utilities;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.en.And;
 import junit.framework.Assert;
 
 import java.util.Arrays;

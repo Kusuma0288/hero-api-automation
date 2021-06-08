@@ -10,10 +10,12 @@ import au.com.woolworths.model.apigee.productgroups.ProductGroupTrolleyData;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Homepage extends HomepageHelper {

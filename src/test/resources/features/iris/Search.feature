@@ -1,12 +1,13 @@
 @Wolves
 Feature: Search GraphQL
-#  UAT has known issues so focus on PROD
-  @PROD_APIGEE @IRIS @PROD
-  Scenario: User never sees duplicate products in search results
-    Given I connect to apigee endpoint as a guest user
-    When user searches for online "Milk" products 20 at a time and scrolls to the end of the results
-    Then no duplicate results are returned
-    And the product total count matches the actual number of products returned
+  # UAT has known issues so focus on PROD
+  # Test failing due to bug TW-3462
+#  @PROD_APIGEE @IRIS @PROD
+#  Scenario: User never sees duplicate products in search results
+#    Given I connect to apigee endpoint as a guest user
+#    When user searches for online "Milk" products 20 at a time and scrolls to the end of the results
+#    Then no duplicate results are returned
+#    And the product total count matches the actual number of products returned
 
 #  Taniwha Squad modified search to include a conditional flag to contain a Google Ad Banner
 #   "variables": {

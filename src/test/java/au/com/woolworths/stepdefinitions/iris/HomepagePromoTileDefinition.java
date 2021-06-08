@@ -1,12 +1,12 @@
 package au.com.woolworths.stepdefinitions.iris;
 
-import java.io.InputStream;
-import java.util.logging.Logger;
-
+import au.com.woolworths.graphql.parser.GraphqlParser;
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.helpers.iris.graphql.GraphqlHelper;
 import io.cucumber.java.en.Then;
-import au.com.woolworths.graphql.parser.GraphqlParser;
+
+import java.io.InputStream;
+import java.util.logging.Logger;
 
 public class HomepagePromoTileDefinition extends BaseHelper {
 
