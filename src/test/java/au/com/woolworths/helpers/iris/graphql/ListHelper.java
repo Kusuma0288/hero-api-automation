@@ -22,6 +22,7 @@ public class ListHelper extends BaseHelper {
     PAGE_NUMBER("pageNumber"),
     PAGE_SIZE("pageSize"),
     STORE("storeId"),
+    CATEGORY_ID("categoryId"),
     COUNT("count");
 
     private String typename;

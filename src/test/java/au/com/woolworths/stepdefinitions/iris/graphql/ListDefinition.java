@@ -239,6 +239,32 @@ public class ListDefinition extends ListHelper {
     iCheckThePurchaseHistoryWithPastShopsItemsForPageNumberAsAndPagesizeAsAndForStore(pageNumber, pageSize, "");
   }
 
+  @When("I check Products by Category event is loaded for categoryId {string} and for store {string} for user")
+  public void iCheckProductsByCategoryEventIsLoadedForCategoryIdAndForStoreForUser(String catagoryId, String storeId) throws IOException {
+    InputStream iStream = ListsDefinition.class.getResourceAsStream("/gqlQueries/iris/productsByCategory.graphql");
+    ObjectNode variables = new ObjectMapper().createObjectNode();
+    variables.put(Typename.CATEGORY_ID.get(), catagoryId);
+    if (!storeId.equalsIgnoreCase(""))
+      variables.put(Typename.STORE.get(), storeId);
+    String graphqlQuery = GraphqlParser.parseGraphql(iStream, variables);
+    String getListResponse = graphqlHelper.postGraphqlQuery(graphqlQuery);
+    SyncListResponse syncListResponse = mapper.readValue(getListResponse, SyncListResponse.class);
+    sharedData.syncListResponse = syncListResponse;
+    sharedData.storeID = storeId;
+  }
+
+  @Then("I verify Products by Category shopping api responds with {string} products response")
+  public void iVerifyProductsByCategoryShoppingApiRespondsWithProductsResponse(String productType) {
+    for (int i = 0; i >= sharedData.syncListResponse.getData().getProductsByCategory().getProducts().size(); i++) {
+      Assert.assertTrue("Product are " + productType, sharedData.syncListResponse.getData().getProductsByCategory().getProducts().get(i).getName().contains(productType));
+      if (!sharedData.storeID.equalsIgnoreCase(""))
+        Assert.assertFalse("store details not available for instore mode", sharedData.syncListResponse.getData().getProductsByCategory().getProducts().get(i).getInStoreDetails().equals(null));
+      else
+        Assert.assertTrue("store details available for online mode", sharedData.syncListResponse.getData().getProductsByCategory().getProducts().get(i).getInStoreDetails().equals(null));
+    }
+  }
+
+
   @When("I search product with {string} in instore mode {string} to get Aisle information")
   public void iSearchProductWithInInstoreMode(String productId, String stroeId) throws IOException {
     InputStream iStream = ListsDefinition.class.getResourceAsStream("/gqlQueries/iris/ProductByProductID.graphql");

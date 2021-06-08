@@ -11,4 +11,5 @@ public class Data {
   private PastshopEvent pastshopEvent;
   private PurchaseHistory purchaseHistory;
   private ProductsByProductIds productsByProductIds;
+  private PurchaseHistory productsByCategory;
 }
