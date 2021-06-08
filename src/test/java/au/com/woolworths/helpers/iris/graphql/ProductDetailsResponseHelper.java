@@ -27,11 +27,19 @@ public class ProductDetailsResponseHelper extends BaseHelper {
               .equalsIgnoreCase(sharedData.availableProduct.getName().replaceAll(" ", "")),
           "ProductName on ProductDetails didn't match ProductName from ProductList");
 
-      softAssert.assertTrue(productCard.get().getPrice().equals(sharedData.availableProduct.getPrice()),
-          "Price on ProductDetails didn't match Price from ProductList");
+      if (productCard.get().getPrice() != null) {
+        softAssert.assertTrue(productCard.get().getPrice().equals(sharedData.availableProduct.getPrice()),
+            "Price on ProductDetails didn't match Price from ProductList");
 
-      softAssert.assertTrue(productCard.get().getIsAvailable().equals(sharedData.availableProduct.getIsAvailable()),
-          "Availability on ProductDetails didn't match Availability from ProductList");
+        softAssert.assertTrue(productCard.get().getIsAvailable().equals(sharedData.availableProduct.getIsAvailable()),
+            "Availability on ProductDetails didn't match Availability from ProductList");
+      } else {
+        softAssert.assertTrue(productCard.get().getPrice() == sharedData.availableProduct.getPrice(),
+            "Price on ProductDetails didn't match Price from ProductList");
+
+        softAssert.assertTrue(productCard.get().getIsAvailable() == sharedData.availableProduct.getIsAvailable(),
+            "Availability on ProductDetails didn't match Availability from ProductList");
+      }
 
       if (sharedData.inStoreId != null) {
 
