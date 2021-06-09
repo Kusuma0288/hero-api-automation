@@ -173,8 +173,8 @@ public class ProductsBySearchDefinition extends BaseHelper {
     variables.put(SearchHelper.Typename.PRODUCTS_FEED.get(), false);
     variables.put(SearchHelper.Typename.FILTER_OPTIONS_TYPE.get(), filterType);
     ArrayNode productIdsArray = variables.putArray(SearchHelper.Typename.FILTER_OPTIONS_VALUES.get());
-    for (String valu : values) {
-      productIdsArray.add(valu);
+    for (String filterValue : values) {
+      productIdsArray.add(filterValue);
     }
     String graphqlQuery = parseGraphql(iStream, variables);
 
