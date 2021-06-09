@@ -8,5 +8,5 @@ Feature: Verify past shop get list
   @REGRESSION_TRADER
   Scenario: Login as Shopper and verify if past shops are showing
 
-    When customer calls past shopping list api with page number as 1 and pagesize as 25
+    When customer calls past shopping list api with page number as 1 and pagesize as 100
     Then verify past shopping api responds with right response
