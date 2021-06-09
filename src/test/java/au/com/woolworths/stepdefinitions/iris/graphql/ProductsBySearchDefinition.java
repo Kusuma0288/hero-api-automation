@@ -2,7 +2,6 @@ package au.com.woolworths.stepdefinitions.iris.graphql;
 
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.helpers.iris.graphql.GraphqlHelper;
-import au.com.woolworths.helpers.iris.graphql.ListHelper;
 import au.com.woolworths.helpers.iris.graphql.SearchHelper;
 import au.com.woolworths.model.iris.graphql.productList.Product;
 import au.com.woolworths.model.iris.graphql.productList.ProductsBySearch;
@@ -72,13 +71,12 @@ public class ProductsBySearchDefinition extends BaseHelper {
   public void userSearchesForOnlineProductsAndScrollsToTheEndOfTheResults(String searchString, int pageSize) throws Throwable {
 
     // ENDPOINT
-    String endPoint = HERMES_V1_GRAPHQL;
 
     // Nullable variable of next available page
     Integer nextPage = 1;
 
     // To display current product count
-    Integer productCount = 0;
+    int productCount = 0;
 
     // LOOP - while another page of products exists
     do {
@@ -91,7 +89,7 @@ public class ProductsBySearchDefinition extends BaseHelper {
       String graphqlQuery = parseGraphql(iStream, variables);
 
       // CALL - any errors caught within
-      Map<String, String> response = restInvocationUtil.makeHttpRequest(endPoint, graphqlQuery, sharedData.accessToken);
+      Map<String, String> response = restInvocationUtil.makeHttpRequest(HERMES_V1_GRAPHQL, graphqlQuery, sharedData.accessToken);
 
       // PARSE
       ProductsBySearchResponse productsBySearchResponse = mapper.readValue(response.get("response"), ProductsBySearchResponse.class);
@@ -132,10 +130,7 @@ public class ProductsBySearchDefinition extends BaseHelper {
    */
   @When("user searches for {string} with productsFeed {string}")
   public void userSearchesForWithProductsFeed(String searchString, String productsFeed) throws Throwable {
-    // ENDPOINT
-    String endPoint = HERMES_V1_GRAPHQL;
-
-    // REQUEST
+  // REQUEST
     iStream = this.getClass().getResourceAsStream("/gqlQueries/iris/productsBySearchProductsFeed.graphql");
 
     ObjectNode croVariables = mapper.createObjectNode();
@@ -151,7 +146,7 @@ public class ProductsBySearchDefinition extends BaseHelper {
     String graphqlQuery = parseGraphql(iStream, variables);
 
     // CALL - any errors caught within
-    Map<String, String> response = restInvocationUtil.makeHttpRequest(endPoint, graphqlQuery, sharedData.accessToken);
+    Map<String, String> response = restInvocationUtil.makeHttpRequest(HERMES_V1_GRAPHQL, graphqlQuery, sharedData.accessToken);
 
     // PARSE & SAVE
     ProductsBySearch result = mapper.readValue(response.get("response"), ProductsBySearchResponse.class).getData().getProductsBySearch();
@@ -162,7 +157,7 @@ public class ProductsBySearchDefinition extends BaseHelper {
     }
   }
 
-  @When("user searches for {string} as the search product with sort option {string} and filter by {string} and by brand {string}")
+  @When("user searches for {string} as the search product with sort option {string} and filter by {string} and by filter option as {string}")
   public void userSearchesForAsTheSearchProduct(String searchString, String sortOption, String filterType, String value) throws Throwable {
     // REQUEST
     iStream = this.getClass().getResourceAsStream("/gqlQueries/iris/productsBySearchProductsFilters.graphql");

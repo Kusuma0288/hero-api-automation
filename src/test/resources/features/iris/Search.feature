@@ -24,19 +24,19 @@ Feature: Search GraphQL
   @REGRESSION_APIGEE @IRIS @UAT @TEST
   Scenario: Search a product with filter type Brand
     Given I connect to apigee endpoint as a guest user
-    Then user searches for "Milk" as the search product with sort option "TraderRelevance" and filter by "Brand" and by brand "A2"
+    Then user searches for "Milk" as the search product with sort option "TraderRelevance" and filter by "Brand" and by filter option as "A2"
 
   @REGRESSION_APIGEE @IRIS @UAT @TEST
   Scenario: Search a product with filter type Allergens
     Given I connect to apigee endpoint as a guest user
-    Then user searches for "Milk" as the search product with sort option "TraderRelevance" and filter by "Allergens" and by brand "Egg Free"
+    Then user searches for "Milk" as the search product with sort option "TraderRelevance" and filter by "Allergens" and by filter option as "Egg Free"
 
   @REGRESSION_APIGEE @IRIS @UAT @TEST
   Scenario: Search a product with filter type Dietary and Lifestyle
     Given I connect to apigee endpoint as a guest user
-    Then user searches for "Milk" as the search product with sort option "TraderRelevance" and filter by "Dietary and Lifestyle" and by brand "Gluten Free"
+    Then user searches for "Milk" as the search product with sort option "TraderRelevance" and filter by "Dietary and Lifestyle" and by filter option as "Gluten Free"
 
   @REGRESSION_APIGEE @IRIS @UAT @TEST
   Scenario: Search a product with filter type Health Star Rating
     Given I connect to apigee endpoint as a guest user
-    Then user searches for "Milk" as the search product with sort option "TraderRelevance" and filter by "Health Star Rating" and by brand "4"
+    Then user searches for "Milk" as the search product with sort option "TraderRelevance" and filter by "Health Star Rating" and by filter option as "4"
