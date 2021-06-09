@@ -189,6 +189,15 @@ public class ProductsBySearchDefinition extends BaseHelper {
           }
         }
       }
+      else if (result.getFilters().get(i).getHeaderTitle().equals("Categories"))
+      {
+        for(int j =0; j <=result.getFilters().get(i).getFilterItems().size(); j++) {
+          if (result.getFilters().get(i).getFilterItems().get(j).getIsApplied().equals(true)) {
+            productNotMatching = true;
+            break;
+          }
+        }
+      }
       if(productNotMatching)
       {
         break;

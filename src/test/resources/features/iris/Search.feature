@@ -42,6 +42,11 @@ Feature: Search GraphQL
     Then user searches for "Milk" as the search product with sort option "TraderRelevance" and filter by "Health Star Rating" and by filter option as "4"
 
   @REGRESSION_APIGEE @IRIS @UAT @TEST
+  Scenario: Search a product with filter type Categories
+    Given I connect to apigee endpoint as a guest user
+    Then user searches for "Milk" as the search product with sort option "TraderRelevance" and filter by "Category" and by filter option as "1_E872E7C"
+
+  @REGRESSION_APIGEE @IRIS @UAT @TEST
   Scenario: Search a product and sort by Name Ascending[A-Z]
     Given I connect to apigee endpoint as a guest user
     Then user searches for "Milk" as the search product with sort option "Name" and filter by "Brand" and by filter option as "A2"
