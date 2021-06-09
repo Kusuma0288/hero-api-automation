@@ -99,13 +99,18 @@ jobs:
         --source '$(Build.SourcesDirectory)/target/cucumber-reports/'
 
        [xml]$xml = Get-Content $(Build.SourcesDirectory)/target/failsafe-reports/failsafe-summary.xml
-       Write-Host "##vso[task.setvariable variable=completed;isOutput=true;]$($xml.'failsafe-summary'.completed)"
-       Write-Host "##vso[task.setvariable variable=failures;isOutput=true;]$($xml.'failsafe-summary'.failures)"
-       Write-Host "##vso[task.setvariable variable=skipped;isOutput=true;]$($xml.'failsafe-summary'.skipped)"
-       Write-Host "##vso[task.setvariable variable=errors;isOutput=true;]$($xml.'failsafe-summary'.errors)"
-       $slackColour = ($($xml.'failsafe-summary'.failures) -eq 0) ? "#2ECC71" : "#FF0000"
+       $summary = $($xml.'failsafe-summary')
+       Write-Host "##vso[task.setvariable variable=completed;isOutput=true;]$($summary.completed)"
+       Write-Host "##vso[task.setvariable variable=failures;isOutput=true;]$($summary.failures)"
+       Write-Host "##vso[task.setvariable variable=skipped;isOutput=true;]$($summary.skipped)"
+       Write-Host "##vso[task.setvariable variable=errors;isOutput=true;]$($summary.errors)"
+
+       [int]$total_errors_or_failures = $summary.failures + $summary.errors
+
+       $slackColour = ($total_errors_or_failures -eq 0) ? "#2ECC71" : "#FF0000"
        Write-Host "##vso[task.setvariable variable=slackColour;isOutput=true;]$slackColour"
-       $slackEmoji = ($($xml.'failsafe-summary'.failures) -eq 0) ? ":white_check_mark:" : ":firecracker:"
+
+       $slackEmoji = ($total_errors_or_failures -eq 0) ? ":white_check_mark:" : ":firecracker:"
        Write-Host "##vso[task.setvariable variable=slackEmoji;isOutput=true;]$slackEmoji"
       name: TestOutput
       displayName: 'Post test results to Azure blob storage'

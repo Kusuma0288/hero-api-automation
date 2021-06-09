@@ -2,7 +2,6 @@ package au.com.woolworths.stepdefinitions.trader;
 
 import au.com.woolworths.helpers.trader.PastShopHelper;
 import au.com.woolworths.model.trader.PastShoppingListResponse;
-
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;

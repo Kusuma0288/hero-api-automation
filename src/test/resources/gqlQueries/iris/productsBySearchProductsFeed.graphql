@@ -6,6 +6,7 @@ query productsBySearch(
     $sortOption: String
     $filterOptions: [ProductFilterOption]
     $productsFeed: Boolean = false
+    $croVariables: CroVariables
 ) {
     productsBySearch(
         searchTerm: $searchTerm
@@ -14,6 +15,7 @@ query productsBySearch(
         pageNumber: $pageNumber
         sortOption: $sortOption
         filterOptions: $filterOptions
+        croVariables: $croVariables
     ) {
         __typename
         totalNumberOfProducts
@@ -25,10 +27,7 @@ query productsBySearch(
         productsFeed @include(if: $productsFeed) {
             __typename
             ... on GoogleAdBannerCard {
-                adUnit
-                nativeCustomTemplateId
-                iabSize
-                targeting
+                ...googleAdBannerCard
             }
             ... on ProductCard {
                 ...productCard
@@ -126,4 +125,16 @@ fragment productCard on ProductCard {
         locationType
     }
     adId
+}
+fragment googleAdBannerCard on GoogleAdBannerCard {
+    __typename
+    adUnit
+    nativeCustomTemplateId
+    iabSize
+    targeting
+    analytics {
+        __typename
+        adobeTnta
+        adobePe
+    }
 }

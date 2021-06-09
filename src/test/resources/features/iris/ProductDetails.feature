@@ -1,6 +1,7 @@
-@REGRESSION_APIGEE @PRODUCT_DETAILS @VEGEMITE
+@REGRESSION_APIGEE @PRODUCT_DETAILS
 Feature: Product details graphql
 
+  @Wolves
   Scenario: Guest user queries online products details for an available product
     Given mobile user connect to apigee endpoint as guest
     And connection from user to apigee endpoint happens
@@ -8,6 +9,7 @@ Feature: Product details graphql
     And user selects a product to get "ONLINE" product details
     Then online product details are available
 
+  @Wolves
   Scenario: Logged in user queries online products details for an available product
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME4"
     When connection from user to apigee endpoint happens
@@ -15,6 +17,7 @@ Feature: Product details graphql
     And user selects a product to get "ONLINE" product details
     Then online product details are available
 
+  @VEGEMITE
   Scenario: Guest user queries instore products details for an available product
     Given mobile user connect to apigee endpoint as guest
     And connection from user to apigee endpoint happens
@@ -22,6 +25,7 @@ Feature: Product details graphql
     And user selects a product to get "INSTORE" product details
     Then instore product details are available
 
+  @VEGEMITE
   Scenario: Logged in user queries instore products details for an available product
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME4"
     When connection from user to apigee endpoint happens

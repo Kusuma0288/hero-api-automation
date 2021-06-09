@@ -1,0 +1,48 @@
+query($categoryId: String!,
+    $storeId: String,
+    $pageSize: Int,
+    $pageNumber: Int){
+    productsByCategory(
+        categoryId: $categoryId,
+        storeId: $storeId,
+        pageSize: $pageSize,
+        pageNumber: $pageNumber
+    ) {
+        products {
+            productId
+            name
+            productImage
+            isAvailable
+            isNew
+            price
+            unitPriceDescription
+            badgeImage
+            promotionValue
+            promotionType
+            wasPrice
+            purchaseWarning
+            inStoreDetails {
+                locationText
+                locationType
+            }
+            trolley {
+                minimum
+                maximum
+                increment
+                default
+                inTrolley
+                unit
+                buttonState
+                buttonLabel
+                buttonQuantity
+            }
+            list {
+                minimum
+                maximum
+                increment
+                default
+                unit
+            }
+        }
+    }
+}

@@ -1,6 +1,7 @@
-@REGRESSION_APIGEE @VEGEMITE @PRODUCT_CATEGORIES
+@REGRESSION_APIGEE @PRODUCT_CATEGORIES
 Feature: Special Categories GraphQL
 
+  @Wolves
   Scenario: Guest user recursively requests subcategories for online specials
     Given mobile user connect to apigee endpoint as guest
     When connection from user to apigee endpoint happens
@@ -10,6 +11,7 @@ Feature: Special Categories GraphQL
     And user requests for "SPECIALS" subcategories for store: ""
     Then user reaches the final subcategory
 
+  @VEGEMITE
   Scenario: Guest user recursively requests subcategories for in-store specials
     Given mobile user connect to apigee endpoint as guest
     When connection from user to apigee endpoint happens
@@ -19,6 +21,7 @@ Feature: Special Categories GraphQL
     And user requests for "SPECIALS" subcategories for store: "5654"
     Then user reaches the final subcategory
 
+  @Wolves
   Scenario: Logged in user recursively requests subcategories for online specials
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME4"
     When connection from user to apigee endpoint happens
@@ -28,6 +31,7 @@ Feature: Special Categories GraphQL
     And user requests for "SPECIALS" subcategories for store: ""
     Then user reaches the final subcategory
 
+  @VEGEMITE
   Scenario: Logged in user recursively requests subcategories for in-store specials
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME4"
     When connection from user to apigee endpoint happens

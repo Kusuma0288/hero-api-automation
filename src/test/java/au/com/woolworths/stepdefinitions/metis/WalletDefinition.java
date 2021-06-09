@@ -12,9 +12,9 @@ import au.com.woolworths.model.metis.card.payment_instruments.FetchPaymentInstru
 import au.com.woolworths.model.metis.card.update_scheme_card.FetchUpdateSchemeCardURLResponse;
 import au.com.woolworths.model.metis.card.verify_scheme_card.FetchVerifySchemeCardResponse;
 import au.com.woolworths.model.metis.card.view_gc_payment_preferences.GCItem;
+import au.com.woolworths.model.metis.card.view_gc_payment_preferences.ViewGCPaymentPreferencesResponse;
 import au.com.woolworths.model.metis.card.view_gift_card.Item;
 import au.com.woolworths.model.metis.card.view_gift_card.ViewGiftCardResponse;
-import au.com.woolworths.model.metis.card.view_gc_payment_preferences.ViewGCPaymentPreferencesResponse;
 import au.com.woolworths.model.metis.card.view_sc_payment_preferences.SCItem;
 import au.com.woolworths.model.metis.card.view_sc_payment_preferences.ViewSCPaymentPreferencesResponse;
 import au.com.woolworths.model.metis.card.view_user_preference.FetchUserPreferencesResponse;
