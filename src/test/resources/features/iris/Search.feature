@@ -40,3 +40,38 @@ Feature: Search GraphQL
   Scenario: Search a product with filter type Health Star Rating
     Given I connect to apigee endpoint as a guest user
     Then user searches for "Milk" as the search product with sort option "TraderRelevance" and filter by "Health Star Rating" and by filter option as "4"
+
+  @REGRESSION_APIGEE @IRIS @UAT @TEST
+  Scenario: Search a product and sort by Name Ascending[A-Z]
+    Given I connect to apigee endpoint as a guest user
+    Then user searches for "Milk" as the search product with sort option "Name" and filter by "Brand" and by filter option as "A2"
+
+  @REGRESSION_APIGEE @IRIS @UAT @TEST
+  Scenario: Search a product and sort by Name Descending[Z-A]
+    Given I connect to apigee endpoint as a guest user
+    Then user searches for "Milk" as the search product with sort option "NameDesc" and filter by "Brand" and by filter option as "A2"
+
+  @REGRESSION_APIGEE @IRIS @UAT @TEST
+  Scenario: Search a product and sort by NEW
+    Given I connect to apigee endpoint as a guest user
+    Then user searches for "Milk" as the search product with sort option "AvailableDateDesc" and filter by "Brand" and by filter option as "A2"
+
+  @REGRESSION_APIGEE @IRIS @UAT @TEST
+  Scenario: Search a product and sort by Price[Low-High]
+    Given I connect to apigee endpoint as a guest user
+    Then user searches for "Milk" as the search product with sort option "PriceAsc" and filter by "Brand" and by filter option as "A2"
+
+  @REGRESSION_APIGEE @IRIS @UAT @TEST
+  Scenario: Search a product and sort by Price[High-Low]
+    Given I connect to apigee endpoint as a guest user
+    Then user searches for "Milk" as the search product with sort option "PriceDesc" and filter by "Brand" and by filter option as "A2"
+
+  @REGRESSION_APIGEE @IRIS @UAT @TEST
+  Scenario: Search a product and sort by Unit Price[Low-High]
+    Given I connect to apigee endpoint as a guest user
+    Then user searches for "Milk" as the search product with sort option "CUPAsc" and filter by "Brand" and by filter option as "A2"
+
+  @REGRESSION_APIGEE @IRIS @UAT @TEST
+  Scenario: Search a product and sort by Unit Price[High-Low]
+    Given I connect to apigee endpoint as a guest user
+    Then user searches for "Milk" as the search product with sort option "CUPDesc" and filter by "Brand" and by filter option as "A2"
