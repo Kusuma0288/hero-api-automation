@@ -1,5 +1,6 @@
 package au.com.woolworths.model.iris.graphql.productList;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
 
@@ -7,6 +8,7 @@ import java.util.List;
 
 @lombok.Data
 @EqualsAndHashCode
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductsBySearch {
   @JsonProperty("__typename")
   private String typename;

@@ -19,3 +19,23 @@ Feature: Search GraphQL
     When user searches for "Coke" with productsFeed "false"
     And user searches for "Coke" with productsFeed "true"
     Then the products by search responses are identical
+
+  @REGRESSION_APIGEE @IRIS @UAT @TEST
+  Scenario: Search a product with filter type Brand
+    Given I connect to apigee endpoint as a guest user
+    Then user searches for "Milk" as the search product with sort option "TraderRelevance" and filter by "Brand" and by brand "A2"
+
+  @REGRESSION_APIGEE @IRIS @UAT @TEST
+  Scenario: Search a product with filter type Allergens
+    Given I connect to apigee endpoint as a guest user
+    Then user searches for "Milk" as the search product with sort option "TraderRelevance" and filter by "Allergens" and by brand "Egg Free"
+
+  @REGRESSION_APIGEE @IRIS @UAT @TEST
+  Scenario: Search a product with filter type Dietary and Lifestyle
+    Given I connect to apigee endpoint as a guest user
+    Then user searches for "Milk" as the search product with sort option "TraderRelevance" and filter by "Dietary and Lifestyle" and by brand "Gluten Free"
+
+  @REGRESSION_APIGEE @IRIS @UAT @TEST
+  Scenario: Search a product with filter type Health Star Rating
+    Given I connect to apigee endpoint as a guest user
+    Then user searches for "Milk" as the search product with sort option "TraderRelevance" and filter by "Health Star Rating" and by brand "4"

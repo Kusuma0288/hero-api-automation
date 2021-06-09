@@ -19,5 +19,6 @@ public class TrolleyResponse {
   private WowRewardsSummary WowRewardsSummary;
   private Object ResponseStatus;
   private Loyalty Loyalty;
-
+  private Boolean HasActiveDeliverySaverSubscription;
+  private int DeliveryUnlimitedSubscriptionMinimumOrderAmount;
 }

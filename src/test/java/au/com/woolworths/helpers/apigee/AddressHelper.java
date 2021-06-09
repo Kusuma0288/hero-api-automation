@@ -1,10 +1,7 @@
 package au.com.woolworths.helpers.apigee;
 
 import au.com.woolworths.helpers.common.BaseHelper;
-import au.com.woolworths.model.apigee.address.AddressDetails;
-import au.com.woolworths.model.apigee.address.AddressRequest;
-import au.com.woolworths.model.apigee.address.AddressStoresV2;
-import au.com.woolworths.model.apigee.address.SearchAddresses;
+import au.com.woolworths.model.apigee.address.*;
 import au.com.woolworths.model.apigee.authentication.ErrorResponseV2;
 import au.com.woolworths.model.apigee.delivery.DeliveryAddressRequest;
 import au.com.woolworths.model.apigee.delivery.DeliveryFulfilmentV3Response;
@@ -82,6 +79,14 @@ public class AddressHelper extends BaseHelper {
     AddressStoresV2 searchPostCodeResponse = mapper.readValue(responseStr, AddressStoresV2.class);
     return searchPostCodeResponse;
 
+  }
+
+  public InvalidPostcode getInvalidStore(Map<String, String> queryParams) throws Throwable {
+    String endPoint = URLResources.APIGEE_V2_SEARCH_ADDRESS_POSTCODE;
+    Map<String, String> mapWebserviceResponse;
+    mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListCommon);
+    String responseStr = mapWebserviceResponse.get("response");
+    return mapper.readValue(responseStr, InvalidPostcode.class);
   }
 
   public ErrorResponseV2 getStoresForInvalidParams(String type, String param) throws Throwable {

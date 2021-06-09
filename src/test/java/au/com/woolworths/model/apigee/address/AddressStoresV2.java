@@ -8,5 +8,4 @@ import lombok.Data;
 @Data
 public class AddressStoresV2 {
   private Stores[] stores;
-
 }

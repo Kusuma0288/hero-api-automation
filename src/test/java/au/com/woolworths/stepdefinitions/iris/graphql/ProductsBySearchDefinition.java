@@ -2,13 +2,17 @@ package au.com.woolworths.stepdefinitions.iris.graphql;
 
 import au.com.woolworths.helpers.common.BaseHelper;
 import au.com.woolworths.helpers.iris.graphql.GraphqlHelper;
+import au.com.woolworths.helpers.iris.graphql.ListHelper;
+import au.com.woolworths.helpers.iris.graphql.SearchHelper;
 import au.com.woolworths.model.iris.graphql.productList.Product;
 import au.com.woolworths.model.iris.graphql.productList.ProductsBySearch;
 import au.com.woolworths.model.iris.graphql.productList.ProductsBySearchResponse;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import junit.framework.Assert;
 
 import java.io.InputStream;
 import java.util.*;
@@ -149,6 +153,47 @@ public class ProductsBySearchDefinition extends BaseHelper {
       after = result;
     }
   }
+
+  @When("user searches for {string} as the search product with sort option {string} and filter by {string} and by brand {string}")
+  public void userSearchesForAsTheSearchProduct(String searchString, String sortOption, String filterType, String value) throws Throwable {
+    // REQUEST
+    iStream = this.getClass().getResourceAsStream("/gqlQueries/iris/productsBySearchProductsFilters.graphql");
+    String[] values = value.split(",");
+    ObjectNode variables = mapper.createObjectNode();
+    variables.put(SearchHelper.Typename.SEARCH_TERM.get(), searchString);
+    variables.put(SearchHelper.Typename.SORT_OPTION.get(), sortOption);
+    variables.put(SearchHelper.Typename.PRODUCTS_FEED.get(), false);
+    variables.put(SearchHelper.Typename.FILTER_OPTIONS_TYPE.get(), filterType);
+    ArrayNode productIdsArray = variables.putArray(SearchHelper.Typename.FILTER_OPTIONS_VALUES.get());
+    for (String valu : values) {
+      productIdsArray.add(valu);
+    }
+    String graphqlQuery = parseGraphql(iStream, variables);
+
+    // CALL - any errors caught within
+    Map<String, String> response = restInvocationUtil.makeHttpRequest(HERMES_V1_GRAPHQL, graphqlQuery, sharedData.accessToken);
+
+    // PARSE & SAVE
+    boolean productNotMatching = false;
+    ProductsBySearch result = mapper.readValue(response.get("response"), ProductsBySearchResponse.class).getData().getProductsBySearch();
+    for(int i = 0; i <=result.getFilters().size(); i++) {
+      if(result.getFilters().get(i).getHeaderTitle().equals(filterType))
+      {
+        for(int j =0; j <=result.getFilters().get(i).getFilterItems().size(); j++) {
+          if (result.getFilters().get(i).getFilterItems().get(j).getIsApplied().equals(true)) {
+            productNotMatching = true;
+            break;
+          }
+        }
+      }
+      if(productNotMatching)
+      {
+        break;
+      }
+    }
+    Assert.assertTrue(productNotMatching);
+  }
+
 
   /*
    The only differences between the responses should be:
