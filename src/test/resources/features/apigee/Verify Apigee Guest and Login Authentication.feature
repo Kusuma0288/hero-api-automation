@@ -1,4 +1,4 @@
-@REGRESSION_APIGEE @Lion
+@REGRESSION_APIGEE @EAGLE
 Feature: Verify Apigee Guest and Login Authentication
   Test for the guest/login feature
 
