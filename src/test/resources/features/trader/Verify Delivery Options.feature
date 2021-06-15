@@ -1,4 +1,4 @@
-@REGRESSION_TRADER @EAGLE
+@REGRESSION_TRADER @Eagle
 Feature: Verify Delivery Options
   Test for the delivery options
 
