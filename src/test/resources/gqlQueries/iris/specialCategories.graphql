@@ -1,0 +1,83 @@
+query(
+    $categoryId: String!
+    $isSpecial: Boolean
+    $storeId: String
+    $pageSize: Int
+    $pageNumber: Int
+    $sortOption: String
+    $filterOptions: [ProductFilterOption]
+) {
+    productsByCategory(
+        categoryId: $categoryId
+        isSpecial: $isSpecial
+        storeId: $storeId
+        pageSize: $pageSize
+        pageNumber: $pageNumber
+        sortOption: $sortOption
+        filterOptions: $filterOptions
+    ) {
+        totalNumberOfProducts
+        nextPage
+        filters {
+            headerKey
+            headerTitle
+            filterItems {
+                key
+                title
+                label
+                parentKey
+                hasChildren
+                isApplied
+            }
+        }
+        sortOptions {
+            key
+            title
+            subtitle
+            isApplied
+        }
+        products {
+            productId
+            name
+            isNew
+            productImage
+            isAvailable
+            price
+            promotionInfo {
+                type
+                label
+            }
+            badgeImage
+            unitPriceDescription
+            wasPrice
+            multiBuyPrice
+            multiBuyUnitPrice
+            purchaseWarning
+            inlineLabels {
+                type
+                label
+                priority
+            }
+            trolley {
+                minimum
+                maximum
+                increment
+                default
+                unit
+            }
+            inStoreDetails {
+                locationText
+                locationType
+            }
+            list {
+                minimum
+                maximum
+                increment
+                default
+                unit
+            }
+            adId
+        }
+
+    }
+}

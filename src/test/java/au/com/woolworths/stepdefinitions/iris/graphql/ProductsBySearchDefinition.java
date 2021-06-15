@@ -158,7 +158,7 @@ public class ProductsBySearchDefinition extends BaseHelper {
   }
 
   @When("user searches for {string} as the search product with sort option {string} and filter by {string} and by filter option as {string}")
-  public void userSearchesForAsTheSearchProduct(String searchString, String sortOption, String filterType, String value) throws Throwable {
+  public void userSearchesForAsTheSearchProductAndAppliesFilterAndSortOption(String searchString, String sortOption, String filterType, String value) throws Throwable {
     // REQUEST
     iStream = this.getClass().getResourceAsStream("/gqlQueries/iris/productsBySearchProductsFilters.graphql");
     String[] values = value.split(",");
@@ -177,14 +177,14 @@ public class ProductsBySearchDefinition extends BaseHelper {
     Map<String, String> response = restInvocationUtil.makeHttpRequest(HERMES_V1_GRAPHQL, graphqlQuery, sharedData.accessToken);
 
     // PARSE & SAVE
-    boolean productNotMatching = false;
+    boolean filterNotMatching = false;
     ProductsBySearch result = mapper.readValue(response.get("response"), ProductsBySearchResponse.class).getData().getProductsBySearch();
     for(int i = 0; i <=result.getFilters().size(); i++) {
       if(result.getFilters().get(i).getHeaderTitle().equals(filterType))
       {
         for(int j =0; j <=result.getFilters().get(i).getFilterItems().size(); j++) {
           if (result.getFilters().get(i).getFilterItems().get(j).getIsApplied().equals(true)) {
-            productNotMatching = true;
+            filterNotMatching = true;
             break;
           }
         }
@@ -193,17 +193,17 @@ public class ProductsBySearchDefinition extends BaseHelper {
       {
         for(int j =0; j <=result.getFilters().get(i).getFilterItems().size(); j++) {
           if (result.getFilters().get(i).getFilterItems().get(j).getIsApplied().equals(true)) {
-            productNotMatching = true;
+            filterNotMatching = true;
             break;
           }
         }
       }
-      if(productNotMatching)
+      if(filterNotMatching)
       {
         break;
       }
     }
-    Assert.assertTrue(productNotMatching);
+    Assert.assertTrue(filterNotMatching);
   }
 
 
