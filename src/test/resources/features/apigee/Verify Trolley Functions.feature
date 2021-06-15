@@ -1,4 +1,4 @@
-@REGRESSION_APIGEE @TROLLEY @SMOKE @LION
+@REGRESSION_APIGEE @TROLLEY @SMOKE @EAGLE
 Feature: Verify Apigee Trolley functions
 
   Background:

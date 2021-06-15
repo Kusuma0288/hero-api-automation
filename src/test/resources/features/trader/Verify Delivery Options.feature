@@ -1,4 +1,4 @@
-@DELIVERY @REGRESSION_TRADER @LION
+@REGRESSION_TRADER @EAGLE
 Feature: Verify Delivery Options
   Test for the delivery options
 

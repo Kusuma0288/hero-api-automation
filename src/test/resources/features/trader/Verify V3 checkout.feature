@@ -1,4 +1,4 @@
-@LION
+@EAGLE
 Feature: Verify V3 Checkout scenarios
 
   @REGRESSION_TRADER
