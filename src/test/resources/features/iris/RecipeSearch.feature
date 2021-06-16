@@ -1,4 +1,4 @@
-@REGRESSION_APIGEE @LOBSTERS @RECIPES
+@REGRESSION_APIGEE @PROD_APIGEE @LOBSTERS @RECIPES
 Feature: Recipes search which is used by Recipe feed/List screen
 
   Background:

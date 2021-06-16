@@ -1,0 +1,56 @@
+query {
+    recipeHome {
+        items {
+            ... on FreshMagTile {
+                __typename
+                altText
+                textImageUrl
+                coverImageUrl
+            }
+            ... on HorizontalList {
+                __typename
+                title
+                subtitle
+                items {
+                    ... on RecipeGroupTile {
+                        __typename
+                        source
+                        tags
+                        title
+                        image
+                    }
+                    ... on RecipeSummaryCard {
+                        __typename
+                        title
+                        image
+                        id
+                    }
+                    ... on RecipeMoreCard {
+                        __typename
+                        actionMetadata {
+                            ... on RecipeSource {
+                                __typename
+                                source
+                            }
+                            ... on RecipeTagList {
+                                __typename
+                                tags
+                            }
+                        }
+                    }
+                }
+                actionTitle
+                actionMetadata {
+                    ... on RecipeSource {
+                        __typename
+                        source
+                    }
+                    ... on RecipeTagList {
+                        __typename
+                        tags
+                    }
+                }
+            }
+        }
+    }
+}

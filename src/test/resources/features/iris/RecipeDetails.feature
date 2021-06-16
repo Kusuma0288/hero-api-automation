@@ -1,4 +1,4 @@
-@REGRESSION_APIGEE @LOBSTERS @RECIPES
+@REGRESSION_APIGEE @PROD_APIGEE @LOBSTERS @RECIPES
 Feature: Recipe Details GraphQL
 
   Scenario: Guest user requests for a recipe details
