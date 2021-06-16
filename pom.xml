@@ -102,9 +102,9 @@
         </profile>
 
         <profile>
-            <id>smoke_scango</id>
+            <id>SCAN_N_GO</id>
             <properties>
-                <cucumber.filter.tags>@SMOKE_SCANGO</cucumber.filter.tags>
+                <cucumber.filter.tags>@SCAN_N_GO</cucumber.filter.tags>
             </properties>
         </profile>
     </profiles>

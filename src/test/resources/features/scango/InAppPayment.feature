@@ -1,4 +1,4 @@
-@SMOKE_SCANGO @Manuka
+@SMOKE_SCANGO @SCAN_N_GO @REGRESSION_APIGEE
 Feature: In-App payment
 
   Background:
