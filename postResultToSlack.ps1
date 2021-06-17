@@ -7,7 +7,7 @@ $totalTagUrl = $Profile.ToUpper()
 $testResultDetailsUrl = $baseUrl + "/index.html"
 $imageURL = $baseUrl + "/test.png"
 $wolvesURL = $baseUrl + "/pages/tag-scenarios/tag_Wolves.html"
-$lionURL = $baseUrl + "/pages/tag-scenarios/tag_LION.html"
+$eagleURL = $baseUrl + "/pages/tag-scenarios/tag_EAGLE.html"
 $lobsterURL = $baseUrl + "/pages/tag-scenarios/tag_Lobsters.html"
 $vegemiteURL = $baseUrl + "/pages/tag-scenarios/tag_VEGEMITE.html"
 $nutellaURL = $baseUrl + "/pages/tag-scenarios/tag_NUTELLA.html"
@@ -40,7 +40,7 @@ function calculation {
 }
 
 $wolvesCount = calculation $wolvesURL
-$lionCount = calculation $lionURL
+$eagleCount = calculation $eagleURL
 $lobsterCount = calculation $lobsterURL
 $vegemiteCount = calculation $vegemiteURL
 $cloverCount = calculation $cloverURL
@@ -68,8 +68,8 @@ if($SourceBranchName -ne 'merge')
           if([int]$wolvesCount -ne 0){
             @{title = 'Wolves'; value = $wolvesCount; short = 'true'}
           }
-          if([int]$lionCount -ne 0){
-            @{title = 'Lion'; value = $lionCount; short = 'true'}
+          if([int]$eagleCount -ne 0){
+            @{title = 'Eagle'; value = $eagleCount; short = 'true'}
           }
           if([int]$lobsterCount -ne 0){
             @{title = 'Lobsters'; value = $lobsterCount; short = 'true'}
