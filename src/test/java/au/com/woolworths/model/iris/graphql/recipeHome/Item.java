@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Items2 {
+public class Item {
   private String __typename;
   private String source;
   private List<String> tags;

@@ -15,7 +15,7 @@ public class Items {
   private String title;
   private String subtitle;
   private List <String> tags;
-  private List <Items2> items;
+  private List <Item> items;
   private String actionTitle;
   private List <ActionMetadata> actionMetadata;
   private String altText;
