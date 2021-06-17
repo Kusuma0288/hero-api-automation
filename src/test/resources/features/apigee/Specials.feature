@@ -1,7 +1,8 @@
-@SPECIALSPAGE @VEGEMITE @REGRESSION_APIGEE
-Feature: Verify the Specials components in Online mode for logged-in user
+@SPECIALSPAGE @REGRESSION_APIGEE
+Feature: Verify the Specials components for logged-in user
 
-  Scenario: Verify the "/wow/v2/specials" Specials component and the list of products ("/wow/v2/products") under a Specials Group for logged-in user and in IN-Store mode
+  @wolves
+  Scenario: Verify the "/wow/v2/specials" Specials component and the list of products ("/wow/v2/products") under a Specials Group for logged-in user and in Online mode
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME"
     When connection from user to apigee endpoint happens
     Then I make a request to Specials page in "ONLINE" mode and verify the response
@@ -9,7 +10,7 @@ Feature: Verify the Specials components in Online mode for logged-in user
     And I add the stockcode with quantity "2" to trolley
     And I clear the trolley
 
-  @PROD_APIGEE
+  @PROD_APIGEE @VEGEMITE
   Scenario: Verify the "/wow/v2/specials" Specials component and the list of products ("/wow/v2/products") under a Specials Group for logged-in user and in IN-Store mode
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME"
     When connection from user to apigee endpoint happens
