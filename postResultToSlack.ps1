@@ -13,7 +13,7 @@ $vegemiteURL = $baseUrl + "/pages/tag-scenarios/tag_VEGEMITE.html"
 $nutellaURL = $baseUrl + "/pages/tag-scenarios/tag_NUTELLA.html"
 $cloverURL = $baseUrl + "/pages/tag-scenarios/tag_CLOVER.html"
 $falconURL = $baseUrl + "/pages/tag-scenarios/tag_Falcon.html"
-$manukaURL = $baseUrl + "/pages/tag-scenarios/tag_SCAN_N_GO.html"
+$manukaURL = $baseUrl + "/pages/tag-scenarios/tag_ScanNGo.html"
 $totalURL = $baseUrl + "/pages/tag-scenarios/tag_" + $totalTagUrl + ".html"
 
 ##functions
