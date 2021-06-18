@@ -44,7 +44,7 @@ stages:
         displayName: Manual Automation Run
         variables:
           ${{ if eq(parameters.triggerEnv, 'prod') }}:
-            TriggeredProfile: prod_scango
+            TriggeredProfile: ScanNGo
             TriggeredEnv: ${{ parameters.triggerEnv }}
           ${{ if eq(parameters.triggerEnv, 'uat') }}:
             TriggeredProfile: ScanNGo
