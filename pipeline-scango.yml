@@ -47,13 +47,13 @@ stages:
             TriggeredProfile: prod_scango
             TriggeredEnv: ${{ parameters.triggerEnv }}
           ${{ if eq(parameters.triggerEnv, 'uat') }}:
-            TriggeredProfile: smoke_scango
+            TriggeredProfile: ScanNGo
             TriggeredEnv: ${{ parameters.triggerEnv }}
           ${{ if eq(variables['Build.Reason'], 'IndividualCI') }}:
-            TriggeredProfile: smoke_scango
+            TriggeredProfile: ScanNGo
             TriggeredEnv: uat
           ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
-            TriggeredProfile: smoke_scango
+            TriggeredProfile: ScanNGo
             TriggeredEnv: uat
         steps:
           - script: |
