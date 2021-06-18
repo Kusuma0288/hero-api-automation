@@ -1,4 +1,4 @@
-@SCAN_N_GO @SMOKE_SCANGO  @REGRESSION_APIGEE
+@ScanNGo @SMOKE_SCANGO  @REGRESSION_APIGEE
 Feature: In-App payment
 
   Background:
