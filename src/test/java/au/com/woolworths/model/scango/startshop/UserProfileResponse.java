@@ -10,5 +10,6 @@ public class UserProfileResponse {
   private Status status;
   private Preference preference;
   private UserProfileStoreInfo storeinfo;
+  private Survey survey;
   private String statusCode;
 }
