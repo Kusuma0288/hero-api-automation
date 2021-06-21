@@ -11,6 +11,7 @@ Feature: APIGEE : Pickup - Verify Apigee Pickup scenarios
       | PostCode | FulfilmentMethod |
       | 2099     | Pickup           |
 
+
   Scenario Outline: Verify whether user gets error message for invalid post code
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME5"
     When connection from user to apigee endpoint happens

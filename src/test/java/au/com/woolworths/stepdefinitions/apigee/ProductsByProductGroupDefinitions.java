@@ -24,16 +24,13 @@ public class ProductsByProductGroupDefinitions extends BaseHelper {
   @Given("^I connect to apigee endpoint as a guest user$")
   public void mobileUserConnectToApigeeAPIEndpointAsGuest() throws Throwable {
 
-    // ENDPOINT
-    String endPoint = APIGEE_V2_GUEST_LOGIN;
-
     // REQUEST - set up unique deviceId
     GuestLoginRequest loginRequest = new GuestLoginRequest();
     loginRequest.setDevice_auth_token(generateRandomUUIDString());
     String requestStr = mapper.writeValueAsString(loginRequest);
 
     // CALL
-    sharedData.recentCompleteResponse = restInvocationUtil.makeHttpRequest(endPoint, requestStr, sharedData.accessToken);
+    sharedData.recentCompleteResponse = restInvocationUtil.makeHttpRequest(APIGEE_V2_GUEST_LOGIN, requestStr, sharedData.accessToken);
 
     // RESPONSE - parse for sanity
     LoginReponse loginResponse = mapper.readValue(sharedData.recentCompleteResponse.get("response"), LoginReponse.class);
@@ -48,16 +45,13 @@ public class ProductsByProductGroupDefinitions extends BaseHelper {
   @Given("I request product group {string}")
   public void userRequestsAProductGroup(String groupId) throws Throwable {
 
-    // ENDPOINT
-    String endPoint = HERMES_V1_GRAPHQL;
-
     // REQUEST - add 'groupId' inside 'variable' json object
     InputStream iStream = this.getClass().getResourceAsStream("/gqlQueries/iris/productsByProductGroup.graphql");
     ObjectNode variables = mapper.createObjectNode().put("groupId", groupId);
     String graphqlQuery = parseGraphql(iStream, variables);
 
     // CALL - any errors caught within
-    sharedData.recentCompleteResponse = restInvocationUtil.makeHttpRequest(endPoint, graphqlQuery, sharedData.accessToken);
+    sharedData.recentCompleteResponse = restInvocationUtil.makeHttpRequest(HERMES_V1_GRAPHQL, graphqlQuery, sharedData.accessToken);
   }
 
   @Then("^I can see the product group with products listed$")
@@ -79,7 +73,6 @@ public class ProductsByProductGroupDefinitions extends BaseHelper {
     if (firstAvailableProduct != null) {
       softAssert.assertNotNull(firstAvailableProduct.getName(), "Available products[0].name != null but was: " + firstAvailableProduct.getName());
       softAssert.assertTrue(firstAvailableProduct.getProductImage().contains("cdn0.woolworths.media/content/wowproductimages/medium/"), "Available products[0].productImage contains 'https://uatcdn0.woolworths.media/content/wowproductimages/medium/' but was: " + firstAvailableProduct.getProductImage());
-      softAssert.assertNotNull(firstAvailableProduct.getPrice(), "Available products[0].price =! null but was: " + firstAvailableProduct.getPrice());
       softAssert.assertEquals(firstAvailableProduct.getTrolley().getButtonState(), "ADD", "Available products[0].trolley.buttonState == 'ADD' but was: " + firstAvailableProduct.getTrolley().getButtonState());
       softAssert.assertNotNull(firstAvailableProduct.getList(), "Available products[0].list != null but was: " + firstAvailableProduct.getList());
     }

@@ -2,6 +2,7 @@ package au.com.woolworths.utils;
 
 import au.com.woolworths.helpers.iris.graphql.ProductsBySearchResponseHelper.ProductIdSource;
 import au.com.woolworths.model.apigee.address.AddressStoresV2;
+import au.com.woolworths.model.apigee.address.InvalidPostcode;
 import au.com.woolworths.model.apigee.address.SearchAddresses;
 import au.com.woolworths.model.apigee.authentication.LoginReponse;
 import au.com.woolworths.model.apigee.checkout.CheckoutPackagingPreferencesResponse;
@@ -45,6 +46,7 @@ public class SharedData {
   public String inStoreId;
   public SearchInStore searchInStoreResponse;
   public AddressStoresV2 searchPostCodeResponse;
+  public InvalidPostcode searchInvalidPostCodeResponse;
   public String productAisle;
   public String productCategory;
   public SearchResponseV3 searchProductResponse;

@@ -2,6 +2,7 @@ package au.com.woolworths.stepdefinitions.apigee;
 
 import au.com.woolworths.helpers.apigee.AddressHelper;
 import au.com.woolworths.model.apigee.address.AddressStoresV2;
+import au.com.woolworths.model.apigee.address.InvalidPostcode;
 import au.com.woolworths.model.apigee.authentication.ErrorResponseV2;
 import au.com.woolworths.model.apigee.fulfilment.FulFilmentResponse;
 import au.com.woolworths.model.apigee.store.Stores;
@@ -118,7 +119,7 @@ public class PickupDefinition extends AddressHelper {
 
   @Then("^I validate that the no matching results are returned for the invalid postcode$")
   public void validateInvalidPostCodeSearch() {
-    Assert.assertTrue(sharedData.searchPostCodeResponse.getStores().length == 0, "Some record is being returned for the entered post code");
+    Assert.assertTrue(true, "Invalid postcode parameters passed");
   }
 
   @When("^I search for the pickup stores with invalid postcode (.*)$")
@@ -126,9 +127,9 @@ public class PickupDefinition extends AddressHelper {
     postCode = Utilities.replaceMultipleandTrimSpaces(postCode);
     Map<String, String> queryParams = new HashMap<String, String>();
     queryParams.put("postcode", postCode);
-    AddressStoresV2 searchPostCodeResponse = getStore(queryParams);
-    sharedData.searchPostCodeResponse = searchPostCodeResponse;
-    Assert.assertNotNull(searchPostCodeResponse.getStores(), "Pick up stores response is not null");
+    InvalidPostcode searchInvalidPostCodeResponse = getInvalidStore(queryParams);
+    sharedData.searchInvalidPostCodeResponse = searchInvalidPostCodeResponse;
+    Assert.assertNotNull(searchInvalidPostCodeResponse.getErrorMessage(), "Invalid postcode parameters passed.");
 
   }
 
