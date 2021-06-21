@@ -11,5 +11,5 @@ public class Tag {
   private String TagLink;
   private String TagName;
   private String TagContentText;
-
+  private String MultibuyData;
 }

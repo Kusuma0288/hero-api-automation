@@ -10,7 +10,9 @@ public class ShopperLoginResponseV2 {
   private String LoginResult;
   private String LoginMessage;
   private String AuthToken;
+  private String OneLoginAuthToken;
   private String RefreshToken;
+  private String OneLoginRefreshToken;
   private Session Session;
   private String TrolleyMergedMessage;
   private ResponseStatus ResponseStatus;

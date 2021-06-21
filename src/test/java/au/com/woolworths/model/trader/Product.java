@@ -16,7 +16,9 @@ public class Product {
   private CountryOfOriginLabel countryOfOriginLabel;
   private String richDescription;
   private Integer savingsAmount;
+  private Double Price;
   private Double basePrice;
+  private Double WasPrice;
   private Boolean isEdrSpecial;
   private Double salePrice;
   private Boolean ageRestricted;
@@ -31,6 +33,7 @@ public class Product {
   private int UnitWeightInGrams;
   private String stockcode;
   private String name;
+  private String IsNew;
   private String description;
   private Integer quantity;
   private Integer minimumQuantity;
@@ -54,4 +57,5 @@ public class Product {
   private String MediumImageFile;
   private String LargeImageFile;
   private String DisplayName;
+  private String HeaderTag;
 }

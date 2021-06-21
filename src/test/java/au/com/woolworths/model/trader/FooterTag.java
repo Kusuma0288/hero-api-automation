@@ -12,4 +12,5 @@ public class FooterTag {
   private Object tagLink;
   private String tagName;
   private String TagContentText;
+  private String MultibuyData;
 }

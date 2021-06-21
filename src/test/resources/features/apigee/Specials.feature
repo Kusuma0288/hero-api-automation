@@ -1,7 +1,7 @@
 @SPECIALSPAGE @REGRESSION_APIGEE
 Feature: Verify the Specials components for logged-in user
 
-  @wolves
+  @Wolves
   Scenario: Verify the "/wow/v2/specials" Specials component and the list of products ("/wow/v2/products") under a Specials Group for logged-in user and in Online mode
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME"
     When connection from user to apigee endpoint happens
