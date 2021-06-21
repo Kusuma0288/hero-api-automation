@@ -7,13 +7,13 @@ $totalTagUrl = $Profile.ToUpper()
 $testResultDetailsUrl = $baseUrl + "/index.html"
 $imageURL = $baseUrl + "/test.png"
 $wolvesURL = $baseUrl + "/pages/tag-scenarios/tag_Wolves.html"
-$lionURL = $baseUrl + "/pages/tag-scenarios/tag_LION.html"
+$eagleURL = $baseUrl + "/pages/tag-scenarios/tag_EAGLE.html"
 $lobsterURL = $baseUrl + "/pages/tag-scenarios/tag_Lobsters.html"
 $vegemiteURL = $baseUrl + "/pages/tag-scenarios/tag_VEGEMITE.html"
 $nutellaURL = $baseUrl + "/pages/tag-scenarios/tag_NUTELLA.html"
 $cloverURL = $baseUrl + "/pages/tag-scenarios/tag_CLOVER.html"
 $falconURL = $baseUrl + "/pages/tag-scenarios/tag_Falcon.html"
-$manukaURL = $baseUrl + "/pages/tag-scenarios/tag_Manuka.html"
+$manukaURL = $baseUrl + "/pages/tag-scenarios/tag_ScanNGo.html"
 $totalURL = $baseUrl + "/pages/tag-scenarios/tag_" + $totalTagUrl + ".html"
 
 ##functions
@@ -40,13 +40,13 @@ function calculation {
 }
 
 $wolvesCount = calculation $wolvesURL
-$lionCount = calculation $lionURL
+$eagleCount = calculation $eagleURL
 $lobsterCount = calculation $lobsterURL
 $vegemiteCount = calculation $vegemiteURL
 $cloverCount = calculation $cloverURL
 $nutellaCount = calculation $nutellaURL
 $falconCount = calculation $falconURL
-$manukaCount = calculation $manukaURL
+$ScanNGoCount = calculation $manukaURL
 $total_failures = calculation $totalURL
 
 if($SourceBranchName -ne 'merge')
@@ -68,8 +68,8 @@ if($SourceBranchName -ne 'merge')
           if([int]$wolvesCount -ne 0){
             @{title = 'Wolves'; value = $wolvesCount; short = 'true'}
           }
-          if([int]$lionCount -ne 0){
-            @{title = 'Lion'; value = $lionCount; short = 'true'}
+          if([int]$eagleCount -ne 0){
+            @{title = 'Eagle'; value = $eagleCount; short = 'true'}
           }
           if([int]$lobsterCount -ne 0){
             @{title = 'Lobsters'; value = $lobsterCount; short = 'true'}
@@ -86,8 +86,8 @@ if($SourceBranchName -ne 'merge')
           if([int]$falconCount -ne 0){
                 @{title = 'Falcon'; value = $falconCount; short = 'true'}
           }
-           if([int]$manukaCount -ne 0){
-                @{title = 'Manuka'; value = $manukaCount; short = 'true'}
+           if([int]$ScanNGoCount -ne 0){
+                @{title = 'Scan&Go'; value = $ScanNGoCount; short = 'true'}
           }
         )
      color = $color

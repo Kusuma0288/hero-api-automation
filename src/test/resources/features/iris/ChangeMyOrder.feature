@@ -24,7 +24,7 @@ Feature: Checkout API scenarios
       | Mode   |
       | Pickup |
 
-  @LION
+  @EAGLE
   Scenario Outline:  Verify getting and setting of v3/checkout windows and Packaging preference for Delivery mode
     Given I pick a location at "<lookupAddress>" for delivery
     And I make a request to fulfilment api with primary address id to set the address as fulfilment address

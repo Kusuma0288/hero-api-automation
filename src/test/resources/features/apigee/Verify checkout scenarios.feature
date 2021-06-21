@@ -5,11 +5,11 @@ Feature: Checkout API scenarios
     Given user continue to connect to apigee with login username as "SHOPPER_USERNAME6"
     When connection from user to apigee endpoint happens
 
-  @LION
+  @EAGLE
   Scenario Outline: Verify getting and setting of v3/checkout windows and Packaging preference for Pick up mode
     Given I set a pick up store using post code 2000
     And I clear the trolley
-    When I search for the product Milk in pickup mode and store response
+    When I search for the product Chocolate in pickup mode and store response
     And I add the 5 available products with 5 each from the store to the V3 trolley
     And I get the available windows for the logged in user with storeId or addressId
     Then I reserve the available window for the selected "<Mode>"
@@ -25,7 +25,7 @@ Feature: Checkout API scenarios
       | Mode   |
       | Pickup |
 
-  @LION
+  @EAGLE
   Scenario Outline:  Verify getting and setting of v3/checkout windows and Packaging preference for Delivery mode
     Given I pick a location at "<lookupAddress>" for delivery
     And I make a request to fulfilment api with primary address id to set the address as fulfilment address

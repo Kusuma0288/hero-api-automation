@@ -1,4 +1,4 @@
-@REGRESSION_TRADER @SHOPPER_LOGIN @GUEST_TO_SHOPPER @PROD_TRADER @LION @SMOKE_TRADER
+@REGRESSION_TRADER @SHOPPER_LOGIN @GUEST_TO_SHOPPER @PROD_TRADER @EAGLE @SMOKE_TRADER
 Feature: Verify Customer login authentication
   Test for the login feature if working in all possible modes
 

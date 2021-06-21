@@ -32,7 +32,7 @@ stages:
             parameters:
               SlackWebHookUrl: $(scanNGo_slackWebHookUrl)
               TestRunTitle: Uat Scan&Go Automation Run Report
-              Profile: smoke_scango
+              Profile: ScanNGo
               RunEnv: uat
               Service: scango
         condition: and(succeededOrFailed(), eq('${{ parameters.triggerEnv }}', 'all'), eq(variables['Build.Reason'], 'Schedule'))
@@ -44,16 +44,16 @@ stages:
         displayName: Manual Automation Run
         variables:
           ${{ if eq(parameters.triggerEnv, 'prod') }}:
-            TriggeredProfile: prod_scango
+            TriggeredProfile: ScanNGo
             TriggeredEnv: ${{ parameters.triggerEnv }}
           ${{ if eq(parameters.triggerEnv, 'uat') }}:
-            TriggeredProfile: smoke_scango
+            TriggeredProfile: ScanNGo
             TriggeredEnv: ${{ parameters.triggerEnv }}
           ${{ if eq(variables['Build.Reason'], 'IndividualCI') }}:
-            TriggeredProfile: smoke_scango
+            TriggeredProfile: ScanNGo
             TriggeredEnv: uat
           ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
-            TriggeredProfile: smoke_scango
+            TriggeredProfile: ScanNGo
             TriggeredEnv: uat
         steps:
           - script: |
