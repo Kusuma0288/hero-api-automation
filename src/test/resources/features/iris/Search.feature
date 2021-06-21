@@ -35,7 +35,7 @@ Feature: Search GraphQL
   @REGRESSION_APIGEE @IRIS @UAT @TEST
   Scenario: Search a product as a guest user with filter type Dietary and Lifestyle
     Given I connect to apigee endpoint as a guest user
-    Then user searches for "Milk" as the search product with sort option "TraderRelevance" and filter by "Dietary and Lifestyle" and by filter option as "Gluten Free"
+    Then user searches for "Cheese" as the search product with sort option "TraderRelevance" and filter by "Dietary and Lifestyle" and by filter option as "Gluten Free"
 
   @REGRESSION_APIGEE @IRIS @UAT @TEST
   Scenario: Search a product as a logged in user with filter type Health Star Rating

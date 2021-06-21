@@ -24,6 +24,9 @@ public class Products {
   private String Unit;
   private int SupplyLimit;
   private int CupPrice;
+  private Double Price;
+  private Double WasPrice;
+  private String IsNew;
   private String CupMeasure;
   private boolean IsAvailable;
   private boolean IsPmRestriction;
@@ -54,6 +57,6 @@ public class Products {
   private boolean IsPurchasableWithRewardsCredits;
   private Object RewardsCreditPrice;
   private String DisplayName;
-
+  private String HeaderTag;
 
 }

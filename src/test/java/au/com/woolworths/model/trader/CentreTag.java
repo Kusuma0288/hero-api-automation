@@ -12,4 +12,5 @@ public class CentreTag {
   private Object tagLink;
   private Object tagName;
   private String TagContentText;
+  private String MultibuyData;
 }

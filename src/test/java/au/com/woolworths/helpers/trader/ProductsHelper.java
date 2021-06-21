@@ -36,8 +36,8 @@ public class ProductsHelper extends BaseHelper {
     // Since Product list has to many properties which we need not to validate so keeping state false for now
     mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> mapWebserviceResponse;
+    Map<String, String> queryParams = new HashMap<>();
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
 
     String responseStr = mapWebserviceResponse.get("response");
@@ -49,34 +49,32 @@ public class ProductsHelper extends BaseHelper {
 
   public ProductDetailsResponse iGetProductDetails(String stockcode) throws Throwable {
     String endPoint = URLResources.TRADER_V2_PRODUCT_DETAIL.replace("{stockcode}", stockcode);
-    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> mapWebserviceResponse;
+    Map<String, String> queryParams = new HashMap<>();
     queryParams.put("isMobile", "true");
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
 
     String responseStr = mapWebserviceResponse.get("response");
 
-    ProductDetailsResponse response = mapper.readValue(responseStr, ProductDetailsResponse.class);
-    return response;
+    return mapper.readValue(responseStr, ProductDetailsResponse.class);
   }
 
   public SpecialsGroupResponse getSpecialsGroup() throws Throwable {
 
     String endPoint = URLResources.TRADER_V2_SPECIALS_GROUP;
-    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> mapWebserviceResponse;
+    Map<String, String> queryParams = new HashMap<>();
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
     String responseStr = mapWebserviceResponse.get("response");
 
-    SpecialsGroupResponse response = mapper.readValue(responseStr, SpecialsGroupResponse.class);
-    return response;
+    return mapper.readValue(responseStr, SpecialsGroupResponse.class);
   }
 
   public SpecialsGroupDetailsResponse iGetSpecialsGroupDetails(String groupId, int page) throws Throwable {
 
     String endPoint = URLResources.TRADER_V2_SPECIALS_GROUP_DETAILS;
-    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> mapWebserviceResponse;
+    Map<String, String> queryParams = new HashMap<>();
     queryParams.put("group", groupId);
     queryParams.put("pageNumber", String.valueOf(page));
     queryParams.put("pageSize", "36");
@@ -84,14 +82,13 @@ public class ProductsHelper extends BaseHelper {
     mapWebserviceResponse = invocationUtil.invokeGetWithHeaders(endPoint, queryParams, headerListTrader);
     String responseStr = mapWebserviceResponse.get("response");
 
-    SpecialsGroupDetailsResponse response = mapper.readValue(responseStr, SpecialsGroupDetailsResponse.class);
-    return response;
+    return mapper.readValue(responseStr, SpecialsGroupDetailsResponse.class);
   }
 
   public ProductsByProductGroup iGetProductsByProductsGroup(String productGroupId) throws IOException {
     String endPoint = URLResources.TRADER_V3_PRODUCT_GROUP;
-    Map<String, String> mapWebserviceResponse = new HashMap<String, String>();
-    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> mapWebserviceResponse;
+    Map<String, String> queryParams = new HashMap<>();
     queryParams.put("productGroupId", productGroupId);
     queryParams.put("pageSize", "50");
 
@@ -99,8 +96,7 @@ public class ProductsHelper extends BaseHelper {
     sharedData.recentCompleteResponse = mapWebserviceResponse;
 
     String responseStr = mapWebserviceResponse.get("response");
-    ProductsByProductGroup response = mapper.readValue(responseStr, ProductsByProductGroup.class);
-    return response;
+    return mapper.readValue(responseStr, ProductsByProductGroup.class);
   }
 }
 
