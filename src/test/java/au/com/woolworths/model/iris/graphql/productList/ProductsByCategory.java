@@ -9,10 +9,10 @@ import java.util.List;
 @EqualsAndHashCode
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductsByCategory {
-    private Integer totalNumberOfProducts;
-    private Integer nextPage;
-    private List<Filter> filters;
-    private List<SortOption> sortOptions;
-    @EqualsAndHashCode.Exclude
-    private List<Product> products;
+  private Integer totalNumberOfProducts;
+  private Integer nextPage;
+  private List<Filter> filters;
+  private List<SortOption> sortOptions;
+  @EqualsAndHashCode.Exclude
+  private List<Product> products;
 }

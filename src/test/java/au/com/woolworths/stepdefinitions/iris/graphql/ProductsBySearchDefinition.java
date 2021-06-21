@@ -83,9 +83,9 @@ public class ProductsBySearchDefinition extends BaseHelper {
       // REQUEST - create GraphQL
       iStream = this.getClass().getResourceAsStream("/gqlQueries/iris/productsBySearch.graphql"); // need to re-instantiate each time
       ObjectNode variables = mapper.createObjectNode()
-              .put("searchTerm", searchString)
-              .put("pageSize", pageSize)
-              .put("pageNumber", nextPage);
+          .put("searchTerm", searchString)
+          .put("pageSize", pageSize)
+          .put("pageNumber", nextPage);
       String graphqlQuery = parseGraphql(iStream, variables);
 
       // CALL - any errors caught within
@@ -130,18 +130,18 @@ public class ProductsBySearchDefinition extends BaseHelper {
    */
   @When("user searches for {string} with productsFeed {string}")
   public void userSearchesForWithProductsFeed(String searchString, String productsFeed) throws Throwable {
-  // REQUEST
+    // REQUEST
     iStream = this.getClass().getResourceAsStream("/gqlQueries/iris/productsBySearchProductsFeed.graphql");
 
     ObjectNode croVariables = mapper.createObjectNode();
     croVariables
-            .put("adobeEcid", "26920881514697393047774072919195156984")
-            .put("deliveryAddressPostcode", "4105");
+        .put("adobeEcid", "26920881514697393047774072919195156984")
+        .put("deliveryAddressPostcode", "4105");
 
     ObjectNode variables = (ObjectNode) mapper.createObjectNode()
-            .put("searchTerm", searchString)
-            .put("productsFeed", productsFeed.equals("true"))
-            .set("croVariables", croVariables);
+        .put("searchTerm", searchString)
+        .put("productsFeed", productsFeed.equals("true"))
+        .set("croVariables", croVariables);
 
     String graphqlQuery = parseGraphql(iStream, variables);
 
@@ -179,27 +179,23 @@ public class ProductsBySearchDefinition extends BaseHelper {
     // PARSE & SAVE
     boolean filterNotMatching = false;
     ProductsBySearch result = mapper.readValue(response.get("response"), ProductsBySearchResponse.class).getData().getProductsBySearch();
-    for(int i = 0; i <=result.getFilters().size(); i++) {
-      if(result.getFilters().get(i).getHeaderTitle().equals(filterType))
-      {
-        for(int j =0; j <=result.getFilters().get(i).getFilterItems().size(); j++) {
+    for (int i = 0; i <= result.getFilters().size(); i++) {
+      if (result.getFilters().get(i).getHeaderTitle().equals(filterType)) {
+        for (int j = 0; j <= result.getFilters().get(i).getFilterItems().size(); j++) {
+          if (result.getFilters().get(i).getFilterItems().get(j).getIsApplied().equals(true)) {
+            filterNotMatching = true;
+            break;
+          }
+        }
+      } else if (result.getFilters().get(i).getHeaderTitle().equals("Categories")) {
+        for (int j = 0; j <= result.getFilters().get(i).getFilterItems().size(); j++) {
           if (result.getFilters().get(i).getFilterItems().get(j).getIsApplied().equals(true)) {
             filterNotMatching = true;
             break;
           }
         }
       }
-      else if (result.getFilters().get(i).getHeaderTitle().equals("Categories"))
-      {
-        for(int j =0; j <=result.getFilters().get(i).getFilterItems().size(); j++) {
-          if (result.getFilters().get(i).getFilterItems().get(j).getIsApplied().equals(true)) {
-            filterNotMatching = true;
-            break;
-          }
-        }
-      }
-      if(filterNotMatching)
-      {
+      if (filterNotMatching) {
         break;
       }
     }
