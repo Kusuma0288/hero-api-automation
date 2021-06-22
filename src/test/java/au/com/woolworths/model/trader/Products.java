@@ -57,6 +57,6 @@ public class Products {
   private boolean IsPurchasableWithRewardsCredits;
   private Object RewardsCreditPrice;
   private String DisplayName;
-  private String HeaderTag;
+  private Object HeaderTag;
 
 }

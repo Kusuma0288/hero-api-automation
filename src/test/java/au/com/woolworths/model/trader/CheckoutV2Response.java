@@ -23,5 +23,7 @@ public class CheckoutV2Response {
   private int MaximumExpressOrderQuantity;
   private boolean HasCarePackage;
   private SubstitutionPreferences SubstitutionPreferences;
+  private boolean RestrictedItemsRecipientRequired;
+  private String RestrictedItemsRecipient;
 
 }

@@ -58,4 +58,6 @@ public class Order {
   private LeaveUnattendedMessage OnLeaveUnattendedMessage;
   //New field introduced for Project Shore
   private Object RewardsCredits;
+  private boolean RestrictedItemsRecipientRequired;
+  private String RestrictedItemsRecipient;
 }
