@@ -1,4 +1,4 @@
-@Falcon @REGRESSION_APIGEE
+@Falcon
 Feature: Verify all the DeliveryNow related test cases
 
   @HOMEPAGE
@@ -39,7 +39,7 @@ Feature: Verify all the DeliveryNow related test cases
       | 13-19 Seven Hills Rd, BAULKHAM HILLS NSW 2153 | Eligible    |
       | 31 Dean St, NORTH TAMWORTH NSW 2340           | Ineligible  |
 
-  @CHECKOUT
+  @CHECKOUT @REGRESSION_APIGEE
   Scenario Outline: To verify the Delivery Now Status on checkout screen in Delivery Mode (for eligible and ineligible address)
     Given User logs in with username as "SHOPPER_USERNAME"
     And Selects Delivery Shopping Mode and set a Delivery Now eligible "<Address>"
@@ -54,7 +54,7 @@ Feature: Verify all the DeliveryNow related test cases
       | 159 Rooty Hill Rd S, EASTERN CREEK NSW 2766   | Closed      |
       | 1802 Pacific Hwy, GORDON NSW 2072             | Exhausted   |
 
-  @CHECKOUT
+  @CHECKOUT @REGRESSION_APIGEE
   Scenario Outline: To verify the Delivery Now Status on checkout screen in Pickup Mode (for eligible and ineligible address)
     Given User logs in with username as "SHOPPER_USERNAME"
     And Selects Delivery Shopping Mode and set a Delivery Now eligible "<Address>"
@@ -70,7 +70,7 @@ Feature: Verify all the DeliveryNow related test cases
       | 159 Rooty Hill Rd S, EASTERN CREEK NSW 2766   | Closed      |
       | 1802 Pacific Hwy, GORDON NSW 2072             | Exhausted   |
 
-  @E2E
+  @E2E @REGRESSION_APIGEE
   Scenario Outline: Login with existing user id and place Delivery Now Order
     Given User logs in with username as "SHOPPER_USERNAME"
     And Selects Delivery Shopping Mode and set a Delivery Now eligible "<Address>"

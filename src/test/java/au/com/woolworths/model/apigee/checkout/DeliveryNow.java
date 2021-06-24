@@ -7,4 +7,5 @@ import lombok.Data;
 @Data
 public class DeliveryNow {
   private String Status;
+  private boolean IsSelected;
 }
