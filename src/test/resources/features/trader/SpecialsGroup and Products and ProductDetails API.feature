@@ -1,4 +1,4 @@
-@PRODUCT_DETAILS @Wolves
+@PRODUCT_DETAILS @Wolves @PROD_TRADER
 Feature: Verify Product details Api
 
   ### Duplicate feature, the same scenario is covered under trader/ProductDetails.feature

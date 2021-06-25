@@ -1,4 +1,4 @@
-@Wolves
+@Wolves @PROD_TRADER
 Feature: Verify V3 Search scenarios
 
   @REGRESSION
