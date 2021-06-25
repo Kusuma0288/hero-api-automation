@@ -1,4 +1,4 @@
-@REGRESSION_APIGEE @Wolves @PRODUCT_CATEGORIES
+@REGRESSION_APIGEE @Wolves @PRODUCT_CATEGORIES @PROD_APIGEE
 Feature: Product Categories GraphQL
 
   Scenario: Guest user recursively requests subcategories for online products

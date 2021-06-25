@@ -16,9 +16,8 @@ Feature: Verify the pickup store
     When apigee successfully authenticate to trader public api endpoint as guest
     And verify the pickup stores in the postcode 2000
 
-
+  @PROD_TRADER
   Scenario Outline: Validate the Fulfillment method for Pickup (DriveUp and InStore)
-
     Given apigee connect to trader public api endpoint as guest
     When apigee successfully authenticate to trader public api endpoint as guest
     And I clear the trolley for the shopper

@@ -1,4 +1,4 @@
-@REGRESSION_APIGEE @PRODUCT_GROUPS @Wolves
+@REGRESSION_APIGEE @PRODUCT_GROUPS @Wolves @PROD_APIGEE
 Feature: Product groups graphql
 
   Scenario: User queries a product group
