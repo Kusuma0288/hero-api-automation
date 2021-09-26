@@ -1,6 +1,0 @@
-mutation ($cardNumber: String!, $pinCode: String!) {
-    addGiftCard(giftCard: { cardNumber: $cardNumber, pinCode:  $pinCode }) {
-        success
-        message
-    }
-}

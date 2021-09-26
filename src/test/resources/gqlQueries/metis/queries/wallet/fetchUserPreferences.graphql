@@ -1,5 +1,0 @@
-query FetchUserPreferences {
-    userPreferences {
-      hasViewedWallet
-    }
-}
