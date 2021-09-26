@@ -1,4 +1,4 @@
-# herokapp-api-automation
+# hero-api-automation
 
 The Project is for api automation 
 
